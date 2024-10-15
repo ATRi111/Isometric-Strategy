@@ -1,48 +1,18 @@
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    private void Awake()
-    {
-        TD td = new TD();
-        ITDS itds = new ITDS();
-        Debug.Log(JsonConvert.SerializeObject(td, Formatting.Indented));
-        Debug.Log(JsonConvert.SerializeObject(itds, Formatting.Indented));
-    }
+    public Grid grid;
 
-    [System.Serializable]
-    class TD
+    private void Update()
     {
-        public int a;
-        public TD()
+        if(Input.GetMouseButton(0))
         {
-            a = Random.Range(0, 100);
-        }
-    }
-
-    [System.Serializable]
-    class ITD
-    {
-        public TD td;
-    }
-
-    class ITDS : ITD
-    {
-        internal List<TD> list;
-        public Dictionary<int, TD> dic;
-
-        public ITDS()
-        {
-            td = new TD();
-            list = new List<TD>();
-            dic = new Dictionary<int, TD>();
-            for (int i = 0; i < 3; i++)
-            {
-                list.Add(new TD());
-                dic.Add(i, new TD());
-            }
+            Vector3 world = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            world.Set(world.x, world.y, 0);
+            Vector3Int cell = grid.WorldToCell(world);
+            world = grid.CellToWorld(cell);
+            transform.position = world + new Vector3(0f, 0.5f * grid.cellSize.y, 0f);
         }
     }
 }
