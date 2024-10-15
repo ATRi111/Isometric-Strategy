@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 894bb30aabbe64b798044bee8428bc13
+timeCreated: 1436623937
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Kenney/Water2.prefab
+  uploadId: 554635

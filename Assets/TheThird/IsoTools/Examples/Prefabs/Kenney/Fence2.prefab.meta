@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bdd4e0dbed4fd4ea980de2f39dac8c71
+timeCreated: 1436626325
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Kenney/Fence2.prefab
+  uploadId: 554635

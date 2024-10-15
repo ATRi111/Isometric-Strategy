@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a1ca1770ccda64277a8ff4a4a660ebf3
+timeCreated: 1476724149
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Images/Dragosha/adventure-tileset/spritesheet.xml
+  uploadId: 554635

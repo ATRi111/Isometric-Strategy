@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9a179e96f48884ecb9d10a8e628efade
+timeCreated: 1477156384
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Dragosha/Dungeon/TileC.prefab
+  uploadId: 554635

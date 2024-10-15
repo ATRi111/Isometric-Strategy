@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 30a269be2fc864c9ea00c7a65636d543
+timeCreated: 1436529965
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Kenney/Tile.prefab
+  uploadId: 554635

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3b326225b2d6342dd9a9efd430fdf665
+timeCreated: 1436705616
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Scenes/Scene02.unity
+  uploadId: 554635

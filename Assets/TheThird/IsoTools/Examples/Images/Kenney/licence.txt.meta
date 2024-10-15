@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 79532e6be09dc4097b0b8fe59726ae25
+timeCreated: 1477146239
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Images/Kenney/licence.txt
+  uploadId: 554635

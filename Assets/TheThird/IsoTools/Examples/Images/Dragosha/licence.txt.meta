@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a779f32f0097f414a838f97834eddc6d
+timeCreated: 1477146520
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Images/Dragosha/licence.txt
+  uploadId: 554635

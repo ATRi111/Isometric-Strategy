@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 0cc9c814428694df6a2a04949e881f7b
+timeCreated: 1450019890
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Addons/PlayMaker/Actions/IsoResize.cs
+  uploadId: 554635

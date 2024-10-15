@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dd0c4026a6d694c3dade62fd46e77651
+timeCreated: 1477137799
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Dragosha/Adventure/BarrelA.prefab
+  uploadId: 554635

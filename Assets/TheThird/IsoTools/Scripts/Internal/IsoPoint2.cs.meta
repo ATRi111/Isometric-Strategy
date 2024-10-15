@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 534645fda9ef2415a9b5db4a91c601b5
+timeCreated: 1482561634
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Scripts/Internal/IsoPoint2.cs
+  uploadId: 554635

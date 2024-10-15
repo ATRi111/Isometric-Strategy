@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d7a494a92412f4b1bb6cc6b11f88b1a4
+timeCreated: 1477157247
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Dragosha/Dungeon/ChestB.prefab
+  uploadId: 554635

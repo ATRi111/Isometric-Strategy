@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b89b96b93724d4f7489cd31f4f2fda48
+timeCreated: 1436702426
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Kenney/Player.prefab
+  uploadId: 554635

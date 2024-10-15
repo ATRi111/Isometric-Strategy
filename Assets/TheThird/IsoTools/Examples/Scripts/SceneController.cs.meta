@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 41e9e082b17d042ac8fcff96b7e74529
+timeCreated: 1460893580
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Scripts/SceneController.cs
+  uploadId: 554635

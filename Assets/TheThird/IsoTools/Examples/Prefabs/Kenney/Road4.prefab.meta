@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a31c6c4f5c7a34524b7fba25b8913970
+timeCreated: 1436623443
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Kenney/Road4.prefab
+  uploadId: 554635

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 2b59e8593133b453bb434f86de86993a
+timeCreated: 1450193215
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Addons/PlayMaker/Actions/IsoConvertIsometricToScreen.cs
+  uploadId: 554635
