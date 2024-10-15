@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0e89bc558fe7d404492ffd9fd9c5a04c
+timeCreated: 1487354125
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Docs/CHANGELOG.md
+  uploadId: 554635

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dbba12c63e5d241959148956d0b0d009
+timeCreated: 1477158482
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Dragosha/Dungeon/NpcF.prefab
+  uploadId: 554635

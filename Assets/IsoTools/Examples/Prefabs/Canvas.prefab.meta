@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f34dc3b1e71a94249ad50db729f01df0
+timeCreated: 1460894157
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Canvas.prefab
+  uploadId: 554635

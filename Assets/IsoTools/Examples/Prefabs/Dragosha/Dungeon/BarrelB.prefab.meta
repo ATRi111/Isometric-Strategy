@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d6b76a9d6083e4b1484530cad2dc1ce3
+timeCreated: 1477156830
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Dragosha/Dungeon/BarrelB.prefab
+  uploadId: 554635

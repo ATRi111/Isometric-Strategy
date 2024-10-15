@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bf0fd1edaa6b14568930b3541b5b695d
+timeCreated: 1477158899
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Dragosha/Dungeon/Player.prefab
+  uploadId: 554635

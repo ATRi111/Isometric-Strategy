@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b39b67d074abb4e78be70636891de8db
+timeCreated: 1477139126
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Dragosha/Adventure/CloudB.prefab
+  uploadId: 554635

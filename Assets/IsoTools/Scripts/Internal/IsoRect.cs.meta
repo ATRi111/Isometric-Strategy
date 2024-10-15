@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 1cf642c7164d740708f2d931a8ccde23
+timeCreated: 1480524425
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Scripts/Internal/IsoRect.cs
+  uploadId: 554635

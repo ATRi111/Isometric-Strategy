@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 52e132a4a0d844bbd84f8b1fbd61aa12
+timeCreated: 1450288016
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Addons/PlayMaker/Actions/IsoGetMouseIsoTilePosition.cs
+  uploadId: 554635

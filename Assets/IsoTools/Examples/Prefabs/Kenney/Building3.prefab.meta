@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6b1a35db98b93441a95be70a9ce3a621
+timeCreated: 1436626726
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Kenney/Building3.prefab
+  uploadId: 554635

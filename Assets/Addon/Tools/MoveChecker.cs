@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Tools
+namespace MyTool
 {
     public class MoveChecker
     {
-        private MonoBehaviour mono;
+        private readonly MonoBehaviour mono;
         private readonly Transform m_transform;
         private Vector3 position_previous;
 

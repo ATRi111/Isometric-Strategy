@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: f97bd76983db64be3adc438575153e6e
+timeCreated: 1450001531
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Addons/PlayMaker/Actions/IsoSetPosition.cs
+  uploadId: 554635

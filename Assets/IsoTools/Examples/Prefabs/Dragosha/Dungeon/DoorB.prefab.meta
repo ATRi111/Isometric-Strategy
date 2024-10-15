@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 014b3a2f04fb14594ad46a80560f8dec
+timeCreated: 1477157535
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Dragosha/Dungeon/DoorB.prefab
+  uploadId: 554635

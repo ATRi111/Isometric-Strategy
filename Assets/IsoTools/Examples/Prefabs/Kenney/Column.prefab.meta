@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2fcc4079bcf674648a340948820d08bd
+timeCreated: 1436625637
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Kenney/Column.prefab
+  uploadId: 554635

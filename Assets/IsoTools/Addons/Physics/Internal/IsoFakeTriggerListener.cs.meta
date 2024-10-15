@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 85a92cf713a8c4da68454e88e803bbce
+timeCreated: 1461097013
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Addons/Physics/Internal/IsoFakeTriggerListener.cs
+  uploadId: 554635

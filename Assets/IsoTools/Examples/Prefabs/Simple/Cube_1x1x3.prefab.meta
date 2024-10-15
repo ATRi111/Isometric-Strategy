@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 6dac6372d911f0646a34e2e83f03c30c
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27851
+  packageName: Isometric 2.5D Toolset
+  packageVersion: 3.2.0
+  assetPath: Assets/IsoTools/Examples/Prefabs/Simple/Cube_1x1x3.prefab
+  uploadId: 554635
