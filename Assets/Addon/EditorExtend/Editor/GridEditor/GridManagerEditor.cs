@@ -8,12 +8,13 @@ namespace EditorExtend.GridEditor
     {
         public GridManager GridManager => target as GridManager;
 
-        //[AutoProperty]
-        //public SerializedProperty data;
+        [AutoProperty]
+        public SerializedProperty centerOffset;
 
         protected override void MyOnInspectorGUI()
         {
-            if(GUILayout.Button("全体刷新"))
+            centerOffset.Vector2Field("中心偏移");
+            if (GUILayout.Button("全体刷新"))
             {
                 GridObject[] objects = GridManager.GetComponentsInChildren<GridObject>();
                 for (int i = 0; i < objects.Length; i++)

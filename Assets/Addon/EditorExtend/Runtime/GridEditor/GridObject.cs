@@ -1,51 +1,51 @@
-using EditorExtend.GridEditor;
 using UnityEngine;
 
-public class GridObject : MonoBehaviour
+namespace EditorExtend.GridEditor
 {
-    private GridManager manager;
-
-    public GridManager Manager
+    public class GridObject : MonoBehaviour
     {
-        get
+        private GridManager manager;
+
+        public GridManager Manager
         {
+            get
+            {
+                if (manager == null)
+                    manager = GetComponentInParent<GridManager>();
+                return manager;
+            }
+        }
+
+        private SpriteRenderer spriteRenderer;
+
+        public SpriteRenderer SpriteRenderer
+        {
+            get
+            {
 #if UNITY_EDITOR
-            if (manager == null)
-                manager = GetComponentInParent<GridManager>();
+                if (spriteRenderer == null)
+                    spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 #endif
-            return manager;
+                return spriteRenderer;
+            }
         }
-    }
 
-    private SpriteRenderer spriteRenderer;
-
-    public SpriteRenderer SpriteRenderer
-    {
-        get
+        [SerializeField]
+        private Vector3Int cellPosition;
+        public Vector3Int CellPosition
         {
-#if UNITY_EDITOR
-            if (spriteRenderer == null)
-                spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-#endif
-            return spriteRenderer;
+            get => cellPosition;
+            set
+            {
+                cellPosition = value;
+                Refresh(value);
+            }
         }
-    }
 
-    [SerializeField]
-    private Vector3Int cellPosition;
-    public Vector3Int CellPosition
-    {
-        get => cellPosition;
-        set
+        public void Refresh(Vector3Int cell)
         {
-            cellPosition = value;
-            Refresh(value);
+            transform.position = Manager.Grid.CellToWorld(cell);
+            SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(cell);
         }
-    }
-
-    public void Refresh(Vector3Int cell)
-    {
-        transform.position = Manager.Grid.CellToWorld(cell);
-        SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(cell);
     }
 }

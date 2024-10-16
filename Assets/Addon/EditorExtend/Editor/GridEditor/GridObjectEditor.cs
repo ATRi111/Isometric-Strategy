@@ -20,14 +20,15 @@ namespace EditorExtend.GridEditor
 
         protected override void MyOnInspectorGUI()
         {
-            cellPosition.Vector3IntField("网格位置");
-            if (GUILayout.Button("对齐到网格"))
-            {
-                cellPosition.vector3IntValue = GridObject.Manager.Grid.WorldToCell(GridObject.transform.position);
-            }
+            cellPosition.Vector3IntField("网格坐标");
             if (cellPosition.vector3IntValue != prev)
             {
                 prev = cellPosition.vector3IntValue;
+                GridObject.Refresh(cellPosition.vector3IntValue);
+            }
+            if (GUILayout.Button("对齐到网格"))
+            {
+                cellPosition.vector3IntValue = GridObject.Manager.ClosestCell(GridObject.transform.position);
                 GridObject.Refresh(cellPosition.vector3IntValue);
             }
         }

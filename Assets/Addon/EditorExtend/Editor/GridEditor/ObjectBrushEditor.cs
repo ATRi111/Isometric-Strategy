@@ -3,13 +3,12 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    [CustomEditor(typeof(ObjectBrush))]
     public class ObjectBrushEditor : AutoEditor
     {
         public ObjectBrush ObjectBrush => target as ObjectBrush;
 
         [AutoProperty]
-        public SerializedProperty cellPosition, lockZ, lockedZ;
+        public SerializedProperty cellPosition;
 
         /// <summary>
         /// 是否处于编辑状态；编辑状态下，才会响应各种鼠标事件
@@ -37,11 +36,6 @@ namespace EditorExtend.GridEditor
                 EditorGUI.BeginDisabledGroup(true);
                 cellPosition.Vector3IntField("网格位置");
                 EditorGUI.EndDisabledGroup();
-            }
-            lockZ.BoolField("锁定高度");
-            if(lockZ.boolValue)
-            {
-                lockedZ.IntField("高度");
             }
         }
 

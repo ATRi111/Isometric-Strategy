@@ -3,7 +3,7 @@ using UnityEngine;
 namespace EditorExtend.GridEditor
 {
     [RequireComponent(typeof(GridManager))]
-    public class ObjectBrush : MonoBehaviour
+    public abstract class ObjectBrush : MonoBehaviour
     {
 #if UNITY_EDITOR
         private GridManager manager;
@@ -19,15 +19,13 @@ namespace EditorExtend.GridEditor
 
         public Vector3Int cellPosition;
 
-        public bool lockZ = true;
-        public int lockedZ;
+        public abstract Vector3Int CalculateCellPosition(Vector3 worldPosition);
 
-        public Vector3Int CalculateCellPosition(Vector3 worldPosition)
+        private void OnDrawGizmosSelected()
         {
-            int z = lockedZ;
-            Vector3 ZtoY = Manager.Grid.CellToWorld(z * Vector3Int.forward);
-            Vector3 world = new Vector3(worldPosition.x, worldPosition.y, 0f);  //Z²»Ó°ÏìÍ¼ÏñÎ»ÖÃ
-            return Manager.Grid.WorldToCell(world) + z * Vector3Int.forward;
+            Gizmos.color = Color.red;
+            Vector3 offset = Manager.CellToWorld(new Vector3Int(1, 1, 0));
+            Gizmos.DrawSphere(Manager.CellToWorld(cellPosition) + offset, 0.05f);
         }
 #endif
     }
