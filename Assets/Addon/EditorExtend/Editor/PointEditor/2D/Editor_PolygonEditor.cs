@@ -52,7 +52,7 @@ namespace EditorExtend.PointEditor
                 for (int i = 0; i < worldPoints.Count; i++)
                 {
                     Handles.color = index == i ? settings.SelectedPointColor : settings.PointColor;
-                    HandleUI.DrawDot(worldPoints[i], SceneViewUtility.ScreenToWorldSize(settings.DefaultDotSize));
+                    HandleUI.DrawDot(worldPoints[i], SceneViewUtility.SceneToWorldSize(settings.DefaultDotSize));
                 }
 
                 if (index == -1)
@@ -60,7 +60,7 @@ namespace EditorExtend.PointEditor
                     Handles.color = settings.NewPointColor;
                     int insert = GetPointIndexOnLine(out Vector3 closest);
                     if (insert != -1)
-                        HandleUI.DrawDot(closest, SceneViewUtility.ScreenToWorldSize(settings.DefaultDotSize));
+                        HandleUI.DrawDot(closest, SceneViewUtility.SceneToWorldSize(settings.DefaultDotSize));
                 }
             }
         }

@@ -46,7 +46,7 @@ namespace EditorExtend.PointEditor
             manager = target as GameObjectsManager;
             helpInfo = "右击删除一个子物体";
             isEditting = true;
-            UnityEditor.Tools.current = Tool.None;
+            Tools.current = Tool.None;
         }
 
         protected override void MyOnInspectorGUI()
@@ -56,7 +56,7 @@ namespace EditorExtend.PointEditor
             if (GUILayout.Button(s))
             {
                 isEditting = !isEditting;
-                UnityEditor.Tools.current = isEditting ? Tool.None : Tool.Move;
+                Tools.current = isEditting ? Tool.None : Tool.Move;
                 SceneView.RepaintAll();
             }
             if (GUILayout.Button("在开头添加子物体"))

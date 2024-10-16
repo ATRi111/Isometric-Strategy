@@ -56,12 +56,12 @@ namespace EditorExtend.PointEditor
                 if (isEditting)
                 {
                     focusMode = EFocusMode.Lock;
-                    UnityEditor.Tools.current = Tool.None;
+                    Tools.current = Tool.None;
                 }
                 else
                 {
                     focusMode = EFocusMode.Default;
-                    UnityEditor.Tools.current = Tool.Move;
+                    Tools.current = Tool.Move;
                     selectedIndex = -1;
                 }
                 SceneView.RepaintAll();

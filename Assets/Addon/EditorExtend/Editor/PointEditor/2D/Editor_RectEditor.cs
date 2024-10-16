@@ -51,7 +51,7 @@ namespace EditorExtend.PointEditor
                 {
                     mids[i] = 0.5f * (vertices[i] + vertices[i + 1]);
                     Handles.color = index == i ? settings.SelectedPointColor : settings.PointColor;
-                    HandleUI.DrawDot(mids[i], SceneViewUtility.ScreenToWorldSize(settings.DefaultDotSize));
+                    HandleUI.DrawDot(mids[i], SceneViewUtility.SceneToWorldSize(settings.DefaultDotSize));
                 }
             }
         }

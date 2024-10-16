@@ -1,0 +1,35 @@
+using UnityEditor;
+using UnityEngine;
+
+namespace EditorExtend.GridEditor
+{
+    [CustomEditor(typeof(GridObject))]
+    public class GridObjectEditor : AutoEditor
+    {
+        public GridObject GridObject => target as GridObject;
+        [AutoProperty]
+        public SerializedProperty cellPosition;
+
+        private Vector3Int prev;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            prev = cellPosition.vector3IntValue;
+        }
+
+        protected override void MyOnInspectorGUI()
+        {
+            cellPosition.Vector3IntField("网格位置");
+            if (GUILayout.Button("对齐到网格"))
+            {
+                cellPosition.vector3IntValue = GridObject.Manager.Grid.WorldToCell(GridObject.transform.position);
+            }
+            if (cellPosition.vector3IntValue != prev)
+            {
+                prev = cellPosition.vector3IntValue;
+                GridObject.Refresh(cellPosition.vector3IntValue);
+            }
+        }
+    }
+}
