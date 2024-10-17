@@ -28,7 +28,7 @@ namespace EditorExtend.GridEditor
             }
             if (GUILayout.Button("Z²»±ä¶ÔÆë"))
             {
-                GridObject.Align();
+                cellPosition.vector3IntValue = GridObject.Align();
             }
         }
     }
