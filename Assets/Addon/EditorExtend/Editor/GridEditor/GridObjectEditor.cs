@@ -15,6 +15,7 @@ namespace EditorExtend.GridEditor
         protected override void OnEnable()
         {
             base.OnEnable();
+            cellPosition.vector3IntValue = GridObject.CellPosition;
             prev = cellPosition.vector3IntValue;
         }
 
