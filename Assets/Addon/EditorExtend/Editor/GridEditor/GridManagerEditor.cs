@@ -27,7 +27,9 @@ namespace EditorExtend.GridEditor
                 GridObject[] gridObjects = GridManager.GetComponentsInChildren<GridObject>();
                 for (int i = 0; i < gridObjects.Length; i++)
                 {
-                    gridObjects[i].Align();
+                    SerializedObject temp = new(gridObjects[i]);
+                    SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
+                    cellPosition.vector3IntValue = gridObjects[i].Align();
                 }
             }
         }
