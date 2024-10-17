@@ -17,6 +17,7 @@ namespace EditorExtend.GridEditor
             }
         }
 
+        public GridObject prefab;
         public Vector3Int cellPosition;
 
         public abstract Vector3Int CalculateCellPosition(Vector3 worldPosition);

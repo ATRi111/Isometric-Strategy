@@ -1,10 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using EditorExtend.GridEditor;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.Text;
 
 namespace EditorExtend
 {
     public static class ExternalTool
     {
+        /// <summary>
+        /// Editor/Runtime/Build通用的Destroy
+        /// </summary>
+        /// <param name="obj"></param>
+        public static void Destroy(Object obj)
+        {
+#if UNITY_EDITOR
+            if (Application.isPlaying)
+#endif
+                Object.Destroy(obj);
+#if UNITY_EDITOR
+            else
+                Undo.DestroyObjectImmediate(obj);
+#endif
+        }
+
+        public static void Log<TKey,TValue>(Dictionary<TKey,TValue> dict)
+        {
+            StringBuilder s = new StringBuilder();
+            foreach(var pair in dict)
+            {
+                s.Append(pair.Key.ToString());
+                s.Append(": ");
+                s.Append(pair.Value.ToString());
+                s.AppendLine();
+            }
+        }
+
         /// <summary>
         /// 计算指定射线起点到指定点的向量在该射线方向上的投影的长度
         /// </summary>

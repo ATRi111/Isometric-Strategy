@@ -19,7 +19,7 @@ namespace EditorExtend.GridEditor
         }
 
         private Dictionary<Vector3Int, GridObject> objectDict;
-        private Dictionary<Vector3Int, GridObject> ObjectsDict
+        public Dictionary<Vector3Int, GridObject> ObjectDict
         {
             get
             {
@@ -29,6 +29,17 @@ namespace EditorExtend.GridEditor
                     AddAllObjects();
                 }
                 return objectDict;
+            }
+        }
+
+        public GridObject this[Vector3Int cellPosition]
+        {
+            get => GetObject(cellPosition);
+            set
+            {
+                RemoveObject(cellPosition);
+                if(value != null)
+                    AddObject(value);
             }
         }
 
@@ -53,7 +64,7 @@ namespace EditorExtend.GridEditor
 
         public void AddAllObjects()
         {
-            objectDict.Clear();
+            ObjectDict.Clear();
             GridObject[] objects = GetComponentsInChildren<GridObject>();
             for (int i = 0; i < objects.Length; i++)
             {
@@ -61,16 +72,27 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        protected virtual void AddObject(GridObject gridObject)
+        protected virtual GridObject GetObject(Vector3Int cellPosition)
         {
-            objectDict.Add(gridObject.CellPosition, gridObject);
-        }
-
-        public virtual GridObject GetObject(Vector3Int cellPosition)
-        {
-            if (ObjectsDict.TryGetValue(cellPosition, out GridObject ret))
+            if (ObjectDict.TryGetValue(cellPosition, out GridObject ret))
                 return ret;
             return null;
+        }
+
+        protected virtual void AddObject(GridObject gridObject)
+        {
+            ObjectDict.Add(gridObject.CellPosition, gridObject);
+        }
+
+        protected virtual void RemoveObject(Vector3Int cellPosition)
+        {
+            ExternalTool.Log(ObjectDict);
+            if (ObjectDict.ContainsKey(cellPosition))
+            {
+                GridObject gridObject = ObjectDict[cellPosition];
+                ObjectDict.Remove(cellPosition);
+                ExternalTool.Destroy(gridObject.gameObject);
+            }
         }
     }
 }

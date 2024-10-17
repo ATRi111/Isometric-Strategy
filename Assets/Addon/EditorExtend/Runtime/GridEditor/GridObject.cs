@@ -42,10 +42,19 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        public void Refresh(Vector3Int cell)
+        public Vector3 Refresh()
+            => Refresh(cellPosition);
+        public Vector3 Refresh(Vector3Int cell)
         {
             transform.position = Manager.Grid.CellToWorld(cell);
             SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(cell);
+            return transform.position;
+        }
+        public Vector3Int Align()
+        {
+            Vector3Int cellPosition = Manager.ClosestCell(transform.position);
+            Refresh(cellPosition);
+            return cellPosition;
         }
     }
 }

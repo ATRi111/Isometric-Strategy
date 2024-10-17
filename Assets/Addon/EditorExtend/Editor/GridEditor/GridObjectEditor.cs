@@ -28,8 +28,7 @@ namespace EditorExtend.GridEditor
             }
             if (GUILayout.Button("¶ÔÆëµ½Íø¸ñ"))
             {
-                cellPosition.vector3IntValue = GridObject.Manager.ClosestCell(GridObject.transform.position);
-                GridObject.Refresh(cellPosition.vector3IntValue);
+                cellPosition.vector3IntValue = GridObject.Align();
             }
         }
     }
