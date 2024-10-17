@@ -34,6 +34,17 @@ namespace EditorExtend.GridEditor
                     temp.ApplyModifiedProperties();
                 }
             }
+            if (GUILayout.Button("全部XY不变对齐"))
+            {
+                GridObject[] gridObjects = GridManager.GetComponentsInChildren<GridObject>();
+                for (int i = 0; i < gridObjects.Length; i++)
+                {
+                    SerializedObject temp = new(gridObjects[i]);
+                    SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
+                    cellPosition.vector3IntValue = gridObjects[i].AlignZ();
+                    temp.ApplyModifiedProperties();
+                }
+            }
         }
 
         protected override void MyOnSceneGUI()
