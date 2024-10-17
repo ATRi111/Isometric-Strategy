@@ -52,7 +52,7 @@ namespace EditorExtend.GridEditor
         }
         public Vector3Int Align()
         {
-            Vector3Int cellPosition = Manager.ClosestCell(transform.position);
+            cellPosition = Manager.ClosestCell(transform.position);
             Refresh(cellPosition);
             return cellPosition;
         }

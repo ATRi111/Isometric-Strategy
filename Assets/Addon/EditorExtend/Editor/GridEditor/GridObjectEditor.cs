@@ -26,9 +26,9 @@ namespace EditorExtend.GridEditor
                 prev = cellPosition.vector3IntValue;
                 GridObject.Refresh(cellPosition.vector3IntValue);
             }
-            if (GUILayout.Button("对齐到网格"))
+            if (GUILayout.Button("Z不变对齐"))
             {
-                cellPosition.vector3IntValue = GridObject.Align();
+                GridObject.Align();
             }
         }
     }

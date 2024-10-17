@@ -14,23 +14,21 @@ namespace EditorExtend.GridEditor
         protected override void MyOnInspectorGUI()
         {
             centerOffset.Vector2Field("中心偏移");
-            if (GUILayout.Button("全体刷新"))
+            if (GUILayout.Button("全部刷新"))
             {
                 GridObject[] gridObjects = GridManager.GetComponentsInChildren<GridObject>();
                 for (int i = 0; i < gridObjects.Length; i++)
                 {
                     gridObjects[i].Refresh();
                 }
-                GridManager.AddAllObjects();
             }
-            if (GUILayout.Button("全体对齐"))
+            if (GUILayout.Button("全部Z不变对齐"))
             {
                 GridObject[] gridObjects = GridManager.GetComponentsInChildren<GridObject>();
                 for (int i = 0; i < gridObjects.Length; i++)
                 {
                     gridObjects[i].Align();
                 }
-                GridManager.AddAllObjects();
             }
         }
     }
