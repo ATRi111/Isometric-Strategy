@@ -16,6 +16,8 @@ namespace EditorExtend.GridEditor
         /// </summary>
         protected bool isEditting;
 
+        protected bool isErasing;
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -28,6 +30,7 @@ namespace EditorExtend.GridEditor
                 return;
 
             prefab.PropertyField("±ÊË¢");
+            isErasing = EditorGUILayout.Toggle("²Á³ýÄ£Ê½", isErasing);
             string s = isEditting ? "½áÊø±à¼­" : "¿ªÊ¼±à¼­";
             if (GUILayout.Button(s))
             {
@@ -74,12 +77,34 @@ namespace EditorExtend.GridEditor
             }
         }
         protected virtual void Paint() { }
-        protected virtual void OnLeftMouseDown() 
+        protected virtual void OnLeftMouseDown()
         {
+            Brush();
+        }
+        protected virtual void OnLeftMouseDrag() 
+        {
+            Brush();
+        }
+        protected virtual void OnLeftMouseUp() { }
+
+        protected virtual void UpdateCellPosition()
+        {
+            Vector3 world = SceneViewUtility.SceneToWorld(mousePosition);
+            cellPosition.vector3IntValue = ObjectBrush.CalculateCellPosition(world);
+        }
+
+        protected virtual void Brush()
+        {
+            if (isErasing)
+            {
+                ObjectBrush.Manager[ObjectBrush.cellPosition] = null;
+                return;
+            }
+
             GridObject gridObject = null;
             if (ObjectBrush.prefab != null)
             {
-                GameObject obj = Instantiate(ObjectBrush.prefab,ObjectBrush.transform);
+                GameObject obj = PrefabUtility.InstantiatePrefab(ObjectBrush.prefab, ObjectBrush.transform) as GameObject;
                 gridObject = obj.GetComponent<GridObject>();
                 SerializedObject temp = new(gridObject);
                 SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
@@ -88,14 +113,6 @@ namespace EditorExtend.GridEditor
                 temp.ApplyModifiedProperties();
             }
             ObjectBrush.Manager[ObjectBrush.cellPosition] = gridObject;
-        }
-        protected virtual void OnLeftMouseDrag() { }
-        protected virtual void OnLeftMouseUp() { }
-
-        protected virtual void UpdateCellPosition()
-        {
-            Vector3 world = SceneViewUtility.SceneToWorld(mousePosition);
-            cellPosition.vector3IntValue = ObjectBrush.CalculateCellPosition(world);
         }
     }
 }
