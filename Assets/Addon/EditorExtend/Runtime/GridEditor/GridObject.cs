@@ -50,9 +50,21 @@ namespace EditorExtend.GridEditor
             SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(cell);
             return transform.position;
         }
-        public Vector3Int Align()
+        /// <summary>
+        /// cellPosition的Z不变,确定XY，使对应的世界坐标最接近当前世界坐标
+        /// </summary>
+        public Vector3Int AlignXY()
         {
             cellPosition = Manager.ClosestCell(transform.position);
+            Refresh(cellPosition);
+            return cellPosition;
+        }
+        /// <summary>
+        /// cellPosition的XY不变,确定一个Z，使对应的世界坐标最接近当前世界坐标
+        /// </summary>
+        public Vector3Int AlignZ()
+        {
+            cellPosition = Manager.ClosestZ(cellPosition, transform.position);
             Refresh(cellPosition);
             return cellPosition;
         }

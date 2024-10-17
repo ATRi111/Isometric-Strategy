@@ -745,9 +745,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
-  cellPosition: {x: 6, y: -1, z: 0}
+  cellPosition: {x: 0, y: -3, z: 0}
   lockLayer: 0
-  lockedLayer: 0
+  lockedLayer: 2
 --- !u!1001 &1696072806
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -56,6 +56,17 @@ namespace EditorExtend.GridEditor
             worldPosition += offset;
             return WorldToCell(worldPosition);
         }
+        /// <summary>
+        /// 给定xy,确定一个z,使cellPositoin最接近worldPosition
+        /// </summary>
+        public virtual Vector3Int ClosestZ(Vector3Int xy,Vector3 worldPosition)
+        {
+            xy = new Vector3Int(xy.x, xy.y, 0);
+            Vector3 worldBase = CellToWorld(xy);
+            float deltaWorldY = worldPosition.y - worldBase.y;
+            float deltaCellZ = deltaWorldY / Grid.cellSize.y / Grid.cellSize.z * 2f;
+            return xy + Mathf.RoundToInt(deltaCellZ) * Vector3Int.forward;
+        }
 
         /// <summary>
         /// 根据CellPosition自动计算SortingOrder
@@ -81,7 +92,8 @@ namespace EditorExtend.GridEditor
 
         protected virtual void AddObject(GridObject gridObject)
         {
-            ObjectDict.Add(gridObject.CellPosition, gridObject);
+            if(!ObjectDict.ContainsKey(gridObject.CellPosition))
+                ObjectDict.Add(gridObject.CellPosition, gridObject);
         }
 
         protected virtual void RemoveObject(Vector3Int cellPosition)

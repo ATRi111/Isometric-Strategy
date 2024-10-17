@@ -30,7 +30,7 @@ namespace EditorExtend.GridEditor
                 {
                     SerializedObject temp = new(gridObjects[i]);
                     SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
-                    cellPosition.vector3IntValue = gridObjects[i].Align();
+                    cellPosition.vector3IntValue = gridObjects[i].AlignXY();
                     temp.ApplyModifiedProperties();
                 }
             }

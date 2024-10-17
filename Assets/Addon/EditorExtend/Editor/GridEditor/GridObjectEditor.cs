@@ -28,7 +28,11 @@ namespace EditorExtend.GridEditor
             }
             if (GUILayout.Button("Z不变对齐"))
             {
-                cellPosition.vector3IntValue = GridObject.Align();
+                cellPosition.vector3IntValue = GridObject.AlignXY();
+            }
+            if (GUILayout.Button("XY不变对齐"))
+            {
+                cellPosition.vector3IntValue = GridObject.AlignZ();
             }
         }
     }

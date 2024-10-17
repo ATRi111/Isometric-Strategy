@@ -76,15 +76,18 @@ namespace EditorExtend.GridEditor
         protected virtual void Paint() { }
         protected virtual void OnLeftMouseDown() 
         {
+            GridObject gridObject = null;
             if (ObjectBrush.prefab != null)
             {
-                Instantiate(ObjectBrush.prefab,
-                    ObjectBrush.Manager.CellToWorld(ObjectBrush.cellPosition),
-                    Quaternion.identity,
-                    ObjectBrush.transform);
-                
+                GameObject obj = Instantiate(ObjectBrush.prefab,ObjectBrush.transform);
+                gridObject = obj.GetComponent<GridObject>();
+                SerializedObject temp = new(gridObject);
+                SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
+                cellPosition.vector3IntValue = ObjectBrush.cellPosition;
+                gridObject.Refresh(ObjectBrush.cellPosition);
+                temp.ApplyModifiedProperties();
             }
-            ObjectBrush.Manager[ObjectBrush.cellPosition] = ObjectBrush.prefab; 
+            ObjectBrush.Manager[ObjectBrush.cellPosition] = gridObject;
         }
         protected virtual void OnLeftMouseDrag() { }
         protected virtual void OnLeftMouseUp() { }
