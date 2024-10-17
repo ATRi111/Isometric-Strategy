@@ -13,6 +13,7 @@ namespace EditorExtend.GridEditor
 
         protected override void MyOnInspectorGUI()
         {
+            RefreshObjects();
             centerOffset.Vector2Field("中心偏移");
             if (GUILayout.Button("全部刷新"))
             {
@@ -30,7 +31,24 @@ namespace EditorExtend.GridEditor
                     SerializedObject temp = new(gridObjects[i]);
                     SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
                     cellPosition.vector3IntValue = gridObjects[i].Align();
+                    temp.ApplyModifiedProperties();
                 }
+            }
+        }
+
+        protected override void MyOnSceneGUI()
+        {
+            base.MyOnSceneGUI();
+            RefreshObjects();
+        }
+
+        protected void RefreshObjects()
+        {
+            if(!Application.isPlaying)
+            {
+                GridObject[] objects = GridManager.GetComponentsInChildren<GridObject>();
+                if (GridManager.ObjectDict.Count != objects.Length)
+                    GridManager.AddAllObjects();
             }
         }
     }

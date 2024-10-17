@@ -24,6 +24,9 @@ namespace EditorExtend.GridEditor
 
         protected override void MyOnInspectorGUI()
         {
+            if (Application.isPlaying)
+                return;
+
             prefab.PropertyField("±ÊË¢");
             string s = isEditting ? "½áÊø±à¼­" : "¿ªÊ¼±à¼­";
             if (GUILayout.Button(s))
@@ -44,6 +47,9 @@ namespace EditorExtend.GridEditor
         protected override void MyOnSceneGUI()
         {
             base.MyOnSceneGUI();
+            if (Application.isPlaying)
+                return;
+
             if (isEditting)
             {
                 UpdateCellPosition();

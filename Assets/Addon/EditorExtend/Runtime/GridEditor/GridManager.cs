@@ -86,7 +86,6 @@ namespace EditorExtend.GridEditor
 
         protected virtual void RemoveObject(Vector3Int cellPosition)
         {
-            ExternalTool.Log(ObjectDict);
             if (ObjectDict.ContainsKey(cellPosition))
             {
                 GridObject gridObject = ObjectDict[cellPosition];
