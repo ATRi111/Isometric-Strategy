@@ -16,8 +16,6 @@ namespace EditorExtend.GridEditor
         /// </summary>
         protected bool isEditting;
 
-        protected bool isErasing;
-
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -29,8 +27,8 @@ namespace EditorExtend.GridEditor
             if (Application.isPlaying)
                 return;
 
+            HandleKeyInput();
             prefab.PropertyField("±ÊË¢");
-            isErasing = EditorGUILayout.Toggle("²Á³ýÄ£Ê½", isErasing);
             string s = isEditting ? "½áÊø±à¼­" : "¿ªÊ¼±à¼­";
             if (GUILayout.Button(s))
             {
@@ -50,42 +48,81 @@ namespace EditorExtend.GridEditor
         protected override void MyOnSceneGUI()
         {
             base.MyOnSceneGUI();
+            HandleKeyInput();
+
             if (Application.isPlaying)
                 return;
 
             if (isEditting)
             {
                 UpdateCellPosition();
-                switch (currentEvent.type)
-                {
-                    case EventType.Repaint:
-                        Paint();
-                        break;
-                    case EventType.MouseDown:
-                        if (currentEvent.button == 0)
-                            OnLeftMouseDown();
-                        break;
-                    case EventType.MouseDrag:
-                        if (currentEvent.button == 0)
-                            OnLeftMouseDrag();
-                        break;
-                    case EventType.MouseUp:
-                        if (currentEvent.button == 0)
-                            OnLeftMouseUp();
-                        break;
-                }
+                HandleMouseInput();
             }
         }
+
+        protected virtual void HandleMouseInput()
+        {
+            UpdateCellPosition();
+            switch (currentEvent.type)
+            {
+                case EventType.Repaint:
+                    Paint();
+                    break;
+                case EventType.MouseDown:
+                    OnMouseDown(currentEvent.button);
+                    break;
+                case EventType.MouseDrag:
+                    OnMouseDrag(currentEvent.button);
+                    break;
+                case EventType.MouseUp:
+                    OnLeftMouseUp(currentEvent.button);
+                    break;
+            }
+        }
+
+        protected virtual void HandleKeyInput()
+        {
+            if (currentEvent == null)
+                return;
+            switch (currentEvent.type)
+            {
+                case EventType.KeyDown:
+                    OnKeyDown(currentEvent.keyCode);
+                    break;
+                case EventType.KeyUp:
+                    OnKeyUp(currentEvent.keyCode);
+                    break;
+            }  
+        }
+
         protected virtual void Paint() { }
-        protected virtual void OnLeftMouseDown()
+        protected virtual void OnMouseDown(int button)
         {
-            Brush();
+            switch(button)
+            {
+                case 0:
+                    Brush();
+                    break;
+                case 1:
+                    Erase();
+                    break;
+            }
         }
-        protected virtual void OnLeftMouseDrag() 
+        protected virtual void OnMouseDrag(int button)
         {
-            Brush();
+            switch (button)
+            {
+                case 0:
+                    Brush();
+                    break;
+                case 1:
+                    Erase();
+                    break;
+            }
         }
-        protected virtual void OnLeftMouseUp() { }
+        protected virtual void OnLeftMouseUp(int Button) { }
+        protected virtual void OnKeyUp(KeyCode keyCode) { }
+        protected virtual void OnKeyDown(KeyCode keyCode) { }
 
         protected virtual void UpdateCellPosition()
         {
@@ -95,12 +132,6 @@ namespace EditorExtend.GridEditor
 
         protected virtual void Brush()
         {
-            if (isErasing)
-            {
-                ObjectBrush.Manager[ObjectBrush.cellPosition] = null;
-                return;
-            }
-
             GridObject gridObject = null;
             if (ObjectBrush.prefab != null)
             {
@@ -113,6 +144,13 @@ namespace EditorExtend.GridEditor
                 temp.ApplyModifiedProperties();
             }
             ObjectBrush.Manager[ObjectBrush.cellPosition] = gridObject;
+            currentEvent.Use();
+        }
+
+        protected virtual void Erase()
+        {
+            ObjectBrush.Manager[ObjectBrush.cellPosition] = null;
+            currentEvent.Use();
         }
     }
 }

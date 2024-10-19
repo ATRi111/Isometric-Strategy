@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOffset: {x: 0.33, y: 0.33}
-  maxLayer: 3
+  maxLayer: 4
   minLayer: 0
 --- !u!114 &1551605950
 MonoBehaviour:
@@ -645,9 +645,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
-  cellPosition: {x: 4, y: -14, z: 0}
-  lockLayer: 1
-  lockedLayer: 0
+  cellPosition: {x: 3, y: -4, z: 0}
+  lockLayer: 0
+  layer: 3
+  lockXY: 0
 --- !u!1001 &1696072806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -843,6 +844,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1551605948}
     m_Modifications:
+    - target: {fileID: 1226048150741817513, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
       propertyPath: m_Name
       value: White
