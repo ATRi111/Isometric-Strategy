@@ -2,17 +2,17 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    [RequireComponent(typeof(GridManager))]
+    [RequireComponent(typeof(GridManagerBase))]
     public abstract class ObjectBrush : MonoBehaviour
     {
 #if UNITY_EDITOR
-        private GridManager manager;
-        public GridManager Manager
+        private GridManagerBase manager;
+        public GridManagerBase Manager
         {
             get
             {
                 if (manager == null)
-                    manager = GetComponentInParent<GridManager>();
+                    manager = GetComponentInParent<GridManagerBase>();
                 return manager;
             }
         }

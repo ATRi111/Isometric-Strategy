@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    public class IsometricGridManager : GridManager
+    public class IsometricGridManagerBase : GridManagerBase
     {
         //Isometric地图在同一(x,y)处可能有多个层数不同的物体，使用两个字典记录某位置的层数范围，以提高查询效率
         private readonly Dictionary<Vector2Int, int> maxLayerDict = new();
@@ -21,10 +21,10 @@ namespace EditorExtend.GridEditor
             return layer * Grid.cellSize.z;
         }
 
-        protected override void AddObject(GridObject gridObject)
+        public override void AddObject(GridObject gridObject)
         {
             base.AddObject(gridObject);
-            Vector2Int xy = new(gridObject.CellPosition.x, gridObject.CellPosition.y);
+            Vector2Int xy = (Vector2Int)gridObject.CellPosition;
             int layer = gridObject.CellPosition.z;
             if (!maxLayerDict.ContainsKey(xy))
             {
@@ -38,6 +38,21 @@ namespace EditorExtend.GridEditor
             }
             maxLayer = Mathf.Max(maxLayer, layer);
             minLayer = Mathf.Min(minLayer, layer);
+        }
+
+        public void GetObejectsXY(Vector2Int xy, List<GridObject> objects)
+        {
+            objects.Clear();
+            if (!maxLayerDict.ContainsKey(xy))
+                return;
+            GridObject obj;
+            Vector3Int cellPosition;
+            for (int layer = minLayerDict[xy]; layer <= maxLayerDict[xy]; layer++) 
+            {
+                cellPosition = xy.AddZ(layer);
+                obj = this[cellPosition];
+                objects.Add(obj);
+            }
         }
     }
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    [CustomEditor(typeof(GridManager),true)]
+    [CustomEditor(typeof(GridManagerBase),true)]
     public class GridManagerEditor : AutoEditor
     {
-        public GridManager GridManager => target as GridManager;
+        public GridManagerBase GridManager => target as GridManagerBase;
 
         [AutoProperty]
         public SerializedProperty centerOffset;

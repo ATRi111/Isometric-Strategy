@@ -5,7 +5,7 @@ namespace EditorExtend.GridEditor
 {
     [SelectionBase]
     [RequireComponent(typeof(Grid))]
-    public abstract class GridManager : MonoBehaviour
+    public abstract class GridManagerBase : MonoBehaviour
     {
         private Grid grid;
         public Grid Grid
@@ -61,7 +61,7 @@ namespace EditorExtend.GridEditor
         /// </summary>
         public virtual Vector3Int ClosestZ(Vector3Int xy,Vector3 worldPosition)
         {
-            xy = new Vector3Int(xy.x, xy.y, 0);
+            xy = xy.ResetZ();
             Vector3 worldBase = CellToWorld(xy);
             float deltaWorldY = worldPosition.y - worldBase.y;
             float deltaCellZ = deltaWorldY / Grid.cellSize.y / Grid.cellSize.z * 2f;
@@ -83,20 +83,20 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        protected virtual GridObject GetObject(Vector3Int cellPosition)
+        public virtual GridObject GetObject(Vector3Int cellPosition)
         {
             if (ObjectDict.TryGetValue(cellPosition, out GridObject ret))
                 return ret;
             return null;
         }
 
-        protected virtual void AddObject(GridObject gridObject)
+        public virtual void AddObject(GridObject gridObject)
         {
             if(!ObjectDict.ContainsKey(gridObject.CellPosition))
                 ObjectDict.Add(gridObject.CellPosition, gridObject);
         }
 
-        protected virtual void RemoveObject(Vector3Int cellPosition)
+        public virtual void RemoveObject(Vector3Int cellPosition)
         {
             if (ObjectDict.ContainsKey(cellPosition))
             {

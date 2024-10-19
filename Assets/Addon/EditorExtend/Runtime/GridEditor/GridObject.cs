@@ -1,37 +1,49 @@
+using System;
 using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
     public class GridObject : MonoBehaviour
     {
-        private GridManager manager;
-
-        public GridManager Manager
+        #region 组件
+        private GridManagerBase manager;
+        public GridManagerBase Manager
         {
             get
             {
                 if (manager == null)
-                    manager = GetComponentInParent<GridManager>();
+                    manager = GetComponentInParent<GridManagerBase>();
                 return manager;
             }
         }
 
         private SpriteRenderer spriteRenderer;
-
         public SpriteRenderer SpriteRenderer
         {
             get
             {
-#if UNITY_EDITOR
                 if (spriteRenderer == null)
                     spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-#endif
                 return spriteRenderer;
             }
         }
 
         [SerializeField]
-        private Vector3Int cellPosition;
+        private string shortName;
+        public string ShortName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(shortName))
+                    shortName = ExternalTool.GetShortName(gameObject);
+                return shortName;
+            }
+        }
+        #endregion
+
+        #region 位置
+        [SerializeField]
+        protected Vector3Int cellPosition;
         public Vector3Int CellPosition
         {
             get => cellPosition;
@@ -68,5 +80,31 @@ namespace EditorExtend.GridEditor
             Refresh(cellPosition);
             return cellPosition;
         }
+        #endregion
+
+        #region 游戏逻辑
+        public Func<int> ObstacleHeightFunc;
+        /// <summary>
+        /// 发挥障碍物作用时，此物体的高度
+        /// </summary>
+        public virtual int ObstacleHeight()
+        {
+            if(ObstacleHeightFunc != null)
+                return ObstacleHeightFunc.Invoke();
+            return 1;
+        }
+
+        public Func<bool> OverlapFunc;
+        /// <summary>
+        /// 物体占据的范围是否覆盖网格坐标下的某点
+        /// </summary>
+        public virtual bool Overlap(Vector3 p)
+        {
+            if(OverlapFunc != null)
+                return OverlapFunc.Invoke();
+            return GridEditorUtility.CubeOverlap(cellPosition, Vector3Int.one, p);
+        }
+
+        #endregion
     }
 }

@@ -2,7 +2,7 @@ using UnityEditor;
 
 namespace EditorExtend.GridEditor
 {
-    [CustomEditor(typeof(IsometricGridManager),true)]
+    [CustomEditor(typeof(IsometricGridManagerBase),true)]
     public class IsometricGridManagerEditor : GridManagerEditor
     {
         [AutoProperty]

@@ -8,7 +8,7 @@ namespace EditorExtend.GridEditor
     {
         public GridObject GridObject => target as GridObject;
         [AutoProperty]
-        public SerializedProperty cellPosition;
+        public SerializedProperty shortName, cellPosition;
 
         private Vector3Int prev;
 
@@ -20,6 +20,7 @@ namespace EditorExtend.GridEditor
 
         protected override void MyOnInspectorGUI()
         {
+            shortName.TextField("名称(可空)");
             cellPosition.Vector3IntField("网格坐标");
             if (cellPosition.vector3IntValue != prev)
             {

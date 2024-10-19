@@ -23,6 +23,20 @@ namespace EditorExtend
 #endif
         }
 
+        public static string GetShortName(GameObject obj)
+        {
+            string ret = obj.name;
+            int index = ret.IndexOf(' ');
+            if (index != -1)
+                return ret[..index];
+
+            index = ret.IndexOf('(');
+            if (index != -1)
+                return ret[..index];
+
+            return ret;
+        }
+
         public static void Log<TKey,TValue>(Dictionary<TKey,TValue> dict)
         {
             StringBuilder s = new StringBuilder();

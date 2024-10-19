@@ -11,7 +11,7 @@ namespace EditorExtend.GridEditor
 
         public override Vector3Int CalculateCellPosition(Vector3 worldPosition)
         {
-            IsometricGridManager igm = Manager as IsometricGridManager;
+            IsometricGridManagerBase igm = Manager as IsometricGridManagerBase;
             if(lockXY)
             {
                 return igm.ClosestZ(cellPosition, worldPosition);

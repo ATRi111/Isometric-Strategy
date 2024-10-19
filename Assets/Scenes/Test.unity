@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c25287304aad294e86c3fb40c31d4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 1551605947}
   centerOffset: {x: 0.33, y: 0.33}
   maxLayer: 8
   minLayer: 0
@@ -567,7 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
-  cellPosition: {x: 10, y: -3, z: 0}
+  cellPosition: {x: 6, y: -1, z: 0}
   lockLayer: 0
   layer: 3
   lockXY: 0
