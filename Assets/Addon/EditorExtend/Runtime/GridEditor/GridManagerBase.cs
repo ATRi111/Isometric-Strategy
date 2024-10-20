@@ -61,13 +61,13 @@ namespace EditorExtend.GridEditor
         /// <summary>
         /// 给定xy,确定一个z,使cellPositoin最接近worldPosition
         /// </summary>
-        public virtual Vector3Int ClosestZ(Vector3Int xy,Vector3 worldPosition)
+        public virtual Vector3Int ClosestZ(Vector3Int xy, Vector3 worldPosition)
         {
             xy = xy.ResetZ();
             Vector3 worldBase = CellToWorld(xy);
             float deltaWorldY = worldPosition.y - worldBase.y;
             float deltaCellZ = deltaWorldY / Grid.cellSize.y / Grid.cellSize.z * 2f;
-            return xy + Mathf.RoundToInt(deltaCellZ) * Vector3Int.forward;
+            return xy + Mathf.FloorToInt(deltaCellZ) * Vector3Int.forward;
         }
 
         /// <summary>

@@ -2,8 +2,7 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    [RequireComponent(typeof(GridObject))]
-    public abstract class GridCollider : MonoBehaviour
+    public class GridGround : MonoBehaviour
     {
         private GridObject gridObject;
         protected GridObject GridObject
@@ -15,12 +14,15 @@ namespace EditorExtend.GridEditor
                 return gridObject;
             }
         }
-        protected Vector3Int CellPosition => GridObject.CellPosition;
-        public abstract bool Overlap(Vector3 p);
+
+        public int height;
+        public virtual int GroundHeight()
+            => height;
 
         protected virtual void Awake()
         {
-            gridObject.OverlapFunc = Overlap;
+            GridObject.GroundHeightFunc = GroundHeight;
         }
+
     }
 }

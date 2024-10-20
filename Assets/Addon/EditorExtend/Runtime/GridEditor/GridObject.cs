@@ -68,7 +68,7 @@ namespace EditorExtend.GridEditor
         public Vector3Int AlignXY()
         {
             cellPosition = Manager.ClosestCell(transform.position);
-            Refresh(cellPosition);
+            Refresh();
             return cellPosition;
         }
         /// <summary>
@@ -77,22 +77,22 @@ namespace EditorExtend.GridEditor
         public Vector3Int AlignZ()
         {
             cellPosition = Manager.ClosestZ(cellPosition, transform.position);
-            Refresh(cellPosition);
+            Refresh();
             return cellPosition;
         }
         #endregion
 
         #region 游戏逻辑
-        public Func<int> ObstacleHeightFunc;
+        public Func<int> GroundHeightFunc;
         /// <summary>
-        /// 发挥障碍物作用时，此物体的高度
+        /// 发挥地面作用时，此物体的高度
         /// </summary>
-        public virtual int ObstacleHeight
+        public virtual int GroundHeight
         {
             get
             {
-                if (ObstacleHeightFunc != null)
-                    return ObstacleHeightFunc.Invoke();
+                if (GroundHeightFunc != null)
+                    return GroundHeightFunc.Invoke();
                 return 1;
             }
         }

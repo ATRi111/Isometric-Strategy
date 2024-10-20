@@ -553,7 +553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerOffset: {x: 0.33, y: 0.33}
   maxLayer: 1
-  minLayer: 0
+  minLayer: -10
 --- !u!114 &1551605950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,9 +567,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
-  cellPosition: {x: 5, y: -1, z: 0}
-  lockLayer: 0
-  layer: 3
+  cellPosition: {x: 1, y: -3, z: 0}
+  lockLayer: 1
+  layer: 0
   lockXY: 0
 --- !u!1001 &1696072806
 PrefabInstance:

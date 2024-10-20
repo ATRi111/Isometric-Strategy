@@ -6,6 +6,7 @@ namespace EditorExtend.GridEditor
     {
         public static int HeightOfSky = 114514;
         public static int HeightOfVoid = -114514;
+        public static float Diagnol = 1.4142136f;
 
         internal static Vector3 ResetZ(this Vector3 v, float z = 0f)
             => new(v.x, v.y, z);
@@ -18,6 +19,21 @@ namespace EditorExtend.GridEditor
 
         internal static Vector3Int Integerized(this Vector3 v)
             => new(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.y), Mathf.RoundToInt(v.z));
+
+        public static float ClampAngle(float angle)
+        {
+            angle %= 360f;
+            if (angle < 0f)
+                angle += 360f;
+            return angle;
+        }
+        internal static Vector2 ToDirection(this float angle)
+            => new(-Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad));
+        internal static float ToAngle(this Vector2 direction)
+        {
+            float angle = -Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+            return ClampAngle(angle);
+        }
 
         public static bool BoxOverlap(Vector3 min, Vector3 extend, Vector3 p)
         {

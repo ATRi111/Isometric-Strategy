@@ -3,11 +3,15 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    public interface IGridShape
+    public class GridBoxCollider : GridCollider
     {
-        void GetStrip(List<Vector3> ret);
+        public int height = 1;
+        public override bool Overlap(Vector3 p)
+        {
+            return GridUtility.BoxOverlap(CellPosition, Vector3.one.ResetZ(height), p);
+        }
 
-        static void GetStrip_Default(List<Vector3> ret)
+        public override void GetStrip(List<Vector3> ret)
         {
             Vector3 temp = Vector3.zero;
             void Add(Vector3 delta)
@@ -17,13 +21,15 @@ namespace EditorExtend.GridEditor
             }
 
             ret.Clear();
+            Vector3 vz = height * Vector3.forward;
+            ret.Clear();
             Add(Vector3.zero);
             Add(Vector3.up);
-            Add(Vector3.forward);
+            Add(vz);
             Add(Vector3.down);
-            Add(Vector3.back);
+            Add(-vz);
             Add(Vector3.right);
-            Add(Vector3.forward);
+            Add(vz);
             Add(Vector3.left);
             Add(Vector3.up);
             Add(Vector3.right);
