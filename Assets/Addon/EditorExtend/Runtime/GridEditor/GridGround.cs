@@ -15,14 +15,18 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        public int height;
+        public bool isObstacle;
+        public int height = 1;
         public virtual int GroundHeight()
-            => height;
+        {
+            if (isObstacle)
+                return GridUtility.MaxHeight;
+            return height;
+        }
 
         protected virtual void Awake()
         {
             GridObject.GroundHeightFunc = GroundHeight;
         }
-
     }
 }

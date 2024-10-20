@@ -4,9 +4,10 @@ namespace EditorExtend.GridEditor
 {
     public static class GridUtility
     {
-        public static int HeightOfSky = 114514;
-        public static int HeightOfVoid = -114514;
+        public static int MaxHeight = 114514;
+
         public static float Diagnol = 1.4142136f;
+
         public static readonly Vector3Int[] AjointPoints8 = new Vector3Int[]
         {
             Vector3Int.up,

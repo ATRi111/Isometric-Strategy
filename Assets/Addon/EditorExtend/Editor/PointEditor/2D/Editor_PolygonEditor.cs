@@ -77,16 +77,17 @@ namespace EditorExtend.PointEditor
         }
         protected override void Drag()
         {
+            currentEvent.Use();
             if (IsSelecting)
             {
                 localPoints.GetArrayElementAtIndex(selectedIndex).vector3Value =
                     ExternalTool.GetPointOnRay(mouseRay, 0f) - polygonEditor.transform.position;
-                currentEvent.Use();
             }
         }
 
         protected void Add()
         {
+            currentEvent.Use();
             if (!IsSelecting)
             {
                 int insert = GetPointIndexOnLine(out Vector3 closest);
@@ -96,7 +97,6 @@ namespace EditorExtend.PointEditor
                     localPoints.GetArrayElementAtIndex(insert).vector3Value = closest - polygonEditor.transform.position;
                     selectedIndex = insert;
                 }
-                currentEvent.Use();
             }
         }
 

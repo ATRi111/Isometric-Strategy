@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    public class CylinderCollider : GridCollider
+    public class GridCylinderCollider : GridCollider
     {
         public float height = 3f;
         public float radius = 0.3f;

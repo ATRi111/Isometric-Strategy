@@ -104,5 +104,10 @@ namespace EditorExtend.GridEditor
                 ExternalTool.Destroy(gridObject.gameObject);
             }
         }
+
+        public virtual bool CanPlaceAt(Vector3Int cellPosition)
+        {
+            return !ObjectDict.ContainsKey(cellPosition);
+        }
     }
 }

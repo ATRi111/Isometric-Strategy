@@ -83,6 +83,10 @@ namespace EditorExtend.GridEditor
 
         protected virtual void Brush()
         {
+            currentEvent.Use();
+            if (!ObjectBrush.Manager.CanPlaceAt(cellPosition.vector3IntValue))
+                return;
+
             GridObject gridObject = null;
             if (ObjectBrush.prefab != null)
             {
@@ -95,7 +99,6 @@ namespace EditorExtend.GridEditor
                 temp.ApplyModifiedProperties();
             }
             ObjectBrush.Manager[ObjectBrush.cellPosition] = gridObject;
-            currentEvent.Use();
         }
 
         protected virtual void Erase()

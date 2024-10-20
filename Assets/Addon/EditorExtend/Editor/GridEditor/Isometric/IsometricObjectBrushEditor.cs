@@ -22,10 +22,10 @@ namespace EditorExtend.GridEditor
 
         protected override void OnKeyDown(KeyCode keyCode)
         {
+            currentEvent.Use();
             if (keyCode == KeyCode.LeftControl || keyCode == KeyCode.RightControl)
             {
                 lockXY.boolValue = true;
-                currentEvent.Use();
             }
             else if (keyCode >= KeyCode.Alpha0 && keyCode <= KeyCode.Alpha9)
             {
@@ -42,12 +42,10 @@ namespace EditorExtend.GridEditor
                     lockLayer.boolValue = true;
                     layer.intValue = num;
                 }
-                currentEvent.Use();
             }
             else if(keyCode == KeyCode.BackQuote)
             {
                 lockLayer.boolValue = !lockLayer.boolValue;
-                currentEvent.Use();
             }
         }
         protected override void OnKeyUp(KeyCode keyCode)

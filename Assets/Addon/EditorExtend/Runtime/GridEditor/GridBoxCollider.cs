@@ -5,7 +5,7 @@ namespace EditorExtend.GridEditor
 {
     public class GridBoxCollider : GridCollider
     {
-        public int height = 1;
+        public float height = 1;
         public override bool Overlap(Vector3 p)
         {
             return GridUtility.BoxOverlap(CellPosition, Vector3.one.ResetZ(height), p);

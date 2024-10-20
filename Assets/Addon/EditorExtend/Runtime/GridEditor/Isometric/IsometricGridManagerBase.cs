@@ -107,5 +107,28 @@ namespace EditorExtend.GridEditor
             }
             return null;
         }
+        /// <summary>
+        /// xy坐标上，地面上方的第一个层级
+        /// </summary>
+        public int AboveGroundLayer(Vector2Int xy)
+        {
+            int ret = 0;
+            GridObject gridObject = GetObejectXY(xy);
+            if (gridObject != null)
+                ret = gridObject.CellPosition.z + gridObject.GroundHeight;
+#if UNITY_EDITOR
+            if (!Application.isPlaying && gridObject != null)
+            {
+                if (gridObject.TryGetComponent<GridGround>(out var ground))
+                    ret = ground.GroundHeight();
+            }
+#endif
+            return ret;
+        }
+
+        public override bool CanPlaceAt(Vector3Int cellPosition)
+        {
+            return cellPosition.z >= AboveGroundLayer((Vector2Int)cellPosition);  
+        }
     }
 }

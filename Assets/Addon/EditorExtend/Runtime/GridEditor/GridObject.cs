@@ -83,7 +83,7 @@ namespace EditorExtend.GridEditor
         #endregion
 
         #region 游戏逻辑
-        public Func<int> GroundHeightFunc;
+        internal Func<int> GroundHeightFunc;
         /// <summary>
         /// 发挥地面作用时，此物体的高度
         /// </summary>
@@ -97,7 +97,7 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        public Func<Vector3, bool> OverlapFunc;
+        internal Func<Vector3, bool> OverlapFunc;
         /// <summary>
         /// 物体占据的范围是否覆盖网格坐标下的某点
         /// </summary>

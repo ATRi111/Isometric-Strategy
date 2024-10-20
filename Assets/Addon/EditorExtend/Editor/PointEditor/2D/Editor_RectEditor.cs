@@ -56,6 +56,7 @@ namespace EditorExtend.PointEditor
 
         protected override void Drag()
         {
+            currentEvent.Use();
             if (IsSelecting)
             {
                 Vector2 newPoint = ExternalTool.GetPointOnRay(mouseRay, 0f);
@@ -67,7 +68,6 @@ namespace EditorExtend.PointEditor
                 mids[selectedIndex] = opposite + projection * direction;
                 offset.vector2Value = CalculateOffset(selectedIndex);
                 size.vector2Value = CalculateSize();
-                currentEvent.Use();
             }
         }
 
