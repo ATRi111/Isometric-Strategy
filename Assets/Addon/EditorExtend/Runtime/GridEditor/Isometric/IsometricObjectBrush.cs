@@ -15,36 +15,52 @@ namespace EditorExtend.GridEditor
             if(lockXY)
             {
                 cellPosition = igm.ClosestZ(cellPosition, worldPosition);
+                return cellPosition;
             }
-            else if (lockLayer)
+
+            int tempLayer;
+            if (lockLayer)
             {
-                float zOffset = igm.LayerToWorldZ(layer);  //世界坐标的z分量不影响图像位置,但影响转换后cellPosition的z及xy
-                worldPosition = new(worldPosition.x, worldPosition.y, transform.position.z + zOffset);
-                cellPosition = Manager.WorldToCell(worldPosition);
+                tempLayer = layer;
             }
-            else
+            else if (!Absorb(worldPosition, out tempLayer))
             {
-                bool match = false;
-                GridObject gridObject;
-                for (int layer = igm.maxLayer; layer >= igm.minLayer; layer--)
+                tempLayer = 0;
+            }
+            float z = igm.LayerToWorldZ(tempLayer);  //世界坐标的z分量不影响图像位置,但影响转换后cellPosition的z及xy
+            worldPosition = worldPosition.ResetZ(z);
+            cellPosition = Manager.WorldToCell(worldPosition);
+            return cellPosition;
+        }
+
+        /// <summary>
+        /// 吸附到附近的GridObject
+        /// </summary>
+        protected bool Absorb(Vector3 worldPosition, out int retLayer)
+        {
+            IsometricGridManagerBase igm = Manager as IsometricGridManagerBase;
+            if (!igm.MatchMaxLayer(worldPosition, out retLayer))
+            {
+                float sumLayer = 0;
+                int count = 0;
+                for (int i = 0; i < GridUtility.AjointPoints8.Length; i++)
                 {
-                    float z = igm.LayerToWorldZ(layer);
-                    worldPosition = worldPosition.ResetZ(z);
-                    cellPosition = Manager.WorldToCell(worldPosition);
-                    gridObject = igm[cellPosition];
-                    if (gridObject != null)
+                    Vector3 temp = worldPosition + Manager.CellToWorld(GridUtility.AjointPoints8[i]);
+                    if (igm.MatchMaxLayer(temp, out int tempLayer))
                     {
-                        match = true;
-                        cellPosition = gridObject.CellPosition;
+                        sumLayer += tempLayer;
+                        count++;
                     }
                 }
-                if (!match)
+                if(count == 0)
                 {
-                    worldPosition = worldPosition.ResetZ();
-                    cellPosition = Manager.WorldToCell(worldPosition);
+                    retLayer = 0;
+                    return false;
                 }
+                retLayer = Mathf.RoundToInt(sumLayer / count);
+                return true;
             }
-            return cellPosition;
+            return true;
         }
 
         private static readonly Vector3Int[] BottomCellPositions =
@@ -60,17 +76,6 @@ namespace EditorExtend.GridEditor
             if (cellPosition.z > 0)
             {
                 Gizmos.color = Color.green;
-                points = new Vector3[BottomCellPositions.Length * 2];
-                for (int i = 0; i < BottomCellPositions.Length; i++)
-                {
-                    points[i * 2] = Manager.CellToWorld(BottomCellPositions[i] + cellPosition).ResetZ();
-                    points[i * 2 + 1] = Manager.CellToWorld(BottomCellPositions[i] + cellPosition - cellPosition.z * Vector3Int.forward).ResetZ();
-                }
-                Gizmos.DrawLineList(points);
-            }
-            if (cellPosition.z < -1)
-            {
-                Gizmos.color = Color.blue;
                 points = new Vector3[BottomCellPositions.Length * 2];
                 for (int i = 0; i < BottomCellPositions.Length; i++)
                 {

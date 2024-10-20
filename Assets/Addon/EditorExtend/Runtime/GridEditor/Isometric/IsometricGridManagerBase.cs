@@ -12,10 +12,7 @@ namespace EditorExtend.GridEditor
         public int minLayer;
 
         public override Vector3 CellToWorld(Vector3 cellPosition)
-        {
-            Vector3 local = IsometricGridUtility.CellToWorld(cellPosition, Grid.cellSize);
-            return transform.TransformPoint(local);
-        }
+            => IsometricGridUtility.CellToWorld(cellPosition, Grid.cellSize);
 
         public override int CellToSortingOrder(Vector3Int cell)
         {
@@ -25,6 +22,43 @@ namespace EditorExtend.GridEditor
         public float LayerToWorldZ(int layer)
         {
             return layer * Grid.cellSize.z;
+        }
+
+        public override Vector3Int ClosestZ(Vector3Int xy, Vector3 worldPosition)
+        {
+            xy = xy.ResetZ();
+            Vector3 worldBase = CellToWorld(xy);
+            float deltaWorldY = worldPosition.y - worldBase.y;
+            float deltaCellZ = deltaWorldY / Grid.cellSize.y / Grid.cellSize.z * 2f;
+            return xy + Mathf.FloorToInt(deltaCellZ) * Vector3Int.forward;
+        }
+
+        /// <summary>
+        /// 根据世界坐标（忽略z）确定一些列网格坐标，判断这些网格坐标上是否有物体，若有则返回其中的最高层数
+        /// </summary>
+        public bool MatchMaxLayer(Vector3 worldPosition, out int layer)
+        {
+            for (int currentLayer = maxLayer; currentLayer >= minLayer; currentLayer--)
+            {
+                float z = LayerToWorldZ(currentLayer);
+                worldPosition = worldPosition.ResetZ(z);
+                Vector3Int temp = WorldToCell(worldPosition);
+                if (GetObject(temp) != null)
+                {
+                    layer = currentLayer;
+                    return true;
+                }
+            }
+            layer = 0;
+            return false;
+        }
+
+        public override void AddAllObjects()
+        {
+            minLayer = maxLayer = 0;
+            maxLayerDict.Clear();
+            minLayerDict.Clear();
+            base.AddAllObjects();
         }
 
         public override void AddObject(GridObject gridObject)

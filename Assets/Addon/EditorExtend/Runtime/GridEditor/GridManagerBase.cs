@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
+    //此脚本所在的游戏物体不可平移/缩放/旋转
     [SelectionBase]
     [RequireComponent(typeof(Grid))]
     public abstract class GridManagerBase : MonoBehaviour
@@ -63,11 +64,7 @@ namespace EditorExtend.GridEditor
         /// </summary>
         public virtual Vector3Int ClosestZ(Vector3Int xy, Vector3 worldPosition)
         {
-            xy = xy.ResetZ();
-            Vector3 worldBase = CellToWorld(xy);
-            float deltaWorldY = worldPosition.y - worldBase.y;
-            float deltaCellZ = deltaWorldY / Grid.cellSize.y / Grid.cellSize.z * 2f;
-            return xy + Mathf.FloorToInt(deltaCellZ) * Vector3Int.forward;
+            return xy;
         }
 
         /// <summary>
@@ -75,7 +72,7 @@ namespace EditorExtend.GridEditor
         /// </summary>
         public abstract int CellToSortingOrder(Vector3Int cell);
 
-        public void AddAllObjects()
+        public virtual void AddAllObjects()
         {
             ObjectDict.Clear();
             GridObject[] objects = GetComponentsInChildren<GridObject>();

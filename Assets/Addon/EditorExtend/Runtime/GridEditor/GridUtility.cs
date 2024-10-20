@@ -7,6 +7,24 @@ namespace EditorExtend.GridEditor
         public static int HeightOfSky = 114514;
         public static int HeightOfVoid = -114514;
         public static float Diagnol = 1.4142136f;
+        public static readonly Vector3Int[] AjointPoints8 = new Vector3Int[]
+        {
+            Vector3Int.up,
+            Vector3Int.left + Vector3Int.up,
+            Vector3Int.left,
+            Vector3Int.left + Vector3Int.down,
+            Vector3Int.down,
+            Vector3Int.right + Vector3Int.down,
+            Vector3Int.right,
+            Vector3Int.right + Vector3Int.up,
+        };
+        public static readonly Vector3Int[] AjointPoints4 = new Vector3Int[]
+        {
+            Vector3Int.up,
+            Vector3Int.left,
+            Vector3Int.down,
+            Vector3Int.right,
+        };
 
         internal static Vector3 ResetZ(this Vector3 v, float z = 0f)
             => new(v.x, v.y, z);
