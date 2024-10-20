@@ -93,6 +93,13 @@ namespace EditorExtend.GridEditor
             {
                 if (GroundHeightFunc != null)
                     return GroundHeightFunc.Invoke();
+#if UNITY_EDITOR
+                if (!Application.isPlaying)
+                {
+                    if (TryGetComponent(out GridGround ground))
+                        return ground.GroundHeight();
+                }
+#endif
                 return 1;
             }
         }

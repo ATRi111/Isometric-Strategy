@@ -28,7 +28,7 @@ namespace EditorExtend.GridEditor
             Vector3 worldBase = CellToWorld(xy);
             float deltaWorldY = worldPosition.y - worldBase.y;
             float cellZf = deltaWorldY / Grid.cellSize.y / Grid.cellSize.z * 2f;
-            int cellZ = Mathf.Max(0, Mathf.RoundToInt(cellZf));  //0层以下禁止绘制
+            int cellZ = Mathf.Max(0, Mathf.FloorToInt(cellZf));  //0层以下禁止绘制
             return xy.ResetZ(cellZ);
         }
 
@@ -116,19 +116,26 @@ namespace EditorExtend.GridEditor
             GridObject gridObject = GetObejectXY(xy);
             if (gridObject != null)
                 ret = gridObject.CellPosition.z + gridObject.GroundHeight;
-#if UNITY_EDITOR
-            if (!Application.isPlaying && gridObject != null)
-            {
-                if (gridObject.TryGetComponent<GridGround>(out var ground))
-                    ret = ground.GroundHeight();
-            }
-#endif
             return ret;
         }
 
         public override bool CanPlaceAt(Vector3Int cellPosition)
         {
-            return cellPosition.z >= AboveGroundLayer((Vector2Int)cellPosition);  
+            if (!base.CanPlaceAt(cellPosition))
+                return false;
+            if (!maxLayerDict.ContainsKey((Vector2Int)cellPosition))
+                return true;
+            if (cellPosition.z > maxLayerDict[(Vector2Int)cellPosition])
+                return cellPosition.z >= AboveGroundLayer((Vector2Int)cellPosition);
+            
+            for (int layer = cellPosition.z; layer >= 0; layer--)
+            {
+                Vector3Int temp = cellPosition.ResetZ(layer);
+                GridObject obj = GetObject(temp);
+                if (obj != null)
+                    return cellPosition.z >= obj.GroundHeight + obj.CellPosition.z;
+            }
+            return true;
         }
     }
 }
