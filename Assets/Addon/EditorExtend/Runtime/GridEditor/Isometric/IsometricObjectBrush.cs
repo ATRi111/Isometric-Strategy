@@ -64,7 +64,7 @@ namespace EditorExtend.GridEditor
             Vector3[] points = new Vector3[CellPositions.Length];
             for (int i = 0; i < points.Length; i++)
             {
-                points[i] = Manager.CellToWorld(CellPositions[i] + cellPosition);
+                points[i] = Manager.CellToWorld((Vector3)(CellPositions[i] + cellPosition));
             }
             Gizmos.DrawLineStrip(points, false);
             if (cellPosition.z > 0)

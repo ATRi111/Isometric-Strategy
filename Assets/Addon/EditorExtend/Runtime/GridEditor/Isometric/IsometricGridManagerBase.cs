@@ -11,9 +11,10 @@ namespace EditorExtend.GridEditor
         public int maxLayer;
         public int minLayer;
 
-        public Vector3 CellToWorld(Vector3 cellPosition)
+        public override Vector3 CellToWorld(Vector3 cellPosition)
         {
-            return transform.TransformPoint(IsometricGridUtility.CellToWorld(cellPosition, Grid.cellSize));
+            Vector3 local = IsometricGridUtility.CellToWorld(cellPosition, Grid.cellSize);
+            return transform.TransformPoint(local);
         }
 
         public override int CellToSortingOrder(Vector3Int cell)
