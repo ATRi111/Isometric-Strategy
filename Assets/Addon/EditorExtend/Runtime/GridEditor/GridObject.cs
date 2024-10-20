@@ -87,22 +87,25 @@ namespace EditorExtend.GridEditor
         /// <summary>
         /// 发挥障碍物作用时，此物体的高度
         /// </summary>
-        public virtual int ObstacleHeight()
+        public virtual int ObstacleHeight
         {
-            if(ObstacleHeightFunc != null)
-                return ObstacleHeightFunc.Invoke();
-            return 1;
+            get
+            {
+                if (ObstacleHeightFunc != null)
+                    return ObstacleHeightFunc.Invoke();
+                return 1;
+            }
         }
 
-        public Func<bool> OverlapFunc;
+        public Func<Vector3, bool> OverlapFunc;
         /// <summary>
         /// 物体占据的范围是否覆盖网格坐标下的某点
         /// </summary>
         public virtual bool Overlap(Vector3 p)
         {
             if(OverlapFunc != null)
-                return OverlapFunc.Invoke();
-            return GridEditorUtility.CubeOverlap(cellPosition, Vector3Int.one, p);
+                return OverlapFunc.Invoke(p);
+            return GridUtility.BoxOverlap(cellPosition, Vector3Int.one, p);
         }
 
         #endregion

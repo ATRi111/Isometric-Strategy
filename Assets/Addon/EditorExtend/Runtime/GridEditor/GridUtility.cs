@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    public static class GridEditorUtility
+    public static class GridUtility
     {
         public static int HeightOfSky = 114514;
         public static int HeightOfVoid = -114514;
@@ -19,7 +19,7 @@ namespace EditorExtend.GridEditor
         internal static Vector3Int Integerized(this Vector3 v)
             => new(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.y), Mathf.RoundToInt(v.z));
 
-        public static bool CubeOverlap(Vector3 min, Vector3 extend, Vector3 p)
+        public static bool BoxOverlap(Vector3 min, Vector3 extend, Vector3 p)
         {
             return p.x >= min.x && p.x < min.x + extend.x
                 && p.y >= min.y && p.y < min.y + extend.y
