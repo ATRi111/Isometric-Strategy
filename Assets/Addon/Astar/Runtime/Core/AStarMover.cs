@@ -1,18 +1,29 @@
+using System;
+
 namespace AStar
 {
-    [System.Serializable]
+    [Serializable]
     public class AStarMover
     {
+        [NonSerialized]
+        protected PathFindingProcess process;
         public float moveAbility;
         
-        public AStarMover(float moveAbility = float.PositiveInfinity)
+        public AStarMover(PathFindingProcess process, float moveAbility = float.PositiveInfinity)
         {
+            this.process = process;
             this.moveAbility = moveAbility;
         }
 
-        public virtual bool MoveCheck(PathFindingProcess process, AStarNode from, AStarNode to)
+        public virtual bool MoveCheck(AStarNode from, AStarNode to)
         {
             return !to.IsObstacle;
+        }
+
+        public virtual float CalculateCost(AStarNode from, AStarNode to)
+        {
+            float primitive = from.PrimitiveCostTo(to);
+            return primitive;
         }
     }
 }

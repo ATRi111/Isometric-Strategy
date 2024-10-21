@@ -13,7 +13,10 @@ namespace AStar
     {
         [SerializeField]
         private PathFindingSettings settings;
+
         public PathFindingSettings Settings => settings;
+
+        public AStarMover mover;
         public MonoBehaviour mono;
 
         private List<AStarNode> output;
@@ -43,7 +46,7 @@ namespace AStar
             settings.GetAdjoinNodes.Invoke(this, from, adjoins_original);
             foreach (AStarNode to in adjoins_original)
             {
-                if (to.state != ENodeState.Close && settings.mover.MoveCheck(this, from, to))
+                if (to.state != ENodeState.Close && mover.MoveCheck(from, to))
                     adjoins_handled.Add(to);
             }
         }
@@ -144,7 +147,7 @@ namespace AStar
             From = GetNode(fromPos);
             From.state = ENodeState.Route;
             From.Parent = null;
-            From.UpdateHCost(To);
+            From.HCost = From.CostTo(To);
 
             open.Push(From);
             nearest = From;
@@ -181,7 +184,7 @@ namespace AStar
                 switch (node.state)
                 {
                     case ENodeState.Blank:
-                        node.UpdateHCost(To);
+                        node.HCost = node.CostTo(To);
                         node.Parent = currentNode;
                         node.state = ENodeState.Open;
                         open.Push(node);
@@ -192,7 +195,7 @@ namespace AStar
                         Stop();
                         return false;
                     case ENodeState.Open:
-                        if (node.GCost > currentNode.GCost + currentNode.CalculateGCost(node))
+                        if (node.GCost > currentNode.GCost + currentNode.CostTo(node)) 
                             node.Parent = currentNode;
                         break;
                 }
@@ -235,6 +238,7 @@ namespace AStar
         public PathFindingProcess(PathFindingSettings settings)
         {
             this.settings = settings;
+            mover = new AStarMover(this);
         }
     }
 }

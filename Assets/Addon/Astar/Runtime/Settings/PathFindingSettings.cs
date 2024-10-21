@@ -20,7 +20,6 @@ namespace AStar
         /// </summary>
         public float hCostWeight = 1;
 
-        public AStarMover mover;
         /// <summary>
         /// 获取相邻节点的方法
         /// </summary>
@@ -35,7 +34,6 @@ namespace AStar
         public Func<PathFindingProcess, Vector2Int, AStarNode> GenerateNode;
 
         public PathFindingSettings(
-            AStarMover mover = null,
             Action<PathFindingProcess, AStarNode, List<AStarNode>> GetAdjoinNodes = null,
             Func<Vector2Int, Vector2Int, float> CalculateDistance = null,
             Func<PathFindingProcess, Vector2Int, AStarNode> GenerateNode = null,
@@ -43,7 +41,6 @@ namespace AStar
             int capacity = 1000,
             int maxDepth = 2000)
         {
-            this.mover = mover ?? new AStarMover();
             this.GetAdjoinNodes = GetAdjoinNodes ?? PathFindingUtility.GetAdjoinNodes_Eight;
             this.CalculateDistance = CalculateDistance ?? PathFindingUtility.ChebyshevDistance;
             this.GenerateNode = GenerateNode ?? PathFindingUtility.GenerateNode_Default;

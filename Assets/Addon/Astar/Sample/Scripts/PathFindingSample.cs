@@ -80,15 +80,16 @@ namespace AStar.Sample
 
         private void Start()
         {
-            PathFindingSettings settings = new PathFindingSettings(
-                null,
+            PathFindingSettings settings = new(
                 getAdjoinedNodesSO.GetAdjoinedNodes,
                 null,
                 GenerateNode,
                 hCostWeight
                 );
-            process = new PathFindingProcess(settings);
-            process.mono = this;
+            process = new(settings)
+            {
+                mono = this
+            };
         }
     }
 }

@@ -27,20 +27,17 @@ namespace AStar
         /// </summary>
         public float HCost;
 
-        /// <summary>
-        /// 经过该点时，起点到终点的距离（假设该点到终点无障碍）
-        /// </summary>
         public float FCost => process.HCostWeight * HCost + GCost;
         public float PrimitiveFCost => HCost + GCost;
 
-        private AStarNode _Parent;
+        private AStarNode parent;
         public AStarNode Parent
         {
-            get => _Parent;
+            get => parent;
             set
             {
-                _Parent = value;
-                GCost = value == null ? 0 : Parent.GCost + CalculateGCost(value);
+                parent = value;
+                GCost = value == null ? 0 : Parent.GCost + value.CostTo(this);
             }
         }
 
@@ -51,28 +48,17 @@ namespace AStar
             state = ENodeState.Blank;
         }
 
-        public void UpdateHCost(AStarNode to)
+
+        public float CostTo(AStarNode to)
         {
-            HCost = CalculatePrimitiveCost(to);
+            return process.mover.CalculateCost(this, to);
+        }
+        protected internal virtual float PrimitiveCostTo(AStarNode to)
+        {
+            float distance = process.Settings.CalculateDistance(Position, to.Position);
+            return distance;
         }
 
-        public float CalculatePrimitiveCost(AStarNode other)
-        {
-            float distance = process.Settings.CalculateDistance(Position, other.Position);
-            return distance;
-        }
-        protected virtual float CalculatePrimitiveCost(AStarNode other, float distance)
-        {
-            return distance;
-        }
-        public float CalculateGCost(AStarNode other)
-        {
-            return process.Settings.CalculateDistance(Position, other.Position);
-        }
-        protected virtual float CalculateGCost(AStarNode other, float distance)
-        {
-            return distance;
-        }
         /// <summary>
         /// 回溯路径
         /// </summary>
