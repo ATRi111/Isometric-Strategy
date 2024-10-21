@@ -38,7 +38,7 @@ namespace AStar
         }
 
         /// <summary>
-        /// 获取与一个节点相邻且可通行且不为Close的节点
+        /// 获取与一个节点相邻的节点(过滤不可通行节点)
         /// </summary>
         internal void GetFilteredAdjoinNodes(AStarNode from)
         {
@@ -47,7 +47,7 @@ namespace AStar
             settings.GetAdjoinNodes.Invoke(this, from, adjoins);
             foreach (AStarNode to in adjoins)
             {
-                if (to.state != ENodeState.Close && mover.MoveCheck(from, to))
+                if (mover.MoveCheck(from, to))
                     adjoins_filtered.Add(to);
             }
         }
@@ -87,17 +87,13 @@ namespace AStar
         internal Heap<AStarNode> open;
 
         /// <summary>
-        /// 当前访问的点
+        /// 当前经过的节点
         /// </summary>
-        [SerializeField]
-        internal AStarNode currentNode;
-        public AStarNode CurrentNode => currentNode;
-
-        internal AStarNode nearest;
+        public AStarNode currentNode;
         /// <summary>
-        /// 当前已访问的离终点最近的点
+        /// 在可计算的范围内，到终点距离最近的节点
         /// </summary>
-        public AStarNode Nearest => nearest;
+        public AStarNode nearest;
 
         [SerializeField]
         internal int countOfCloseNode;
@@ -177,19 +173,16 @@ namespace AStar
 
             if (mover.MoveAbilityCheck(currentNode) && mover.StayCheck(currentNode))
             {
-                available.Add(currentNode); 
-                if (currentNode.HCost < nearest.HCost)
-                    nearest = currentNode;
+                available.Add(currentNode);
             }
-           
+            if (currentNode.HCost < nearest.HCost)
+                nearest = currentNode;
+
             if (currentNode == To)
             {
                 Stop();     //移动力受限的情况下，如果权重系数超过1，有可能在没有找到更短可行路径的情况下提前退出
                 return false;
             }
-
-            if (!mover.MoveAbilityCheck(currentNode))
-                return true;
 
             GetFilteredAdjoinNodes(currentNode);
 
@@ -204,8 +197,8 @@ namespace AStar
                         open.Push(node);
                         break;
                     case ENodeState.Open:
-                        if (node.GCost > currentNode.GCost + currentNode.CostTo(node)) 
-                            node.Parent = currentNode;
+                    case ENodeState.Close:
+                        node.UpdateParent(currentNode);
                         break;
                 }
             }

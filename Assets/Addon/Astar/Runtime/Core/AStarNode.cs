@@ -59,6 +59,14 @@ namespace AStar
             float distance = process.Settings.CalculateDistance(Position, to.Position);
             return distance;
         }
+        public void UpdateParent(AStarNode node)
+        {
+            float g = node.GCost + node.CostTo(this);
+            if (GCost > g)
+                Parent = node;
+            else if (GCost == g && !process.mover.StayCheck(parent) && process.mover.StayCheck(node))
+                Parent = node;
+        }
 
         /// <summary>
         /// »ØËÝÂ·¾¶
@@ -66,7 +74,8 @@ namespace AStar
         public void Recall(List<AStarNode> ret = null)
         {
             Parent?.Recall(ret);
-            ret?.Add(this);
+            if (process.mover.MoveAbilityCheck(this) && process.mover.StayCheck(this))
+                ret?.Add(this);
         }
 
         public override string ToString()
