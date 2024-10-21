@@ -40,7 +40,7 @@ namespace AStar.Sample
         public void Repaint()
         {
             Clear();
-            GameObject obj = new GameObject("debug");
+            GameObject obj = new("debug");
 
             AStarNode[] allnodes = process.GetAllNodes();
             for (int i = 0; i < allnodes.Length; i++)

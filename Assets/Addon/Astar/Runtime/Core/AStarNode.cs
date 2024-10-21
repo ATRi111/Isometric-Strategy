@@ -30,7 +30,7 @@ namespace AStar
         /// <summary>
         /// 经过该点时，起点到终点的距离（假设该点到终点无障碍）
         /// </summary>
-        public float FCost => process.CurrentWeight * HCost + GCost;
+        public float FCost => process.HCostWeight * HCost + GCost;
         public float PrimitiveFCost => HCost + GCost;
 
         private AStarNode _Parent;
@@ -53,15 +53,15 @@ namespace AStar
 
         public void UpdateHCost(AStarNode to)
         {
-            HCost = CalculateHCost(to);
+            HCost = CalculatePrimitiveCost(to);
         }
 
-        public float CalculateHCost(AStarNode other)
+        public float CalculatePrimitiveCost(AStarNode other)
         {
             float distance = process.Settings.CalculateDistance(Position, other.Position);
             return distance;
         }
-        protected virtual float CalculateHCost(AStarNode other,float distance)
+        protected virtual float CalculatePrimitiveCost(AStarNode other, float distance)
         {
             return distance;
         }

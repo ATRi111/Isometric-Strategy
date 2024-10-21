@@ -25,7 +25,7 @@ namespace AStar.Sample
 
             Vector2Int[] directions = PathFindingUtility.eightDirections.ToArray();
             Vector2Int v = node.Parent == null ? Vector2Int.left : node.Position - node.Parent.Position;
-            PathFindingUtility.Comparer_Vector2_Nearer comparer = new PathFindingUtility.Comparer_Vector2_Nearer(v);
+            PathFindingUtility.Comparer_Vector2_Nearer comparer = new(v);
             Array.Sort(directions, comparer);
 
             if (node.Parent == null)
@@ -91,6 +91,8 @@ namespace AStar.Sample
                 return process.GetNode(node.Position + delta).IsObstacle;
             }
 
+            if (node.IsObstacle)
+                return false;
             switch (node.state)
             {
                 case ENodeState.Route:
@@ -99,7 +101,7 @@ namespace AStar.Sample
                     return false;
             }
 
-            PathFindingUtility.Comparer_Vector2_Nearer comparer = new PathFindingUtility.Comparer_Vector2_Nearer(direction);
+            PathFindingUtility.Comparer_Vector2_Nearer comparer = new(direction);
             Vector2Int[] directions = PathFindingUtility.eightDirections.ToArray();
             Array.Sort(directions, comparer);
 

@@ -108,12 +108,10 @@ namespace AStar
         /// </summary>
         public int CountOfQuery => countOfQuery;
 
-        [SerializeField]
-        internal float currentWeight;
         /// <summary>
         /// 寻路的当前一步中,HCost的权重
         /// </summary>
-        public float CurrentWeight => currentWeight;
+        public float HCostWeight => settings.hCostWeight;
 
         #endregion
 
@@ -135,7 +133,6 @@ namespace AStar
             isRunning = true;
             countOfQuery = 0;
             countOfTestedNode = 0;
-            currentWeight = 1f;
 
             discoveredNodes.Clear();
             open = new Heap<AStarNode>(settings.capacity, new Comparer_Cost());

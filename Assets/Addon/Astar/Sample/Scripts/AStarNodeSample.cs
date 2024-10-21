@@ -20,6 +20,7 @@ namespace AStar.Sample
             {
                 if(map == null)
                 {
+                    isObstacle = false;
                     map = process.mono.GetComponentInChildren<Tilemap>();
                     sample = process.mono.GetComponentInChildren<PathFindingSample>();
                     Vector3 world = sample.NodeToWorld(Position);
@@ -30,7 +31,6 @@ namespace AStar.Sample
                         if (tile.m_DefaultSprite.name == "Block")
                             isObstacle = true;
                     }
-                    isObstacle = false;
                 }
                 return isObstacle;
             }

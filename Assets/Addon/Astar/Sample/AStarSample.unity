@@ -636,10 +636,10 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: 0f805f45e0e22714d88fc3c8a23578ac, type: 2}
   hCostWeight: 2
 --- !u!4 &394363656
@@ -679,10 +679,10 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: a546b5bcd5ada2e46a6a9cd5551e8f8b, type: 2}
   hCostWeight: 2
 --- !u!1 &513431481
@@ -1986,10 +1986,10 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: 0f805f45e0e22714d88fc3c8a23578ac, type: 2}
   hCostWeight: 2
 --- !u!114 &885614153
@@ -2011,10 +2011,10 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: 784715f1651a715438a480e9de9dc26e, type: 2}
   hCostWeight: 2
 --- !u!4 &885614154
@@ -2103,10 +2103,10 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: a546b5bcd5ada2e46a6a9cd5551e8f8b, type: 2}
   hCostWeight: 2
 --- !u!114 &1110367218
@@ -2128,10 +2128,10 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: 0f805f45e0e22714d88fc3c8a23578ac, type: 2}
   hCostWeight: 2
 --- !u!4 &1110367219
@@ -2780,10 +2780,10 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: a546b5bcd5ada2e46a6a9cd5551e8f8b, type: 2}
   hCostWeight: 2
 --- !u!114 &1335244204
@@ -2805,10 +2805,10 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: 0f805f45e0e22714d88fc3c8a23578ac, type: 2}
   hCostWeight: 2
 --- !u!4 &1335244205
@@ -4853,10 +4853,10 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: 784715f1651a715438a480e9de9dc26e, type: 2}
   hCostWeight: 1
 --- !u!114 &1920400654
@@ -4878,12 +4878,12 @@ MonoBehaviour:
       hCostWeight: 0
       mover:
         moveAbility: 0
+    mono: {fileID: 0}
     isRunning: 0
     countOfTestedNode: 0
     countOfQuery: 0
-    currentWeight: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: 784715f1651a715438a480e9de9dc26e, type: 2}
-  hCostWeight: 2
+  hCostWeight: 3
 --- !u!1 &1967197972
 GameObject:
   m_ObjectHideFlags: 0
