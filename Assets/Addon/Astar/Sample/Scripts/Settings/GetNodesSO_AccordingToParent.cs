@@ -10,7 +10,7 @@ namespace AStar.Sample
     {
         public int count;
 
-        public override void GetAdjoinedNodes(PathFindingProcess process, PathNode node, List<PathNode> ret)
+        public override void GetAdjoinedNodes(PathFindingProcess process, AStarNode node, List<AStarNode> ret)
         {
             if (node.Parent == null)
             {

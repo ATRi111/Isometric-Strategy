@@ -3,20 +3,18 @@ using UnityEngine;
 
 namespace AStar
 {
-    public class PathNode
+    public class AStarNode
     {
-        private readonly PathFindingProcess process;
+        protected readonly PathFindingProcess process;
 
-        public Vector2Int Position { get; private set; }
+        public Vector2Int Position { get; protected set; }
 
-        private ENodeType type;
-        public ENodeType Type
+        [SerializeField]
+        public ENodeState state;
+
+        public virtual bool IsObstacle
         {
-            get => type;
-            set
-            {
-                type = value;
-            }
+            get => false;
         }
 
         /// <summary>
@@ -33,9 +31,10 @@ namespace AStar
         /// 经过该点时，起点到终点的距离（假设该点到终点无障碍）
         /// </summary>
         public float FCost => process.CurrentWeight * HCost + GCost;
+        public float PrimitiveFCost => HCost + GCost;
 
-        private PathNode _Parent;
-        public PathNode Parent
+        private AStarNode _Parent;
+        public AStarNode Parent
         {
             get => _Parent;
             set
@@ -45,34 +44,43 @@ namespace AStar
             }
         }
 
-        internal PathNode(PathFindingProcess process, Vector2Int position)
+        internal AStarNode(PathFindingProcess process, Vector2Int position)
         {
             this.process = process;
             Position = position;
-            Type = ENodeType.Blank;
+            state = ENodeState.Blank;
         }
 
-        public void UpdateHCost(PathNode to)
+        public void UpdateHCost(AStarNode to)
         {
             HCost = CalculateHCost(to);
         }
 
-        public float CalculateHCost(PathNode other)
-            => process.Settings.CalculateHCost(Position, other.Position);
-
-        public float CalculateGCost(PathNode other)
-            => process.Settings.CalculateGCost(Position, other.Position);
-
+        public float CalculateHCost(AStarNode other)
+        {
+            float distance = process.Settings.CalculateDistance(Position, other.Position);
+            return distance;
+        }
+        protected virtual float CalculateHCost(AStarNode other,float distance)
+        {
+            return distance;
+        }
+        public float CalculateGCost(AStarNode other)
+        {
+            return process.Settings.CalculateDistance(Position, other.Position);
+        }
+        protected virtual float CalculateGCost(AStarNode other, float distance)
+        {
+            return distance;
+        }
         /// <summary>
         /// 回溯路径
         /// </summary>
-        public void Recall(List<PathNode> ret = null)
+        public void Recall(List<AStarNode> ret = null)
         {
-            Type = ENodeType.Route;
-            if (Parent != null)
-                Parent.Recall(ret);
-            if (ret != null)
-                ret.Add(this);
+            state = ENodeState.Route;
+            Parent?.Recall(ret);
+            ret?.Add(this);
         }
 
         public override string ToString()
@@ -81,9 +89,9 @@ namespace AStar
         }
     }
 
-    public class Comparer_Cost : IComparer<PathNode>
+    public class Comparer_Cost : IComparer<AStarNode>
     {
-        public int Compare(PathNode x, PathNode y)
+        public int Compare(AStarNode x, AStarNode y)
         {
             return (int)Mathf.Sign(x.FCost - y.FCost);
         }

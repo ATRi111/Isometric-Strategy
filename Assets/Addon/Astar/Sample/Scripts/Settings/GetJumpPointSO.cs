@@ -10,14 +10,14 @@ namespace AStar.Sample
     {
         public int depthOnDirection;
 
-        public override void GetAdjoinedNodes(PathFindingProcess process, PathNode node, List<PathNode> ret)
+        public override void GetAdjoinedNodes(PathFindingProcess process, AStarNode node, List<AStarNode> ret)
         {
-            bool MatchType(Vector2Int direction, ENodeType type)
+            bool IsObstacle(Vector2Int delta)
             {
-                return process.GetNode(node.Position + direction).Type == type;
+                return process.GetNode(node.Position + delta).IsObstacle;
             }
 
-            void TryAdd(PathNode node)
+            void TryAdd(AStarNode node)
             {
                 if (node != null)
                     ret.Add(node);
@@ -44,9 +44,9 @@ namespace AStar.Sample
             if (v.x == 0 || v.y == 0)
             {
                 TryAdd(FindJumpPointOnDirection(process, node.Position, directions[0]));
-                if (MatchType(directions[3], ENodeType.Obstacle))
+                if (IsObstacle(directions[3]))
                     TryAdd(process.GetNode(node.Position + directions[1]));
-                if (MatchType(directions[4], ENodeType.Obstacle))
+                if (IsObstacle(directions[4]))
                     TryAdd(process.GetNode(node.Position + directions[2]));
             }
             else
@@ -54,45 +54,48 @@ namespace AStar.Sample
                 TryAdd(process.GetNode(node.Position + directions[0]));
                 TryAdd(FindJumpPointOnDirection(process, node.Position, directions[1]));
                 TryAdd(FindJumpPointOnDirection(process, node.Position, directions[2]));
-                if (MatchType(directions[5], ENodeType.Obstacle))
+                if (IsObstacle(directions[5]))
                     TryAdd(process.GetNode(node.Position + directions[3]));
-                if (MatchType(directions[6], ENodeType.Obstacle))
+                if (IsObstacle(directions[6]))
                     TryAdd(process.GetNode(node.Position + directions[4]));
             }
         }
 
-        public PathNode FindJumpPointOnDirection(PathFindingProcess process, Vector2Int from, Vector2Int direction)
+        public AStarNode FindJumpPointOnDirection(PathFindingProcess process, Vector2Int from, Vector2Int direction)
         {
             Vector2Int current = from;
-            PathNode node;
+            AStarNode node;
             for (int i = 0; i < depthOnDirection; i++)
             {
                 current += direction;
                 node = process.GetNode(current);
-                if (node.Type == ENodeType.Obstacle)
+                if (node.IsObstacle)
                     return null;
                 if (IsJumpPoint(process, node, direction))
                     return node;
             }
             node = process.GetNode(current);
-            if (node.Type == ENodeType.Blank)
+            if (node.state == ENodeState.Blank)
                 return node;
             return null;
         }
 
-        public bool IsJumpPoint(PathFindingProcess process, PathNode node, Vector2Int direction)
+        public bool IsJumpPoint(PathFindingProcess process, AStarNode node, Vector2Int direction)
         {
-            bool MatchType(Vector2Int direction, ENodeType type)
+            bool IsBlank(Vector2Int delta)
             {
-                return process.GetNode(node.Position + direction).Type == type;
+                return process.GetNode(node.Position + delta).state == ENodeState.Blank;
+            }
+            bool IsObstacle(Vector2Int delta)
+            {
+                return process.GetNode(node.Position + delta).IsObstacle;
             }
 
-            switch (node.Type)
+            switch (node.state)
             {
-                case ENodeType.Route:
+                case ENodeState.Route:
                     return true;
-                case ENodeType.Obstacle:
-                case ENodeType.Close:
+                case ENodeState.Close:
                     return false;
             }
 
@@ -100,8 +103,8 @@ namespace AStar.Sample
             Vector2Int[] directions = PathFindingUtility.eightDirections.ToArray();
             Array.Sort(directions, comparer);
 
-            return MatchType(directions[3], ENodeType.Obstacle) && MatchType(directions[1], ENodeType.Blank) ||
-                MatchType(directions[4], ENodeType.Obstacle) && MatchType(directions[2], ENodeType.Blank);
+            return IsObstacle(directions[3]) && IsBlank(directions[1]) ||
+                IsObstacle(directions[4]) && IsBlank(directions[2]);
         }
     }
 }

@@ -25,17 +25,23 @@ namespace AStar.Sample
             textbox = GetComponentInChildren<TextMeshProUGUI>();
         }
 
-        public void Initialize(PathNode node)
+        public void Initialize(AStarNode node)
         {
-            spriteRenderer.color = node.Type switch
+            if(node.IsObstacle)
             {
-                ENodeType.Open => color_open,
-                ENodeType.Close => color_close,
-                ENodeType.Obstacle => color_obstacle,
-                ENodeType.Route => color_route,
-                _ => color_blank,
-            };
-            if (node.Type == ENodeType.Blank || node.Type == ENodeType.Obstacle)
+                spriteRenderer.color = color_obstacle;
+            }    
+            else
+            {
+                spriteRenderer.color = node.state switch
+                {
+                    ENodeState.Open => color_open,
+                    ENodeState.Close => color_close,
+                    ENodeState.Route => color_route,
+                    _ => color_blank,
+                };
+            }
+            if (node.state == ENodeState.Blank || node.IsObstacle)
                 textbox.text = string.Empty;
             else
                 textbox.text = $"G:{(int)node.GCost}\n" +

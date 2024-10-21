@@ -1,6 +1,6 @@
 namespace AStar
 {
-    public enum ENodeType
+    public enum ENodeState
     {
         /// <summary>
         /// 未访问过的节点
@@ -18,9 +18,5 @@ namespace AStar
         /// 最终路径中的节点
         /// </summary>
         Route,
-        /// <summary>
-        /// 无法通行节点
-        /// </summary>
-        Obstacle,
     }
 }
