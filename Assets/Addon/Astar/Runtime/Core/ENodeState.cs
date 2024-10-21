@@ -3,20 +3,16 @@ namespace AStar
     public enum ENodeState
     {
         /// <summary>
-        /// 未访问过的节点
+        /// 未计算FCost的节点
         /// </summary>
         Blank,
         /// <summary>
-        /// 路径确定过至少一次的节点
+        /// 从起点出发的最短路径已经确定的节点
         /// </summary>
         Close,
         /// <summary>
-        /// 路径待确定的节点
+        /// 已计算FCost而最短路径未确定的节点
         /// </summary>
         Open,
-        /// <summary>
-        /// 最终路径中的节点
-        /// </summary>
-        Route,
     }
 }

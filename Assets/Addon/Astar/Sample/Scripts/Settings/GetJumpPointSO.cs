@@ -91,15 +91,10 @@ namespace AStar.Sample
                 return process.GetNode(node.Position + delta).IsObstacle;
             }
 
-            if (node.IsObstacle)
+            if (node == process.To)
+                return true;
+            if (node.IsObstacle || node.state == ENodeState.Close)
                 return false;
-            switch (node.state)
-            {
-                case ENodeState.Route:
-                    return true;
-                case ENodeState.Close:
-                    return false;
-            }
 
             PathFindingUtility.Comparer_Vector2_Nearer comparer = new(direction);
             Vector2Int[] directions = PathFindingUtility.eightDirections.ToArray();

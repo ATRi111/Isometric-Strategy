@@ -12,9 +12,16 @@ namespace AStar.Sample
 
         public GetAdjoinedNodesSO getAdjoinedNodesSO;
         public float hCostWeight;
+        public float moveAbility;
 
         public void StartPathFinding()
         {
+            PathFindingSettings settings = new(getAdjoinedNodesSO.GetAdjoinedNodes, null, GenerateNode, hCostWeight);
+            process = new(settings)
+            {
+                mono = this
+            };
+            process.mover = new AStarMoverSample(process, moveAbility);
             process.Start(WorldToNode(from.position), WorldToNode(to.position));
             Repaint();
         }
@@ -76,20 +83,6 @@ namespace AStar.Sample
             from = transform.Find("From").transform;
             to = transform.Find("To").transform;
             process.mono = this;
-        }
-
-        private void Start()
-        {
-            PathFindingSettings settings = new(
-                getAdjoinedNodesSO.GetAdjoinedNodes,
-                null,
-                GenerateNode,
-                hCostWeight
-                );
-            process = new(settings)
-            {
-                mono = this
-            };
         }
     }
 }

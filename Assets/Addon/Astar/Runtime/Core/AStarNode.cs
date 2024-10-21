@@ -5,7 +5,7 @@ namespace AStar
 {
     public class AStarNode
     {
-        protected readonly PathFindingProcess process;
+        protected internal readonly PathFindingProcess process;
 
         public Vector2Int Position { get; protected set; }
 
@@ -27,8 +27,8 @@ namespace AStar
         /// </summary>
         public float HCost;
 
-        public float FCost => process.HCostWeight * HCost + GCost;
-        public float PrimitiveFCost => HCost + GCost;
+        public float WeightedFCost => process.HCostWeight * HCost + GCost;
+        public float FCost => HCost + GCost;
 
         private AStarNode parent;
         public AStarNode Parent
@@ -51,7 +51,8 @@ namespace AStar
 
         public float CostTo(AStarNode to)
         {
-            return process.mover.CalculateCost(this, to);
+            float primitiveCost = PrimitiveCostTo(to);
+            return process.mover.CalculateCost(this, to, primitiveCost);
         }
         protected internal virtual float PrimitiveCostTo(AStarNode to)
         {
@@ -64,7 +65,6 @@ namespace AStar
         /// </summary>
         public void Recall(List<AStarNode> ret = null)
         {
-            state = ENodeState.Route;
             Parent?.Recall(ret);
             ret?.Add(this);
         }
@@ -79,7 +79,7 @@ namespace AStar
     {
         public int Compare(AStarNode x, AStarNode y)
         {
-            return (int)Mathf.Sign(x.FCost - y.FCost);
+            return (int)Mathf.Sign(x.WeightedFCost - y.WeightedFCost);
         }
     }
 }

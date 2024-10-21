@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace AStar
 {
@@ -15,15 +16,24 @@ namespace AStar
             this.moveAbility = moveAbility;
         }
 
+        public virtual bool MoveAbilityCheck(AStarNode node)
+        {
+            return Mathf.RoundToInt(node.GCost) <= moveAbility;
+        }
+
+        public virtual bool StayCheck(AStarNode node)
+        {
+            return !node.IsObstacle;
+        }
+
         public virtual bool MoveCheck(AStarNode from, AStarNode to)
         {
             return !to.IsObstacle;
         }
 
-        public virtual float CalculateCost(AStarNode from, AStarNode to)
+        public virtual float CalculateCost(AStarNode from, AStarNode to, float primitiveCost)
         {
-            float primitive = from.PrimitiveCostTo(to);
-            return primitive;
+            return primitiveCost;
         }
     }
 }

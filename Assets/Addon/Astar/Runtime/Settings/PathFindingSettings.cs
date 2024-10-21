@@ -12,7 +12,7 @@ namespace AStar
         /// </summary>
         public int capacity;
         /// <summary>
-        /// 最大测试节点数
+        /// 最大搜索深度(即Closed节点数)
         /// </summary>
         public int maxDepth;
         /// <summary>
@@ -47,7 +47,6 @@ namespace AStar
             this.hCostWeight = hCostWeight;
             this.capacity = capacity;
             this.maxDepth = maxDepth;
-            maxDepth = Mathf.Min(capacity * 2 + 2, maxDepth);   //预防堆容量不足
         }
     }
 }

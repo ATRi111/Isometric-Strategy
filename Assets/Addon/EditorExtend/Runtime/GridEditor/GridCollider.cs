@@ -24,7 +24,7 @@ namespace EditorExtend.GridEditor
 
         protected virtual void Awake()
         {
-            gridObject.OverlapFunc = Overlap;
+            GridObject.OverlapFunc = Overlap;
         }
     }
 }

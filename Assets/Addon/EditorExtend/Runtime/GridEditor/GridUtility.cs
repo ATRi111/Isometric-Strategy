@@ -6,7 +6,7 @@ namespace EditorExtend.GridEditor
     {
         public static int MaxHeight = 114514;
 
-        public static float Diagnol = 1.4142136f;
+        public static float Diagnol = 1.41421356f;
 
         public static readonly Vector3Int[] AjointPoints8 = new Vector3Int[]
         {

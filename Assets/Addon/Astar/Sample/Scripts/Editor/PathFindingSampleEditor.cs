@@ -6,7 +6,7 @@ namespace AStar.Sample
     [CustomEditor(typeof(PathFindingSample))]
     public class PathFindingSampleEditor : Editor
     {
-        public SerializedProperty getAdjoinedNodesSO, process, hCostWeight;
+        public SerializedProperty getAdjoinedNodesSO, process, hCostWeight, moveAbility;
         public PathFindingSample sample;
 
         private void OnEnable()
@@ -15,6 +15,7 @@ namespace AStar.Sample
             getAdjoinedNodesSO = serializedObject.FindProperty(nameof(getAdjoinedNodesSO));
             process = serializedObject.FindProperty(nameof(process));
             hCostWeight = serializedObject.FindProperty(nameof(hCostWeight));
+            moveAbility = serializedObject.FindProperty(nameof(moveAbility));
         }
 
         public override void OnInspectorGUI()
@@ -24,6 +25,7 @@ namespace AStar.Sample
 
             EditorGUILayout.PropertyField(getAdjoinedNodesSO, new GUIContent("获取相邻节点的方法"));
             hCostWeight.floatValue = EditorGUILayout.FloatField("hCost权重", hCostWeight.floatValue);
+            moveAbility.floatValue = EditorGUILayout.FloatField("移动力", moveAbility.floatValue);
             if (Application.isPlaying)
             {
                 if (GUILayout.Button("开始寻路"))

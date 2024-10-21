@@ -6,10 +6,7 @@ namespace AStar
 {
     public static class PathFindingUtility
     {
-        //边长
-        public static float Side = 10f;
-        //对角线长
-        public static float Diagnol = 14f;
+        public static float Diagnol = 1.41421356f;
 
         public static float CalculateWeight_Default(PathFindingProcess _)
         {
@@ -32,7 +29,7 @@ namespace AStar
         /// 求曼哈顿距离
         /// </summary>
         public static float ManhattanDistance(Vector2Int a, Vector2Int b)
-            => Mathf.Abs(a.x - b.x) * Side + Mathf.Abs(a.y - b.y) * Side;
+            => Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
 
         /// <summary>
         /// 获取某节点周围的四个节点
@@ -61,7 +58,7 @@ namespace AStar
             float deltaY = Mathf.Abs(a.y - b.y);
             float max = Mathf.Max(deltaX, deltaY);
             float min = Mathf.Min(deltaX, deltaY);
-            return min * Diagnol + (max - min) * Side;
+            return min * Diagnol + (max - min);
         }
         /// <summary>
         /// 获取某节点周围的八个节点
