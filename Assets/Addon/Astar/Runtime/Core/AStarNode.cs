@@ -41,7 +41,7 @@ namespace AStar
             }
         }
 
-        internal AStarNode(PathFindingProcess process, Vector2Int position)
+        public AStarNode(PathFindingProcess process, Vector2Int position)
         {
             this.process = process;
             Position = position;

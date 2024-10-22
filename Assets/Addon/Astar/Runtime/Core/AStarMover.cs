@@ -6,13 +6,10 @@ namespace AStar
     [Serializable]
     public class AStarMover
     {
-        [NonSerialized]
-        protected PathFindingProcess process;
         public float moveAbility;
         
-        public AStarMover(PathFindingProcess process, float moveAbility = float.PositiveInfinity)
+        public AStarMover(float moveAbility = float.PositiveInfinity)
         {
-            this.process = process;
             this.moveAbility = moveAbility;
         }
 

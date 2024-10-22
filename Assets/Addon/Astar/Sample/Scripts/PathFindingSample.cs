@@ -17,11 +17,10 @@ namespace AStar.Sample
         public void StartPathFinding()
         {
             PathFindingSettings settings = new(getAdjoinedNodesSO.GetAdjoinedNodes, null, GenerateNode, hCostWeight);
-            process = new(settings)
+            process = new(settings, new AStarMoverSample(process, moveAbility))
             {
                 mono = this
             };
-            process.mover = new AStarMoverSample(process, moveAbility);
             process.Start(WorldToNode(from.position), WorldToNode(to.position));
             Repaint();
         }

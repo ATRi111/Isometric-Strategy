@@ -6,7 +6,7 @@ namespace AStar
 {
     public static class PathFindingUtility
     {
-        public static float Diagnol = 1.41421356f;
+        public const float Diagnol = 1.41421356f;
 
         public static float CalculateWeight_Default(PathFindingProcess _)
         {

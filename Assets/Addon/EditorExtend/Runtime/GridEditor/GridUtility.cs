@@ -4,9 +4,9 @@ namespace EditorExtend.GridEditor
 {
     public static class GridUtility
     {
-        public static int MaxHeight = 114514;
+        public const int MaxHeight = 114514;
 
-        public static float Diagnol = 1.41421356f;
+        public const float Diagnol = 1.41421356f;
 
         public static readonly Vector3Int[] AjointPoints8 = new Vector3Int[]
         {
