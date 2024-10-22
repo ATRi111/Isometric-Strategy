@@ -3,14 +3,18 @@ using EditorExtend.GridEditor;
 
 public class Pawn : GridObject
 {
-    private IsometricGridManager igm;
+    protected IsometricGridManager igm;
+    protected AMover mover;
+
     public EFaction faction;
     public int climbAbility = 2;
     public int dropAbility = 3;
+    public float moveAbility = 5;
 
     protected virtual void Awake()
     {
         igm = Manager as IsometricGridManager;
+        mover = new AMover(this, moveAbility);
     }
 
     public virtual bool StayCheck(AStarNode node)

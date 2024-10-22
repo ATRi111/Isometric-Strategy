@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5737828582266420397}
   - component: {fileID: 3544415595762364013}
-  - component: {fileID: 4668313825036408272}
   - component: {fileID: 1913328515258478943}
   - component: {fileID: 4857369927919642271}
+  - component: {fileID: 4508710216947100420}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -89,20 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4668313825036408272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8275336948927669841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b37d31a5d2eb34692fe1f937d1390b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shortName: 
-  cellPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1913328515258478943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +117,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isObstacle: 0
   height: 3
+--- !u!114 &4508710216947100420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275336948927669841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3977443f1ba4bc4e88026616768fd28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortName: 
+  cellPosition: {x: 0, y: 0, z: 0}
+  faction: 0
+  climbAbility: 2
+  dropAbility: 3
+  moveAbility: 5

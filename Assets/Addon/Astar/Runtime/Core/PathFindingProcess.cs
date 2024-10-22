@@ -237,7 +237,7 @@ namespace AStar
         public PathFindingProcess(PathFindingSettings settings, AStarMover mover = null)
         {
             this.settings = settings;
-            mover = mover ?? new AStarMover();
+            this.mover = mover ?? new AStarMover();
             open = new Heap<AStarNode>(settings.capacity, new Comparer_Cost());
         }
     }

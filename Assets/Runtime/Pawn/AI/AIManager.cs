@@ -7,6 +7,6 @@ public class AIManager : Service,IService
     public override Type RegisterType => GetType();
 
     [SerializeField]
-    private PathFinding pathFinding;
-    public PathFinding PathFinding => pathFinding;
+    private PathFindingManager pathFinding;
+    public PathFindingManager PathFinding => pathFinding;
 }
