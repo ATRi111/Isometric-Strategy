@@ -87,7 +87,7 @@ namespace EditorExtend.GridEditor
         /// <summary>
         /// 发挥地面作用时，此物体的高度
         /// </summary>
-        public virtual int GroundHeight
+        public int GroundHeight
         {
             get
             {

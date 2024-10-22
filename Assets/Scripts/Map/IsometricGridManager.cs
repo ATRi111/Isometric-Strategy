@@ -7,6 +7,4 @@ public class IsometricGridManager : IsometricGridManagerBase
     {
         return GameObject.Find("Grid").GetComponent<IsometricGridManager>();
     }
-
-
 }
