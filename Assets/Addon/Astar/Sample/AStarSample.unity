@@ -2793,7 +2793,7 @@ MonoBehaviour:
     countOfQuery: 0
   getAdjoinedNodesSO: {fileID: 11400000, guid: 7992b2de22549654da1a50fe569be08a, type: 2}
   hCostWeight: 0
-  moveAbility: 2
+  moveAbility: 5
 --- !u!114 &1302146504
 MonoBehaviour:
   m_ObjectHideFlags: 0

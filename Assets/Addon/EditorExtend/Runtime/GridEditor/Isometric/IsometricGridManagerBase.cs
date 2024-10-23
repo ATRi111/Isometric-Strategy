@@ -7,6 +7,7 @@ namespace EditorExtend.GridEditor
     {
         //Isometric地图在同一(x,y)处可能有多个层数不同的物体，使用两个字典记录某位置的层数范围，以提高查询效率
         private readonly Dictionary<Vector2Int, int> maxLayerDict = new();
+        public Dictionary<Vector2Int, int> MaxLayerDict => maxLayerDict;
         public int maxLayer;
 
         public override Vector3 CellToWorld(Vector3 cellPosition)
@@ -52,11 +53,11 @@ namespace EditorExtend.GridEditor
             return false;
         }
 
-        public override void AddAllObjects()
+        public override void Clear()
         {
+            base.Clear();
             maxLayer = 0;
             maxLayerDict.Clear();
-            base.AddAllObjects();
         }
 
         public override void AddObject(GridObject gridObject)

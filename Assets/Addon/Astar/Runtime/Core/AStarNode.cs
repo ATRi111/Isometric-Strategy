@@ -3,11 +3,13 @@ using UnityEngine;
 
 namespace AStar
 {
+    [System.Serializable]
     public class AStarNode
     {
         protected internal readonly PathFindingProcess process;
-
-        public Vector2Int Position { get; protected set; }
+        [SerializeField]
+        protected Vector2Int position;
+        public Vector2Int Position => position;
 
         [SerializeField]
         public ENodeState state;
@@ -44,7 +46,7 @@ namespace AStar
         public AStarNode(PathFindingProcess process, Vector2Int position)
         {
             this.process = process;
-            Position = position;
+            this.position = position;
             state = ENodeState.Blank;
         }
 

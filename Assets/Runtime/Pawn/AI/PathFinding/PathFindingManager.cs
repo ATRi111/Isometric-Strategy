@@ -1,10 +1,10 @@
 using AStar;
-using System;
+using MyTimer;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-[Serializable]
-public class PathFindingManager
+public class PathFindingManager : MonoBehaviour
 {
     private IsometricGridManager igm;
     private IsometricGridManager Igm
@@ -24,21 +24,38 @@ public class PathFindingManager
 
     public PathFindingProcess FindRoute(AMover mover, Vector2Int from, Vector2Int to)
     {
-        PathFindingSettings settings = new(GetAdjoinNodes, PathFindingUtility.ManhattanDistance, GenerateNode, 1f, 100, 100);
-        findRoute = new PathFindingProcess(settings, mover);
+        int maxDepth = Igm.MaxLayerDict.Count;
+        PathFindingSettings settings = new(GetAdjoinNodes, PathFindingUtility.ManhattanDistance, GenerateNode, 1f, maxDepth, maxDepth);
+        findRoute = new PathFindingProcess(settings, mover)
+        {
+            mono = Igm
+        };
         findRoute.Start(from, to);
-        findRoute.Compelete();
+#if UNITY_EDITOR
+        if(debug)
+            PlayFindRoute();
+        else
+#endif
+            findRoute.Compelete();
         return findRoute;
     }
 
     public PathFindingProcess FindAvailable(AMover mover,Vector2Int from)
     {
-        int maxDepth = Mathf.CeilToInt(mover.moveAbility * mover.moveAbility * 2 + mover.moveAbility * 4 + 8);
+        int maxDepth = Mathf.CeilToInt(mover.moveAbility * mover.moveAbility * 2 + mover.moveAbility * 2 + 2);
         PathFindingSettings settings = new(GetAdjoinNodes, PathFindingUtility.ManhattanDistance, GenerateNode, 0f, maxDepth, maxDepth);
-        findAvailable = new PathFindingProcess(settings, mover);
+        findAvailable = new PathFindingProcess(settings, mover)
+        {
+            mono = Igm
+        };
         Vector2Int to = from + Mathf.CeilToInt(mover.moveAbility + 1) * Vector2Int.one;
         findAvailable.Start(from, to);
-        findAvailable.Compelete();
+#if UNITY_EDITOR
+        if (debug)
+            PlayFindAvailable();
+        else
+#endif
+            findAvailable.Compelete();
         return findAvailable;
     }
 
@@ -51,4 +68,43 @@ public class PathFindingManager
     {
         return new ANode(process, position, Igm, 1f);   //困难地形待完成
     }
+
+
+#if UNITY_EDITOR
+    public UnityAction<PathFindingProcess> AfterStep;
+    public bool debug;
+    public float stepTime;
+
+    private Metronome metronome;
+
+    private void PlayFindRoute()
+    {
+        metronome = new Metronome();
+        metronome.OnTick += FindRouteStep;
+        metronome.Initialize(stepTime);
+        AfterStep?.Invoke(findRoute);
+    }
+
+    private void FindRouteStep(float _)
+    {
+        if (!findRoute.NextStep())
+            metronome.Paused = true;
+        AfterStep?.Invoke(findRoute);
+    }
+
+    private void PlayFindAvailable()
+    {
+        metronome = new Metronome();
+        metronome.OnTick += FindAvailableNextStep;
+        metronome.Initialize(stepTime);
+        AfterStep?.Invoke(findAvailable);
+    }
+
+    private void FindAvailableNextStep(float _)
+    {
+        if (!findAvailable.NextStep())
+            metronome.Paused = true;
+        AfterStep?.Invoke(findAvailable);
+    }
+#endif
 }

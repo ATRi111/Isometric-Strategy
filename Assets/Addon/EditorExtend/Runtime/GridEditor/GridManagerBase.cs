@@ -72,9 +72,14 @@ namespace EditorExtend.GridEditor
         /// </summary>
         public abstract int CellToSortingOrder(Vector3Int cell);
 
+        public virtual void Clear()
+        {
+            objectDict.Clear();
+        }
+
         public virtual void AddAllObjects()
         {
-            ObjectDict.Clear();
+            Clear();
             GridObject[] objects = GetComponentsInChildren<GridObject>();
             for (int i = 0; i < objects.Length; i++)
             {

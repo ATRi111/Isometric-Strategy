@@ -14,6 +14,9 @@ namespace EditorExtend.GridEditor
         protected override void MyOnInspectorGUI()
         {
             RefreshObjects();
+            if (Application.isPlaying)
+                return;
+
             centerOffset.Vector2Field("中心偏移");
             if (GUILayout.Button("全部刷新"))
             {

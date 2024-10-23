@@ -8,7 +8,7 @@ namespace EditorExtend.GridEditor
 
         public const float Diagnol = 1.41421356f;
 
-        public static readonly Vector3Int[] AjointPoints8 = new Vector3Int[]
+        public static readonly Vector3Int[] AdjoinPoints8 = new Vector3Int[]
         {
             Vector3Int.up,
             Vector3Int.left + Vector3Int.up,
@@ -19,7 +19,7 @@ namespace EditorExtend.GridEditor
             Vector3Int.right,
             Vector3Int.right + Vector3Int.up,
         };
-        public static readonly Vector3Int[] AjointPoints4 = new Vector3Int[]
+        public static readonly Vector3Int[] AdjoinPoints4 = new Vector3Int[]
         {
             Vector3Int.up,
             Vector3Int.left,

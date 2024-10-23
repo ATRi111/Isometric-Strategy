@@ -4,7 +4,7 @@ using EditorExtend.GridEditor;
 public class Pawn : GridObject
 {
     protected IsometricGridManager igm;
-    protected AMover mover;
+    public AMover Mover { get; protected set; }
 
     public EFaction faction;
     public int climbAbility = 2;
@@ -14,7 +14,7 @@ public class Pawn : GridObject
     protected virtual void Awake()
     {
         igm = Manager as IsometricGridManager;
-        mover = new AMover(this, moveAbility);
+        Mover = new AMover(this, moveAbility);
     }
 
     public virtual bool StayCheck(AStarNode node)
@@ -31,7 +31,7 @@ public class Pawn : GridObject
     public virtual bool MoveCheck(AStarNode from, AStarNode to)
     {
         int toLayer = igm.AboveGroundLayer(to.Position);
-        int fromLayer = CellPosition.z;
+        int fromLayer = igm.AboveGroundLayer(from.Position);
         return toLayer <= fromLayer + climbAbility && toLayer >= fromLayer - dropAbility;
     }
 }

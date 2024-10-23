@@ -10,6 +10,7 @@ public class PawnEditor : GridObjectEditor
 
     protected override void MyOnInspectorGUI()
     {
+        base.MyOnInspectorGUI();
         faction.EnumField<EFaction>("阵营");
         climbAbility.IntField("最大攀爬高度");
         dropAbility.IntField("最大下落高度");

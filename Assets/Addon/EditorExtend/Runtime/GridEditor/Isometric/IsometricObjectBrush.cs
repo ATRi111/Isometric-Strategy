@@ -36,16 +36,16 @@ namespace EditorExtend.GridEditor
         /// <summary>
         /// Îü¸½µ½¸½½üµÄGridObject
         /// </summary>
-        protected bool Absorb(Vector3 worldPosition, out int retLayer)
+        public bool Absorb(Vector3 worldPosition, out int retLayer)
         {
             IsometricGridManagerBase igm = Manager as IsometricGridManagerBase;
             if (!igm.MatchMaxLayer(worldPosition, out retLayer))
             {
                 float sumLayer = 0;
                 int count = 0;
-                for (int i = 0; i < GridUtility.AjointPoints8.Length; i++)
+                for (int i = 0; i < GridUtility.AdjoinPoints8.Length; i++)
                 {
-                    Vector3 temp = worldPosition + Manager.CellToWorld(GridUtility.AjointPoints8[i]);
+                    Vector3 temp = worldPosition + Manager.CellToWorld(GridUtility.AdjoinPoints8[i]);
                     if (igm.MatchMaxLayer(temp, out int tempLayer))
                     {
                         sumLayer += tempLayer;
