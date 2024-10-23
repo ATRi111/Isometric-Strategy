@@ -80,7 +80,7 @@ public class PathFindingManager : MonoBehaviour
     private void PlayFindRoute()
     {
         metronome = new Metronome();
-        metronome.OnTick += FindRouteStep;
+        metronome.AfterCompelete += FindRouteStep;
         metronome.Initialize(stepTime);
         AfterStep?.Invoke(findRoute);
     }
@@ -95,7 +95,7 @@ public class PathFindingManager : MonoBehaviour
     private void PlayFindAvailable()
     {
         metronome = new Metronome();
-        metronome.OnTick += FindAvailableNextStep;
+        metronome.AfterCompelete += FindAvailableNextStep;
         metronome.Initialize(stepTime);
         AfterStep?.Invoke(findAvailable);
     }

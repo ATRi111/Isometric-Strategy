@@ -20,7 +20,6 @@ public class DebugANodeGenerator : MonoBehaviour
         }
     }
 
-
     private void Awake()
     {
         pfm = GetComponent<PathFindingManager>();

@@ -141,8 +141,6 @@ namespace AStar
             From.Parent = null;
             From.HCost = From.CostTo(To);
 
-            Debug.Log($"{From} {To}");
-
             open.Push(From);
             nearest = From;
         }
