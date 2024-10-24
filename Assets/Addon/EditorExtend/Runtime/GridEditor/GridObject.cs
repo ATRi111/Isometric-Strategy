@@ -39,6 +39,12 @@ namespace EditorExtend.GridEditor
                 return shortName;
             }
         }
+
+        public virtual int ExtraSortingOrder => 0;
+        /// <summary>
+        /// 此数值通常情况下应当保持在1
+        /// </summary>
+        public int referenceCount;
         #endregion
 
         #region 位置
@@ -49,17 +55,31 @@ namespace EditorExtend.GridEditor
             get => cellPosition;
             set
             {
-                cellPosition = value;
-                Refresh(value);
+                if (referenceCount == 0)
+                {
+                    cellPosition = value;
+                    Manager.AddObject(this);
+                    Refresh();
+                }
+                else if (referenceCount == 1)
+                {
+                    if (value != cellPosition)
+                    {
+                        Vector3Int prev = cellPosition;
+                        cellPosition = value;
+                        Manager.RelocateObject(this, prev);
+                    }
+                    Refresh();
+                }
+                else
+                    throw new InvalidOperationException();
             }
         }
 
         public Vector3 Refresh()
-            => Refresh(cellPosition);
-        public Vector3 Refresh(Vector3Int cell)
         {
-            transform.position = Manager.Grid.CellToWorld(cell);
-            SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(cell);
+            transform.position = Manager.Grid.CellToWorld(cellPosition);
+            SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(this);
             return transform.position;
         }
         /// <summary>
@@ -67,23 +87,21 @@ namespace EditorExtend.GridEditor
         /// </summary>
         public Vector3Int AlignXY()
         {
-            cellPosition = Manager.ClosestCell(transform.position);
-            Refresh();
-            return cellPosition;
+            CellPosition = Manager.ClosestCell(transform.position);
+            return CellPosition;
         }
         /// <summary>
         /// cellPosition的XY不变,确定一个Z，使对应的世界坐标最接近当前世界坐标
         /// </summary>
         public Vector3Int AlignZ()
         {
-            cellPosition = Manager.ClosestZ(cellPosition, transform.position);
-            Refresh();
-            return cellPosition;
+            CellPosition = Manager.ClosestZ(cellPosition, transform.position);
+            return CellPosition;
         }
         #endregion
 
         #region 游戏逻辑
-        internal Func<int> GroundHeightFunc;
+        protected internal Func<int> GroundHeightFunc;
         /// <summary>
         /// 发挥地面作用时，此物体的高度
         /// </summary>
@@ -104,7 +122,7 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        internal Func<Vector3, bool> OverlapFunc;
+        protected internal Func<Vector3, bool> OverlapFunc;
         /// <summary>
         /// 物体占据的范围是否覆盖网格坐标下的某点
         /// </summary>

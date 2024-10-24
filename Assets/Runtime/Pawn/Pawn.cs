@@ -1,10 +1,11 @@
 using EditorExtend.GridEditor;
-using UnityEngine;
 
 public class Pawn : GridObject
 {
     protected IsometricGridManager igm;
     public AMover Mover { get; protected set; }
+    public GridMoveController MoveController { get; protected set; }
+    public override int ExtraSortingOrder => 5;
 
     public EFaction faction;
     public int climbAbility = 2;
@@ -14,8 +15,12 @@ public class Pawn : GridObject
     protected virtual void Awake()
     {
         igm = Manager as IsometricGridManager;
+        MoveController = GetComponentInChildren<GridMoveController>();
         Mover = new AMover(this, moveAbility);
+        GroundHeightFunc = GetGroundHeight;
     }
+
+    public int GetGroundHeight() => 0; 
 
     public virtual bool StayCheck(ANode node)
     {

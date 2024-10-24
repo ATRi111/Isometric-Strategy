@@ -72,6 +72,8 @@ public class PathFindingManager : MonoBehaviour
 
 #if UNITY_EDITOR
     public UnityAction<PathFindingProcess> AfterStep;
+    public UnityAction<PathFindingProcess> AfterComplete;
+
     public bool debug;
     public float stepTime;
 
@@ -90,7 +92,10 @@ public class PathFindingManager : MonoBehaviour
     private void FindRouteStep(float _)
     {
         if (!findRoute.NextStep())
+        {
             metronome.Paused = true;
+            AfterComplete.Invoke(findRoute);
+        }
         AfterStep?.Invoke(findRoute);
     }
 
@@ -107,7 +112,10 @@ public class PathFindingManager : MonoBehaviour
     private void FindAvailableNextStep(float _)
     {
         if (!findAvailable.NextStep())
+        {
             metronome.Paused = true;
+            AfterComplete?.Invoke(findAvailable);
+        }
         AfterStep?.Invoke(findAvailable);
     }
 #endif

@@ -21,9 +21,19 @@ public class IsometricGridManager : IsometricGridManagerBase
     public override void AddObject(GridObject gridObject)
     {
         base.AddObject(gridObject);
-        if(gridObject is Pawn pawn)
+        if (gridObject is Pawn pawn)
         {
             pawnDict.Add((Vector2Int)gridObject.CellPosition, pawn);
         }
+    }
+
+    public override GridObject RemoveObject(Vector3Int cellPosition)
+    {
+        GridObject gridObject = base.RemoveObject(cellPosition);
+        if(gridObject is Pawn)
+        {
+            pawnDict.Remove((Vector2Int)cellPosition);
+        }
+        return gridObject;
     }
 }

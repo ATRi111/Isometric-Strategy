@@ -33,17 +33,6 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        public GridObject this[Vector3Int cellPosition]
-        {
-            get => GetObject(cellPosition);
-            set
-            {
-                RemoveObject(cellPosition);
-                if(value != null)
-                    AddObject(value);
-            }
-        }
-
         public Vector2 centerOffset = new(0.33f, 0.33f);
 
         public virtual Vector3 CellToWorld(Vector3Int cellPosition)
@@ -70,10 +59,14 @@ namespace EditorExtend.GridEditor
         /// <summary>
         /// 根据CellPosition自动计算SortingOrder
         /// </summary>
-        public abstract int CellToSortingOrder(Vector3Int cell);
+        public abstract int CellToSortingOrder(GridObject obj);
 
         public virtual void Clear()
         {
+            foreach (GridObject obj in objectDict.Values)
+            {
+                obj.referenceCount = 0;
+            }
             objectDict.Clear();
         }
 
@@ -96,18 +89,28 @@ namespace EditorExtend.GridEditor
 
         public virtual void AddObject(GridObject gridObject)
         {
-            if(!ObjectDict.ContainsKey(gridObject.CellPosition))
-                ObjectDict.Add(gridObject.CellPosition, gridObject);
+            if (gridObject.referenceCount != 0)
+                throw new System.InvalidOperationException();
+
+            ObjectDict.Add(gridObject.CellPosition, gridObject);
+            gridObject.referenceCount++;
         }
 
-        public virtual void RemoveObject(Vector3Int cellPosition)
+        public virtual GridObject RemoveObject(Vector3Int cellPosition)
         {
-            if (ObjectDict.ContainsKey(cellPosition))
-            {
-                GridObject gridObject = ObjectDict[cellPosition];
-                ObjectDict.Remove(cellPosition);
-                ExternalTool.Destroy(gridObject.gameObject);
-            }
+            GridObject gridObject = ObjectDict[cellPosition];
+            ObjectDict.Remove(cellPosition);
+            gridObject.referenceCount--;
+            return gridObject;
+        }
+
+        public virtual void RelocateObject(GridObject gridObject,Vector3Int prevPosition)
+        {
+            if (gridObject.referenceCount != 1)
+                throw new System.InvalidOperationException();
+
+            RemoveObject(prevPosition); 
+            AddObject(gridObject);
         }
 
         public virtual bool CanPlaceAt(Vector3Int cellPosition)

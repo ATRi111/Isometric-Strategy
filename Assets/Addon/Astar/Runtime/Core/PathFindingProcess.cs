@@ -211,7 +211,7 @@ namespace AStar
             isRunning = false;
             nearest.Recall(output);
         }
-
+    
         private bool CheckNextStep()
         {
             if (!isRunning)

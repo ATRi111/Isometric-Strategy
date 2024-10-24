@@ -86,23 +86,28 @@ namespace EditorExtend.GridEditor
             if (!ObjectBrush.Manager.CanPlaceAt(cellPosition.vector3IntValue))
                 return;
 
-            GridObject gridObject = null;
             if (ObjectBrush.prefab != null)
             {
                 GameObject obj = PrefabUtility.InstantiatePrefab(ObjectBrush.prefab, ObjectBrush.transform) as GameObject;
-                gridObject = obj.GetComponent<GridObject>();
+                GridObject gridObject = obj.GetComponent<GridObject>();
                 SerializedObject temp = new(gridObject);
                 SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
                 cellPosition.vector3IntValue = ObjectBrush.cellPosition;
-                gridObject.Refresh(ObjectBrush.cellPosition);
+                gridObject.CellPosition = ObjectBrush.cellPosition;
                 temp.ApplyModifiedProperties();
+                ObjectBrush.Manager.AddObject(gridObject);
             }
-            ObjectBrush.Manager[ObjectBrush.cellPosition] = gridObject;
+            else
+                Erase();
         }
 
         protected virtual void Erase()
         {
-            ObjectBrush.Manager[ObjectBrush.cellPosition] = null;
+            if(ObjectBrush.Manager.ObjectDict.ContainsKey(cellPosition.vector3IntValue))
+            {
+                GridObject gridObject = ObjectBrush.Manager.RemoveObject(ObjectBrush.cellPosition);
+                ExternalTool.Destroy(gridObject.gameObject);
+            }
             currentEvent.Use();
         }
     }

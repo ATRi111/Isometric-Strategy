@@ -25,7 +25,7 @@ namespace EditorExtend.GridEditor
             if (cellPosition.vector3IntValue != prev)
             {
                 prev = cellPosition.vector3IntValue;
-                GridObject.Refresh(cellPosition.vector3IntValue);
+                GridObject.CellPosition = cellPosition.vector3IntValue;
             }
             if (GUILayout.Button("Z²»±ä¶ÔÆë"))
             {
