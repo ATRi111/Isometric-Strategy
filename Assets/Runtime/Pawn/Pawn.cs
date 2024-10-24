@@ -1,5 +1,5 @@
-using AStar;
 using EditorExtend.GridEditor;
+using UnityEngine;
 
 public class Pawn : GridObject
 {
@@ -17,21 +17,40 @@ public class Pawn : GridObject
         Mover = new AMover(this, moveAbility);
     }
 
-    public virtual bool StayCheck(AStarNode node)
+    public virtual bool StayCheck(ANode node)
     {
-        GridObject obj = igm.GetObejectXY(node.Position);
+        GridObject obj = node.CurrentObject;
         if (obj == null)
             return false;
-        Pawn pawn = obj as Pawn;
-        if (pawn != null && pawn.faction != faction)
+        
+        if (obj is Pawn)
             return false;
         return true;
     }
 
-    public virtual bool MoveCheck(AStarNode from, AStarNode to)
+    public virtual bool MoveCheck(ANode from, ANode to)
     {
+        GridObject obj = to.CurrentObject;
+        if(obj == null)
+            return false;
+
+        if (obj is Pawn other && !FactionCheck(other))
+            return false;
+
         int toLayer = igm.AboveGroundLayer(to.Position);
         int fromLayer = igm.AboveGroundLayer(from.Position);
+        if (!HeightCheck(fromLayer, toLayer))
+            return false;
+        return true;
+    }
+
+    public virtual bool FactionCheck(Pawn other)
+    {
+        return faction == other.faction;
+    }
+
+    public virtual bool HeightCheck(int fromLayer,int toLayer)
+    {
         return toLayer <= fromLayer + climbAbility && toLayer >= fromLayer - dropAbility;
     }
 }

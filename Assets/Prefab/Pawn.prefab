@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isObstacle: 0
-  height: 3
+  height: 0
 --- !u!114 &4508710216947100420
 MonoBehaviour:
   m_ObjectHideFlags: 0

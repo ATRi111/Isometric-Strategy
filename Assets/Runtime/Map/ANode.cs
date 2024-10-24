@@ -5,6 +5,8 @@ using UnityEngine;
 public class ANode : AStarNode
 {
     protected IsometricGridManager igm;
+
+    public GridObject CurrentObject => igm.GetObejectXY(position);
     public virtual int AboveGroundLayer => igm.AboveGroundLayer(Position);
     public override bool IsObstacle
     {
@@ -16,6 +18,7 @@ public class ANode : AStarNode
             return AboveGroundLayer >= GridUtility.MaxHeight;
         }
     }
+
     public float difficulty;
 
     public ANode(PathFindingProcess process, Vector2Int position, IsometricGridManager igm, float difficulty) : 

@@ -197,7 +197,6 @@ namespace AStar
                         open.Push(node);
                         break;
                     case ENodeState.Open:
-                    case ENodeState.Close:
                         node.UpdateParent(currentNode);
                         break;
                 }

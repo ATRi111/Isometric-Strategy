@@ -22,7 +22,7 @@ public class ANodeDebugUI : MonoBehaviour
     [SerializeField]
     private Color color_to;
     [SerializeField]
-    private Vector2Int position;
+    private AStarNode node;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class ANodeDebugUI : MonoBehaviour
 
     public void Initialize(AStarNode node)
     {
-        position = node.Position;
+        this.node = node;
         if (node.IsObstacle)
         {
             spriteRenderer.color = color_obstacle;

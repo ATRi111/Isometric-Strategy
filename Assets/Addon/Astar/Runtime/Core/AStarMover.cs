@@ -30,6 +30,8 @@ namespace AStar
 
         public virtual float CalculateCost(AStarNode from, AStarNode to, float primitiveCost)
         {
+            if (!StayCheck(to))
+                primitiveCost += PathFindingUtility.Epsilon;
             return primitiveCost;
         }
     }

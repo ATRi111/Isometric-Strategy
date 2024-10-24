@@ -66,8 +66,6 @@ namespace AStar
             float g = node.GCost + node.CostTo(this);
             if (GCost > g)
                 Parent = node;
-            else if (GCost == g && !process.mover.StayCheck(parent) && process.mover.StayCheck(node))
-                Parent = node;
         }
 
         /// <summary>

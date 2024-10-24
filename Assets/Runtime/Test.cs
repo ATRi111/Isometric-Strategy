@@ -26,5 +26,10 @@ public class Test : MonoBehaviour
             PathFindingProcess process = AI.PathFinding.FindRoute(pawn.Mover, (Vector2Int)pawn.CellPosition, (Vector2Int)cell);
             process.output.Log();
         }
+        else if(Input.GetMouseButtonUp(1))
+        {
+            PathFindingProcess process = AI.PathFinding.FindAvailable(pawn.Mover, (Vector2Int)pawn.CellPosition);
+            process.output.Log();
+        }
     }
 }

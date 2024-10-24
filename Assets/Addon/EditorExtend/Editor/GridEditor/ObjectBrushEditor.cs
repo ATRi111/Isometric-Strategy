@@ -33,11 +33,10 @@ namespace EditorExtend.GridEditor
         protected override void MyOnSceneGUI()
         {
             base.MyOnSceneGUI();
-            HandleKeyInput();
-
             if (Application.isPlaying)
                 return;
 
+            HandleKeyInput();
             UpdateCellPosition();
             HandleMouseInput();
         }

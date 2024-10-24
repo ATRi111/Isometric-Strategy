@@ -31,9 +31,9 @@ namespace EditorExtend.GridEditor
             => new(v.x, v.y, z);
         internal static Vector3Int ResetZ(this Vector3Int v, int z = 0)
             => new(v.x, v.y, z);
-        internal static Vector3 AddZ(this Vector2 v, float z = 0)
+        internal static Vector3 AddZ(this Vector2 v, float z)
             => new(v.x, v.y, z);
-        internal static Vector3Int AddZ(this Vector2Int v, int z = 0)
+        internal static Vector3Int AddZ(this Vector2Int v, int z)
            => new(v.x, v.y, z);
 
         internal static Vector3Int Integerized(this Vector3 v)
