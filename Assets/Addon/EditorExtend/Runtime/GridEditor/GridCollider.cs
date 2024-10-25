@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    [RequireComponent(typeof(GridObject))]
     public abstract class GridCollider : MonoBehaviour,IGridShape
     {
         private GridObject gridObject;
@@ -12,7 +11,7 @@ namespace EditorExtend.GridEditor
             get
             {
                 if (gridObject == null)
-                    gridObject = GetComponent<GridObject>();
+                    gridObject = GetComponentInParent<GridObject>();
                 return gridObject;
             }
         }

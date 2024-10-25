@@ -41,6 +41,7 @@ namespace EditorExtend.GridEditor
         }
 
         public virtual int ExtraSortingOrder => 0;
+        [NonSerialized]
         /// <summary>
         /// 此数值通常情况下应当保持在1
         /// </summary>

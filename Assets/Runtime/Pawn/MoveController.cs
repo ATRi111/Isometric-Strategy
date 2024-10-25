@@ -1,11 +1,12 @@
+using Character;
 using MyTimer;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveController : MonoBehaviour
+public class MoveController : CharacterComponentBase
 {
     [SerializeField]
-    protected float speed;
+    protected float speed = 1f;
     [SerializeField]
     protected Vector3[] currentRoute;
     [SerializeField]
@@ -13,8 +14,15 @@ public class MoveController : MonoBehaviour
     [SerializeField]
     protected UniformLinearMotion ulm;
 
-    protected virtual void Awake()
+    public Vector3 Position
     {
+        get => entity.transform.position;
+        set => entity.transform.position = value;
+    }
+
+    protected override void Awake()
+    {
+        base.Awake(); 
         ulm = new UniformLinearMotion();
         ulm.OnTick += OnTick;
         ulm.AfterCompelete += AfterComplete;
@@ -37,17 +45,17 @@ public class MoveController : MonoBehaviour
     public virtual void ForceComplete()
     {
         ulm.Paused = true;
-        transform.position = currentRoute[^1];
+        Position = currentRoute[^1];
     }
 
     protected virtual void OnTick(Vector3 v)
     {
-        transform.position = v;
+        Position = v;
     }
 
     protected virtual void AfterComplete(Vector3 v)
     {
-        transform.position = v;
+        Position = v;
         currentIndex++;
         if (currentIndex < currentRoute.Length)
             MoveTo(currentRoute[currentIndex]);
@@ -55,6 +63,6 @@ public class MoveController : MonoBehaviour
 
     protected virtual void MoveTo(Vector3 target)
     {
-        ulm.Initialize(transform.position, target, (target - transform.position).magnitude / speed);
+        ulm.Initialize(Position, target, (target - Position).magnitude / speed);
     }
 }

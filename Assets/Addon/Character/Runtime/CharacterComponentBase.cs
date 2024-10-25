@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Character
 {
-    public abstract class CharacterComponent : MonoBehaviour
+    public abstract class CharacterComponentBase : MonoBehaviour 
     {
         [AutoComponent(EComponentPosition.SelfOrParent)]
         protected CharacterEntity entity;

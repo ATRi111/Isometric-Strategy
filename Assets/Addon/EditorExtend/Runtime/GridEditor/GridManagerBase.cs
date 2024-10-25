@@ -90,7 +90,10 @@ namespace EditorExtend.GridEditor
         public virtual void AddObject(GridObject gridObject)
         {
             if (gridObject.referenceCount != 0)
+            {
+                Debug.LogWarning($"{gridObject.gameObject.name} ‘Õºº”»Î,µ´referenceCount={gridObject.referenceCount}");
                 throw new System.InvalidOperationException();
+            }
 
             ObjectDict.Add(gridObject.CellPosition, gridObject);
             gridObject.referenceCount++;

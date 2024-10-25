@@ -8,7 +8,7 @@ public class Test : MonoBehaviour
 {
     private AIManager AI;
     private IsometricGridManager igm;
-    public Pawn pawn;
+    public GridPawn pawn;
 
     private void Awake()
     {

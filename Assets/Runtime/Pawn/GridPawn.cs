@@ -1,22 +1,19 @@
 using EditorExtend.GridEditor;
 
-public class Pawn : GridObject
+public class GridPawn : GridObject
 {
     protected IsometricGridManager igm;
+    private PawnEntity pawn;
     public AMover Mover { get; protected set; }
     public GridMoveController MoveController { get; protected set; }
     public override int ExtraSortingOrder => 5;
 
-    public EFaction faction;
-    public int climbAbility = 2;
-    public int dropAbility = 3;
-    public float moveAbility = 5;
-
     protected virtual void Awake()
     {
         igm = Manager as IsometricGridManager;
+        pawn = GetComponentInParent<PawnEntity>();
         MoveController = GetComponentInChildren<GridMoveController>();
-        Mover = new AMover(this, moveAbility);
+        Mover = new AMover(this, pawn.Property.moveAbility);
         GroundHeightFunc = GetGroundHeight;
     }
 
@@ -28,7 +25,7 @@ public class Pawn : GridObject
         if (obj == null)
             return false;
         
-        if (obj is Pawn)
+        if (obj is GridPawn)
             return false;
         return true;
     }
@@ -39,7 +36,7 @@ public class Pawn : GridObject
         if(obj == null)
             return false;
 
-        if (obj is Pawn other && !FactionCheck(other))
+        if (obj is GridPawn other && !FactionCheck(other))
             return false;
 
         int toLayer = igm.AboveGroundLayer(to.Position);
@@ -49,13 +46,13 @@ public class Pawn : GridObject
         return true;
     }
 
-    public virtual bool FactionCheck(Pawn other)
+    public virtual bool FactionCheck(GridPawn other)
     {
-        return faction == other.faction;
+        return pawn.Setting.faction == other.pawn.Setting.faction;
     }
 
     public virtual bool HeightCheck(int fromLayer,int toLayer)
     {
-        return toLayer <= fromLayer + climbAbility && toLayer >= fromLayer - dropAbility;
+        return toLayer <= fromLayer + pawn.Property.climbAbility && toLayer >= fromLayer - pawn.Property.dropAbility;
     }
 }

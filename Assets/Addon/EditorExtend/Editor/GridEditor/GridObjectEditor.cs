@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    [CustomEditor(typeof(GridObject))]
+    [CustomEditor(typeof(GridObject),true)]
     public class GridObjectEditor : AutoEditor
     {
         public GridObject GridObject => target as GridObject;
@@ -35,6 +35,9 @@ namespace EditorExtend.GridEditor
             {
                 cellPosition.vector3IntValue = GridObject.AlignZ();
             }
+            EditorGUI.BeginDisabledGroup(true);
+            EditorGUILayout.IntField("引用次数", GridObject.referenceCount);
+            EditorGUI.EndDisabledGroup();
         }
     }
 }

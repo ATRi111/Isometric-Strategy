@@ -1,3 +1,4 @@
+using Character;
 using EditorExtend.GridEditor;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,13 @@ using UnityEngine;
 public class GridMoveController : MoveController
 {
     protected IsometricGridManager igm;
+    [AutoComponent(EComponentPosition.SelfOrParent)]
     protected GridObject gridObject;
 
     protected override void Awake()
     {
         base.Awake();
         igm = IsometricGridManager.FindInstance();
-        gridObject = GetComponent<GridObject>();
     }
 
     public void SetGridRoute(List<Vector3Int> route)

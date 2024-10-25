@@ -51,7 +51,7 @@ public class DebugANodeGenerator : MonoBehaviour
         int i = 0;
         for (; i < temp.Count; i++)
         {
-            if (temp[i].GetComponent<Pawn>() == null)
+            if (temp[i].GetComponent<GridPawn>() == null)
                 break;
         }
         if (i >= temp.Count)
