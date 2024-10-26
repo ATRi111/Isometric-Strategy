@@ -135,5 +135,17 @@ namespace EditorExtend.GridEditor
         }
 
         #endregion
+
+        #region ÉúÃüÖÜÆÚ
+        protected virtual void OnEnable()
+        {
+            Manager.AddObject(this);
+        }
+
+        protected virtual void OnDisable()
+        {
+            Manager.RemoveObject(CellPosition);
+        }
+        #endregion 
     }
 }

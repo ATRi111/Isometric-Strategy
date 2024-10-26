@@ -4699,8 +4699,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
-  cellPosition: {x: 1, y: -11, z: 2}
-  lockLayer: 1
+  cellPosition: {x: 3, y: -12, z: 0}
+  lockLayer: 0
   layer: 2
   lockXY: 0
 --- !u!114 &1551605951

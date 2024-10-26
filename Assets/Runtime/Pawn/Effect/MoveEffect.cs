@@ -7,8 +7,8 @@ public class MoveEffect : Effect
     public Vector3Int from, to;
     public List<Vector3Int> route;
 
-    public override bool Appliable => target.GridPawn.CellPosition == from;
-    public override bool Revokable => target.GridPawn.CellPosition == to;
+    public override bool Appliable => victim.GridPawn.CellPosition == from;
+    public override bool Revokable => victim.GridPawn.CellPosition == to;
 
     public MoveEffect(PawnEntity target, List<Vector3Int> route) : base(target)
     {
@@ -34,11 +34,11 @@ public class MoveEffect : Effect
         AnimationManager manager = ServiceLocator.Get<AnimationManager>();
         if (manager.ImmediateMode)
         {
-            target.GridPawn.CellPosition = destination;
+            victim.GridPawn.CellPosition = destination;
         }
         else
         {
-            target.MoveController.SetGridRoute(route);
+            victim.MoveController.SetGridRoute(route);
         }
     }
 }

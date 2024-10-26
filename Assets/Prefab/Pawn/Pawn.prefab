@@ -222,10 +222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac5d73f153ffc94c8e0edaf6bc93bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  property:
+  defaultProperty:
     climbAbility: 2
     dropAbility: 3
     moveAbility: 5
+    maxHP: 100
   setting:
     faction: 2
     humanControl: 0

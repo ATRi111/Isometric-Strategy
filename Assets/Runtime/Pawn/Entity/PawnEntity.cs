@@ -12,10 +12,14 @@ public class PawnEntity : CharacterEntity
 
     [SerializeField]
     private PawnProperty defaultProperty;
-    public PawnProperty Property { get; private set; }
+    [SerializeField]
+    private PawnProperty property;
+    public PawnProperty Property => property;
+
     [SerializeField]
     private PawnSetting setting;
     public PawnSetting Setting => setting;
+
     [SerializeField]
     private PawnState state;
     public PawnState State => state;
@@ -32,6 +36,6 @@ public class PawnEntity : CharacterEntity
 
     public void Refresh()
     {
-        Property = defaultProperty.Clone() as PawnProperty;
+        property = defaultProperty.Clone() as PawnProperty;
     }
 }

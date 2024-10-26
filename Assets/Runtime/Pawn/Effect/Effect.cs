@@ -3,11 +3,11 @@ using System;
 [Serializable]
 public abstract class Effect
 {
-    public PawnEntity target;
+    public PawnEntity victim;
 
     public Effect(PawnEntity target)
     {
-        this.target = target;
+        this.victim = target;
     }
 
     public abstract bool Appliable { get; }

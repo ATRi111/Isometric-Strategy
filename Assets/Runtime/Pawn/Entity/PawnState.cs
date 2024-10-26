@@ -1,11 +1,14 @@
 public class PawnState
 {
-    public int HP;
-    public int WT;
+    public int hp;
+    /// <summary>
+    /// 总计时器的值达到此值时，轮到此角色行动
+    /// </summary>
+    public int waitTime;
 
-    public PawnState(int HP, int WT)
+    public PawnState(int hp, int waitTime)
     {
-        this.HP = HP;
-        this.WT = WT;
+        this.hp = hp;
+        this.waitTime = waitTime;
     }
 }

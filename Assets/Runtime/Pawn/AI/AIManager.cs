@@ -13,4 +13,9 @@ public class AIManager : Service,IService
         base.Awake();
         pathFinding = GetComponent<PathFindingManager>();
     }
+
+    public void MakePlan()
+    {
+
+    }
 }

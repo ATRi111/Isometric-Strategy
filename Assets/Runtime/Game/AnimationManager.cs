@@ -6,4 +6,6 @@ public class AnimationManager : Service,IService
     public override Type RegisterType => GetType();
 
     public bool ImmediateMode { get; set; }
+
+    //TODO:∂Øª≠÷∏¡Ó–Ú¡–
 }

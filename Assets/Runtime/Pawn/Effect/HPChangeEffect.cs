@@ -9,19 +9,19 @@ public class HPChangeEffect : Effect
         this.current = current;
     }
 
-    public override bool Appliable => target.State.HP == prev;
+    public override bool Appliable => victim.State.hp == prev;
 
-    public override bool Revokable => target.State.HP == current;
+    public override bool Revokable => victim.State.hp == current;
 
     public override void Apply()
     {
         base.Apply();
-        target.State.HP = current;
+        victim.State.hp = current;
     }
 
     public override void Revoke()
     {
         base.Revoke();
-        target.State.HP = prev;
+        victim.State.hp = prev;
     }
 }

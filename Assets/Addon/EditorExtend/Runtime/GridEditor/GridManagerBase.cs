@@ -27,7 +27,10 @@ namespace EditorExtend.GridEditor
                 if (objectDict == null)
                 {
                     objectDict = new Dictionary<Vector3Int, GridObject>();
-                    AddAllObjects();
+#if UNITY_EDITOR
+                    if (!Application.isPlaying)
+                        AddAllObjects();
+#endif
                 }
                 return objectDict;
             }
