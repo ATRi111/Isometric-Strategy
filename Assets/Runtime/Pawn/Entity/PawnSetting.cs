@@ -1,5 +1,5 @@
 [System.Serializable]
-public struct PawnSetting
+public class PawnSetting
 {
     public EFaction faction;
     public bool humanControl;

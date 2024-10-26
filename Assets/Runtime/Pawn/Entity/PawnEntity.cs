@@ -8,12 +8,30 @@ public class PawnEntity : CharacterEntity
     [AutoComponent]
     public PawnBrain Brain { get; private set; }
     [AutoComponent]
-    public MoveController MoveController { get; private set; }
+    public GridMoveController MoveController { get; private set; }
 
     [SerializeField]
-    private PawnProperty property;
-    public PawnProperty Property => property;
+    private PawnProperty defaultProperty;
+    public PawnProperty Property { get; private set; }
     [SerializeField]
     private PawnSetting setting;
     public PawnSetting Setting => setting;
+    [SerializeField]
+    private PawnState state;
+    public PawnState State => state;
+
+    private void OnEnable()
+    {
+        Refresh();
+    }
+
+    private void LateUpdate()
+    {
+        Refresh();
+    }
+
+    public void Refresh()
+    {
+        Property = defaultProperty.Clone() as PawnProperty;
+    }
 }
