@@ -1,9 +1,9 @@
-public class HPChangeEffect : Effect
+public class Effect_HPChange : Effect
 {
     public int prev, current;
 
-    public HPChangeEffect(PawnEntity target, int prev, int current)
-        : base(target)
+    public Effect_HPChange(PawnEntity victim, int prev, int current)
+        : base(victim)
     {
         this.prev = prev;
         this.current = current;
@@ -17,11 +17,15 @@ public class HPChangeEffect : Effect
     {
         base.Apply();
         victim.State.HP = current;
+        if (current == 0)
+            victim.Die();
     }
 
     public override void Revoke()
     {
         base.Revoke();
         victim.State.HP = prev;
+        if(current == 0)
+            victim.Revive();
     }
 }

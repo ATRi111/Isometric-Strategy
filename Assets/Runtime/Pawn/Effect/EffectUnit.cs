@@ -2,14 +2,14 @@ using System.Collections.Generic;
 
 public class EffectUnit
 {
-    public TimeEffect timeEffect;
+    public Effect_Time timeEffect;
     public int ActionTime => timeEffect.current - timeEffect.prev;
 
     public List<Effect> effects;
 
     public EffectUnit(PawnEntity agent)
     {
-        timeEffect = new TimeEffect(agent);
+        timeEffect = new Effect_Time(agent);
     }
 
     public void Apply()

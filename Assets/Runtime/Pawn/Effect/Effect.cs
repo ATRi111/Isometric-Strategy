@@ -5,9 +5,9 @@ public abstract class Effect
 {
     public PawnEntity victim;
 
-    public Effect(PawnEntity target)
+    public Effect(PawnEntity victim)
     {
-        this.victim = target;
+        this.victim = victim;
     }
 
     public abstract bool Appliable { get; }

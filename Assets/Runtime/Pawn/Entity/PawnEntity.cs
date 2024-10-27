@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PawnEntity : CharacterEntity
 {
-    private GameManager gameManager;
+    public GameManager GameManager { get; private set; }
+    public AIManager AIManager { get; private set; }
 
     [AutoComponent]
     public GridPawn GridPawn { get; private set; }
@@ -31,7 +32,7 @@ public class PawnEntity : CharacterEntity
     {
         base.Awake();
         state.MaxHP = () => Property.maxHP;
-        gameManager = ServiceLocator.Get<GameManager>();
+        GameManager = ServiceLocator.Get<GameManager>();
     }
 
     private void OnEnable()
@@ -63,16 +64,26 @@ public class PawnEntity : CharacterEntity
 
     private void Register()
     {
-        gameManager.Register(this);
+        GameManager.Register(this);
     }
 
     private void UnRegister()
     {
-        gameManager.Unregister(this);
+        GameManager.Unregister(this);
     }
 
     public void DoAction()
     {
 
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Revive()
+    {
+        gameObject.SetActive(true);
     }
 }
