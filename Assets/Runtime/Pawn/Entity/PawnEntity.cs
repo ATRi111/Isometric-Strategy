@@ -1,8 +1,11 @@
 using Character;
+using Services;
 using UnityEngine;
 
 public class PawnEntity : CharacterEntity
 {
+    private GameManager gameManager;
+
     [AutoComponent]
     public GridPawn GridPawn { get; private set; }
     [AutoComponent]
@@ -24,9 +27,17 @@ public class PawnEntity : CharacterEntity
     private PawnState state;
     public PawnState State => state;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        state.MaxHP = () => Property.maxHP;
+        gameManager = ServiceLocator.Get<GameManager>();
+    }
+
     private void OnEnable()
     {
-        Refresh();
+        Initialize();
+        Register();
     }
 
     private void LateUpdate()
@@ -34,13 +45,34 @@ public class PawnEntity : CharacterEntity
         Refresh();
     }
 
+    private void OnDisable()
+    {
+        UnRegister();
+    }
+
     public void Initialize()
     {
-
+        property = defaultProperty.Clone() as PawnProperty;
+        state.HP = Property.maxHP;
     }
 
     public void Refresh()
     {
         property = defaultProperty.Clone() as PawnProperty;
+    }
+
+    private void Register()
+    {
+        gameManager.Register(this);
+    }
+
+    private void UnRegister()
+    {
+        gameManager.Unregister(this);
+    }
+
+    public void DoAction()
+    {
+
     }
 }

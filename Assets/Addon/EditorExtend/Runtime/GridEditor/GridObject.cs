@@ -46,6 +46,17 @@ namespace EditorExtend.GridEditor
         /// 此数值通常情况下应当保持在1
         /// </summary>
         public int referenceCount;
+
+        protected void Register()
+        {
+            Manager.AddObject(this);
+        }
+
+        protected virtual void Unregister()
+        {
+            Manager.RemoveObject(CellPosition);
+        }
+
         #endregion
 
         #region 位置
@@ -137,14 +148,14 @@ namespace EditorExtend.GridEditor
         #endregion
 
         #region 生命周期
-        protected virtual void Awake()
+        protected virtual void OnEnable()
         {
-            Manager.AddObject(this);
+            Register();
         }
 
-        protected virtual void OnDestroy()
+        protected virtual void OnDisable()
         {
-            Manager.RemoveObject(CellPosition);
+            Unregister();
         }
         #endregion 
     }

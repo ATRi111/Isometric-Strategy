@@ -1,5 +1,6 @@
 using Services;
 using System;
+using System.Collections.Generic;
 
 public class AIManager : Service,IService
 {
@@ -23,10 +24,5 @@ public class AIManager : Service,IService
     {
         base.Awake();
         pathFinding = GetComponent<PathFindingManager>();
-    }
-
-    public void MakePlan()
-    {
-
     }
 }
