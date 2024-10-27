@@ -137,12 +137,12 @@ namespace EditorExtend.GridEditor
         #endregion
 
         #region ÉúÃüÖÜÆÚ
-        protected virtual void OnEnable()
+        protected virtual void Awake()
         {
             Manager.AddObject(this);
         }
 
-        protected virtual void OnDisable()
+        protected virtual void OnDestroy()
         {
             Manager.RemoveObject(CellPosition);
         }

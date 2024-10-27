@@ -34,6 +34,11 @@ public class PawnEntity : CharacterEntity
         Refresh();
     }
 
+    public void Initialize()
+    {
+
+    }
+
     public void Refresh()
     {
         property = defaultProperty.Clone() as PawnProperty;

@@ -8,8 +8,9 @@ public class GridPawn : GridObject
     public GridMoveController MoveController { get; protected set; }
     public override int ExtraSortingOrder => 5;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         igm = Manager as IsometricGridManager;
         pawn = GetComponentInParent<PawnEntity>();
         MoveController = GetComponentInChildren<GridMoveController>();

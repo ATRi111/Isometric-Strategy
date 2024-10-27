@@ -3,6 +3,17 @@ using System;
 
 public class AIManager : Service,IService
 {
+    private IsometricGridManager igm;
+    private IsometricGridManager Igm
+    {
+        get
+        {
+            if (igm == null)
+                igm = IsometricGridManager.FindInstance();
+            return igm;
+        }
+    }
+
     public override Type RegisterType => GetType();
 
     private PathFindingManager pathFinding;
