@@ -33,17 +33,17 @@ public class GameManager : Service,IService
         pawns.Remove(entity);
     }
 
-    public bool PushOn()
+    public bool MoveOn()
     {
-        Time++;
         foreach(PawnEntity pawn in pawns)
         {
             if (Time >= pawn.State.waitTime)
             {
                 pawn.DoAction();
-                return true;
+                return false;
             }
         }
-        return false;
+        Time++;
+        return true;
     }
 }
