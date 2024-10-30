@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 1913554875005533004}
   - component: {fileID: 5429392778804014187}
   - component: {fileID: 28454254504980518}
+  - component: {fileID: 843954342595301071}
   m_Layer: 0
   m_Name: Physics
   m_TagString: Untagged
@@ -106,6 +107,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 3
   radius: 0.3
+--- !u!114 &843954342595301071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860386800660997329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bbe25e268cbbf843a0529a3477335a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isObstacle: 0
+  height: 0
 --- !u!1 &8275336948927669841
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +242,15 @@ MonoBehaviour:
     dropAbility: 3
     moveAbility: 5
     maxHP: 100
+    actionTime: 0
+  property:
+    climbAbility: 0
+    dropAbility: 0
+    moveAbility: 0
+    maxHP: 0
+    actionTime: 0
   setting:
     faction: 2
     humanControl: 0
+  state:
+    waitTime: 0

@@ -14,10 +14,7 @@ public class GridPawn : GridObject
         pawn = GetComponentInParent<PawnEntity>();
         MoveController = GetComponentInChildren<GridMoveController>();
         Mover = new AMover(this, pawn.Property.moveAbility);
-        GroundHeightFunc = GetGroundHeight;
     }
-
-    public int GetGroundHeight() => 0; 
 
     public virtual bool StayCheck(ANode node)
     {
