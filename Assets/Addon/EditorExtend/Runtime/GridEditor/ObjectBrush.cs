@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace EditorExtend.GridEditor
         }
 
         public GameObject prefab;
+        [NonSerialized]
         public Vector3Int cellPosition;
 
         private List<Transform> mountPoints;

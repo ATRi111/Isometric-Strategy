@@ -10,7 +10,7 @@ namespace EditorExtend.GridEditor
 
         private string[] displayOptions;
         [AutoProperty]
-        public SerializedProperty cellPosition, prefab, mountIndex;
+        public SerializedProperty prefab, mountIndex;
 
         protected override void OnEnable()
         {
@@ -33,9 +33,6 @@ namespace EditorExtend.GridEditor
 
             prefab.PropertyField("笔刷");
             mountIndex.intValue = EditorGUILayout.Popup("挂载点", mountIndex.intValue, displayOptions);
-            EditorGUI.BeginDisabledGroup(true);
-            cellPosition.Vector3IntField("网格位置");
-            EditorGUI.EndDisabledGroup();
         }
 
         protected override void MyOnSceneGUI()
@@ -85,19 +82,21 @@ namespace EditorExtend.GridEditor
         protected virtual void UpdateCellPosition()
         {
             Vector3 world = SceneViewUtility.SceneToWorld(mousePosition);
-            cellPosition.vector3IntValue = ObjectBrush.CalculateCellPosition(world);
+            ObjectBrush.cellPosition = ObjectBrush.CalculateCellPosition(world);
         }
 
         protected virtual void Brush()
         {
             currentEvent.Use();
-            if (!ObjectBrush.Manager.CanPlaceAt(cellPosition.vector3IntValue))
+            if (!ObjectBrush.Manager.CanPlaceAt(ObjectBrush.cellPosition))
                 return;
 
             if (ObjectBrush.prefab != null)
             {
                 GameObject obj = PrefabUtility.InstantiatePrefab(ObjectBrush.prefab, ObjectBrush.MountPoint) as GameObject;
+                Undo.RegisterCreatedObjectUndo(obj, "Create " + obj.name);
                 GridObject gridObject = obj.GetComponent<GridObject>();
+
                 SerializedObject temp = new(gridObject);
                 SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
                 cellPosition.vector3IntValue = ObjectBrush.cellPosition;
@@ -105,13 +104,11 @@ namespace EditorExtend.GridEditor
                 temp.ApplyModifiedProperties();
                 //ObjectBrush.Manager.AddObject(gridObject);   //Editor模式下GridManager会自动刷新以获取新的GridObject
             }
-            else
-                Erase();
         }
 
         protected virtual void Erase()
         {
-            if(ObjectBrush.Manager.ObjectDict.ContainsKey(cellPosition.vector3IntValue))
+            if(ObjectBrush.Manager.ObjectDict.ContainsKey(ObjectBrush.cellPosition))
             {
                 GridObject gridObject = ObjectBrush.Manager.RemoveObject(ObjectBrush.cellPosition);
                 ExternalTool.Destroy(gridObject.gameObject);
