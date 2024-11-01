@@ -2,18 +2,18 @@ using System;
 
 public class Plan : IComparable<Plan>
 {
-    public ActionUnit actionUnit;
+    public PawnAction action;
     public float value;
 
-    public Plan(ActionUnit actionUnit)
+    public Plan(PawnAction action)
     {
-        this.actionUnit = actionUnit;
-        value = actionUnit.agent.Brain.Evaluate(actionUnit.effectUnit);
+        this.action = action;
+        value = action.agent.Brain.Evaluate(action.effectUnit);
     }
 
     public void Excute()
     {
-        actionUnit.effectUnit.Apply();
+        action.effectUnit.Apply();
     }
 
     public int CompareTo(Plan other)

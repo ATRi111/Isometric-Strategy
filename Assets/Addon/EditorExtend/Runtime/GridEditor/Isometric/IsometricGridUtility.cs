@@ -11,5 +11,22 @@ namespace EditorExtend.GridEditor
             float z = cellPosition.z * cellSize.z;
             return new(x, y, z);
         }
+
+        public static int ManhattanDistance(Vector3Int a, Vector3Int b)
+        {
+            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) + Mathf.Abs(a.z - b.z);
+        }
+        public static float ManhattanDistance(Vector3 a, Vector3 b)
+        {
+            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) + Mathf.Abs(a.z - b.z);
+        }
+        public static float ProjectManhattanDistance(Vector2 a,Vector2 b)
+        {
+            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        }
+        public static int ProjectManhattanDistance(Vector2Int a, Vector2Int b)
+        {
+            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        }
     }
 }

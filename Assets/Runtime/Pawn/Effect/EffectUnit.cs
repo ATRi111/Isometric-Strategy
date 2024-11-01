@@ -10,6 +10,7 @@ public class EffectUnit
     public EffectUnit(PawnEntity agent)
     {
         timeEffect = new Effect_Time(agent);
+        timeEffect.current += agent.Property.actionTime;
     }
 
     public void Apply()
