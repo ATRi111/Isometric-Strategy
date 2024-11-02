@@ -2,8 +2,8 @@ using AStar;
 
 public class AMover : AStarMover
 {
-    protected GridPawn pawn;
-    public AMover(GridPawn pawn, float moveAbility = float.PositiveInfinity) 
+    protected MovavleGridObject pawn;
+    public AMover(MovavleGridObject pawn, float moveAbility = float.PositiveInfinity) 
         : base(moveAbility)
     {
         this.pawn = pawn;

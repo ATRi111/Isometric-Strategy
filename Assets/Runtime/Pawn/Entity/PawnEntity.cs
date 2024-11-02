@@ -8,7 +8,7 @@ public class PawnEntity : CharacterEntity
     public AIManager AIManager { get; private set; }
 
     [AutoComponent]
-    public GridPawn GridPawn { get; private set; }
+    public MovavleGridObject GridObject { get; private set; }
     [AutoComponent]
     public PawnBrain Brain { get; private set; }
     [AutoComponent]
@@ -41,11 +41,6 @@ public class PawnEntity : CharacterEntity
         Register();
     }
 
-    private void LateUpdate()
-    {
-        Refresh();
-    }
-
     private void OnDisable()
     {
         UnRegister();
@@ -57,24 +52,39 @@ public class PawnEntity : CharacterEntity
         state.HP = Property.maxHP;
     }
 
-    public void Refresh()
-    {
-        property = defaultProperty.Clone() as PawnProperty;
-    }
 
     private void Register()
     {
         GameManager.Register(this);
+        GameManager.AfterTimeChange += AfterTimeChange;
     }
 
     private void UnRegister()
     {
         GameManager.Unregister(this);
+        GameManager.AfterTimeChange -= AfterTimeChange;
+    }
+
+    private void AfterTimeChange(int prev, int current)
+    {
+        Refresh();
+    }
+
+    public void Refresh()
+    {
+        property = defaultProperty.Clone() as PawnProperty;
     }
 
     public void DoAction()
     {
-
+        if(setting.humanControl)
+        {
+            //TODO
+        }
+        else
+        {
+            //TODO
+        }
     }
 
     public void Die()

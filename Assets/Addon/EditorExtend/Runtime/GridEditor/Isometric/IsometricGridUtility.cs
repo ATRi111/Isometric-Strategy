@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace EditorExtend.GridEditor
 {
@@ -27,6 +29,34 @@ namespace EditorExtend.GridEditor
         public static int ProjectManhattanDistance(Vector2Int a, Vector2Int b)
         {
             return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        }
+
+        private static readonly List<List<Vector2Int>> cache_withinProjectManhattanDistance = new();
+
+        /// <summary>
+        /// 获取到原点的曼哈顿距离小于等于某个值的所有点（不含原点）
+        /// </summary>
+        public static List<Vector2Int> WithinProjectManhattanDistance(int distance)
+        {
+            List<Vector2Int> ret = new();
+            List<Vector2Int> temp = new();
+            temp.AddRange(cache_withinProjectManhattanDistance[^1]);
+            while (cache_withinProjectManhattanDistance.Count <= distance)
+            {
+                List<Vector2Int> layer = new();
+                int layerNum = cache_withinProjectManhattanDistance.Count;
+                for (int i = 0; i < layerNum; i++)
+                {
+                    temp.Add(new Vector2Int(-layerNum + i, i));
+                    temp.Add(new Vector2Int(layerNum - i, i));
+                    temp.Add(new Vector2Int(-i, layerNum - i));
+                    temp.Add(new Vector2Int(-layerNum + i, -i));
+                }
+                layer.AddRange(temp);
+                cache_withinProjectManhattanDistance.Add(layer);
+            }
+            ret.AddRange(cache_withinProjectManhattanDistance[distance]);
+            return ret;
         }
     }
 }

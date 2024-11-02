@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1144042e122344ab35c344398fca4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  learnedSkills:
+    list:
+    - {fileID: 11400000, guid: 657c8bcd12f11534ca0c14dfb10bc8d5, type: 2}
+    - {fileID: 11400000, guid: 6c221d77fbdbf304a9adcdb5da814e20, type: 2}
 --- !u!1 &7860386800660997329
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8275336948927669841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9c89eecc8d6c66438d0a11dab48b883, type: 3}
+  m_Script: {fileID: 11500000, guid: 78800c02002461940b79ec1917ca2bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shortName: 
@@ -248,7 +252,7 @@ MonoBehaviour:
     dropAbility: 0
     moveAbility: 0
     maxHP: 0
-    actionTime: 0
+    actionTime: 10
   setting:
     faction: 2
     humanControl: 0

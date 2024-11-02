@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class IsometricGridManager : IsometricGridManagerBase
 {
-    private readonly Dictionary<Vector2Int, GridPawn> pawnDict = new();
-    public Dictionary<Vector2Int,GridPawn> PawnDict => pawnDict;
+    private readonly Dictionary<Vector2Int, MovavleGridObject> pawnDict = new();
+    public Dictionary<Vector2Int,MovavleGridObject> PawnDict => pawnDict;
 
     public static IsometricGridManager FindInstance()
     {
@@ -21,7 +21,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     public override void AddObject(GridObject gridObject)
     {
         base.AddObject(gridObject);
-        if (gridObject is GridPawn pawn)
+        if (gridObject is MovavleGridObject pawn)
         {
             pawnDict.Add((Vector2Int)gridObject.CellPosition, pawn);
         }
@@ -30,7 +30,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     public override GridObject RemoveObject(Vector3Int cellPosition)
     {
         GridObject gridObject = base.RemoveObject(cellPosition);
-        if(gridObject is GridPawn)
+        if(gridObject is MovavleGridObject)
         {
             pawnDict.Remove((Vector2Int)cellPosition);
         }

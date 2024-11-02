@@ -11,11 +11,6 @@ public class Plan : IComparable<Plan>
         value = action.agent.Brain.Evaluate(action.effectUnit);
     }
 
-    public void Excute()
-    {
-        action.effectUnit.Apply();
-    }
-
     public int CompareTo(Plan other)
     {
         return other.value.CompareTo(value);

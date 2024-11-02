@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Skill_EndTurn", menuName = "Skill/EndTurn")]
-public class Skill_EndTurn : Skill
+public class Skill_EndTurn : NoRangeSkill
 {
 
 }

@@ -24,6 +24,9 @@ public class GameManager : Service,IService
         }
     }
 
+    public List<PawnAction> actionList;
+
+
     public void Register(PawnEntity entity)
     {
         pawns.Add(entity);

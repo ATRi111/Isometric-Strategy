@@ -22,6 +22,14 @@ public class PawnAction
     /// </summary>
     public void Mock(PawnEntity agent, IsometricGridManager igm)
     {
-        skill.Mock(agent, (Vector2Int)agent.GridPawn.CellPosition, target, igm, effectUnit);
+        skill.Mock(agent, (Vector2Int)agent.GridObject.CellPosition, target, igm, effectUnit);
+    }
+
+    /// <summary>
+    /// Ö´ÐÐ¶¯×÷
+    /// </summary>
+    public void Excute()
+    {
+        effectUnit.Apply();
     }
 }
