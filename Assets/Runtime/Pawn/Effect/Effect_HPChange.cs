@@ -7,12 +7,16 @@ public class Effect_HPChange : Effect
     {
         this.prev = prev;
         this.current = current;
-        //TODO:¶¯»­
     }
 
     public override bool Appliable => victim.State.HP == prev;
 
     public override bool Revokable => victim.State.HP == current;
+
+    public override AnimationProcess GenerateAnimation()
+    {
+        return null;    //TODO
+    }
 
     public override void Apply()
     {

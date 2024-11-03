@@ -50,6 +50,7 @@ namespace MyTool
             {
                 s += item.ToString() + "|";
             }
+            Debug.Log(s);
         }
     }
 }

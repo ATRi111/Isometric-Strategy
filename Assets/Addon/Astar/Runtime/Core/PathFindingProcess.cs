@@ -226,7 +226,7 @@ namespace AStar
             }
             if (open.IsEmpty)
             {
-                Debug.LogWarning("找不到路径");
+                //Debug.LogWarning("找不到路径");
                 return false;
             }
             return true;

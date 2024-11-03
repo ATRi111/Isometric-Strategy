@@ -94,7 +94,7 @@ public class PathFindingManager : MonoBehaviour
         if (!findRoute.NextStep())
         {
             metronome.Paused = true;
-            AfterComplete.Invoke(findRoute);
+            AfterComplete?.Invoke(findRoute);
         }
         AfterStep?.Invoke(findRoute);
     }

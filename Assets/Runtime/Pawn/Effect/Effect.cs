@@ -1,10 +1,10 @@
+using Services;
 using System;
 
 [Serializable]
 public abstract class Effect
 {
     public PawnEntity victim;
-    public AnimationProcess animation;
 
     public Effect(PawnEntity victim)
     {
@@ -14,10 +14,13 @@ public abstract class Effect
     public abstract bool Appliable { get; }
     public abstract bool Revokable { get; }
 
+    public abstract AnimationProcess GenerateAnimation();
+
     public virtual void Play()
     {
+        AnimationProcess animation = GenerateAnimation();
         if (animation != null)
-            animation.Play();
+            ServiceLocator.Get<AnimationManager>().Register(animation);
         else
             Apply();
     }
@@ -32,5 +35,10 @@ public abstract class Effect
     {
         if (!Revokable)
             throw new InvalidOperationException();
+    }
+
+    public override string ToString()
+    {
+        return GetType().Name;
     }
 }

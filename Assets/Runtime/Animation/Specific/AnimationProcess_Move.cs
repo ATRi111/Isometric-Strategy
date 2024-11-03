@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class AnimationProcess_Move : AnimationProcess
 {
     private readonly GridMoveController moveController;
@@ -7,17 +9,18 @@ public class AnimationProcess_Move : AnimationProcess
         :base(effect)
     {
         moveController = effect.victim.MoveController;
-        moveController.AfterMove += AfterMove;
     }
 
     public override void Play()
     {
         base.Play();
+        moveController.AfterMove += AfterMove;
         moveController.SetGridRoute(Effect.route);
     }
 
     private void AfterMove()
     {
         manager.Unregister(this);
+        moveController.AfterMove -= AfterMove;
     }
 }

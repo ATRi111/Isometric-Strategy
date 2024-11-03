@@ -1,5 +1,6 @@
 using AStar;
 using Character;
+using MyTool;
 using Services;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,7 @@ public class PawnBrain : CharacterComponentBase
         for(int i = 0; i < options.Count; i++)
         {
             PawnAction action = new(Pawn, skill, options[i]);
+            action.Mock(Pawn, igm);
             Plan plan = new(action);
             plans.Add(plan);
         }
@@ -54,7 +56,7 @@ public class PawnBrain : CharacterComponentBase
         ret.Clear();
         MovableGridObject gridObject = Pawn.GridObject;
         PathFindingProcess process = AIManager.PathFinding.FindAvailable(gridObject.Mover, (Vector2Int)from);
-        for (int i = 0; i < process.output.Count; i++)
+        for (int i = 0; i < process.available.Count; i++)
         {
             ret.Add((process.available[i] as ANode).CellPositon);
         }
@@ -64,8 +66,8 @@ public class PawnBrain : CharacterComponentBase
     {
         ret.Clear();
         MovableGridObject gridObject = Pawn.GridObject;
-        PathFindingProcess process = AIManager.PathFinding.FindRoute(gridObject.Mover, (Vector2Int)from, (Vector2Int)to);
         ret.Add(gridObject.CellPosition);
+        PathFindingProcess process = AIManager.PathFinding.FindRoute(gridObject.Mover, (Vector2Int)from, (Vector2Int)to);
         for (int i = 0; i < process.output.Count; i++)
         {
             ret.Add((process.output[i] as ANode).CellPositon);
@@ -96,7 +98,6 @@ public class PawnBrain : CharacterComponentBase
         return learnedSkills.Remove(skill);
     }
     #endregion
-
 
     protected override void Awake()
     {

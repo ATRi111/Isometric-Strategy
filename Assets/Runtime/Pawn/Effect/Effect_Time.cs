@@ -5,7 +5,7 @@ public class Effect_Time : Effect
     public Effect_Time(PawnEntity target)
        : base(target)
     {
-        prev = current= target.State.waitTime;
+        prev = current = target.State.waitTime;
     }
 
     public Effect_Time(PawnEntity target, int prev, int current)
@@ -18,6 +18,11 @@ public class Effect_Time : Effect
     public override bool Appliable => victim.State.waitTime == prev;
 
     public override bool Revokable => victim.State.waitTime == current;
+
+    public override AnimationProcess GenerateAnimation()
+    {
+        return null; //TODO
+    }
 
     public override void Apply()
     {

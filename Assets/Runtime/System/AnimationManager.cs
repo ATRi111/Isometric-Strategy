@@ -2,6 +2,7 @@ using Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AnimationManager : Service,IService
 {
@@ -13,37 +14,32 @@ public class AnimationManager : Service,IService
 
     private readonly HashSet<AnimationProcess> currenAnimations = new();
 
-    public void Register(AnimationProcess process)
+    public Action AfterNoAnimation;
+
+    public void Register(AnimationProcess animation)
     {
         if(!ImmediateMode)
         {
-            currenAnimations.Add(process);
-            process.Play();
+            currenAnimations.Add(animation);
+            animation.Play();
         }
         else
-            Unregister(process);
+            Unregister(animation);
     }
 
-    public void Unregister(AnimationProcess process)
+    public void Unregister(AnimationProcess animation)
     {
         if(!ImmediateMode)
-            currenAnimations.Remove(process);
-        process.Apply();
+            currenAnimations.Remove(animation);
+        animation.Apply();
+        if (currenAnimations.Count == 0)
+            StartCoroutine(NoAnimationCheck());
     }
 
-    public void StartWait()
+    public IEnumerator NoAnimationCheck()
     {
-        StartCoroutine(WaitForAnimation());
-    }
-
-    private IEnumerator WaitForAnimation()
-    {
-        yield return null;
-        while(currenAnimations.Count > 0)
-        {
-            yield return null;
-        }
-        yield return null;
-        gameManager.MoveOn();
+        yield return new WaitForEndOfFrame();
+        if (currenAnimations.Count == 0)
+            AfterNoAnimation?.Invoke();
     }
 }

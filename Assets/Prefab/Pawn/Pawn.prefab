@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   learnedSkills:
     list:
-    - {fileID: 11400000, guid: 657c8bcd12f11534ca0c14dfb10bc8d5, type: 2}
     - {fileID: 11400000, guid: 6c221d77fbdbf304a9adcdb5da814e20, type: 2}
 --- !u!1 &7860386800660997329
 GameObject:
@@ -253,7 +252,7 @@ MonoBehaviour:
     dropAbility: 0
     moveAbility: 0
     maxHP: 0
-    actionTime: 10
+    actionTime: 0
   setting:
     faction: 2
     humanControl: 0

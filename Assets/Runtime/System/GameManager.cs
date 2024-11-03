@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GameManager : Service,IService
 {
+    [AutoService]
+    private AnimationManager animationManager;
+
     public override Type RegisterType => GetType();
     [SerializeField]
     private SerializedHashSet<PawnEntity> pawns = new();
@@ -46,7 +49,7 @@ public class GameManager : Service,IService
         MoveOn();
     }
 
-    public bool MoveOn()
+    public void MoveOn()
     {
         //TODO:Õ½¶·½áÊøÅÐ¶¨
         foreach(PawnEntity pawn in pawns)
@@ -54,10 +57,17 @@ public class GameManager : Service,IService
             if (Time >= pawn.State.waitTime)
             {
                 pawn.DoAction();
-                return false;
+                animationManager.AfterNoAnimation += AfterNoAnimation;
+                return;
             }
         }
         Time++;
-        return true;
+        MoveOn();
+    }
+
+    private void AfterNoAnimation()
+    {
+        animationManager.AfterNoAnimation -= AfterNoAnimation;
+        MoveOn();
     }
 }
