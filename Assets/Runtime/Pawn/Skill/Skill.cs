@@ -33,9 +33,4 @@ public abstract class Skill : ScriptableObject
     {
         return actionTime;
     }
-
-    public virtual AnimationProcess MockAnimation(PawnEntity agent, Vector2Int position, Vector2Int target)
-    {
-        return null;
-    }
 }

@@ -36,7 +36,8 @@ public class AnimationProcess_FixedTime : AnimationProcess
 {
     public float time;
 
-    public AnimationProcess_FixedTime(float time)
+    public AnimationProcess_FixedTime(Effect effect,float time)
+        : base(effect)
     {
         this.time = time;
     }

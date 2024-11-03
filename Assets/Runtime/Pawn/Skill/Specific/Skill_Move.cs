@@ -21,10 +21,4 @@ public class Skill_Move : Skill
     {
         return DistanceBetween(position, target) * actionTime;
     }
-
-    public override AnimationProcess MockAnimation(PawnEntity agent, Vector2Int position, Vector2Int target)
-    {
-        AnimationProcess_Move process = new(agent.MoveController, route);
-        return process;
-    }
 }
