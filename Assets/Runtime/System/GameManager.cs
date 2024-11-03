@@ -10,6 +10,8 @@ public class GameManager : Service,IService
     private SerializedHashSet<PawnEntity> pawns = new();
 
     public Action<int,int> AfterTimeChange;
+    public Action OnStartBattle;
+
     private int time;
     public int Time
     {
@@ -40,7 +42,7 @@ public class GameManager : Service,IService
     public void StartBattle()
     {
         time = 0;
-        AfterTimeChange?.Invoke(0, 0);
+        OnStartBattle?.Invoke();
         MoveOn();
     }
 
@@ -57,13 +59,5 @@ public class GameManager : Service,IService
         }
         Time++;
         return true;
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            StartBattle();
-        }
     }
 }

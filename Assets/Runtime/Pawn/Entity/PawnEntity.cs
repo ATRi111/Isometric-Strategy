@@ -1,11 +1,12 @@
 using Character;
 using Services;
+using Services.Event;
 using UnityEngine;
 
 public class PawnEntity : CharacterEntity
 {
     public GameManager GameManager { get; private set; }
-
+    public IEventSystem EventSystem { get; private set; }
     [AutoComponent]
     public MovableGridObject GridObject { get; private set; }
     [AutoComponent]
@@ -32,6 +33,7 @@ public class PawnEntity : CharacterEntity
         base.Awake();
         state.MaxHP = () => Property.maxHP;
         GameManager = ServiceLocator.Get<GameManager>();
+        EventSystem = ServiceLocator.Get<IEventSystem>();
     }
 
     private void OnEnable()
@@ -56,19 +58,23 @@ public class PawnEntity : CharacterEntity
     {
         GameManager.Register(this);
         GameManager.AfterTimeChange += AfterTimeChange;
+        GameManager.OnStartBattle += OnStartBattle;
     }
-
     private void UnRegister()
     {
         GameManager.Unregister(this);
         GameManager.AfterTimeChange -= AfterTimeChange;
+        GameManager.OnStartBattle -= OnStartBattle;
     }
-
     private void AfterTimeChange(int prev, int current)
     {
         Refresh();
     }
-
+    private void OnStartBattle()
+    {
+        Refresh();
+        state.waitTime = property.actionTime;   //»Î≥°AT
+    }
     public void Refresh()
     {
         property = defaultProperty.Clone() as PawnProperty;
@@ -76,14 +82,10 @@ public class PawnEntity : CharacterEntity
 
     public void DoAction()
     {
-        if(setting.humanControl)
-        {
-            //TODO
-        }
+        if (setting.humanControl)
+            EventSystem.Invoke(EEvent.OnHumanControl, this);
         else
-        {
-            //TODO
-        }
+            Brain.DoAction();
     }
 
     public void Die()

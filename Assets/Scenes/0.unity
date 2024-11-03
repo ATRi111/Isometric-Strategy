@@ -207,6 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6671b4ff2323204697f59cfd4584789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pawns:
+    list: []
 --- !u!1 &821372878
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +904,7 @@ MonoBehaviour:
     countOfCloseNode: 0
     countOfQuery: 0
   debug: 1
-  stepTime: 0.5
+  stepTime: 0.1
 --- !u!114 &1776701401
 MonoBehaviour:
   m_ObjectHideFlags: 0

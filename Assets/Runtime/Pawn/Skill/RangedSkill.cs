@@ -14,26 +14,27 @@ public class RangedSkill : Skill
     public int castingDistance;
     public int targetFlags;
 
-    public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector2Int position, List<Vector2Int> ret)
+    public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)
     {
         base.GetOptions(agent, igm, position, ret);
         List<Vector2Int> primitive = IsometricGridUtility.WithinProjectManhattanDistance(castingDistance);
         for (int i = 0; i < primitive.Count; i++)
         {
-            Vector2Int temp = primitive[i] + position;
-            if (IsAvailable(igm, temp))
-                ret.Add(temp);
+            Vector2Int temp = (Vector2Int)position + primitive[i];
+            Vector3Int target = temp.AddZ(igm.AboveGroundLayer(temp));
+            if (IsAvailable(igm, target))
+                ret.Add(target);
         }
     }
 
-    public virtual bool IsAvailable(IsometricGridManager igm, Vector2Int target)
+    public virtual bool IsAvailable(IsometricGridManager igm, Vector3Int target)
     {
         bool MatchFlag(ETargetFlag targetFlag)
         {
             return (targetFlags & (int)targetFlag) != 0;
         }
 
-        GridObject gridObject = igm.GetObejectXY(target);
+        GridObject gridObject = igm.GetObject(target);
         if(targetFlags == 0)
         {
             return true;
