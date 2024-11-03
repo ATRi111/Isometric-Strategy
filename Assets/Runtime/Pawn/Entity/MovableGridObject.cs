@@ -1,6 +1,6 @@
 using EditorExtend.GridEditor;
 
-public class MovavleGridObject : GridObject
+public class MovableGridObject : GridObject
 {
     protected IsometricGridManager igm;
     private PawnEntity pawn;
@@ -22,7 +22,7 @@ public class MovavleGridObject : GridObject
         if (obj == null)
             return false;
         
-        if (obj is MovavleGridObject)
+        if (obj is MovableGridObject)
             return false;
         return true;
     }
@@ -33,7 +33,7 @@ public class MovavleGridObject : GridObject
         if(obj == null)
             return false;
 
-        if (obj is MovavleGridObject other && !FactionCheck(other))
+        if (obj is MovableGridObject other && !FactionCheck(other))
             return false;
 
         int toLayer = igm.AboveGroundLayer(to.Position);
@@ -43,7 +43,7 @@ public class MovavleGridObject : GridObject
         return true;
     }
 
-    public virtual bool FactionCheck(MovavleGridObject other)
+    public virtual bool FactionCheck(MovableGridObject other)
     {
         return pawn.Setting.faction == other.pawn.Setting.faction;
     }

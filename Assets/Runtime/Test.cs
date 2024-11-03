@@ -8,7 +8,7 @@ public class Test : MonoBehaviour
 {
     private AIManager AI;
     private IsometricGridManager igm;
-    public MovavleGridObject movable;
+    public MovableGridObject movable;
 
     private void Awake()
     {

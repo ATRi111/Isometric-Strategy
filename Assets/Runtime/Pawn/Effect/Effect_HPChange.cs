@@ -7,6 +7,7 @@ public class Effect_HPChange : Effect
     {
         this.prev = prev;
         this.current = current;
+        //TODO:¶¯»­
     }
 
     public override bool Appliable => victim.State.HP == prev;

@@ -1,5 +1,6 @@
 using Character;
 using MyTimer;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class MoveController : CharacterComponentBase
     protected int currentIndex;
     [SerializeField]
     protected UniformLinearMotion ulm;
+
+    public Action AfterMove;
 
     public Vector3 Position
     {
@@ -42,12 +45,6 @@ public class MoveController : CharacterComponentBase
         MoveTo(currentRoute[currentIndex]);
     }
 
-    public virtual void ForceComplete()
-    {
-        ulm.Paused = true;
-        Position = currentRoute[^1];
-    }
-
     protected virtual void OnTick(Vector3 v)
     {
         Position = v;
@@ -59,6 +56,14 @@ public class MoveController : CharacterComponentBase
         currentIndex++;
         if (currentIndex < currentRoute.Length)
             MoveTo(currentRoute[currentIndex]);
+        else
+            AfterMove?.Invoke();
+    }
+    public virtual void ForceComplete()
+    {
+        ulm.Paused = true;
+        Position = currentRoute[^1];
+        AfterMove?.Invoke();
     }
 
     protected virtual void MoveTo(Vector3 target)

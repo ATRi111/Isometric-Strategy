@@ -14,9 +14,9 @@ public class RangedSkill : Skill
     public int castingDistance;
     public int targetFlags;
 
-    public override void GetOptions(IsometricGridManager igm, Vector2Int position, List<Vector2Int> ret)
+    public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector2Int position, List<Vector2Int> ret)
     {
-        base.GetOptions(igm, position, ret);
+        base.GetOptions(agent, igm, position, ret);
         List<Vector2Int> primitive = IsometricGridUtility.WithinProjectManhattanDistance(castingDistance);
         for (int i = 0; i < primitive.Count; i++)
         {

@@ -8,6 +8,10 @@ public class GridMoveController : MoveController
     protected IsometricGridManager igm;
     [AutoComponent(EComponentPosition.SelfOrParent)]
     protected GridObject gridObject;
+    /// <summary>
+    /// 仅播放动画，不改变网格位置
+    /// </summary>
+    public bool animationOnly = true;
 
     protected override void Awake()
     {
@@ -32,12 +36,14 @@ public class GridMoveController : MoveController
     protected override void AfterComplete(Vector3 v)
     {
         base.AfterComplete(v);
-        gridObject.AlignXY();
+        if (!animationOnly)
+            gridObject.AlignXY();
     }
 
     public override void ForceComplete()
     {
         base.ForceComplete();
-        gridObject.AlignXY();
+        if(!animationOnly)
+            gridObject.AlignXY();
     }
 }

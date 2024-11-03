@@ -4,6 +4,7 @@ using System;
 public abstract class Effect
 {
     public PawnEntity victim;
+    public AnimationProcess animation;
 
     public Effect(PawnEntity victim)
     {
@@ -12,6 +13,14 @@ public abstract class Effect
 
     public abstract bool Appliable { get; }
     public abstract bool Revokable { get; }
+
+    public virtual void Play()
+    {
+        if (animation != null)
+            animation.Play();
+        else
+            Apply();
+    }
 
     public virtual void Apply()
     {

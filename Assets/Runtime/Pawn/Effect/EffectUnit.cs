@@ -13,6 +13,15 @@ public class EffectUnit
         timeEffect.current += agent.Property.actionTime;
     }
 
+    public void Play()
+    {
+        for (int i = 0; i < effects.Count; i++)
+        {
+            effects[i].Play();
+        }
+        timeEffect.Play();
+    }
+
     public void Apply()
     {
         for (int i = 0; i < effects.Count; i++)

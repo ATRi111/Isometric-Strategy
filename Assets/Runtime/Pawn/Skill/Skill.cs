@@ -14,7 +14,7 @@ public abstract class Skill : ScriptableObject
     /// <summary>
     /// 获取可选的技能施放位置
     /// </summary>
-    public virtual void GetOptions(IsometricGridManager igm, Vector2Int position, List<Vector2Int> ret)
+    public virtual void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector2Int position, List<Vector2Int> ret)
     {
         ret.Clear();
     }
@@ -22,7 +22,7 @@ public abstract class Skill : ScriptableObject
     /// <summary>
     /// 模拟技能可能产生的效果
     /// </summary>
-    public virtual void Mock(PawnEntity agent, Vector2Int position, Vector2Int target, IsometricGridManager igm, EffectUnit ret)
+    public virtual void Mock(PawnEntity agent, IsometricGridManager igm, Vector2Int position, Vector2Int target, EffectUnit ret)
     {
         ret.timeEffect.current += MockTime(agent, position, target, igm);
     }
@@ -32,5 +32,10 @@ public abstract class Skill : ScriptableObject
     public virtual int MockTime(PawnEntity agent, Vector2Int position, Vector2Int target, IsometricGridManager igm)
     {
         return actionTime;
+    }
+
+    public virtual AnimationProcess MockAnimation(PawnEntity agent, Vector2Int position, Vector2Int target)
+    {
+        return null;
     }
 }

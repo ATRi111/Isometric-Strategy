@@ -18,15 +18,17 @@ public class AnimationManager : Service,IService
         if(!ImmediateMode)
         {
             currenAnimations.Add(process);
-            process.OnPlay?.Invoke();
+            process.Play();
         }
+        else
+            Unregister(process);
     }
 
     public void Unregister(AnimationProcess process)
     {
         if(!ImmediateMode)
             currenAnimations.Remove(process);
-        process.AfterComplete?.Invoke();
+        process.Apply();
     }
 
     public void StartWait()

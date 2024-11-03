@@ -5,10 +5,9 @@ using UnityEngine;
 public class PawnEntity : CharacterEntity
 {
     public GameManager GameManager { get; private set; }
-    public AIManager AIManager { get; private set; }
 
     [AutoComponent]
-    public MovavleGridObject GridObject { get; private set; }
+    public MovableGridObject GridObject { get; private set; }
     [AutoComponent]
     public PawnBrain Brain { get; private set; }
     [AutoComponent]

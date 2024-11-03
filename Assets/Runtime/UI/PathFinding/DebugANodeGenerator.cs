@@ -51,7 +51,7 @@ public class DebugANodeGenerator : MonoBehaviour
         int i = 0;
         for (; i < temp.Count; i++)
         {
-            if (temp[i].GetComponent<MovavleGridObject>() == null)
+            if (temp[i].GetComponent<MovableGridObject>() == null)
                 break;
         }
         if (i >= temp.Count)

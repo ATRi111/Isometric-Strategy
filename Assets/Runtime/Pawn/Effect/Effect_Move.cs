@@ -16,6 +16,7 @@ public class Effect_Move : Effect
         this.route = route;
         from = route[0];
         to = route[^1];
+        animation = new AnimationProcess_Move(this);
     }
 
     public override void Apply()

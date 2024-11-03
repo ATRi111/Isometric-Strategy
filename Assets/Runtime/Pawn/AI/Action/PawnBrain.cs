@@ -1,4 +1,7 @@
+using AStar;
 using Character;
+using Services;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PawnBrain : CharacterComponentBase
@@ -12,6 +15,32 @@ public class PawnBrain : CharacterComponentBase
     }
     #endregion
 
+    #region Ñ°Â·
+    public AIManager AIManager { get; private set; }
+
+    public void FindAvalable(Vector2Int from, List<Vector2Int> ret)
+    {
+        ret.Clear();
+        MovableGridObject gridObject = Pawn.GridObject;
+        PathFindingProcess process = AIManager.PathFinding.FindAvailable(gridObject.Mover, from);
+        for (int i = 0; i < process.output.Count; i++)
+        {
+            ret.Add(process.available[i].Position);
+        }
+    }
+
+    public void FindRoute(Vector2Int from,Vector2Int to, List<Vector3Int> ret)
+    {
+        ret.Clear();
+        MovableGridObject gridObject = Pawn.GridObject;
+        PathFindingProcess process = AIManager.PathFinding.FindRoute(gridObject.Mover, from, to);
+        ret.Add(gridObject.CellPosition);
+        for (int i = 0; i < process.output.Count; i++)
+        {
+            ret.Add((process.output[i] as ANode).CellPositon);
+        }
+    }
+    #endregion
 
     #region ¼¼ÄÜ
     [SerializeField]
@@ -36,5 +65,6 @@ public class PawnBrain : CharacterComponentBase
     {
         base.Awake();
         learnedSkills = new();
+        AIManager = ServiceLocator.Get<AIManager>();
     }
 }
