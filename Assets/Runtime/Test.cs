@@ -8,7 +8,7 @@ public class Test : MonoBehaviour
 {
     private AIManager AI;
     private IsometricGridManager igm;
-    public MovavleGridObject pawn;
+    public MovavleGridObject movable;
 
     private void Awake()
     {
@@ -29,12 +29,12 @@ public class Test : MonoBehaviour
             igm.MatchMaxLayer(world, out int layer);
             float z = igm.LayerToWorldZ(layer);
             Vector3Int cell = igm.WorldToCell(world.ResetZ(z));
-            PathFindingProcess process = AI.PathFinding.FindRoute(pawn.Mover, (Vector2Int)pawn.CellPosition, (Vector2Int)cell);
+            PathFindingProcess process = AI.PathFinding.FindRoute(movable.Mover, (Vector2Int)movable.CellPosition, (Vector2Int)cell);
             process.output.Log();
         }
         else if(Input.GetMouseButtonUp(1))
         {
-            PathFindingProcess process = AI.PathFinding.FindAvailable(pawn.Mover, (Vector2Int)pawn.CellPosition);
+            PathFindingProcess process = AI.PathFinding.FindAvailable(movable.Mover, (Vector2Int)movable.CellPosition);
             process.output.Log();
         }
     }
@@ -43,12 +43,12 @@ public class Test : MonoBehaviour
     {
         List<Vector3Int> route = new()
         {
-            pawn.CellPosition
+            movable.CellPosition
         };
         for (int i = 0; i < process.output.Count; i++)
         {
             route.Add((process.output[i] as ANode).CellPositon);
         }
-        pawn.MoveController.SetGridRoute(route);
+        movable.MoveController.SetGridRoute(route);
     }
 }

@@ -95,5 +95,6 @@ public class PawnEntity : CharacterEntity
     public void Revive()
     {
         gameObject.SetActive(true);
+        Refresh();
     }
 }

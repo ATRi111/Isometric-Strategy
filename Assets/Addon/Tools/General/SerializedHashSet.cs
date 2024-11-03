@@ -9,7 +9,7 @@ public class SerializedHashSet<T> : ICollection<T>
     [SerializeField]
     private List<T> list;
 
-    public int Count => list.Count;
+    public int Count => set.Count;
 
     public bool IsReadOnly => false;
 

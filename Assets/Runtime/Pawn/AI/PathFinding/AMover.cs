@@ -25,7 +25,7 @@ public class AMover : AStarMover
         if (from is ANode aFrom && to is ANode aTo)
         {
             if (aFrom.AboveGroundLayer != aTo.AboveGroundLayer)
-                cost += PathFindingUtility.Epsilon;
+                cost += PathFindingUtility.Epsilon;     //优先选择平地
         }
         return cost;
     }
