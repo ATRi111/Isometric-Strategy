@@ -46,7 +46,7 @@ public class RangedSkill : Skill
         }
         if(MatchFlag(ETargetFlag.Destroyable))
         {
-            if(gridObject.GetComponentInParent<DestroyableEntity>() != null)
+            if(gridObject.GetComponentInParent<Entity>() != null)
                 return true;
         }
         return false;

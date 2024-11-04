@@ -32,7 +32,6 @@ public class GameManager : Service,IService
 
     public List<PawnAction> actionList;
 
-
     public void Register(PawnEntity entity)
     {
         pawns.Add(entity);
@@ -54,9 +53,9 @@ public class GameManager : Service,IService
         //TODO:Õ½¶·½áÊøÅÐ¶¨
         foreach(PawnEntity pawn in pawns)
         {
-            if (Time >= pawn.State.waitTime)
+            if (Time >= pawn.waitTime)
             {
-                pawn.DoAction();
+                pawn.Brain.DoAction();
                 animationManager.AfterNoAnimation += AfterNoAnimation;
                 return;
             }

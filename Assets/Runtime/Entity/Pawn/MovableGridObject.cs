@@ -8,12 +8,16 @@ public class MovableGridObject : GridObject
     public GridMoveController MoveController { get; protected set; }
     public override int ExtraSortingOrder => 5;
 
+    public int climbAbility;
+    public int dropAbility;
+    public int moveAbility;
+
     protected virtual void Awake()
     {
         igm = Manager as IsometricGridManager;
         pawn = GetComponentInParent<PawnEntity>();
         MoveController = GetComponentInChildren<GridMoveController>();
-        Mover = new AMover(this, pawn.Property.moveAbility);
+        Mover = new AMover(this, moveAbility);
     }
 
     public virtual bool StayCheck(ANode node)
@@ -45,11 +49,11 @@ public class MovableGridObject : GridObject
 
     public virtual bool FactionCheck(MovableGridObject other)
     {
-        return pawn.Setting.faction == other.pawn.Setting.faction;
+        return pawn.faction == other.pawn.faction;
     }
 
     public virtual bool HeightCheck(int fromLayer,int toLayer)
     {
-        return toLayer <= fromLayer + pawn.Property.climbAbility && toLayer >= fromLayer - pawn.Property.dropAbility;
+        return toLayer <= fromLayer + climbAbility && toLayer >= fromLayer - dropAbility;
     }
 }

@@ -11,7 +11,7 @@ public class EffectUnit
     {
         effects = new List<Effect>();
         timeEffect = new Effect_Time(agent);
-        timeEffect.current += agent.Property.actionTime;
+        timeEffect.current += agent.actionTime;
     }
 
     public void Play()

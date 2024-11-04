@@ -9,9 +9,9 @@ public class Effect_HPChange : Effect
         this.current = current;
     }
 
-    public override bool Appliable => victim.State.HP == prev;
+    public override bool Appliable => victim.HealthComponent.HP == prev;
 
-    public override bool Revokable => victim.State.HP == current;
+    public override bool Revokable => victim.HealthComponent.HP == current;
 
     public override AnimationProcess GenerateAnimation()
     {
@@ -21,7 +21,7 @@ public class Effect_HPChange : Effect
     public override void Apply()
     {
         base.Apply();
-        victim.State.HP = current;
+        victim.HealthComponent.HP = current;
         if (current == 0)
             victim.Die();
     }
@@ -29,7 +29,7 @@ public class Effect_HPChange : Effect
     public override void Revoke()
     {
         base.Revoke();
-        victim.State.HP = prev;
+        victim.HealthComponent.HP = prev;
         if(current == 0)
             victim.Revive();
     }

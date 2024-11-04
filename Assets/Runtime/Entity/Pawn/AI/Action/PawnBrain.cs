@@ -7,17 +7,26 @@ using UnityEngine;
 
 public class PawnBrain : CharacterComponentBase
 {
-    private IsometricGridManager igm;
     public PawnEntity Pawn => entity as PawnEntity;
 
     #region ¾ö²ß
+
+    public bool humanControl;
+
     public readonly List<Plan> plans = new();
     private readonly List<Vector3Int> options = new();
 
     public virtual void DoAction()
     {
-        MakePlan();
-        plans[0].action.Excute();
+        if (humanControl)
+        {
+            Pawn.EventSystem.Invoke(EEvent.OnHumanControl, this);
+        }
+        else
+        {
+            MakePlan();
+            plans[0].action.Excute();
+        }
     }
 
     public virtual void MakePlan()
@@ -32,11 +41,11 @@ public class PawnBrain : CharacterComponentBase
 
     private void MakePlan(Skill skill)
     {
-        skill.GetOptions(Pawn, igm, Pawn.GridObject.CellPosition, options);
+        skill.GetOptions(Pawn, Pawn.Igm, Pawn.GridObject.CellPosition, options);
         for(int i = 0; i < options.Count; i++)
         {
             PawnAction action = new(Pawn, skill, options[i]);
-            action.Mock(Pawn, igm);
+            action.Mock(Pawn, Pawn.Igm);
             Plan plan = new(action);
             plans.Add(plan);
         }
@@ -54,7 +63,7 @@ public class PawnBrain : CharacterComponentBase
     public void FindAvalable(Vector3Int from, List<Vector3Int> ret)
     {
         ret.Clear();
-        MovableGridObject gridObject = Pawn.GridObject;
+        MovableGridObject gridObject = Pawn.GridObject as MovableGridObject;
         PathFindingProcess process = AIManager.PathFinding.FindAvailable(gridObject.Mover, (Vector2Int)from);
         for (int i = 0; i < process.available.Count; i++)
         {
@@ -65,7 +74,7 @@ public class PawnBrain : CharacterComponentBase
     public void FindRoute(Vector3Int from, Vector3Int to, List<Vector3Int> ret)
     {
         ret.Clear();
-        MovableGridObject gridObject = Pawn.GridObject;
+        MovableGridObject gridObject = Pawn.GridObject as MovableGridObject;
         ret.Add(gridObject.CellPosition);
         PathFindingProcess process = AIManager.PathFinding.FindRoute(gridObject.Mover, (Vector2Int)from, (Vector2Int)to);
         for (int i = 0; i < process.output.Count; i++)
@@ -103,6 +112,5 @@ public class PawnBrain : CharacterComponentBase
     {
         base.Awake();
         AIManager = ServiceLocator.Get<AIManager>();
-        igm = IsometricGridManager.FindInstance();
     }
 }

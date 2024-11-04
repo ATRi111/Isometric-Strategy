@@ -1,10 +1,11 @@
+using Character;
 using System;
 using UnityEngine;
 
-[Serializable]
-public class PawnState
+public class HealthComponent : CharacterComponentBase
 {
-    public Func<int> MaxHP;
+    public int maxHP;
+
     public Action<int, int> AfterHPChange;
     private int hp;
     public int HP
@@ -12,8 +13,8 @@ public class PawnState
         get => hp;
         set
         {
-            hp = Mathf.Clamp(value, 0, MaxHP());
-            if(hp != value)
+            hp = Mathf.Clamp(value, 0, maxHP);
+            if (hp != value)
             {
                 int prev = hp;
                 hp = value;
@@ -21,9 +22,4 @@ public class PawnState
             }
         }
     }
-
-    /// <summary>
-    /// 总计时器的值达到此值时，轮到此角色行动
-    /// </summary>
-    public int waitTime;
 }
