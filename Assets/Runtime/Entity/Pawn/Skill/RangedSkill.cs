@@ -5,8 +5,8 @@ using UnityEngine;
 public enum ETargetFlag
 {
     None = 0,
-    Pawn = 1,
-    Destroyable = 2,
+    Entity = 1,
+    Pawn = 2,
 }
 
 public class RangedSkill : Skill
@@ -44,7 +44,7 @@ public class RangedSkill : Skill
             if (gridObject.GetComponentInParent<PawnEntity>() != null)
                 return true;
         }
-        if(MatchFlag(ETargetFlag.Destroyable))
+        if(MatchFlag(ETargetFlag.Entity))
         {
             if(gridObject.GetComponentInParent<Entity>() != null)
                 return true;

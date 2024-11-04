@@ -2,22 +2,22 @@ public class Effect_Time : Effect
 {
     public int prev, current;
 
-    public Effect_Time(PawnEntity target)
+    public Effect_Time(Entity target)
        : base(target)
-    {
-        prev = current = target.waitTime;
+    {   
+        prev = current = (target as PawnEntity).waitTime;
     }
 
-    public Effect_Time(PawnEntity target, int prev, int current)
+    public Effect_Time(Entity target, int prev, int current)
         : base(target)
     {
         this.prev = prev;
         this.current = current;
     }
 
-    public override bool Appliable => victim.waitTime == prev;
+    public override bool Appliable => Pawnvictim.waitTime == prev;
 
-    public override bool Revokable => victim.waitTime == current;
+    public override bool Revokable => Pawnvictim.waitTime == current;
 
     public override AnimationProcess GenerateAnimation()
     {
@@ -27,12 +27,12 @@ public class Effect_Time : Effect
     public override void Apply()
     {
         base.Apply();
-        victim.waitTime = current;
+        Pawnvictim.waitTime = current;
     }
 
     public override void Revoke()
     {
         base.Revoke();
-        victim.waitTime = prev;
+        Pawnvictim.waitTime = prev;
     }
 }

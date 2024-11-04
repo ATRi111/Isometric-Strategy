@@ -4,9 +4,10 @@ using System;
 [Serializable]
 public abstract class Effect
 {
-    public PawnEntity victim;
+    public Entity victim;
+    public PawnEntity Pawnvictim => victim as PawnEntity;
 
-    public Effect(PawnEntity victim)
+    public Effect(Entity victim)
     {
         this.victim = victim;
     }
