@@ -13,7 +13,7 @@ public class PawnEntity : Entity
     /// <summary>
     /// 全局计时器的值达到此值时，轮到此角色行动
     /// </summary>
-    public int waitTime;
+    public int time;
 
     public override void RefreshProperty()
     {
@@ -37,6 +37,6 @@ public class PawnEntity : Entity
     protected override void OnStartBattle()
     {
         base.OnStartBattle();
-        waitTime = actionTime.CurrentValue;   //入场AT
+        time = actionTime.CurrentValue;   //入场AT
     }
 }

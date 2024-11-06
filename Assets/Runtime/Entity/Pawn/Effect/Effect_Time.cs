@@ -5,7 +5,7 @@ public class Effect_Time : Effect
     public Effect_Time(Entity target)
        : base(target)
     {   
-        prev = current = (target as PawnEntity).waitTime;
+        prev = current = (target as PawnEntity).time;
     }
 
     public Effect_Time(Entity target, int prev, int current)
@@ -15,9 +15,9 @@ public class Effect_Time : Effect
         this.current = current;
     }
 
-    public override bool Appliable => Pawnvictim.waitTime == prev;
+    public override bool Appliable => Pawnvictim.time == prev;
 
-    public override bool Revokable => Pawnvictim.waitTime == current;
+    public override bool Revokable => Pawnvictim.time == current;
 
     public override AnimationProcess GenerateAnimation()
     {
@@ -27,12 +27,12 @@ public class Effect_Time : Effect
     public override void Apply()
     {
         base.Apply();
-        Pawnvictim.waitTime = current;
+        Pawnvictim.time = current;
     }
 
     public override void Revoke()
     {
         base.Revoke();
-        Pawnvictim.waitTime = prev;
+        Pawnvictim.time = prev;
     }
 }

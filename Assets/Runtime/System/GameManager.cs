@@ -42,7 +42,7 @@ public class GameManager : Service,IService
         //TODO:Õ½¶·½áÊøÅÐ¶¨
         foreach(PawnEntity pawn in pawns)
         {
-            if (time >= pawn.waitTime)
+            if (time >= pawn.time)
             {
                 BeforeDoAction?.Invoke(pawn, time);
                 pawn.Brain.DoAction();

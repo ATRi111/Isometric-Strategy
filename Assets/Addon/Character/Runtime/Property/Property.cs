@@ -9,7 +9,9 @@ namespace Character
     public abstract class Property<T> where T : struct
     {
         public T defaultValue;
-        public T CurrentValue { get; protected set; }
+        [SerializeField]
+        protected T currentValue;
+        public T CurrentValue => currentValue;
 
         public Action<Property<T>> DirectAdd;         //直接加算
         public Action<Property<T>> DirectMultiply;    //直接乘算
@@ -23,7 +25,7 @@ namespace Character
 
         public void Refresh()
         {
-            CurrentValue = defaultValue;
+            currentValue = defaultValue;
             DirectAdd?.Invoke(this);
             DirectMultiply?.Invoke(this);
             FinalAdd?.Invoke(this);
@@ -37,17 +39,17 @@ namespace Character
     {
         public override void Add(int value)
         {
-            CurrentValue += value;
+            currentValue += value;
         }
 
         public override void Multiply(int value)
         {
-            CurrentValue *= value;
+            currentValue *= value;
         }
 
         public override void Clamp(int min,int max)
         {
-            CurrentValue = Mathf.Clamp(CurrentValue, min, max);
+            currentValue = Mathf.Clamp(currentValue, min, max);
         }
     }
 
@@ -56,17 +58,17 @@ namespace Character
     {
         public override void Add(float value)
         {
-            CurrentValue += value;
+            currentValue += value;
         }
 
         public override void Multiply(float value)
         {
-            CurrentValue *= value;
+            currentValue *= value;
         }
 
         public override void Clamp(float min, float max)
         {
-            CurrentValue = Mathf.Clamp(CurrentValue, min, max);
+            currentValue = Mathf.Clamp(currentValue, min, max);
         }
     }
 }
