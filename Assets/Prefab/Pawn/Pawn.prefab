@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6d7f03c11bf574ea92af7d8e7686d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 500
+  maxHP:
+    defaultValue: 500
 --- !u!1 &5804586430030361790
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,9 +277,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shortName: 
   cellPosition: {x: 0, y: 0, z: 0}
-  climbAbility: 2
-  dropAbility: 3
-  moveAbility: 5
+  climbAbility:
+    defaultValue: 2
+  dropAbility:
+    defaultValue: 3
+  moveAbility:
+    defaultValue: 5
 --- !u!114 &3681028695715984453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,5 +296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 2
-  actionTime: 0
+  actionTime:
+    defaultValue: 0
   waitTime: 0

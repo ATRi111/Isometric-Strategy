@@ -12,23 +12,12 @@ public class GameManager : Service,IService
     [SerializeField]
     private SerializedHashSet<PawnEntity> pawns = new();
 
-    public Action<int,int> AfterTimeChange;
+    public Action<PawnEntity, int> BeforeDoAction;
     public Action OnStartBattle;
 
+    [SerializeField]
     private int time;
-    public int Time
-    {
-        get => time; 
-        set
-        {
-            if(time != value)
-            {
-                int prev = time;
-                time = value;
-                AfterTimeChange.Invoke(prev, time);
-            }
-        }
-    }
+    public int Time => time;
 
     public List<PawnAction> actionList;
 
@@ -53,20 +42,21 @@ public class GameManager : Service,IService
         //TODO:Õ½¶·½áÊøÅÐ¶¨
         foreach(PawnEntity pawn in pawns)
         {
-            if (Time >= pawn.waitTime)
+            if (time >= pawn.waitTime)
             {
+                BeforeDoAction?.Invoke(pawn, time);
                 pawn.Brain.DoAction();
-                animationManager.AfterNoAnimation += AfterNoAnimation;
+                animationManager.AfterNoAnimation += AfterAnimationComplete;
                 return;
             }
         }
-        Time++;
+        time++;
         MoveOn();
     }
 
-    private void AfterNoAnimation()
+    private void AfterAnimationComplete()
     {
-        animationManager.AfterNoAnimation -= AfterNoAnimation;
+        animationManager.AfterNoAnimation -= AfterAnimationComplete;
         MoveOn();
     }
 }

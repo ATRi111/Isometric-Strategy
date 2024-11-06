@@ -9,12 +9,18 @@ public class PawnEntity : Entity
     public PawnBrain Brain { get; private set; }
 
     public EFaction faction;
-    public int actionTime;
+    public IntProperty actionTime;
     /// <summary>
-    /// 总计时器的值达到此值时，轮到此角色行动
+    /// 全局计时器的值达到此值时，轮到此角色行动
     /// </summary>
     public int waitTime;
 
+    public override void RefreshProperty()
+    {
+        base.RefreshProperty();
+        actionTime.Refresh();
+        (GridObject as MovableGridObject).RefreshProperty();
+    }
 
     protected override void Register()
     {
@@ -31,6 +37,6 @@ public class PawnEntity : Entity
     protected override void OnStartBattle()
     {
         base.OnStartBattle();
-        waitTime = actionTime;   //入场AT
+        waitTime = actionTime.CurrentValue;   //入场AT
     }
 }

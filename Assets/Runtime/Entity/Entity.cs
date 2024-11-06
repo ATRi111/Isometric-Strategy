@@ -15,29 +15,29 @@ public class Entity : CharacterEntity
     [AutoComponent]
     public HealthComponent HealthComponent { get; protected set; }
 
-    public virtual void Refresh()
+    public virtual void RefreshProperty()
     {
-        
+        HealthComponent.RefreshProperty();
     }
 
     protected virtual void Register()
     {
-        GameManager.AfterTimeChange += AfterTimeChange;
+        GameManager.BeforeDoAction += BeforeDoAction;
         GameManager.OnStartBattle += OnStartBattle;
     }
     protected virtual void UnRegister()
     {
-        GameManager.AfterTimeChange -= AfterTimeChange;
+        GameManager.BeforeDoAction -= BeforeDoAction;
         GameManager.OnStartBattle -= OnStartBattle;
     }
-    protected virtual void AfterTimeChange(int prev, int current)
+    protected virtual void BeforeDoAction(PawnEntity agent, int time)
     {
-        Refresh();
+        RefreshProperty();
     }
     protected virtual void OnStartBattle()
     {
-        Refresh();
-        HealthComponent.HP = HealthComponent.maxHP;
+        RefreshProperty();
+        HealthComponent.HP = HealthComponent.maxHP.CurrentValue;
     }
 
     public virtual void Die()
@@ -48,7 +48,7 @@ public class Entity : CharacterEntity
     public virtual void Revive()
     {
         gameObject.SetActive(true);
-        Refresh();
+        RefreshProperty();
     }
 
     protected override void Awake()

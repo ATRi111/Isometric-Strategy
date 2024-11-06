@@ -1,3 +1,4 @@
+using Character;
 using EditorExtend.GridEditor;
 
 public class MovableGridObject : GridObject
@@ -8,16 +9,23 @@ public class MovableGridObject : GridObject
     public GridMoveController MoveController { get; protected set; }
     public override int ExtraSortingOrder => 5;
 
-    public int climbAbility;
-    public int dropAbility;
-    public int moveAbility;
+    public IntProperty climbAbility;
+    public IntProperty dropAbility;
+    public IntProperty moveAbility;
 
     protected virtual void Awake()
     {
         igm = Manager as IsometricGridManager;
         pawn = GetComponentInParent<PawnEntity>();
         MoveController = GetComponentInChildren<GridMoveController>();
-        Mover = new AMover(this, moveAbility);
+    }
+
+    public void RefreshProperty()
+    {
+        climbAbility.Refresh();
+        dropAbility.Refresh();
+        moveAbility.Refresh();
+        Mover = new AMover(this, moveAbility.CurrentValue);
     }
 
     public virtual bool StayCheck(ANode node)
@@ -54,6 +62,6 @@ public class MovableGridObject : GridObject
 
     public virtual bool HeightCheck(int fromLayer,int toLayer)
     {
-        return toLayer <= fromLayer + climbAbility && toLayer >= fromLayer - dropAbility;
+        return toLayer <= fromLayer + climbAbility.CurrentValue && toLayer >= fromLayer - dropAbility.CurrentValue;
     }
 }

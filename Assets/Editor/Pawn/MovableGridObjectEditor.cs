@@ -11,8 +11,8 @@ public class MovableGridObjectEditor : GridObjectEditor
     protected override void MyOnInspectorGUI()
     {
         base.MyOnInspectorGUI();
-        climbAbility.IntField("攀爬力");
-        dropAbility.IntField("下落力");
-        moveAbility.IntField("移动力");
+        climbAbility.PropertyField("攀爬力");
+        dropAbility.PropertyField("下落力");
+        moveAbility.PropertyField("移动力");
     }
 }
