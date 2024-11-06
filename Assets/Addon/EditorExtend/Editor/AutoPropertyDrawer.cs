@@ -15,8 +15,8 @@ namespace EditorExtend
         {
             EditorGUI.BeginProperty(position, label, property);
             Initialize(property);
-            //FoldoutHeaderGroup不能嵌套，所以这里模仿嵌套的视觉效果，但没有嵌套
-            foldout = EditorGUI.Foldout(EditorGUILayout.GetControlRect(), foldout, label);
+            //FoldoutHeaderGroup不能嵌套，这里仅仅是模仿嵌套的视觉效果
+            foldout = EditorGUI.Foldout(position, foldout, label);
             if (foldout)
             {
                 EditorGUI.indentLevel++;
