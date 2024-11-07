@@ -1,18 +1,14 @@
 using Character;
+using MyTool;
 using System;
 using UnityEngine;
-
-public enum EDamageType
-{
-    None,
-
-}
 
 public class HealthComponent : CharacterComponentBase
 {
     public IntProperty maxHP;
 
     public Action<int, int> AfterHPChange;
+    [SerializeField]
     private int hp;
     public int HP
     {
@@ -28,6 +24,8 @@ public class HealthComponent : CharacterComponentBase
             }
         }
     }
+
+    public SerializedDictionary<EDamageType, FloatProperty> resistance;
 
     /// <summary>
     /// 返回预想中受到伤害后HP的值，但不会实际修改HP

@@ -85,7 +85,7 @@ namespace EditorExtend
             sb.Append("{\r\n");
             sb.Append("    [AutoProperty]\r\n");
             sb.Append("    public SerializedProperty data;\r\n\r\n");
-            sb.Append("    protected override void MyOnGUI()\r\n");
+            sb.Append("    protected override void MyOnGUI(Rect position, SerializedProperty property, GUIContent label)\r\n");
             sb.Append("    {\r\n");
             sb.Append("        \r\n");
             sb.Append("    }\r\n");

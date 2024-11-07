@@ -15,10 +15,13 @@ namespace Character
     {
         protected override void MyOnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            defaultValue.IntField("默认值");
-            EditorGUI.BeginDisabledGroup(true);
-            currentValue.IntField("当前值");
-            EditorGUI.EndDisabledGroup();
+            defaultValue.IntField("默认值",NextRect());
+            if (Application.isPlaying)
+            {
+                EditorGUI.BeginDisabledGroup(true);
+                currentValue.IntField("当前值", NextRect());
+                EditorGUI.EndDisabledGroup();
+            }
         }
     }
 
@@ -27,10 +30,13 @@ namespace Character
     {
         protected override void MyOnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            defaultValue.FloatField("默认值");
-            EditorGUI.BeginDisabledGroup(true);
-            currentValue.FloatField("当前值");
-            EditorGUI.EndDisabledGroup();
+            defaultValue.FloatField("默认值", NextRect());
+            if(Application.isPlaying)
+            {
+                EditorGUI.BeginDisabledGroup(true);
+                currentValue.FloatField("当前值", NextRect());
+                EditorGUI.EndDisabledGroup();
+            }
         }
     }
 }

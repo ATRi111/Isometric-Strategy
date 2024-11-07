@@ -9,27 +9,29 @@ namespace EditorExtend
     /// </summary>
     public abstract class AutoPropertyDrawer : PropertyDrawer
     {
-        private bool foldout;
+        protected bool foldout;
+        protected Vector2 min;
+        protected float width;
+        protected float sum;
 
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        public Rect NextRect(float multiplier = 1)
         {
-            EditorGUI.BeginProperty(position, label, property);
-            Initialize(property);
-            //FoldoutHeaderGroup不能嵌套，这里仅仅是模仿嵌套的视觉效果
-            foldout = EditorGUI.Foldout(position, foldout, label);
-            if (foldout)
-            {
-                EditorGUI.indentLevel++;
-                MyOnGUI(position, property, label);
-                EditorGUI.indentLevel--;
-            }
-            EditorGUI.EndProperty();
+            Rect ret = new(min, new Vector2(width, EditorGUIUtility.singleLineHeight * multiplier));
+            min.y += EditorGUIUtility.singleLineHeight * multiplier;
+            sum += multiplier;
+            return ret;
         }
 
-        protected abstract void MyOnGUI(Rect position, SerializedProperty property, GUIContent label);
-
-        public virtual void Initialize(SerializedProperty property)
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
+            return sum * EditorGUIUtility.singleLineHeight;
+        }
+
+        public virtual void Initialize(Rect position, SerializedProperty property)
+        {
+            min = position.min;
+            width = position.width;
+            sum = 0;
             FieldInfo[] fields = GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             foreach (FieldInfo info in fields)
             {
@@ -43,5 +45,25 @@ namespace EditorExtend
                 }
             }
         }
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            Initialize(position,property);
+            //FoldoutHeaderGroup不能嵌套，这里仅仅是模仿嵌套的视觉效果
+            EditorGUI.BeginProperty(position, label, property);
+            foldout = EditorGUI.Foldout(NextRect(), foldout, label);
+            if (foldout)
+            {
+                EditorGUI.indentLevel++;
+                MyOnGUI(position, property, label);
+                EditorGUI.indentLevel--;
+            }
+            EditorGUI.EndProperty();
+        }
+
+        /// <summary>
+        /// 此方法中禁止调用Layout版本的EditorGUI,必须使用NextRect
+        /// </summary>
+        protected abstract void MyOnGUI(Rect position, SerializedProperty property, GUIContent label);
     }
 }

@@ -46,6 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP:
     defaultValue: 500
+    currentValue: 0
+  hp: 0
+  resistance:
+    list:
+    - key: 0
+      value:
+        defaultValue: 0
+        currentValue: 0
 --- !u!1 &5804586430030361790
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +151,11 @@ MonoBehaviour:
   speed: 1
   currentRoute: []
   currentIndex: 0
+  ulm:
+    paused: 1
+    completed: 0
+    time: 0
+    duration: 0
   animationOnly: 1
 --- !u!114 &28454254504980518
 MonoBehaviour:
@@ -279,10 +292,13 @@ MonoBehaviour:
   cellPosition: {x: 0, y: 0, z: 0}
   climbAbility:
     defaultValue: 2
+    currentValue: 0
   dropAbility:
     defaultValue: 3
+    currentValue: 0
   moveAbility:
     defaultValue: 5
+    currentValue: 0
 --- !u!114 &3681028695715984453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,4 +314,5 @@ MonoBehaviour:
   faction: 2
   actionTime:
     defaultValue: 0
-  waitTime: 0
+    currentValue: 0
+  time: 0
