@@ -209,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawns:
     list: []
+  time: 0
 --- !u!1 &821372878
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,6 +914,16 @@ MonoBehaviour:
     output: []
     available: []
     isRunning: 0
+    from:
+      position: {x: 0, y: 0}
+      state: 0
+      GCost: 0
+      HCost: 0
+    to:
+      position: {x: 0, y: 0}
+      state: 0
+      GCost: 0
+      HCost: 0
     currentNode:
       position: {x: 0, y: 0}
       state: 0
@@ -936,6 +947,16 @@ MonoBehaviour:
     output: []
     available: []
     isRunning: 0
+    from:
+      position: {x: 0, y: 0}
+      state: 0
+      GCost: 0
+      HCost: 0
+    to:
+      position: {x: 0, y: 0}
+      state: 0
+      GCost: 0
+      HCost: 0
     currentNode:
       position: {x: 0, y: 0}
       state: 0

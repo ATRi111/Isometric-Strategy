@@ -13,10 +13,10 @@ namespace MyTimer
         protected override void MyOnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginDisabledGroup(true);
-            paused.BoolField("计时暂停", NextRect());
-            completed.BoolField("计时完成", NextRect());
-            duration.FloatField("总时间", NextRect());
-            time.FloatField("当前时间", NextRect());
+            paused.BoolField("计时暂停", NextRectRelative());
+            completed.BoolField("计时完成", NextRectRelative());
+            duration.FloatField("总时间", NextRectRelative());
+            time.FloatField("当前时间", NextRectRelative());
             EditorGUI.EndDisabledGroup();
         }
     }

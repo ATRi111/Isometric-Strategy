@@ -1,3 +1,4 @@
+using MyTimer;
 using Services;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class Test : MonoBehaviour
     private GameManager gameManager;
     private AnimationManager animationManager;
     private IsometricGridManager igm;
+    public TimerOnly timer;
 
     private void Awake()
     {

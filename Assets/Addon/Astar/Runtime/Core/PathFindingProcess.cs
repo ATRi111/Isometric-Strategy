@@ -66,14 +66,18 @@ namespace AStar
         /// </summary>
         public bool IsRunning => isRunning;
 
+        [SerializeField]
+        private AStarNode from;
         /// <summary>
         /// 起点
         /// </summary>
-        public AStarNode From { get; private set; }
+        public AStarNode From => from;
+        [SerializeField]
+        private AStarNode to;
         /// <summary>
         /// 终点
         /// </summary>
-        public AStarNode To { get; private set; }
+        public AStarNode To => to;
         /// <summary>
         /// 所有已发现节点
         /// </summary>
@@ -134,10 +138,10 @@ namespace AStar
             discoveredNodes.Clear();
             open.Clear();
 
-            To = GetNode(toPos);
+            to = GetNode(toPos);
             To.HCost = 0;
 
-            From = GetNode(fromPos);
+            from = GetNode(fromPos);
             From.Parent = null;
             From.HCost = From.CostTo(To);
 

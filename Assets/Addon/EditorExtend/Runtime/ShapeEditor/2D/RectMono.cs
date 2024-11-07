@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
-    public class RectEditor : PointEditor2D
+    public class RectMono : Shape2DMono
     {
         public Vector2 offset;
         public Vector2 size;

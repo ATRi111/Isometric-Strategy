@@ -1,10 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
-    [CustomEditor(typeof(PathEditorBase))]
-    public class Editor_PathEditorBase : GameObjectsManagerEditor
+    [CustomEditor(typeof(PathManagerBase))]
+    public class PathManagerBaseEditor : GameObjectsManagerEditor
     {
         [AutoProperty]
         protected SerializedProperty thickness, closed;

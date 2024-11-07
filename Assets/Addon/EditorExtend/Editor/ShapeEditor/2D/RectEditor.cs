@@ -1,16 +1,16 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
-    [CustomEditor(typeof(RectEditor))]
-    public class Editor_RectEditor : Editor_PointEditor2D
+    [CustomEditor(typeof(RectMono))]
+    public class RectEditor : Shape2DEditor
     {
         private const float MinSize = 0.01f;
 
         [AutoProperty]
         public SerializedProperty offset, size;
-        private RectEditor rectEditor;
+        private RectMono rectEditor;
         private Vector3[] vertices;
         private Vector2[] mids;
         private Vector2[] directions;
@@ -21,7 +21,7 @@ namespace EditorExtend.PointEditor
             vertices = new Vector3[5];
             mids = new Vector2[4];
             directions = new Vector2[] { Vector2.left, Vector2.up, Vector2.right, Vector2.down };
-            rectEditor = target as RectEditor;
+            rectEditor = target as RectMono;
         }
 
         protected override void MyOnInspectorGUI()

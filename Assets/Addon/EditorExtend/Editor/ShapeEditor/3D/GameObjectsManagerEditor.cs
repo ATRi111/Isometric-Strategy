@@ -3,14 +3,14 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
-    [CustomEditor(typeof(GameObjectsManager))]
-    public class GameObjectsManagerEditor : Editor_PointEditor
+    [CustomEditor(typeof(GameObjectManager))]
+    public class GameObjectsManagerEditor : ShapeEditor
     {
         [AutoProperty]
         protected SerializedProperty gameObjects, prefab;
-        protected GameObjectsManager manager;
+        protected GameObjectManager manager;
         protected GameObject[] GameObjects => manager.gameObjects;
         protected bool isEditing;
 
@@ -44,7 +44,7 @@ namespace EditorExtend.PointEditor
         protected override void OnEnable()
         {
             base.OnEnable();
-            manager = target as GameObjectsManager;
+            manager = target as GameObjectManager;
             helpInfo = "右击删除一个子物体";
             isEditing = true;
             Tools.current = Tool.None;

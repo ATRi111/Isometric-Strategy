@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
-    public abstract class PointEditor2D : MonoBehaviour
+    public abstract class Shape2DMono : MonoBehaviour
     {
         public Vector2 Position2D => new Vector3(transform.position.x, transform.position.y, 0f);
 

@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
-    [CustomEditor(typeof(PolygonEditor))]
-    public class Editor_PolygonEditor : Editor_PointEditor2D
+    [CustomEditor(typeof(PolygonMono))]
+    public class PolygonEditor : Shape2DEditor
     {
         [AutoProperty]
         public SerializedProperty localPoints, style;
-        private PolygonEditor polygonEditor;
+        private PolygonMono polygonEditor;
         private readonly List<Vector3> worldPoints = new List<Vector3>();
 
         protected override bool IsSelecting => selectedIndex > -1 && selectedIndex < worldPoints.Count;
@@ -17,7 +17,7 @@ namespace EditorExtend.PointEditor
         protected override void OnEnable()
         {
             base.OnEnable();
-            polygonEditor = target as PolygonEditor;
+            polygonEditor = target as PolygonMono;
             helpInfo = "左击添加一个点; \n右击删除一个点";
         }
 

@@ -5,8 +5,14 @@ using UnityEngine;
 
 namespace MyTool
 {
+    public abstract class SerializedKeyValueBase
+    {
+        
+    }
+
+
     [Serializable]
-    public sealed class SerializableKeyValuePair<TKey, TValue>
+    public sealed class SerializedKeyValuePair<TKey, TValue> : SerializedKeyValueBase
     {
         [SerializeField]
         private TKey key;
@@ -15,20 +21,20 @@ namespace MyTool
         private TValue value;
         public TValue Value => value;
 
-        public SerializableKeyValuePair(TKey key, TValue value)
+        public SerializedKeyValuePair(TKey key, TValue value)
         {
             this.key = key;
             this.value = value;
         }
 
-        public static explicit operator KeyValuePair<TKey, TValue>(SerializableKeyValuePair<TKey, TValue> pair)
+        public static explicit operator KeyValuePair<TKey, TValue>(SerializedKeyValuePair<TKey, TValue> pair)
         {
             return new KeyValuePair<TKey, TValue>(pair.Key, pair.Value);
         }
 
-        public static explicit operator SerializableKeyValuePair<TKey, TValue>(KeyValuePair<TKey, TValue> pair)
+        public static explicit operator SerializedKeyValuePair<TKey, TValue>(KeyValuePair<TKey, TValue> pair)
         {
-            return new SerializableKeyValuePair<TKey, TValue>(pair.Key, pair.Value);
+            return new SerializedKeyValuePair<TKey, TValue>(pair.Key, pair.Value);
         }
 
         public override int GetHashCode()
@@ -40,7 +46,7 @@ namespace MyTool
         {
             if(obj == null)
                 return false;
-            if(obj is not SerializableKeyValuePair<TKey, TValue> pair)
+            if(obj is not SerializedKeyValuePair<TKey, TValue> pair)
                 return false;
             return key.Equals(pair.key) && value.Equals(pair.value);
         }
@@ -55,7 +61,7 @@ namespace MyTool
     {
         protected readonly Dictionary<TKey, TValue> dict;
         [SerializeField]
-        protected List<SerializableKeyValuePair<TKey, TValue>> list;
+        protected List<SerializedKeyValuePair<TKey, TValue>> list;
 
         public int Count => list.Count;
 
@@ -71,8 +77,8 @@ namespace MyTool
             set
             {
                 dict[key] = value;
-                int i = list.IndexOf(new SerializableKeyValuePair<TKey, TValue>(key, value));
-                list[i] = new SerializableKeyValuePair<TKey, TValue>(key, value);
+                int i = list.IndexOf(new SerializedKeyValuePair<TKey, TValue>(key, value));
+                list[i] = new SerializedKeyValuePair<TKey, TValue>(key, value);
             }
         }
 
@@ -96,7 +102,7 @@ namespace MyTool
             if (!ContainsKey(key))
             {
                 dict.Add(key, value);
-                list.Add(new SerializableKeyValuePair<TKey, TValue>(key, value));
+                list.Add(new SerializedKeyValuePair<TKey, TValue>(key, value));
             }
         }
 
@@ -109,7 +115,7 @@ namespace MyTool
         {
             if (TryGetValue(key, out TValue value))
             {
-                list.Remove(new SerializableKeyValuePair<TKey, TValue>(key, value));
+                list.Remove(new SerializedKeyValuePair<TKey, TValue>(key, value));
                 dict.Remove(key);
                 return true;
             }

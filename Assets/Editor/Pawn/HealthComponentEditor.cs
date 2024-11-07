@@ -13,13 +13,13 @@ public class HealthComponentEditor : AutoEditor
     {
         base.OnEnable();
         list = resistance.FindPropertyRelative(nameof(list));
-        SerializedDictionaryHelper.FixEnum<EDamageType>(list);
+        SerializedDictionaryrHelper.FixEnum<EDamageType>(list);
     }
 
     protected override void MyOnInspectorGUI()
     {
         maxHP.PropertyField("最大生命");
         hp.IntField("当前生命");
-        resistance.PropertyField("抗性");
+        list.PropertyField("抗性");
     }
 }

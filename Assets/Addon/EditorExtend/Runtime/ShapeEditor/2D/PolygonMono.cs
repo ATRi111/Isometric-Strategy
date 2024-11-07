@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
     public enum EPolygonStyle
     {
@@ -10,7 +10,7 @@ namespace EditorExtend.PointEditor
         Point
     }
 
-    public class PolygonEditor : PointEditor2D
+    public class PolygonMono : Shape2DMono
     {
         public EPolygonStyle style;
         public List<Vector3> localPoints;
@@ -46,7 +46,7 @@ namespace EditorExtend.PointEditor
         protected override void Reset()
         {
             base.Reset();
-            localPoints = new List<Vector3>() { new Vector3(-1, -1, 0), new Vector3(-1, +1, 0), new Vector3(+1, +1, 0), new Vector3(+1, -1, 0), };
+            localPoints = new List<Vector3>() { new(-1, -1, 0), new(-1, +1, 0), new(+1, +1, 0), new(+1, -1, 0), };
         }
     }
 }

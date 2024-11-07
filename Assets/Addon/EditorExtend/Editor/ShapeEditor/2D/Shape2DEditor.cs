@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
-    public abstract class Editor_PointEditor2D : Editor_PointEditor
+    public abstract class Shape2DEditor : ShapeEditor
     {
         protected override void MyOnInspectorGUI()
         {

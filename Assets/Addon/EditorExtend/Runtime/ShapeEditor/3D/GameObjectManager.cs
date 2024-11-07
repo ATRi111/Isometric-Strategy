@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
     [SelectionBase]
-    public class GameObjectsManager : MonoBehaviour
+    public class GameObjectManager : MonoBehaviour
     {
         public GameObject prefab;
         public GameObject[] gameObjects;

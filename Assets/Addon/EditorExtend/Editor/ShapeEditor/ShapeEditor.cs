@@ -2,9 +2,9 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
-    public abstract class Editor_PointEditor : InteractiveEditor
+    public abstract class ShapeEditor : InteractiveEditor
     {
         protected PointEditorSettings settings;
 

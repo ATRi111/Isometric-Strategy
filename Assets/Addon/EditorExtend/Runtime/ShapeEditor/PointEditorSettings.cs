@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EditorExtend.PointEditor
+namespace EditorExtend.ShapeEditor
 {
     public class PointEditorSettings : ScriptableObject
     {
