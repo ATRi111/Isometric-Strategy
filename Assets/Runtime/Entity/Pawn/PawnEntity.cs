@@ -22,21 +22,21 @@ public class PawnEntity : Entity
         (GridObject as MovableGridObject).RefreshProperty();
     }
 
-    protected override void Register()
+    protected override void BeforeBattle()
     {
-        base.Register();
+        base.BeforeBattle();
+        time = actionTime.CurrentValue;   //入场AT
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         GameManager.Register(this);
     }
 
-    protected override void UnRegister()
+    protected override void OnDisable()
     {
-        base.UnRegister();
+        base.OnDisable();
         GameManager.Unregister(this);
-    }
-
-    protected override void OnStartBattle()
-    {
-        base.OnStartBattle();
-        time = actionTime.CurrentValue;   //入场AT
     }
 }

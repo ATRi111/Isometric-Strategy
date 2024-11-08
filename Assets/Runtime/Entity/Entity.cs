@@ -14,27 +14,23 @@ public class Entity : CharacterEntity
     public GridMoveController MoveController { get; protected set; }
     [AutoComponent]
     public HealthComponent HealthComponent { get; protected set; }
+    [AutoComponent]
+    public BuffManager BuffManager { get; protected set; }
 
     public virtual void RefreshProperty()
     {
         HealthComponent.RefreshProperty();
     }
 
-    protected virtual void Register()
+    protected virtual void OnTick(int time)
     {
-        GameManager.BeforeDoAction += BeforeDoAction;
-        GameManager.OnStartBattle += OnStartBattle;
-    }
-    protected virtual void UnRegister()
-    {
-        GameManager.BeforeDoAction -= BeforeDoAction;
-        GameManager.OnStartBattle -= OnStartBattle;
+        RefreshProperty();
     }
     protected virtual void BeforeDoAction(PawnEntity agent, int time)
     {
         RefreshProperty();
     }
-    protected virtual void OnStartBattle()
+    protected virtual void BeforeBattle()
     {
         RefreshProperty();
         HealthComponent.HP = HealthComponent.maxHP.CurrentValue;
@@ -48,7 +44,6 @@ public class Entity : CharacterEntity
     public virtual void Revive()
     {
         gameObject.SetActive(true);
-        RefreshProperty();
     }
 
     protected override void Awake()
@@ -61,11 +56,16 @@ public class Entity : CharacterEntity
 
     protected virtual void OnEnable()
     {
-        Register();
+        GameManager.BeforeDoAction += BeforeDoAction;
+        GameManager.BeforeBattle += BeforeBattle;
+        GameManager.OnTick += OnTick;
+        RefreshProperty();
     }
 
     protected virtual void OnDisable()
     {
-        UnRegister();
+        GameManager.BeforeDoAction -= BeforeDoAction;
+        GameManager.BeforeBattle -= BeforeBattle;
+        GameManager.OnTick -= OnTick;
     }
 }

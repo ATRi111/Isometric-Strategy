@@ -4,12 +4,27 @@ using System;
 [Serializable]
 public abstract class Effect
 {
+    protected static GameManager gameManager;
+
+    static Effect()
+    {
+        gameManager = ServiceLocator.Get<GameManager>();
+    }
+
+    public const int MaxProbability = 100;
+
     public Entity victim;
     public PawnEntity Pawnvictim => victim as PawnEntity;
 
-    public Effect(Entity victim)
+    public int probability;
+    public int randomValue;
+    public bool AlwaysHappen => probability == MaxProbability;
+    public bool WillHappen => randomValue <= probability;
+
+    public Effect(Entity victim, int probability = MaxProbability)
     {
         this.victim = victim;
+        this.probability = probability;
     }
 
     public abstract bool Appliable { get; }
@@ -25,7 +40,6 @@ public abstract class Effect
         else
             Apply();
     }
-
     public virtual void Apply()
     {
         if (!Appliable)

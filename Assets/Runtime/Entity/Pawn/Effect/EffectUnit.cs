@@ -18,26 +18,9 @@ public class EffectUnit
     {
         for (int i = 0; i < effects.Count; i++)
         {
-            effects[i].Play();
+            if (effects[i].WillHappen)
+                effects[i].Play();
         }
         timeEffect.Play();
-    }
-
-    public void Apply()
-    {
-        for (int i = 0; i < effects.Count; i++)
-        {
-            effects[i].Apply();
-        }
-        timeEffect.Apply();
-    }
-
-    public void Revoke()
-    {
-        timeEffect.Revoke();
-        for (int i = effects.Count - 1; i >= 0; i--)
-        {
-            effects[i].Revoke();
-        }
     }
 }

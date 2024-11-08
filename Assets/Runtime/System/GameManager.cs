@@ -14,7 +14,8 @@ public class GameManager : Service,IService
     private SerializedHashSet<PawnEntity> pawns = new();
 
     public Action<PawnEntity, int> BeforeDoAction;
-    public Action OnStartBattle;
+    public Action BeforeBattle;
+    public Action<int> OnTick;
 
     [SerializeField]
     private int time;
@@ -34,7 +35,7 @@ public class GameManager : Service,IService
     public void StartBattle()
     {
         time = 0;
-        OnStartBattle?.Invoke();
+        BeforeBattle?.Invoke();
         MoveOn();
     }
 
@@ -52,6 +53,7 @@ public class GameManager : Service,IService
             }
         }
         time++;
+        OnTick?.Invoke(time);
         MoveOn();
     }
 
