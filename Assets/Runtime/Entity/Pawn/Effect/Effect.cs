@@ -1,3 +1,4 @@
+using MyTool;
 using Services;
 using System;
 
@@ -19,12 +20,24 @@ public abstract class Effect
     public int probability;
     public int randomValue;
     public bool AlwaysHappen => probability == MaxProbability;
-    public bool WillHappen => randomValue <= probability;
+    public bool WillHappen
+    {
+        get
+        {
+            if(AlwaysHappen)
+                return true;
+            if (randomValue == -1)
+                randomValue = RandomTool.GetGroup(ERandomGrounp.Battle).NextInt(0, MaxProbability);
+            return randomValue <
+                probability;
+        }
+    }
 
     public Effect(Entity victim, int probability = MaxProbability)
     {
         this.victim = victim;
         this.probability = probability;
+        randomValue = -1;
     }
 
     public abstract bool Appliable { get; }
