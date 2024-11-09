@@ -1,11 +1,9 @@
 using Character;
 using MyTool;
-using Services;
 using UnityEngine;
 
 public class BuffManager : CharacterComponentBase
 {
-    private GameManager gameManager;
     [SerializeField]
     private SerializedHashSet<Buff> buffs;
 
@@ -26,26 +24,5 @@ public class BuffManager : CharacterComponentBase
             if(currentTime >= buff.endTime)
                 Unregister(buff);
         }
-    }
-    private void OnTick(int time)
-    {
-        Refresh(time);
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        gameManager = ServiceLocator.Get<GameManager>();
-    }
-
-    private void OnEnable()
-    {
-        gameManager.OnTick += OnTick;
-        Refresh(gameManager.Time);
-    }
-
-    private void OnDisable()
-    {
-        gameManager.OnTick -= OnTick;
     }
 }

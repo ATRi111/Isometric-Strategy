@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2158848222964706217}
   - component: {fileID: 4451063528451210290}
   m_Layer: 0
-  m_Name: Property
+  m_Name: Battle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1500726840230913403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6d7f03c11bf574ea92af7d8e7686d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4486bb1307683d54d9bd63619751f7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP:
@@ -51,6 +51,10 @@ MonoBehaviour:
   hp: 0
   resistance:
     list:
+    - key: 0
+      value:
+        defaultValue: 0
+        currentValue: 0
     - key: 0
       value:
         defaultValue: 0
@@ -67,6 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e33f802d4b837419560ae72b43c0b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffs:
+    list: []
 --- !u!1 &5804586430030361790
 GameObject:
   m_ObjectHideFlags: 0

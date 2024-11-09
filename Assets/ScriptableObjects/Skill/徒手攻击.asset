@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39aa44186d7105847a7b0258a8295e7e, type: 3}
-  m_Name: Skill_EndTurn
+  m_Script: {fileID: 11500000, guid: 1c461700d2de74b49a14d408f02492ed, type: 3}
+  m_Name: "\u5F92\u624B\u653B\u51FB"
   m_EditorClassIdentifier: 
-  actionTime: 0
+  actionTime: 50
+  castingDistance: 1
+  targetFlags: 1
+  damage: 100

@@ -13,13 +13,14 @@ public class Entity : CharacterEntity
     [AutoComponent]
     public GridMoveController MoveController { get; protected set; }
     [AutoComponent]
-    public HealthComponent HealthComponent { get; protected set; }
+    public BattleComponent BattleComponent { get; protected set; }
     [AutoComponent]
     public BuffManager BuffManager { get; protected set; }
 
     public virtual void RefreshProperty()
     {
-        HealthComponent.RefreshProperty();
+        BuffManager.Refresh(GameManager.Time);
+        BattleComponent.Refresh();
     }
 
     protected virtual void OnTick(int time)
@@ -33,7 +34,7 @@ public class Entity : CharacterEntity
     protected virtual void BeforeBattle()
     {
         RefreshProperty();
-        HealthComponent.HP = HealthComponent.maxHP.CurrentValue;
+        BattleComponent.HP = BattleComponent.maxHP.CurrentValue;
     }
 
     public virtual void Die()

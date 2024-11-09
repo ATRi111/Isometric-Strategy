@@ -2,7 +2,7 @@ using EditorExtend;
 using MyTool;
 using UnityEditor;
 
-[CustomEditor(typeof(HealthComponent))]
+[CustomEditor(typeof(BattleComponent))]
 public class HealthComponentEditor : AutoEditor
 {
     [AutoProperty]

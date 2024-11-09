@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Skill_EndTurn", menuName = "Skill/EndTurn")]
+[CreateAssetMenu(fileName = "结束回合", menuName = "Skill/结束回合")]
 public class Skill_EndTurn : NoRangeSkill
 {
 

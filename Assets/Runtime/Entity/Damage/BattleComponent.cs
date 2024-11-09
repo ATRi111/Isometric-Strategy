@@ -3,7 +3,7 @@ using MyTool;
 using System;
 using UnityEngine;
 
-public class HealthComponent : CharacterComponentBase
+public class BattleComponent : CharacterComponentBase
 {
     public IntProperty maxHP;
 
@@ -33,11 +33,11 @@ public class HealthComponent : CharacterComponentBase
     /// <returns></returns>
     public int MockDamage(PawnEntity source, EDamageType type, int damage)
     {
-        //TODO:¿¹ÐÔ
+        damage = Mathf.RoundToInt(damage * (1f - resistance[type].CurrentValue));
         return Mathf.Clamp(HP - damage, 0, maxHP.CurrentValue);
     }
 
-    public void RefreshProperty()
+    public void Refresh()
     {
         maxHP.Refresh();
     }

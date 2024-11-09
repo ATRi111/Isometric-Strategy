@@ -34,21 +34,17 @@ public class RangedSkill : Skill
             return (targetFlags & (int)targetFlag) != 0;
         }
 
-        GridObject gridObject = igm.GetObject(target);
-        if(targetFlags == 0)
-        {
-            return true;
-        }
-        if(MatchFlag(ETargetFlag.Pawn))
-        {
-            if (gridObject.GetComponentInParent<PawnEntity>() != null)
-                return true;
-        }
         if(MatchFlag(ETargetFlag.Entity))
         {
-            if(gridObject.GetComponentInParent<Entity>() != null)
-                return true;
+            return igm.EntityDict.ContainsKey(target);
         }
-        return false;
+        if (MatchFlag(ETargetFlag.Pawn))
+        {
+            if (!igm.EntityDict.ContainsKey(target))
+                return false;
+            Entity entity = igm.EntityDict[target];
+            return entity is PawnEntity;
+        }
+        return true;
     }
 }
