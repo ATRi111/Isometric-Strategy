@@ -29,8 +29,7 @@ public class DebugANodeGenerator : MonoBehaviour
     private void AfterStep(PathFindingProcess process)
     {
         Clear();
-        GameObject obj = new("debug");
-
+        GameObject obj = new("DebugANode");
         AStarNode[] allnodes = process.GetAllNodes();
         for (int i = 0; i < allnodes.Length; i++)
         {
@@ -63,7 +62,7 @@ public class DebugANodeGenerator : MonoBehaviour
 
     public void Clear()
     {
-        GameObject obj = GameObject.Find("debug");
+        GameObject obj = GameObject.Find("DebugANode");
         Destroy(obj);
     }
 
@@ -73,7 +72,7 @@ public class DebugANodeGenerator : MonoBehaviour
         obj.name = node.state.ToString();
         obj.transform.SetParent(parent);
         obj.transform.position = NodeToWorld(node);
-        obj.GetComponent<ANodeDebugUI>().Initialize(node);
+        obj.GetComponent<DebugANodeUI>().Initialize(node);
     }
 #endif
 }

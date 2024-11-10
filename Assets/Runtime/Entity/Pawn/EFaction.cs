@@ -1,6 +1,6 @@
 public enum EFaction
 {
-    Ally,
-    Enemy,
-    Neutral
+    Ally = 1,
+    Neutral = 0,
+    Enemy = -1,
 }

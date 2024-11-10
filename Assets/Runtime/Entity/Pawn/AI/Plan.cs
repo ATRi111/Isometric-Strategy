@@ -1,5 +1,6 @@
 using System;
 
+[Serializable]
 public class Plan : IComparable<Plan>
 {
     public PawnAction action;

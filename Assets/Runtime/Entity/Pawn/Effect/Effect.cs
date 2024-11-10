@@ -27,9 +27,8 @@ public abstract class Effect
             if(AlwaysHappen)
                 return true;
             if (randomValue == -1)
-                randomValue = RandomTool.GetGroup(ERandomGrounp.Battle).NextInt(0, MaxProbability);
-            return randomValue <
-                probability;
+                randomValue = RandomTool.GetGroup(ERandomGrounp.Battle).NextInt(1, MaxProbability + 1);
+            return randomValue <= probability;
         }
     }
 
@@ -64,6 +63,11 @@ public abstract class Effect
         if (!Revokable)
             throw new InvalidOperationException();
     }
+
+    /// <summary>
+    /// 计算此效果对某个角色的价值（这里不考虑概率）
+    /// </summary>
+    public abstract float PrimitiveValueFor(PawnEntity pawn);
 
     public override string ToString()
     {

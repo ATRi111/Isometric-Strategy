@@ -1,4 +1,3 @@
-using MyTool;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,5 +33,10 @@ public class Effect_Move : Effect
     {
         base.Revoke();
         victim.GridObject.CellPosition = from;
+    }
+
+    public override float PrimitiveValueFor(PawnEntity pawn)
+    {
+        return pawn.Brain.EvaluatePosition(to) - pawn.Brain.EvaluatePosition(from);
     }
 }

@@ -1,5 +1,6 @@
 using AStar;
 using Character;
+using EditorExtend.GridEditor;
 using MyTool;
 using Services;
 using System.Collections.Generic;
@@ -13,9 +14,12 @@ public class PawnBrain : CharacterComponentBase
 
     public bool humanControl;
 
-    public readonly List<Plan> plans = new();
+    public List<Plan> plans;
     private readonly List<Vector3Int> options = new();
-
+#if UNITY_EDITOR
+    [SerializeField]
+    private bool prepared;
+#endif
     public virtual void DoAction()
     {
         if (humanControl)
@@ -25,6 +29,16 @@ public class PawnBrain : CharacterComponentBase
         else
         {
             MakePlan();
+#if UNITY_EDITOR
+            if(Pawn.GameManager.debug)
+            {
+                prepared = true;
+                DebugPlanUIGenerator generator = AIManager.GetComponent<DebugPlanUIGenerator>();
+                generator.brain = this;
+                generator.Paint();
+            }
+            else
+#endif
             plans[0].action.Excute();
         }
     }
@@ -32,7 +46,8 @@ public class PawnBrain : CharacterComponentBase
     public virtual void MakePlan()
     {
         plans.Clear();
-        foreach(Skill skill in learnedSkills)
+        positionValueCache.Clear();
+        foreach (Skill skill in learnedSkills)
         {
             MakePlan(skill);
         }
@@ -53,7 +68,34 @@ public class PawnBrain : CharacterComponentBase
 
     public virtual float Evaluate(EffectUnit effectUnit)
     {
-        return 0f;
+        float primitiveValue = 0;
+        List<Effect> effects = effectUnit.effects;
+        for (int i = 0; i < effects.Count; i++)
+        {
+            primitiveValue += (float)effects[i].probability / Effect.MaxProbability * effects[i].PrimitiveValueFor(Pawn);
+        }
+        return primitiveValue / effectUnit.ActionTime;
+    }
+
+    private readonly Dictionary<Vector3Int, float> positionValueCache = new();
+
+    public virtual float EvaluatePosition(Vector3Int position)
+    {
+        if(!positionValueCache.ContainsKey(position))
+        {
+            float value = 0;
+            foreach (Entity entity in Pawn.Igm.EntityDict.Values)
+            {
+                if (Pawn.CheckFaction(entity) == -1)
+                {
+                    value -= IsometricGridUtility.ProjectManhattanDistance(
+                        (Vector2Int)position, 
+                        (Vector2Int)entity.GridObject.CellPosition);
+                }
+            }
+            positionValueCache.Add(position, value);
+        }
+        return positionValueCache[position];
     }
     #endregion
 
@@ -85,14 +127,7 @@ public class PawnBrain : CharacterComponentBase
     #endregion
 
     #region ¼¼ÄÜ
-    [SerializeField]
-    private SerializedHashSet<Skill> learnedSkills;
-
-    public void GetSkills(List<Skill> ret)
-    {
-        ret.Clear();
-        ret.AddRange(learnedSkills);
-    }
+    public SerializedHashSet<Skill> learnedSkills;
 
     public void Learn(Skill skill)
     {
@@ -112,5 +147,19 @@ public class PawnBrain : CharacterComponentBase
     {
         base.Awake();
         AIManager = ServiceLocator.Get<AIManager>();
+    }
+
+    protected void Update()
+    {
+#if UNITY_EDITOR
+        if (prepared)
+        {
+            if (Input.GetKeyUp(KeyCode.O))
+            {
+                plans[0].action.Excute();
+                prepared = false;
+            }
+        }
+#endif
     }
 }

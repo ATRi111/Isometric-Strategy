@@ -27,6 +27,12 @@ public class BattleComponent : CharacterComponentBase
 
     public SerializedDictionary<EDamageType, FloatProperty> resistance;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        resistance.Refresh();
+    }
+
     /// <summary>
     /// 返回预想中受到伤害后HP的值，但不会实际修改HP
     /// </summary>

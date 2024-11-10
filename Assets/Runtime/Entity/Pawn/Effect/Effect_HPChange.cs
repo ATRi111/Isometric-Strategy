@@ -33,4 +33,9 @@ public class Effect_HPChange : Effect
         if(current == 0)
             victim.Revive();
     }
+
+    public override float PrimitiveValueFor(PawnEntity pawn)
+    {
+        return (current - prev) * pawn.CheckFaction(victim);
+    }
 }

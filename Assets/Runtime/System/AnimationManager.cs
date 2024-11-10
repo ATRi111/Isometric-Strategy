@@ -33,10 +33,13 @@ public class AnimationManager : Service,IService
             currenAnimations.Remove(animation);
         animation.Apply();
         if (currenAnimations.Count == 0)
-            StartCoroutine(NoAnimationCheck());
+            StartAnimationCheck();
     }
 
-    public IEnumerator NoAnimationCheck()
+    public void StartAnimationCheck()
+        => StartCoroutine(AnimationCheck());
+
+    private IEnumerator AnimationCheck()
     {
         yield return new WaitForEndOfFrame();
         if (currenAnimations.Count == 0)

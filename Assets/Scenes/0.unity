@@ -210,6 +210,7 @@ MonoBehaviour:
   pawns:
     list: []
   time: 0
+  debug: 1
 --- !u!1 &821372878
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +858,7 @@ GameObject:
   - component: {fileID: 1776701399}
   - component: {fileID: 1776701400}
   - component: {fileID: 1776701401}
+  - component: {fileID: 1776701402}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -984,6 +986,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1374839061621688556, guid: e239f26accf1d4342b3c4b51835c700a, type: 3}
+--- !u!114 &1776701402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776701397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ad802dbd71d744f85f2f5a5356d4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1374839061621688556, guid: 1d20be10f96bafe449a174e399f9303d, type: 3}
+  brain: {fileID: 0}
+  paintIndex: 0
+  skills: []
 --- !u!1 &2122118360
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace EditorExtend.GridEditor
 {
     public static class IsometricGridUtility
     {
+        static IsometricGridUtility()
+        {
+            cache_withinProjectManhattanDistance.Add(new List<Vector2Int>());
+        }
         public static Vector3 CellToWorld(Vector3 cellPosition, Vector3 cellSize)
         {
             float x = 0.5f * cellPosition.x * cellSize.x - 0.5f * cellPosition.y * cellSize.x;

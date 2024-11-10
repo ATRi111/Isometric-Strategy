@@ -55,10 +55,6 @@ MonoBehaviour:
       value:
         defaultValue: 0
         currentValue: 0
-    - key: 0
-      value:
-        defaultValue: 0
-        currentValue: 0
 --- !u!114 &4451063528451210290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,9 +114,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   humanControl: 0
+  plans: []
   learnedSkills:
     list:
+    - {fileID: 11400000, guid: 657c8bcd12f11534ca0c14dfb10bc8d5, type: 2}
     - {fileID: 11400000, guid: 6c221d77fbdbf304a9adcdb5da814e20, type: 2}
+    - {fileID: 11400000, guid: e8601c53d3b3ce842b709d227ee4676c, type: 2}
 --- !u!1 &7860386800660997329
 GameObject:
   m_ObjectHideFlags: 0

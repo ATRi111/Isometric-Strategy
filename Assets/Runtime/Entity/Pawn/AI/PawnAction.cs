@@ -1,9 +1,10 @@
-using MyTool;
+using Services;
 using UnityEngine;
 
 /// <summary>
 /// 一个动作
 /// </summary>
+[System.Serializable]
 public class PawnAction
 {
     public PawnEntity agent;
@@ -33,5 +34,6 @@ public class PawnAction
     public void Excute()
     {
         effectUnit.Play();
+        ServiceLocator.Get<AnimationManager>().StartAnimationCheck();
     }
 }

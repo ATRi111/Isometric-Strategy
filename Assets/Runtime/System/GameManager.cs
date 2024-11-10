@@ -1,7 +1,6 @@
 using MyTool;
 using Services;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Service,IService
@@ -21,7 +20,9 @@ public class GameManager : Service,IService
     private int time;
     public int Time => time;
 
-    public List<PawnAction> actionList;
+#if UNITY_EDITOR
+    public bool debug;
+#endif
 
     public void Register(PawnEntity entity)
     {

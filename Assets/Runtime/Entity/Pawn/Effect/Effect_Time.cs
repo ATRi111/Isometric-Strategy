@@ -35,4 +35,9 @@ public class Effect_Time : Effect
         base.Revoke();
         Pawnvictim.time = prev;
     }
+
+    public override float PrimitiveValueFor(PawnEntity pawn)
+    {
+        throw new System.InvalidOperationException();
+    }
 }

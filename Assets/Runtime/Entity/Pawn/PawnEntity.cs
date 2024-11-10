@@ -39,4 +39,15 @@ public class PawnEntity : Entity
         base.OnDisable();
         GameManager.Unregister(this);
     }
+    /// <summary>
+    /// 与目标为友方返回1，与目标为敌方返回-1，目标为中立或非Pawn返回0
+    /// </summary>
+    /// <returns></returns>
+    public int CheckFaction(Entity entity)
+    {
+        PawnEntity pawn = entity as PawnEntity;
+        if (pawn == null)
+            return 0;
+        return (int)faction * (int)pawn.faction;
+    }
 }
