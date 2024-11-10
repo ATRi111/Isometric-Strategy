@@ -8,7 +8,7 @@ namespace EditorExtend.GridEditor
         public float height = 1;
         public override bool Overlap(Vector3 p)
         {
-            return GridUtility.BoxOverlap(CellPosition, Vector3.one.ResetZ(height), p);
+            return GridPhysics.BoxOverlap(CellPosition, Vector3.one.ResetZ(height), p);
         }
 
         public override void GetStrip(List<Vector3> ret)

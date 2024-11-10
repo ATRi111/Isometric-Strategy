@@ -151,7 +151,7 @@ namespace EditorExtend.GridEditor
 #endif
             if (OverlapFunc != null)
                 return OverlapFunc.Invoke(p);
-            return GridUtility.BoxOverlap(cellPosition, Vector3Int.one, p);
+            return GridPhysics.BoxOverlap(cellPosition, Vector3Int.one, p);
         }
 
         #endregion

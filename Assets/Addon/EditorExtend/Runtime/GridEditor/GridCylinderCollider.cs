@@ -35,7 +35,7 @@ namespace EditorExtend.GridEditor
 
         public override bool Overlap(Vector3 p)
         {
-            return GridUtility.CylinderOverlap(CellPosition, height, radius, p);
+            return GridPhysics.CylinderOverlap(CellPosition, height, radius, p);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace MyTool
@@ -72,7 +73,7 @@ namespace MyTool
         /// </summary>
         public static List<Vector2Int> GetDirections()
         {
-            List<Vector2Int> ret = new List<Vector2Int>(8);
+            List<Vector2Int> ret = new(8);
             for (int i = 0; i < 8; i++)
             {
                 ret.Add(((EDirection)i).ToVector());
@@ -183,28 +184,48 @@ namespace MyTool
         }
 
         /// <summary>
-        /// 沿一条直线前进，在不符合条件时停下（直线用每一点的坐标表示）
+        /// 计算线段覆盖的坐标为整数的方格（线段从from的中心点到to的中心点）
         /// </summary>
-        /// <param name="CanMove">条件，两个参数分别表示一步的起点和终点</param>
-        /// <param name="containStop">返回结果是否包含使直线停下的点</param>
-        /// <param name="containStart">返回结果是否包含起点</param>
-        /// <returns>直线直到停下之前的部分</returns>
-        public static List<Vector2Int> StopLine(List<Vector2Int> line, Func<Vector2Int, Vector2Int, bool> CanMove, bool containStop = false, bool containStart = false)
+        public static List<Vector2Int> OverlapInt(Vector2Int from, Vector2Int to)
         {
-            List<Vector2Int> ret = new() { line[0] };
-            for (int i = 0; i < line.Count - 1; i++)
-            {
-                if (!CanMove(line[i], line[i + 1]))
-                {
-                    if (containStop)
-                        ret.Add(line[i + 1]);
-                    break;
-                }
-                ret.Add(line[i + 1]);
-            }
-            if (!containStart)
-                ret.RemoveAt(0);
+            List<Vector2Int> ret = new() { from };
+            OverlapInt(to - from, ret);
             return ret;
+        }
+
+        private static void OverlapInt(Vector2Int v, List<Vector2Int> ret)
+        {
+            void Add(Vector2Int v)
+            {
+                ret.Add(ret[^1] + v);
+            }
+
+            int deltaX = v.x;
+            int deltaY = v.y;
+            if (deltaX == 0)
+            {
+                int n = Mathf.Abs(deltaY);
+                Vector2Int delta = new(0, deltaY / n);
+                for (int i = 0; i < n; i++)
+                    Add(delta);
+            }
+            else if(deltaY == 0)
+            {
+                int n = Mathf.Abs(deltaX);
+                Vector2Int delta = new(deltaX / n, 0);
+                for (int i = 0; i < n; i++)
+                    Add(delta);
+            }
+            else if ((deltaX & 1) == 0 || (deltaY & 1) == 0)
+            {
+                //TODO
+            }
+            else
+            {
+                OverlapInt(new Vector2Int(deltaX / 2, deltaY / 2), ret);
+                Add(new Vector2Int(deltaX / Mathf.Abs(deltaX), deltaY / Mathf.Abs(deltaY)));
+                OverlapInt(new Vector2Int(deltaX / 2, deltaY / 2), ret);
+            }
         }
     }
 }
