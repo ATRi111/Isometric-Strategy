@@ -1,26 +1,28 @@
-using MyTimer;
-using Services;
+using EditorExtend.GridEditor;
+using MyTool;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    private GameManager gameManager;
-    private AnimationManager animationManager;
-    private IsometricGridManager igm;
-    public TimerOnly timer;
+    public Vector2Int extend;
 
-    private void Awake()
-    {
-        gameManager = ServiceLocator.Get<GameManager>();
-        animationManager = ServiceLocator.Get<AnimationManager>();
-        igm = IsometricGridManager.FindInstance();
-    }
+    public Vector2Int from;
+    public Vector2Int to;
 
-    private void Update()
+    private void OnDrawGizmosSelected()
     {
-        if (Input.GetKeyUp(KeyCode.K))
+        List<Vector2Int> list = EDirectionTool.OverlapInt(from, to);
+        for (int i = 0; i <= extend.x; i++)
         {
-            gameManager.StartBattle();
+            for(int j = 0; j <= extend.y; j++)
+            {
+                Vector2Int p = new(i, j);
+                Gizmos.color = list.Contains(p) ? Color.red : Color.green;
+                Gizmos.DrawCube((Vector3Int)p, 0.9f * Vector3.one);
+            }
         }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(from.AddZ(-1), to.AddZ(-1));
     }
 }

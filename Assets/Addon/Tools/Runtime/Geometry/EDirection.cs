@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace MyTool
@@ -184,7 +182,7 @@ namespace MyTool
         }
 
         /// <summary>
-        /// 计算线段覆盖的坐标为整数的方格（线段从from的中心点到to的中心点）
+        /// 计算线段覆盖的坐标为整数的方格（线段从from的中心点延申到to的中心点）
         /// </summary>
         public static List<Vector2Int> OverlapInt(Vector2Int from, Vector2Int to)
         {
@@ -193,7 +191,7 @@ namespace MyTool
             return ret;
         }
 
-        private static void OverlapInt(Vector2Int v, List<Vector2Int> ret)
+        private static void OverlapInt(Vector2Int v, List<Vector2Int> ret, int gcd = -1)
         {
             void Add(Vector2Int v)
             {
@@ -202,29 +200,37 @@ namespace MyTool
 
             int deltaX = v.x;
             int deltaY = v.y;
-            if (deltaX == 0)
+            int absx = Mathf.Abs(deltaX);
+            int absy = Mathf.Abs(deltaY);
+
+            if (gcd == -1)
+                gcd = MathTool.GreatestCommonDivisor(absx, absy);
+
+            if (gcd > 1)
             {
-                int n = Mathf.Abs(deltaY);
-                Vector2Int delta = new(0, deltaY / n);
-                for (int i = 0; i < n; i++)
-                    Add(delta);
+                for (int i = 0; i < gcd; i++)
+                    OverlapInt(new Vector2Int(deltaX / gcd, deltaY / gcd), ret, 1);
+                return;
             }
-            else if(deltaY == 0)
+
+            //约分后，absx/absy若为一奇一偶，必然可以分解为若干x/y的组合；若均为奇数，必然可以分解为仅一个x+y和若干x/y的组合
+            Vector2Int x = new(deltaX / absx, 0);
+            Vector2Int y = new(0, deltaY / absy);
+            Vector2Int[] bases = new Vector2Int[] { x, y };
+            if((absx & 1) == 0 || (absy & 1) == 0)
             {
-                int n = Mathf.Abs(deltaX);
-                Vector2Int delta = new(deltaX / n, 0);
-                for (int i = 0; i < n; i++)
-                    Add(delta);
-            }
-            else if ((deltaX & 1) == 0 || (deltaY & 1) == 0)
-            {
-                //TODO
+                List<int> mix = MathTool.MixList(absx, absy);
+                for (int i = 0; i < mix.Count; i++)
+                    Add(bases[mix[i]]);
             }
             else
             {
-                OverlapInt(new Vector2Int(deltaX / 2, deltaY / 2), ret);
-                Add(new Vector2Int(deltaX / Mathf.Abs(deltaX), deltaY / Mathf.Abs(deltaY)));
-                OverlapInt(new Vector2Int(deltaX / 2, deltaY / 2), ret);
+                List<int> mix = MathTool.MixList(absx / 2, absy / 2);
+                for (int i = 0; i < mix.Count; i++)
+                    Add(bases[mix[i]]);
+                Add(x + y);
+                for (int i = 0; i < mix.Count; i++)
+                    Add(bases[mix[i]]);
             }
         }
     }
