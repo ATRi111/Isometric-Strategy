@@ -2,11 +2,13 @@ using Character;
 using EditorExtend.GridEditor;
 using Services;
 using Services.Event;
+using UnityEngine;
 
 public class Entity : CharacterEntity
 {
     public IsometricGridManager Igm { get;protected set; }
     public GameManager GameManager { get; protected set; }
+    public AnimationManager AnimationManager { get; protected set; }
     public IEventSystem EventSystem { get; protected set; }
     [AutoComponent]
     public GridObject GridObject { get; protected set; }
@@ -16,6 +18,18 @@ public class Entity : CharacterEntity
     public BattleComponent BattleComponent { get; protected set; }
     [AutoComponent]
     public BuffManager BuffManager { get; protected set; }
+
+    [SerializeField]
+    private string entityName;
+    public string EntityName
+    {
+        get
+        {
+            if(string.IsNullOrEmpty(entityName))
+                return gameObject.name;
+            return entityName;
+        }
+    }
 
     public virtual void RefreshProperty()
     {
@@ -52,6 +66,7 @@ public class Entity : CharacterEntity
         base.Awake();
         GameManager = ServiceLocator.Get<GameManager>();
         EventSystem = ServiceLocator.Get<IEventSystem>();
+        AnimationManager = ServiceLocator.Get<AnimationManager>();
         Igm = IsometricGridManager.FindInstance();
     }
 

@@ -14,13 +14,13 @@ public class EffectUnit
         timeEffect.current += agent.actionTime.CurrentValue;
     }
 
-    public void Play()
+    public void Play(AnimationManager animationManager)
     {
         for (int i = 0; i < effects.Count; i++)
         {
             if (effects[i].WillHappen)
-                effects[i].Play();
+                effects[i].Play(animationManager);
         }
-        timeEffect.Play();
+        timeEffect.Play(animationManager);
     }
 }

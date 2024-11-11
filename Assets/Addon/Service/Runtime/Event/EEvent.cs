@@ -22,5 +22,13 @@ namespace Services
         /// 玩家开始控制某个角色，参数：控制的角色
         /// </summary>
         OnHumanControl,
+        /// <summary>
+        /// 显示信息，参数：引发事件的脚本，屏幕位置，信息内容
+        /// </summary>
+        ShowMessage,
+        /// <summary>
+        /// 隐藏信息，参数：引发事件的脚本
+        /// </summary>
+        HideMessage,
     }
 }

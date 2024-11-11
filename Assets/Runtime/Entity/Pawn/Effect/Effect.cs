@@ -44,11 +44,11 @@ public abstract class Effect
 
     public abstract AnimationProcess GenerateAnimation();
 
-    public virtual void Play()
+    public virtual void Play(AnimationManager animationManager)
     {
         AnimationProcess animation = GenerateAnimation();
         if (animation != null)
-            ServiceLocator.Get<AnimationManager>().Register(animation);
+            animationManager.Register(animation);
         else
             Apply();
     }

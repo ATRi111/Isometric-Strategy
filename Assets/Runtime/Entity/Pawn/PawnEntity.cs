@@ -1,4 +1,5 @@
 using Character;
+using System.Collections.Generic;
 
 /// <summary>
 /// 可行动的Entity
@@ -49,5 +50,13 @@ public class PawnEntity : Entity
         if (pawn == null)
             return 0;
         return (int)faction * (int)pawn.faction;
+    }
+}
+
+public class Comparer_PawnEntity_ActionTime : IComparer<PawnEntity>
+{
+    public int Compare(PawnEntity x, PawnEntity y)
+    {
+        return x.actionTime.CurrentValue - y.actionTime.CurrentValue;
     }
 }

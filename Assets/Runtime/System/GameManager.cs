@@ -9,8 +9,8 @@ public class GameManager : Service,IService
     private AnimationManager animationManager;
 
     public override Type RegisterType => GetType();
-    [SerializeField]
-    private SerializedHashSet<PawnEntity> pawns = new();
+
+    public SerializedHashSet<PawnEntity> pawns = new();
 
     public Action<PawnEntity, int> BeforeDoAction;
     public Action BeforeBattle;
@@ -19,6 +19,8 @@ public class GameManager : Service,IService
     [SerializeField]
     private int time;
     public int Time => time;
+
+    public bool waitingForAnimation;
 
 #if UNITY_EDITOR
     public bool debug;
@@ -48,19 +50,37 @@ public class GameManager : Service,IService
             if (time >= pawn.time)
             {
                 BeforeDoAction?.Invoke(pawn, time);
+                waitingForAnimation = true;
                 pawn.Brain.DoAction();
-                animationManager.AfterNoAnimation += AfterAnimationComplete;
                 return;
             }
         }
         time++;
         OnTick?.Invoke(time);
-        MoveOn();
+        waitingForAnimation = true;
+        animationManager.StartAnimationCheck();
     }
 
     private void AfterAnimationComplete()
     {
-        animationManager.AfterNoAnimation -= AfterAnimationComplete;
+        if (!waitingForAnimation)
+            throw new InvalidOperationException();
+        Debug.Log("Animation Complete");
+        waitingForAnimation = false;
         MoveOn();
+    }
+
+    protected internal override void Init()
+    {
+        base.Init();
+        animationManager.AfterAnimationComplete += AfterAnimationComplete;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            StartBattle();
+        }
     }
 }

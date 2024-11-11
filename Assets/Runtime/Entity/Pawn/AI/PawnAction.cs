@@ -1,4 +1,3 @@
-using Services;
 using UnityEngine;
 
 /// <summary>
@@ -29,11 +28,11 @@ public class PawnAction
     }
 
     /// <summary>
-    /// 执行动作
+    /// 执行并播放动作
     /// </summary>
-    public void Excute()
+    public void Play(AnimationManager animationManager)
     {
-        effectUnit.Play();
-        ServiceLocator.Get<AnimationManager>().StartAnimationCheck();
+        effectUnit.Play(animationManager);
+        animationManager.StartAnimationCheck();
     }
 }

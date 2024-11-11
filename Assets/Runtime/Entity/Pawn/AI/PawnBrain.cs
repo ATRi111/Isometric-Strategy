@@ -39,7 +39,7 @@ public class PawnBrain : CharacterComponentBase
             }
             else
 #endif
-            plans[0].action.Excute();
+            plans[0].action.Play(Pawn.AnimationManager);
         }
     }
 
@@ -156,7 +156,7 @@ public class PawnBrain : CharacterComponentBase
         {
             if (Input.GetKeyUp(KeyCode.O))
             {
-                plans[0].action.Excute();
+                plans[0].action.Play(Pawn.AnimationManager);
                 prepared = false;
             }
         }

@@ -14,7 +14,7 @@ public class AnimationManager : Service,IService
 
     private readonly HashSet<AnimationProcess> currenAnimations = new();
 
-    public Action AfterNoAnimation;
+    public Action AfterAnimationComplete;
 
     public void Register(AnimationProcess animation)
     {
@@ -37,12 +37,15 @@ public class AnimationManager : Service,IService
     }
 
     public void StartAnimationCheck()
-        => StartCoroutine(AnimationCheck());
+    {
+        Debug.LogWarning("Start Animation Check");
+        StartCoroutine(AnimationCheck());
+    }
 
     private IEnumerator AnimationCheck()
     {
         yield return new WaitForEndOfFrame();
         if (currenAnimations.Count == 0)
-            AfterNoAnimation?.Invoke();
+            AfterAnimationComplete?.Invoke();
     }
 }
