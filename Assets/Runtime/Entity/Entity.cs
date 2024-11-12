@@ -72,16 +72,15 @@ public class Entity : CharacterEntity
 
     protected virtual void OnEnable()
     {
-        GameManager.BeforeDoAction += BeforeDoAction;
-        GameManager.BeforeBattle += BeforeBattle;
-        GameManager.OnTick += OnTick;
-        RefreshProperty();
+        EventSystem.AddListener<PawnEntity, int>(EEvent.BeforeDoAction, BeforeDoAction);
+        EventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
+        EventSystem.AddListener<int>(EEvent.OnTick, OnTick);
     }
 
     protected virtual void OnDisable()
     {
-        GameManager.BeforeDoAction -= BeforeDoAction;
-        GameManager.BeforeBattle -= BeforeBattle;
-        GameManager.OnTick -= OnTick;
+        EventSystem.RemoveListener<PawnEntity, int>(EEvent.BeforeDoAction, BeforeDoAction);
+        EventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
+        EventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
     }
 }

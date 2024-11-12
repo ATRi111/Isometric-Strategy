@@ -1,5 +1,6 @@
 using MyTool;
 using Services;
+using Services.Event;
 using System;
 using UnityEngine;
 
@@ -7,14 +8,12 @@ public class GameManager : Service,IService
 {
     [AutoService]
     private AnimationManager animationManager;
+    [AutoService]
+    private IEventSystem eventSystem;
 
     public override Type RegisterType => GetType();
 
     public SerializedHashSet<PawnEntity> pawns = new();
-
-    public Action<PawnEntity, int> BeforeDoAction;
-    public Action BeforeBattle;
-    public Action<int> OnTick;
 
     [SerializeField]
     private int time;
@@ -38,7 +37,7 @@ public class GameManager : Service,IService
     public void StartBattle()
     {
         time = 0;
-        BeforeBattle?.Invoke();
+        eventSystem.Invoke(EEvent.BeforeBattle);
         MoveOn();
     }
 
@@ -49,14 +48,14 @@ public class GameManager : Service,IService
         {
             if (time >= pawn.time)
             {
-                BeforeDoAction?.Invoke(pawn, time);
+                eventSystem.Invoke(EEvent.BeforeDoAction, pawn, time);
                 waitingForAnimation = true;
                 pawn.Brain.DoAction();
                 return;
             }
         }
         time++;
-        OnTick?.Invoke(time);
+        eventSystem.Invoke(EEvent.OnTick, time);
         waitingForAnimation = true;
         animationManager.StartAnimationCheck();
     }

@@ -30,5 +30,17 @@ namespace Services
         /// 隐藏信息，参数：引发事件的脚本
         /// </summary>
         HideMessage,
+        /// <summary>
+        /// 战斗开始
+        /// </summary>
+        BeforeBattle,
+        /// <summary>
+        /// 时间变动，参数：当前全局时间
+        /// </summary>
+        OnTick,
+        /// <summary>
+        /// 角色即将行动，参数：角色，当前全局时间
+        /// </summary>
+        BeforeDoAction,
     }
 }

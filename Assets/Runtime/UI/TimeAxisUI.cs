@@ -2,18 +2,16 @@ using Services;
 using Services.Event;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TimeAxisUI : MonoBehaviour
 {
-    private IEventSystem eventSystem;
     private GameManager gameManager;
+    private IEventSystem eventSystem;
 
     private Comparer_PawnEntity_ActionTime comparer;
     private TimeAxisIcon[] icons;
     [SerializeField]
     private GameObject prefab;
-    private Image image;
 
     public int maxIconCount;
     public float timeSpan;
@@ -28,6 +26,10 @@ public class TimeAxisUI : MonoBehaviour
 
     private void OnTick(int time)
     {
+        Vector3[] corners = new Vector3[4];
+        GetComponent<RectTransform>().GetWorldCorners(corners);
+        left = (corners[0] + corners[1]) / 2;
+        right = (corners[2] + corners[3]) / 2;
         List<PawnEntity> entites = new();
         timeSpan = 0;
         foreach (PawnEntity entity in gameManager.pawns)
@@ -44,7 +46,7 @@ public class TimeAxisUI : MonoBehaviour
             icons[i].transform.position = TimeToPosition(entites[i].time - time);
             icons[i].canvasGrounp.Visible = true;
         }
-        for(int i = count;i < maxIconCount; i++)
+        for (int i = count;i < maxIconCount; i++)
         {
             icons[i].canvasGrounp.Visible = false;
         }
@@ -54,28 +56,23 @@ public class TimeAxisUI : MonoBehaviour
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
         gameManager = ServiceLocator.Get<GameManager>();
-        image = GetComponent<Image>();
         comparer = new();
         icons = new TimeAxisIcon[maxIconCount];
         for (int i = 0; i < maxIconCount; i++)
         {
             GameObject obj = Instantiate(prefab, transform);
             icons[i] = obj.GetComponent<TimeAxisIcon>();
-            icons[i].canvasGrounp.Visible = false;
+            icons[i].transform.localPosition = Vector3.zero;
         }
-        Vector3[] corners = new Vector3[4];
-        GetComponent<RectTransform>().GetWorldCorners(corners); //TODO:适应不同分辨率
-        left = (corners[0] + corners[1]) / 2;
-        right = (corners[2] + corners[3]) / 2;
     }
 
     private void OnEnable()
     {
-        gameManager.OnTick += OnTick;
+        eventSystem.AddListener<int>(EEvent.OnTick, OnTick);
     }
 
     private void OnDisable()
     {
-        gameManager.OnTick -= OnTick;
+        eventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
     }
 }
