@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1226048150741817513}
   - component: {fileID: 7051102911839030281}
   - component: {fileID: 4768781221979206086}
-  - component: {fileID: 9082200230493536126}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -103,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shortName: 
   cellPosition: {x: 0, y: 0, z: 0}
+  groundHeight: 1
 --- !u!114 &4768781221979206086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,18 +115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089789dc8148a8f43ae81298b70ddca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 1
---- !u!114 &9082200230493536126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2383143098659270522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bbe25e268cbbf843a0529a3477335a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isObstacle: 0
   height: 1

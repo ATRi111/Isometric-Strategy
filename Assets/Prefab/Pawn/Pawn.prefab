@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   humanControl: 0
   plans: []
+  prepared: 0
   learnedSkills:
     list:
     - {fileID: 11400000, guid: 657c8bcd12f11534ca0c14dfb10bc8d5, type: 2}
@@ -131,7 +132,6 @@ GameObject:
   - component: {fileID: 1913554875005533004}
   - component: {fileID: 5429392778804014187}
   - component: {fileID: 28454254504980518}
-  - component: {fileID: 843954342595301071}
   m_Layer: 0
   m_Name: Physics
   m_TagString: Untagged
@@ -189,20 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 3
   radius: 0.3
---- !u!114 &843954342595301071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7860386800660997329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bbe25e268cbbf843a0529a3477335a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isObstacle: 0
-  height: 0
 --- !u!1 &8275336948927669841
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shortName: 
   cellPosition: {x: 0, y: 0, z: 0}
+  groundHeight: 0
   climbAbility:
     defaultValue: 2
     currentValue: 0
@@ -329,7 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac5d73f153ffc94c8e0edaf6bc93bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction: 2
+  entityName: 
+  faction: 0
   actionTime:
     defaultValue: 0
     currentValue: 0

@@ -113,25 +113,12 @@ namespace EditorExtend.GridEditor
         #endregion
 
         #region 游戏逻辑
-
-        protected GridGround ground;
+        [SerializeField]
+        protected int groundHeight = 1;
         /// <summary>
         /// 发挥地面作用时，此物体的高度
         /// </summary>
-        public int GroundHeight
-        {
-            get
-            {
-#if UNITY_EDITOR
-                if (!Application.isPlaying)
-                    ground = GetComponentInChildren<GridGround>();
-#endif
-                if (ground != null)
-                    return ground.GroundHeight();
-
-                return 1;
-            }
-        }
+        public virtual int GroundHeight => groundHeight;
 
         protected GridCollider gridCollider;
         /// <summary>
@@ -171,7 +158,6 @@ namespace EditorExtend.GridEditor
 
         protected virtual void Awake()
         {
-            ground = GetComponentInChildren<GridGround>();
             gridCollider = GetComponentInChildren<GridCollider>();
         }
 

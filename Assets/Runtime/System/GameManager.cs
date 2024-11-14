@@ -64,7 +64,7 @@ public class GameManager : Service,IService
     {
         if (!waitingForAnimation)
             throw new InvalidOperationException();
-        Debug.Log("Animation Complete");
+        Debug.LogWarning("Animation Complete");
         waitingForAnimation = false;
         MoveOn();
     }
