@@ -20,14 +20,14 @@ namespace EditorExtend.GridEditor
 
         public static bool LineSegmentCastBox(Vector3 min, Vector3 extend, ref Vector3 from, ref Vector3 to)
         {
+            float uIn = 0, uOut = 1;
             float u1, u2;
             Vector3 v = to - from;
-            float uIn = 0, uOut = 1;
 
             bool IntersectAndCheck(float p1, float p2, float p0, float q)
             {
                 if (q == 0)
-                    return true;
+                    return p0 >= p1 && p0 <= p2;
 
                 u1 = (p1 - p0) / q;
                 u2 = (p2 - p0) / q;
@@ -60,7 +60,8 @@ namespace EditorExtend.GridEditor
         }
         private static bool LineSegmentCastCylinder(float height, float radius, ref Vector3 from, ref Vector3 to)
         {
-            float uIn, uOut;
+            float uIn = 0, uOut = 1;
+            float u1 , u2;
             Vector3 v = to - from;
             //先投影到xy平面，求线段与圆的交点
             
@@ -71,8 +72,8 @@ namespace EditorExtend.GridEditor
                     return false;
                 float y1 = -Mathf.Sqrt(d);
                 float y2 = -y1;
-                uIn = (y1 - from.y) / v.y;
-                uOut = (y2 - from.y) / v.y;
+                u1 = (y1 - from.y) / v.y;
+                u2 = (y2 - from.y) / v.y;
             }
             else
             {
@@ -88,17 +89,23 @@ namespace EditorExtend.GridEditor
                     return false;
                 float x1 = (-b - Mathf.Sqrt(d)) / 2 / a;
                 float x2 = (-b + Mathf.Sqrt(d)) / 2 / a;
-                uIn = (x1 - from.x) / v.x;
-                uOut = (x2 - from.x) / v.x;
+                u1 = (x1 - from.x) / v.x;
+                u2 = (x2 - from.x) / v.x;
             }
-            if (uIn > uOut)
-                (uIn, uOut) = (uOut, uIn);
+
+            if (u1 > u2)
+                (u1, u2) = (u2, u1);
+            uIn = Mathf.Max(uIn, u1);
+            uOut = Mathf.Min(uOut, u2);
+            if (uIn >= uOut)
+                return false;
+
             float z1 = from.z + uIn * v.z;
             float z2 = from.z + uOut * v.z;
             if( z1 >= 0 && z1 < height && z2 >= 0 && z2 < height)
             {
-                to = from + uOut * v;
-                from += uIn * v;
+                to = from + u2 * v;
+                from += u1 * v;
                 return true;
             }
             return false;

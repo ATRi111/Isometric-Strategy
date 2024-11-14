@@ -5,17 +5,19 @@ namespace EditorExtend.GridEditor
 {
     public class GridCylinderCollider : GridCollider
     {
-        public static Vector3 CenterOffset = 0.5f * Vector2.one;
+        public static Vector3 BottomCenterOffset = 0.5f * Vector2.one;
         public float height = 3f;
         public float radius = 0.3f;
 
+        public override Vector3 Center => CellPosition + new Vector3(0.5f, 0.5f, 0.5f * height);
+
         public override bool Overlap(Vector3 p)
         {
-            return GridPhysics.CylinderOverlap(CellPosition + CenterOffset, height, radius, p);
+            return GridPhysics.CylinderOverlap(CellPosition + BottomCenterOffset, height, radius, p);
         }
         public override bool OverlapLineSegment(ref Vector3 from, ref Vector3 to)
         {
-            return GridPhysics.LineSegmentCastCylinder(CellPosition + CenterOffset, height, radius, ref from, ref to);
+            return GridPhysics.LineSegmentCastCylinder(CellPosition + BottomCenterOffset, height, radius, ref from, ref to);
         }
 
         public override void GetStrip(List<Vector3> ret)

@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using EditorExtend.GridEditor;
 using UnityEngine;
 
 public class StraitLineSkill : ProjectileSkill
 {
-    public override Vector3Int CalculateHitPoint(Vector3Int target)
+    public override GridObject HitCheck(IsometricGridManager igm, Vector3 from, Vector3 to, out Vector3 hit)
     {
-        throw new System.NotImplementedException();
+        GridObject gridObject = igm.LineSegmentCast(from, to, out hit);
+        return gridObject;
     }
 }

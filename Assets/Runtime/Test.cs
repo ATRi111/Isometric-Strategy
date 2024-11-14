@@ -21,7 +21,7 @@ public class Test : MonoBehaviour
     {
         if(Application.isPlaying)
         {
-            result = igm.LineSegmentCast(from, to, out hit);
+            result = igm.LineSegmentCast(from + mid, to + mid, out hit);
             Gizmos.color = Color.red;
             Gizmos.DrawLine(igm.CellToWorld(from + mid).ResetZ(), igm.CellToWorld(hit).ResetZ());
             Gizmos.color = Color.green;

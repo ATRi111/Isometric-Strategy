@@ -119,6 +119,23 @@ namespace EditorExtend.GridEditor
         /// 发挥地面作用时，此物体的高度
         /// </summary>
         public virtual int GroundHeight => groundHeight;
+        /// <summary>
+        /// 中心点坐标
+        /// </summary>
+        public virtual Vector3 Center
+        {
+            get
+            {
+#if UNITY_EDITOR
+                if (!Application.isPlaying)
+                    gridCollider = GetComponentInChildren<GridCollider>();
+#endif
+                if (gridCollider != null)
+                    return gridCollider.Center;
+
+                return cellPosition + 0.5f * Vector3.one;
+            }
+        }
 
         protected GridCollider gridCollider;
         /// <summary>
@@ -131,7 +148,7 @@ namespace EditorExtend.GridEditor
                 gridCollider = GetComponentInChildren<GridCollider>();
 #endif
             if (gridCollider != null)
-                return gridCollider.Overlap(p + GridUtility.CenterOffset);
+                return gridCollider.Overlap(p);
 
             return GridPhysics.BoxOverlap(cellPosition, Vector3Int.one, p);
         }
