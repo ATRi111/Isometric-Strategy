@@ -13,8 +13,9 @@ public class MovableGridObject : GridObject
     public IntProperty dropAbility;
     public IntProperty moveAbility;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         igm = Manager as IsometricGridManager;
         pawn = GetComponentInParent<PawnEntity>();
         MoveController = GetComponentInChildren<GridMoveController>();

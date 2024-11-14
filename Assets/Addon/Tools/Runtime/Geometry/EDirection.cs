@@ -126,10 +126,30 @@ namespace MyTool
                 ret.Add(ret[^1] + v);
             }
 
+            if (v.x == 0 && v.y == 0)
+                return;
+
             int deltaX = v.x;
             int deltaY = v.y;
             int absx = Mathf.Abs(deltaX);
             int absy = Mathf.Abs(deltaY);
+            Vector2Int x, y;
+
+            if (v.x == 0)
+            {
+                y = new(0, deltaY / absy);
+                for (int i = 0; i < absy; i++)
+                    Add(y);
+                return;
+            }
+            
+            if(v.y == 0)
+            {
+                x = new(deltaX / absx, 0);
+                for (int i = 0; i < absx; i++)
+                    Add(x);
+                return;
+            }
 
             if (gcd == -1)
                 gcd = MathTool.GreatestCommonDivisor(absx, absy);
@@ -142,8 +162,8 @@ namespace MyTool
             }
 
             //约分后，absx/absy若为一奇一偶，必然可以分解为若干x/y的组合；若均为奇数，必然可以分解为仅一个x+y和若干x/y的组合
-            Vector2Int x = new(deltaX / absx, 0);
-            Vector2Int y = new(0, deltaY / absy);
+            x = new(deltaX / absx, 0);
+            y = new(0, deltaY / absy);
             Vector2Int[] bases = new Vector2Int[] { x, y };
             if((absx & 1) == 0 || (absy & 1) == 0)
             {
