@@ -1,4 +1,5 @@
 using EditorExtend.GridEditor;
+using MyTool;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,5 +35,24 @@ public class IsometricGridManager : IsometricGridManagerBase
             entityDict.Remove(cellPosition);
         }
         return gridObject;
+    }
+
+    private readonly List<Vector2Int> overlap = new();
+    /// <summary>
+    /// 获取第一个与有向线段相交的GridObject（忽略from所在格子）
+    /// </summary>
+    public GridObject LineSegmentCast(Vector3Int from, Vector3Int to)
+    {
+        List<GridObject> gridObjects = new();
+        EDirectionTool.OverlapInt((Vector2Int)from, (Vector2Int)to, overlap);
+        for (int i = 1; i < overlap.Count; i++)
+        {
+            GetObejectsXY(overlap[i], gridObjects);
+            for (int j = 0; j < gridObjects.Count; j++)
+            {
+                
+            }
+        }
+        return null;
     }
 }

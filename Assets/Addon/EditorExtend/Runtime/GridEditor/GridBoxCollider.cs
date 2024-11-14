@@ -11,6 +11,11 @@ namespace EditorExtend.GridEditor
             return GridPhysics.BoxOverlap(CellPosition, Vector3.one.ResetZ(height), p);
         }
 
+        public override bool OverlapLineSegment(ref Vector3 from, ref Vector3 to)
+        {
+            return GridPhysics.LineSegmentCastBox(CellPosition, Vector3.one.ResetZ(height), ref from, ref to);
+        }
+
         public override void GetStrip(List<Vector3> ret)
         {
             Vector3 temp = Vector3.zero;

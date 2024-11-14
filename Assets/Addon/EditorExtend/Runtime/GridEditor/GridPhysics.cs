@@ -53,7 +53,7 @@ namespace EditorExtend.GridEditor
         {
             from -= bottomCenter;
             to -= bottomCenter;
-            bool ret = LineSegmentCastCylinder(height, radius, ref from, ref to);  //转换为圆心为零点的问题
+            bool ret = LineSegmentCastCylinder(height, radius, ref from, ref to);  //转换为圆心在原点的问题
             from += bottomCenter;
             to += bottomCenter;
             return ret;

@@ -17,13 +17,10 @@ namespace EditorExtend.GridEditor
         }
         protected Vector3Int CellPosition => GridObject.CellPosition;
 
-        public abstract void GetStrip(List<Vector3> ret);
-
         public abstract bool Overlap(Vector3 p);
 
-        protected virtual void Awake()
-        {
-            GridObject.OverlapFunc = Overlap;
-        }
+        public abstract bool OverlapLineSegment(ref Vector3 from, ref Vector3 to);
+
+        public abstract void GetStrip(List<Vector3> ret);
     }
 }

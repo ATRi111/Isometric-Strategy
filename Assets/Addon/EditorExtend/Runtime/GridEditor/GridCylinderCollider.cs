@@ -8,6 +8,15 @@ namespace EditorExtend.GridEditor
         public float height = 3f;
         public float radius = 0.3f;
 
+        public override bool Overlap(Vector3 p)
+        {
+            return GridPhysics.CylinderOverlap(CellPosition, height, radius, p);
+        }
+        public override bool OverlapLineSegment(ref Vector3 from, ref Vector3 to)
+        {
+            return GridPhysics.LineSegmentCastCylinder(CellPosition, height, radius, ref from, ref to);
+        }
+
         public override void GetStrip(List<Vector3> ret)
         {
             void AddArc(Vector3 center, float radius, float from, float to, int count)
@@ -31,11 +40,6 @@ namespace EditorExtend.GridEditor
             AddArc(center, radius, 45, 225, 30);
             center += vertical;
             AddArc(center, radius, 225, 45, 30);
-        }
-
-        public override bool Overlap(Vector3 p)
-        {
-            return GridPhysics.CylinderOverlap(CellPosition, height, radius, p);
         }
     }
 }
