@@ -4831,7 +4831,7 @@ MonoBehaviour:
   prefab: {fileID: 2338041512611947571, guid: 2db685c6ddb7c154a92ff6a155671845, type: 3}
   mountIndex: 1
   lockLayer: 0
-  layer: 0
+  layer: 2221
 --- !u!114 &1551605951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6012,8 +6012,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 0}
-  from: {x: 1, y: -3, z: 5}
-  to: {x: 0, y: 0, z: 0}
+  from: {x: 1, y: -3, z: 6}
+  to: {x: -2, y: -4, z: 1}
 --- !u!4 &1808286389
 Transform:
   m_ObjectHideFlags: 0

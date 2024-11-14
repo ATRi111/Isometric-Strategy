@@ -1,3 +1,4 @@
+using EditorExtend.GridEditor;
 using UnityEngine;
 
 namespace EditorExtend.GridEditor
@@ -7,6 +8,10 @@ namespace EditorExtend.GridEditor
         public const int MaxHeight = 114514;
 
         public const float Diagnol = 1.41421356f;
+        /// <summary>
+        /// (网格坐标系中)一格中心点的坐标相对于该格坐标的偏移量，进行各种求交时均应注意此偏移量
+        /// </summary>
+        public static Vector3 CenterOffset = 0.5f * Vector3.one;
 
         public static readonly Vector3Int[] AdjoinPoints8 = new Vector3Int[]
         {

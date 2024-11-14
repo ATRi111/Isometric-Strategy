@@ -131,7 +131,7 @@ namespace EditorExtend.GridEditor
                 gridCollider = GetComponentInChildren<GridCollider>();
 #endif
             if (gridCollider != null)
-                return gridCollider.Overlap(p);
+                return gridCollider.Overlap(p + GridUtility.CenterOffset);
 
             return GridPhysics.BoxOverlap(cellPosition, Vector3Int.one, p);
         }

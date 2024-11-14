@@ -39,17 +39,36 @@ public class IsometricGridManager : IsometricGridManagerBase
 
     private readonly List<Vector2Int> overlap = new();
     /// <summary>
-    /// 获取第一个与有向线段相交的GridObject(忽略from所在格)，并计算第一个交点位置
+    /// 获取第一个与有向线段相交的GridObject(自动忽略与from重合的物体)，并计算第一个交点位置
     /// </summary>
     public GridObject LineSegmentCast(Vector3Int from, Vector3Int to, out Vector3 hit)
     {
+        hit = to + GridUtility.CenterOffset;
         List<GridObject> gridObjects = new();
         EDirectionTool.OverlapInt((Vector2Int)from, (Vector2Int)to, overlap);
-        Vector3 enter = from;
-        Vector3 exit = to;
+        if (overlap.Count == 0)
+            return null;
+
+        Vector3 enter = from + GridUtility.CenterOffset;
+        Vector3 exit = to + GridUtility.CenterOffset;
+
+        bool top_down = (to - from).z < 0;  //射线从上往下发射时，求交时也必须从上往下
+
+        GetObejectsXY(overlap[0], gridObjects, top_down);
+        for (int j = 0; j < gridObjects.Count; j++)
+        {
+            if (gridObjects[j].Overlap(from))
+                continue;
+            if (gridObjects[j].OverlapLineSegment(ref enter, ref exit))
+            {
+                hit = enter;
+                return gridObjects[j];
+            }
+        }
+        
         for (int i = 1; i < overlap.Count; i++)
         {
-            GetObejectsXY(overlap[i], gridObjects);
+            GetObejectsXY(overlap[i], gridObjects, top_down);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (gridObjects[j].OverlapLineSegment(ref enter, ref exit))
@@ -59,7 +78,6 @@ public class IsometricGridManager : IsometricGridManagerBase
                 }
             }
         }
-        hit = to;
         return null;
     }
 }

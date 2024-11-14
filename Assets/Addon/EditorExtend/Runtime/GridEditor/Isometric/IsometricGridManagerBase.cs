@@ -100,17 +100,30 @@ namespace EditorExtend.GridEditor
         /// <summary>
         /// 获取xy坐标上的所有物体
         /// </summary>
-        public void GetObejectsXY(Vector2Int xy, List<GridObject> objects)
+        public void GetObejectsXY(Vector2Int xy, List<GridObject> objects, bool top_down = true)
         {
             objects.Clear();
             if (!maxLayerDict.ContainsKey(xy))
                 return;
-            for (int layer = maxLayerDict[xy]; layer >= 0; layer--) 
+            if(top_down)
             {
-                Vector3Int temp = xy.AddZ(layer);
-                GridObject obj = GetObject(temp);
-                if (obj != null)
-                    objects.Add(obj);
+                for (int layer = maxLayerDict[xy]; layer >= 0; layer--)
+                {
+                    Vector3Int temp = xy.AddZ(layer);
+                    GridObject obj = GetObject(temp);
+                    if (obj != null)
+                        objects.Add(obj);
+                }
+            }
+            else
+            {
+                for (int layer = 0; layer <= maxLayerDict[xy]; layer++)
+                {
+                    Vector3Int temp = xy.AddZ(layer);
+                    GridObject obj = GetObject(temp);
+                    if (obj != null)
+                        objects.Add(obj);
+                }
             }
         }
         /// <summary>
