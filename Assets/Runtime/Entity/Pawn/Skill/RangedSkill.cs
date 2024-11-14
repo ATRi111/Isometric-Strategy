@@ -9,6 +9,9 @@ public enum ETargetFlag
     Pawn = 2,
 }
 
+/// <summary>
+/// 无弹道，直接命中所选位置的技能
+/// </summary>
 public class RangedSkill : Skill
 {
     public int castingDistance;
