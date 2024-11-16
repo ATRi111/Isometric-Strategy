@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 7759385142336930768, guid: a6515657071f0654e875c5b858bee80c, type: 3}
   maxIconCount: 10
-  timeSpan: 0
+  timeSpan: 100
   left: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
 --- !u!1 &5507866387097631766

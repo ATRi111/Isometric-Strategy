@@ -23,11 +23,11 @@ namespace Services
         /// </summary>
         OnHumanControl,
         /// <summary>
-        /// 显示信息，参数：引发事件的脚本，屏幕位置，信息内容
+        /// 显示信息，参数：引发事件的对象，屏幕坐标，信息内容
         /// </summary>
         ShowMessage,
         /// <summary>
-        /// 隐藏信息，参数：引发事件的脚本
+        /// 隐藏信息，参数：引发事件的对象
         /// </summary>
         HideMessage,
         /// <summary>

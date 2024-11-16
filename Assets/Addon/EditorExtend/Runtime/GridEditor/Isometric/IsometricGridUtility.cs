@@ -51,9 +51,9 @@ namespace EditorExtend.GridEditor
                 for (int i = 0; i < layerNum; i++)
                 {
                     temp.Add(new Vector2Int(-layerNum + i, i));
-                    temp.Add(new Vector2Int(layerNum - i, i));
-                    temp.Add(new Vector2Int(-i, layerNum - i));
-                    temp.Add(new Vector2Int(-layerNum + i, -i));
+                    temp.Add(new Vector2Int(i, layerNum - i));
+                    temp.Add(new Vector2Int(layerNum - i,  - i));
+                    temp.Add(new Vector2Int(-i, -layerNum + i));
                 }
                 layer.AddRange(temp);
                 cache_withinProjectManhattanDistance.Add(layer);

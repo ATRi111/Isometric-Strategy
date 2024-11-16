@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionTime: 50
   castingDistance: 1
-  targetFlags: 1
+  targetType: 1
   damage: 100

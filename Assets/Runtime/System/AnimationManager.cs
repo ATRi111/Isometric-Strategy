@@ -38,7 +38,6 @@ public class AnimationManager : Service,IService
 
     public void StartAnimationCheck()
     {
-        Debug.LogWarning("Start Animation Check");
         StartCoroutine(AnimationCheck());
     }
 

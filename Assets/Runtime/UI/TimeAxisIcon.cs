@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class TimeAxisIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private IEventSystem eventSystem;
+    private GameManager gameManager;
     private readonly StringBuilder sb = new();
     public PawnEntity entity;
     [HideInInspector]
@@ -15,6 +16,7 @@ public class TimeAxisIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void Awake()
     {
+        gameManager = ServiceLocator.Get<GameManager>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
         canvasGrounp = GetComponent<CanvasGrounpPlus>();
     }
@@ -25,17 +27,17 @@ public class TimeAxisIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         sb.Clear();
         sb.AppendLine(entity.EntityName);
         sb.Append(" £”‡ ±º‰:");
-        sb.Append(entity.actionTime);
+        sb.Append(entity.time - gameManager.Time);
         sb.AppendLine();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        eventSystem.Invoke(EEvent.ShowMessage, this, eventData.position, sb.ToString());
+        eventSystem.Invoke(EEvent.ShowMessage, (object)this, eventData.position, sb.ToString());
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        eventSystem.Invoke(EEvent.HideMessage, this);
+        eventSystem.Invoke(EEvent.HideMessage, (object)this);
     }
 }

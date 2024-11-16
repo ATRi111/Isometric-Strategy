@@ -2,20 +2,20 @@ using EditorExtend.GridEditor;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ETargetFlag
+public enum ETargetType
 {
-    None = 0,
+    Everything = 0,
     Entity = 1,
     Pawn = 2,
 }
 
 /// <summary>
-/// 无弹道，直接命中所选位置的技能
+/// 在一定范围内释放的技能
 /// </summary>
 public class RangedSkill : Skill
 {
     public int castingDistance;
-    public int targetFlags;
+    public ETargetType targetType;
 
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)
     {
@@ -25,29 +25,29 @@ public class RangedSkill : Skill
         {
             Vector2Int temp = (Vector2Int)position + primitive[i];
             Vector3Int target = temp.AddZ(igm.AboveGroundLayer(temp));
-            if (IsAvailable(igm, target))
+            if (TargetCheck(igm, target))
                 ret.Add(target);
         }
     }
 
-    public virtual bool IsAvailable(IsometricGridManager igm, Vector3Int target)
+    public virtual bool TargetCheck(IsometricGridManager igm, Vector3Int target)
     {
-        bool MatchFlag(ETargetFlag targetFlag)
-        {
-            return (targetFlags & (int)targetFlag) != 0;
-        }
+        if(!igm.ObjectDict.ContainsKey(target)) 
+            return false;
 
-        if(MatchFlag(ETargetFlag.Entity))
+        switch(targetType)
         {
-            return igm.EntityDict.ContainsKey(target);
-        }
-        if (MatchFlag(ETargetFlag.Pawn))
-        {
-            if (!igm.EntityDict.ContainsKey(target))
+            case ETargetType.Everything:
+                return true;
+            case ETargetType.Entity:
+                return igm.EntityDict.ContainsKey(target);
+            case ETargetType.Pawn:
+                if (!igm.EntityDict.ContainsKey(target))
+                    return false;
+                Entity entity = igm.EntityDict[target];
+                return entity is PawnEntity;
+            default:
                 return false;
-            Entity entity = igm.EntityDict[target];
-            return entity is PawnEntity;
         }
-        return true;
     }
 }

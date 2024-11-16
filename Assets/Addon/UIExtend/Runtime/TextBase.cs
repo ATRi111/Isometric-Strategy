@@ -3,7 +3,6 @@ using Services.Event;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
 public class TextBase : MonoBehaviour
 {
     protected IEventSystem eventSystem;
@@ -12,6 +11,6 @@ public class TextBase : MonoBehaviour
     protected virtual void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
-        TextUI = GetComponent<TextMeshProUGUI>();
+        TextUI = GetComponentInChildren<TextMeshProUGUI>();
     }
 }

@@ -8,13 +8,15 @@ public class TimeAxisUI : MonoBehaviour
     private GameManager gameManager;
     private IEventSystem eventSystem;
 
+    private RectTransform rectTransform;
     private Comparer_PawnEntity_ActionTime comparer;
     private TimeAxisIcon[] icons;
     [SerializeField]
     private GameObject prefab;
-
-    public int maxIconCount;
+    [SerializeField]
+    private int maxIconCount;
     public float timeSpan;
+
     public Vector3 left;
     public Vector3 right;
 
@@ -27,26 +29,25 @@ public class TimeAxisUI : MonoBehaviour
     private void OnTick(int time)
     {
         Vector3[] corners = new Vector3[4];
-        GetComponent<RectTransform>().GetWorldCorners(corners);
+        rectTransform.GetWorldCorners(corners);
         left = (corners[0] + corners[1]) / 2;
         right = (corners[2] + corners[3]) / 2;
         List<PawnEntity> entites = new();
-        timeSpan = 0;
-        foreach (PawnEntity entity in gameManager.pawns)
+        foreach (PawnEntity pawn in gameManager.pawns)
         {
-            entites.Add(entity);
-            timeSpan = Mathf.Max(timeSpan, entity.time - time);
+            if (pawn.time - time < timeSpan)
+                entites.Add(pawn);
+            if (entites.Count == maxIconCount)
+                break;
         }
         entites.Sort(comparer);
-        timeSpan = Mathf.Max(10, timeSpan);
-        int count = Mathf.Min(entites.Count, maxIconCount);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < entites.Count; i++)
         {
             icons[i].SetPawn(entites[i]);
             icons[i].transform.position = TimeToPosition(entites[i].time - time);
             icons[i].canvasGrounp.Visible = true;
         }
-        for (int i = count;i < maxIconCount; i++)
+        for (int i = entites.Count; i < maxIconCount; i++)
         {
             icons[i].canvasGrounp.Visible = false;
         }
@@ -56,6 +57,7 @@ public class TimeAxisUI : MonoBehaviour
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
         gameManager = ServiceLocator.Get<GameManager>();
+        rectTransform = GetComponent<RectTransform>();
         comparer = new();
         icons = new TimeAxisIcon[maxIconCount];
         for (int i = 0; i < maxIconCount; i++)

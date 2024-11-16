@@ -42,7 +42,9 @@ public class DebugPlanUIGenerator : MonoBehaviour
             {
                 Vector3Int target = plan.action.target;
                 if (plan.action.skill == skills[paintIndex - 1])
+                {
                     visiblePlans.Add(target, plan);
+                }
             }
         }
     }
