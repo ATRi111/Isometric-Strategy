@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 [Serializable]
 public class Plan : IComparable<Plan>
@@ -15,5 +16,13 @@ public class Plan : IComparable<Plan>
     public int CompareTo(Plan other)
     {
         return other.value.CompareTo(value);
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new();
+        sb.AppendLine(action.skill.name);
+        sb.AppendLine($"时间花费:{action.effectUnit.ActionTime}");
+        return sb.ToString();
     }
 }

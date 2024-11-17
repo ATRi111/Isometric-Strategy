@@ -13,13 +13,13 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [HideInInspector]
     public CanvasGrounpPlus canvasGrounp;
 
-    public virtual void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         if (!string.IsNullOrEmpty(message))
             eventSystem.Invoke(EEvent.ShowMessage, (object)this, eventData.position, message);
     }
 
-    public virtual void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
         eventSystem.Invoke(EEvent.HideMessage, (object)this);
     }
@@ -29,5 +29,10 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         gameManager = ServiceLocator.Get<GameManager>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
         canvasGrounp = GetComponent<CanvasGrounpPlus>();
+    }
+
+    private void OnDisable()
+    {
+        eventSystem.Invoke(EEvent.HideMessage, (object)this);
     }
 }

@@ -61,17 +61,17 @@ public class PawnBrain : CharacterComponentBase
         positionValueCache.Clear();
         foreach (Skill skill in learnedSkills)
         {
-            MakePlan(skill);
+            MakePlan(skill, plans);
         }
         plans.Sort();
     }
-    private void MakePlan(Skill skill)
+    public void MakePlan(Skill skill, List<Plan> ret)
     {
         skill.GetOptions(Pawn, Pawn.Igm, Pawn.GridObject.CellPosition, options);
         for(int i = 0; i < options.Count; i++)
         {
             PawnAction action = MockSkill(skill, options[i]);
-            plans.Add(new Plan(action));
+            ret.Add(new Plan(action));
         }
     }
 

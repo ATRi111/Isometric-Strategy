@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SelectSkillUI : MonoBehaviour
 {
+    private SkillUIManager skillUIManager;
     private IEventSystem eventSystem;
     [SerializeField]
     private int maxIconCount;
@@ -30,10 +31,19 @@ public class SelectSkillUI : MonoBehaviour
         UIExtendUtility.ClampInScreen(rectTransform);
     }
 
+    private void AfterSelectSkill(Skill _)
+    {
+        for (int i = 0; i < icons.Length; i++)
+        {
+            icons[i].canvasGrounp.Visible = false;
+        }
+    }
+
     private void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
         rectTransform = GetComponent<RectTransform>();
+        skillUIManager = SkillUIManager.FindInstance();
         icons = new SkillIcon[maxIconCount];
         for (int i = 0; i < maxIconCount; i++)
         {
@@ -46,10 +56,12 @@ public class SelectSkillUI : MonoBehaviour
     private void OnEnable()
     {
         eventSystem.AddListener<PawnBrain>(EEvent.OnHumanControl, OnHumanControl);
+        skillUIManager.AfterSelectSkill += AfterSelectSkill;
     }
 
     private void OnDisable()
     {
         eventSystem.RemoveListener<PawnBrain>(EEvent.OnHumanControl, OnHumanControl);
+        skillUIManager.AfterSelectSkill -= AfterSelectSkill;
     }
 }

@@ -10,7 +10,7 @@ public class IsometricGridManager : IsometricGridManagerBase
 
     public static IsometricGridManager FindInstance()
     {
-        return GameObject.Find("Grid").GetComponent<IsometricGridManager>();
+        return GameObject.Find(nameof(IsometricGridManager)).GetComponent<IsometricGridManager>();
     }
 
     public override void Clear()

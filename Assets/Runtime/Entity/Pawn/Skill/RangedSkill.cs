@@ -32,7 +32,7 @@ public class RangedSkill : Skill
 
     public virtual bool TargetCheck(IsometricGridManager igm, Vector3Int target)
     {
-        if(!igm.ObjectDict.ContainsKey(target)) 
+        if(!igm.MaxLayerDict.ContainsKey((Vector2Int)target)) 
             return false;
 
         switch(targetType)

@@ -44,6 +44,12 @@ TagManager:
   - name: Pawn
     uniqueID: 3010185265
     locked: 0
+  - name: Effect
+    uniqueID: 672377951
+    locked: 0
+  - name: UI
+    uniqueID: 1286002151
+    locked: 0
   - name: Debug
     uniqueID: 2466038123
     locked: 0

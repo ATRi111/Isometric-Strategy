@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class SkillUIManager : MonoBehaviour
 {
+    public static SkillUIManager FindInstance()
+    {
+        return GameObject.Find(nameof(SkillUIManager)).GetComponent<SkillUIManager>();
+    }
+
     public IEventSystem EventSystem { get; private set; }
     public Action<Skill> AfterSelectSkill;
     public Action<Plan> AfterSelectPlan;
     public Action AfterCancelSelectTarget;
 
-    private PawnBrain currentBrain;
+    public PawnBrain currentBrain;
 
     private void OnHumanControl(PawnBrain brain)
     {

@@ -38,12 +38,14 @@ public class GridMoveController : MoveController
         base.AfterComplete(v);
         if (!animationOnly)
             gridObject.AlignXY();
+        gridObject.SpriteRenderer.sortingOrder = igm.CellToSortingOrder(gridObject);
     }
 
     public override void ForceComplete()
     {
         base.ForceComplete();
         if(!animationOnly)
-            gridObject.AlignXY();
+            gridObject.AlignXY(); 
+        gridObject.SpriteRenderer.sortingOrder = igm.CellToSortingOrder(gridObject);
     }
 }

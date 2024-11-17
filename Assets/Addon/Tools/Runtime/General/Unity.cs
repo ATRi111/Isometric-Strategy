@@ -52,6 +52,19 @@ namespace MyTool
             }
             Debug.Log(s);
         }
+
+        public static void SetLossyScale(this Transform transform,Vector3 lossyScale)
+        {
+            if (transform.parent == null)
+            {
+                transform.localScale = lossyScale;
+            }
+            else
+            {
+                Vector3 temp = transform.parent.lossyScale;
+                transform.localScale = new Vector3(lossyScale.x / temp.x, lossyScale.y / temp.y, lossyScale.z / temp.z);
+            }
+        }
     }
 }
 
