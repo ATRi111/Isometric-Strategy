@@ -3,14 +3,17 @@ using Services.Event;
 using TMPro;
 using UnityEngine;
 
-public class TextBase : MonoBehaviour
+namespace UIExtend
 {
-    protected IEventSystem eventSystem;
-    public TextMeshProUGUI TextUI { get; protected set; }
-
-    protected virtual void Awake()
+    public class TextBase : MonoBehaviour
     {
-        eventSystem = ServiceLocator.Get<IEventSystem>();
-        TextUI = GetComponentInChildren<TextMeshProUGUI>();
+        protected IEventSystem eventSystem;
+        public TextMeshProUGUI TextUI { get; protected set; }
+
+        protected virtual void Awake()
+        {
+            eventSystem = ServiceLocator.Get<IEventSystem>();
+            TextUI = GetComponentInChildren<TextMeshProUGUI>();
+        }
     }
 }

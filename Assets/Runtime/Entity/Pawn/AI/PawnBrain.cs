@@ -30,7 +30,7 @@ public class PawnBrain : CharacterComponentBase
         {
             MakePlan();
 #if UNITY_EDITOR
-            if(Pawn.GameManager.debug)
+            if (Pawn.GameManager.debug)
             {
                 prepared = true;
                 DebugPlanUIGenerator generator = AIManager.GetComponent<DebugPlanUIGenerator>();
@@ -39,8 +39,20 @@ public class PawnBrain : CharacterComponentBase
             }
             else
 #endif
-            plans[0].action.Play(Pawn.AnimationManager);
+            DoActionImmediate(plans[0].action);
         }
+    }
+
+    public void DoActionImmediate(PawnAction action)
+    {
+        action.Play(Pawn.AnimationManager);
+    }
+
+    public PawnAction MockSkill(Skill skill,Vector3Int target)
+    {
+        PawnAction action = new(Pawn, skill, target);
+        action.Mock(Pawn, Pawn.Igm);
+        return action;
     }
 
     public virtual void MakePlan()
@@ -59,10 +71,8 @@ public class PawnBrain : CharacterComponentBase
         skill.GetOptions(Pawn, Pawn.Igm, Pawn.GridObject.CellPosition, options);
         for(int i = 0; i < options.Count; i++)
         {
-            PawnAction action = new(Pawn, skill, options[i]);
-            action.Mock(Pawn, Pawn.Igm);
-            Plan plan = new(action);
-            plans.Add(plan);
+            PawnAction action = MockSkill(skill, options[i]);
+            plans.Add(new Plan(action));
         }
     }
 

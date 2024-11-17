@@ -1,4 +1,5 @@
 using Services;
+using UIExtend;
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGrounpPlus))]
@@ -8,18 +9,12 @@ public class MessageUI : TextBase
     private CanvasGrounpPlus canvasGrounp;
     private object source;  //当前引发消息的对象
 
-    protected override void Awake()
-    {
-        base.Awake();
-        rectTransform = GetComponent<RectTransform>();
-        canvasGrounp = GetComponent<CanvasGrounpPlus>();
-    }
-
     private void ShowMessage(object source, Vector2 screenPoint, string message)
     {
         this.source = source;
         TextUI.text = message;
         transform.position = screenPoint;
+        UIExtendUtility.ClampInScreen(rectTransform);
         canvasGrounp.Visible = true;
     }
 
@@ -31,6 +26,12 @@ public class MessageUI : TextBase
         this.source = null;
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        rectTransform = GetComponent<RectTransform>();
+        canvasGrounp = GetComponent<CanvasGrounpPlus>();
+    }
 
     private void OnEnable()
     {

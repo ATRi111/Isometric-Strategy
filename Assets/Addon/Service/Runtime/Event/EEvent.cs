@@ -19,7 +19,7 @@ namespace Services
         /// </summary>
         AfterUnLoadScene,
         /// <summary>
-        /// 玩家开始控制某个角色，参数：控制的角色
+        /// 玩家开始控制某个角色，参数：所控制的角色的Brain
         /// </summary>
         OnHumanControl,
         /// <summary>
