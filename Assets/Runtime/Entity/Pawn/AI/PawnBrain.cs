@@ -39,13 +39,13 @@ public class PawnBrain : CharacterComponentBase
             }
             else
 #endif
-            DoActionImmediate(plans[0].action);
+                ExcutePlan(plans[0]);
         }
     }
 
-    public void DoActionImmediate(PawnAction action)
+    public void ExcutePlan(Plan plan)
     {
-        action.Play(Pawn.AnimationManager);
+        plan.action.Play(Pawn.AnimationManager);
     }
 
     public PawnAction MockSkill(Skill skill,Vector3Int target)
@@ -65,7 +65,6 @@ public class PawnBrain : CharacterComponentBase
         }
         plans.Sort();
     }
-
     private void MakePlan(Skill skill)
     {
         skill.GetOptions(Pawn, Pawn.Igm, Pawn.GridObject.CellPosition, options);

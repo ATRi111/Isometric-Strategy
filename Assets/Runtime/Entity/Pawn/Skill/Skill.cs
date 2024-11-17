@@ -1,5 +1,6 @@
 using EditorExtend.GridEditor;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public abstract class Skill : ScriptableObject
@@ -32,5 +33,12 @@ public abstract class Skill : ScriptableObject
     public virtual int MockTime(PawnEntity agent, Vector3Int position, Vector3Int target, IsometricGridManager igm)
     {
         return actionTime;
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new();
+        sb.AppendLine(name);
+        return base.ToString();
     }
 }
