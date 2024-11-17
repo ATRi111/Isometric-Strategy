@@ -48,7 +48,6 @@ public class GameManager : Service,IService
         {
             if (time >= pawn.time)
             {
-                eventSystem.Invoke(EEvent.BeforeDoAction, pawn, time);
                 waitingForAnimation = true;
                 pawn.Brain.DoAction();
                 return;

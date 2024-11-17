@@ -1,23 +1,21 @@
-/// <summary>
-/// µþ¼Ó·½Ê½
-/// </summary>
-public enum ESuperimposeMode
-{
-    Coexist,
-    Refresh
-}
+using UnityEngine;
 
-[System.Serializable]
-public class Buff
+public class Buff : ScriptableObject
 {
-    public int startTime;
-    public int endTime;
-    
-    public virtual void OnEnable()
+    public string buffName;
+    public int duration;
+
+    public virtual void Tick(int startTime, int currentTime)
     {
 
     }
-    public virtual void OnDisable()
+
+    public virtual void Register(Entity victim)
+    {
+
+    }
+
+    public virtual void Unregister(Entity victim)
     {
 
     }

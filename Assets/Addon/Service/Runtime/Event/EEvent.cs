@@ -31,16 +31,16 @@ namespace Services
         /// </summary>
         HideMessage,
         /// <summary>
-        /// 战斗开始
+        /// 战斗开始前
         /// </summary>
         BeforeBattle,
+        /// <summary>
+        /// 战斗结束后
+        /// </summary>
+        AfterBattle,
         /// <summary>
         /// 时间变动，参数：当前全局时间
         /// </summary>
         OnTick,
-        /// <summary>
-        /// 角色即将行动，参数：角色，当前全局时间
-        /// </summary>
-        BeforeDoAction,
     }
 }

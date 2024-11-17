@@ -33,18 +33,15 @@ public class Entity : CharacterEntity
 
     public virtual void RefreshProperty()
     {
-        BuffManager.Refresh(GameManager.Time);
         BattleComponent.Refresh();
     }
 
     protected virtual void OnTick(int time)
     {
+        BuffManager.Refresh(time);
         RefreshProperty();
     }
-    protected virtual void BeforeDoAction(PawnEntity agent, int time)
-    {
-        RefreshProperty();
-    }
+
     protected virtual void BeforeBattle()
     {
         RefreshProperty();
@@ -72,14 +69,12 @@ public class Entity : CharacterEntity
 
     protected virtual void OnEnable()
     {
-        EventSystem.AddListener<PawnEntity, int>(EEvent.BeforeDoAction, BeforeDoAction);
         EventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
         EventSystem.AddListener<int>(EEvent.OnTick, OnTick);
     }
 
     protected virtual void OnDisable()
     {
-        EventSystem.RemoveListener<PawnEntity, int>(EEvent.BeforeDoAction, BeforeDoAction);
         EventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
         EventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
     }

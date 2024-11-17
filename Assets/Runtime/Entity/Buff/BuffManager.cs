@@ -1,28 +1,45 @@
 using Character;
-using MyTool;
+using Services;
+using Services.Event;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BuffManager : CharacterComponentBase
 {
+    private IEventSystem eventSystem;
+    private GameManager gameManager;
     [SerializeField]
-    private SerializedHashSet<Buff> buffs;
+    private List<RuntimeBuff> buffs;
 
-    public void Register(Buff buff)
+    public void Refresh(int time)
     {
-        buffs.Add(buff);
-        buff.OnEnable();
-    }
-    public void Unregister(Buff buff)
-    {
-        buffs.Remove(buff);
-        buff.OnDisable();
-    }
-    public void Refresh(int currentTime)
-    {
-        foreach (Buff buff in buffs)
+        for (int i = 0; i < buffs.Count; i++)
         {
-            if(currentTime >= buff.endTime)
-                Unregister(buff);
+            buffs[i].Enabled = gameManager.Time < buffs[i].endTime; 
+            if (buffs[i].Enabled)
+                buffs[i].Tick(time);
         }
+    }
+
+    private void AfterBattle()
+    {
+        buffs.Clear();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        eventSystem = ServiceLocator.Get<IEventSystem>();
+        gameManager = ServiceLocator.Get<GameManager>();
+    }
+
+    private void OnEnable()
+    {
+        eventSystem.AddListener(EEvent.AfterBattle, AfterBattle);
+    }
+
+    private void OnDisable()
+    {
+        eventSystem.RemoveListener(EEvent.AfterBattle, AfterBattle);
     }
 }
