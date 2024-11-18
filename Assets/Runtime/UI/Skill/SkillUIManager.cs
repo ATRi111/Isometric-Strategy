@@ -11,9 +11,10 @@ public class SkillUIManager : MonoBehaviour
     }
 
     public IEventSystem EventSystem { get; private set; }
+    public Action<PawnBrain> SelectSkill;
     public Action<Skill> AfterSelectSkill;
     public Action<Plan> AfterSelectPlan;
-    public Action AfterCancelSelectTarget;
+    public Action AfterCancelSelectPlan;
 
     public PawnBrain currentBrain;
 
@@ -23,14 +24,15 @@ public class SkillUIManager : MonoBehaviour
             throw new InvalidOperationException();
 
         currentBrain = brain;
+        SelectSkill?.Invoke(currentBrain);
     }
 
-    private void CancelSelectSkill()
+    private void ReselectSkill()
     {
-        EventSystem.Invoke(EEvent.OnHumanControl, currentBrain);
+        SelectSkill?.Invoke(currentBrain);
     }
 
-    private void SelectPlan(Plan plan)
+    private void ExcutePlan(Plan plan)
     {
         currentBrain.ExcutePlan(plan);
         currentBrain = null;
@@ -39,8 +41,8 @@ public class SkillUIManager : MonoBehaviour
     private void Awake()
     {
         EventSystem = ServiceLocator.Get<IEventSystem>();
-        AfterCancelSelectTarget += CancelSelectSkill;
-        AfterSelectPlan += SelectPlan;
+        AfterCancelSelectPlan += ReselectSkill;
+        AfterSelectPlan += ExcutePlan;
     }
 
     private void OnEnable()

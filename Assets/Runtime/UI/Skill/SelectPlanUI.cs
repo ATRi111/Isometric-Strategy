@@ -10,9 +10,11 @@ public class SelectPlanUI : MonoBehaviour
     private IObjectManager objectManager;
     private IsometricGridManager igm;
     private readonly List<Plan> currentPlans = new();
+    public bool isSelecting;
 
     private void AfterSelectSkill(Skill skill)
     {
+        isSelecting = true;
         ObjectPoolUtility.RecycleMyObjects(gameObject);
         currentPlans.Clear();
         skillUIManager.currentBrain.MakePlan(skill, currentPlans);
@@ -29,6 +31,7 @@ public class SelectPlanUI : MonoBehaviour
     private void AfterSelectPlan(Plan _)
     {
         ObjectPoolUtility.RecycleMyObjects(gameObject);
+        isSelecting = false;
     }
 
     private void Awake()
@@ -48,5 +51,14 @@ public class SelectPlanUI : MonoBehaviour
     {
         skillUIManager.AfterSelectSkill -= AfterSelectSkill;
         skillUIManager.AfterSelectPlan -= AfterSelectPlan;
+    }
+
+    private void Update()
+    {
+        if(isSelecting && Input.GetMouseButtonDown(1))
+        {
+            ObjectPoolUtility.RecycleMyObjects(gameObject);
+            skillUIManager.AfterCancelSelectPlan?.Invoke();
+        }
     }
 }

@@ -1,12 +1,9 @@
-using Services;
-using Services.Event;
 using UIExtend;
 using UnityEngine;
 
 public class SelectSkillUI : MonoBehaviour
 {
     private SkillUIManager skillUIManager;
-    private IEventSystem eventSystem;
     [SerializeField]
     private int maxIconCount;
     [SerializeField]
@@ -14,7 +11,7 @@ public class SelectSkillUI : MonoBehaviour
     private SkillIcon[] icons;
     private RectTransform rectTransform;
 
-    private void OnHumanControl(PawnBrain brain)
+    private void SelectSkill(PawnBrain brain)
     {
         transform.position = Camera.main.WorldToScreenPoint(brain.transform.position);
         int count = 0;
@@ -41,7 +38,6 @@ public class SelectSkillUI : MonoBehaviour
 
     private void Awake()
     {
-        eventSystem = ServiceLocator.Get<IEventSystem>();
         rectTransform = GetComponent<RectTransform>();
         skillUIManager = SkillUIManager.FindInstance();
         icons = new SkillIcon[maxIconCount];
@@ -55,13 +51,13 @@ public class SelectSkillUI : MonoBehaviour
 
     private void OnEnable()
     {
-        eventSystem.AddListener<PawnBrain>(EEvent.OnHumanControl, OnHumanControl);
+        skillUIManager.SelectSkill += SelectSkill;
         skillUIManager.AfterSelectSkill += AfterSelectSkill;
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener<PawnBrain>(EEvent.OnHumanControl, OnHumanControl);
+        skillUIManager.SelectSkill += SelectSkill;
         skillUIManager.AfterSelectSkill -= AfterSelectSkill;
     }
 }
