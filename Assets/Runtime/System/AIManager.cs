@@ -19,9 +19,20 @@ public class AIManager : Service,IService
     private PathFindingManager pathFinding;
     public PathFindingManager PathFinding => pathFinding;
 
+    public Trend trend;
+
     protected override void Awake()
     {
         base.Awake();
         pathFinding = GetComponent<PathFindingManager>();
     }
+}
+
+[Serializable]
+public struct Trend
+{
+    public float offerHelp;
+    public float seekHelp;
+    public float charge;
+    public float withdraw;
 }

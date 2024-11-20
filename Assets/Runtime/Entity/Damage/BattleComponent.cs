@@ -36,7 +36,6 @@ public class BattleComponent : CharacterComponentBase
     /// <summary>
     /// 返回预想中受到伤害后HP的值，但不会实际修改HP
     /// </summary>
-    /// <returns></returns>
     public int MockDamage(PawnEntity source, EDamageType type, int damage)
     {
         damage = Mathf.RoundToInt(damage * (1f - resistance[type].CurrentValue));
