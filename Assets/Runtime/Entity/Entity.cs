@@ -4,7 +4,7 @@ using Services;
 using Services.Event;
 using UnityEngine;
 
-public class Entity : CharacterEntity
+public class Entity : EntityBase
 {
     public IsometricGridManager Igm { get;protected set; }
     public GameManager GameManager { get; protected set; }

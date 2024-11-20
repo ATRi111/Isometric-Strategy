@@ -41,7 +41,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Pawn
+  - name: Entity
     uniqueID: 3010185265
     locked: 0
   - name: Effect

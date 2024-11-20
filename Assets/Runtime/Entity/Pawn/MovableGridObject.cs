@@ -26,7 +26,10 @@ public class MovableGridObject : GridObject
         climbAbility.Refresh();
         dropAbility.Refresh();
         moveAbility.Refresh();
-        Mover = new AMover(this, moveAbility.CurrentValue);
+        Mover = new AMover(this)
+        {
+            MoveAbility = () => moveAbility.CurrentValue
+        };
     }
 
     public virtual bool StayCheck(ANode node)

@@ -28,10 +28,6 @@ PrefabInstance:
       propertyPath: defaultProperty.actionTime
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4451063528451210290, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
-      propertyPath: buffs.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5737828582266420397, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

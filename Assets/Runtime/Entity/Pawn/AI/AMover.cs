@@ -3,8 +3,7 @@ using AStar;
 public class AMover : AStarMover
 {
     protected MovableGridObject pawn;
-    public AMover(MovableGridObject pawn, float moveAbility = float.PositiveInfinity) 
-        : base(moveAbility)
+    public AMover(MovableGridObject pawn) 
     {
         this.pawn = pawn;
     }

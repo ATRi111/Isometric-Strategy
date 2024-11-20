@@ -17,7 +17,6 @@ namespace Character
         public Action<Property<T>> DirectMultiply;    //直接乘算
         public Action<Property<T>> FinalAdd;          //最终加算
         public Action<Property<T>> FinalMultiply;     //最终乘算
-        public Action<Property<T>> FinalClamp;        //限制取值范围
 
         public abstract void Add(T value);
         public abstract void Multiply(T value);
@@ -30,7 +29,6 @@ namespace Character
             DirectMultiply?.Invoke(this);
             FinalAdd?.Invoke(this);
             FinalMultiply?.Invoke(this);
-            FinalClamp?.Invoke(this);
         }
     }
 

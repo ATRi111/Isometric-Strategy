@@ -6011,10 +6011,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05ea4a3c3b51a6439a92c9c763c6b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps: []
   result: {fileID: 0}
   from: {x: 1, y: -3, z: 6}
   to: {x: -2, y: -4, z: 1}
   hit: {x: 0, y: 0, z: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &1808286389
 Transform:
   m_ObjectHideFlags: 0

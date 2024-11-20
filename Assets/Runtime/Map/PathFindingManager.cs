@@ -42,13 +42,14 @@ public class PathFindingManager : MonoBehaviour
 
     public PathFindingProcess FindAvailable(AMover mover,Vector2Int from)
     {
-        int maxDepth = Mathf.CeilToInt(mover.moveAbility * mover.moveAbility * 2 + mover.moveAbility * 2 + 2);
+        float moveability = mover.MoveAbility();
+        int maxDepth = Mathf.CeilToInt(moveability * moveability * 2 + moveability * 2 + 2);
         PathFindingSettings settings = new(GetAdjoinNodes, PathFindingUtility.ManhattanDistance, GenerateNode, 0f, maxDepth, maxDepth);
         findAvailable = new PathFindingProcess(settings, mover)
         {
             mono = Igm
         };
-        Vector2Int to = from + Mathf.CeilToInt(mover.moveAbility + 1) * Vector2Int.one;
+        Vector2Int to = from + Mathf.CeilToInt(moveability + 1) * Vector2Int.one;
         findAvailable.Start(from, to);
 #if UNITY_EDITOR
         if (debug)
