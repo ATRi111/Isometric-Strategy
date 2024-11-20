@@ -8,9 +8,11 @@ public class PawnEntity : Entity
 {
     [AutoComponent]
     public PawnBrain Brain { get; private set; }
+    [AutoComponent]
+    public MovableGridObject MovableGridObject { get; private set; }
 
     public EFaction faction;
-    public Property actionTime;
+    public CharacterProperty actionTime;
     /// <summary>
     /// 全局计时器的值达到此值时，轮到此角色行动
     /// </summary>
@@ -20,7 +22,7 @@ public class PawnEntity : Entity
     {
         base.RefreshProperty();
         actionTime.Refresh();
-        (GridObject as MovableGridObject).RefreshProperty();
+        MovableGridObject.RefreshProperty();
     }
 
     protected override void BeforeBattle()

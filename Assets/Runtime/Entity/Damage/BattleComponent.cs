@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BattleComponent : CharacterComponentBase
 {
-    public Property maxHP;
+    public CharacterProperty maxHP;
 
     public Action<int, int> AfterHPChange;
     [SerializeField]
@@ -25,7 +25,7 @@ public class BattleComponent : CharacterComponentBase
         }
     }
 
-    public SerializedDictionary<EDamageType, Property> resistance;
+    public SerializedDictionary<EDamageType, CharacterProperty> resistance;
 
     protected override void Awake()
     {

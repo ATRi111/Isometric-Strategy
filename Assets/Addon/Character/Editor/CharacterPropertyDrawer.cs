@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character
 {
-    [CustomPropertyDrawer(typeof(Property))]
+    [CustomPropertyDrawer(typeof(CharacterProperty))]
     public class CharacterPropertyDrawer : AutoPropertyDrawer
     {
         protected override bool AlwaysFoldout => true;

@@ -115,8 +115,7 @@ public class PawnBrain : CharacterComponentBase
     public void FindAvalable(Vector3Int from, List<Vector3Int> ret)
     {
         ret.Clear();
-        MovableGridObject gridObject = Pawn.GridObject as MovableGridObject;
-        PathFindingProcess process = AIManager.PathFinding.FindAvailable(gridObject.Mover, (Vector2Int)from);
+        PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover, (Vector2Int)from);
         for (int i = 0; i < process.available.Count; i++)
         {
             ret.Add((process.available[i] as ANode).CellPositon);
@@ -126,9 +125,8 @@ public class PawnBrain : CharacterComponentBase
     public void FindRoute(Vector3Int from, Vector3Int to, List<Vector3Int> ret)
     {
         ret.Clear();
-        MovableGridObject gridObject = Pawn.GridObject as MovableGridObject;
-        ret.Add(gridObject.CellPosition);
-        PathFindingProcess process = AIManager.PathFinding.FindRoute(gridObject.Mover, (Vector2Int)from, (Vector2Int)to);
+        ret.Add(Pawn.MovableGridObject.CellPosition);
+        PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover, (Vector2Int)from, (Vector2Int)to);
         for (int i = 0; i < process.output.Count; i++)
         {
             ret.Add((process.output[i] as ANode).CellPositon);

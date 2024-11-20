@@ -10,7 +10,7 @@ namespace Character
 
     public class PropertyModifier
     {
-        private Property property;
+        private CharacterProperty property;
 
         public float value;
         public FindPropertySO so;
@@ -59,12 +59,12 @@ namespace Character
             }
         }
 
-        private void Add(Property property)
+        private void Add(CharacterProperty property)
         {
             property.Add(value);
         }
 
-        private void Multiply(Property property)
+        private void Multiply(CharacterProperty property)
         {
             property.Multiply(value);
         }

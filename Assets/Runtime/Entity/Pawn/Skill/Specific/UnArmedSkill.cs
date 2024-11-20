@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "徒手攻击", menuName = "技能/徒手攻击")]
-public class Skill_UnArmed : RangedSkill
+public class UnArmedSkill : RangedSkill
 {
     public int damage;
 

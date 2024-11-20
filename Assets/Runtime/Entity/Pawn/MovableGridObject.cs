@@ -9,9 +9,9 @@ public class MovableGridObject : GridObject
     public GridMoveController MoveController { get; protected set; }
     public override int ExtraSortingOrder => 5;
 
-    public Property climbAbility;
-    public Property dropAbility;
-    public Property moveAbility;
+    public CharacterProperty climbAbility;
+    public CharacterProperty dropAbility;
+    public CharacterProperty moveAbility;
 
     protected override void Awake()
     {
