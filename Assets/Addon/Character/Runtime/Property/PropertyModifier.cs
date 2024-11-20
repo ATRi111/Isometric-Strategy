@@ -8,12 +8,18 @@ namespace Character
         FinalMultiply,
     }
 
-    public abstract class PropertyModifier<T> where T : struct
+    public class PropertyModifier
     {
-        public Property<T> property;
-        public EModifyTiming timing;
-        public T value;
+        private Property property;
 
+        public float value;
+        public FindPropertySO so;
+        public EModifyTiming timing;
+
+        public void Bind()
+        {
+            property = so.FindProperty();
+        }
         public void Register()
         {
             switch (timing)
@@ -53,11 +59,12 @@ namespace Character
             }
         }
 
-        protected void Add(Property<T> property)
+        private void Add(Property property)
         {
             property.Add(value);
         }
-        protected void Multiply(Property<T> property)
+
+        private void Multiply(Property property)
         {
             property.Multiply(value);
         }

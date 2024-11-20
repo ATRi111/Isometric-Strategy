@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Í½ÊÖ¹¥»÷", menuName = "Skill/Í½ÊÖ¹¥»÷")]
+[CreateAssetMenu(fileName = "Í½ÊÖ¹¥»÷", menuName = "¼¼ÄÜ/Í½ÊÖ¹¥»÷")]
 public class Skill_UnArmed : RangedSkill
 {
     public int damage;

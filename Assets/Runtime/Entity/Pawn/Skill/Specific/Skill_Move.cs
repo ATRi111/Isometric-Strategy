@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "移动", menuName = "Skill/移动")]
+[CreateAssetMenu(fileName = "移动", menuName = "技能/移动")]
 public class Skill_Move : Skill
 {
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)

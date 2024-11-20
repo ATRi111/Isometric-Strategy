@@ -9,9 +9,9 @@ public class MovableGridObject : GridObject
     public GridMoveController MoveController { get; protected set; }
     public override int ExtraSortingOrder => 5;
 
-    public IntProperty climbAbility;
-    public IntProperty dropAbility;
-    public IntProperty moveAbility;
+    public Property climbAbility;
+    public Property dropAbility;
+    public Property moveAbility;
 
     protected override void Awake()
     {
@@ -28,7 +28,7 @@ public class MovableGridObject : GridObject
         moveAbility.Refresh();
         Mover = new AMover(this)
         {
-            MoveAbility = () => moveAbility.CurrentValue
+            MoveAbility = () => moveAbility.IntValue
         };
     }
 
@@ -64,8 +64,8 @@ public class MovableGridObject : GridObject
         return pawn.faction == other.pawn.faction;
     }
 
-    public virtual bool HeightCheck(int fromLayer,int toLayer)
+    public virtual bool HeightCheck(int fromLayer, int toLayer)
     {
-        return toLayer <= fromLayer + climbAbility.CurrentValue && toLayer >= fromLayer - dropAbility.CurrentValue;
+        return toLayer <= fromLayer + climbAbility.IntValue && toLayer >= fromLayer - dropAbility.IntValue;
     }
 }

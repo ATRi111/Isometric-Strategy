@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BattleComponent : CharacterComponentBase
 {
-    public IntProperty maxHP;
+    public Property maxHP;
 
     public Action<int, int> AfterHPChange;
     [SerializeField]
@@ -15,7 +15,7 @@ public class BattleComponent : CharacterComponentBase
         get => hp;
         set
         {
-            hp = Mathf.Clamp(value, 0, maxHP.CurrentValue);
+            hp = Mathf.Clamp(value, 0, maxHP.IntValue);
             if (hp != value)
             {
                 int prev = hp;
@@ -25,7 +25,7 @@ public class BattleComponent : CharacterComponentBase
         }
     }
 
-    public SerializedDictionary<EDamageType, FloatProperty> resistance;
+    public SerializedDictionary<EDamageType, Property> resistance;
 
     protected override void Awake()
     {
@@ -39,7 +39,7 @@ public class BattleComponent : CharacterComponentBase
     public int MockDamage(PawnEntity source, EDamageType type, int damage)
     {
         damage = Mathf.RoundToInt(damage * (1f - resistance[type].CurrentValue));
-        return Mathf.Clamp(HP - damage, 0, maxHP.CurrentValue);
+        return Mathf.Clamp(HP - damage, 0, maxHP.IntValue);
     }
 
     public void Refresh()

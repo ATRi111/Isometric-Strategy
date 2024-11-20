@@ -10,7 +10,7 @@ public class PawnEntity : Entity
     public PawnBrain Brain { get; private set; }
 
     public EFaction faction;
-    public IntProperty actionTime;
+    public Property actionTime;
     /// <summary>
     /// 全局计时器的值达到此值时，轮到此角色行动
     /// </summary>
@@ -26,7 +26,7 @@ public class PawnEntity : Entity
     protected override void BeforeBattle()
     {
         base.BeforeBattle();
-        time = actionTime.CurrentValue;   //入场AT
+        time = actionTime.IntValue;   //入场AT
     }
 
     protected override void OnEnable()
@@ -57,6 +57,6 @@ public class Comparer_PawnEntity_ActionTime : IComparer<PawnEntity>
 {
     public int Compare(PawnEntity x, PawnEntity y)
     {
-        return x.actionTime.CurrentValue - y.actionTime.CurrentValue;
+        return x.actionTime.IntValue - y.actionTime.IntValue;
     }
 }

@@ -1,7 +1,7 @@
 using EditorExtend.GridEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Éä»÷", menuName = "Skill/Éä»÷")]
+[CreateAssetMenu(fileName = "Éä»÷", menuName = "¼¼ÄÜ/Éä»÷")]
 public class Skill_Shoot : StraitLineSkill
 {
     public int damage;

@@ -11,7 +11,7 @@ public class EffectUnit
     {
         effects = new List<Effect>();
         timeEffect = new Effect_Time(agent);
-        timeEffect.current += agent.actionTime.CurrentValue;
+        timeEffect.current += agent.actionTime.IntValue;
     }
 
     public void Play(AnimationManager animationManager)

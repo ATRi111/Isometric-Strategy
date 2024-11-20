@@ -45,7 +45,7 @@ public class Entity : EntityBase
     protected virtual void BeforeBattle()
     {
         RefreshProperty();
-        BattleComponent.HP = BattleComponent.maxHP.CurrentValue;
+        BattleComponent.HP = BattleComponent.maxHP.IntValue;
     }
 
     public virtual void Die()
