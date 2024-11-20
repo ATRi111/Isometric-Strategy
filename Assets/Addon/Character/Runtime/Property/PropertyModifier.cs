@@ -8,6 +8,7 @@ namespace Character
         FinalMultiply,
     }
 
+    [System.Serializable]
     public class PropertyModifier
     {
         private CharacterProperty property;
