@@ -15,4 +15,20 @@ public class PawnPropertyModifier
             modifiers[i].Bind();
         }
     }
+
+    public void Register()
+    {
+        for(int i = 0;i < modifiers.Count;i++)
+        {
+            modifiers[i].Register();
+        }
+    }
+
+    public void Unregister()
+    {
+        for (int i = 0; i < modifiers.Count; i++)
+        {
+            modifiers[i].Unregister();
+        }
+    }
 }
