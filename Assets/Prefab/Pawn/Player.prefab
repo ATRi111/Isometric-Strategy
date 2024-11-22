@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: learnedSkills.list.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: 'learnedSkills.list.Array.data[3]'

@@ -7,7 +7,7 @@ using System;
 public enum ESuperimposeMode
 {
     Coexist,
-    Refresh
+    Refresh,
 }
 
 [Serializable]
@@ -17,7 +17,7 @@ public class RuntimeBuff
     public int startTime;
     public int endTime;
 
-    public Entity victim;
+    public PawnEntity victim;
     public Buff buff;
 
     private bool enabled;
@@ -31,14 +31,14 @@ public class RuntimeBuff
             {
                 enabled = value;
                 if(value)
-                    OnDisable();
+                    OnEnable();
                 else
                     OnDisable();
             }
         }
     }
 
-    public RuntimeBuff(Entity victim, Buff buff, int startTime, IEventSystem eventSystem)
+    public RuntimeBuff(PawnEntity victim, Buff buff, int startTime)
     {
         buffName = buff.buffName;
         this.victim = victim;

@@ -1,21 +1,12 @@
 using UnityEngine;
 
-public class Buff : ScriptableObject
+[CreateAssetMenu(fileName = "��״̬", menuName = "״̬")]
+public class Buff : PawnPropertyModifierSO
 {
     public string buffName;
     public int duration;
 
     public virtual void Tick(int startTime, int currentTime)
-    {
-
-    }
-
-    public virtual void Register(Entity victim)
-    {
-
-    }
-
-    public virtual void Unregister(Entity victim)
     {
 
     }

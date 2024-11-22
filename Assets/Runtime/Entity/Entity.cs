@@ -16,8 +16,6 @@ public class Entity : EntityBase
     public GridMoveController MoveController { get; protected set; }
     [AutoComponent]
     public BattleComponent BattleComponent { get; protected set; }
-    [AutoComponent]
-    public BuffManager BuffManager { get; protected set; }
 
     [SerializeField]
     private string entityName;
@@ -38,7 +36,6 @@ public class Entity : EntityBase
 
     protected virtual void OnTick(int time)
     {
-        BuffManager.Refresh(time);
         RefreshProperty();
     }
 

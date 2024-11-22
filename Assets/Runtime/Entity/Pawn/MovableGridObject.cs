@@ -19,6 +19,10 @@ public class MovableGridObject : GridObject
         igm = Manager as IsometricGridManager;
         pawn = GetComponentInParent<PawnEntity>();
         MoveController = GetComponentInChildren<GridMoveController>();
+        Mover = new AMover(this)
+        {
+            MoveAbility = () => moveAbility.IntValue
+        };
     }
 
     public void RefreshProperty()
@@ -26,10 +30,6 @@ public class MovableGridObject : GridObject
         climbAbility.Refresh();
         dropAbility.Refresh();
         moveAbility.Refresh();
-        Mover = new AMover(this)
-        {
-            MoveAbility = () => moveAbility.IntValue
-        };
     }
 
     public virtual bool StayCheck(ANode node)

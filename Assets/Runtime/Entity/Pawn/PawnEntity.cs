@@ -11,6 +11,11 @@ public class PawnEntity : Entity
     [AutoComponent]
     public MovableGridObject MovableGridObject { get; private set; }
 
+    [AutoComponent]
+    public BuffManager BuffManager { get; protected set; }
+    [AutoComponent]
+    public EquipmentManager EquipmentManager { get; protected set; }
+
     public EFaction faction;
     public PawnClass pClass;
     public Race race;
@@ -19,6 +24,12 @@ public class PawnEntity : Entity
     /// 全局计时器的值达到此值时，轮到此角色行动
     /// </summary>
     public int time;
+
+    protected override void OnTick(int time)
+    {
+        base.OnTick(time);
+        BuffManager.OnTick(time);
+    }
 
     public override void RefreshProperty()
     {
@@ -30,6 +41,7 @@ public class PawnEntity : Entity
     protected override void BeforeBattle()
     {
         base.BeforeBattle();
+        EquipmentManager.Initialize();
         time = actionTime.IntValue;   //入场AT
     }
 
