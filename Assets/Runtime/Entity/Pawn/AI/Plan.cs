@@ -17,12 +17,4 @@ public class Plan : IComparable<Plan>
     {
         return other.value.CompareTo(value);
     }
-
-    public override string ToString()
-    {
-        StringBuilder sb = new();
-        sb.AppendLine(action.skill.name);
-        sb.AppendLine($"时间花费:{action.effectUnit.ActionTime}");
-        return sb.ToString();
-    }
 }

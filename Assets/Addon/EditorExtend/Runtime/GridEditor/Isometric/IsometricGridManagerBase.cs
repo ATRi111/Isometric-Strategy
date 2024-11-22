@@ -35,7 +35,7 @@ namespace EditorExtend.GridEditor
         }
 
         /// <summary>
-        /// 根据世界坐标（忽略z）确定一些列网格坐标，判断这些网格坐标上是否有物体，若有则返回其中的最高层数
+        /// 根据世界坐标（忽略z）确定一系列网格坐标，判断这些网格坐标上是否有物体，若有则返回其中的最高层数
         /// </summary>
         public bool MatchMaxLayer(Vector3 worldPosition, out int layer)
         {

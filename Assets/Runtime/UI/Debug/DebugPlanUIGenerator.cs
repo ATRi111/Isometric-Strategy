@@ -32,7 +32,7 @@ public class DebugPlanUIGenerator : MonoBehaviour
                 Vector3Int target = plan.action.target;
                 if (!visiblePlans.ContainsKey(target))
                     visiblePlans.Add(target, plan);
-                else if (plan.CompareTo(visiblePlans[target]) > 0)
+                else if (plan.CompareTo(visiblePlans[target]) < 0)
                     visiblePlans[target] = plan;
             }
         }

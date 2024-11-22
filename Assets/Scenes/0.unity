@@ -211,7 +211,7 @@ MonoBehaviour:
     list: []
   time: 0
   waitingForAnimation: 0
-  debug: 0
+  debug: 1
 --- !u!1 &1075682698
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,10 +641,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trend:
-    offerHelp: 5
-    seekHelp: 5
-    charge: 10
-    withdraw: 5
+    offerSupport: 5
+    seekSupport: 5
+    offense: 10
+    defense: 5
 --- !u!114 &1776701400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,8 +662,6 @@ MonoBehaviour:
       capacity: 0
       maxDepth: 0
       hCostWeight: 0
-    mover:
-      moveAbility: 0
     mono: {fileID: 0}
     output: []
     available: []
@@ -695,8 +693,6 @@ MonoBehaviour:
       capacity: 0
       maxDepth: 0
       hCostWeight: 0
-    mover:
-      moveAbility: 0
     mono: {fileID: 0}
     output: []
     available: []

@@ -13,7 +13,7 @@ public class SkillUIManager : MonoBehaviour
     public IEventSystem EventSystem { get; private set; }
     public Action<PawnBrain> SelectSkill;
     public Action<Skill> AfterSelectSkill;
-    public Action<Plan> AfterSelectPlan;
+    public Action<PawnAction> AfterSelectAction;
     public Action AfterCancelSelectPlan;
 
     public PawnBrain currentBrain;
@@ -32,9 +32,9 @@ public class SkillUIManager : MonoBehaviour
         SelectSkill?.Invoke(currentBrain);
     }
 
-    private void ExcutePlan(Plan plan)
+    private void ExcuteAction(PawnAction action)
     {
-        currentBrain.ExcutePlan(plan);
+        currentBrain.ExcuteAction(action);
         currentBrain = null;
     }
 
@@ -42,7 +42,7 @@ public class SkillUIManager : MonoBehaviour
     {
         EventSystem = ServiceLocator.Get<IEventSystem>();
         AfterCancelSelectPlan += ReselectSkill;
-        AfterSelectPlan += ExcutePlan;
+        AfterSelectAction += ExcuteAction;
     }
 
     private void OnEnable()

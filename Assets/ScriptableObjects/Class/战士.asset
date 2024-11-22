@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propertyModifier:
     modifiers: []
+  supportAbility: 0.2
+  offenseAbility: 1
+  bestSupprtDistance: 2
+  bestOffenseDistance: 1

@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -34,5 +35,13 @@ public class PawnAction
     {
         effectUnit.Play(animationManager);
         animationManager.StartAnimationCheck();
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new();
+        sb.AppendLine(skill.name);
+        sb.AppendLine($"时间花费:{effectUnit.ActionTime}");
+        return sb.ToString();
     }
 }

@@ -40,13 +40,13 @@ public class PawnBrain : CharacterComponentBase
             }
             else
 #endif
-                ExcutePlan(plans[0]);
+                ExcuteAction(plans[0].action);
         }
     }
 
-    public void ExcutePlan(Plan plan)
+    public void ExcuteAction(PawnAction action)
     {
-        plan.action.Play(Pawn.AnimationManager);
+        action.Play(Pawn.AnimationManager);
     }
 
     public PawnAction MockSkill(Skill skill,Vector3Int target)
@@ -56,9 +56,17 @@ public class PawnBrain : CharacterComponentBase
         return action;
     }
 
+    private readonly Dictionary<Vector3Int, float> positionValueCache = new();
+    private readonly List<PawnEntity> allies = new();
+    private readonly List<PawnEntity> enemies = new();
+
+    /// <summary>
+    /// 制定计划
+    /// </summary>
     public virtual void MakePlan()
     {
         plans.Clear();
+        RecognizeEnemyAndAlly();
         positionValueCache.Clear();
         foreach (Skill skill in learnedSkills)
         {
@@ -66,13 +74,49 @@ public class PawnBrain : CharacterComponentBase
         }
         plans.Sort();
     }
-    public void MakePlan(Skill skill, List<Plan> ret)
+    private void MakePlan(Skill skill, List<Plan> ret)
     {
         skill.GetOptions(Pawn, Pawn.Igm, Pawn.GridObject.CellPosition, options);
         for(int i = 0; i < options.Count; i++)
         {
             PawnAction action = MockSkill(skill, options[i]);
             ret.Add(new Plan(action));
+        }
+    }
+
+    /// <summary>
+    /// 仅获取可选行动而不评估
+    /// </summary>
+    public void MakeAction(Skill skill, List<PawnAction> actions)
+    {
+        actions.Clear();
+        skill.GetOptions(Pawn, Pawn.Igm, Pawn.GridObject.CellPosition, options);
+        for (int i = 0; i < options.Count; i++)
+        {
+            actions.Add(MockSkill(skill, options[i]));
+        }
+    }
+
+    public void RecognizeEnemyAndAlly()
+    {
+        allies.Clear();
+        enemies.Clear();
+        foreach(PawnEntity pawn in Pawn.GameManager.pawns)
+        {
+            if(pawn == Pawn)
+                continue;
+            int flag = Pawn.CheckFaction(pawn);
+            switch(flag)
+            {
+                case 1:
+                    allies.Add(pawn);
+                    break;
+                case -1:
+                    enemies.Add(pawn);
+                    break;
+                case 0:
+                    break;
+            }
         }
     }
 
@@ -87,22 +131,83 @@ public class PawnBrain : CharacterComponentBase
         return primitiveValue / effectUnit.ActionTime;
     }
 
-    private readonly Dictionary<Vector3Int, float> positionValueCache = new();
+    public float HealthPercent(PawnEntity pawn)
+        => pawn.BattleComponent.HP / pawn.BattleComponent.maxHP.CurrentValue;
 
     public virtual float EvaluatePosition(Vector3Int position)
     {
-        if(!positionValueCache.ContainsKey(position))
+        int Distance(PawnEntity x,PawnEntity y)
         {
-            float value = 0;
-            foreach (Entity entity in Pawn.Igm.EntityDict.Values)
+            Vector3Int px, py; 
+            if(x == Pawn)
             {
-                if (Pawn.CheckFaction(entity) == -1)
-                {
-                    value -= IsometricGridUtility.ProjectManhattanDistance(
-                        (Vector2Int)position, 
-                        (Vector2Int)entity.GridObject.CellPosition);
-                }
+                px = position;
+                py = y.GridObject.CellPosition;
             }
+            else if (y == Pawn)
+            {
+                px = x.GridObject.CellPosition;
+                py = position;
+            }
+            else
+            {
+                px = x.GridObject.CellPosition;
+                py = y.GridObject.CellPosition;
+            }
+            return IsometricGridUtility.ProjectManhattanDistance((Vector2Int)px, (Vector2Int)py);
+        }
+        int SupportDistance(PawnEntity supporter, PawnEntity supportee)
+            => -Mathf.Abs(Distance(supporter, supportee) - supporter.pClass.bestSupprtDistance);
+        int OffenseDistance(PawnEntity agent,PawnEntity victim)
+            => -Mathf.Abs(Distance(agent, victim) - agent.pClass.bestOffenseDistance);
+        float H(PawnEntity pawn)
+            => 0.5f + 0.5f * HealthPercent(pawn);
+        float I(PawnEntity pawn)
+            => 1- 0.5f * HealthPercent(pawn);
+
+        float OfferSupport()
+        {
+            float sum = 0;
+            for (int i = 0; i < allies.Count; i++)
+            {
+                sum += I(allies[i]) * SupportDistance(Pawn, allies[i]);
+            }
+            sum *= Pawn.pClass.supportAbility;
+            return sum;
+        }
+        float SeekSupport()
+        {
+            float sum = 0;
+            for (int i = 0; i < allies.Count; i++)
+            {
+                sum += allies[i].pClass.supportAbility * SupportDistance(allies[i], Pawn);
+            }
+            sum *= I(Pawn);
+            return sum;
+        }
+        float Offense()
+        {
+            float sum = 0;
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                sum += OffenseDistance(Pawn, enemies[i]);
+            }
+            sum *= H(Pawn) * Pawn.pClass.offenseAbility;
+            return sum;
+        }
+        float Defense()
+        {
+            float sum = 0;
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                sum -= H(enemies[i]) * enemies[i].pClass.offenseAbility * OffenseDistance(enemies[i], Pawn);
+            }
+            return sum;
+        }
+
+        if (!positionValueCache.ContainsKey(position))
+        {
+            float value = AIManager.trend.Multiply(OfferSupport(), SeekSupport(), Offense(), Defense());
             positionValueCache.Add(position, value);
         }
         return positionValueCache[position];

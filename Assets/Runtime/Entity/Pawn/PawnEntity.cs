@@ -12,8 +12,8 @@ public class PawnEntity : Entity
     public MovableGridObject MovableGridObject { get; private set; }
 
     public EFaction faction;
-    public PawnClass pawnClass;
-    public PawnRace pawnRace;
+    public PawnClass pClass;
+    public PawnRace pRace;
     public CharacterProperty actionTime;
     /// <summary>
     /// 全局计时器的值达到此值时，轮到此角色行动
@@ -36,24 +36,24 @@ public class PawnEntity : Entity
     protected override void Awake()
     {
         base.Awake();
-        pawnClass.Bind(this);
-        pawnRace.Bind(this);
+        pClass.Bind(this);
+        pRace.Bind(this);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         GameManager.Register(this);
-        pawnClass.Register();
-        pawnRace.Register();
+        pClass.Register();
+        pRace.Register();
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
         GameManager.Unregister(this);
-        pawnClass.Unregister();
-        pawnRace.Unregister();
+        pClass.Unregister();
+        pRace.Unregister();
     }
     /// <summary>
     /// 与目标为友方返回1，与目标为敌方返回-1，目标为中立或非Pawn返回0
@@ -64,7 +64,7 @@ public class PawnEntity : Entity
         PawnEntity pawn = entity as PawnEntity;
         if (pawn == null)
             return 0;
-        return (int)faction * (int)pawn.faction;
+        return ((int)faction - 1) * ((int)pawn.faction - 1);
     }
 }
 

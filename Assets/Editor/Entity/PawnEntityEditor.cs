@@ -5,14 +5,14 @@ using UnityEditor;
 public class PawnEntityEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty faction, pawnClass, pawnRace, actionTime, time;
+    public SerializedProperty faction, pClass, pRace, actionTime, time;
 
     protected override void MyOnInspectorGUI()
-    {
+    {   
         faction.EnumField<EFaction>("阵营");
-        pawnClass.PropertyField("职业");
-        pawnRace.PropertyField("种族");
-        actionTime.IntField("基础行动时间");
+        pClass.PropertyField("职业");
+        pRace.PropertyField("种族");
+        actionTime.PropertyField("基础行动时间");
         time.IntField("累积等待时间");
     }
 }

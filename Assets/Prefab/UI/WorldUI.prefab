@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1395614977508855410}
   - component: {fileID: 1233725791878572754}
   m_Layer: 5
-  m_Name: SelectPlan
+  m_Name: SelectAction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6004608c8e9db5438f73c2b12d05f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSelecting: 0
 --- !u!1 &8419368922121762108
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,17 +3,6 @@ using System;
 
 public class AIManager : Service,IService
 {
-    private IsometricGridManager igm;
-    private IsometricGridManager Igm
-    {
-        get
-        {
-            if (igm == null)
-                igm = IsometricGridManager.FindInstance();
-            return igm;
-        }
-    }
-
     public override Type RegisterType => GetType();
 
     private PathFindingManager pathFinding;
@@ -31,8 +20,13 @@ public class AIManager : Service,IService
 [Serializable]
 public struct Trend
 {
-    public float offerHelp;
-    public float seekHelp;
-    public float charge;
-    public float withdraw;
+    public float offerSupport;
+    public float seekSupport;
+    public float offense;
+    public float defense;
+
+    public readonly float Multiply(float a, float b, float c, float d)
+    {
+        return offerSupport * a + seekSupport * b + offense * c + defense * d;
+    }
 }
