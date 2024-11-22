@@ -9,22 +9,25 @@ public class ActionIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private Image image;
     private PawnAction action;
     private IEventSystem eventSystem;
+    private SkillUIManager skillUIManager;
     protected string message;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!string.IsNullOrEmpty(message))
             eventSystem.Invoke(EEvent.ShowMessage, (object)this, eventData.position, message);
+        skillUIManager.PreviewAction?.Invoke(action);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         eventSystem.Invoke(EEvent.HideMessage, (object)this);
+        skillUIManager.StopPreviewAction?.Invoke(action);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        SkillUIManager.FindInstance().AfterSelectAction?.Invoke(action);
+        skillUIManager.AfterSelectAction?.Invoke(action);
     }
 
     public void SetAction(PawnAction action)
@@ -38,6 +41,11 @@ public class ActionIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         image = GetComponent<Image>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
         image.alphaHitTestMinimumThreshold = 0.2f;
+    }
+
+    private void OnEnable()
+    {
+        skillUIManager = SkillUIManager.FindInstance();
     }
 
     private void OnDisable()

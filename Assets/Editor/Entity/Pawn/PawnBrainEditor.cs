@@ -14,7 +14,7 @@ public class PawnBrainEditor : AutoEditor
         learnedSkills.PropertyField("技能");
         if(Application.isPlaying)
         {
-            plans.BoolField("当前计划");
+            plans.ListField("当前计划");
             prepared.BoolField("准备好行动");
         }
     }

@@ -15,6 +15,8 @@ public class SkillUIManager : MonoBehaviour
     public Action<Skill> AfterSelectSkill;
     public Action<PawnAction> AfterSelectAction;
     public Action AfterCancelSelectPlan;
+    public Action<PawnAction> PreviewAction;
+    public Action<PawnAction> StopPreviewAction;
 
     public PawnBrain currentBrain;
 
