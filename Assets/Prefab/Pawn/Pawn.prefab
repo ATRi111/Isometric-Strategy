@@ -318,7 +318,7 @@ MonoBehaviour:
   entityName: 
   faction: 1
   pClass: {fileID: 11400000, guid: 0c4d6825ca201534a9a97458c5adf663, type: 2}
-  pRace: {fileID: 11400000, guid: 1a5a9d843868a7d4ab1e9593aa06fd31, type: 2}
+  race: {fileID: 11400000, guid: 1a5a9d843868a7d4ab1e9593aa06fd31, type: 2}
   actionTime:
     defaultValue: 0
     currentValue: 0

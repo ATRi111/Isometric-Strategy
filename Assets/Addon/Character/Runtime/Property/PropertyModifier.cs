@@ -11,17 +11,11 @@ namespace Character
     [System.Serializable]
     public class PropertyModifier
     {
-        private CharacterProperty property;
-
         public float value;
         public FindPropertySO so;
         public EModifyTiming timing;
 
-        public void Bind()
-        {
-            property = so.FindProperty();
-        }
-        public void Register()
+        public void Register(CharacterProperty property)
         {
             switch (timing)
             {
@@ -41,7 +35,7 @@ namespace Character
 
         }
 
-        public void Unregister()
+        public void Unregister(CharacterProperty property)
         {
             switch (timing)
             {
@@ -67,7 +61,7 @@ namespace Character
 
         private void Multiply(CharacterProperty property)
         {
-            property.Multiply(value);
+            property.Multiply(1f + value);
         }
     }
 }

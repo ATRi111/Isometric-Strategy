@@ -5,12 +5,9 @@ public class PawnPropertyModifierSO : ScriptableObject
     [SerializeField]
     protected PawnPropertyModifier propertyModifier;
 
-    public void Bind(PawnEntity pawn)
-        => propertyModifier.Bind(pawn);
+    public virtual void Register(PawnEntity pawn)
+        => propertyModifier.Register(pawn);
 
-    public void Register()
-        => propertyModifier.Register();
-
-    public void Unregister()
-        => propertyModifier.Unregister();
+    public virtual void Unregister(PawnEntity pawn)
+        => propertyModifier.Unregister(pawn);
 }

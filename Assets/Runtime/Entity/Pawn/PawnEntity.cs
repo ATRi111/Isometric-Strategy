@@ -13,7 +13,7 @@ public class PawnEntity : Entity
 
     public EFaction faction;
     public PawnClass pClass;
-    public PawnRace pRace;
+    public Race race;
     public CharacterProperty actionTime;
     /// <summary>
     /// 全局计时器的值达到此值时，轮到此角色行动
@@ -33,27 +33,20 @@ public class PawnEntity : Entity
         time = actionTime.IntValue;   //入场AT
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
-        pClass.Bind(this);
-        pRace.Bind(this);
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
         GameManager.Register(this);
-        pClass.Register();
-        pRace.Register();
+        pClass.Register(this);
+        race.Register(this);
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
         GameManager.Unregister(this);
-        pClass.Unregister();
-        pRace.Unregister();
+        pClass.Unregister(this);
+        race.Unregister(this);
     }
     /// <summary>
     /// 与目标为友方返回1，与目标为敌方返回-1，目标为中立或非Pawn返回0
