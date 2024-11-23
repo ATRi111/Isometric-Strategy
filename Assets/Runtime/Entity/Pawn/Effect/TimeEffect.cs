@@ -1,14 +1,14 @@
-public class Effect_Time : Effect
+public class TimeEffect : Effect
 {
     public int prev, current;
 
-    public Effect_Time(Entity target)
+    public TimeEffect(Entity target)
        : base(target)
     {   
         prev = current = (target as PawnEntity).time;
     }
 
-    public Effect_Time(Entity target, int prev, int current)
+    public TimeEffect(Entity target, int prev, int current)
         : base(target)
     {
         this.prev = prev;

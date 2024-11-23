@@ -15,7 +15,7 @@ public class MoveSkill : Skill
     {
         base.Mock(agent, igm, position, target, ret);
         agent.Brain.FindRoute(position, target, route);
-        ret.effects.Add(new Effect_Move(agent, route));
+        ret.effects.Add(new MoveEffect(agent, route));
     }
 
     public override int MockTime(PawnEntity agent, Vector3Int position, Vector3Int target, IsometricGridManager igm)

@@ -3,7 +3,7 @@ using UnityEngine;
 public class AnimationProcess_Move : AnimationProcess
 {
     private readonly GridMoveController moveController;
-    private Effect_Move Effect => effect as Effect_Move;
+    private MoveEffect Effect => effect as MoveEffect;
 
     public AnimationProcess_Move(Effect effect)
         :base(effect)

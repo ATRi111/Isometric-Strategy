@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect_Move : Effect
+public class MoveEffect : Effect
 {
     public Vector3Int from, to;
     public readonly List<Vector3Int> route;
@@ -9,7 +9,7 @@ public class Effect_Move : Effect
     public override bool Appliable => victim.GridObject.CellPosition == from;
     public override bool Revokable => victim.GridObject.CellPosition == to;
 
-    public Effect_Move(PawnEntity victim, List<Vector3Int> route) 
+    public MoveEffect(PawnEntity victim, List<Vector3Int> route) 
         : base(victim)
     {
         this.route = new();

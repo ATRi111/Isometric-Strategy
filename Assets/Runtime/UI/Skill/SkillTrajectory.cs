@@ -41,6 +41,12 @@ public class SkillTrajectory : MonoBehaviour
         }
     }
 
+    private void AfterSelectAction(PawnAction _)
+    {
+        currentAction = null;
+        lineRenderer.enabled = false;
+    }
+
     private void Awake()
     {
         igm = IsometricGridManager.FindInstance();
@@ -52,11 +58,13 @@ public class SkillTrajectory : MonoBehaviour
     {
         skillUIManager.PreviewAction += PreviewAction;
         skillUIManager.StopPreviewAction += StopPreviewAction;
+        skillUIManager.AfterSelectAction += AfterSelectAction;
     }
 
     private void OnDisable()
     {
         skillUIManager.PreviewAction -= PreviewAction;
         skillUIManager.StopPreviewAction -= StopPreviewAction;
+        skillUIManager.AfterSelectAction -= AfterSelectAction;
     }
 }

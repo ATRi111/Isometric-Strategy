@@ -27,9 +27,8 @@ public class BattleComponent : CharacterComponentBase
 
     public SerializedDictionary<EDamageType, CharacterProperty> resistance;
 
-    protected override void Awake()
+    public void Initialize()
     {
-        base.Awake();
         resistance.Refresh();
     }
 

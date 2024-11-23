@@ -15,7 +15,7 @@ public class ShootSkill : StraitLineSkill
             if (gridObject.TryGetComponent(out Entity victim))
             {
                 int hp = victim.BattleComponent.MockDamage(agent, EDamageType.None, damage);
-                Effect_HPChange effect = new(victim, victim.BattleComponent.HP, hp);
+                HPChangeEffect effect = new(victim, victim.BattleComponent.HP, hp);
                 ret.effects.Add(effect);
             }
         }

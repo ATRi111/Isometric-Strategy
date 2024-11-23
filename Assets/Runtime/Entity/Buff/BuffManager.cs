@@ -1,66 +1,72 @@
 using Character;
+using MyTool;
 using Services;
-using Services.Event;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuffManager : CharacterComponentBase
 {
     private PawnEntity pawn;
-    private IEventSystem eventSystem;
     private GameManager gameManager;
     [SerializeField]
-    private List<RuntimeBuff> buffs;
+    private SerializedHashSet<Buff> buffs;
 
     public void OnTick(int time)
     {
-        for (int i = 0; i < buffs.Count; i++)
+        foreach (Buff buff in buffs)
         {
-            buffs[i].Enabled = gameManager.Time < buffs[i].endTime; 
-            if (buffs[i].Enabled)
-                buffs[i].Tick(time);
+            buff.Enabled = time < buff.endTime;
+            if (buff.Enabled)
+                buff.Tick(time);
         }
+    }
+
+    public BuffEffect MockAdd(Buff target, int probability)
+    {
+        switch(target.so.superimposeMode)
+        {
+            case ESuperimposeMode.Coexist:
+                return new AddBuffEffect(pawn, target, this, probability);
+            case ESuperimposeMode.Refresh:
+                Buff buff = SuprimposeCheck(target);
+                if(buff == null)
+                    return new AddBuffEffect(pawn, target, this, probability);
+                return new LengthenBuffEffect(pawn, buff, target.endTime, this, probability);
+            default:
+                throw new System.ArgumentException();
+        }
+    }
+
+    public bool Contains(Buff target)
+    {
+        return buffs.Contains(target);
+    }
+
+    public Buff SuprimposeCheck(Buff target)
+    {
+        foreach(Buff buff in buffs)
+        {
+            if(target.SuperimposeCheck(buff))
+                return buff;
+        }
+        return null;
     }
 
     public void Add(Buff buff)
     {
-        //TODO:同名Buff处理
-        RuntimeBuff runtimeBuff = new(pawn, buff, gameManager.Time);
-        buffs.Add(runtimeBuff);
-        runtimeBuff.Enabled = true;
+        buffs.Add(buff);
+        buff.Enabled = gameManager.Time < buff.endTime;
     }
 
-    public void Remove(Buff buff,int startTime)
+    public void Remove(Buff buff)
     {
-        for (int i = 0; i < buffs.Count; i++)
-        {
-            if(buff.buffName == buffs[i].buffName && startTime == buffs[i].startTime)
-            {
-                buffs.RemoveAt(i);
-            }
-        }
-    }
-
-    private void AfterBattle()
-    {
-        buffs.Clear();
+        buff.Enabled = false;
+        buffs.Remove(buff);
     }
 
     protected override void Awake()
     {
         base.Awake();
-        eventSystem = ServiceLocator.Get<IEventSystem>();
         gameManager = ServiceLocator.Get<GameManager>();
         pawn = entity as PawnEntity;
-    }
-
-    private void OnEnable()
-    {
-        eventSystem.AddListener(EEvent.AfterBattle, AfterBattle);
-    }
-
-    private void OnDisable()
-    {
-        eventSystem.RemoveListener(EEvent.AfterBattle, AfterBattle);
     }
 }

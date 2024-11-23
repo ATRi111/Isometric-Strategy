@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class EffectUnit
 {
-    public Effect_Time timeEffect;
+    public TimeEffect timeEffect;
     public int ActionTime => timeEffect.current - timeEffect.prev;
 
     public List<Effect> effects;
@@ -10,7 +10,7 @@ public class EffectUnit
     public EffectUnit(PawnEntity agent)
     {
         effects = new List<Effect>();
-        timeEffect = new Effect_Time(agent);
+        timeEffect = new TimeEffect(agent);
         timeEffect.current += agent.actionTime.IntValue;
     }
 

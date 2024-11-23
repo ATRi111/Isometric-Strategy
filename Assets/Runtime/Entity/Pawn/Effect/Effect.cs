@@ -5,13 +5,6 @@ using System;
 [Serializable]
 public abstract class Effect
 {
-    protected static GameManager gameManager;
-
-    static Effect()
-    {
-        gameManager = ServiceLocator.Get<GameManager>();
-    }
-
     public const int MaxProbability = 100;
 
     public Entity victim;

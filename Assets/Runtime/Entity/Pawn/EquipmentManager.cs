@@ -15,6 +15,7 @@ public class EquipmentManager : CharacterComponentBase
 
     public void Initialize()
     {
+        equipments.Refresh();
         foreach (Equipment equipment in equipments.Values)
         {
             equipment.Register(pawn);

@@ -10,7 +10,7 @@ public class UnArmedSkill : RangedSkill
         base.Mock(agent, igm, position, target, ret);
         Entity victim = igm.EntityDict[target];
         int hp = victim.BattleComponent.MockDamage(agent, EDamageType.None, damage);
-        Effect_HPChange effect = new(victim, victim.BattleComponent.HP, hp);
+        HPChangeEffect effect = new(victim, victim.BattleComponent.HP, hp);
         ret.effects.Add(effect);
     }
 }

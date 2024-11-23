@@ -1,8 +1,8 @@
-public class Effect_HPChange : Effect
+public class HPChangeEffect : Effect
 {
     public int prev, current;
 
-    public Effect_HPChange(Entity victim, int prev, int current)
+    public HPChangeEffect(Entity victim, int prev, int current)
         : base(victim)
     {
         this.prev = prev;

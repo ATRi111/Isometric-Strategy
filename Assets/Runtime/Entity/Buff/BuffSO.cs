@@ -1,0 +1,23 @@
+using UnityEngine;
+
+/// <summary>
+/// µþ¼Ó·½Ê½
+/// </summary>
+public enum ESuperimposeMode
+{
+    Coexist,
+    Refresh,
+}
+
+[CreateAssetMenu(fileName = "ÐÂ×´Ì¬", menuName = "×´Ì¬/Ä¬ÈÏ×´Ì¬")]
+public class BuffSO : PawnPropertyModifierSO
+{
+    public int duration;
+    public ESuperimposeMode superimposeMode;
+    public float primitiveValue;
+
+    public virtual void Tick(int startTime, int currentTime)
+    {
+
+    }
+}
