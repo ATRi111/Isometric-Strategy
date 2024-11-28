@@ -33,16 +33,20 @@ public class BattleComponent : CharacterComponentBase
     }
 
     /// <summary>
-    /// 返回预想中受到伤害后HP的值，但不会实际修改HP
+    /// 返回预想中受到伤害后HP的减少量，但不会实际修改HP
     /// </summary>
-    public int MockDamage(PawnEntity source, EDamageType type, int damage)
+    public int MockDamage(EDamageType type, int attackPower)
     {
-        damage = Mathf.RoundToInt(damage * (1f - resistance[type].CurrentValue));
-        return Mathf.Clamp(HP - damage, 0, maxHP.IntValue);
+        attackPower = Mathf.RoundToInt(attackPower / resistance[type].CurrentValue);
+        return attackPower;
     }
 
     public void Refresh()
     {
         maxHP.Refresh();
+        foreach(CharacterProperty property in resistance.Values)
+        {
+            property.Refresh();
+        }
     }
 }

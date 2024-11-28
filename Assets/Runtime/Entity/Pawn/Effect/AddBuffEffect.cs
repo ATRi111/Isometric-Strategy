@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
+[Serializable]
 public class AddBuffEffect : BuffEffect
 {
     public override bool Appliable => !buffManager.Contains(buff);
 
     public override bool Revokable => buffManager.Contains(buff);
 
-    public AddBuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = 100) : base(victim, buff, buffManager, probability)
+    public AddBuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability) 
+        : base(victim, buff, buffManager, probability)
     {
     }
 

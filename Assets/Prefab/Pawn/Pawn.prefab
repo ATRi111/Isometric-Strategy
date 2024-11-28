@@ -54,7 +54,11 @@ MonoBehaviour:
     list:
     - key: 0
       value:
-        defaultValue: 0
+        defaultValue: 100
+        currentValue: 0
+    - key: 1
+      value:
+        defaultValue: 100
         currentValue: 0
 --- !u!114 &4451063528451210290
 MonoBehaviour:
@@ -68,7 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e33f802d4b837419560ae72b43c0b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffs: []
+  buffs:
+    list: []
 --- !u!114 &6595715262542743162
 MonoBehaviour:
   m_ObjectHideFlags: 0

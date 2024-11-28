@@ -1,9 +1,12 @@
+using System;
+
+[Serializable]
 public class HPChangeEffect : Effect
 {
     public int prev, current;
 
-    public HPChangeEffect(Entity victim, int prev, int current)
-        : base(victim)
+    public HPChangeEffect(Entity victim, int prev, int current, int probability = MaxProbability)
+        : base(victim, probability)
     {
         this.prev = prev;
         this.current = current;

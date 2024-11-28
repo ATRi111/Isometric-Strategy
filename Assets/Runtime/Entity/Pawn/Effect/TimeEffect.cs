@@ -1,3 +1,6 @@
+using System;
+
+[Serializable]
 public class TimeEffect : Effect
 {
     public int prev, current;
@@ -38,6 +41,7 @@ public class TimeEffect : Effect
 
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
+        //TODO:评价时间改变类技能
         throw new System.InvalidOperationException();
     }
 }

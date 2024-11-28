@@ -1,3 +1,6 @@
+using System;
+
+[Serializable]
 public class LengthenBuffEffect : BuffEffect
 {
     public int endTime_prev;
@@ -6,7 +9,8 @@ public class LengthenBuffEffect : BuffEffect
 
     public override bool Revokable => buffManager.Contains(buff) && buff.endTime == endTime;
 
-    public LengthenBuffEffect(Entity victim, Buff buff, int endTime, BuffManager buffManager, int probability = 100) : base(victim, buff, buffManager, probability)
+    public LengthenBuffEffect(Entity victim, Buff buff, int endTime, BuffManager buffManager, int probability = MaxProbability) 
+        : base(victim, buff, buffManager, probability)
     {
         endTime_prev = buff.endTime;
         this.endTime = endTime;

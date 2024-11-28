@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class MoveEffect : Effect
 {
     public Vector3Int from, to;
@@ -9,8 +11,8 @@ public class MoveEffect : Effect
     public override bool Appliable => victim.GridObject.CellPosition == from;
     public override bool Revokable => victim.GridObject.CellPosition == to;
 
-    public MoveEffect(PawnEntity victim, List<Vector3Int> route) 
-        : base(victim)
+    public MoveEffect(PawnEntity victim, List<Vector3Int> route, int probability = MaxProbability)
+        : base(victim, probability)
     {
         this.route = new();
         this.route.AddRange(route);

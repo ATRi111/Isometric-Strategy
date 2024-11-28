@@ -8,11 +8,23 @@ namespace Character
         FinalMultiply,
     }
 
+    /// <summary>
+    /// 影响属性的词条
+    /// </summary>
     [System.Serializable]
     public class PropertyModifier
     {
+        /// <summary>
+        /// 变化量
+        /// </summary>
         public float value;
+        /// <summary>
+        /// 获取属性引用的方法
+        /// </summary>
         public FindPropertySO so;
+        /// <summary>
+        /// 变化方式
+        /// </summary>
         public EModifyTiming timing;
 
         public void Register(CharacterProperty property)

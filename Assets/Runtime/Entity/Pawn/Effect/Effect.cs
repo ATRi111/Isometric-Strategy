@@ -1,5 +1,4 @@
 using MyTool;
-using Services;
 using System;
 
 [Serializable]
@@ -58,7 +57,7 @@ public abstract class Effect
     }
 
     /// <summary>
-    /// 计算此效果对某个角色的价值（这里不考虑概率）
+    /// 计算此效果对某个角色的价值（不考虑概率）
     /// </summary>
     public abstract float PrimitiveValueFor(PawnEntity pawn);
 

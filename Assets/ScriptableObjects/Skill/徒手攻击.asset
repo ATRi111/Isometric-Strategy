@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c461700d2de74b49a14d408f02492ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 60fc8b1b0161ed040b9a45421afd9f04, type: 3}
   m_Name: "\u5F92\u624B\u653B\u51FB"
   m_EditorClassIdentifier: 
   actionTime: 50
+  accuracy: 100
+  powers:
+  - type: 1
+    power: 100
   castingDistance: 1
   targetType: 1
-  damage: 100

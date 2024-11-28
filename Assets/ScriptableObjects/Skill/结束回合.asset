@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39aa44186d7105847a7b0258a8295e7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f7466f6ec6d7b449938c9d099358224, type: 3}
   m_Name: "\u7ED3\u675F\u56DE\u5408"
   m_EditorClassIdentifier: 
-  actionTime: 0
+  actionTime: 5
+  accuracy: 100
+  powers: []

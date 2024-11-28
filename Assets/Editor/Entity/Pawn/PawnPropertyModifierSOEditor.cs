@@ -9,6 +9,6 @@ public class PawnPropertyModifierSOEditor : AutoEditor
 
     protected override void MyOnInspectorGUI()
     {
-        propertyModifier.PropertyField("簡訳");
+        propertyModifier.PropertyField("奉來簡訳");
     }
 }
