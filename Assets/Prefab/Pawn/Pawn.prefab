@@ -89,7 +89,7 @@ MonoBehaviour:
   equipments:
     list:
     - key: 0
-      value: {fileID: 11400000, guid: 387259b587d7a4d46ad1470e5833d4cc, type: 2}
+      value: {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
 --- !u!1 &5804586430030361790
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +142,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 657c8bcd12f11534ca0c14dfb10bc8d5, type: 2}
     - {fileID: 11400000, guid: 6c221d77fbdbf304a9adcdb5da814e20, type: 2}
     - {fileID: 11400000, guid: e8601c53d3b3ce842b709d227ee4676c, type: 2}
+    - {fileID: 11400000, guid: 1272a1c74637fd54b8d2c7e155ef1993, type: 2}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &7860386800660997329
 GameObject:
   m_ObjectHideFlags: 0

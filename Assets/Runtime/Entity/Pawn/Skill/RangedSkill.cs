@@ -12,7 +12,7 @@ public enum EVictimType
 /// <summary>
 /// 在一定范围内释放的技能
 /// </summary>
-[CreateAssetMenu(fileName = "范围型技能", menuName = "技能/范围型技能")]
+[CreateAssetMenu(fileName = "范围型技能", menuName = "技能/范围型技能", order = -1)]
 public class RangedSkill : Skill
 {
     public int castingDistance;
@@ -35,8 +35,8 @@ public class RangedSkill : Skill
 
     public override void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
     {
-        base.GetVictims(agent, igm, position, target, ret);
         //TODO:AOE技能
+        base.GetVictims(agent, igm, position, target, ret);
         switch (victimType)
         {
             case EVictimType.Everything:
