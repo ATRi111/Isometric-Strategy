@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class PawnPropertyModifierSO : ScriptableObject
 {
-    [SerializeField]
-    protected PawnPropertyModifier propertyModifier;
+    public PawnPropertyModifier propertyModifier;
 
     public virtual void Register(PawnEntity pawn)
         => propertyModifier.Register(pawn);

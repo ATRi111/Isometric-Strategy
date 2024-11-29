@@ -9,7 +9,6 @@ public abstract class Skill : ScriptableObject
     public const int MaxAccuracy = 100;
 
     public int actionTime;
-    [Range(0, MaxAccuracy)]
     public int accuracy = MaxAccuracy;
 
     public List<SkillPower> powers;

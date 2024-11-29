@@ -2,7 +2,7 @@ using EditorExtend.GridEditor;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ETargetType
+public enum EVictimType
 {
     Everything = 0,
     Entity = 1,
@@ -16,7 +16,7 @@ public enum ETargetType
 public class RangedSkill : Skill
 {
     public int castingDistance;
-    public ETargetType targetType;
+    public EVictimType victimType;
 
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)
     {
@@ -37,14 +37,14 @@ public class RangedSkill : Skill
     {
         base.GetVictims(agent, igm, position, target, ret);
         //TODO:AOE¼¼ÄÜ
-        switch (targetType)
+        switch (victimType)
         {
-            case ETargetType.Everything:
-            case ETargetType.Entity:
+            case EVictimType.Everything:
+            case EVictimType.Entity:
                 if (igm.EntityDict.ContainsKey(target))
                     ret.Add(igm.EntityDict[target]);
                 break;
-            case ETargetType.Pawn:
+            case EVictimType.Pawn:
                 if (igm.EntityDict.ContainsKey(target) && igm.EntityDict[target] is PawnEntity pawn)
                     ret.Add(pawn);
                 break;
