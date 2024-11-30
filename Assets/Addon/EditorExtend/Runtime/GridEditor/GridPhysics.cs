@@ -4,6 +4,8 @@ namespace EditorExtend.GridEditor
 {
     internal static class GridPhysics
     {
+        public static Vector3 Gravity = new(0f, -10f, 0f);
+
         public static bool BoxOverlap(Vector3 min, Vector3 extend, Vector3 p)
         {
             return p.x >= min.x && p.x < min.x + extend.x

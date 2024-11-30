@@ -20,11 +20,15 @@ public class PawnBrain : CharacterComponentBase
 #if UNITY_EDITOR
     [SerializeField]
     private bool prepared;
+    private DebugPlanUIGenerator generator;
 #endif
     public virtual void DoAction()
     {
         if (humanControl)
         {
+#if UNITY_EDITOR
+            generator.Clear();
+#endif
             Pawn.EventSystem.Invoke(EEvent.OnHumanControl, this);
         }
         else
@@ -34,7 +38,6 @@ public class PawnBrain : CharacterComponentBase
             if (Pawn.GameManager.debug)
             {
                 prepared = true;
-                DebugPlanUIGenerator generator = AIManager.GetComponent<DebugPlanUIGenerator>();
                 generator.brain = this;
                 generator.Paint();
             }
@@ -260,6 +263,9 @@ public class PawnBrain : CharacterComponentBase
     {
         base.Awake();
         AIManager = ServiceLocator.Get<AIManager>();
+#if UNITY_EDITOR
+        generator = AIManager.GetComponent<DebugPlanUIGenerator>();
+#endif
     }
 
     protected void Update()

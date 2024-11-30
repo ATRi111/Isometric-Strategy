@@ -188,6 +188,8 @@ namespace EditorExtend.GridEditor
 
         #endregion
 
+        public bool autoSortingOrder = true;
+
         #region ÉúÃüÖÜÆÚ
 
         protected virtual void Awake()
@@ -203,6 +205,18 @@ namespace EditorExtend.GridEditor
         protected virtual void OnDisable()
         {
             Unregister();
+        }
+
+        protected virtual void Update()
+        {
+            if (autoSortingOrder)
+                SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(this);
+        }
+
+        private void OnDrawGizmos()
+        {
+            if(autoSortingOrder)
+                SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(this);
         }
         #endregion 
     }

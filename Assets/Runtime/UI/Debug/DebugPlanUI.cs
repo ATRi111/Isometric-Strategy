@@ -28,5 +28,6 @@ public class DebugPlanUI : MonoBehaviour
             $"V:{plan.value:F2}\n" +
             $"{plan.action.skill.name}\n" +
             $"T:{plan.action.effectUnit.ActionTime}\n";
+        spriteRenderer.sortingOrder = plan.action.agent.GridObject.SpriteRenderer.sortingOrder;
     }
 }

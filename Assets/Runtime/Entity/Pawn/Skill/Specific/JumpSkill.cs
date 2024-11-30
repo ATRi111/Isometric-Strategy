@@ -17,6 +17,7 @@ public class JumpSkill : RangedSkill
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)
     {
         base.GetOptions(agent, igm, position, ret);
+        //TODO:Å×ÎïÏß¼ì²â
         List<Entity> victims = new();
         for (int i = 0; i < Directions.Count; i++)
         {
