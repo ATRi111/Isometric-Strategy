@@ -50,6 +50,13 @@ public class JumpSkill : RangedSkill
 
     public override int MockTime(PawnEntity agent, Vector3Int position, Vector3Int target, IsometricGridManager igm)
     {
-        return castingDistance * actionTime;
+        int time = 0;
+        for (int i = 0; i < MoveSkill.ZoneOfControl.Length; i++)
+        {
+            Vector3Int temp = position + target;
+            if (igm.EntityDict.ContainsKey(temp) && agent.CheckFaction(igm.EntityDict[temp]) == -1)
+                time += actionTime;
+        }
+        return (castingDistance + 1) * actionTime;
     }
 }

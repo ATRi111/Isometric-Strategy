@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2089735c9391f4ea3b03697aa4751c, type: 3}
   m_Name: "\u8DF3\u8DC3"
   m_EditorClassIdentifier: 
-  actionTime: 15
+  displayName: "\u8DF3\u8DC3"
+  actionTime: 10
   accuracy: 100
   powers: []
   castingDistance: 2

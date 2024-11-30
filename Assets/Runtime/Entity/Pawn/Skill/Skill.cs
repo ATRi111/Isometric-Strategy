@@ -8,6 +8,7 @@ public abstract class Skill : ScriptableObject
 {
     public const int MaxAccuracy = 100;
 
+    public string displayName;
     public int actionTime;
     public int accuracy = MaxAccuracy;
 
@@ -77,7 +78,7 @@ public abstract class Skill : ScriptableObject
     public override string ToString()
     {
         StringBuilder sb = new();
-        sb.AppendLine(name);
+        sb.AppendLine(displayName);
         return base.ToString();
     }
 }
