@@ -27,27 +27,35 @@ public class RangedSkill : Skill
         {
             Vector2Int temp = (Vector2Int)position + primitive[i];
             Vector3Int target = temp.AddZ(igm.AboveGroundLayer(temp));
-            GetVictims(agent, igm, position, target, victims);
-            if (victims.Count > 0)
-                ret.Add(target);
+            switch(victimType)
+            {
+                case EVictimType.Everything:
+                    ret.Add(target);
+                    break;
+                case EVictimType.Entity:
+                case EVictimType.Pawn:
+                    GetVictims(agent, igm, position, target, victims);
+                    if (victims.Count > 0)
+                        ret.Add(target);
+                    break;
+            }
         }
     }
 
+    public override bool FilterVictim(Entity entity)
+    {
+        return victimType  switch
+        {
+            EVictimType.Everything or EVictimType.Entity => true,
+            EVictimType.Pawn => entity is PawnEntity,
+            _ => false,
+        };
+}
+
     public override void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
     {
-        //TODO:AOE¼¼ÄÜ
         base.GetVictims(agent, igm, position, target, ret);
-        switch (victimType)
-        {
-            case EVictimType.Everything:
-            case EVictimType.Entity:
-                if (igm.EntityDict.ContainsKey(target))
-                    ret.Add(igm.EntityDict[target]);
-                break;
-            case EVictimType.Pawn:
-                if (igm.EntityDict.ContainsKey(target) && igm.EntityDict[target] is PawnEntity pawn)
-                    ret.Add(pawn);
-                break;
-        }
+        if (igm.EntityDict.ContainsKey(target) && FilterVictim(igm.EntityDict[target]))
+            ret.Add(igm.EntityDict[target]);
     }
 }

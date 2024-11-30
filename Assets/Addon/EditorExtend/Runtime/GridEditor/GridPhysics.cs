@@ -4,8 +4,9 @@ namespace EditorExtend.GridEditor
 {
     internal static class GridPhysics
     {
-        public static Vector3 Gravity = new(0f, -10f, 0f);
+        public static float Gravity = 10f; //重力加速度沿Z轴负方向
 
+        #region 点求交
         public static bool BoxOverlap(Vector3 min, Vector3 extend, Vector3 p)
         {
             return p.x >= min.x && p.x < min.x + extend.x
@@ -19,7 +20,9 @@ namespace EditorExtend.GridEditor
             float projSqrDistance = (p - bottomCenter).ResetZ().sqrMagnitude;
             return projSqrDistance < radius * radius;
         }
+        #endregion
 
+        #region 线段求交
         public static bool LineSegmentCastBox(Vector3 min, Vector3 extend, ref Vector3 from, ref Vector3 to)
         {
             float uIn = 0, uOut = 1;
@@ -112,5 +115,51 @@ namespace EditorExtend.GridEditor
             }
             return false;
         }
+        #endregion
+
+        #region 抛物线
+
+        /// <summary>
+        /// 求抛物线初速度
+        /// </summary>
+        /// <param name="from">起点</param>
+        /// <param name="to">终点</param>
+        /// <param name="includedAngle">初速度与地面的夹角（弧度制）</param>
+        public static bool InitialVelocityOfParabola(Vector3 from, Vector3 to, float includedAngle, out Vector3 velocity)
+        {
+            float h = to.z - from.z;
+            Vector3 project = to - from;
+            project = new Vector3(project.x, project.y, 0);
+            float p = project.magnitude;
+            bool feasible = InitialSpeedOfParabola(h, p, includedAngle, out float speed);
+            if (!feasible)
+            {
+                velocity = Vector3.zero;
+                return false;
+            }
+            velocity = speed * (project + p * Mathf.Tan(includedAngle) * Vector3.forward).normalized;
+            return true;
+        }
+
+        /// <summary>
+        /// 求抛物线初速率
+        /// </summary>
+        /// <param name="h">高度改变量</param>
+        /// <param name="p">xy平面内投影距离</param>
+        /// <param name="includedAngle">初速度与地面的夹角（弧度制）</param>
+        public static bool InitialSpeedOfParabola(float h, float p, float includedAngle, out float speed)
+        {
+            float t_square = 2 / Gravity * (p * Mathf.Tan(includedAngle) - h);
+            if (t_square < 0)
+            {
+                speed = -1;
+                return false;
+            }
+            float t = Mathf.Sqrt(t_square);
+            speed = p / t / Mathf.Cos(includedAngle);
+            return speed >= 0;
+        }
+
+        #endregion
     }
 }

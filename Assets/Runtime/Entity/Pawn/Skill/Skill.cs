@@ -26,9 +26,20 @@ public abstract class Skill : ScriptableObject
         ret.Clear();
     }
 
+    /// <summary>
+    /// 获取技能命中的Entity
+    /// </summary>
     public virtual void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
     {
         ret.Clear();
+    }
+
+    /// <summary>
+    /// 判断某个entity是否是技能允许的目标
+    /// </summary>
+    public virtual bool FilterVictim(Entity entity)
+    {
+        return true;
     }
 
     /// <summary>

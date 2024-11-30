@@ -1,4 +1,5 @@
 using EditorExtend.GridEditor;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -6,6 +7,15 @@ using UnityEngine;
 /// </summary>
 public abstract class ProjectileSkill : RangedSkill
 {
+    public override void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
+    {
+        ret.Clear();
+        GridObject gridObject = HitCheck(agent, igm, target, out Vector3 _);
+        Entity entity = gridObject.GetComponentInParent<Entity>();
+        if (entity != null && FilterVictim(entity))
+            ret.Add(entity);
+    }
+
     public GridObject HitCheck(PawnEntity agent, IsometricGridManager igm, Vector3Int target, out Vector3 hit)
     {
         GridObject victim = igm.GetObejectXY((Vector2Int)target);
