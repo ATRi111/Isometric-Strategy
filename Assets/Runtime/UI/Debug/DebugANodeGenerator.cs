@@ -43,7 +43,7 @@ public class DebugANodeGenerator : MonoBehaviour
     internal Vector3 NodeToWorld(ANode node)
     {
         List<GridObject> temp = new();
-        Igm.GetObejectsXY(node.Position, temp);
+        Igm.GetObjectsXY(node.Position, temp);
         if (temp.Count == 0)
             return Igm.CellToWorld((Vector3Int)node.Position);
 

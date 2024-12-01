@@ -13,6 +13,8 @@ namespace EditorExtend.GridEditor
 
         public override Vector3 TopCenter => CellPosition + new Vector3(0.5f, 0.5f, height);
 
+        public override Vector3 BottomCenter => CellPosition + new Vector3(0.5f, 0.5f, 0f);
+
         public override bool Overlap(Vector3 p)
         {
             return GridPhysics.CylinderOverlap(CellPosition + BottomCenterOffset, height, radius, p);

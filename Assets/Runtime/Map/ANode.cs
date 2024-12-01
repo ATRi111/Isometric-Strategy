@@ -6,7 +6,7 @@ public class ANode : AStarNode
 {
     protected IsometricGridManager igm;
 
-    public GridObject CurrentObject => igm.GetObejectXY(position);
+    public GridObject CurrentObject => igm.GetObjectXY(position);
     public virtual int AboveGroundLayer => igm.AboveGroundLayer(Position);
     public Vector3Int CellPositon => Position.AddZ(AboveGroundLayer);
 

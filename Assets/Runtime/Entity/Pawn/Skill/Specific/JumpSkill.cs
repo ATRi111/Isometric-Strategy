@@ -1,11 +1,12 @@
 using EditorExtend.GridEditor;
-using MyTool;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "跳跃", menuName = "技能/跳跃")]
 public class JumpSkill : RangedSkill
 {
+    public static float jumpAngle = 30f;
+    
     private readonly static List<Vector2Int> Directions = new()
     {
         Vector2Int.left,
@@ -16,24 +17,24 @@ public class JumpSkill : RangedSkill
 
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)
     {
-        base.GetOptions(agent, igm, position, ret);
-        //TODO:抛物线检测
-        List<Entity> victims = new();
+        ret.Clear();
         for (int i = 0; i < Directions.Count; i++)
         {
-            List<Vector2Int> route = new();
-            for (int j = 0; j <= castingDistance; j++)
-            {
-                route.Add((Vector2Int)position + j * Directions[i]);
-            }
-            if (!igm.MaxLayerDict.ContainsKey(route[^1]))
+            Vector2Int xy = (Vector2Int)position + castingDistance * Directions[i];
+            GridObject gridObject = igm.GetObjectXY(xy);
+            if(gridObject == null)
                 continue;
-            Vector3Int target = route[^1].AddZ(igm.AboveGroundLayer(route[^1]));
-            GetVictims(agent, igm, position, target, victims);
-            if (victims.Count > 0)
-                continue;   //不能跳到有Entity的位置
-            if (agent.MovableGridObject.JumpCheck(route))
-                ret.Add(target);
+            if (gridObject.GetComponent<Entity>() != null)  //不可落在Entity上
+                continue;
+
+            Vector3 from = agent.GridObject.BottomCenter;
+            Vector3 to = gridObject.TopCenter;
+            gridObject = igm.ParabolaCast(from, to, jumpAngle, out Vector3 _);
+            if (gridObject != null) //不可穿过GridObject
+                continue;
+
+            Vector3Int target = xy.AddZ(igm.AboveGroundLayer(xy));
+            ret.Add(target);
         }
     }
 

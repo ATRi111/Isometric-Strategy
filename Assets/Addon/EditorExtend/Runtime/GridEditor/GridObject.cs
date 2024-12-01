@@ -153,6 +153,23 @@ namespace EditorExtend.GridEditor
                 return cellPosition + new Vector3(0.5f, 0.5f, 1f);
             }
         }
+        /// <summary>
+        /// 下表面中心点
+        /// </summary>
+        public virtual Vector3 BottomCenter
+        {
+            get
+            {
+#if UNITY_EDITOR
+                if (!Application.isPlaying)
+                    gridCollider = GetComponentInChildren<GridCollider>();
+#endif
+                if (gridCollider != null)
+                    return gridCollider.BottomCenter;
+
+                return cellPosition + new Vector3(0.5f, 0.5f, 0f);
+            }
+        }
 
         protected GridCollider gridCollider;
         /// <summary>

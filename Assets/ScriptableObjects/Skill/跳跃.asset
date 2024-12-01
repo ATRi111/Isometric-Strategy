@@ -17,4 +17,4 @@ MonoBehaviour:
   accuracy: 100
   powers: []
   castingDistance: 2
-  victimType: 1
+  victimType: 0

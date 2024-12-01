@@ -18,7 +18,7 @@ public abstract class ProjectileSkill : RangedSkill
 
     public GridObject HitCheck(PawnEntity agent, IsometricGridManager igm, Vector3Int target, out Vector3 hit)
     {
-        GridObject victim = igm.GetObejectXY((Vector2Int)target);
+        GridObject victim = igm.GetObjectXY((Vector2Int)target);
         hit = victim.Center;
         if (victim != null)
         {

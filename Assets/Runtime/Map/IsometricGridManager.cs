@@ -53,7 +53,7 @@ public class IsometricGridManager : IsometricGridManagerBase
 
         bool top_down = (to - from).z < 0;  //射线从上往下发射时，求交时也必须从上往下
 
-        GetObejectsXY(overlap[0], gridObjects, top_down);
+        GetObjectsXY(overlap[0], gridObjects, top_down);
         for (int j = 0; j < gridObjects.Count; j++)
         {
             if (gridObjects[j].Overlap(from))
@@ -67,7 +67,7 @@ public class IsometricGridManager : IsometricGridManagerBase
         
         for (int i = 1; i < overlap.Count; i++)
         {
-            GetObejectsXY(overlap[i], gridObjects, top_down);
+            GetObjectsXY(overlap[i], gridObjects, top_down);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (gridObjects[j].OverlapLineSegment(ref from, ref to))
@@ -91,10 +91,10 @@ public class IsometricGridManager : IsometricGridManagerBase
         GridPhysics.InitialVelocityOfParabola(from, to, angle, g, out Vector3 velocity, out float time);
         List<Vector3> vs = new();
         GridPhysics.DiscretizeParabola(from, velocity, g, time, GridPhysics.settings.parabolaPrecision, vs);
-        for (int i = 1; i < vs.Count; i++)
+        for (int i = 1; i < vs.Count - 1; i++)  //忽略抛物线终点
         {
             Vector2Int xy = new(Mathf.FloorToInt(vs[i].x), Mathf.FloorToInt(vs[i].y));
-            GetObejectsXY(xy, gridObjects);
+            GetObjectsXY(xy, gridObjects);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (gridObjects[j].Overlap(vs[i]) && !gridObjects[j].Overlap(from))

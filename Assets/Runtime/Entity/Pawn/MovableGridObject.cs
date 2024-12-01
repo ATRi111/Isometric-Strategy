@@ -1,7 +1,5 @@
 using Character;
 using EditorExtend.GridEditor;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class MovableGridObject : GridObject
 {
@@ -58,21 +56,6 @@ public class MovableGridObject : GridObject
         int fromLayer = igm.AboveGroundLayer(from.Position);
         if (!HeightCheck(fromLayer, toLayer))
             return false;
-        return true;
-    }
-
-    public virtual bool JumpCheck(List<Vector2Int> route)
-    {
-        int baseHeight = igm.AboveGroundLayer(route[0]);
-        int height = igm.AboveGroundLayer(route[^1]);
-        if (height < baseHeight - dropAbility.IntValue || height > baseHeight + climbAbility.IntValue)
-            return false;
-        for (int i = 1; i < route.Count - 1; i++)
-        {
-            height = igm.AboveGroundLayer(route[i]);
-            if(height > baseHeight + climbAbility.IntValue)
-                return false;
-        }
         return true;
     }
 
