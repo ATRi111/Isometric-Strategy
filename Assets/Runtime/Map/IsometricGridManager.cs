@@ -79,4 +79,31 @@ public class IsometricGridManager : IsometricGridManagerBase
         }
         return null;
     }
+
+    /// <summary>
+    /// 获取第一个与有向抛物线相交的GridObject(自动忽略与from重合的物体)，并计算第一个交点位置
+    /// </summary>
+    public GridObject ParabolaCast(Vector3 from, Vector3 to, float angle, out Vector3 hit)
+    {
+        hit = to;
+        float g = GridPhysics.settings.gravity;
+        List<GridObject> gridObjects = new();
+        GridPhysics.InitialVelocityOfParabola(from, to, angle, g, out Vector3 velocity, out float time);
+        List<Vector3> vs = new();
+        GridPhysics.DiscretizeParabola(from, velocity, g, time, GridPhysics.settings.parabolaPrecision, vs);
+        for (int i = 1; i < vs.Count; i++)
+        {
+            Vector2Int xy = new(Mathf.FloorToInt(vs[i].x), Mathf.FloorToInt(vs[i].y));
+            GetObejectsXY(xy, gridObjects);
+            for (int j = 0; j < gridObjects.Count; j++)
+            {
+                if (gridObjects[j].Overlap(vs[i]) && !gridObjects[j].Overlap(from))
+                {
+                    hit = vs[i];
+                    return gridObjects[j];
+                }
+            }
+        }
+        return null;
+    }
 }

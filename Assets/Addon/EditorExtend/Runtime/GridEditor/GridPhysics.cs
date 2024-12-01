@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace EditorExtend.GridEditor
@@ -25,6 +26,30 @@ namespace EditorExtend.GridEditor
                 return false;
             float projSqrDistance = (p - bottomCenter).ResetZ().sqrMagnitude;
             return projSqrDistance < radius * radius;
+        }
+
+        public static bool PointsCastBox(Vector3 min, Vector3 extend, List<Vector3> points,out Vector3 enter,out Vector3 exit)
+        {
+            enter = exit = Vector3.zero;
+            int i = 0;
+            for (;i < points.Count;i++)
+            {
+                if(BoxOverlap(min,extend,points[i]))
+                {
+                    enter = points[i];
+                    i++;
+                    break;
+                }
+            }
+            for (;i < points.Count;i++)
+            {
+                if(!BoxOverlap(min,extend,points[i]))
+                {
+                    exit = points[i];
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 
@@ -132,13 +157,13 @@ namespace EditorExtend.GridEditor
         /// <param name="to">终点</param>
         /// <param name="includedAngle">初速度与地面的夹角（弧度制）</param>
         /// <param name="gravity">重力加速度（沿Z轴负方向为正）</param>
-        public static bool InitialVelocityOfParabola(Vector3 from, Vector3 to, float includedAngle, float gravity, out Vector3 velocity, out float t)
+        public static bool InitialVelocityOfParabola(Vector3 from, Vector3 to, float includedAngle, float gravity, out Vector3 velocity, out float time)
         {
             float h = to.z - from.z;
             Vector3 project = to - from;
             project = new Vector3(project.x, project.y, 0);
             float p = project.magnitude;
-            bool feasible = InitialSpeedOfParabola(h, p, includedAngle, gravity, out float speed, out t);
+            bool feasible = InitialSpeedOfParabola(h, p, includedAngle, gravity, out float speed, out time);
             if (!feasible)
             {
                 velocity = Vector3.zero;
@@ -155,17 +180,17 @@ namespace EditorExtend.GridEditor
         /// <param name="p">xy平面内投影距离</param>
         /// <param name="includedAngle">初速度与地面的夹角（弧度制）</param>
         /// <param name="gravity">重力加速度（沿Z轴负方向为正）</param>
-        public static bool InitialSpeedOfParabola(float h, float p, float includedAngle, float gravity, out float speed, out float t)
+        public static bool InitialSpeedOfParabola(float h, float p, float includedAngle, float gravity, out float speed, out float time)
         {
             float t_square = 2 / gravity * (p * Mathf.Tan(includedAngle) - h);
             if (t_square < 0)
             {
-                t = -1;
+                time = -1;
                 speed = -1;
                 return false;
             }
-            t = Mathf.Sqrt(t_square);
-            speed = p / t / Mathf.Cos(includedAngle);
+            time = Mathf.Sqrt(t_square);
+            speed = p / time / Mathf.Cos(includedAngle);
             return speed >= 0;
         }
 
@@ -180,7 +205,7 @@ namespace EditorExtend.GridEditor
         public static void DiscretizeParabola(Vector3 from, Vector3 velocity, float gravity, float time, float precision, List<Vector3> ret)
         {
             ret.Clear();
-            int count = Mathf.FloorToInt(precision * ((Vector2)velocity).magnitude) + 1;
+            int count = Mathf.CeilToInt(precision * ((Vector2)velocity).magnitude) + 1;
             float t = 0;
             for (int i = 0; i <= count; i++)
             {
