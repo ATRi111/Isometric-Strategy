@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: "\u8DF3\u8DC3"
   m_EditorClassIdentifier: 
   displayName: "\u8DF3\u8DC3"
-  actionTime: 10
+  actionTime: 20
   accuracy: 100
   powers: []
+  actionTimePerUnit: 5
+  ZOCActionTime: 10
+  speedMultiplier: 2
   castingDistance: 2
-  victimType: 0
+  jumpAngle: 45
+  jumpOffset: 0.5

@@ -23,7 +23,7 @@ public class SkillUIManager : MonoBehaviour
     private void OnHumanControl(PawnBrain brain)
     {
         if (currentBrain != null)
-            throw new Exception($"当前{currentBrain.gameObject.name}没有行动完,就轮到{brain.gameObject.name}行动");
+            throw new Exception($"{currentBrain.Pawn.gameObject.name}没有行动完,就轮到{brain.Pawn.gameObject.name}行动");
 
         currentBrain = brain;
         SelectSkill?.Invoke(currentBrain);

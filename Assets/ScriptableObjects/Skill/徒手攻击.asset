@@ -19,4 +19,4 @@ MonoBehaviour:
   - type: 1
     power: 100
   castingDistance: 1
-  victimType: 0
+  victimType: 1

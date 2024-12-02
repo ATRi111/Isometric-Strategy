@@ -19,7 +19,7 @@ public class GridMoveController : MoveController
         igm = IsometricGridManager.FindInstance();
     }
 
-    public void SetGridRoute(List<Vector3> route)
+    public void SetGridRoute(List<Vector3> route, float speed)
     {
         if(route.Count < 2)
             return;

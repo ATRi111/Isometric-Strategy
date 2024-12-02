@@ -43,7 +43,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     /// </summary>
     public GridObject LineSegmentCast(Vector3 from, Vector3 to, out Vector3 hit)
     {
-        hit = to;
+        hit = from;
         List<GridObject> gridObjects = new();
         Vector2Int ifrom = new(Mathf.FloorToInt(from.x), Mathf.FloorToInt(from.y));
         Vector2Int ito = new(Mathf.FloorToInt(to.x), Mathf.FloorToInt(to.y));
@@ -83,14 +83,12 @@ public class IsometricGridManager : IsometricGridManagerBase
     /// <summary>
     /// 获取第一个与有向抛物线相交的GridObject(自动忽略与from重合的物体)，并计算第一个交点位置
     /// </summary>
-    public GridObject ParabolaCast(Vector3 from, Vector3 to, float angle, out Vector3 hit)
+    public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g, float time, out Vector3 hit)
     {
-        hit = to;
-        float g = GridPhysics.settings.gravity;
-        List<GridObject> gridObjects = new();
-        GridPhysics.InitialVelocityOfParabola(from, to, angle, g, out Vector3 velocity, out float time);
+        hit = from;
         List<Vector3> vs = new();
         GridPhysics.DiscretizeParabola(from, velocity, g, time, GridPhysics.settings.parabolaPrecision, vs);
+        List<GridObject> gridObjects = new();
         for (int i = 1; i < vs.Count - 1; i++)  //忽略抛物线终点
         {
             Vector2Int xy = new(Mathf.FloorToInt(vs[i].x), Mathf.FloorToInt(vs[i].y));

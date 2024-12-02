@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class MoveController : CharacterComponentBase
 {
-    [SerializeField]
-    protected float speed = 1f;
+    public float defaultSpeed = 1f;
     [SerializeField]
     protected Vector3[] currentRoute;
     [SerializeField]
@@ -34,7 +33,7 @@ public class MoveController : CharacterComponentBase
         ufm.Paused = true;
     }
 
-    public void SetRoute(List<Vector3> route)
+    public void SetRoute(List<Vector3> route, float speed)
     {
         if (route.Count < 2)
             return;
