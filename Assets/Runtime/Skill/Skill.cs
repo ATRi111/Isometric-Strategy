@@ -35,6 +35,6 @@ public abstract class Skill : ScriptableObject
     {
         StringBuilder sb = new();
         sb.AppendLine(displayName);
-        return base.ToString();
+        return sb.ToString();
     }
 }
