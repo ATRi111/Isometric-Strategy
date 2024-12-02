@@ -41,12 +41,13 @@ public class JumpSkill : RangedSkill
     public override void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
         base.Mock(agent, igm, position, target, ret);
-        List<Vector3Int> route = new()  //TODO:¹ì¼£
-        {
-            position,
-            target
-        };
-        ret.effects.Add(new MoveEffect(agent, route));
+        List<Vector3> route = new();
+        GridObject gridObject = igm.GetObjectXY((Vector2Int)target);
+        Vector3 from = agent.GridObject.BottomCenter;
+        Vector3 to = gridObject.TopCenter;
+        GridPhysics.InitialVelocityOfParabola(from, to, jumpAngle, GridPhysics.settings.gravity, out Vector3 velocity, out float time);
+        GridPhysics.DiscretizeParabola(from, velocity, GridPhysics.settings.gravity, time, GridPhysics.settings.parabolaPrecision, route);
+        ret.effects.Add(new MoveEffect(agent, position, target, route));
     }
 
     public override int MockTime(PawnEntity agent, Vector3Int position, Vector3Int target, IsometricGridManager igm)

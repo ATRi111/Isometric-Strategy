@@ -1,3 +1,4 @@
+using EditorExtend.GridEditor;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,18 +7,18 @@ using UnityEngine;
 public class MoveEffect : Effect
 {
     public Vector3Int from, to;
-    public readonly List<Vector3Int> route;
+    public readonly List<Vector3> route;
 
     public override bool Appliable => victim.GridObject.CellPosition == from;
     public override bool Revokable => victim.GridObject.CellPosition == to;
 
-    public MoveEffect(PawnEntity victim, List<Vector3Int> route, int probability = MaxProbability)
+    public MoveEffect(PawnEntity victim, Vector3Int from, Vector3Int to, List<Vector3> route, int probability = MaxProbability)
         : base(victim, probability)
     {
         this.route = new();
         this.route.AddRange(route);
-        from = route[0];
-        to = route[^1];
+        this.from = from;
+        this.to = to;
     }
 
     public override AnimationProcess GenerateAnimation()
