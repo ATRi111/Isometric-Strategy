@@ -25,12 +25,14 @@ public class GridMoveController : MoveController
             return;
 
         currentRoute = new Vector3[route.Count];
-        for (int i = 0; i < route.Count; i++)
+        currentRoute[0] = igm.CellToWorld(route[0]);
+        float length = 0;
+        for (int i = 1; i < route.Count; i++)
         {
             currentRoute[i] = igm.CellToWorld(route[i]);
+            length += (currentRoute[i] - currentRoute[i - 1]).magnitude;
         }
-        currentIndex = 1;
-        MoveTo(currentRoute[currentIndex]);
+        ufm.Initialize(currentRoute, length, length / speed);
     }
 
     protected override void AfterComplete(Vector3 v)

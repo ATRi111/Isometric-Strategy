@@ -84,7 +84,7 @@ namespace EditorExtend.GridEditor
                     Refresh();
                 }
                 else
-                    throw new InvalidOperationException();
+                    throw new Exception($"{gameObject.name}的{referenceCount}值不合理");
             }
         }
 

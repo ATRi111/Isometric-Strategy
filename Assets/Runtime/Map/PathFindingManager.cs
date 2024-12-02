@@ -85,7 +85,7 @@ public class PathFindingManager : MonoBehaviour
         if (metronome != null)
             metronome.Paused = true;
         metronome = new Metronome();
-        metronome.AfterCompelete += FindRouteStep;
+        metronome.AfterComplete += FindRouteStep;
         metronome.Initialize(stepTime);
         AfterStep?.Invoke(findRoute);
     }
@@ -105,7 +105,7 @@ public class PathFindingManager : MonoBehaviour
         if (metronome != null)
             metronome.Paused = true;
         metronome = new Metronome();
-        metronome.AfterCompelete += FindAvailableNextStep;
+        metronome.AfterComplete += FindAvailableNextStep;
         metronome.Initialize(stepTime);
         AfterStep?.Invoke(findAvailable);
     }

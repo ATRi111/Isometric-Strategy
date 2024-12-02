@@ -30,7 +30,8 @@ public class RangedSkill : Skill
             switch(victimType)
             {
                 case EVictimType.Everything:
-                    ret.Add(target);
+                    if(igm.ObjectDict.ContainsKey(target + Vector3Int.back))
+                        ret.Add(target);
                     break;
                 case EVictimType.Entity:
                 case EVictimType.Pawn:

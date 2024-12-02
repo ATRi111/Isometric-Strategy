@@ -11,15 +11,20 @@ public abstract class ProjectileSkill : RangedSkill
     {
         ret.Clear();
         GridObject gridObject = HitCheck(agent, igm, target, out Vector3 _);
-        Entity entity = gridObject.GetComponentInParent<Entity>();
-        if (entity != null && FilterVictim(entity))
-            ret.Add(entity);
+        if(gridObject != null)
+        {
+            Entity entity = gridObject.GetComponentInParent<Entity>();
+            if (entity != null && FilterVictim(entity))
+                ret.Add(entity);
+        }
     }
 
     public GridObject HitCheck(PawnEntity agent, IsometricGridManager igm, Vector3Int target, out Vector3 hit)
     {
         GridObject victim = igm.GetObjectXY((Vector2Int)target);
-        hit = victim.Center;
+        hit = Vector3.zero;
+        if (victim == null)
+            return null;
         if (victim != null)
         {
             Vector3 from = agent.GridObject.Center;

@@ -11,9 +11,7 @@ public class MoveController : CharacterComponentBase
     [SerializeField]
     protected Vector3[] currentRoute;
     [SerializeField]
-    protected int currentIndex;
-    [SerializeField]
-    protected UniformLinearMotion ulm;
+    protected UniformFoldLineMotion ufm;
 
     public Action AfterMove;
 
@@ -26,14 +24,14 @@ public class MoveController : CharacterComponentBase
     protected override void Awake()
     {
         base.Awake(); 
-        ulm = new UniformLinearMotion();
-        ulm.OnTick += OnTick;
-        ulm.AfterCompelete += AfterComplete;
+        ufm = new UniformFoldLineMotion();
+        ufm.OnTick += OnTick;
+        ufm.AfterComplete += AfterComplete;
     }
 
     protected virtual void OnDisable()
     {
-        ulm.Paused = true;
+        ufm.Paused = true;
     }
 
     public void SetRoute(List<Vector3> route)
@@ -41,8 +39,12 @@ public class MoveController : CharacterComponentBase
         if (route.Count < 2)
             return;
         currentRoute = route.ToArray();
-        currentIndex = 1;
-        MoveTo(currentRoute[currentIndex]);
+        float length = 0;
+        for (int i = 1; i < currentRoute.Length; i++)
+        {
+            length += (currentRoute[i] - currentRoute[i - 1]).magnitude;
+        }
+        ufm.Initialize(currentRoute, length, length / speed);
     }
 
     protected virtual void OnTick(Vector3 v)
@@ -53,21 +55,11 @@ public class MoveController : CharacterComponentBase
     protected virtual void AfterComplete(Vector3 v)
     {
         Position = v;
-        currentIndex++;
-        if (currentIndex < currentRoute.Length)
-            MoveTo(currentRoute[currentIndex]);
-        else
-            AfterMove?.Invoke();
-    }
-    public virtual void ForceComplete()
-    {
-        ulm.Paused = true;
-        Position = currentRoute[^1];
         AfterMove?.Invoke();
     }
 
-    protected virtual void MoveTo(Vector3 target)
+    public virtual void ForceComplete()
     {
-        ulm.Initialize(Position, target, (target - Position).magnitude / speed);
+        ufm.ForceComplete();
     }
 }
