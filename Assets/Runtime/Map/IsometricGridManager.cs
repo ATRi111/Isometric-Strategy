@@ -81,25 +81,52 @@ public class IsometricGridManager : IsometricGridManagerBase
     }
 
     /// <summary>
-    /// 获取第一个与有向抛物线相交的GridObject(自动忽略与from重合的物体)，并计算第一个交点位置
+    /// 获取第一个与有向抛物线相交的GridObject(自动忽略与from重合的物体)，并计算轨迹
     /// </summary>
-    public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g, float time, out Vector3 hit)
+    public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g, List<Vector3> trajectory)
     {
-        hit = from;
-        List<Vector3> vs = new();
-        GridPhysics.DiscretizeParabola(from, velocity, g, time, GridPhysics.settings.parabolaPrecision, vs);
+        if (trajectory == null)
+            return ParabolaCast(from, velocity, g);
+
+        trajectory.Clear();
+
         List<GridObject> gridObjects = new();
-        for (int i = 1; i < vs.Count - 1; i++)  //忽略抛物线终点
+        float deltaTime = Mathf.Max(1f / velocity.magnitude / GridPhysics.settings.parabolaPrecision, 0.01f);
+        for (float t = 0f; ;t += deltaTime)
         {
-            Vector2Int xy = new(Mathf.FloorToInt(vs[i].x), Mathf.FloorToInt(vs[i].y));
+            Vector3 point = from + t * velocity + t * t / 2 * g * Vector3.back;
+            trajectory.Add(point);
+            if (point.z < 0)
+                break;
+            Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
             GetObjectsXY(xy, gridObjects);
             for (int j = 0; j < gridObjects.Count; j++)
             {
-                if (gridObjects[j].Overlap(vs[i]) && !gridObjects[j].Overlap(from))
-                {
-                    hit = vs[i];
+                if (gridObjects[j].Overlap(point) && !gridObjects[j].Overlap(from))
                     return gridObjects[j];
-                }
+            }
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// 获取第一个与有向抛物线相交的GridObject(自动忽略与from重合的物体)
+    /// </summary>
+    public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g)
+    {
+        List<GridObject> gridObjects = new();
+        float deltaTime = Mathf.Max(1f / velocity.magnitude / GridPhysics.settings.parabolaPrecision, 0.01f);
+        for (float t = 0f; ; t += deltaTime)
+        {
+            Vector3 point = from + t * velocity + t * t / 2 * g * Vector3.back;
+            if (point.z < 0)
+                break;
+            Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
+            GetObjectsXY(xy, gridObjects);
+            for (int j = 0; j < gridObjects.Count; j++)
+            {
+                if (gridObjects[j].Overlap(point) && !gridObjects[j].Overlap(from))
+                    return gridObjects[j];
             }
         }
         return null;

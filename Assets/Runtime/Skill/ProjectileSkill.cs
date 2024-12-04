@@ -7,10 +7,13 @@ using UnityEngine;
 /// </summary>
 public abstract class ProjectileSkill : RangedSkill
 {
+    //应当在Mock时更新此
+    public readonly List<Vector3> currentTrajectory = new();
+
     public override void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
     {
         ret.Clear();
-        GridObject gridObject = HitCheck(agent, igm, target, out Vector3 _);
+        GridObject gridObject = HitCheck(agent, igm, target, null);
         if(gridObject != null)
         {
             Entity entity = gridObject.GetComponentInParent<Entity>();
@@ -19,21 +22,39 @@ public abstract class ProjectileSkill : RangedSkill
         }
     }
 
-    public GridObject HitCheck(PawnEntity agent, IsometricGridManager igm, Vector3Int target, out Vector3 hit)
+    /// <summary>
+    /// 获取瞄准点
+    /// </summary>
+    /// <returns>瞄准目标是否存在</returns>
+    public virtual bool GetAimPoint(IsometricGridManager igm, Vector3Int target, out Vector3 to)
     {
-        GridObject victim = igm.GetObjectXY((Vector2Int)target);
-        hit = Vector3.zero;
-        if (victim == null)
-            return null;
-        if (victim != null)
+        GridObject aimedObject = igm.GetObjectXY((Vector2Int)target);
+        if (aimedObject == null)
+        {
+            to = target + 0.5f * Vector3.one;
+            return false;
+        }
+        to = aimedObject.GetComponent<Entity>() != null ? aimedObject.Center : aimedObject.TopCenter;
+        return true;
+    }
+
+    /// <summary>
+    /// 计算技能将会命中的目标，并计算弹道
+    /// </summary>
+    public GridObject HitCheck(PawnEntity agent, IsometricGridManager igm, Vector3Int target, List<Vector3> trajectory)
+    {
+        trajectory?.Clear();
+        if (GetAimPoint(igm, target, out Vector3 to))
         {
             Vector3 from = agent.GridObject.Center;
-            Vector3 to = victim.GetComponent<Entity>() != null ? victim.Center : victim.TopCenter;
-            GridObject gridObject = HitCheck(igm, from, to, out hit);
+            GridObject gridObject = HitCheck(igm, from, to, target, trajectory);
             return gridObject;
         }
         return null;
     }
 
-    public abstract GridObject HitCheck(IsometricGridManager igm, Vector3 from, Vector3 to, out Vector3 hit);
+    /// <summary>
+    /// 计算技能将会命中的目标，并计算弹道
+    /// </summary>
+    public abstract GridObject HitCheck(IsometricGridManager igm, Vector3 from, Vector3 to, Vector3Int target, List<Vector3> trajectory);
 }

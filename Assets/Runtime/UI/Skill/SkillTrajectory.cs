@@ -1,4 +1,5 @@
 using EditorExtend.GridEditor;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillTrajectory : MonoBehaviour
@@ -13,16 +14,20 @@ public class SkillTrajectory : MonoBehaviour
     [SerializeField]
     private Color color_miss;
 
+    private readonly List<Vector3> trajectory = new();
+
     private void PreviewAction(PawnAction action)
     {
         currentAction = action;
         ProjectileSkill skill = action.skill as ProjectileSkill;
         if (skill != null)
         {
-            GridObject victim = skill.HitCheck(action.agent, igm, action.target, out Vector3 hit);
-            Vector3 from = igm.CellToWorld(action.agent.GridObject.Center);
-            hit = igm.CellToWorld(hit);
-            points = new Vector3[] { from, hit };
+            GridObject victim = skill.HitCheck(action.agent, igm, action.target, trajectory);
+            points = new Vector3[trajectory.Count];
+            for (int i = 0; i < trajectory.Count; i++)
+            {
+                points[i] = igm.CellToWorld(trajectory[i]);
+            }
             bool hitEntity = victim != null && victim.GetComponent<Entity>() != null;
             Color color = hitEntity ? color_hit : color_miss;
             lineRenderer.startColor = lineRenderer.endColor = color;

@@ -143,6 +143,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6c221d77fbdbf304a9adcdb5da814e20, type: 2}
     - {fileID: 11400000, guid: e8601c53d3b3ce842b709d227ee4676c, type: 2}
     - {fileID: 11400000, guid: 1272a1c74637fd54b8d2c7e155ef1993, type: 2}
+    - {fileID: 11400000, guid: 33753ff6299b40843bec044f71aafc13, type: 2}
   references:
     version: 2
     RefIds: []
@@ -191,14 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821ab4b08d093474ab7a3ab2963fe490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  defaultSpeed: 1
   currentRoute: []
-  currentIndex: 0
-  ulm:
-    paused: 1
-    completed: 0
-    time: 0
-    duration: 0
   animationOnly: 1
 --- !u!114 &28454254504980518
 MonoBehaviour:
@@ -320,6 +315,7 @@ MonoBehaviour:
   shortName: 
   cellPosition: {x: 0, y: 0, z: 0}
   groundHeight: 0
+  autoSortingOrder: 1
   climbAbility:
     defaultValue: 2
     currentValue: 0

@@ -18,6 +18,9 @@ public class RangedSkill : AimSkill
     public int castingDistance;
     public EVictimType victimType;
 
+    /// <summary>
+    /// 获取可选施放位置
+    /// </summary>
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)
     {
         base.GetOptions(agent, igm, position, ret);
@@ -43,6 +46,9 @@ public class RangedSkill : AimSkill
         }
     }
 
+    /// <summary>
+    /// 判断某个Entity是否能作为技能的目标
+    /// </summary>
     public override bool FilterVictim(Entity entity)
     {
         return victimType  switch
@@ -53,6 +59,9 @@ public class RangedSkill : AimSkill
         };
 }
 
+    /// <summary>
+    /// 获取技能将会命中的目标
+    /// </summary>
     public override void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
     {
         base.GetVictims(agent, igm, position, target, ret);

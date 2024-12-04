@@ -32,9 +32,10 @@ public class JumpSkill : MoveSkill
 
             Vector3 from = agent.GridObject.BottomCenter + jumpOffset * Vector3.forward;
             Vector3 to = gridObject.TopCenter + jumpOffset * Vector3.forward;
-            if (!GridPhysics.InitialVelocityOfParabola(from, to, jumpAngle, Gravity, out Vector3 velocity, out float time))
+            if (!GridPhysics.InitialVelocityOfParabola(from, to, jumpAngle, Gravity, out Vector3 velocity, out float _))
                 continue;
-            gridObject = igm.ParabolaCast(from, velocity,Gravity, time, out Vector3 _);
+
+            gridObject = igm.ParabolaCast(from, velocity, Gravity);
             if (gridObject != null) //²»¿É´©¹ýGridObject
                 continue;
 
