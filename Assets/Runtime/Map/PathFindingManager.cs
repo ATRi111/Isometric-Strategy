@@ -67,7 +67,7 @@ public class PathFindingManager : MonoBehaviour
 
     public AStarNode GenerateNode(PathFindingProcess process, Vector2Int position)
     {
-        return new ANode(process, position, Igm, 1f);   //困难地形待完成
+        return new ANode(process, position, Igm, 1f);   //TODO:困难地形
     }
 
 

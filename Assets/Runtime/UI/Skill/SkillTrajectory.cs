@@ -46,6 +46,12 @@ public class SkillTrajectory : MonoBehaviour
         }
     }
 
+    private void AfterCancelSelectAction()
+    {
+        currentAction = null;
+        lineRenderer.enabled = false;
+    }
+
     private void AfterSelectAction(PawnAction _)
     {
         currentAction = null;
@@ -64,6 +70,7 @@ public class SkillTrajectory : MonoBehaviour
         skillUIManager.PreviewAction += PreviewAction;
         skillUIManager.StopPreviewAction += StopPreviewAction;
         skillUIManager.AfterSelectAction += AfterSelectAction;
+        skillUIManager.AfterCancelSelectAction += AfterCancelSelectAction;
     }
 
     private void OnDisable()
@@ -71,5 +78,6 @@ public class SkillTrajectory : MonoBehaviour
         skillUIManager.PreviewAction -= PreviewAction;
         skillUIManager.StopPreviewAction -= StopPreviewAction;
         skillUIManager.AfterSelectAction -= AfterSelectAction;
+        skillUIManager.AfterCancelSelectAction -= AfterCancelSelectAction;
     }
 }

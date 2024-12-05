@@ -14,7 +14,7 @@ public class SkillUIManager : MonoBehaviour
     public Action<PawnBrain> SelectSkill;
     public Action<Skill> AfterSelectSkill;
     public Action<PawnAction> AfterSelectAction;
-    public Action AfterCancelSelectPlan;
+    public Action AfterCancelSelectAction;
     public Action<PawnAction> PreviewAction;
     public Action<PawnAction> StopPreviewAction;
 
@@ -43,7 +43,7 @@ public class SkillUIManager : MonoBehaviour
     private void Awake()
     {
         EventSystem = ServiceLocator.Get<IEventSystem>();
-        AfterCancelSelectPlan += ReselectSkill;
+        AfterCancelSelectAction += ReselectSkill;
         AfterSelectAction += ExcuteAction;
     }
 
