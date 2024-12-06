@@ -1,4 +1,5 @@
 using EditorExtend;
+using MyTool;
 using UnityEditor;
 
 [CustomEditor(typeof(PawnEntity))]
@@ -7,6 +8,8 @@ public class PawnEntityEditor : AutoEditor
     [AutoProperty]
     public SerializedProperty faction, pClass, race, actionTime, time;
 
+    public bool foldout;
+
     protected override void MyOnInspectorGUI()
     {   
         faction.EnumField<EFaction>("阵营");
@@ -14,5 +17,6 @@ public class PawnEntityEditor : AutoEditor
         race.PropertyField("种族");
         actionTime.PropertyField("基础行动时间");
         time.IntField("累积等待时间");
+        foldout = AutoDictionaryDrawerHelper.OnInspectorGUI(foldout, "角色参数", (target as PawnEntity).parameterDict.dict);
     }
 }
