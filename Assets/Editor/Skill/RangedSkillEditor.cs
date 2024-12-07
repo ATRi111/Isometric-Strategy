@@ -2,7 +2,7 @@ using EditorExtend;
 using UnityEditor;
 
 [CustomEditor(typeof(RangedSkill), true)]
-public class RangedSkillEditor : OffenseSkillEditor
+public class RangedSkillEditor : AimSkillEditor
 {
     [AutoProperty]
     public SerializedProperty castingDistance, victimType;

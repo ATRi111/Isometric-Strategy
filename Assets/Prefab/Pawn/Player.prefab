@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: humanControl
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: equipments.list.Array.data[0].value
+      value: 
+      objectReference: {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
       value: Player

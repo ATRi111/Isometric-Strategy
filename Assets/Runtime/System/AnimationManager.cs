@@ -16,6 +16,9 @@ public class AnimationManager : Service,IService
 
     public Action AfterAnimationComplete;
 
+    /// <summary>
+    /// 注册并立即播放动画
+    /// </summary>
     public void Register(AnimationProcess animation)
     {
         if(!ImmediateMode)

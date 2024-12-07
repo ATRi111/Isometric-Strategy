@@ -14,29 +14,38 @@ public class ParabolaSkill : ProjectileSkill
     public override GridObject HitCheck(IsometricGridManager igm, Vector3 from, Vector3 to, Vector3Int target, List<Vector3> trajectory)
     {
         GridObject aimedObject = igm.GetObjectXY((Vector2Int)target);
-        GridObject gridObject = null;
+        GridObject gridObject;
+        float closest = float.MaxValue;
+        Vector3 closestVelocity = (to - from).normalized;
         for (int i = 0; i < angles.Count; i++)
         {
-            bool feasible = GridPhysics.InitialVelocityOfParabola(from, to, angles[i] * Mathf.Deg2Rad, Gravity, out Vector3 velocity, out float _);
+            bool feasible = GridPhysics.InitialVelocityOfParabola(from, to, angles[i], Gravity, out Vector3 velocity, out float _);
             if (!feasible || velocity.magnitude > maxSpeed)
                 velocity = maxSpeed * velocity.normalized;
             gridObject = igm.ParabolaCast(from, velocity, Gravity, trajectory);
             if (gridObject == aimedObject)
                 return gridObject;
+            float temp = (trajectory[^1] - to).sqrMagnitude;
+            if (temp < closest)
+            {
+                closestVelocity = velocity;
+                closest = temp;
+            }
         }
+        gridObject = igm.ParabolaCast(from, closestVelocity, Gravity, trajectory);
         return gridObject;
     }
 
     /// <summary>
     /// 根据angles和maxSpeed求水平面内最大飞行距离
     /// </summary>
-    public float MaxProjectDistance()
+    public float MaxProjectDistance(float height)
     {
         float max = 0;
         float g = GridPhysics.settings.gravity;
         for (int i = 0; i < angles.Count; i++)
         {
-            max = Mathf.Max(max, GridPhysics.ProjectDistanceOfParabola(maxSpeed, angles[i], g, -DefaultHeight));
+            max = Mathf.Max(max, GridPhysics.ProjectDistanceOfParabola(maxSpeed, angles[i], g, -height));
         }
         return max;
     }

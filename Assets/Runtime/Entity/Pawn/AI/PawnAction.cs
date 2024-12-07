@@ -33,6 +33,9 @@ public class PawnAction
     /// </summary>
     public void Play(AnimationManager animationManager)
     {
+        AnimationProcess animation = skill.GenerateAnimation();
+        if (animation != null)
+            animationManager.Register(animation);
         effectUnit.Play(animationManager);
         animationManager.StartAnimationCheck();
     }

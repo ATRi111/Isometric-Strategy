@@ -29,7 +29,7 @@ public class PawnBrain : CharacterComponentBase
 #if UNITY_EDITOR
             generator.Clear();
 #endif
-            Pawn.EventSystem.Invoke(EEvent.OnHumanControl, this);
+            Pawn.EventSystem.Invoke(EEvent.OnHumanControl, Pawn);
         }
         else
         {
@@ -43,11 +43,11 @@ public class PawnBrain : CharacterComponentBase
             }
             else
 #endif
-                ExcuteAction(plans[0].action);
+                ExecuteAction(plans[0].action);
         }
     }
 
-    public void ExcuteAction(PawnAction action)
+    public void ExecuteAction(PawnAction action)
     {
         action.Play(Pawn.AnimationManager);
     }
@@ -73,7 +73,8 @@ public class PawnBrain : CharacterComponentBase
         positionValueCache.Clear();
         foreach (Skill skill in learnedSkills)
         {
-            MakePlan(skill, plans);
+            if (skill.CanUse(Pawn, Pawn.Igm))
+                MakePlan(skill, plans);
         }
         plans.Sort();
     }
@@ -220,7 +221,7 @@ public class PawnBrain : CharacterComponentBase
     #region Ѱ·
     public AIManager AIManager { get; private set; }
 
-    public void FindAvalable(Vector3Int from, List<Vector3Int> ret)
+    public void FindAvailable(Vector3Int from, List<Vector3Int> ret)
     {
         ret.Clear();
         PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover, (Vector2Int)from);

@@ -11,49 +11,49 @@ public class SkillUIManager : MonoBehaviour
     }
 
     public IEventSystem EventSystem { get; private set; }
-    public Action<PawnBrain> SelectSkill;
+    public Action<PawnEntity> SelectSkill;
     public Action<Skill> AfterSelectSkill;
     public Action<PawnAction> AfterSelectAction;
     public Action AfterCancelSelectAction;
     public Action<PawnAction> PreviewAction;
     public Action<PawnAction> StopPreviewAction;
 
-    public PawnBrain currentBrain;
+    public PawnEntity currentPawn;
 
-    private void OnHumanControl(PawnBrain brain)
+    private void OnHumanControl(PawnEntity pawn)
     {
-        if (currentBrain != null)
-            throw new Exception($"{currentBrain.Pawn.gameObject.name}没有行动完,就轮到{brain.Pawn.gameObject.name}行动");
+        if (currentPawn != null)
+            throw new Exception($"{currentPawn.gameObject.name}没有行动完,就轮到{pawn.gameObject.name}行动");
 
-        currentBrain = brain;
-        SelectSkill?.Invoke(currentBrain);
+        currentPawn = pawn;
+        SelectSkill?.Invoke(currentPawn);
     }
 
     private void ReselectSkill()
     {
-        SelectSkill?.Invoke(currentBrain);
+        SelectSkill?.Invoke(currentPawn);
     }
 
-    private void ExcuteAction(PawnAction action)
+    private void ExecuteAction(PawnAction action)
     {
-        currentBrain.ExcuteAction(action);
-        currentBrain = null;
+        currentPawn.Brain.ExecuteAction(action);
+        currentPawn = null;
     }
 
     private void Awake()
     {
         EventSystem = ServiceLocator.Get<IEventSystem>();
         AfterCancelSelectAction += ReselectSkill;
-        AfterSelectAction += ExcuteAction;
+        AfterSelectAction += ExecuteAction;
     }
 
     private void OnEnable()
     {
-        EventSystem.AddListener<PawnBrain>(EEvent.OnHumanControl, OnHumanControl);
+        EventSystem.AddListener<PawnEntity>(EEvent.OnHumanControl, OnHumanControl);
     }
 
     private void OnDisable()
     {
-        EventSystem.RemoveListener<PawnBrain>(EEvent.OnHumanControl, OnHumanControl);
+        EventSystem.RemoveListener<PawnEntity>(EEvent.OnHumanControl, OnHumanControl);
     }
 }

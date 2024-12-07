@@ -85,17 +85,21 @@ public class IsometricGridManager : IsometricGridManagerBase
     /// </summary>
     public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g, List<Vector3> trajectory)
     {
+        if (g <= 0 || velocity == Vector3.zero)
+            throw new System.ArgumentException();
         if (trajectory == null)
             return ParabolaCast(from, velocity, g);
 
         trajectory.Clear();
 
         List<GridObject> gridObjects = new();
-        float deltaTime = Mathf.Max(1f / velocity.magnitude / GridPhysics.settings.parabolaPrecision, 0.01f);
+        float deltaTime = Mathf.Clamp(1f / velocity.magnitude / GridPhysics.settings.parabolaPrecision, 0.01f, 0.1f);
         for (float t = 0f; ;t += deltaTime)
         {
             Vector3 point = from + t * velocity + t * t / 2 * g * Vector3.back;
             trajectory.Add(point);
+            if(trajectory.Count > 1000)
+                throw new System.Exception();
             if (point.z < 0)
                 break;
             Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
@@ -114,6 +118,8 @@ public class IsometricGridManager : IsometricGridManagerBase
     /// </summary>
     public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g)
     {
+        if (g <= 0)
+            throw new System.ArgumentException();
         List<GridObject> gridObjects = new();
         float deltaTime = Mathf.Max(1f / velocity.magnitude / GridPhysics.settings.parabolaPrecision, 0.01f);
         for (float t = 0f; ; t += deltaTime)

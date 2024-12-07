@@ -11,15 +11,18 @@ public class SelectSkillUI : MonoBehaviour
     private SkillIcon[] icons;
     private RectTransform rectTransform;
 
-    private void SelectSkill(PawnBrain brain)
+    private void SelectSkill(PawnEntity pawn)
     {
-        transform.position = Camera.main.WorldToScreenPoint(brain.transform.position);
+        transform.position = Camera.main.WorldToScreenPoint(pawn.transform.position);
         int count = 0;
-        foreach(Skill skill in brain.learnedSkills)
+        foreach(Skill skill in pawn.Brain.learnedSkills)
         {
-            icons[count].canvasGrounp.Visible = true;
-            icons[count].SetSkill(skill);
-            count++;
+            if (skill.CanUse(pawn, pawn.Igm))
+            {
+                icons[count].canvasGrounp.Visible = true;
+                icons[count].SetSkill(skill);
+                count++;
+            }
         }
         for (; count < icons.Length; count++)
         {

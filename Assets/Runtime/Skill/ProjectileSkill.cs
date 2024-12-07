@@ -13,7 +13,8 @@ public abstract class ProjectileSkill : RangedSkill
     public override void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
     {
         ret.Clear();
-        GridObject gridObject = HitCheck(agent, igm, target, null);
+        List<Vector3> trajectory = new();
+        GridObject gridObject = HitCheck(agent, igm, target, trajectory);
         if(gridObject != null)
         {
             Entity entity = gridObject.GetComponentInParent<Entity>();

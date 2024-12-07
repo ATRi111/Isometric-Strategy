@@ -13,7 +13,9 @@ public class ParabolaSkillEditor : RangedSkillEditor
         angles.ListField("可选发射角");
         maxSpeed.FloatField("最大出射速度");
         EditorGUI.BeginDisabledGroup(true);
-        EditorGUILayout.FloatField("最大飞行距离", (target as ParabolaSkill).MaxProjectDistance());
-        EditorGUI.EndDisabledGroup();
+        float f = (target as ParabolaSkill).MaxProjectDistance(0);
+        float h = (target as ParabolaSkill).MaxProjectDistance(ParabolaSkill.DefaultHeight);
+        EditorGUILayout.FloatField("最大飞行距离(平地)", f);
+        EditorGUILayout.FloatField("最大飞行距离(高处)", h);
     }
 }

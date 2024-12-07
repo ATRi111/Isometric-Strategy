@@ -7,7 +7,7 @@ public class WalkSkill : MoveSkill
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)
     {
         base.GetOptions(agent, igm, position, ret);
-        agent.Brain.FindAvalable(position, ret);
+        agent.Brain.FindAvailable(position, ret);
     }
 
     private readonly List<Vector3Int> route = new();

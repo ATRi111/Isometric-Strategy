@@ -89,7 +89,7 @@ MonoBehaviour:
   equipments:
     list:
     - key: 0
-      value: {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
+      value: {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}
 --- !u!1 &5804586430030361790
 GameObject:
   m_ObjectHideFlags: 0

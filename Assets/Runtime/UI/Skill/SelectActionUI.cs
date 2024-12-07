@@ -17,7 +17,7 @@ public class SelectActionUI : MonoBehaviour
         isSelecting = true;
         ObjectPoolUtility.RecycleMyObjects(gameObject);
         currentActions.Clear();
-        skillUIManager.currentBrain.MakeAction(skill, currentActions);
+        skillUIManager.currentPawn.Brain.MakeAction(skill, currentActions);
         for (int i = 0; i < currentActions.Count; i++)
         {
             Vector3 world = igm.CellToWorld(currentActions[i].target - Vector3Int.forward);

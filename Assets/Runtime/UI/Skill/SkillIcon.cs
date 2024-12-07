@@ -5,6 +5,6 @@ public class SkillIcon : IconUI
     public void SetSkill(Skill skill)
     {
         this.skill = skill;
-        message = skill.ToString();
+        message = skill.displayName;
     }
 }

@@ -6,8 +6,17 @@ public abstract class Effect
 {
     public const int MaxProbability = 100;
 
+    private static readonly RandomGroup randomGroup;
+    static Effect()
+    {
+        randomGroup = RandomTool.GetGroup(ERandomGrounp.Battle);
+    }
+    
+    public static int NextInt()
+        => randomGroup.NextInt(1, MaxProbability + 1);
+
     public Entity victim;
-    public PawnEntity Pawnvictim => victim as PawnEntity;
+    public PawnEntity PawnVictim => victim as PawnEntity;
 
     public int probability;
     public int randomValue;
@@ -19,7 +28,7 @@ public abstract class Effect
             if(AlwaysHappen)
                 return true;
             if (randomValue == -1)
-                randomValue = RandomTool.GetGroup(ERandomGrounp.Battle).NextInt(1, MaxProbability + 1);
+                randomValue = NextInt();
             return randomValue <= probability;
         }
     }

@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 
 [Serializable]
 public class Plan : IComparable<Plan>
@@ -15,6 +14,16 @@ public class Plan : IComparable<Plan>
 
     public int CompareTo(Plan other)
     {
+        if (value <= 0 && other.value <= 0)
+        {
+            int flag = 0;
+            if (action.skill is MoveSkill)
+                flag--;
+            if (other.action.skill is MoveSkill)
+                flag++;
+            if (flag != 0)
+                return flag;
+        }
         return other.value.CompareTo(value);
     }
 }
