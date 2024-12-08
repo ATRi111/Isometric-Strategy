@@ -1,11 +1,13 @@
+using AStar;
 using Character;
 using EditorExtend.GridEditor;
 
 public class MovableGridObject : GridObject
 {
-    protected IsometricGridManager igm;
-    private PawnEntity pawn;
-    public AMover Mover { get; protected set; }
+    public IsometricGridManager Igm { get; protected set; }
+    public PawnEntity Pawn { get; protected set; }
+    public AMover Mover_Default { get; protected set; }
+    public AMover Mover_IgnorePawn { get; protected set; }
     public GridMoveController MoveController { get; protected set; }
     public override int ExtraSortingOrder => 5;
 
@@ -16,12 +18,16 @@ public class MovableGridObject : GridObject
     protected override void Awake()
     {
         base.Awake();
-        igm = Manager as IsometricGridManager;
-        pawn = GetComponentInParent<PawnEntity>();
+        Igm = Manager as IsometricGridManager;
+        Pawn = GetComponentInParent<PawnEntity>();
         MoveController = GetComponentInChildren<GridMoveController>();
-        Mover = new AMover(this)
+        Mover_Default = new AMover_Default(this)
         {
             MoveAbility = () => moveAbility.IntValue
+        };
+        Mover_IgnorePawn = new AMover_IgnorePawn(this)
+        {
+            MoveAbility = () => 5 * moveAbility.IntValue 
         };
     }
 
@@ -32,36 +38,16 @@ public class MovableGridObject : GridObject
         moveAbility.Refresh();
     }
 
-    public virtual bool StayCheck(ANode node)
-    {
-        GridObject obj = node.CurrentObject;
-        if (obj == null)
-            return false;
-        
-        if (obj is MovableGridObject)
-            return false;
-        return true;
-    }
-
-    public virtual bool MoveCheck(ANode from, ANode to)
-    {
-        GridObject obj = to.CurrentObject;
-        if(obj == null)
-            return false;
-
-        if (obj is MovableGridObject other && !FactionCheck(other))
-            return false;
-
-        int toLayer = igm.AboveGroundLayer(to.Position);
-        int fromLayer = igm.AboveGroundLayer(from.Position);
-        if (!HeightCheck(fromLayer, toLayer))
-            return false;
-        return true;
-    }
-
     public virtual bool FactionCheck(MovableGridObject other)
     {
-        return pawn.faction == other.pawn.faction;
+        return Pawn.faction == other.Pawn.faction;
+    }
+
+    public virtual bool HeightCheck(AStarNode from, AStarNode to)
+    {
+        int toLayer = Igm.AboveGroundLayer(to.Position);
+        int fromLayer = Igm.AboveGroundLayer(from.Position);
+        return HeightCheck(fromLayer, toLayer);
     }
 
     public virtual bool HeightCheck(int fromLayer, int toLayer)

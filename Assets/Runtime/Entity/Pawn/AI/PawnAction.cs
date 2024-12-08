@@ -11,6 +11,7 @@ public class PawnAction
     public Skill skill;
     public Vector3Int target;
     public EffectUnit effectUnit;
+    public int Time => effectUnit.timeEffect.current - effectUnit.timeEffect.prev;
 
     public PawnAction(PawnEntity agent, Skill skill, Vector3Int target)
     {
@@ -44,7 +45,7 @@ public class PawnAction
     {
         StringBuilder sb = new();
         sb.AppendLine(skill.name);
-        sb.AppendLine($"时间花费:{effectUnit.ActionTime}");
+        sb.AppendLine($"时间花费:{Time}");
         return sb.ToString();
     }
 }

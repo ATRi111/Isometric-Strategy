@@ -5,7 +5,6 @@ using UnityEngine;
 public class EffectUnit
 {
     public TimeEffect timeEffect;
-    public int ActionTime => timeEffect.current - timeEffect.prev;
 
     [SerializeReference]
     public List<Effect> effects;

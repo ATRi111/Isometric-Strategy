@@ -1,21 +1,36 @@
 using AStar;
+using EditorExtend.GridEditor;
 
-public class AMover : AStarMover
+public abstract class AMover : AStarMover
 {
-    protected MovableGridObject pawn;
-    public AMover(MovableGridObject pawn) 
+    protected MovableGridObject gridObject;
+    public AMover(MovableGridObject gridObject) 
     {
-        this.pawn = pawn;
+        this.gridObject = gridObject;
     }
 
     public override bool StayCheck(AStarNode node)
     {
-        return base.StayCheck(node) && pawn.StayCheck(node as ANode);
+        if (node.IsObstacle)
+            return false;
+        GridObject obj = (node as ANode).CurrentObject;
+        if (obj == null)
+            return false;
+
+        return true;
     }
 
     public override bool MoveCheck(AStarNode from, AStarNode to)
     {
-        return base.MoveCheck(from, to) && pawn.MoveCheck(from as ANode, to as ANode);
+        if (to.IsObstacle)
+            return false;
+        GridObject obj = (to as ANode).CurrentObject;
+        if (obj == null)
+            return false;
+        if (!gridObject.HeightCheck(from, to))
+            return false;
+
+        return true;
     }
 
     public override float CalculateCost(AStarNode from, AStarNode to, float primitiveCost)

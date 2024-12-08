@@ -21,6 +21,8 @@ public class PathFindingManager : MonoBehaviour
     private PathFindingProcess findRoute;
     [SerializeField]
     private PathFindingProcess findAvailable;
+    [SerializeField]
+    private PathFindingProcess ranging;
 
     public PathFindingProcess FindRoute(AMover mover, Vector2Int from, Vector2Int to)
     {
@@ -28,12 +30,12 @@ public class PathFindingManager : MonoBehaviour
         PathFindingSettings settings = new(GetAdjoinNodes, PathFindingUtility.ManhattanDistance, GenerateNode, 1f, maxDepth, maxDepth);
         findRoute = new PathFindingProcess(settings, mover)
         {
-            mono = Igm
+            mountPoint = Igm
         };
         findRoute.Start(from, to);
 #if UNITY_EDITOR
-        if(debug)
-            PlayFindRoute();
+        if (debug)
+            Play(findRoute);
         else
 #endif
             findRoute.Compelete();
@@ -47,17 +49,37 @@ public class PathFindingManager : MonoBehaviour
         PathFindingSettings settings = new(GetAdjoinNodes, PathFindingUtility.ManhattanDistance, GenerateNode, 0f, maxDepth, maxDepth);
         findAvailable = new PathFindingProcess(settings, mover)
         {
-            mono = Igm
+            mountPoint = Igm
         };
         Vector2Int to = from + Mathf.CeilToInt(moveability + 1) * Vector2Int.one;
         findAvailable.Start(from, to);
 #if UNITY_EDITOR
         if (debug)
-            PlayFindAvailable();
+            Play(findAvailable);
         else
 #endif
             findAvailable.Compelete();
         return findAvailable;
+    }
+
+    public PathFindingProcess Ranging(AMover mover, Vector2Int from)
+    {
+        float moveability = mover.MoveAbility();
+        int maxDepth = Mathf.CeilToInt(moveability * moveability * 2 + moveability * 2 + 2);
+        PathFindingSettings settings = new(GetAdjoinNodes, PathFindingUtility.ManhattanDistance, GenerateNode, 0f, maxDepth, maxDepth);
+        ranging = new PathFindingProcess(settings, mover)
+        {
+            mountPoint = Igm
+        };
+        Vector2Int to = from + Mathf.CeilToInt(moveability + 1) * Vector2Int.one;
+        ranging.Start(from, to);
+#if UNITY_EDITOR
+        if (debug)
+            Play(ranging);
+        else
+#endif
+            ranging.Compelete();
+        return ranging;
     }
 
     public static void GetAdjoinNodes(PathFindingProcess process, AStarNode node, List<AStarNode> ret)
@@ -79,45 +101,28 @@ public class PathFindingManager : MonoBehaviour
     public float stepTime;
 
     private Metronome metronome;
+    private PathFindingProcess current;
 
-    private void PlayFindRoute()
+    private void Play(PathFindingProcess process)
     {
         if (metronome != null)
             metronome.Paused = true;
         metronome = new Metronome();
-        metronome.AfterComplete += FindRouteStep;
+        metronome.AfterComplete += Step;
         metronome.Initialize(stepTime);
-        AfterStep?.Invoke(findRoute);
+        current = process;
+        AfterStep?.Invoke(process);
     }
 
-    private void FindRouteStep(float _)
+    private void Step(float _)
     {
-        if (!findRoute.NextStep())
+        if (!current.NextStep())
         {
             metronome.Paused = true;
-            AfterComplete?.Invoke(findRoute);
+            AfterComplete?.Invoke(current);
+            current = null;
         }
-        AfterStep?.Invoke(findRoute);
-    }
-
-    private void PlayFindAvailable()
-    {
-        if (metronome != null)
-            metronome.Paused = true;
-        metronome = new Metronome();
-        metronome.AfterComplete += FindAvailableNextStep;
-        metronome.Initialize(stepTime);
-        AfterStep?.Invoke(findAvailable);
-    }
-
-    private void FindAvailableNextStep(float _)
-    {
-        if (!findAvailable.NextStep())
-        {
-            metronome.Paused = true;
-            AfterComplete?.Invoke(findAvailable);
-        }
-        AfterStep?.Invoke(findAvailable);
+        AfterStep?.Invoke(current);
     }
 #endif
 }

@@ -8,7 +8,7 @@ public class ANode : AStarNode
 
     public GridObject CurrentObject => igm.GetObjectXY(position);
     public virtual int AboveGroundLayer => igm.AboveGroundLayer(Position);
-    public Vector3Int CellPositon => Position.AddZ(AboveGroundLayer);
+    public Vector3Int CellPosition => Position.AddZ(AboveGroundLayer);
 
     public override bool IsObstacle
     {

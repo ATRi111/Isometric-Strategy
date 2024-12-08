@@ -9,21 +9,11 @@ public class Plan : IComparable<Plan>
     public Plan(PawnAction action)
     {
         this.action = action;
-        value = action.agent.Brain.Evaluate(action.effectUnit);
+        value = action.agent.Brain.Evaluate(action);
     }
 
     public int CompareTo(Plan other)
     {
-        if (value <= 0 && other.value <= 0)
-        {
-            int flag = 0;
-            if (action.skill is MoveSkill)
-                flag--;
-            if (other.action.skill is MoveSkill)
-                flag++;
-            if (flag != 0)
-                return flag;
-        }
         return other.value.CompareTo(value);
     }
 }

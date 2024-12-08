@@ -123,16 +123,15 @@ public class PawnBrain : CharacterComponentBase
             }
         }
     }
-
-    public virtual float Evaluate(EffectUnit effectUnit)
+    public virtual float Evaluate(PawnAction action)
     {
-        float primitiveValue = 0;
-        List<Effect> effects = effectUnit.effects;
+        float sum = 0;
+        List<Effect> effects = action.effectUnit.effects;
         for (int i = 0; i < effects.Count; i++)
         {
-            primitiveValue += (float)effects[i].probability / Effect.MaxProbability * effects[i].PrimitiveValueFor(Pawn);
+            sum += (float)effects[i].probability / Effect.MaxProbability * effects[i].PrimitiveValueFor(Pawn);
         }
-        return primitiveValue / effectUnit.ActionTime;
+        return sum / action.Time;
     }
 
     public float HealthPercent(PawnEntity pawn)
@@ -140,30 +139,27 @@ public class PawnBrain : CharacterComponentBase
 
     public virtual float EvaluatePosition(Vector3Int position)
     {
-        int Distance(PawnEntity x,PawnEntity y)
+        Dictionary<Vector2Int, ANode> nodeDict = new();
+        Ranging(position, nodeDict);
+        int DistanceTo(PawnEntity other)
         {
-            Vector3Int px, py; 
-            if(x == Pawn)
-            {
-                px = position;
-                py = y.GridObject.CellPosition;
-            }
-            else if (y == Pawn)
-            {
-                px = x.GridObject.CellPosition;
-                py = position;
-            }
-            else
-            {
-                px = x.GridObject.CellPosition;
-                py = y.GridObject.CellPosition;
-            }
-            return IsometricGridUtility.ProjectManhattanDistance((Vector2Int)px, (Vector2Int)py);
+            Vector2Int xy = (Vector2Int)other.GridObject.CellPosition;
+            if (nodeDict.ContainsKey(xy))
+                return Mathf.RoundToInt(nodeDict[xy].GCost);
+            Debug.LogWarning($"{other.gameObject.name}²»¿É´ï");
+            return IsometricGridUtility.ProjectManhattanDistance((Vector2Int)position, xy);
         }
-        int SupportDistance(PawnEntity supporter, PawnEntity supportee)
-            => -Mathf.Abs(Distance(supporter, supportee) - supporter.pClass.bestSupprtDistance);
-        int OffenseDistance(PawnEntity agent,PawnEntity victim)
-            => -Mathf.Abs(Distance(agent, victim) - agent.pClass.bestOffenseDistance);
+
+        int SupportDistance(PawnEntity supported)
+            => -Mathf.Abs(DistanceTo(supported) - Pawn.pClass.bestSupprtDistance);
+        int SupportedDistance(PawnEntity supporter)
+            => -Mathf.Abs(DistanceTo(supporter) - supporter.pClass.bestSupprtDistance);
+
+        int OffenseDistance(PawnEntity victim)
+            => -Mathf.Abs(DistanceTo(victim) - Pawn.pClass.bestOffenseDistance);
+        int DefenseDistance(PawnEntity agent)
+            => -Mathf.Abs(DistanceTo(agent) - agent.pClass.bestOffenseDistance);
+
         float H(PawnEntity pawn)
             => 0.5f + 0.5f * HealthPercent(pawn);
         float I(PawnEntity pawn)
@@ -174,7 +170,7 @@ public class PawnBrain : CharacterComponentBase
             float sum = 0;
             for (int i = 0; i < allies.Count; i++)
             {
-                sum += I(allies[i]) * SupportDistance(Pawn, allies[i]);
+                sum += I(allies[i]) * SupportDistance(allies[i]);
             }
             sum *= Pawn.pClass.supportAbility;
             return sum;
@@ -184,7 +180,7 @@ public class PawnBrain : CharacterComponentBase
             float sum = 0;
             for (int i = 0; i < allies.Count; i++)
             {
-                sum += allies[i].pClass.supportAbility * SupportDistance(allies[i], Pawn);
+                sum += allies[i].pClass.supportAbility * SupportedDistance(Pawn);
             }
             sum *= I(Pawn);
             return sum;
@@ -194,7 +190,7 @@ public class PawnBrain : CharacterComponentBase
             float sum = 0;
             for (int i = 0; i < enemies.Count; i++)
             {
-                sum += OffenseDistance(Pawn, enemies[i]);
+                sum += OffenseDistance(enemies[i]);
             }
             sum *= H(Pawn) * Pawn.pClass.offenseAbility;
             return sum;
@@ -204,7 +200,7 @@ public class PawnBrain : CharacterComponentBase
             float sum = 0;
             for (int i = 0; i < enemies.Count; i++)
             {
-                sum -= H(enemies[i]) * enemies[i].pClass.offenseAbility * OffenseDistance(enemies[i], Pawn);
+                sum -= H(enemies[i]) * enemies[i].pClass.offenseAbility * DefenseDistance(enemies[i]);
             }
             return sum;
         }
@@ -224,10 +220,10 @@ public class PawnBrain : CharacterComponentBase
     public void FindAvailable(Vector3Int from, List<Vector3Int> ret)
     {
         ret.Clear();
-        PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover, (Vector2Int)from);
+        PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover_Default, (Vector2Int)from);
         for (int i = 0; i < process.available.Count; i++)
         {
-            ret.Add((process.available[i] as ANode).CellPositon);
+            ret.Add((process.available[i] as ANode).CellPosition);
         }
     }
 
@@ -235,10 +231,21 @@ public class PawnBrain : CharacterComponentBase
     {
         ret.Clear();
         ret.Add(Pawn.MovableGridObject.CellPosition);
-        PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover, (Vector2Int)from, (Vector2Int)to);
+        PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover_Default, (Vector2Int)from, (Vector2Int)to);
         for (int i = 0; i < process.output.Count; i++)
         {
-            ret.Add((process.output[i] as ANode).CellPositon);
+            ret.Add((process.output[i] as ANode).CellPosition);
+        }
+    }
+
+    public void Ranging(Vector3Int from, Dictionary<Vector2Int, ANode> ret)
+    {
+        ret.Clear();
+        PathFindingProcess process = AIManager.PathFinding.Ranging(Pawn.MovableGridObject.Mover_IgnorePawn, (Vector2Int)from);
+        for (int i = 0; i < process.available.Count; i++)
+        {
+            ANode node = process.available[i] as ANode;
+            ret.Add(node.Position, node);
         }
     }
     #endregion

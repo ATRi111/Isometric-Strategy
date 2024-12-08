@@ -662,7 +662,7 @@ MonoBehaviour:
       capacity: 0
       maxDepth: 0
       hCostWeight: 0
-    mono: {fileID: 0}
+    mountPoint: {fileID: 0}
     output: []
     available: []
     isRunning: 0
@@ -693,7 +693,38 @@ MonoBehaviour:
       capacity: 0
       maxDepth: 0
       hCostWeight: 0
-    mono: {fileID: 0}
+    mountPoint: {fileID: 0}
+    output: []
+    available: []
+    isRunning: 0
+    from:
+      position: {x: 0, y: 0}
+      state: 0
+      GCost: 0
+      HCost: 0
+    to:
+      position: {x: 0, y: 0}
+      state: 0
+      GCost: 0
+      HCost: 0
+    currentNode:
+      position: {x: 0, y: 0}
+      state: 0
+      GCost: 0
+      HCost: 0
+    nearest:
+      position: {x: 0, y: 0}
+      state: 0
+      GCost: 0
+      HCost: 0
+    countOfCloseNode: 0
+    countOfQuery: 0
+  ranging:
+    settings:
+      capacity: 0
+      maxDepth: 0
+      hCostWeight: 0
+    mountPoint: {fileID: 0}
     output: []
     available: []
     isRunning: 0
@@ -741,7 +772,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776701397}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9ad802dbd71d744f85f2f5a5356d4df, type: 3}
   m_Name: 

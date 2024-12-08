@@ -27,7 +27,7 @@ public class DebugPlanUI : MonoBehaviour
         textbox.text = 
             $"V:{plan.value:F2}\n" +
             $"{plan.action.skill.name}\n" +
-            $"T:{plan.action.effectUnit.ActionTime}\n";
+            $"T:{plan.action.Time}\n";
         spriteRenderer.sortingOrder = plan.action.agent.GridObject.SpriteRenderer.sortingOrder;
     }
 }
