@@ -9,6 +9,7 @@ public class WalkSkill : MoveSkill
     {
         base.GetOptions(agent, igm, position, ret);
         agent.Brain.FindAvailable(position, ret);
+        ret.Remove(position);
     }
 
     private readonly List<Vector3Int> route = new();

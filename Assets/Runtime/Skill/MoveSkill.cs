@@ -36,7 +36,7 @@ public abstract class MoveSkill : Skill
         for (int i = 0; i < ZoneOfControl.Length; i++)
         {
             Vector3Int temp = position + ZoneOfControl[i];
-            if (igm.EntityDict.ContainsKey(temp) && agent.CheckFaction(igm.EntityDict[temp]) == -1)
+            if (igm.EntityDict.ContainsKey(temp) && agent.FactionCheck(igm.EntityDict[temp]) == -1)
                 return true;
         }
         return false;

@@ -1,13 +1,11 @@
 using EditorExtend.GridEditor;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "跳跃", menuName = "技能/跳跃")]
 public class JumpSkill : MoveSkill
 {
-    public int castingDistance;
-    public float jumpAngle;
-
     private readonly static List<Vector2Int> Directions = new()
     {
         Vector2Int.left,
@@ -17,29 +15,45 @@ public class JumpSkill : MoveSkill
     };
     private static float Gravity => GridPhysics.settings.gravity;
 
+    public int castingDistance;
+    public float jumpAngle;
+
+    /// <summary>
+    /// 假设agent位于fromXY,判断其能否跳到toXY（ObjectCheck表示跳跃过程中要考虑与哪些物体的碰撞）
+    /// </summary>
+    public bool JumpCheck(PawnEntity agent, IsometricGridManager igm, Vector2Int fromXY, Vector2Int toXY, Func<PawnEntity, GridObject, bool> ObjectCheck = null)
+    {
+        GridObject aimedObject = igm.GetObjectXY(toXY);
+        if (aimedObject == null)
+            return false;
+        if (!ObjectCheck.Invoke(agent, aimedObject))
+            return false;
+
+        Vector3Int position = fromXY.AddZ(igm.AboveGroundLayer(fromXY));
+        Vector3 from = agent.GridObject.BottomCenter - agent.MovableGridObject.CellPosition + position;
+        Vector3 to = aimedObject.TopCenter;
+        if (!GridPhysics.InitialVelocityOfParabola(from, to, jumpAngle, Gravity, out Vector3 velocity, out float _))
+            return false;
+
+        GridObject gridObject = igm.ParabolaCast(from, velocity, Gravity, agent, ObjectCheck);
+        if (gridObject != aimedObject)
+            return false;
+
+        return true;
+    }
+
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)
     {
         ret.Clear();
         for (int i = 0; i < Directions.Count; i++)
         {
-            Vector2Int xy = (Vector2Int)position + castingDistance * Directions[i];
-            GridObject aimedObject = igm.GetObjectXY(xy);
-            if(aimedObject == null)
-                continue;
-            if (aimedObject.GetComponent<Entity>() != null)  //不可落在Entity上
-                continue;
-
-            Vector3 from = agent.GridObject.BottomCenter;
-            Vector3 to = aimedObject.TopCenter;
-            if (!GridPhysics.InitialVelocityOfParabola(from, to, jumpAngle, Gravity, out Vector3 velocity, out float _))
-                continue;
-
-            GridObject gridObject = igm.ParabolaCast(from, velocity, Gravity);
-            if (gridObject != aimedObject)
-                continue;
-
-            Vector3Int target = xy.AddZ(igm.AboveGroundLayer(xy));
-            ret.Add(target);
+            Vector2Int fromXY = (Vector2Int)position;
+            Vector2Int toXY = fromXY + castingDistance * Directions[i];
+            if (JumpCheck(agent, igm, fromXY, toXY, MovableGridObject.ObjectCheck_AllObject))
+            {
+                Vector3Int target = toXY.AddZ(igm.AboveGroundLayer(toXY));
+                ret.Add(target);
+            }
         }
     }
 

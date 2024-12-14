@@ -13,7 +13,7 @@ public class HealthComponentEditor : AutoEditor
     {
         base.OnEnable();
         list = resistance.FindPropertyRelative(nameof(list));
-        SerializedDictionaryrHelper.FixEnum<EDamageType>(list);
+        SerializedDictionaryHelper.FixEnum<EDamageType>(list);
     }
 
     protected override void MyOnInspectorGUI()

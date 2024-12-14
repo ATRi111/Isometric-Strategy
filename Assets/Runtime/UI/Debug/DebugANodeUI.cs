@@ -22,7 +22,7 @@ public class DebugANodeUI : MonoBehaviour
     [SerializeField]
     private Color color_to;
     [SerializeField]
-    private AStarNode node;
+    private Node node;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class DebugANodeUI : MonoBehaviour
         textbox = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void Initialize(AStarNode node)
+    public void Initialize(Node node)
     {
         this.node = node;
         if (node.IsObstacle)

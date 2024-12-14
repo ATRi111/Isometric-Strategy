@@ -30,7 +30,7 @@ public class DebugANodeGenerator : MonoBehaviour
     {
         Clear();
         GameObject obj = new("DebugANode");
-        AStarNode[] allNodes = process.GetAllNodes();
+        Node[] allNodes = process.GetAllNodes();
         for (int i = 0; i < allNodes.Length; i++)
         {
             PaintNode(allNodes[i] as ANode, obj.transform);

@@ -1,5 +1,6 @@
 using EditorExtend.GridEditor;
 using MyTool;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -132,6 +133,31 @@ public class IsometricGridManager : IsometricGridManagerBase
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (gridObjects[j].Overlap(point) && !gridObjects[j].Overlap(from))
+                    return gridObjects[j];
+            }
+        }
+        return null;
+    }
+
+    // <summary>
+    /// 获取第一个与有向抛物线相交,且符合所给条件的GridObject(自动忽略与from重合的物体)
+    /// </summary>
+    public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g, PawnEntity pawn, Func<PawnEntity, GridObject, bool> ObjectCheck)
+    {
+        if (g <= 0)
+            throw new ArgumentException();
+        List<GridObject> gridObjects = new();
+        float deltaTime = Mathf.Max(1f / velocity.magnitude / GridPhysics.settings.parabolaPrecision, 0.01f);
+        for (float t = 0f; ; t += deltaTime)
+        {
+            Vector3 point = from + t * velocity + t * t / 2 * g * Vector3.back;
+            if (point.z < 0)
+                break;
+            Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
+            GetObjectsXY(xy, gridObjects);
+            for (int j = 0; j < gridObjects.Count; j++)
+            {
+                if (gridObjects[j].Overlap(point) && !gridObjects[j].Overlap(from) && ObjectCheck.Invoke(pawn, gridObjects[j]))
                     return gridObjects[j];
             }
         }

@@ -39,6 +39,6 @@ public class HPChangeEffect : Effect
 
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
-        return (current - prev) * pawn.CheckFaction(victim);
+        return (current - prev) * pawn.FactionCheck(victim);
     }
 }

@@ -2,7 +2,7 @@ using AStar;
 using EditorExtend.GridEditor;
 using UnityEngine;
 
-public class ANode : AStarNode
+public class ANode : Node
 {
     protected IsometricGridManager igm;
 
