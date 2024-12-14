@@ -4,10 +4,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-500)]
+[RequireComponent(typeof(PerspectiveController))]
 public class IsometricGridManager : IsometricGridManagerBase
 {
     private readonly Dictionary<Vector3Int, Entity> entityDict = new();
     public Dictionary<Vector3Int,Entity> EntityDict => entityDict;
+    public PerspectiveController PerspectiveController { get; private set; }
 
     public static IsometricGridManager FindInstance()
     {
@@ -87,7 +90,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g, List<Vector3> trajectory)
     {
         if (g <= 0 || velocity == Vector3.zero)
-            throw new System.ArgumentException();
+            throw new ArgumentException();
         if (trajectory == null)
             return ParabolaCast(from, velocity, g);
 
@@ -100,7 +103,7 @@ public class IsometricGridManager : IsometricGridManagerBase
             Vector3 point = from + t * velocity + t * t / 2 * g * Vector3.back;
             trajectory.Add(point);
             if(trajectory.Count > 1000)
-                throw new System.Exception();
+                throw new Exception();
             if (point.z < 0)
                 break;
             Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
@@ -162,5 +165,10 @@ public class IsometricGridManager : IsometricGridManagerBase
             }
         }
         return null;
+    }
+
+    private void Awake()
+    {
+        PerspectiveController = GetComponent<PerspectiveController>();
     }
 }
