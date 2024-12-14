@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class ActionIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     private Image image;
-    [SerializeField]
-    private PawnAction action;
+    public PawnAction action;
     private IEventSystem eventSystem;
     private SkillUIManager skillUIManager;
     protected string message;

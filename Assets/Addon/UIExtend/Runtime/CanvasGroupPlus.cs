@@ -41,6 +41,12 @@ namespace UIExtend
             }
         }
 
+        public float Alpha
+        {
+            get => canvasGroup.alpha;
+            set => SetAlpha(value);
+        }
+
         protected virtual void Awake()
         {
             canvasGroup = GetComponent<CanvasGroup>();

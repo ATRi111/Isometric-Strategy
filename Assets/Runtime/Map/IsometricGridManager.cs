@@ -8,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(PerspectiveController))]
 public class IsometricGridManager : IsometricGridManagerBase
 {
+    public static Vector3Int CoverVector = new(1, 1, -2);
+
     private readonly Dictionary<Vector3Int, Entity> entityDict = new();
     public Dictionary<Vector3Int,Entity> EntityDict => entityDict;
     public PerspectiveController PerspectiveController { get; private set; }
