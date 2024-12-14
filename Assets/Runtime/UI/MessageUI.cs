@@ -2,11 +2,11 @@ using Services.Event;
 using UIExtend;
 using UnityEngine;
 
-[RequireComponent(typeof(CanvasGrounpPlus))]
+[RequireComponent(typeof(CanvasGroupPlus))]
 public class MessageUI : TextBase
 {
     private RectTransform rectTransform;
-    private CanvasGrounpPlus canvasGrounp;
+    private CanvasGroupPlus canvasGrounp;
     private object source;  //当前引发消息的对象
 
     private void ShowMessage(object source, Vector2 screenPoint, string message)
@@ -30,7 +30,7 @@ public class MessageUI : TextBase
     {
         base.Awake();
         rectTransform = GetComponent<RectTransform>();
-        canvasGrounp = GetComponent<CanvasGrounpPlus>();
+        canvasGrounp = GetComponent<CanvasGroupPlus>();
     }
 
     private void OnEnable()

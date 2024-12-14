@@ -1,7 +1,10 @@
+using UIExtend;
 using UnityEngine;
 
+[RequireComponent(typeof(CanvasGroupPlus))]
 public class HPUI : MonoBehaviour
 {
+    protected CanvasGroupPlus canvasGroup;
     protected Entity entity;
     protected BattleComponent battleComponent;
 
@@ -19,7 +22,7 @@ public class HPUI : MonoBehaviour
 
     protected virtual void Awake()
     {
-
+        canvasGroup = GetComponent<CanvasGroupPlus>();
     }
 
     protected virtual void OnDisable()

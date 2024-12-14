@@ -4,14 +4,14 @@ using UIExtend;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(CanvasGrounpPlus))]
+[RequireComponent(typeof(CanvasGroupPlus))]
 public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     protected IEventSystem eventSystem;
     protected GameManager gameManager;
     protected string message;
     [HideInInspector]
-    public CanvasGrounpPlus canvasGrounp;
+    public CanvasGroupPlus canvasGrounp;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -28,7 +28,7 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         gameManager = ServiceLocator.Get<GameManager>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
-        canvasGrounp = GetComponent<CanvasGrounpPlus>();
+        canvasGrounp = GetComponent<CanvasGroupPlus>();
     }
 
     private void OnDisable()

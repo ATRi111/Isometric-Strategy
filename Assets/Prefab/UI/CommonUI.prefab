@@ -150,9 +150,9 @@ GameObject:
   - component: {fileID: 110638987402545243}
   - component: {fileID: 839183440626762915}
   - component: {fileID: 4259298514749924379}
-  - component: {fileID: 5537288216187602597}
   - component: {fileID: 283508268814093542}
   - component: {fileID: 4213013346678102289}
+  - component: {fileID: 4754103841124674648}
   - component: {fileID: 2566347757403517860}
   m_Layer: 5
   m_Name: MessageUI
@@ -231,23 +231,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &5537288216187602597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100061776076586943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c6527fefa01a14418f16cb7cbbcf900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeTime: 0.2
-  threshold_blockRaycast: 1
-  immediate_next: 0
-  immediate: 0
-  visibleOnAwake: 0
 --- !u!114 &283508268814093542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +271,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4754103841124674648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100061776076586943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 0.2
+  threshold_blockRaycast: 1
+  immediate_next: 0
+  immediate: 0
+  visibleOnAwake: 0
 --- !u!114 &2566347757403517860
 MonoBehaviour:
   m_ObjectHideFlags: 0

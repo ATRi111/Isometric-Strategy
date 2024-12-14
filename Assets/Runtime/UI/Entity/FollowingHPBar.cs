@@ -5,7 +5,6 @@ using UnityEngine.UI;
 /// <summary>
 /// ¸úËæ½ÇÉ«µÄHPUI
 /// </summary>
-[RequireComponent(typeof(MyObject))]
 public class FollowingHPBar : HPUI
 {
     private MyObject myObject;
@@ -16,6 +15,10 @@ public class FollowingHPBar : HPUI
     {
         base.Initialize(entity);
         entity.BeforeDisable += BeforeEntityDisable;
+        if (battleComponent.HP == battleComponent.maxHP.IntValue && entity is not PawnEntity)
+            canvasGroup.Visible = false;
+        else
+            canvasGroup.Visible = true;
     }
 
     private void BeforeEntityDisable()
@@ -28,6 +31,10 @@ public class FollowingHPBar : HPUI
     {
         base.AfterHPChange(prev, current);
         image.fillAmount = current / battleComponent.maxHP.CurrentValue;
+        if (battleComponent.HP == battleComponent.maxHP.IntValue && entity is not PawnEntity)
+            canvasGroup.Visible = false;
+        else
+            canvasGroup.Visible = true;
     }
 
     protected override void Awake()

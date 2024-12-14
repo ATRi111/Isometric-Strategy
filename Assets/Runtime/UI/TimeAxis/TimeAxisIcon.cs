@@ -2,7 +2,7 @@ using System.Text;
 using UIExtend;
 using UnityEngine;
 
-[RequireComponent(typeof(CanvasGrounpPlus))]
+[RequireComponent(typeof(CanvasGroupPlus))]
 public class TimeAxisIcon : IconUI
 {
     public PawnEntity entity;

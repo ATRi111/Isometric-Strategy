@@ -5,7 +5,7 @@ namespace UIExtend
 {
     //挂在需要隐藏-显示的UI物体上
     [RequireComponent(typeof(CanvasGroup))]
-    public class CanvasGrounpPlus : MonoBehaviour
+    public class CanvasGroupPlus : MonoBehaviour
     {
         protected CanvasGroup canvasGroup;
         private LinearTransformation linear;
