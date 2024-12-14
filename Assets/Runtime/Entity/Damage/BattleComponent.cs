@@ -15,7 +15,7 @@ public class BattleComponent : CharacterComponentBase
         get => hp;
         set
         {
-            hp = Mathf.Clamp(value, 0, maxHP.IntValue);
+            value = Mathf.Clamp(value, 0, maxHP.IntValue);
             if (hp != value)
             {
                 int prev = hp;
@@ -30,6 +30,7 @@ public class BattleComponent : CharacterComponentBase
     public void Initialize()
     {
         resistance.Refresh();
+        HP = maxHP.IntValue;
     }
 
     /// <summary>

@@ -42,5 +42,9 @@ namespace Services.Event
         /// 时间变动，参数：当前全局时间
         /// </summary>
         OnTick,
+        /// <summary>
+        /// Entity激活后，参数：Entity
+        /// </summary>
+        AfterEntityEnable,
     }
 }

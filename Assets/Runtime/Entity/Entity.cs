@@ -2,6 +2,7 @@ using Character;
 using EditorExtend.GridEditor;
 using Services;
 using Services.Event;
+using System;
 using UnityEngine;
 
 public class Entity : EntityBase
@@ -29,6 +30,8 @@ public class Entity : EntityBase
         }
     }
 
+    public Action BeforeDisable;
+
     public virtual void RefreshProperty()
     {
         BattleComponent.Refresh();
@@ -42,7 +45,7 @@ public class Entity : EntityBase
     protected virtual void BeforeBattle()
     {
         RefreshProperty();
-        BattleComponent.HP = BattleComponent.maxHP.IntValue;
+        BattleComponent.Initialize();
     }
 
     public virtual void Die()
@@ -68,11 +71,13 @@ public class Entity : EntityBase
     {
         EventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
         EventSystem.AddListener<int>(EEvent.OnTick, OnTick);
+        EventSystem.Invoke(EEvent.AfterEntityEnable, this);
     }
 
     protected virtual void OnDisable()
     {
         EventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
         EventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
+        BeforeDisable?.Invoke();
     }
 }

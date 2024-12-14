@@ -57,7 +57,6 @@ public class PawnEntity : Entity
     protected override void BeforeBattle()
     {
         base.BeforeBattle();
-        BattleComponent.Initialize();
         EquipmentManager.Initialize();
         time = actionTime.IntValue;   //»Î≥°AT
     }
