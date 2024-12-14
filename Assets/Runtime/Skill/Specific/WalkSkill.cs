@@ -1,3 +1,4 @@
+using MyTool;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,9 +17,15 @@ public class WalkSkill : MoveSkill
         base.Mock(agent, igm, position, target, ret);
         agent.Brain.FindRoute(position, target, route);
         List<Vector3> temp = new();
-        for (int i = 0; i < route.Count; i++)
+        if(route.Count > 0)
         {
-            temp.Add(route[i]);
+            temp.Add(route[0]);
+            for (int i = 1; i < route.Count; i++)
+            {
+                if (temp[^1].z != route[i].z)
+                    temp.Add(temp[^1].ResetZ(route[i].z));
+                temp.Add(route[i]);
+            }
         }
         ret.effects.Add(new MoveEffect(agent, position, target, temp));
     }
