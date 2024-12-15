@@ -35,7 +35,7 @@ public abstract class ProjectileSkill : RangedSkill
             to = target + 0.5f * Vector3.one;
             return false;
         }
-        to = aimedObject.GetComponent<Entity>() != null ? aimedObject.Center : aimedObject.TopCenter;
+        to = aimedObject.IsGround ? aimedObject.TopCenter : aimedObject.Center;
         return true;
     }
 

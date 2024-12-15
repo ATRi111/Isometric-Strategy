@@ -28,8 +28,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     public override void AddObject(GridObject gridObject)
     {
         base.AddObject(gridObject);
-        Entity entity = gridObject.GetComponentInParent<Entity>();
-        if (entity != null)
+        if (gridObject.TryGetComponent<Entity>(out var entity))
             entityDict.Add(gridObject.CellPosition, entity);
     }
 

@@ -13,7 +13,7 @@ public class MovableGridObject : GridObject
     public static bool ObjectCheck_IgnoreAlly(PawnEntity pawn, GridObject gridObject)
     {
         Entity entity = gridObject.GetComponentInParent<Entity>();
-        if(entity != null && entity is PawnEntity other && pawn.FactionCheck(entity) > 0)
+        if(entity != null && pawn.FactionCheck(entity) > 0)
             return false;
         return true;
     }

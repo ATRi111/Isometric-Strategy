@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class ActionIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    private Image image;
-    public PawnAction action;
     private IEventSystem eventSystem;
     private SkillUIManager skillUIManager;
+    private IsometricGridManager igm;
+
+    private Image image;
+    private Canvas canvas;
+    public PawnAction action;
     protected string message;
+    public int extraSortingOrder;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -34,18 +38,22 @@ public class ActionIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         message = action.ToString();
         this.action = action;
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = igm.CellToSortingOrder(transform.position) + extraSortingOrder;
     }
 
     private void Awake()
     {
-        image = GetComponent<Image>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
+        image = GetComponentInChildren<Image>();
+        canvas = GetComponent<Canvas>();
         image.alphaHitTestMinimumThreshold = 0.2f;
     }
 
     private void OnEnable()
     {
         skillUIManager = SkillUIManager.FindInstance();
+        igm = IsometricGridManager.FindInstance();
     }
 
     private void OnDisable()
