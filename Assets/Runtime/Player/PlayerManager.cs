@@ -1,5 +1,6 @@
 using Services;
 using Services.Asset;
+using Services.Event;
 using Services.Save;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,33 +10,64 @@ using UnityEngine;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager FindInstance()
+    {
+        return GameObject.Find(nameof(PlayerManager)).GetComponent<PlayerManager>();
+    }
+
+    private IEventSystem eventSystem;
+    private IsometricGridManager igm;
+    private IsometricGridManager Igm
+    {
+        get
+        {
+            if (igm == null)
+                igm = IsometricGridManager.FindInstance();
+            return igm;
+        }
+    }
+
     private IAssetLoader assetLoader;
-    public Dictionary<string, PlayerData> playerDict;
+    public List<PlayerData> playerList;
     public List<Equipment> unusedEquipmentList;
+
+    public List<int> selectedIndicies;
+
+    public PlayerData Find(string entityName)
+    {
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            if(playerList[i].entityName == entityName)
+                return playerList[i];
+        }
+        return null;
+    }
 
     public void UpdatePlayerData(PawnEntity pawn)
     {
-        string entityName = pawn.name;
-        if (!playerDict.ContainsKey(entityName))
+        string entityName = pawn.gameObject.name;
+        PlayerData data = Find(entityName);
+        if (data == null)
         {
-            playerDict.Add(entityName, new PlayerData(entityName));
+            playerList.Add(data);
         }
         List<Equipment> temp = new();
         pawn.EquipmentManager.GetAll(temp);
         for (int i = 0; i < temp.Count; i++)
         {
-            playerDict[entityName].equipmentList.Add(temp[i].name);
+            data.equipmentList.Add(temp[i].name);
         }
     }
 
     public void ApplyPlayerData(PawnEntity pawn)
     {
-        string entityName = pawn.name;
-        if (!playerDict.ContainsKey(entityName))
+        string entityName = pawn.gameObject.name;
+        PlayerData data = Find(entityName);
+        if (data == null)
             return;
 
         pawn.EquipmentManager.UnEquipAll();
-        List<string> temp = playerDict[entityName].equipmentList;
+        List<string> temp = data.equipmentList;
         for (int i = 0;i < temp.Count;i++)
         {
             Equipment equipment = assetLoader.Load<Equipment>(temp[i]);

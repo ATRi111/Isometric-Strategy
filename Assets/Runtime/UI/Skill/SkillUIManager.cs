@@ -22,9 +22,6 @@ public class SkillUIManager : MonoBehaviour
 
     private void BeforeDoAction(PawnEntity pawn)
     {
-        if (currentPawn != null)
-            throw new Exception($"{currentPawn.gameObject.name}没有行动完,就轮到{pawn.gameObject.name}行动");
-
         currentPawn = pawn;
         if (pawn.Brain.humanControl)
             SelectSkill?.Invoke(currentPawn);

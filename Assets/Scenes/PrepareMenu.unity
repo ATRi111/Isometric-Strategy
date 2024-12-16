@@ -929,8 +929,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3af057285a4a6b419cc90ed5e865feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerList:
+  - entityName: Player
+    equipmentList:
+    - "\u5F29"
   unusedEquipmentList:
   - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
+  selectedIndicies:
+  - 0
 --- !u!114 &1404961335
 MonoBehaviour:
   m_ObjectHideFlags: 0

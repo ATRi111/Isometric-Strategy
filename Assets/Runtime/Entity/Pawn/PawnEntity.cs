@@ -1,6 +1,6 @@
 using Character;
-using System.Collections.Generic;
 using MyTool;
+using System.Collections.Generic;
 
 /// <summary>
 /// 可行动的Entity
@@ -54,19 +54,14 @@ public class PawnEntity : Entity
         MovableGridObject.RefreshProperty();
     }
 
-    protected override void BeforeBattle()
-    {
-        base.BeforeBattle();
-        EquipmentManager.Initialize();
-        time = actionTime.IntValue;   //入场AT
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
         GameManager.Register(this);
         pClass.Register(this);
         race.Register(this);
+        EquipmentManager.Initialize();
+        time = actionTime.IntValue;   //入场AT
     }
 
     protected override void OnDisable()

@@ -42,12 +42,6 @@ public class Entity : EntityBase
         RefreshProperty();
     }
 
-    protected virtual void BeforeBattle()
-    {
-        RefreshProperty();
-        BattleComponent.Initialize();
-    }
-
     public virtual void Die()
     {
         gameObject.SetActive(false);
@@ -69,14 +63,14 @@ public class Entity : EntityBase
 
     protected virtual void OnEnable()
     {
-        EventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
         EventSystem.AddListener<int>(EEvent.OnTick, OnTick);
         EventSystem.Invoke(EEvent.AfterEntityEnable, this);
+        RefreshProperty();
+        BattleComponent.Initialize();
     }
 
     protected virtual void OnDisable()
     {
-        EventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
         EventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
         BeforeDisable?.Invoke();
     }

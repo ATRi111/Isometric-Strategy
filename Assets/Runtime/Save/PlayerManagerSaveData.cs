@@ -20,10 +20,10 @@ public class PlayerManagerSaveData : SaveData
 
     public override void Load()
     {
-        Manager.playerDict.Clear();
+        Manager.playerList.Clear();
         for (int i = 0; i < playerList.Count; i++)
         {
-            Manager.playerDict.Add(playerList[i].entityName, playerList[i].Clone() as PlayerData);
+            Manager.playerList.Add(playerList[i].Clone() as PlayerData);
         }
         Manager.unusedEquipmentList.Clear();
         for (int i = 0; i < unusedEquipmentList.Count;i++)
@@ -35,10 +35,10 @@ public class PlayerManagerSaveData : SaveData
 
     public override void Save()
     {
-        playerList.Clear();
-        foreach(PlayerData player in Manager.playerDict.Values)
+        playerList.Clear(); 
+        for (int i = 0; i < Manager.playerList.Count; i++)
         {
-            playerList.Add(player.Clone() as PlayerData);
+            playerList.Add(playerList[i].Clone() as PlayerData);
         }
         unusedEquipmentList.Clear();
         for (int i = 0; i < Manager.unusedEquipmentList.Count; i++)
