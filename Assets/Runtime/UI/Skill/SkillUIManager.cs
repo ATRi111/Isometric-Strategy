@@ -20,13 +20,14 @@ public class SkillUIManager : MonoBehaviour
 
     public PawnEntity currentPawn;
 
-    private void OnHumanControl(PawnEntity pawn)
+    private void BeforeDoAction(PawnEntity pawn)
     {
         if (currentPawn != null)
             throw new Exception($"{currentPawn.gameObject.name}没有行动完,就轮到{pawn.gameObject.name}行动");
 
         currentPawn = pawn;
-        SelectSkill?.Invoke(currentPawn);
+        if (pawn.Brain.humanControl)
+            SelectSkill?.Invoke(currentPawn);
     }
 
     private void ReselectSkill()
@@ -49,11 +50,11 @@ public class SkillUIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventSystem.AddListener<PawnEntity>(EEvent.OnHumanControl, OnHumanControl);
+        EventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
     }
 
     private void OnDisable()
     {
-        EventSystem.RemoveListener<PawnEntity>(EEvent.OnHumanControl, OnHumanControl);
+        EventSystem.RemoveListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
     }
 }

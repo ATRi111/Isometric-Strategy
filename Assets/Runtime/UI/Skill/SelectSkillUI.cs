@@ -11,9 +11,11 @@ public class SelectSkillUI : MonoBehaviour
     private SkillIcon[] icons;
     private RectTransform rectTransform;
 
+    private PawnEntity current;
+
     private void SelectSkill(PawnEntity pawn)
     {
-        transform.position = Camera.main.WorldToScreenPoint(pawn.transform.position);
+        current = pawn;
         int count = 0;
         foreach(Skill skill in pawn.Brain.learnedSkills)
         {
@@ -33,6 +35,7 @@ public class SelectSkillUI : MonoBehaviour
 
     private void AfterSelectSkill(Skill _)
     {
+        current = null;
         for (int i = 0; i < icons.Length; i++)
         {
             icons[i].canvasGroup.Visible = false;
@@ -62,5 +65,11 @@ public class SelectSkillUI : MonoBehaviour
     {
         skillUIManager.SelectSkill += SelectSkill;
         skillUIManager.AfterSelectSkill -= AfterSelectSkill;
+    }
+
+    private void Update()
+    {
+        if (current != null)
+            transform.position = Camera.main.WorldToScreenPoint(current.transform.position);
     }
 }

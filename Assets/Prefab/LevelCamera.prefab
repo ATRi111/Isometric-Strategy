@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6912022452861372920}
   - component: {fileID: 9164132801331333768}
   - component: {fileID: 1545441042631017839}
+  - component: {fileID: 7394688978876571680}
   m_Layer: 0
   m_Name: LevelCamera
   m_TagString: MainCamera
@@ -128,3 +129,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &7394688978876571680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973324315571798127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a49e2e23ad97c74ca2613076514e955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  follow: {fileID: 0}
+  isFollowing: 0
+  moveSpeed: 5
+  offset: {x: 0, y: 0, z: -10}

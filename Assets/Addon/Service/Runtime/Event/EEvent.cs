@@ -19,9 +19,9 @@ namespace Services.Event
         /// </summary>
         AfterUnLoadScene,
         /// <summary>
-        /// 玩家开始控制某个角色，参数：所控制的角色的Brain
+        /// 角色行动前，参数：PawnEntity
         /// </summary>
-        OnHumanControl,
+        BeforeDoAction,
         /// <summary>
         /// 显示信息，参数：引发事件的对象，屏幕坐标，信息内容
         /// </summary>

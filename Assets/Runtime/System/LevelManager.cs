@@ -27,14 +27,14 @@ public class LevelManager : MonoBehaviour
 
     private void SwitchToPrepareMenu()
     {
-        levelCamera.enabled = false;
-        prepareMenuCamera.enabled = true;
+        levelCamera.gameObject.SetActive(false);
+        prepareMenuCamera.gameObject.SetActive(true);
     }
 
     private void SwitchToLevel()
     {
-        prepareMenuCamera.enabled = false;
-        levelCamera.enabled = true;
+        prepareMenuCamera.gameObject.SetActive(false);
+        levelCamera.gameObject.SetActive(true);
     }
 
     private void LoadLevel(int sceneIndex)
@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
         {
             levelCamera = obj.GetComponent<Camera>();
             levelCamera.clearFlags = CameraClearFlags.SolidColor;
-            levelCamera.enabled = false;
+            levelCamera.gameObject.SetActive(false);
         }
     }
 

@@ -72,12 +72,4 @@ public class GameManager : Service,IService
         base.Init();
         animationManager.AfterAnimationComplete += AfterAnimationComplete;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.K))
-        {
-            StartBattle();
-        }
-    }
 }

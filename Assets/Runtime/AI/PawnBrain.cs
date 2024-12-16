@@ -24,12 +24,12 @@ public class PawnBrain : CharacterComponentBase
 #endif
     public virtual void DoAction()
     {
+        Pawn.EventSystem.Invoke(EEvent.BeforeDoAction, Pawn);
         if (humanControl)
         {
 #if UNITY_EDITOR
             generator.Clear();
 #endif
-            Pawn.EventSystem.Invoke(EEvent.OnHumanControl, Pawn);
         }
         else
         {
