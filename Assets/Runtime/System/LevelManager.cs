@@ -11,13 +11,19 @@ public class LevelManager : MonoBehaviour
 {
     private ISceneController sceneController;
     private IEventSystem eventSystem;
+    private GameManager gameManager;
 
     public Camera prepareMenuCamera;
     public Camera levelCamera;
 
     public Action OnStartScout;
     public Action OnReturnToPrepareMenu;
-    public Action OnStartBattle;
+
+    public void StartBattle()
+    {
+        SwitchToLevel();
+        gameManager.StartBattle();
+    }
 
     private void SwitchToPrepareMenu()
     {
@@ -31,7 +37,7 @@ public class LevelManager : MonoBehaviour
         levelCamera.enabled = true;
     }
 
-    public void LoadLevel(int sceneIndex)
+    private void LoadLevel(int sceneIndex)
     {
         sceneController.LoadScene(sceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
@@ -47,10 +53,12 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+
     private void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
         sceneController = ServiceLocator.Get<ISceneController>();
+        gameManager = ServiceLocator.Get<GameManager>();
         OnStartScout += SwitchToLevel;
         OnReturnToPrepareMenu += SwitchToPrepareMenu;
     }

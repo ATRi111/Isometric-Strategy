@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using UIExtend;
 
-public class StartBattleButton : MonoBehaviour
+public class StartBattleButton : ButtonBase
 {
-    // Start is called before the first frame update
-    void Start()
+    private LevelManager levelManager;
+
+    protected override void OnClick()
     {
-        
+        levelManager.StartBattle();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Awake()
     {
-        
+        base.Awake();
+        levelManager = GetComponentInParent<LevelManager>();
     }
 }
