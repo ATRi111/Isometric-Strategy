@@ -50,11 +50,10 @@ public class CameraController : MonoBehaviour
         {
             foreach(KeyCode keyCode in DirectionDict.Keys)
             {
-                if(Input.GetKey(keyCode))
+                if (Input.GetKey(keyCode))
                 {
                     isFollowing = false;
                     transform.position += moveSpeed * Time.deltaTime * DirectionDict[keyCode];
-                    break;
                 }
             }
         }

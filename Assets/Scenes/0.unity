@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 647449062}
   - component: {fileID: 647449063}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,9 +314,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   readOnAwake: 1
-  fileName: _sample.json
+  fileName: save.json
   index: 
-  groupId: 0
+  groupId: 1
 --- !u!1 &1144257033
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 1680580162}
   - component: {fileID: 1680580163}
   m_Layer: 0
-  m_Name: AnimationManager
+  m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
