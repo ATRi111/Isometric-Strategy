@@ -25,7 +25,7 @@ namespace UIExtend
         /// </summary>
         public bool immediate;
         [SerializeField]
-        private bool visibleOnAwake;
+        private bool visibleOnAwake = true;
 
         private bool visible;
         public bool Visible

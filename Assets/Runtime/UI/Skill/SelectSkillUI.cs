@@ -19,14 +19,14 @@ public class SelectSkillUI : MonoBehaviour
         {
             if (skill.CanUse(pawn, pawn.Igm))
             {
-                icons[count].canvasGrounp.Visible = true;
+                icons[count].canvasGroup.Visible = true;
                 icons[count].SetSkill(skill);
                 count++;
             }
         }
         for (; count < icons.Length; count++)
         {
-            icons[count].canvasGrounp.Visible = false;
+            icons[count].canvasGroup.Visible = false;
         }
         UIExtendUtility.ClampInScreen(rectTransform);
     }
@@ -35,7 +35,7 @@ public class SelectSkillUI : MonoBehaviour
     {
         for (int i = 0; i < icons.Length; i++)
         {
-            icons[i].canvasGrounp.Visible = false;
+            icons[i].canvasGroup.Visible = false;
         }
     }
 

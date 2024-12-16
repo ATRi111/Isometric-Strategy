@@ -1,6 +1,7 @@
 using Services;
 using Services.Event;
 using System.Collections.Generic;
+using UIExtend;
 using UnityEngine;
 
 public class TimeAxisUI : MonoBehaviour
@@ -8,6 +9,7 @@ public class TimeAxisUI : MonoBehaviour
     private GameManager gameManager;
     private IEventSystem eventSystem;
 
+    private CanvasGroupPlus canvasGroup;
     private RectTransform rectTransform;
     private Comparer_PawnEntity_ActionTime comparer;
     private TimeAxisIcon[] icons;
@@ -45,11 +47,11 @@ public class TimeAxisUI : MonoBehaviour
         {
             icons[i].SetPawn(entites[i]);
             icons[i].transform.position = TimeToPosition(entites[i].time - time);
-            icons[i].canvasGrounp.Visible = true;
+            icons[i].canvasGroup.Visible = true;
         }
         for (int i = entites.Count; i < maxIconCount; i++)
         {
-            icons[i].canvasGrounp.Visible = false;
+            icons[i].canvasGroup.Visible = false;
         }
     }
 
@@ -58,6 +60,7 @@ public class TimeAxisUI : MonoBehaviour
         eventSystem = ServiceLocator.Get<IEventSystem>();
         gameManager = ServiceLocator.Get<GameManager>();
         rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroupPlus>();
         comparer = new();
         icons = new TimeAxisIcon[maxIconCount];
         for (int i = 0; i < maxIconCount; i++)
@@ -67,14 +70,20 @@ public class TimeAxisUI : MonoBehaviour
             icons[i].transform.localPosition = Vector3.zero;
         }
     }
+    private void BeforeBattle()
+    {
+        canvasGroup.Visible = true;
+    }
 
     private void OnEnable()
     {
+        eventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
         eventSystem.AddListener<int>(EEvent.OnTick, OnTick);
     }
 
     private void OnDisable()
     {
+        eventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
         eventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
     }
 }

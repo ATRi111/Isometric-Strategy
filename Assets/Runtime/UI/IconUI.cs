@@ -11,7 +11,7 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected GameManager gameManager;
     protected string message;
     [HideInInspector]
-    public CanvasGroupPlus canvasGrounp;
+    public CanvasGroupPlus canvasGroup;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -24,14 +24,19 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         eventSystem.Invoke(EEvent.HideMessage, (object)this);
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         gameManager = ServiceLocator.Get<GameManager>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
-        canvasGrounp = GetComponent<CanvasGroupPlus>();
+        canvasGroup = GetComponent<CanvasGroupPlus>();
     }
 
-    private void OnDisable()
+    protected virtual void OnEnable()
+    {
+
+    }
+
+    protected virtual void OnDisable()
     {
         eventSystem.Invoke(EEvent.HideMessage, (object)this);
     }

@@ -18,7 +18,6 @@ public class MovableGridObject : GridObject
         return true;
     }
 
-
     public IsometricGridManager Igm { get; protected set; }
     public PawnEntity Pawn { get; protected set; }
     public AMover Mover_Default { get; protected set; }
