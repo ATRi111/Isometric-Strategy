@@ -28,18 +28,6 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        [SerializeField]
-        private string shortName;
-        public string ShortName
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(shortName))
-                    shortName = ExternalTool.GetShortName(gameObject);
-                return shortName;
-            }
-        }
-
         public virtual int ExtraSortingOrder => 0;
         [NonSerialized]
         /// <summary>

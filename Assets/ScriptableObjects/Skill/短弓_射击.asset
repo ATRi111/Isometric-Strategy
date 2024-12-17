@@ -20,6 +20,8 @@ MonoBehaviour:
   powers:
   - type: 1
     power: 80
+  minLayer: -32
+  maxLayer: 32
   castingDistance: 8
   victimType: 0
   angles:

@@ -30,6 +30,8 @@ public class RangedSkill : AimSkill
         {
             Vector2Int temp = (Vector2Int)position + primitive[i];
             Vector3Int target = temp.AddZ(igm.AboveGroundLayer(temp));
+            if (!LayerCheck(position, target))
+                continue;
             switch(victimType)
             {
                 case EVictimType.Everything:

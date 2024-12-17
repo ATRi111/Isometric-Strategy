@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\u5F92\u624B\u653B\u51FB"
   actionTime: 50
+  preConditions: []
+  parameterModifiers: []
   accuracy: 100
   powers:
   - type: 1
     power: 100
+  minLayer: -2
+  maxLayer: 2
   castingDistance: 1
   victimType: 1

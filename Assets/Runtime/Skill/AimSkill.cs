@@ -10,6 +10,13 @@ public abstract class AimSkill : Skill
     public const int MaxAccuracy = 100;
     public int accuracy = MaxAccuracy;
     public List<SkillPower> powers;
+    public int minLayer = -2, maxLayer = 2;
+
+    public bool LayerCheck(Vector3Int position, Vector3Int target)
+    {
+        int delta = target.z - position.z;
+        return delta >= minLayer && delta <= maxLayer;
+    }
 
     /// <summary>
     /// 获取技能命中的Entity

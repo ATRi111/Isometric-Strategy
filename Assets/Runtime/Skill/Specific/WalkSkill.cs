@@ -23,8 +23,10 @@ public class WalkSkill : MoveSkill
             temp.Add(route[0]);
             for (int i = 1; i < route.Count; i++)
             {
-                if (temp[^1].z != route[i].z)
+                if (route[i].z > temp[^1].z) //иорф
                     temp.Add(temp[^1].ResetZ(route[i].z));
+                else if (route[i].z < temp[^1].z) // обрф
+                    temp.Add(new Vector3Int(route[i].x, route[i].y, Mathf.RoundToInt(temp[^1].z)));
                 temp.Add(route[i]);
             }
         }

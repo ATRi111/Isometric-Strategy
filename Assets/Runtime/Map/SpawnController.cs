@@ -1,7 +1,6 @@
 using Services;
 using Services.Asset;
 using Services.Event;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnController : MonoBehaviour
@@ -10,25 +9,20 @@ public class SpawnController : MonoBehaviour
     private IAssetLoader assetLoader;
     private PlayerManager playerManager;
 
-    private IsometricGridManager igm;
-    private IsometricGridManager Igm
-    {
-        get
-        {
-            if (igm == null)
-                igm = IsometricGridManager.FindInstance();
-            return igm;
-        }
-    }
-
-    public List<Vector3Int> points;
-
     private void BeforeBattle()
     {
-        for (int i = 0; i < playerManager.selectedIndicies.Count; i++)
+        SpawnPoint[] points = GetComponentsInChildren<SpawnPoint>();
+        int i = 0;
+        for (; i < playerManager.selectedIndicies.Count; i++)
         {
             int index = playerManager.selectedIndicies[i];
-            Spawn(playerManager.playerList[index].entityName, points[i]);
+            Vector3Int temp = points[i].CellPosition;
+            Destroy(points[i].gameObject);
+            Spawn(playerManager.playerList[index].entityName, temp);
+        }
+        for (; i < points.Length; i++)
+        {
+            Destroy(points[i].gameObject);
         }
     }
 
@@ -59,14 +53,5 @@ public class SpawnController : MonoBehaviour
     private void OnDisable()
     {
         eventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
-    }
-
-    private void OnDrawGizmos()
-    {
-        for (int i = 0; i < points.Count; i++)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(Igm.CellToWorld(points[i] + 0.5f * Vector3.one), 0.2f);
-        }
     }
 }

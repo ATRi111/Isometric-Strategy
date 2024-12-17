@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\u6295\u77F3\u5B50"
   actionTime: 50
+  preConditions: []
+  parameterModifiers: []
   accuracy: 100
   powers:
   - type: 1
     power: 10
+  minLayer: -32
+  maxLayer: 32
   castingDistance: 5
   victimType: 0
   angles:
