@@ -6,6 +6,8 @@ public class ActionIconPerspectiveController : PerspectiveController
 
     protected override bool CoverCheck()
     {
+        if (icon.action == null)
+            return false;
         return perspectiveController.CoverCheck(icon.action.target + Vector3Int.back);
     }
 

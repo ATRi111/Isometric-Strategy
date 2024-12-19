@@ -1,6 +1,6 @@
 using EditorExtend.GridEditor;
 
-public class GroundPerspectiveController : PerspectiveController
+public class GridObjectPerspectiveController : PerspectiveController
 {
     private GridObject gridObject;
 

@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 4508710216947100420}
   - component: {fileID: 3681028695715984453}
   - component: {fileID: 5082592933038121600}
+  - component: {fileID: 5087146908135136744}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -313,7 +314,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPosition: {x: 0, y: 0, z: 0}
   groundHeight: 0
-  autoSortingOrder: 1
   climbAbility:
     defaultValue: 2
     currentValue: 0
@@ -356,3 +356,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraSortingOrder: 5
+--- !u!114 &5087146908135136744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275336948927669841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2938ef97e0f1045bf48139a90643f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alphaMultiplier_perspectiveMode: 0.1

@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
-  immediate_next: 0
+  immediate_next: 1
   immediate: 0
   visibleOnAwake: 1
 --- !u!1 &1374839061621688556

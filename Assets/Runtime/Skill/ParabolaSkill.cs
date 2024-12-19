@@ -25,7 +25,7 @@ public class ParabolaSkill : ProjectileSkill
             gridObject = igm.ParabolaCast(from, velocity, Gravity, trajectory);
             if (gridObject == aimedObject)
                 return gridObject;
-            float temp = (trajectory[^1] - to).sqrMagnitude;
+            float temp = IsometricGridUtility.ProjectManhattanDistance(trajectory[^1], to);
             if (temp < closest)
             {
                 closestVelocity = velocity;

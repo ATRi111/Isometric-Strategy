@@ -4,11 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(CanvasGroupPlus))]
 public class HPUI : MonoBehaviour
 {
+    public Entity entity;
+
     protected CanvasGroupPlus canvasGroup;
-    protected Entity entity;
     protected BattleComponent battleComponent;
 
-    public virtual void Initialize(Entity entity)
+    public virtual void SetEntity(Entity entity)
     {
         this.entity = entity;
         battleComponent = entity.BattleComponent;

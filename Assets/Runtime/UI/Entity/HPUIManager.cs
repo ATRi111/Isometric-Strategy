@@ -13,7 +13,7 @@ public class HPUIManager : MonoBehaviour
     {
         IMyObject myObject = objectManager.Activate(nameof(FollowingHPBar), entity.transform.position, Vector3.zero, transform);
         FollowingHPBar HPBar = myObject.Transform.GetComponent<FollowingHPBar>();
-        HPBar.Initialize(entity);
+        HPBar.SetEntity(entity);
     }
 
     private void Awake()

@@ -11,9 +11,9 @@ public class FollowingHPBar : HPUI
     [SerializeField]
     private Image image;
 
-    public override void Initialize(Entity entity)
+    public override void SetEntity(Entity entity)
     {
-        base.Initialize(entity);
+        base.SetEntity(entity);
         entity.BeforeDisable += BeforeEntityDisable;
         if (battleComponent.HP == battleComponent.maxHP.IntValue && entity is not PawnEntity)
             canvasGroup.Visible = false;
