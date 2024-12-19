@@ -23,7 +23,6 @@ public class MovableGridObject : GridObject
     public AMover Mover_Default { get; protected set; }
     public AMover Mover_Ranging { get; protected set; }
     public GridMoveController MoveController { get; protected set; }
-    public override int ExtraSortingOrder => 5;
 
     public CharacterProperty climbAbility;
     public CharacterProperty dropAbility;

@@ -86,10 +86,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb7b97627049ae48bf7ee53c6eb11c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipments:
-    list:
-    - key: 0
-      value: {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}
+  equipmentDict:
+    list: []
 --- !u!1 &5804586430030361790
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +219,7 @@ GameObject:
   - component: {fileID: 3544415595762364013}
   - component: {fileID: 4508710216947100420}
   - component: {fileID: 3681028695715984453}
+  - component: {fileID: 5082592933038121600}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -312,7 +311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb7c463fdd66ef4aab97d1aa36ff721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shortName: 
   cellPosition: {x: 0, y: 0, z: 0}
   groundHeight: 0
   autoSortingOrder: 1
@@ -345,3 +343,16 @@ MonoBehaviour:
     defaultValue: 0
     currentValue: 0
   time: 0
+--- !u!114 &5082592933038121600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275336948927669841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67016f1e37813d44dbeb7ab4fc72bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraSortingOrder: 5

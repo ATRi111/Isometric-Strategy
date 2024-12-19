@@ -13,11 +13,6 @@ namespace EditorExtend.GridEditor
         public override Vector3 CellToWorld(Vector3 cellPosition)
             => IsometricGridUtility.CellToWorld(cellPosition, Grid.cellSize);
 
-        public override int CellToSortingOrder(GridObject obj)
-        {
-            return CellToSortingOrder(obj.transform.position) + obj.ExtraSortingOrder;
-        }
-
         public override int CellToSortingOrder(Vector3 position)
         {
             Vector3 cell = IsometricGridUtility.WorldToCell(position, Grid.cellSize);

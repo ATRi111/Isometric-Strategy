@@ -8,7 +8,7 @@ namespace EditorExtend.GridEditor
     {
         public GridObject GridObject => target as GridObject;
         [AutoProperty]
-        public SerializedProperty cellPosition, groundHeight, autoSortingOrder;
+        public SerializedProperty cellPosition, groundHeight;
 
         private Vector3Int prev;
 
@@ -22,7 +22,6 @@ namespace EditorExtend.GridEditor
         {
             cellPosition.Vector3IntField("网格坐标");
             groundHeight.IntField("地面高度");
-            autoSortingOrder.BoolField("自动更新图层");
             if (cellPosition.vector3IntValue != prev)
             {
                 prev = cellPosition.vector3IntValue;

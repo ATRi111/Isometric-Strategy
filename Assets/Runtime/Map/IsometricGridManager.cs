@@ -5,19 +5,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-500)]
-[RequireComponent(typeof(PerspectiveController))]
+[RequireComponent(typeof(PerspectiveManager))]
 public class IsometricGridManager : IsometricGridManagerBase
 {
-    public static Vector3Int CoverVector = new(1, 1, -2);
-
-    private readonly Dictionary<Vector3Int, Entity> entityDict = new();
-    public Dictionary<Vector3Int,Entity> EntityDict => entityDict;
-    public PerspectiveController PerspectiveController { get; private set; }
-
-    public static IsometricGridManager FindInstance()
+    public static new IsometricGridManager FindInstance()
     {
         return GameObject.Find(nameof(IsometricGridManager)).GetComponent<IsometricGridManager>();
     }
+
+    static IsometricGridManager()
+    {
+        GridManagerBase.FindInstance = FindInstance;
+    }
+
+    private readonly Dictionary<Vector3Int, Entity> entityDict = new();
+    public Dictionary<Vector3Int,Entity> EntityDict => entityDict;
+    public PerspectiveManager PerspectiveController { get; private set; }
 
     public override void Clear()
     {
@@ -170,6 +173,6 @@ public class IsometricGridManager : IsometricGridManagerBase
 
     private void Awake()
     {
-        PerspectiveController = GetComponent<PerspectiveController>();
+        PerspectiveController = GetComponent<PerspectiveManager>();
     }
 }

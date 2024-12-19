@@ -1,39 +1,17 @@
-using UIExtend;
 using UnityEngine;
 
-public class ActionIconPerspectiveController : MonoBehaviour
+public class ActionIconPerspectiveController : PerspectiveController
 {
-    private CanvasGroupPlus canvasGroup;
     private ActionIcon icon;
-    private PerspectiveController perspectiveController;
 
-    public void EnterPerspectiveMode()
+    protected override bool CoverCheck()
     {
-        if (perspectiveController.CoverCheck(icon.action.target + Vector3Int.back))
-            canvasGroup.Visible = false;
+        return perspectiveController.CoverCheck(icon.action.target + Vector3Int.back);
     }
 
-    public void ExitPerspectiveMode()
+    protected override void Awake()
     {
-        canvasGroup.Visible = true;
-    }
-
-    private void Awake()
-    {
-        canvasGroup = GetComponent<CanvasGroupPlus>();
+        base.Awake();
         icon = GetComponent<ActionIcon>();
-        perspectiveController = IsometricGridManager.FindInstance().PerspectiveController;
-    }
-
-    private void OnEnable()
-    {
-        perspectiveController.EnterPerspectiveMode += EnterPerspectiveMode;
-        perspectiveController.ExitPerspectiveMode += ExitPerspectiveMode;
-    }
-
-    private void OnDisable()
-    {
-        perspectiveController.EnterPerspectiveMode -= EnterPerspectiveMode;
-        perspectiveController.ExitPerspectiveMode -= ExitPerspectiveMode;
     }
 }

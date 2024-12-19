@@ -5,6 +5,7 @@ using UnityEngine;
 public class DebugANodeUI : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+    private Canvas canvas;
     private TextMeshProUGUI textbox;
 
     [SerializeField]
@@ -27,6 +28,7 @@ public class DebugANodeUI : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        canvas = GetComponentInChildren<Canvas>();
         textbox = GetComponentInChildren<TextMeshProUGUI>();
     }
 
@@ -64,6 +66,11 @@ public class DebugANodeUI : MonoBehaviour
             textbox.text = $"G:{Mathf.RoundToInt(10 * node.GCost)}\n" +
                 $"H:{Mathf.RoundToInt(10 * node.HCost)}\n" +
                 $"F:{Mathf.RoundToInt(10 * node.WeightedFCost)}\n";
+    }
+
+    private void Update()
+    {
+        canvas.sortingOrder = spriteRenderer.sortingOrder;
     }
 }
 

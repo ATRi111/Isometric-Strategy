@@ -17,18 +17,6 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        private SpriteRenderer spriteRenderer;
-        public SpriteRenderer SpriteRenderer
-        {
-            get
-            {
-                if (spriteRenderer == null)
-                    spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-                return spriteRenderer;
-            }
-        }
-
-        public virtual int ExtraSortingOrder => 0;
         [NonSerialized]
         /// <summary>
         /// 此数值通常情况下应当保持在1
@@ -79,7 +67,6 @@ namespace EditorExtend.GridEditor
         public Vector3 Refresh()
         {
             transform.position = Manager.Grid.CellToWorld(cellPosition);
-            SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(this);
             return transform.position;
         }
         /// <summary>
@@ -194,8 +181,6 @@ namespace EditorExtend.GridEditor
 
         #endregion
 
-        public bool autoSortingOrder = true;
-
         #region 生命周期
 
         protected virtual void Awake()
@@ -211,18 +196,6 @@ namespace EditorExtend.GridEditor
         protected virtual void OnDisable()
         {
             Unregister();
-        }
-
-        protected virtual void Update()
-        {
-            if (autoSortingOrder)
-                SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(this);
-        }
-
-        private void OnDrawGizmos()
-        {
-            if(autoSortingOrder && Manager!= null)
-                SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(this);
         }
         #endregion 
     }

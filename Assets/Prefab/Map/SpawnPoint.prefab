@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3490065283151805348}
   - component: {fileID: 5212613816382353366}
   - component: {fileID: 3889601062984797199}
+  - component: {fileID: 7470293621704773565}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -102,3 +103,16 @@ MonoBehaviour:
   cellPosition: {x: 0, y: 0, z: 0}
   groundHeight: 1
   autoSortingOrder: 1
+--- !u!114 &7470293621704773565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757943998547180498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67016f1e37813d44dbeb7ab4fc72bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraSortingOrder: 0

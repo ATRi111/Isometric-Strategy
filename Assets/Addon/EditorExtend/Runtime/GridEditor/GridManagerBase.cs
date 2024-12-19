@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace EditorExtend.GridEditor
     [RequireComponent(typeof(Grid))]
     public abstract class GridManagerBase : MonoBehaviour
     {
+        public static Func<GridManagerBase> FindInstance;
+
         private Grid grid;
         public Grid Grid
         {
@@ -62,7 +65,6 @@ namespace EditorExtend.GridEditor
         /// <summary>
         /// 根据CellPosition自动计算SortingOrder
         /// </summary>
-        public abstract int CellToSortingOrder(GridObject obj);
         public abstract int CellToSortingOrder(Vector3 position);
 
         public virtual void Clear()

@@ -63,11 +63,6 @@ public class DebugPlanUIGenerator : MonoBehaviour
         }
     }
 
-    internal Vector3 WorldPosition(Plan plan)
-    {
-        return Igm.CellToWorld(plan.action.target - Vector3Int.forward);
-    }
-
     public void Clear()
     {
         GameObject obj = GameObject.Find("DebugPlan");
@@ -79,8 +74,8 @@ public class DebugPlanUIGenerator : MonoBehaviour
         GameObject obj = Instantiate(prefab);
         obj.name = plan.action.skill.name;
         obj.transform.SetParent(parent);
-        obj.transform.position = WorldPosition(plan);
-        obj.GetComponent<DebugPlanUI>().Initialize(plan);
+        obj.transform.position = Igm.CellToWorld(plan.action.target);
+        obj.GetComponent<DebugPlanUI>().SetPlan(plan);
     }
 #endif
 }

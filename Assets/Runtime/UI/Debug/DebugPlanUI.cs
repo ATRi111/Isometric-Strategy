@@ -3,19 +3,20 @@ using UnityEngine;
 
 public class DebugPlanUI : MonoBehaviour
 {
-    [SerializeField]
-    private Plan plan;
+    public Plan plan;
 
     private SpriteRenderer spriteRenderer;
+    private Canvas canvas;
     private TextMeshProUGUI textbox;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        canvas = GetComponentInChildren<Canvas>();
         textbox = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void Initialize(Plan plan)
+    public void SetPlan(Plan plan)
     {
         string name = plan.action.skill.name;
         int hash = name.GetHashCode();
@@ -28,6 +29,10 @@ public class DebugPlanUI : MonoBehaviour
             $"V:{plan.value:F2}\n" +
             $"{plan.action.skill.name}\n" +
             $"T:{plan.action.Time}\n";
-        spriteRenderer.sortingOrder = plan.action.agent.GridObject.SpriteRenderer.sortingOrder;
+    }
+
+    private void Update()
+    {
+        canvas.sortingOrder = spriteRenderer.sortingOrder;
     }
 }
