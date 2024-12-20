@@ -6,6 +6,6 @@ public class FindDropAbilitySO : FindPawnPropertySO
 {
     public override CharacterProperty FindProperty()
     {
-        return pawn.MovableGridObject.moveAbility;
+        return pawn.MovableGridObject.dropAbility;
     }
 }

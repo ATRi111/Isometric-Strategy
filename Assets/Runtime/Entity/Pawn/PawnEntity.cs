@@ -11,6 +11,8 @@ public class PawnEntity : Entity
     public PawnBrain Brain { get; private set; }
     [AutoComponent]
     public MovableGridObject MovableGridObject { get; private set; }
+    [AutoComponent]
+    public OffenceComponent OffenceComponent { get; private set; }
 
     [AutoComponent]
     public BuffManager BuffManager { get; protected set; }
@@ -58,9 +60,10 @@ public class PawnEntity : Entity
     {
         base.OnEnable();
         GameManager.Register(this);
+        EquipmentManager.Initialize();
         pClass.Register(this);
         race.Register(this);
-        EquipmentManager.Initialize();
+        RefreshProperty();
         time = actionTime.IntValue;   //»Î≥°AT
     }
 

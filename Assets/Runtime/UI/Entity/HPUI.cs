@@ -7,13 +7,13 @@ public class HPUI : MonoBehaviour
     public Entity entity;
 
     protected CanvasGroupPlus canvasGroup;
-    protected BattleComponent battleComponent;
+    protected DefenceComponent defenceComponent;
 
     public virtual void SetEntity(Entity entity)
     {
         this.entity = entity;
-        battleComponent = entity.BattleComponent;
-        battleComponent.AfterHPChange += AfterHPChange;
+        defenceComponent = entity.DefenceComponent;
+        defenceComponent.AfterHPChange += AfterHPChange;
     }
 
     protected virtual void AfterHPChange(int prev, int current)
@@ -28,8 +28,8 @@ public class HPUI : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        if (battleComponent != null)
-            battleComponent.AfterHPChange -= AfterHPChange;
+        if (defenceComponent != null)
+            defenceComponent.AfterHPChange -= AfterHPChange;
     }
 
     protected virtual void Update()

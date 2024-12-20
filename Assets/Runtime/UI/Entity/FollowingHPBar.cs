@@ -15,7 +15,7 @@ public class FollowingHPBar : HPUI
     {
         base.SetEntity(entity);
         entity.BeforeDisable += BeforeEntityDisable;
-        if (battleComponent.HP == battleComponent.maxHP.IntValue && entity is not PawnEntity)
+        if (defenceComponent.HP == defenceComponent.maxHP.IntValue && entity is not PawnEntity)
             canvasGroup.Visible = false;
         else
             canvasGroup.Visible = true;
@@ -30,8 +30,8 @@ public class FollowingHPBar : HPUI
     protected override void AfterHPChange(int prev, int current)
     {
         base.AfterHPChange(prev, current);
-        image.fillAmount = current / battleComponent.maxHP.CurrentValue;
-        if (battleComponent.HP == battleComponent.maxHP.IntValue && entity is not PawnEntity)
+        image.fillAmount = current / defenceComponent.maxHP.CurrentValue;
+        if (defenceComponent.HP == defenceComponent.maxHP.IntValue && entity is not PawnEntity)
             canvasGroup.Visible = false;
         else
             canvasGroup.Visible = true;

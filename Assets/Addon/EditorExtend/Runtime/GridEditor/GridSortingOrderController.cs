@@ -4,6 +4,7 @@ namespace EditorExtend.GridEditor
 {
     public class GridSortingOrderController : MonoBehaviour
     {
+        [Range(0, 9)]
         public int extraSortingOrder;
 
         private GridManagerBase manager;

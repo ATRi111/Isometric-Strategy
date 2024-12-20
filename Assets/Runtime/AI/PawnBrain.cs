@@ -135,7 +135,7 @@ public class PawnBrain : CharacterComponentBase
     }
 
     public float HealthPercent(PawnEntity pawn)
-        => pawn.BattleComponent.HP / pawn.BattleComponent.maxHP.CurrentValue;
+        => pawn.DefenceComponent.HP / pawn.DefenceComponent.maxHP.CurrentValue;
 
     public virtual float EvaluatePosition(Vector3Int position)
     {

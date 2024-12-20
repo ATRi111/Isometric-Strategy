@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3549175080331000912}
   - component: {fileID: 2158848222964706217}
+  - component: {fileID: 3757642395551545054}
   - component: {fileID: 4451063528451210290}
   - component: {fileID: 6595715262542743162}
   m_Layer: 0
@@ -43,23 +44,67 @@ MonoBehaviour:
   m_GameObject: {fileID: 1500726840230913403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4486bb1307683d54d9bd63619751f7c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 613aa5cec039b3540bcfbe7ee30ab262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP:
-    defaultValue: 500
+    defaultValue: 0
+    currentValue: 0
+  damageMultiplier:
+    defaultValue: 0
     currentValue: 0
   hp: 0
   resistance:
     list:
     - key: 0
       value:
-        defaultValue: 100
+        defaultValue: 0
         currentValue: 0
     - key: 1
       value:
-        defaultValue: 100
+        defaultValue: 0
         currentValue: 0
+    - key: 2
+      value:
+        defaultValue: 0
+        currentValue: 0
+    - key: 3
+      value:
+        defaultValue: 0
+        currentValue: 0
+    - key: 4
+      value:
+        defaultValue: 0
+        currentValue: 0
+    - key: 5
+      value:
+        defaultValue: 0
+        currentValue: 0
+    - key: 6
+      value:
+        defaultValue: 0
+        currentValue: 0
+--- !u!114 &3757642395551545054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500726840230913403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648227fa0b6b8e841811eea9bd163a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    defaultValue: 0
+    currentValue: 0
+  dexterity:
+    defaultValue: 0
+    currentValue: 0
+  intelligence:
+    defaultValue: 0
+    currentValue: 0
 --- !u!114 &4451063528451210290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,13 +360,13 @@ MonoBehaviour:
   cellPosition: {x: 0, y: 0, z: 0}
   groundHeight: 0
   climbAbility:
-    defaultValue: 2
+    defaultValue: 0
     currentValue: 0
   dropAbility:
-    defaultValue: 3
+    defaultValue: 0
     currentValue: 0
   moveAbility:
-    defaultValue: 5
+    defaultValue: 0
     currentValue: 0
 --- !u!114 &3681028695715984453
 MonoBehaviour:

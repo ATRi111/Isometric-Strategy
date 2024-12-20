@@ -45,9 +45,10 @@ public abstract class AimSkill : Skill
             int damage = 0;
             for (int j = 0; j < powers.Count; j++)
             {
-                damage += victims[i].BattleComponent.MockDamage(powers[j].type, 100 * powers[j].power); //TODO:¹¥»÷Á¦
+                float attackPower = agent.OffenceComponent.MockAttackPower(powers[j]);
+                damage += victims[i].DefenceComponent.MockDamage(powers[j].type, attackPower);
             }
-            HPChangeEffect effect = new(victims[i], victims[i].BattleComponent.HP, victims[i].BattleComponent.HP - damage, accuracy)
+            HPChangeEffect effect = new(victims[i], victims[i].DefenceComponent.HP, victims[i].DefenceComponent.HP - damage, accuracy)
             {
                 randomValue = r
             };

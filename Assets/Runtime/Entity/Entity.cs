@@ -16,7 +16,7 @@ public class Entity : EntityBase
     [AutoComponent]
     public GridMoveController MoveController { get; protected set; }
     [AutoComponent]
-    public BattleComponent BattleComponent { get; protected set; }
+    public DefenceComponent DefenceComponent { get; protected set; }
 
     [SerializeField]
     private string entityName;
@@ -34,7 +34,7 @@ public class Entity : EntityBase
 
     public virtual void RefreshProperty()
     {
-        BattleComponent.Refresh();
+        DefenceComponent.Refresh();
     }
 
     protected virtual void OnTick(int time)
@@ -65,8 +65,8 @@ public class Entity : EntityBase
     {
         EventSystem.AddListener<int>(EEvent.OnTick, OnTick);
         EventSystem.Invoke(EEvent.AfterEntityEnable, this);
+        DefenceComponent.Initialize();
         RefreshProperty();
-        BattleComponent.Initialize();
     }
 
     protected virtual void OnDisable()
