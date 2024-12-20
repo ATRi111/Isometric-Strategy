@@ -12,7 +12,7 @@ public enum EVictimType
 /// <summary>
 /// 在一定范围内释放的技能
 /// </summary>
-[CreateAssetMenu(fileName = "范围型技能", menuName = "技能/范围型技能", order = -1)]
+[CreateAssetMenu(fileName = "单点型技能", menuName = "技能/单点型技能", order = -1)]
 public class RangedSkill : AimSkill
 {
     public int castingDistance;
