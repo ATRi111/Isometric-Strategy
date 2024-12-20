@@ -32,7 +32,6 @@ public class DefenceComponent : CharacterComponentBase
     {
         resistance.Refresh();
         Refresh();
-        HP = maxHP.IntValue;
     }
 
     /// <summary>

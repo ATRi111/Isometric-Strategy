@@ -39,11 +39,7 @@ public abstract class Skill : ScriptableObject
         {
             PawnParameterModifier modifier = parameterModifiers[i];
             int value = agent.parameterDict[modifier.parameterName];
-            int r = Effect.NextInt();
-            ModifyParameterEffect effect = new(agent, modifier.parameterName, value, value + modifier.deltaValue, modifier.probability)
-            {
-                randomValue = r
-            };
+            ModifyParameterEffect effect = new(agent, modifier.parameterName, value, value + modifier.deltaValue);
             ret.effects.Add(effect);
         }
     }

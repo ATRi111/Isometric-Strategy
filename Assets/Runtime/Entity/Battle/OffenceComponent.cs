@@ -17,4 +17,11 @@ public class OffenceComponent : CharacterComponentBase
             + skillPower.intMultiplier * intelligence.CurrentValue);
         return attack * skillPower.power;
     }
+
+    public void RefreshProperty()
+    {
+        strength.Refresh();
+        dexterity.Refresh();
+        intelligence.Refresh();
+    }
 }

@@ -21,11 +21,13 @@ MonoBehaviour:
   parameterModifiers:
   - parameterName: "\u5F29"
     deltaValue: -1
-    probability: 100
   accuracy: 100
   powers:
-  - type: 1
+  - type: 2
     power: 150
+    strMultiplier: 0
+    dexMultiplier: 1
+    intMultiplier: 0
   minLayer: -32
   maxLayer: 32
   castingDistance: 5

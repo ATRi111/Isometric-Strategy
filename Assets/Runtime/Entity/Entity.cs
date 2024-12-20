@@ -67,6 +67,7 @@ public class Entity : EntityBase
         EventSystem.Invoke(EEvent.AfterEntityEnable, this);
         DefenceComponent.Initialize();
         RefreshProperty();
+        DefenceComponent.HP = DefenceComponent.maxHP.IntValue;
     }
 
     protected virtual void OnDisable()

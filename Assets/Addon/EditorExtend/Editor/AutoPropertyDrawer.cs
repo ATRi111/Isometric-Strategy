@@ -15,7 +15,7 @@ namespace EditorExtend
         /// </summary>
         public virtual bool NoLabel => false;
 
-        protected bool foldout;
+        protected bool foldout = true;
         protected Vector2 min;
         protected float width;
         protected float totalHeight;

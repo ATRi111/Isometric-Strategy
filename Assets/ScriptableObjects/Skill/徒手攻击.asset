@@ -18,8 +18,11 @@ MonoBehaviour:
   parameterModifiers: []
   accuracy: 100
   powers:
-  - type: 1
+  - type: 3
     power: 100
+    strMultiplier: 1
+    dexMultiplier: 0
+    intMultiplier: 0
   minLayer: -2
   maxLayer: 2
   castingDistance: 1

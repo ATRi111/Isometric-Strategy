@@ -54,6 +54,7 @@ public class PawnEntity : Entity
         base.RefreshProperty();
         actionTime.Refresh();
         MovableGridObject.RefreshProperty();
+        OffenceComponent.RefreshProperty();
     }
 
     protected override void OnEnable()
@@ -65,6 +66,7 @@ public class PawnEntity : Entity
         race.Register(this);
         RefreshProperty();
         time = actionTime.IntValue;   //»Î≥°AT
+        DefenceComponent.HP = DefenceComponent.maxHP.IntValue;
     }
 
     protected override void OnDisable()
