@@ -43,16 +43,26 @@ public abstract class AimSkill : Skill
         {
             int r = RandomTool.GetGroup(ERandomGrounp.Battle).NextInt(1, Effect.MaxProbability + 1);
             int damage = 0;
+            DefenceComponent def = victims[i].DefenceComponent;
             for (int j = 0; j < powers.Count; j++)
             {
                 float attackPower = agent.OffenceComponent.MockAttackPower(powers[j]);
-                damage += victims[i].DefenceComponent.MockDamage(powers[j].type, attackPower);
+                damage += def.MockDamage(powers[j].type, attackPower);
             }
-            HPChangeEffect effect = new(victims[i], victims[i].DefenceComponent.HP, victims[i].DefenceComponent.HP - damage, accuracy)
+            int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue); ;
+            Effect effect = new HPChangeEffect(victims[i], def.HP, hp, accuracy)
             {
                 randomValue = r
             };
             ret.effects.Add(effect);
+            if (hp == 0)
+            {
+                effect = new DisableEntityEffect(victims[i])
+                {
+                    randomValue = r
+                };
+                ret.effects.Add(effect);
+            }
         }
     }
 }

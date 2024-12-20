@@ -25,16 +25,12 @@ public class HPChangeEffect : Effect
     {
         base.Apply();
         victim.DefenceComponent.HP = current;
-        if (current == 0)
-            victim.Die();
     }
 
     public override void Revoke()
     {
         base.Revoke();
         victim.DefenceComponent.HP = prev;
-        if(current == 0)
-            victim.Revive();
     }
 
     public override float PrimitiveValueFor(PawnEntity pawn)

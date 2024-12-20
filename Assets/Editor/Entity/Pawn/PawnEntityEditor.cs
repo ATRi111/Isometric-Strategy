@@ -6,7 +6,7 @@ using UnityEditor;
 public class PawnEntityEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty faction, pClass, race, actionTime, time;
+    public SerializedProperty faction, pClass, race, actionTime, speedUpRate, time;
 
     public bool foldout;
 
@@ -16,6 +16,7 @@ public class PawnEntityEditor : AutoEditor
         pClass.PropertyField("职业");
         race.PropertyField("种族");
         actionTime.PropertyField("基础行动时间");
+        speedUpRate.PropertyField("加速率");
         time.IntField("累积等待时间");
         foldout = AutoDictionaryDrawerHelper.OnInspectorGUI(foldout, "角色参数", (target as PawnEntity).parameterDict.dict);
     }

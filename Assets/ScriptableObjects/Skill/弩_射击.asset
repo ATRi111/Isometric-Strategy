@@ -16,10 +16,10 @@ MonoBehaviour:
   actionTime: 50
   preConditions:
   - conditionType: 0
-    parameterName: "\u5F29"
+    parameterName: "\u88C5\u586B\u6570"
     value: 1
   parameterModifiers:
-  - parameterName: "\u5F29"
+  - parameterName: "\u88C5\u586B\u6570"
     deltaValue: -1
   accuracy: 100
   powers:

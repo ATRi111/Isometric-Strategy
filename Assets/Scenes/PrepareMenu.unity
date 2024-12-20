@@ -932,11 +932,10 @@ MonoBehaviour:
   playerList:
   - entityName: Player
     equipmentList:
-    - "\u5F29"
+    - "\u5927\u5251"
   unusedEquipmentList:
   - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
-  selectedIndicies:
-  - 0
+  selectedIndicies: 00000000
 --- !u!114 &1404961335
 MonoBehaviour:
   m_ObjectHideFlags: 0

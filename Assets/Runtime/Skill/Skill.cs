@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Skill : ScriptableObject
@@ -35,11 +36,19 @@ public abstract class Skill : ScriptableObject
     public virtual void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
         ret.timeEffect.current += MockTime(agent, igm, position, target);
+        HashSet<string> parameterToReset = PawnEntity.ParameterTable.resetParameters.ToHashSet();
         for (int i = 0; i < parameterModifiers.Count; i++)
         {
             PawnParameterModifier modifier = parameterModifiers[i];
-            int value = agent.parameterDict[modifier.parameterName];
-            ModifyParameterEffect effect = new(agent, modifier.parameterName, value, value + modifier.deltaValue);
+            int value = agent.parameterDict[modifier.ParameterName];
+            ModifyParameterEffect effect = new(agent, modifier.ParameterName, value, value + modifier.deltaValue);
+            ret.effects.Add(effect);
+            parameterToReset.Remove(modifier.ParameterName);    //不会重置技能影响的参数
+        }
+        foreach (string parameterName in parameterToReset)
+        {
+            int value = agent.parameterDict[parameterName];
+            ModifyParameterEffect effect = new(agent, parameterName, value, 0);
             ret.effects.Add(effect);
         }
     }

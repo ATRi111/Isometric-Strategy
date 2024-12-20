@@ -11,13 +11,16 @@ public enum EConditionType
 [System.Serializable]
 public class SkillPreCondition
 {
+    public string ParameterName
+        => PawnEntity.ParameterTable.parameters[parameterIndex].name;
+
     public EConditionType conditionType;
-    public string parameterName;
+    public int parameterIndex;
     public int value;
 
     public bool Verify(PawnEntity pawn)
     {
-        float current = pawn.parameterDict[parameterName];
+        float current = pawn.parameterDict[ParameterName];
         return conditionType switch
         {
             EConditionType.Equal => current == value,

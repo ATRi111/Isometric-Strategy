@@ -42,7 +42,7 @@ public class DefenceComponent : CharacterComponentBase
         int damage = Mathf.RoundToInt(attackPower / resistance[type].CurrentValue * (1f - damageMultiplier.CurrentValue));
         return damage;
     }
-    //TODO:受击特效
+    //TODO:受击
 
     public void Refresh()
     {

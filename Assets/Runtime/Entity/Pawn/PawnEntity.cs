@@ -1,12 +1,26 @@
 using Character;
 using MyTool;
+using Services;
+using Services.Asset;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// 可行动的Entity
 /// </summary>
 public class PawnEntity : Entity
 {
+    protected static ParameterTable parameterTable;
+    public static ParameterTable ParameterTable
+    {
+        get
+        {
+            if (parameterTable == null)
+                parameterTable = Resources.Load<ParameterTable>(nameof(ParameterTable));
+            return parameterTable;
+        }
+    }
+
     [AutoComponent]
     public PawnBrain Brain { get; private set; }
     [AutoComponent]
@@ -23,6 +37,8 @@ public class PawnEntity : Entity
     public PawnClass pClass;
     public Race race;
     public CharacterProperty actionTime;
+    public CharacterProperty speedUpRate;
+
     /// <summary>
     /// 全局计时器的值达到此值时，轮到此角色行动
     /// </summary>
@@ -53,6 +69,7 @@ public class PawnEntity : Entity
     {
         base.RefreshProperty();
         actionTime.Refresh();
+        speedUpRate.Refresh();
         MovableGridObject.RefreshProperty();
         OffenceComponent.RefreshProperty();
     }
