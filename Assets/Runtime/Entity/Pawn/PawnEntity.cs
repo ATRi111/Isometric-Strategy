@@ -1,7 +1,5 @@
 using Character;
 using MyTool;
-using Services;
-using Services.Asset;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -78,7 +76,7 @@ public class PawnEntity : Entity
     {
         base.OnEnable();
         GameManager.Register(this);
-        EquipmentManager.Initialize();
+        EquipmentManager.Initialize(this);
         pClass.Register(this);
         race.Register(this);
         RefreshProperty();

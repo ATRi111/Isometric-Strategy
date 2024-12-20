@@ -15,8 +15,9 @@ public class EquipmentManager : CharacterComponentBase
     private SerializedDictionary<EEquipmentSlot, Equipment> equipmentDict;
     private PawnEntity pawn;
 
-    public void Initialize()
+    public void Initialize(PawnEntity pawn)
     {
+        this.pawn = pawn;
         equipmentDict.Refresh();
         foreach (Equipment equipment in equipmentDict.Values)
         {

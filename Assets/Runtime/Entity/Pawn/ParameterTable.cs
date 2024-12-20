@@ -8,6 +8,14 @@ public class ParameterTable : ScriptableObject
     public List<Parameter> parameters;
     public List<string> resetParameters;
 
+    public int GetValue(string name)
+    {
+        int i = parameters.FindIndex(x => x.name == name);
+        if (i == -1)
+            return 0;
+        return parameters[i].value;
+    }
+
     public List<string> GetParameterNames()
     {
         List<string> ret = new();
