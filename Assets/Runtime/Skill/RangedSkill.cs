@@ -15,8 +15,8 @@ public enum EVictimType
 [CreateAssetMenu(fileName = "单点型技能", menuName = "技能/单点型技能", order = -1)]
 public class RangedSkill : AimSkill
 {
-    public int castingDistance;
-    public EVictimType victimType;
+    public int castingDistance = 1;
+    public EVictimType victimType = EVictimType.Entity;
 
     /// <summary>
     /// 获取可选施放位置

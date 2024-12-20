@@ -932,7 +932,7 @@ MonoBehaviour:
   playerList:
   - entityName: Player
     equipmentList:
-    - "\u5927\u5251"
+    - "\u6CD5\u6756"
   unusedEquipmentList:
   - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
   selectedIndicies: 00000000
@@ -1264,6 +1264,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 243889537}
+  - {fileID: 1404961333}
   - {fileID: 1601948234}
   - {fileID: 1418156640}
-  - {fileID: 1404961333}

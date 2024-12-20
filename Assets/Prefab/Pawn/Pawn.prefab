@@ -184,9 +184,7 @@ MonoBehaviour:
     list:
     - {fileID: 11400000, guid: 657c8bcd12f11534ca0c14dfb10bc8d5, type: 2}
     - {fileID: 11400000, guid: 6c221d77fbdbf304a9adcdb5da814e20, type: 2}
-    - {fileID: 11400000, guid: e8601c53d3b3ce842b709d227ee4676c, type: 2}
     - {fileID: 11400000, guid: 1272a1c74637fd54b8d2c7e155ef1993, type: 2}
-    - {fileID: 11400000, guid: 33753ff6299b40843bec044f71aafc13, type: 2}
   references:
     version: 2
     RefIds: []
@@ -385,6 +383,9 @@ MonoBehaviour:
   pClass: {fileID: 11400000, guid: 0c4d6825ca201534a9a97458c5adf663, type: 2}
   race: {fileID: 11400000, guid: 1a5a9d843868a7d4ab1e9593aa06fd31, type: 2}
   actionTime:
+    defaultValue: 0
+    currentValue: 0
+  speedUpRate:
     defaultValue: 0
     currentValue: 0
   time: 0

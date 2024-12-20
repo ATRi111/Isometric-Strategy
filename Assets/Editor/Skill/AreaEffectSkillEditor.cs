@@ -9,6 +9,7 @@ public class AreaEffectSkillEditor : RangedSkillEditor
 
     protected override void MyOnInspectorGUI()
     {
+        base.MyOnInspectorGUI();
         effectRange.IntField("AOE·¶Î§");
     }
 }

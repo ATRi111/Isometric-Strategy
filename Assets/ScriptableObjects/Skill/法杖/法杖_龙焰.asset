@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63d28fb52e2b4d4cbc43a2427b326bb, type: 3}
+  m_Name: "\u6CD5\u6756_\u9F99\u7130"
+  m_EditorClassIdentifier: 
+  displayName: "\u9F99\u7130"
+  actionTime: 50
+  preConditions:
+  - conditionType: 3
+    parameterIndex: 2
+    value: 1
+  parameterModifiers:
+  - parameterIndex: 2
+    deltaValue: -1
+  accuracy: 100
+  powers:
+  - type: 4
+    power: 120
+    strMultiplier: 0
+    dexMultiplier: 0
+    intMultiplier: 1
+  minLayer: -32
+  maxLayer: 32
+  castingDistance: 4
+  victimType: 0
+  effectRange: 1

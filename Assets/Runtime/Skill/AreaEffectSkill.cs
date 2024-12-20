@@ -5,12 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AOE技能", menuName = "技能/AOE技能", order = -1)]
 public class AreaEffectSkill : RangedSkill
 {
-    public int effectRange;
+    public int effectRange = 1;
 
     public override void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
     {
         ret.Clear();
-        List<Vector2Int> primitive = IsometricGridUtility.WithinProjectManhattanDistance(castingDistance);
+        List<Vector2Int> primitive = IsometricGridUtility.WithinProjectManhattanDistance(effectRange);
         for (int i = 0; i < primitive.Count; i++)
         {
             Vector2Int xy = (Vector2Int)target + primitive[i];
