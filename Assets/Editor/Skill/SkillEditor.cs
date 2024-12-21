@@ -5,7 +5,7 @@ using UnityEditor;
 public class SkillEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty displayName, preConditions, actionTime, parameterModifiers;
+    public SerializedProperty displayName, preConditions, actionTime, parameterModifiers, buffOnAgent;
 
     protected override void MyOnInspectorGUI()
     {
@@ -13,5 +13,6 @@ public class SkillEditor : AutoEditor
         displayName.TextField("展示技能名");
         actionTime.IntField("固定时间消耗");
         parameterModifiers.ListField("参数修改");
+        buffOnAgent.ListField("对自身施加的Buff");
     }
 }

@@ -16,6 +16,7 @@ MonoBehaviour:
   actionTime: 50
   preConditions: []
   parameterModifiers: []
+  buffOnAgent: []
   accuracy: 100
   powers:
   - type: 3
@@ -23,6 +24,7 @@ MonoBehaviour:
     strMultiplier: 1
     dexMultiplier: 0
     intMultiplier: 0
+  buffOnVictim: []
   minLayer: -2
   maxLayer: 2
   castingDistance: 1

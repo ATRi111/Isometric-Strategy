@@ -1,4 +1,3 @@
-using MyTool;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ public abstract class AimSkill : Skill
     public const int MaxAccuracy = 100;
     public int accuracy = MaxAccuracy;
     public List<SkillPower> powers;
+    public List<BuffModifier> buffOnVictim;
     public int minLayer = -2, maxLayer = 2;
 
     public bool LayerCheck(Vector3Int position, Vector3Int target)
@@ -41,7 +41,8 @@ public abstract class AimSkill : Skill
         GetVictims(agent, igm, position, target, victims);
         for (int i = 0; i < victims.Count; i++)
         {
-            int r = RandomTool.GetGroup(ERandomGrounp.Battle).NextInt(1, Effect.MaxProbability + 1);
+            int r = Effect.NextInt();
+            //ÉËº¦
             int damage = 0;
             DefenceComponent def = victims[i].DefenceComponent;
             for (int j = 0; j < powers.Count; j++)
@@ -49,12 +50,13 @@ public abstract class AimSkill : Skill
                 float attackPower = agent.OffenceComponent.MockAttackPower(powers[j]);
                 damage += def.MockDamage(powers[j].type, attackPower);
             }
-            int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue); ;
+            int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
             Effect effect = new HPChangeEffect(victims[i], def.HP, hp, accuracy)
             {
                 randomValue = r
             };
             ret.effects.Add(effect);
+            //ËÀÍö
             if (hp == 0)
             {
                 effect = new DisableEntityEffect(victims[i])
@@ -62,6 +64,17 @@ public abstract class AimSkill : Skill
                     randomValue = r
                 };
                 ret.effects.Add(effect);
+            }
+            //Buff
+            PawnEntity pawn = victims[i] as PawnEntity;
+            if(pawn != null)
+            {
+                for (int j = 0; j < buffOnVictim.Count; j++)
+                {
+                    BuffEffect buffEffect = agent.BuffManager.MockAdd(buffOnAgent[i].so, pawn, buffOnAgent[i].probability);
+                    buffEffect.randomValue = Effect.NextInt();
+                    ret.effects.Add(buffEffect);
+                }
             }
         }
     }

@@ -8,6 +8,7 @@ public abstract class Skill : ScriptableObject
     public int actionTime;
     public List<SkillPreCondition> preConditions;
     public List<PawnParameterModifier> parameterModifiers;
+    public List<BuffModifier> buffOnAgent;
 
     /// <summary>
     /// 判断当前能否使用此技能
@@ -51,12 +52,25 @@ public abstract class Skill : ScriptableObject
             ModifyParameterEffect effect = new(agent, parameterName, value, 0);
             ret.effects.Add(effect);
         }
+        for (int i = 0; i < buffOnAgent.Count; i++)
+        {
+            BuffEffect buffEffect = agent.BuffManager.MockAdd(buffOnAgent[i].so, agent, buffOnAgent[i].probability);
+            buffEffect.randomValue = Effect.NextInt();
+            ret.effects.Add(buffEffect);
+        }
     }
 
     /// <summary>
     /// 模拟技能花费的时间
     /// </summary>
-    public virtual int MockTime(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target)
+    public int MockTime(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target)
+    {
+        return Mathf.RoundToInt((1f - agent.speedUpRate.CurrentValue) * MockPrimitiveTime(agent, igm, position, target));
+    }
+    /// <summary>
+    /// 模拟技能花费的时间（不考虑加速率）
+    /// </summary>
+    protected virtual int MockPrimitiveTime(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target)
     {
         return actionTime;
     }

@@ -20,17 +20,18 @@ public class BuffManager : CharacterComponentBase
         }
     }
 
-    public BuffEffect MockAdd(Buff target, int probability)
+    public BuffEffect MockAdd(BuffSO so, PawnEntity victim, int probability)
     {
-        switch(target.so.superimposeMode)
+        Buff buff = new(victim, so, gameManager.Time);
+        switch(so.superimposeMode)
         {
             case ESuperimposeMode.Coexist:
-                return new AddBuffEffect(pawn, target, this, probability);
+                return new AddBuffEffect(pawn, buff, this, probability);
             case ESuperimposeMode.Refresh:
-                Buff buff = SuprimposeCheck(target);
-                if(buff == null)
-                    return new AddBuffEffect(pawn, target, this, probability);
-                return new LengthenBuffEffect(pawn, buff, target.endTime, this, probability);
+                Buff existed = SuprimposeCheck(buff);
+                if(existed == null)
+                    return new AddBuffEffect(pawn, buff, this, probability);
+                return new LengthenBuffEffect(pawn, existed, existed.endTime, this, probability);
             default:
                 throw new System.ArgumentException();
         }

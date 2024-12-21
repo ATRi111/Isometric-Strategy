@@ -42,6 +42,6 @@ public class TimeEffect : Effect
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
         //TODO:评价时间改变类技能
-        throw new System.InvalidOperationException();
+        return 0;
     }
 }

@@ -21,6 +21,7 @@ MonoBehaviour:
   parameterModifiers:
   - parameterIndex: 2
     deltaValue: -1
+  buffOnAgent: []
   accuracy: 100
   powers:
   - type: 4
@@ -28,6 +29,7 @@ MonoBehaviour:
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 1
+  buffOnVictim: []
   minLayer: -32
   maxLayer: 32
   castingDistance: 4

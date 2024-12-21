@@ -21,3 +21,4 @@ MonoBehaviour:
   parameterModifiers:
   - parameterIndex: 2
     deltaValue: 1
+  buffOnAgent: []

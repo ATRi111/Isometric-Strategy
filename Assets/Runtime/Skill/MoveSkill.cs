@@ -42,7 +42,7 @@ public abstract class MoveSkill : Skill
         return false;
     }
 
-    public override int MockTime(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target)
+    protected override int MockPrimitiveTime(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target)
     {
         int time = 0;
         if (UnderZOC(agent, igm, position))

@@ -28,13 +28,13 @@ public class Buff
         }
     }
 
-    public Buff(PawnEntity victim, BuffSO buff, int startTime)
+    public Buff(PawnEntity victim, BuffSO so, int startTime)
     {
-        buffName = buff.name;
+        buffName = so.name;
         this.victim = victim;
-        this.so = buff;
+        this.so = so;
         this.startTime = startTime;
-        endTime = startTime + buff.duration;
+        endTime = startTime + so.duration;
     }
 
     public void Tick(int time)
