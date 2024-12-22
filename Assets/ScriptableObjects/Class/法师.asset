@@ -21,6 +21,9 @@ MonoBehaviour:
       so: {fileID: 11400000, guid: 606e749310a6d3b45a86ef1cfbf647ea, type: 2}
       method: 0
     - value: 10
+      so: {fileID: 11400000, guid: 90b59691706183d44b8946b924be3dce, type: 2}
+      method: 0
+    - value: 10
       so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
       method: 0
     - value: 10

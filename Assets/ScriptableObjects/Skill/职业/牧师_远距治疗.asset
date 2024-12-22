@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: "\u8FDC\u8DDD\u6CBB\u7597"
   actionTime: 50
   preConditions: []
-  parameterModifiers: []
+  parameterOnAgent: []
   buffOnAgent: []
   accuracy: 100
   powers:
