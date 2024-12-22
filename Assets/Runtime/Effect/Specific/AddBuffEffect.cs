@@ -14,7 +14,7 @@ public class AddBuffEffect : BuffEffect
 
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
-        return buff.so.primitiveValue;
+        return buff.so.primitiveValue * pawn.FactionCheck(victim);
     }
 
     public override void Apply()

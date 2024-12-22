@@ -43,6 +43,7 @@ public class MoveEffect : Effect
 
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
+        //pawn与victim必然相同？
         return pawn.Brain.EvaluatePosition(to) - pawn.Brain.EvaluatePosition(from);
     }
 }

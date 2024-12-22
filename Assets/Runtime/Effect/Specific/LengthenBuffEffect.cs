@@ -19,7 +19,7 @@ public class LengthenBuffEffect : BuffEffect
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
         int delta = endTime - buff.endTime;
-        return delta / buff.so.duration * buff.so.primitiveValue;
+        return delta / buff.so.duration * buff.so.primitiveValue * pawn.FactionCheck(victim);
     }
 
     public override void Apply()
