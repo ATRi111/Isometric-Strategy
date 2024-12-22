@@ -930,9 +930,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerList:
-  - entityName: Player
+  - prefab: {fileID: 2338041512611947571, guid: 2db685c6ddb7c154a92ff6a155671845, type: 3}
     equipmentList:
-    - "\u6CD5\u6756"
+    - {fileID: 11400000, guid: e2b1d459c0b5bfa4d9f570cb71957de4, type: 2}
   unusedEquipmentList:
   - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
   selectedIndicies: 00000000

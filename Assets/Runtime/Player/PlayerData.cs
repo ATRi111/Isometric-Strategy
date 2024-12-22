@@ -1,22 +1,10 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
-public class PlayerData : ICloneable
+public class PlayerData
 {
-    public string entityName;
-    public List<string> equipmentList;
-
-    public PlayerData(string entityName)
-    {
-        this.entityName = entityName;
-        equipmentList = new();
-    }
-
-    public object Clone()
-    {
-        PlayerData data = new(entityName);
-        data.equipmentList.AddRange(equipmentList);
-        return data;
-    }
+    public GameObject prefab;
+    public List<Equipment> equipmentList;
 }

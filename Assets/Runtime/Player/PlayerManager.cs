@@ -1,12 +1,10 @@
 using Services;
-using Services.Asset;
-using Services.Event;
 using Services.Save;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 管理玩家可用角色数据
+/// 管理玩家可用角色等数据
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
@@ -15,19 +13,6 @@ public class PlayerManager : MonoBehaviour
         return GameObject.Find(nameof(PlayerManager)).GetComponent<PlayerManager>();
     }
 
-    private IEventSystem eventSystem;
-    private IsometricGridManager igm;
-    private IsometricGridManager Igm
-    {
-        get
-        {
-            if (igm == null)
-                igm = IsometricGridManager.FindInstance();
-            return igm;
-        }
-    }
-
-    private IAssetLoader assetLoader;
     public List<PlayerData> playerList;
     public List<Equipment> unusedEquipmentList;
 
@@ -37,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     {
         for (int i = 0; i < playerList.Count; i++)
         {
-            if(playerList[i].entityName == entityName)
+            if(playerList[i].prefab.name == entityName)
                 return playerList[i];
         }
         return null;
@@ -55,7 +40,7 @@ public class PlayerManager : MonoBehaviour
         pawn.EquipmentManager.GetAll(temp);
         for (int i = 0; i < temp.Count; i++)
         {
-            data.equipmentList.Add(temp[i].name);
+            data.equipmentList.Add(temp[i]);
         }
     }
 
@@ -67,24 +52,17 @@ public class PlayerManager : MonoBehaviour
             return;
 
         pawn.EquipmentManager.UnEquipAll();
-        List<string> temp = data.equipmentList;
-        for (int i = 0;i < temp.Count;i++)
+        for (int i = 0;i < data.equipmentList.Count;i++)
         {
-            Equipment equipment = assetLoader.Load<Equipment>(temp[i]);
-            pawn.EquipmentManager.Equip(equipment);
+            pawn.EquipmentManager.Equip(data.equipmentList[i]);
         }
-    }
-
-    private void Awake()
-    {
-        assetLoader = ServiceLocator.Get<IAssetLoader>();
     }
 
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.P))
-            ServiceLocator.Get<ISaveManager>().GetGroup(1).Read();
+            ServiceLocator.Get<ISaveManager>().GetGroup(1).Save();
         else if (Input.GetKeyUp(KeyCode.L))
-            ServiceLocator.Get<ISaveManager>().GetGroup(1).Write();
+            ServiceLocator.Get<ISaveManager>().GetGroup(1).Load();
     }
 }

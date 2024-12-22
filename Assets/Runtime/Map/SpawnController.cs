@@ -1,12 +1,10 @@
 using Services;
-using Services.Asset;
 using Services.Event;
 using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
     private IEventSystem eventSystem;
-    private IAssetLoader assetLoader;
     private PlayerManager playerManager;
 
     private void BeforeBattle()
@@ -18,7 +16,7 @@ public class SpawnController : MonoBehaviour
             int index = playerManager.selectedIndicies[i];
             Vector3Int temp = points[i].CellPosition;
             Destroy(points[i].gameObject);
-            Spawn(playerManager.playerList[index].entityName, temp);
+            Spawn(playerManager.playerList[index].prefab, temp);
         }
         for (; i < points.Length; i++)
         {
@@ -26,11 +24,10 @@ public class SpawnController : MonoBehaviour
         }
     }
 
-    public void Spawn(string entityName, Vector3Int point)
+    public void Spawn(GameObject prefab, Vector3Int point)
     {
-        GameObject prefab = assetLoader.Load<GameObject>(entityName);
         GameObject obj = Instantiate(prefab, transform);
-        obj.name = entityName;
+        obj.name = prefab.name;
         PawnEntity pawn = obj.GetComponent<PawnEntity>();
         pawn.MovableGridObject.CellPosition = point;
         pawn.MovableGridObject.Refresh();
@@ -41,7 +38,6 @@ public class SpawnController : MonoBehaviour
     private void Awake()
     {
         playerManager = PlayerManager.FindInstance();
-        assetLoader = ServiceLocator.Get<IAssetLoader>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
     }
 
