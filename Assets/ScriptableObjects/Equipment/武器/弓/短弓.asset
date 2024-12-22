@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: "\u77ED\u5F13"
   m_EditorClassIdentifier: 
   propertyModifier:
-    modifiers: []
-  slot: 0
+    modifiers:
+    - value: 1
+      so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
+      method: 0
   skillsAttached:
   - {fileID: 11400000, guid: 7fe1e88740f4a6f41916879211e4462a, type: 2}
+  slotType: 0
