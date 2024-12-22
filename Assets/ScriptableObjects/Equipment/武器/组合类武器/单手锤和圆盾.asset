@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
-  m_Name: "\u5355\u624B\u9524+\u5706\u76FE"
+  m_Name: "\u5355\u624B\u9524\u548C\u5706\u76FE"
   m_EditorClassIdentifier: 
   propertyModifier:
     modifiers:
     - value: 4
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
-  skillsAttached: []
+  skillsAttached:
+  - {fileID: 11400000, guid: f7e79bdb91e9234429c87c5ba8482238, type: 2}
+  - {fileID: 11400000, guid: 88fe032700b1e7844b3713d7d8128ff7, type: 2}
+  - {fileID: 11400000, guid: 5a785713ba17d384096a384473452098, type: 2}
   slotType: 0

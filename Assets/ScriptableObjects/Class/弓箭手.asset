@@ -46,6 +46,6 @@ MonoBehaviour:
       method: 0
   skillsAttached: []
   supportAbility: 0.2
-  offenseAbility: 1.2
+  offenseAbility: 0.8
   bestSupprtDistance: 2
-  bestOffenseDistance: 1
+  bestOffenseDistance: 5

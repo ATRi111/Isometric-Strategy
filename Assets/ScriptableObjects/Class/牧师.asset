@@ -50,5 +50,5 @@ MonoBehaviour:
   skillsAttached: []
   supportAbility: 0.5
   offenseAbility: 0.5
-  bestSupprtDistance: 2
+  bestSupprtDistance: 4
   bestOffenseDistance: 1

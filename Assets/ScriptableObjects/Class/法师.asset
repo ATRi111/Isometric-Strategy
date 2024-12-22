@@ -32,9 +32,8 @@ MonoBehaviour:
     - value: 10
       so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
       method: 0
-  skillsAttached:
-  - {fileID: 11400000, guid: d3009eb9369018f49a5c73130ff895fa, type: 2}
+  skillsAttached: []
   supportAbility: 0.2
   offenseAbility: 1
   bestSupprtDistance: 2
-  bestOffenseDistance: 1
+  bestOffenseDistance: 5
