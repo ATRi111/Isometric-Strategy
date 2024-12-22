@@ -10,13 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
-  m_Name: "\u5927\u5251"
+  m_Name: "\u4E07\u80FD\u94A5\u5319"
   m_EditorClassIdentifier: 
   propertyModifier:
     modifiers: []
-  slot: 0
-  skillsAttached:
-  - {fileID: 11400000, guid: 422714d1eb1d1a54fa7abce36e5aa238, type: 2}
-  - {fileID: 11400000, guid: 32b9b1edb3f6fdc4f9253a606b9849ad, type: 2}
-  - {fileID: 11400000, guid: 5413b3b580010dc40afc2f9ee7ed276e, type: 2}
-  - {fileID: 11400000, guid: c2aff56c65d7ddd48aa1ac5021e4c187, type: 2}
+  skillsAttached: []
+  slotType: 2

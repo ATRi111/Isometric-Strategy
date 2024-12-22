@@ -9,29 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c63d28fb52e2b4d4cbc43a2427b326bb, type: 3}
-  m_Name: "\u6CD5\u6756_\u9F99\u7130"
+  m_Script: {fileID: 11500000, guid: 5e597e1cdf21a484285316e512db9089, type: 3}
+  m_Name: "\u6280\u80FD\u4E66_\u706B\u7403"
   m_EditorClassIdentifier: 
-  displayName: "\u9F99\u7130"
+  displayName: "\u706B\u7403"
   actionTime: 50
-  preConditions:
-  - conditionType: 3
-    parameterIndex: 2
-    value: 1
-  parameterModifiers:
-  - parameterIndex: 2
-    deltaValue: -1
+  preConditions: []
+  parameterModifiers: []
   buffOnAgent: []
   accuracy: 100
   powers:
   - type: 4
-    power: 120
+    power: 80
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 1
   buffOnVictim: []
   minLayer: -32
   maxLayer: 32
-  castingDistance: 4
+  castingDistance: 6
   victimType: 0
-  effectRange: 1
