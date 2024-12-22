@@ -1,6 +1,7 @@
 using EditorExtend.GridEditor;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "跳跃", menuName = "技能/跳跃")]
@@ -64,5 +65,15 @@ public class JumpSkill : MoveSkill
         GridPhysics.InitialVelocityOfParabola(position, target, jumpAngle, Gravity, out Vector3 velocity, out float time);
         GridPhysics.DiscretizeParabola(position, velocity, Gravity, time, GridPhysics.settings.parabolaPrecision, route);
         ret.effects.Add(new MoveEffect(agent, position, target, route, speedMultiplier));
+    }
+
+    protected override void DescribeTime(StringBuilder sb)
+    {
+        sb.Append("基础时间消耗:");
+        sb.Append(actionTimePerUnit * castingDistance + actionTime);
+        sb.Append("(试图从敌人旁离开时,时间消耗增加");
+        sb.Append(ZOCActionTime);
+        sb.Append(")");
+        sb.AppendLine();
     }
 }

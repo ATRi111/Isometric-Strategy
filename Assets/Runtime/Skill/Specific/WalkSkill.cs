@@ -1,5 +1,6 @@
 using MyTool;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "移动", menuName = "技能/移动")]
@@ -31,5 +32,16 @@ public class WalkSkill : MoveSkill
             }
         }
         ret.effects.Add(new MoveEffect(agent, position, target, temp));
+    }
+
+    protected override void DescribeTime(StringBuilder sb)
+    {
+        sb.Append("基础时间消耗:");
+        sb.Append(actionTimePerUnit);
+        sb.Append("×走过的格数");
+        sb.Append("(试图从敌人旁离开时,时间消耗增加");
+        sb.Append(ZOCActionTime);
+        sb.Append(")");
+        sb.AppendLine();
     }
 }

@@ -23,7 +23,8 @@ MonoBehaviour:
     power: -80
     strMultiplier: 0
     dexMultiplier: 0
-    intMultiplier: 1
+    intMultiplier: 0
+    mndMultiplier: 1
   buffOnVictim: []
   minLayer: -32
   maxLayer: 32

@@ -6,7 +6,7 @@ using UnityEngine;
 public class SkillPowerDrawer : AutoPropertyDrawer
 {
     [AutoProperty]
-    public SerializedProperty type, power, strMultiplier, dexMultiplier, intMultiplier;
+    public SerializedProperty type, power, strMultiplier, dexMultiplier, intMultiplier, mndMultiplier;
 
     protected override void MyOnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
@@ -15,5 +15,6 @@ public class SkillPowerDrawer : AutoPropertyDrawer
         strMultiplier.FloatField("力量加成",NextRectRelative());
         dexMultiplier.FloatField("灵巧加成", NextRectRelative());
         intMultiplier.FloatField("智力加成", NextRectRelative());
+        mndMultiplier.FloatField("精神加成", NextRectRelative());
     }
 }

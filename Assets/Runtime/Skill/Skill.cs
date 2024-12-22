@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 public abstract class Skill : ScriptableObject
@@ -79,4 +80,50 @@ public abstract class Skill : ScriptableObject
     {
         return null;
     }
+
+    #region 描述
+    public string Description
+        => Describe();
+
+    protected virtual string Describe()
+    {
+        StringBuilder sb = new();
+        DescribeTime(sb);
+        if (buffOnAgent.Count > 0)
+            DescribeBuffOnAgent(sb);
+        return sb.ToString();
+    }
+
+    protected virtual void DescribeTime(StringBuilder sb)
+    {
+        sb.Append("基础时间消耗:");
+        sb.Append(actionTime);
+        sb.AppendLine();
+    }
+
+    protected virtual void DescribeBuffOnAgent(StringBuilder sb)
+    {
+        for (int i = 0; i < buffOnAgent.Count; i++)
+        {
+            BuffModifier modifier = buffOnAgent[i];
+            if(modifier.probability != Effect.MaxProbability)
+            {
+                sb.Append("有");
+                sb.Append(modifier.probability);
+                sb.Append("%的几率");
+            }
+            sb.Append("使自身获得时长为");
+            sb.Append(modifier.so.duration);
+            sb.Append("的");
+            sb.Append(modifier.so.name);
+            sb.AppendLine();
+        }
+    }
+
+    protected virtual void DescribeParameterOnAgent(StringBuilder sb)
+    {
+
+    }
+
+    #endregion
 }

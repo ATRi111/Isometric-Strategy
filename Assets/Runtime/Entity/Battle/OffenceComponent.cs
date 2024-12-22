@@ -6,6 +6,7 @@ public class OffenceComponent : CharacterComponentBase
     public CharacterProperty strength;
     public CharacterProperty dexterity;
     public CharacterProperty intelligence;
+    public CharacterProperty mind;
 
     /// <summary>
     /// ¼ÆËã¹¥»÷Á¦³ËÍþÁ¦
@@ -14,7 +15,8 @@ public class OffenceComponent : CharacterComponentBase
     {
         int attack = Mathf.RoundToInt(skillPower.strMultiplier * strength.CurrentValue
             + skillPower.dexMultiplier * dexterity.CurrentValue
-            + skillPower.intMultiplier * intelligence.CurrentValue);
+            + skillPower.intMultiplier * intelligence.CurrentValue
+            + skillPower.mndMultiplier * mind.CurrentValue);
         return attack * skillPower.power;
     }
 
@@ -23,5 +25,6 @@ public class OffenceComponent : CharacterComponentBase
         strength.Refresh();
         dexterity.Refresh();
         intelligence.Refresh();
+        mind.Refresh();
     }
 }

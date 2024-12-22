@@ -9,4 +9,5 @@ public class SkillPower
     public float strMultiplier;
     public float dexMultiplier;
     public float intMultiplier;
+    public float mndMultiplier;
 }
