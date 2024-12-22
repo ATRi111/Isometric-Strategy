@@ -8,7 +8,7 @@ public abstract class Skill : ScriptableObject
     public string displayName;
     public int actionTime;
     public List<SkillPreCondition> preConditions;
-    public List<PawnParameterModifier> parameterModifiers;
+    public List<PawnParameterModifier> parameterOnAgent;
     public List<BuffModifier> buffOnAgent;
 
     /// <summary>
@@ -39,9 +39,9 @@ public abstract class Skill : ScriptableObject
     {
         ret.timeEffect.current += MockTime(agent, igm, position, target);
         HashSet<string> parameterToReset = PawnEntity.ParameterTable.resetParameters.ToHashSet();
-        for (int i = 0; i < parameterModifiers.Count; i++)
+        for (int i = 0; i < parameterOnAgent.Count; i++)
         {
-            PawnParameterModifier modifier = parameterModifiers[i];
+            PawnParameterModifier modifier = parameterOnAgent[i];
             int value = agent.parameterDict[modifier.ParameterName];
             ModifyParameterEffect effect = new(agent, modifier.ParameterName, value, value + modifier.deltaValue);
             ret.effects.Add(effect);
@@ -91,6 +91,8 @@ public abstract class Skill : ScriptableObject
         DescribeTime(sb);
         if (buffOnAgent.Count > 0)
             DescribeBuffOnAgent(sb);
+        if(parameterOnAgent.Count > 0)
+            DescribeParameterOnAgent(sb);
         return sb.ToString();
     }
 
@@ -122,7 +124,14 @@ public abstract class Skill : ScriptableObject
 
     protected virtual void DescribeParameterOnAgent(StringBuilder sb)
     {
-
+        for (int i = 0; i < parameterOnAgent.Count; i++)
+        {
+            PawnParameterModifier modifier = parameterOnAgent[i];
+            sb.Append("使自身的");
+            sb.Append(modifier.ParameterName);
+            sb.Append(modifier.deltaValue.ToString("+0"));
+            sb.AppendLine();
+        }
     }
 
     #endregion

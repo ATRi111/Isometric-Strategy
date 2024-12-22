@@ -18,7 +18,7 @@ MonoBehaviour:
   - conditionType: 2
     parameterIndex: 2
     value: 3
-  parameterModifiers:
+  parameterOnAgent:
   - parameterIndex: 2
     deltaValue: 1
   buffOnAgent: []
