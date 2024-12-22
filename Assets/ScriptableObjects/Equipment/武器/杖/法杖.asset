@@ -17,6 +17,10 @@ MonoBehaviour:
     - value: 1
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
+    - value: 10
+      so: {fileID: 11400000, guid: 606e749310a6d3b45a86ef1cfbf647ea, type: 2}
+      method: 0
   skillsAttached:
   - {fileID: 11400000, guid: c8423dbc77b374c48b2882292fc8b6a4, type: 2}
+  - {fileID: 11400000, guid: d3009eb9369018f49a5c73130ff895fa, type: 2}
   slotType: 0

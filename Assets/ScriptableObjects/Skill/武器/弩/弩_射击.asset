@@ -16,11 +16,12 @@ MonoBehaviour:
   actionTime: 50
   preConditions:
   - conditionType: 0
-    parameterName: "\u88C5\u586B\u6570"
+    parameterIndex: 0
     value: 1
-  parameterModifiers:
-  - parameterName: "\u88C5\u586B\u6570"
+  parameterOnAgent:
+  - parameterIndex: 0
     deltaValue: -1
+  buffOnAgent: []
   accuracy: 100
   powers:
   - type: 2
@@ -28,6 +29,8 @@ MonoBehaviour:
     strMultiplier: 0
     dexMultiplier: 1
     intMultiplier: 0
+    mndMultiplier: 0
+  buffOnVictim: []
   minLayer: -32
   maxLayer: 32
   castingDistance: 5

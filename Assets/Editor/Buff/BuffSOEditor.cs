@@ -12,6 +12,6 @@ public class BuffSOEditor : PawnPropertyModifierSOEditor
         base.MyOnInspectorGUI();
         duration.IntField("持续时间");
         superimposeMode.EnumField<ESuperimposeMode>("叠加方式");
-        primitiveValue.FloatField("价值");
+        primitiveValue.FloatField("对友方的价值");
     }
 }

@@ -38,6 +38,9 @@ MonoBehaviour:
     - value: 60
       so: {fileID: 11400000, guid: 606e749310a6d3b45a86ef1cfbf647ea, type: 2}
       method: 0
+    - value: 50
+      so: {fileID: 11400000, guid: 90b59691706183d44b8946b924be3dce, type: 2}
+      method: 0
     - value: 35
       so: {fileID: 11400000, guid: f44c63f2c03dd144dbb628b191d38e27, type: 2}
       method: 0
