@@ -51,7 +51,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     /// </summary>
     public GridObject LineSegmentCast(Vector3 from, Vector3 to, out Vector3 hit)
     {
-        hit = from;
+        hit = to;
         List<GridObject> gridObjects = new();
         Vector2Int ifrom = new(Mathf.FloorToInt(from.x), Mathf.FloorToInt(from.y));
         Vector2Int ito = new(Mathf.FloorToInt(to.x), Mathf.FloorToInt(to.y));
@@ -60,25 +60,12 @@ public class IsometricGridManager : IsometricGridManagerBase
             return null;
 
         bool top_down = (to - from).z < 0;  //射线从上往下发射时，求交时也必须从上往下
-
-        GetObjectsXY(overlap[0], gridObjects, top_down);
-        for (int j = 0; j < gridObjects.Count; j++)
+        for (int i = 0; i < overlap.Count; i++)
         {
-            if (gridObjects[j].Overlap(from))
-                continue;
-            if (gridObjects[j].OverlapLineSegment(ref from, ref to))
-            {
-                hit = from;
-                return gridObjects[j];
-            }
-        }
-        
-        for (int i = 1; i < overlap.Count; i++)
-        {
-            GetObjectsXY(overlap[i], gridObjects, top_down);
+            GetObjectsXY(overlap[i], gridObjects, top_down); 
             for (int j = 0; j < gridObjects.Count; j++)
             {
-                if (gridObjects[j].OverlapLineSegment(ref from, ref to))
+                if (!gridObjects[j].Overlap(from) && gridObjects[j].OverlapLineSegment(ref from, ref to))
                 {
                     hit = from;
                     return gridObjects[j];
@@ -114,7 +101,7 @@ public class IsometricGridManager : IsometricGridManagerBase
             GetObjectsXY(xy, gridObjects);
             for (int j = 0; j < gridObjects.Count; j++)
             {
-                if (gridObjects[j].Overlap(point) && !gridObjects[j].Overlap(from))
+                if (!gridObjects[j].Overlap(from) && gridObjects[j].Overlap(point))
                     return gridObjects[j];
             }
         }

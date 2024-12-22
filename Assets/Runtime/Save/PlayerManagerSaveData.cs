@@ -56,6 +56,12 @@ public class PlayerSaveData
     public string prefabName;
     public readonly List<string> equipmentList;
 
+    public PlayerSaveData()
+    {
+        equipmentList = new();
+    }
+
+
     public PlayerSaveData(PlayerData playerData)
     {
         prefabName = playerData.prefab.name;

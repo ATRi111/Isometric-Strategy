@@ -5,12 +5,12 @@ using UnityEditor;
 public class EquipmentEditor : PawnPropertyModifierSOEditor
 {
     [AutoProperty]
-    public SerializedProperty slot, skillsAttached;
+    public SerializedProperty slotType, skillsAttached;
 
     protected override void MyOnInspectorGUI()
     {
         base.MyOnInspectorGUI();
-        slot.EnumField<EEquipmentSlot>("装备槽");
+        slotType.EnumField<ESlotType>("槽位类型");
         skillsAttached.ListField("附带技能");
     }
 }
