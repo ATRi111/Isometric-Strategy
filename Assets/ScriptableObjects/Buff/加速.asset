@@ -17,6 +17,8 @@ MonoBehaviour:
     - value: 0.25
       so: {fileID: 11400000, guid: 9a627552732749041a7b8cf8bd08fd2b, type: 2}
       method: 0
+  skillsAttached: []
+  extraDescription: 
   duration: 200
   superimposeMode: 1
   primitiveValue: 50

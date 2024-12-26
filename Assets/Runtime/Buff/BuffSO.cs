@@ -13,11 +13,13 @@ public enum ESuperimposeMode
 /// 持续一段时间，影响角色属性（不应当影响参数）的对象
 /// </summary>
 [CreateAssetMenu(fileName = "新状态", menuName = "状态/默认状态")]
-public class BuffSO : PawnPropertyModifierSO
+public class BuffSO : PawnModifierSO
 {
     public int duration;
     public ESuperimposeMode superimposeMode = ESuperimposeMode.Refresh;
     public float primitiveValue;
+
+    protected override string TypeName => "状态";
 
     public virtual void Tick(int startTime, int currentTime)
     {

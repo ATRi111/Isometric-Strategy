@@ -21,4 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7e79bdb91e9234429c87c5ba8482238, type: 2}
   - {fileID: 11400000, guid: 88fe032700b1e7844b3713d7d8128ff7, type: 2}
   - {fileID: 11400000, guid: 5a785713ba17d384096a384473452098, type: 2}
+  extraDescription: 
   slotType: 0

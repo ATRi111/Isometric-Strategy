@@ -2,7 +2,7 @@ using EditorExtend;
 using UnityEditor;
 
 [CustomEditor(typeof(PawnClass))]
-public class PawnClassEditor : PawnPropertyModifierSOEditor
+public class PawnClassEditor : PawnModifierSOEditor
 {
     [AutoProperty]
     public SerializedProperty supportAbility, offenseAbility, bestSupprtDistance, bestOffenseDistance;

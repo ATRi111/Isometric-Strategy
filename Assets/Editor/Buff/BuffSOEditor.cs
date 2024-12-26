@@ -2,7 +2,7 @@ using EditorExtend;
 using UnityEditor;
 
 [CustomEditor(typeof(BuffSO))]
-public class BuffSOEditor : PawnPropertyModifierSOEditor
+public class BuffSOEditor : PawnModifierSOEditor
 {
     [AutoProperty]
     public SerializedProperty duration, superimposeMode, primitiveValue;

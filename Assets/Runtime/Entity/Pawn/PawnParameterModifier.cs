@@ -16,7 +16,7 @@ public class PawnParameterModifier
         sb.Append(victimName);
         sb.Append("µÄ");
         sb.Append(ParameterName.Bold());
-        sb.Append(deltaValue.ToString("+0"));
+        sb.Append(deltaValue.ToString("+0;-0"));
         sb.AppendLine();
     }
 }
