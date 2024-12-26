@@ -15,14 +15,17 @@ MonoBehaviour:
   displayName: "\u6572\u51FB"
   actionTime: 40
   preConditions: []
-  parameterModifiers: []
+  parameterOnAgent: []
+  buffOnAgent: []
   accuracy: 100
   powers:
-  - type: 0
+  - type: 3
     power: 50
     strMultiplier: 0.8
     dexMultiplier: 0.2
     intMultiplier: 0
+    mndMultiplier: 0
+  buffOnVictim: []
   minLayer: -2
   maxLayer: 2
   castingDistance: 1

@@ -1,3 +1,6 @@
+using MyTool;
+using System.Text;
+
 public enum EConditionType
 {
     Equal,
@@ -31,5 +34,23 @@ public class SkillPreCondition
             EConditionType.NotEqual => current != value,
             _ => false
         };
+    }
+
+    public void Describe(StringBuilder sb)
+    {
+        sb.Append(ParameterName.Bold());
+        string stype = conditionType switch
+        {
+            EConditionType.Equal => "等于",
+            EConditionType.Greater => "大于",
+            EConditionType.Less => "小于",
+            EConditionType.GreaterEqual => "大于等于",
+            EConditionType.LessEqual => "小于等于",
+            EConditionType.NotEqual => "不等于",
+            _ => string.Empty
+        };
+        sb.Append(stype);
+        sb.Append(value);
+        sb.AppendLine();
     }
 }

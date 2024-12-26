@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Skill : ScriptableObject
 {
     public string displayName;
+    public string extraDescription;
     public int actionTime;
     public List<SkillPreCondition> preConditions;
     public List<PawnParameterModifier> parameterOnAgent;
@@ -83,22 +84,40 @@ public abstract class Skill : ScriptableObject
 
     #region 描述
     public string Description
-        => Describe();
-
-    protected virtual string Describe()
     {
-        StringBuilder sb = new();
+        get
+        {
+            StringBuilder sb = new();
+            Describe(sb);
+            sb.Append(extraDescription);
+            return sb.ToString();
+        }
+    }
+
+    protected virtual void Describe(StringBuilder sb)
+    {
         DescribeTime(sb);
+        if(preConditions.Count > 0)
+            DescribePreConditions(sb);
         if (buffOnAgent.Count > 0)
             DescribeBuffOnAgent(sb);
         if(parameterOnAgent.Count > 0)
             DescribeParameterOnAgent(sb);
-        return sb.ToString();
+    }
+
+    protected virtual void DescribePreConditions(StringBuilder sb)
+    {
+        sb.AppendLine("施放条件：");
+        for (int i = 0; i < preConditions.Count; i++)
+        {
+            preConditions[i].Describe(sb);
+        }
+        sb.AppendLine();
     }
 
     protected virtual void DescribeTime(StringBuilder sb)
     {
-        sb.Append("基础时间消耗:");
+        sb.Append("基础时间消耗：");
         sb.Append(actionTime);
         sb.AppendLine();
     }
@@ -107,18 +126,7 @@ public abstract class Skill : ScriptableObject
     {
         for (int i = 0; i < buffOnAgent.Count; i++)
         {
-            BuffModifier modifier = buffOnAgent[i];
-            if(modifier.probability != Effect.MaxProbability)
-            {
-                sb.Append("有");
-                sb.Append(modifier.probability);
-                sb.Append("%的几率");
-            }
-            sb.Append("使自身获得时长为");
-            sb.Append(modifier.so.duration);
-            sb.Append("的");
-            sb.Append(modifier.so.name);
-            sb.AppendLine();
+            buffOnAgent[i].Describe(sb, "自身");
         }
     }
 
@@ -126,11 +134,7 @@ public abstract class Skill : ScriptableObject
     {
         for (int i = 0; i < parameterOnAgent.Count; i++)
         {
-            PawnParameterModifier modifier = parameterOnAgent[i];
-            sb.Append("使自身的");
-            sb.Append(modifier.ParameterName);
-            sb.Append(modifier.deltaValue.ToString("+0"));
-            sb.AppendLine();
+            parameterOnAgent[i].Describe(sb, "自身");
         }
     }
 

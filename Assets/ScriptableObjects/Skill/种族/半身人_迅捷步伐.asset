@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u534A\u8EAB\u4EBA_\u8FC5\u6377\u6B65\u4F10"
   m_EditorClassIdentifier: 
   displayName: "\u8FC5\u6377\u6B65\u4F10"
+  extraDescription: 
   actionTime: 25
   preConditions: []
   parameterOnAgent: []

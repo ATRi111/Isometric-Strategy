@@ -1,5 +1,6 @@
 using EditorExtend.GridEditor;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public enum EVictimType
@@ -69,5 +70,18 @@ public class RangedSkill : AimSkill
         base.GetVictims(agent, igm, position, target, ret);
         if (igm.EntityDict.ContainsKey(target) && FilterVictim(igm.EntityDict[target]))
             ret.Add(igm.EntityDict[target]);
+    }
+
+    protected override void Describe(StringBuilder sb)
+    {
+        base.Describe(sb);
+        DescribeCastingDistance(sb);
+    }
+
+    protected virtual void DescribeCastingDistance(StringBuilder sb)
+    {
+        sb.Append("Ê©·Å·¶Î§:");
+        sb.Append(castingDistance);
+        sb.AppendLine();
     }
 }

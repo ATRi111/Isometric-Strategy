@@ -1,5 +1,6 @@
 using EditorExtend.GridEditor;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "抛物线型技能", menuName = "技能/抛物线型技能", order = -1)]
@@ -48,5 +49,12 @@ public class ParabolaSkill : ProjectileSkill
             max = Mathf.Max(max, GridPhysics.ProjectDistanceOfParabola(maxSpeed, angles[i], g, -height));
         }
         return max;
+    }
+
+    protected override void DescribeCastingDistance(StringBuilder sb)
+    {
+        sb.Append("最大施放范围:");
+        sb.Append(castingDistance);
+        sb.AppendLine();
     }
 }

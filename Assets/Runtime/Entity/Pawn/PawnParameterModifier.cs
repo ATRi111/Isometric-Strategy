@@ -1,3 +1,6 @@
+using MyTool;
+using System.Text;
+
 [System.Serializable]
 public class PawnParameterModifier
 {
@@ -7,4 +10,13 @@ public class PawnParameterModifier
     public int parameterIndex;
     public int deltaValue;
 
+    public void Describe(StringBuilder sb, string victimName)
+    {
+        sb.Append("Ê¹");
+        sb.Append(victimName);
+        sb.Append("µÄ");
+        sb.Append(ParameterName.Bold());
+        sb.Append(deltaValue.ToString("+0"));
+        sb.AppendLine();
+    }
 }

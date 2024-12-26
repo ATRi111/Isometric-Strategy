@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -78,4 +79,51 @@ public abstract class AimSkill : Skill
             }
         }
     }
+
+    #region 描述
+    protected override void Describe(StringBuilder sb)
+    {
+        base.Describe(sb);
+        DescribeAccuracy(sb);
+        if(powers.Count > 0)
+            DescribePower(sb);
+        if(buffOnVictim.Count > 0)
+            DescribeBuffOnVictim(sb);
+    }
+
+    protected virtual void DescribeAccuracy(StringBuilder sb)
+    {
+        sb.Append("命中率:");
+        sb.Append(accuracy);
+        sb.Append("%");
+        sb.AppendLine();
+    }
+
+    protected virtual void DescribePower(StringBuilder sb)
+    {
+        if(powers.Count == 1 && powers[0].power < 0)
+        {
+            sb.Append("治疗力：");
+            powers[0].Describe(sb);
+            sb.AppendLine();
+            return;
+        }
+
+        sb.AppendLine("威力：");
+        for (int i = 0; i < powers.Count; i++)
+        {
+            powers[i].Describe(sb);
+        }
+        sb.AppendLine();
+    }
+
+    protected virtual void DescribeBuffOnVictim(StringBuilder sb)
+    {
+        for (int i = 0; i < buffOnVictim.Count; i++)
+        {
+            buffOnVictim[i].Describe(sb, "目标");
+        }
+    }
+
+    #endregion
 }
