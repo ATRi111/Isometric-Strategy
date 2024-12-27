@@ -61,20 +61,29 @@ public class EquipmentManager : CharacterComponentBase
         return null;
     }
 
-    public void Equip(Equipment equipment)
+    public Equipment Equip(Equipment equipment)
     {
+        Equipment ret = null;
         EquipmentSlot slot = FirstEmpty(equipment.slotType) ?? Get(equipment.slotType, 0);
         if (slot.equipment != null)
+        {
+            ret = slot.equipment;
             slot.equipment.Unregister(pawn);
+        }
         equipment.Register(pawn);
         slot.equipment = equipment;
+        return ret;
     }
 
-    public void Unequip(ESlotType slotType, int index)
+    public Equipment Unequip(ESlotType slotType, int index)
     {
         EquipmentSlot slot = Get(slotType, index);
         if (slot.equipment != null)
+        {
             slot.equipment.Unregister(pawn);
+            return slot.equipment;
+        }
+        return null;
     }
 
     public void GetAll(List<Equipment> ret)

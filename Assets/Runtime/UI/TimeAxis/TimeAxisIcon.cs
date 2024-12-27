@@ -1,4 +1,4 @@
-using Services.Event;
+using System.Collections.Generic;
 using System.Text;
 using UIExtend;
 using UnityEngine;
@@ -6,15 +6,18 @@ using UnityEngine;
 [RequireComponent(typeof(CanvasGroupPlus))]
 public class TimeAxisIcon : IconUI
 {
-    public PawnEntity entity;
-
-    public void SetPawn(PawnEntity entity)
+    public void SetPawns(List<PawnEntity> pawns)
     {
-        this.entity = entity;
         StringBuilder sb = new();
-        sb.AppendLine(entity.EntityName);
+        for (int i = 0; i < pawns.Count - 1; i++)
+        {
+            sb.Append(pawns[i].EntityName);
+            sb.Append(" ");
+        }
+        sb.Append(pawns[^1].EntityName);
+        sb.AppendLine();
         sb.Append("Ê£ÓàÊ±¼ä:");
-        sb.Append(entity.time - gameManager.Time);
+        sb.Append(pawns[0].time - gameManager.Time);
         sb.AppendLine();
         message = sb.ToString();
     }

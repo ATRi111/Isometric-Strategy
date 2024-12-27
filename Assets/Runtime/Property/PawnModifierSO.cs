@@ -54,11 +54,13 @@ public class PawnModifierSO : ScriptableObject
     protected virtual void DescribeSkills(StringBuilder sb)
     {
         sb.Append(TypeName);
-        sb.AppendLine("技能：");
-        for (int i = 0; i < skillsAttached.Count; i++)
+        sb.Append("技能：");
+        for (int i = 0; i < skillsAttached.Count - 1; i++)
         {
-            sb.AppendLine(skillsAttached[i].displayName);
+            sb.Append(skillsAttached[i].displayName);
+            sb.Append(" ");
         }
+        sb.Append(skillsAttached[^1].displayName);
         sb.AppendLine();
     }
 }

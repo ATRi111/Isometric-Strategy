@@ -39,16 +39,37 @@ public class TimeAxisUI : MonoBehaviour
         {
             if (pawn.time - time < timeSpan)
                 entites.Add(pawn);
-            if (entites.Count == maxIconCount)
-                break;
         }
         entites.Sort(comparer);
+        int current = entites[0].time;
+        List<PawnEntity> temp = new();
+        int iconIndex = 0;
         for (int i = 0; i < entites.Count; i++)
         {
-            icons[i].SetPawn(entites[i]);
-            icons[i].transform.position = TimeToPosition(entites[i].time - time);
-            icons[i].canvasGroup.Visible = true;
+            if (entites[i].time == current)
+            {
+                temp.Add(entites[i]);
+            }
+            else
+            {
+                icons[iconIndex].SetPawns(temp);    //具有相同WT的单位一并显示
+                icons[iconIndex].transform.position = TimeToPosition(temp[0].time - time);
+                icons[iconIndex].canvasGroup.Visible = true;
+                iconIndex++;
+                if (iconIndex == maxIconCount)
+                    break;
+                temp.Clear();
+                current = entites[i].time;
+                temp.Add(entites[i]);
+            }
         }
+        if (temp.Count > 0 && iconIndex < maxIconCount)
+        {
+            icons[iconIndex].SetPawns(temp);    //具有相同WT的单位一并显示
+            icons[iconIndex].transform.position = TimeToPosition(temp[0].time - time);
+            icons[iconIndex].canvasGroup.Visible = true;
+        }
+
         for (int i = entites.Count; i < maxIconCount; i++)
         {
             icons[i].canvasGroup.Visible = false;
