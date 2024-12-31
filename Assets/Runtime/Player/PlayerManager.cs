@@ -1,4 +1,6 @@
+using MyTool;
 using Services;
+using Services.Event;
 using Services.Save;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +10,16 @@ using UnityEngine;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
-    public static PlayerManager FindInstance()
-    {
-        return GameObject.Find(nameof(PlayerManager)).GetComponent<PlayerManager>();
-    }
+    private IEventSystem eventSystem;
 
     public List<PlayerData> playerList;
     public List<Equipment> unusedEquipmentList;
 
-    public List<int> selectedIndicies;
+    [SerializeField]
+    private SerializedHashSet<int> selectedIndices;
+
+    private IsometricGridManager igm;
+    private SpawnController spawnController;
 
     public PlayerData Find(string entityName)
     {
@@ -56,6 +59,37 @@ public class PlayerManager : MonoBehaviour
         {
             pawn.EquipmentManager.Equip(data.equipmentList[i]);
         }
+    }
+
+    private void AfterLoadScene(int sceneIndex)
+    {
+        if (sceneIndex <= 2)
+            return;
+
+        igm = IsometricGridManager.FindInstance();
+        spawnController = igm.GetComponentInChildren<SpawnController>();
+        int spawnIndex = 0;
+        foreach (int index in selectedIndices)
+        {
+            GameObject prefab = playerList[index].prefab;
+            PawnEntity pawn = spawnController.Spawn(prefab, spawnIndex);
+            ApplyPlayerData(pawn);
+        }
+    }
+
+    private void Awake()
+    {
+        eventSystem = ServiceLocator.Get<IEventSystem>();
+    }
+
+    private void OnEnable()
+    {
+        eventSystem.AddListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
+    }
+
+    private void OnDisable()
+    {
+        eventSystem.RemoveListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
     }
 
     private void Update()

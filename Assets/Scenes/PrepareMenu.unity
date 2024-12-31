@@ -935,7 +935,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e2b1d459c0b5bfa4d9f570cb71957de4, type: 2}
   unusedEquipmentList:
   - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
-  selectedIndicies: 00000000
+  selectedIndices:
+    list: 00000000
 --- !u!114 &1404961335
 MonoBehaviour:
   m_ObjectHideFlags: 0

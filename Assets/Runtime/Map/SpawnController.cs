@@ -1,53 +1,41 @@
-using Services;
-using Services.Event;
+using EditorExtend.GridEditor;
 using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
-    private IEventSystem eventSystem;
-    private PlayerManager playerManager;
+    private IsometricGridManager igm;
 
-    private void BeforeBattle()
-    {
-        SpawnPoint[] points = GetComponentsInChildren<SpawnPoint>();
-        int i = 0;
-        for (; i < playerManager.selectedIndicies.Count; i++)
-        {
-            int index = playerManager.selectedIndicies[i];
-            Vector3Int temp = points[i].CellPosition;
-            Destroy(points[i].gameObject);
-            Spawn(playerManager.playerList[index].prefab, temp);
-        }
-        for (; i < points.Length; i++)
-        {
-            Destroy(points[i].gameObject);
-        }
-    }
+    private SpawnPoint[] points;
 
-    public void Spawn(GameObject prefab, Vector3Int point)
+    public PawnEntity Spawn(GameObject prefab, int index)
     {
+        Vector3Int cellPosition = points[index].CellPosition;
+        points[index].gameObject.SetActive(false);
+
+        GridObject gridObject = igm.GetObject(cellPosition);
+        if (gridObject != null)
+            Destroy(gridObject.gameObject);
         GameObject obj = Instantiate(prefab, transform);
         obj.name = prefab.name;
         PawnEntity pawn = obj.GetComponent<PawnEntity>();
-        pawn.MovableGridObject.CellPosition = point;
+        pawn.MovableGridObject.CellPosition = cellPosition;
         pawn.MovableGridObject.Refresh();
-        playerManager.ApplyPlayerData(pawn);
+        return pawn;
+    }
+
+    public void Destroy(int index)
+    {
+        Vector3Int cellPosition = points[index].CellPosition;
+        GridObject gridObject = igm.GetObject(cellPosition);
+        if(gridObject != null)
+            Destroy(gridObject.gameObject);
+        points[index].gameObject.SetActive(true);
     }
 
 
     private void Awake()
     {
-        playerManager = PlayerManager.FindInstance();
-        eventSystem = ServiceLocator.Get<IEventSystem>();
-    }
-
-    private void OnEnable()
-    {
-        eventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
-    }
-
-    private void OnDisable()
-    {
-        eventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
+        igm = GetComponentInParent<IsometricGridManager>();
+        points = GetComponentsInChildren<SpawnPoint>();
     }
 }
