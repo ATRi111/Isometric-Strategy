@@ -46,5 +46,13 @@ namespace Services.Event
         /// Entity激活后，参数：Entity
         /// </summary>
         AfterEntityEnable,
+        /// <summary>
+        /// 显示角色面板
+        /// </summary>
+        ShowPawnPanel,
+        /// <summary>
+        /// 隐藏角色面板
+        /// </summary>
+        HidePawnPanel,
     }
 }

@@ -10,6 +10,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager FindInstance()
+    {
+        return GameObject.Find(nameof(PlayerManager)).GetComponent<PlayerManager>();
+    }
+
     private IEventSystem eventSystem;
 
     public List<PlayerData> playerList;
@@ -29,6 +34,16 @@ public class PlayerManager : MonoBehaviour
                 return playerList[i];
         }
         return null;
+    }
+
+    public int FindIndex(string entityName)
+    {
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            if (playerList[i].prefab.name == entityName)
+                return i;
+        }
+        return -1;
     }
 
     public void UpdatePlayerData(PawnEntity pawn)
