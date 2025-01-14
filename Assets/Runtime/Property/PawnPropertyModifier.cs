@@ -1,6 +1,8 @@
 using Character;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 [System.Serializable]
 public class PawnPropertyModifier
@@ -37,7 +39,10 @@ public class PawnPropertyModifier
             {
                 case EModifyMethod.DirectAdd:
                 case EModifyMethod.FinalAdd:
-                    sb.Append(modifier.value.ToString("+0.##;-0.##;0"));
+                    if (Mathf.Abs(modifier.value) > 1)
+                        sb.Append(modifier.value.ToString("+0.##;-0.##;0"));
+                    else
+                        sb.Append(modifier.value.ToString("+0%;-0%;0"));
                     break;
                 case EModifyMethod.DirectMultiply:
                 case EModifyMethod.FinalMultiply:

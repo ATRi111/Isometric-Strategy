@@ -9,6 +9,7 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     protected IEventSystem eventSystem;
     protected GameManager gameManager;
+    [SerializeField]
     protected string message;
     [HideInInspector]
     public CanvasGroupPlus canvasGroup;

@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     public List<PlayerData> playerList;
     public List<Equipment> unusedEquipmentList;
+    public List<PawnEntity> spawnedPlayers;
 
     [SerializeField]
     private SerializedHashSet<int> selectedIndices;
@@ -46,6 +47,9 @@ public class PlayerManager : MonoBehaviour
         return -1;
     }
 
+    /// <summary>
+    /// 将当前角色状态记录到数据中
+    /// </summary>
     public void UpdatePlayerData(PawnEntity pawn)
     {
         string entityName = pawn.gameObject.name;
@@ -62,6 +66,9 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 将记录的数据应用到角色上
+    /// </summary>
     public void ApplyPlayerData(PawnEntity pawn)
     {
         string entityName = pawn.gameObject.name;
@@ -83,13 +90,24 @@ public class PlayerManager : MonoBehaviour
 
         igm = IsometricGridManager.FindInstance();
         spawnController = igm.GetComponentInChildren<SpawnController>();
-        int spawnIndex = 0;
+        //TODO:修改出场角色
+        int count = 0;
         foreach (int index in selectedIndices)
         {
             GameObject prefab = playerList[index].prefab;
-            PawnEntity pawn = spawnController.Spawn(prefab, spawnIndex);
+            PawnEntity pawn = spawnController.Spawn(prefab, count);
             ApplyPlayerData(pawn);
+            spawnedPlayers.Add(pawn);
+            count++;
         }
+    }
+
+    private void AfterUnLoadScene(int sceneIndex)
+    {
+        if (sceneIndex <= 2)
+            return;
+
+        spawnedPlayers.Clear();
     }
 
     private void Awake()
@@ -100,11 +118,13 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         eventSystem.AddListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
+        eventSystem.AddListener<int>(EEvent.AfterUnLoadScene, AfterUnLoadScene);
     }
 
     private void OnDisable()
     {
         eventSystem.RemoveListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
+        eventSystem.RemoveListener<int>(EEvent.AfterUnLoadScene, AfterUnLoadScene);
     }
 
     private void Update()

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fba9b5512335254096fce636f83ea8f, type: 3}
   m_Name: "\u667A\u529B"
   m_EditorClassIdentifier: 
+  description: "\u4E3A\u53D7\u667A\u529B\u52A0\u6210\u7684\u6280\u80FD\u63D0\u4F9B\u653B\u51FB\u529B"

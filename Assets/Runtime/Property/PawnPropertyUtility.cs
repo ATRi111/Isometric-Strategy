@@ -1,12 +1,11 @@
 using Services;
 using Services.Asset;
-using UnityEngine;
 
-public class PawnPropertyUtility : MonoBehaviour
+public static class PawnPropertyUtility
 {
     private static readonly PawnPropertyDict PropertyDict;
 
-    public FindPawnPropertySO GetProperty(string propertyName)
+    public static FindPawnPropertySO GetProperty(string propertyName)
     {
         return PropertyDict[propertyName];
     }
@@ -14,5 +13,6 @@ public class PawnPropertyUtility : MonoBehaviour
     static PawnPropertyUtility()
     {
         PropertyDict = ServiceLocator.Get<IAssetLoader>().Load<PawnPropertyDict>("´ÊÌõ×Öµä");
+        PropertyDict.Initialize();
     }
 }

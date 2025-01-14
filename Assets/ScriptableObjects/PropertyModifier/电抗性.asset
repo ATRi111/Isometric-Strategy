@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7eb0f39425f8f047a9d9dea1129842a, type: 3}
   m_Name: "\u7535\u6297\u6027"
   m_EditorClassIdentifier: 
+  description: "\u53D7\u5230\u7535\u4F24\u5BB3\u65F6\u7684\u9632\u5FA1\u529B"
   damageType: 6
