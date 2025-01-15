@@ -1202,12 +1202,28 @@ MonoBehaviour:
   playerList:
   - prefab: {fileID: 2338041512611947571, guid: 2db685c6ddb7c154a92ff6a155671845, type: 3}
     equipmentList:
+    - {fileID: 11400000, guid: 4027596200e3f4b45b4133264478549b, type: 2}
+    - {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
+  - prefab: {fileID: 2338041512611947571, guid: 38994533f49afe749b76c46d2e827f49, type: 3}
+    equipmentList:
+    - {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}
+    - {fileID: 11400000, guid: 249109d1dbc0c4448bc04b1ae3482501, type: 2}
+    - {fileID: 11400000, guid: 1f9727714dcfbb6448d8ca2e2504ebcd, type: 2}
+  - prefab: {fileID: 2338041512611947571, guid: 3e633e411c78c684f959d05d1d3ed077, type: 3}
+    equipmentList:
+    - {fileID: 11400000, guid: 6dce1efcbd7097c4ea13491534b0919d, type: 2}
+    - {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
+    - {fileID: 11400000, guid: 79f2949b0f34cb34e966bacb98f2e164, type: 2}
+  - prefab: {fileID: 2338041512611947571, guid: 130a1e69cb57daa4a9042d961ef8bd39, type: 3}
+    equipmentList:
     - {fileID: 11400000, guid: e2b1d459c0b5bfa4d9f570cb71957de4, type: 2}
+    - {fileID: 11400000, guid: 925a77553499bca40885a6f65b31a7db, type: 2}
+    - {fileID: 11400000, guid: ef74794378470c242b6d31c33aa7857d, type: 2}
   unusedEquipmentList:
   - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
   spawnedPlayers: []
   selectedIndices:
-    list: 00000000
+    list: 00000000010000000200000003000000
 --- !u!114 &1404961335
 MonoBehaviour:
   m_ObjectHideFlags: 0

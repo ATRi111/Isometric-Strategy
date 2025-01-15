@@ -9,9 +9,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: race
+      value: 
+      objectReference: {fileID: 11400000, guid: e015e551b079c764380da916d1c2eb15, type: 2}
+    - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: pClass
       value: 
-      objectReference: {fileID: 11400000, guid: a10d616be3b731146954ddf04cfe0dd2, type: 2}
+      objectReference: {fileID: 11400000, guid: d3e6d06f14e62a1498451ca22436d3a6, type: 2}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: faction
       value: 0
@@ -26,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: actionTime.defaultValue
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: defaultProperty.actionTime
@@ -78,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: "\u534A\u8EAB\u4EBA\u5F29\u624B"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -9,9 +9,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: race
+      value: 
+      objectReference: {fileID: 11400000, guid: 80d0888e872e98f4bb15b0b17298f770, type: 2}
+    - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: pClass
       value: 
-      objectReference: {fileID: 11400000, guid: a10d616be3b731146954ddf04cfe0dd2, type: 2}
+      objectReference: {fileID: 11400000, guid: 0c4d6825ca201534a9a97458c5adf663, type: 2}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: faction
       value: 0
@@ -26,11 +30,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: actionTime.defaultValue
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: defaultProperty.actionTime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508710216947100420, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: dropAbility.defaultValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508710216947100420, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: moveAbility.defaultValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508710216947100420, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: climbAbility.defaultValue
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5737828582266420397, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: "\u8725\u8734\u4EBA\u6218\u58EB"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
