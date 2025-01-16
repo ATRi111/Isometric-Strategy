@@ -1,6 +1,7 @@
 using EditorExtend;
 using MyTool;
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(PawnEntity))]
 public class PawnEntityEditor : AutoEditor
@@ -17,7 +18,8 @@ public class PawnEntityEditor : AutoEditor
         race.PropertyField("种族");
         actionTime.PropertyField("基础行动时间");
         speedUpRate.PropertyField("加速率");
-        time.IntField("累积等待时间");
+        if (Application.isPlaying)
+            time.IntField("累积等待时间");
         foldout = AutoDictionaryDrawerHelper.OnInspectorGUI(foldout, "角色参数", (target as PawnEntity).parameterDict.dict);
     }
 }
