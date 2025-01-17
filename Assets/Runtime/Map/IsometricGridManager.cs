@@ -8,19 +8,23 @@ using UnityEngine;
 [RequireComponent(typeof(PerspectiveManager))]
 public class IsometricGridManager : IsometricGridManagerBase
 {
-    public static new IsometricGridManager FindInstance()
+    private static IsometricGridManager instance;
+    public static IsometricGridManager Instance
     {
-        return GameObject.Find(nameof(IsometricGridManager)).GetComponent<IsometricGridManager>();
-    }
-
-    static IsometricGridManager()
-    {
-        GridManagerBase.FindInstance = FindInstance;
+        get
+        {
+            if(instance == null)
+            {
+                GameObject obj = GameObject.Find(nameof(IsometricGridManager));
+                if (obj != null)
+                    instance = obj.GetComponent<IsometricGridManager>();
+            }
+            return instance;
+        }
     }
 
     private readonly Dictionary<Vector3Int, Entity> entityDict = new();
     public Dictionary<Vector3Int,Entity> EntityDict => entityDict;
-    public PerspectiveManager PerspectiveController { get; private set; }
 
     public override void Clear()
     {
@@ -28,16 +32,19 @@ public class IsometricGridManager : IsometricGridManagerBase
         entityDict.Clear();
     }
 
-    public override void AddObject(GridObject gridObject)
+    public override bool TryAddObject(GridObject gridObject)
     {
-        base.AddObject(gridObject);
+        if (!base.TryAddObject(gridObject))
+            return false;
+
         if (gridObject.TryGetComponent<Entity>(out var entity))
             entityDict.Add(gridObject.CellPosition, entity);
+        return true;
     }
 
-    public override GridObject RemoveObject(Vector3Int cellPosition)
+    public override GridObject TryRemoveObject(Vector3Int cellPosition)
     {
-        GridObject gridObject = base.RemoveObject(cellPosition);
+        GridObject gridObject = base.TryRemoveObject(cellPosition);
         if(gridObject is MovableGridObject)
         {
             entityDict.Remove(cellPosition);
@@ -156,10 +163,5 @@ public class IsometricGridManager : IsometricGridManagerBase
             }
         }
         return null;
-    }
-
-    private void Awake()
-    {
-        PerspectiveController = GetComponent<PerspectiveManager>();
     }
 }

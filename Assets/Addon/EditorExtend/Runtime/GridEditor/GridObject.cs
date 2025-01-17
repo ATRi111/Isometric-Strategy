@@ -23,14 +23,17 @@ namespace EditorExtend.GridEditor
         /// </summary>
         public int referenceCount;
 
-        protected void Register()
+        public void Register()
         {
-            Manager.AddObject(this);
+            //是Manager的子物体才可注册
+            if(Manager != null)
+                Manager.TryAddObject(this);
         }
 
-        protected virtual void Unregister()
+        public virtual void Unregister()
         {
-            Manager.RemoveObject(CellPosition);
+            //是Manager的子物体才可取消注册
+            Manager.TryRemoveObject(CellPosition);
         }
 
         #endregion
@@ -46,7 +49,8 @@ namespace EditorExtend.GridEditor
                 if (referenceCount == 0)
                 {
                     cellPosition = value;
-                    Manager.AddObject(this);
+                    if (Manager != null)
+                        Manager.TryAddObject(this);
                     Refresh();
                 }
                 else if (referenceCount == 1)
@@ -54,8 +58,9 @@ namespace EditorExtend.GridEditor
                     if (value != cellPosition)
                     {
                         Vector3Int prev = cellPosition;
-                        cellPosition = value;
-                        Manager.RelocateObject(this, prev);
+                        cellPosition = value; 
+                        if (Manager != null)
+                            Manager.RelocateObject(this, prev);
                     }
                     Refresh();
                 }

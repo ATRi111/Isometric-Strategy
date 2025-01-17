@@ -8,7 +8,7 @@ public class ActionIconPerspectiveController : PerspectiveController
     {
         if (icon.action == null)
             return false;
-        return perspectiveController.CoverCheck(icon.action.target + Vector3Int.back);
+        return perspectiveManager.CoverCheck(icon.action.target + Vector3Int.back);
     }
 
     protected override void Awake()

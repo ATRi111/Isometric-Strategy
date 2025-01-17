@@ -12,7 +12,7 @@ public class PawnPanel : MonoBehaviour
 
     private CanvasGroupPlus canvasGroup;
 
-    public Action<PawnEntity> RefreshProperty;
+    public Action<PawnEntity> RefreshAll;
 
     public Dictionary<string, float> propertyChangeDict = new();
     public Action<PawnEntity> RefreshPropertyChange;
@@ -20,7 +20,11 @@ public class PawnPanel : MonoBehaviour
 
 
     public int selectedIndex;
-    public PawnEntity SelectedPawn => playerManager.spawnedPlayers[selectedIndex];
+    /// <summary>
+    /// 当前查看的角色列表
+    /// </summary>
+    public List<PawnEntity> pawnList;
+    public PawnEntity SelectedPawn => pawnList[selectedIndex];
 
     public float GetPropertyChange(string propertyName)
     {
@@ -32,7 +36,7 @@ public class PawnPanel : MonoBehaviour
     private void Show()
     {
         canvasGroup.Visible = true;
-        RefreshProperty?.Invoke(SelectedPawn);
+        RefreshAll?.Invoke(SelectedPawn);
         RefreshPropertyChange?.Invoke(SelectedPawn);
     }
 
@@ -64,7 +68,12 @@ public class PawnPanel : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if (!canvasGroup.Visible)
+            {
+                pawnList.Clear();
+                pawnList.AddRange(playerManager.playerList);
+                selectedIndex = 0;
                 Show();
+            }
             else
                 Hide();
         }

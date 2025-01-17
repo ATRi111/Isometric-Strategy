@@ -8,7 +8,7 @@ public class DebugPlanPerspectiveController : PerspectiveController
     {
         if(ui.plan == null)
             return false;
-        return perspectiveController.CoverCheck(ui.plan.action.target + Vector3Int.back);
+        return perspectiveManager.CoverCheck(ui.plan.action.target + Vector3Int.back);
     }
 
     protected override void Awake()

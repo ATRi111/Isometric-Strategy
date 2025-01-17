@@ -6,16 +6,7 @@ using UnityEngine.Events;
 
 public class PathFindingManager : MonoBehaviour
 {
-    private IsometricGridManager igm;
-    private IsometricGridManager Igm
-    {
-        get
-        {
-            if (igm == null)
-                igm = IsometricGridManager.FindInstance();
-            return igm;
-        }
-    }
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
 
     [SerializeField]
     private PathFindingProcess findRoute;

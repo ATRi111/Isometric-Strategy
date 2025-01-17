@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SkillTrajectory : MonoBehaviour
 {
-    private IsometricGridManager igm;
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
     private SkillUIManager skillUIManager;
     private LineRenderer lineRenderer;
+
     private PawnAction currentAction;
+
     private Vector3[] points;
     [SerializeField]
     private Color color_hit;
@@ -22,11 +24,11 @@ public class SkillTrajectory : MonoBehaviour
         ProjectileSkill skill = action.skill as ProjectileSkill;
         if (skill != null)
         {
-            GridObject victim = skill.HitCheck(action.agent, igm, action.target, trajectory);
+            GridObject victim = skill.HitCheck(action.agent, Igm, action.target, trajectory);
             points = new Vector3[trajectory.Count];
             for (int i = 0; i < trajectory.Count; i++)
             {
-                points[i] = igm.CellToWorld(trajectory[i]);
+                points[i] = Igm.CellToWorld(trajectory[i]);
             }
             bool hitEntity = victim != null && victim.GetComponent<Entity>() != null;
             Color color = hitEntity ? color_hit : color_miss;
@@ -60,7 +62,6 @@ public class SkillTrajectory : MonoBehaviour
 
     private void Awake()
     {
-        igm = IsometricGridManager.FindInstance();
         skillUIManager = GetComponentInParent<SkillUIManager>();
         lineRenderer = GetComponent<LineRenderer>();
     }

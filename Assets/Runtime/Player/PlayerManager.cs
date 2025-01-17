@@ -1,7 +1,7 @@
-using MyTool;
 using Services;
 using Services.Event;
 using Services.Save;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,33 +15,36 @@ public class PlayerManager : MonoBehaviour
         return GameObject.Find(nameof(PlayerManager)).GetComponent<PlayerManager>();
     }
 
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
     private IEventSystem eventSystem;
-
-    public List<PlayerData> playerList;
-    public List<Equipment> unusedEquipmentList;
-    public List<PawnEntity> spawnedPlayers;
-
-    [SerializeField]
-    private SerializedHashSet<int> selectedIndices;
-
-    private IsometricGridManager igm;
     private SpawnController spawnController;
+
+    public List<PlayerData> playerDataList;
+    public List<Equipment> unusedEquipmentList;
+    [NonSerialized]
+    public List<PawnEntity> playerList = new();
+
+    /// <summary>
+    /// 各角色是否选中要出场
+    /// </summary>
+    [SerializeField]
+    private List<bool> isSelected;
 
     public PlayerData Find(string entityName)
     {
-        for (int i = 0; i < playerList.Count; i++)
+        for (int i = 0; i < playerDataList.Count; i++)
         {
-            if(playerList[i].prefab.name == entityName)
-                return playerList[i];
+            if(playerDataList[i].prefab.name == entityName)
+                return playerDataList[i];
         }
         return null;
     }
 
     public int FindIndex(string entityName)
     {
-        for (int i = 0; i < playerList.Count; i++)
+        for (int i = 0; i < playerDataList.Count; i++)
         {
-            if (playerList[i].prefab.name == entityName)
+            if (playerDataList[i].prefab.name == entityName)
                 return i;
         }
         return -1;
@@ -56,7 +59,7 @@ public class PlayerManager : MonoBehaviour
         PlayerData data = Find(entityName);
         if (data == null)
         {
-            playerList.Add(data);
+            playerDataList.Add(data);
         }
         List<Equipment> temp = new();
         pawn.EquipmentManager.GetAll(temp);
@@ -88,17 +91,12 @@ public class PlayerManager : MonoBehaviour
         if (sceneIndex <= 2)
             return;
 
-        igm = IsometricGridManager.FindInstance();
-        spawnController = igm.GetComponentInChildren<SpawnController>();
-        //TODO:修改出场角色
-        int count = 0;
-        foreach (int index in selectedIndices)
+        spawnController = Igm.GetComponentInChildren<SpawnController>();
+
+        for (int i = 0; i < isSelected.Count; i++)
         {
-            GameObject prefab = playerList[index].prefab;
-            PawnEntity pawn = spawnController.Spawn(prefab, count);
-            ApplyPlayerData(pawn);
-            spawnedPlayers.Add(pawn);
-            count++;
+            if (isSelected[i])
+                Spawn(playerList[i]);
         }
     }
 
@@ -107,12 +105,64 @@ public class PlayerManager : MonoBehaviour
         if (sceneIndex <= 2)
             return;
 
-        spawnedPlayers.Clear();
+        for (int i = 0; i < isSelected.Count; i++)
+        {
+            Unselect(i);
+        }
+    }
+
+    /// <summary>
+    /// 创建角色（挂载到自身）
+    /// </summary>
+    public void Generate(PlayerData data)
+    {
+        GameObject obj = Instantiate(data.prefab, transform);
+        obj.name = data.prefab.name;
+        playerList.Add(obj.GetComponent<PawnEntity>());
+    }
+    /// <summary>
+    /// 生成角色（挂载在自身的角色移入场景）
+    /// </summary>
+    public void Spawn(PawnEntity pawn)
+    {
+        spawnController.Spawn(pawn);
+        pawn.gameObject.SetActive(true);
+        ApplyPlayerData(pawn);
+    }
+    /// <summary>
+    /// 回收角色（挂载在场景的角色移回自身）
+    /// </summary>
+    public void Recycle(PawnEntity pawn)
+    {
+        spawnController.Recycle(pawn);
+        pawn.transform.SetParent(transform);
+        pawn.gameObject.SetActive(true);
+    }
+
+    public void Select(int index)
+    {
+        if (!isSelected[index])
+        {
+            isSelected[index] = true;
+            Spawn(playerList[index]);
+        }
+    }
+    public void Unselect(int index)
+    {
+        if (isSelected[index])
+        {
+            isSelected[index] = false;
+            Recycle(playerList[index]);
+        }
     }
 
     private void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
+        for (int i = 0; i < playerDataList.Count; i++)
+        {
+            Generate(playerDataList[i]);
+        }
     }
 
     private void OnEnable()

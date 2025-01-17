@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class SelectActionUI : MonoBehaviour
 {
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
     private SkillUIManager skillUIManager;
     private IObjectManager objectManager;
-    private IsometricGridManager igm;
+
     private readonly List<PawnAction> currentActions = new();
     public bool isSelecting;
 
@@ -20,7 +21,7 @@ public class SelectActionUI : MonoBehaviour
         skillUIManager.currentPawn.Brain.MakeAction(skill, currentActions);
         for (int i = 0; i < currentActions.Count; i++)
         {
-            Vector3 world = igm.CellToWorld(currentActions[i].target);
+            Vector3 world = Igm.CellToWorld(currentActions[i].target);
             IMyObject obj = objectManager.Activate("ActionIcon", world, Vector3.zero, transform);
             obj.Transform.SetLossyScale(Vector3.one);
             ActionIcon icon = obj.Transform.GetComponent<ActionIcon>();
@@ -38,7 +39,6 @@ public class SelectActionUI : MonoBehaviour
     {
         skillUIManager = SkillUIManager.FindInstance();
         objectManager = ServiceLocator.Get<IObjectManager>();
-        igm = IsometricGridManager.FindInstance();
     }
 
     private void OnEnable()

@@ -13,9 +13,9 @@ public class PawnPropertyModifier
     {
         for(int i = 0;i < modifiers.Count;i++)
         {
-            FindPawnPropertySO ppm = modifiers[i].so as FindPawnPropertySO;
-            ppm.pawn = pawn;
-            modifiers[i].Register(ppm.FindProperty());
+            FindPawnPropertySO fpp = modifiers[i].so as FindPawnPropertySO;
+            fpp.pawn = pawn;
+            modifiers[i].Register(fpp.FindProperty());
         }
     }
 
@@ -23,9 +23,9 @@ public class PawnPropertyModifier
     {
         for (int i = 0; i < modifiers.Count; i++)
         {
-            FindPawnPropertySO ppm = modifiers[i].so as FindPawnPropertySO;
-            ppm.pawn = pawn;
-            modifiers[i].Unregister(ppm.FindProperty());
+            FindPawnPropertySO fpp = modifiers[i].so as FindPawnPropertySO;
+            fpp.pawn = pawn;
+            modifiers[i].Unregister(fpp.FindProperty());
         }
     }
 

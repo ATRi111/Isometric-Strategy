@@ -3,7 +3,7 @@ using UIExtend;
 public abstract class PerspectiveController : AlphaController
 {
     protected CanvasGroupPlus canvasGroup;
-    protected PerspectiveManager perspectiveController;
+    protected PerspectiveManager perspectiveManager;
     public float alphaMultiplier_perspectiveMode = 0.1f;
 
     protected abstract bool CoverCheck();
@@ -33,19 +33,19 @@ public abstract class PerspectiveController : AlphaController
     protected override void Awake()
     {
         base.Awake();
-        perspectiveController = IsometricGridManager.FindInstance().PerspectiveController;
+        perspectiveManager = PerspectiveManager.FindInstance();
         canvasGroup = GetComponentInChildren<CanvasGroupPlus>();
     }
 
     protected virtual void OnEnable()
     {
-        perspectiveController.EnterPerspectiveMode += EnterPerspectiveMode;
-        perspectiveController.ExitPerspectiveMode += ExitPerspectiveMode;
+        perspectiveManager.EnterPerspectiveMode += EnterPerspectiveMode;
+        perspectiveManager.ExitPerspectiveMode += ExitPerspectiveMode;
     }
 
     protected virtual void OnDisable()
     {
-        perspectiveController.EnterPerspectiveMode -= EnterPerspectiveMode;
-        perspectiveController.ExitPerspectiveMode -= ExitPerspectiveMode;
+        perspectiveManager.EnterPerspectiveMode -= EnterPerspectiveMode;
+        perspectiveManager.ExitPerspectiveMode -= ExitPerspectiveMode;
     }
 }

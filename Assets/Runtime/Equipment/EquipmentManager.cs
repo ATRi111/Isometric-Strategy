@@ -35,6 +35,9 @@ public class EquipmentManager : CharacterComponentBase
         }
     }
 
+    /// <summary>
+    /// 获取slotType类型的第index个装备槽
+    /// </summary>
     public EquipmentSlot Get(ESlotType slotType, int index)
     {
         for (int i = 0; i < slots.Count; i++)
@@ -49,7 +52,10 @@ public class EquipmentManager : CharacterComponentBase
         throw new System.ArgumentException();
     }
 
-    private EquipmentSlot FirstEmpty(ESlotType slotType)
+    /// <summary>
+    /// 获取slotType类型的第一个空余装备槽（若无空余则返回第一个装备槽）
+    /// </summary>
+    private EquipmentSlot GetSlot(ESlotType slotType)
     {
         for (int i = 0; i < slots.Count; i++)
         {
@@ -58,13 +64,16 @@ public class EquipmentManager : CharacterComponentBase
                  return slots[i];
             }
         }
-        return null;
+        return Get(slotType, 0);
     }
 
+    /// <summary>
+    /// 装上装备（返回被卸下的装备）
+    /// </summary>
     public Equipment Equip(Equipment equipment)
     {
         Equipment ret = null;
-        EquipmentSlot slot = FirstEmpty(equipment.slotType) ?? Get(equipment.slotType, 0);
+        EquipmentSlot slot = GetSlot(equipment.slotType);
         if (slot.equipment != null)
         {
             ret = slot.equipment;
@@ -72,9 +81,13 @@ public class EquipmentManager : CharacterComponentBase
         }
         equipment.Register(pawn);
         slot.equipment = equipment;
+        pawn.RefreshProperty();
         return ret;
     }
 
+    /// <summary>
+    /// 卸下装备（返回被卸下的装备）
+    /// </summary>
     public Equipment Unequip(ESlotType slotType, int index)
     {
         EquipmentSlot slot = Get(slotType, index);
@@ -83,6 +96,7 @@ public class EquipmentManager : CharacterComponentBase
             slot.equipment.Unregister(pawn);
             return slot.equipment;
         }
+        pawn.RefreshProperty();
         return null;
     }
 
@@ -103,5 +117,6 @@ public class EquipmentManager : CharacterComponentBase
                 slots[i].equipment.Unregister(pawn);
             slots[i].equipment = null;
         }
+        pawn.RefreshProperty();
     }
 }

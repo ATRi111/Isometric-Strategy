@@ -6,7 +6,7 @@ public class HPUIPerspectivController : PerspectiveController
     {
         if(hpUI.entity == null)
             return false;
-        return perspectiveController.CoverCheck(hpUI.entity.GridObject.CellPosition);
+        return perspectiveManager.CoverCheck(hpUI.entity.GridObject.CellPosition);
     }
 
     protected override void Awake()

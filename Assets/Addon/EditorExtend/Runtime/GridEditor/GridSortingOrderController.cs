@@ -13,7 +13,7 @@ namespace EditorExtend.GridEditor
             get
             {
                 if (manager == null)
-                    manager = GridManagerBase.FindInstance?.Invoke();
+                    manager = GetComponentInParent<GridManagerBase>();
                 return manager;
             }
         }
@@ -30,7 +30,8 @@ namespace EditorExtend.GridEditor
         }
         protected virtual void Update()
         {
-            SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(transform.position) + extraSortingOrder;
+            if(Manager != null)
+                SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(transform.position) + extraSortingOrder;
         }
 
         private void OnDrawGizmos()

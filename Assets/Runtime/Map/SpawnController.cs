@@ -7,31 +7,42 @@ public class SpawnController : MonoBehaviour
 
     private SpawnPoint[] points;
 
-    public PawnEntity Spawn(GameObject prefab, int index)
+    public void Spawn(PawnEntity pawn)
     {
-        Vector3Int cellPosition = points[index].CellPosition;
-        points[index].gameObject.SetActive(false);
+        for (int i = 0; i < points.Length; i++)
+        {
+            if (points[i].IsEmpty)
+            {
+                points[i].IsEmpty = false;
+                Vector3Int cellPosition = points[i].CellPosition;
+                pawn.transform.SetParent(transform);
+                pawn.GridObject.Register();
+                pawn.MovableGridObject.CellPosition = cellPosition;
+                pawn.MovableGridObject.Refresh();
+                return;
+            }
+        }
 
-        GridObject gridObject = igm.GetObject(cellPosition);
-        if (gridObject != null)
-            Destroy(gridObject.gameObject);
-        GameObject obj = Instantiate(prefab, transform);
-        obj.name = prefab.name;
-        PawnEntity pawn = obj.GetComponent<PawnEntity>();
-        pawn.MovableGridObject.CellPosition = cellPosition;
-        pawn.MovableGridObject.Refresh();
-        return pawn;
+        Debug.LogWarning("没有空余的生成点");
     }
 
-    public void Destroy(int index)
+    public void Recycle(PawnEntity pawn)
     {
-        Vector3Int cellPosition = points[index].CellPosition;
-        GridObject gridObject = igm.GetObject(cellPosition);
-        if(gridObject != null)
-            Destroy(gridObject.gameObject);
-        points[index].gameObject.SetActive(true);
+        for (int i = 0; i < points.Length; i++)
+        {
+            if (!points[i].IsEmpty)
+            {
+                Vector3Int cellPosition = points[i].CellPosition;
+                GridObject obj = igm.GetObject(cellPosition);
+                if (pawn.gameObject == obj)
+                {
+                    pawn.GridObject.Unregister();
+                    points[i].IsEmpty = true;
+                    break;
+                }
+            }
+        }
     }
-
 
     private void Awake()
     {

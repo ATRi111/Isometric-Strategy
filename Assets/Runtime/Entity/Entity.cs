@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Entity : EntityBase
 {
-    public IsometricGridManager Igm { get;protected set; }
+    public IsometricGridManager Igm => IsometricGridManager.Instance;
     public GameManager GameManager { get; protected set; }
     public AnimationManager AnimationManager { get; protected set; }
     public IEventSystem EventSystem { get; protected set; }
@@ -58,7 +58,6 @@ public class Entity : EntityBase
         GameManager = ServiceLocator.Get<GameManager>();
         EventSystem = ServiceLocator.Get<IEventSystem>();
         AnimationManager = ServiceLocator.Get<AnimationManager>();
-        Igm = IsometricGridManager.FindInstance();
     }
 
     protected virtual void OnEnable()

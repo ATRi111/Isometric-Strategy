@@ -18,7 +18,7 @@ public class MovableGridObject : GridObject
         return true;
     }
 
-    public IsometricGridManager Igm { get; protected set; }
+    public IsometricGridManager Igm => IsometricGridManager.Instance;
     public PawnEntity Pawn { get; protected set; }
     public AMover Mover_Default { get; protected set; }
     public AMover Mover_Ranging { get; protected set; }
@@ -31,7 +31,6 @@ public class MovableGridObject : GridObject
     protected override void Awake()
     {
         base.Awake();
-        Igm = Manager as IsometricGridManager;
         Pawn = GetComponentInParent<PawnEntity>();
         MoveController = GetComponentInChildren<GridMoveController>();
         Mover_Default = new AMover_Default(this)

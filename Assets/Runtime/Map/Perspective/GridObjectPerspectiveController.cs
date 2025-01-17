@@ -6,7 +6,7 @@ public class GridObjectPerspectiveController : PerspectiveController
 
     protected override bool CoverCheck()
     {
-        return perspectiveController.CoverCheck(gridObject.CellPosition);
+        return perspectiveManager.CoverCheck(gridObject.CellPosition);
     }
 
     protected override void ExitPerspectiveMode()

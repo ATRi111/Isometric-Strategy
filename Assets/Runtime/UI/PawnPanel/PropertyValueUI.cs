@@ -24,6 +24,6 @@ public class PropertyValueUI : MonoBehaviour
         string propertyName = transform.parent.GetComponent<TextMeshProUGUI>().text;
         so = PawnPropertyUtility.GetProperty(propertyName);
         pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshProperty += Refresh;
+        pawnPanel.RefreshAll += Refresh;
     }
 }

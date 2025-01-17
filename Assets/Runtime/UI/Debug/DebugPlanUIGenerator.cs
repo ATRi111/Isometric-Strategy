@@ -5,16 +5,7 @@ public class DebugPlanUIGenerator : MonoBehaviour
 {
 #if UNITY_EDITOR
     public GameObject prefab;
-    private IsometricGridManager igm;
-    private IsometricGridManager Igm
-    {
-        get
-        {
-            if (igm == null)
-                igm = IsometricGridManager.FindInstance();
-            return igm;
-        }
-    }
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
 
     public PawnBrain brain;
     public int paintIndex;

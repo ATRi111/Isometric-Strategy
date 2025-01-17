@@ -5,7 +5,12 @@ using UnityEngine;
 public class PerspectiveManager : MonoBehaviour
 {
     public static Vector3Int CoverVector = new(1, 1, -2);
-    private IsometricGridManager igm;
+    public static PerspectiveManager FindInstance()
+    {
+        return GameObject.Find(nameof(PerspectiveManager)).GetComponent<PerspectiveManager>();
+    }
+
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
 
     public Action EnterPerspectiveMode;
     public Action ExitPerspectiveMode;
@@ -16,19 +21,14 @@ public class PerspectiveManager : MonoBehaviour
     public bool CoverCheck(Vector3Int position)
     {
         Vector3Int p = position - CoverVector;
-        while (igm.MaxLayerDict.ContainsKey((Vector2Int)p))
+        while (Igm.MaxLayerDict.ContainsKey((Vector2Int)p))
         {
-            GridObject gridObject = igm.GetObject(p);
+            GridObject gridObject = Igm.GetObject(p);
             if (gridObject != null && gridObject.IsGround)
                 return false;
             p -= CoverVector;
         }
         return true;
-    }
-
-    private void Awake()
-    {
-        igm = GetComponent<IsometricGridManager>();
     }
 
     private void Update()

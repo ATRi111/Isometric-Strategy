@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 3856516778560775587}
   - component: {fileID: 4783213863467078949}
   m_Layer: 5
-  m_Name: EntityName
+  m_Name: PawnName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedIndex: 0
+  pawnList: []
 --- !u!1 &2069363724535917921
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +824,7 @@ GameObject:
   - component: {fileID: 7941067661896728036}
   - component: {fileID: 8672853679372795913}
   m_Layer: 5
-  m_Name: Properties
+  m_Name: PropertyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -863,7 +864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -580.4161, y: 0}
+  m_AnchoredPosition: {x: -487, y: 0}
   m_SizeDelta: {x: -1160.832, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4803809397890634773

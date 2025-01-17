@@ -9,16 +9,7 @@ public class DebugANodeGenerator : MonoBehaviour
     public GameObject prefab;
 
     private PathFindingManager pfm;
-    private IsometricGridManager igm;
-    private IsometricGridManager Igm
-    {
-        get
-        {
-            if (igm == null)
-                igm = IsometricGridManager.FindInstance();
-            return igm;
-        }
-    }
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
 
     private void Awake()
     {

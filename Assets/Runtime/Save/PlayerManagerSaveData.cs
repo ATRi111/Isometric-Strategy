@@ -22,10 +22,10 @@ public class PlayerManagerSaveData : SaveData
 
     public override void Load()
     {
-        manager.playerList.Clear();
+        manager.playerDataList.Clear();
         for (int i = 0; i < playerList.Count; i++)
         {
-            manager.playerList.Add(playerList[i].ToPlayerData(assetLoader));
+            manager.playerDataList.Add(playerList[i].ToPlayerData(assetLoader));
         }
         manager.unusedEquipmentList.Clear();
         for (int i = 0; i < unusedEquipmentList.Count;i++)
@@ -38,9 +38,9 @@ public class PlayerManagerSaveData : SaveData
     public override void Save()
     {
         playerList.Clear(); 
-        for (int i = 0; i < manager.playerList.Count; i++)
+        for (int i = 0; i < manager.playerDataList.Count; i++)
         {
-            playerList.Add(new PlayerSaveData(manager.playerList[i]));
+            playerList.Add(new PlayerSaveData(manager.playerDataList[i]));
         }
         unusedEquipmentList.Clear();
         for (int i = 0; i < manager.unusedEquipmentList.Count; i++)

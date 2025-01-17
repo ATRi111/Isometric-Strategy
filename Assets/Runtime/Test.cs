@@ -6,16 +6,8 @@ public class Test : MonoBehaviour
 {
     private Vector3 mid = 0.5f * Vector3.one;
     
-    protected IsometricGridManager igm;
-    public IsometricGridManager Igm
-    {
-        get
-        {
-            if (igm == null)
-                igm = IsometricGridManager.FindInstance();
-            return igm;
-        }
-    }
+    public IsometricGridManager Igm => IsometricGridManager.Instance;
+
     public GridObject result;
 
     public Vector3Int from;
