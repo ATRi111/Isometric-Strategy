@@ -47,7 +47,7 @@ namespace Services.ObjectPools
         /// </summary>
         public void Recycle()
         {
-            if (b_createdByPool && objectPoolAttached != null && transform != null)
+            if (this != null && b_createdByPool && objectPoolAttached != null)
             {
                 transform.SetParent(objectPoolAttached.transform, false);
                 OnRecycle?.Invoke();

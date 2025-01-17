@@ -765,10 +765,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldEntityUI
       objectReference: {fileID: 0}
-    - target: {fileID: 8131570188764883109, guid: 3798627c504029744bb4b68ff872306c, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 243889536}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -998,10 +994,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3452416478542093482, guid: 2269bca2ff02b01439652efc9f4e4b7a, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 243889536}
     - target: {fileID: 8419368922121762108, guid: 2269bca2ff02b01439652efc9f4e4b7a, type: 3}
       propertyPath: m_Name
       value: WorldOverlayUI

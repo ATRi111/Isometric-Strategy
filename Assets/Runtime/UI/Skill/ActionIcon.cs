@@ -1,31 +1,28 @@
-using Services;
-using Services.Event;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ActionIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class ActionIcon : IconUI, IPointerClickHandler
 {
     private IsometricGridManager Igm => IsometricGridManager.Instance;
-    private IEventSystem eventSystem;
+
     private SkillUIManager skillUIManager;
 
     private Image image;
     private Canvas canvas;
     public PawnAction action;
-    protected string message;
+
     public int extraSortingOrder;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public override void OnPointerEnter(PointerEventData eventData)
     {
-        if (!string.IsNullOrEmpty(message))
-            eventSystem.Invoke(EEvent.ShowMessage, (object)this, eventData.position, message);
+        base.OnPointerEnter(eventData);
         skillUIManager.PreviewAction?.Invoke(action);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public override void OnPointerExit(PointerEventData eventData)
     {
-        eventSystem.Invoke(EEvent.HideMessage, (object)this);
+        base.OnPointerExit(eventData);
         skillUIManager.StopPreviewAction?.Invoke(action);
     }
 
@@ -42,21 +39,17 @@ public class ActionIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         canvas.sortingOrder = Igm.CellToSortingOrder(transform.position) + extraSortingOrder;
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-        eventSystem = ServiceLocator.Get<IEventSystem>();
+        base.Awake();
         image = GetComponentInChildren<Image>();
         canvas = GetComponent<Canvas>();
         image.alphaHitTestMinimumThreshold = 0.2f;
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         skillUIManager = SkillUIManager.FindInstance();
-    }
-
-    private void OnDisable()
-    {
-        eventSystem.Invoke(EEvent.HideMessage, (object)this);
     }
 }

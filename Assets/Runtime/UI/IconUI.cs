@@ -14,13 +14,13 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [HideInInspector]
     public CanvasGroupPlus canvasGroup;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (!string.IsNullOrEmpty(message))
             eventSystem.Invoke(EEvent.ShowMessage, (object)this, eventData.position, message);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         eventSystem.Invoke(EEvent.HideMessage, (object)this);
     }
