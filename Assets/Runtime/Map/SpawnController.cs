@@ -16,7 +16,6 @@ public class SpawnController : MonoBehaviour
                 points[i].IsEmpty = false;
                 Vector3Int cellPosition = points[i].CellPosition;
                 pawn.transform.SetParent(transform);
-                pawn.GridObject.Register();
                 pawn.MovableGridObject.CellPosition = cellPosition;
                 pawn.MovableGridObject.Refresh();
                 return;
@@ -36,7 +35,6 @@ public class SpawnController : MonoBehaviour
                 GridObject obj = igm.GetObject(cellPosition);
                 if (pawn.gameObject == obj)
                 {
-                    pawn.GridObject.Unregister();
                     points[i].IsEmpty = true;
                     break;
                 }

@@ -72,7 +72,7 @@ public abstract class AimSkill : Skill
             {
                 for (int j = 0; j < buffOnVictim.Count; j++)
                 {
-                    BuffEffect buffEffect = agent.BuffManager.MockAdd(buffOnAgent[j].so, pawn, buffOnAgent[j].probability);
+                    BuffEffect buffEffect = agent.BuffManager.MockAdd(buffOnVictim[j].so, pawn, buffOnVictim[j].probability);
                     buffEffect.randomValue = Effect.NextInt();
                     ret.effects.Add(buffEffect);
                 }

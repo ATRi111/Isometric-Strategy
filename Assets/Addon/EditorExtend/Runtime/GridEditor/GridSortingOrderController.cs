@@ -7,16 +7,7 @@ namespace EditorExtend.GridEditor
         [Range(0, 9)]
         public int extraSortingOrder;
 
-        private GridManagerBase manager;
-        public GridManagerBase Manager
-        {
-            get
-            {
-                if (manager == null)
-                    manager = GetComponentInParent<GridManagerBase>();
-                return manager;
-            }
-        }
+        private IsometricGridManager Igm => IsometricGridManager.Instance;
 
         private SpriteRenderer spriteRenderer;
         public SpriteRenderer SpriteRenderer
@@ -30,14 +21,14 @@ namespace EditorExtend.GridEditor
         }
         protected virtual void Update()
         {
-            if(Manager != null)
-                SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(transform.position) + extraSortingOrder;
+            if(Igm != null)
+                SpriteRenderer.sortingOrder = Igm.CellToSortingOrder(transform.position) + extraSortingOrder;
         }
 
         private void OnDrawGizmos()
         {
-            if (Manager != null)
-                SpriteRenderer.sortingOrder = Manager.CellToSortingOrder(transform.position) + extraSortingOrder;
+            if (Igm != null)
+                SpriteRenderer.sortingOrder = Igm.CellToSortingOrder(transform.position) + extraSortingOrder;
         }
     }
 }

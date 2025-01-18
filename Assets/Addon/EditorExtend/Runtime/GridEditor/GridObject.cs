@@ -33,7 +33,8 @@ namespace EditorExtend.GridEditor
         public virtual void Unregister()
         {
             //是Manager的子物体才可取消注册
-            Manager.TryRemoveObject(CellPosition);
+            if(Manager != null)
+                Manager.TryRemoveObject(CellPosition);
         }
 
         #endregion

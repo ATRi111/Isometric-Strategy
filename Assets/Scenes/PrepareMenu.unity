@@ -1933,7 +1933,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
   unusedEquipmentList:
   - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
-  isSelected: 01010101
+  isSelected: 01000000
 --- !u!114 &1404961335
 MonoBehaviour:
   m_ObjectHideFlags: 0

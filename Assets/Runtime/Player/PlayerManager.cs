@@ -119,6 +119,7 @@ public class PlayerManager : MonoBehaviour
         GameObject obj = Instantiate(data.prefab, transform);
         obj.name = data.prefab.name;
         playerList.Add(obj.GetComponent<PawnEntity>());
+        obj.SetActive(false);
     }
     /// <summary>
     /// 生成角色（挂载在自身的角色移入场景）
@@ -134,9 +135,9 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void Recycle(PawnEntity pawn)
     {
+        pawn.gameObject.SetActive(false);
         spawnController.Recycle(pawn);
         pawn.transform.SetParent(transform);
-        pawn.gameObject.SetActive(true);
     }
 
     public void Select(int index)

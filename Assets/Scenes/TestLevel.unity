@@ -4332,8 +4332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d20a51230373d4c90bd5fd27b0ba0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5757943998547180498, guid: af79a5fab7291d44db52a82168217cc9, type: 3}
-  mountIndex: 1
+  prefab: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
+  mountIndex: 2
   lockLayer: 0
   layer: 0
 --- !u!114 &1551605951
