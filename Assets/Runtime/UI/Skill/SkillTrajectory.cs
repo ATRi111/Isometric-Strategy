@@ -37,6 +37,7 @@ public class SkillTrajectory : MonoBehaviour
             lineRenderer.SetPositions(points);
             lineRenderer.enabled = true;
         }
+        //TODO:œ‘ æººƒ‹∑∂Œß
     }
 
     private void StopPreviewAction(PawnAction action)

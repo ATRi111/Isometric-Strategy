@@ -1,4 +1,6 @@
+using MyTool;
 using System;
+using System.Text;
 
 [Serializable]
 public class Buff
@@ -65,5 +67,26 @@ public class Buff
     public override int GetHashCode()
     {
         return HashCode.Combine(buffName, startTime);
+    }
+
+    public string Description
+    {
+        get
+        {
+            StringBuilder sb = new();
+            Describe(sb);
+            return sb.ToString();
+        }
+    }
+
+    private void Describe(StringBuilder sb)
+    {
+        sb.AppendLine(buffName.Bold());
+        sb.Append("开始时间:");
+        sb.AppendLine(startTime.ToString());
+        sb.Append("结束时间:");
+        sb.AppendLine(endTime.ToString());
+        sb.AppendLine();
+        sb.Append(so.Description);
     }
 }

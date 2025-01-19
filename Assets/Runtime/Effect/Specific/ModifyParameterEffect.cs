@@ -25,7 +25,7 @@ public class ModifyParameterEffect : Effect
 
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
-        return (value - value_prev) * PawnEntity.ParameterTable.GetValue(parameterName) * pawn.FactionCheck(victim);
+        return (value - value_prev) * PawnEntity.ParameterTable.GetValuePerUnit(parameterName) * pawn.FactionCheck(victim);
     }
 
     public override void Apply()

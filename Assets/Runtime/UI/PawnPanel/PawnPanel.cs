@@ -14,9 +14,10 @@ public class PawnPanel : MonoBehaviour
 
     public Action<PawnEntity> RefreshAll;
 
-    public Dictionary<string, float> propertyChangeDict = new();
-    public Action<PawnEntity> RefreshPropertyChange;
+    public Action<PawnEntity> PreviewPropertyChange;
     public Action StopPreviewPropertyChange;
+
+    public Dictionary<string, float> propertyChangeDict = new();
 
 
     public int selectedIndex;
@@ -37,7 +38,7 @@ public class PawnPanel : MonoBehaviour
     {
         canvasGroup.Visible = true;
         RefreshAll?.Invoke(SelectedPawn);
-        RefreshPropertyChange?.Invoke(SelectedPawn);
+        PreviewPropertyChange?.Invoke(SelectedPawn);
     }
 
     private void Hide()

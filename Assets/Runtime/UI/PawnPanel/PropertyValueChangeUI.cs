@@ -35,6 +35,6 @@ public class PropertyValueChangeUI : MonoBehaviour
         so = PawnPropertyUtility.GetProperty(propertyName);
         pawnPanel = GetComponentInParent<PawnPanel>();
         pawnPanel.RefreshAll += Preview;
-        pawnPanel.RefreshPropertyChange += Preview;
+        pawnPanel.PreviewPropertyChange += Preview;
     }
 }

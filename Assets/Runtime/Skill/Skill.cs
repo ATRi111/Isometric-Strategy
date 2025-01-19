@@ -45,7 +45,7 @@ public abstract class Skill : ScriptableObject
     public virtual void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
         ret.timeEffect.current += MockTime(agent, igm, position, target);
-        HashSet<string> parameterToReset = PawnEntity.ParameterTable.resetParameters.ToHashSet();
+        HashSet<string> parameterToReset = PawnEntity.ParameterTable.GetResetParameters();
         for (int i = 0; i < parameterOnAgent.Count; i++)
         {
             PawnParameterModifier modifier = parameterOnAgent[i];

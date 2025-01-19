@@ -1,3 +1,4 @@
+using MyTool;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,10 +6,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ParameterTable : ScriptableObject
 {
-    public List<Parameter> parameters;
-    public List<string> resetParameters;
+    private Dictionary<string, Parameter> searcher;
+    [SerializeField]
+    private List<Parameter> parameters;
+    [SerializeField]
+    private List<string> resetParameters;
 
-    public int GetValue(string name)
+    public int GetValuePerUnit(string name)
     {
         int i = parameters.FindIndex(x => x.name == name);
         if (i == -1)
