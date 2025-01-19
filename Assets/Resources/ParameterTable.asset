@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parameters:
   - name: "\u88C5\u586B\u6570"
-    value: 75
+    valuePerUnit: 75
+    display: 0
+    description: 
   - name: "\u84C4\u529B\u5C42\u6570"
-    value: 0
+    valuePerUnit: 0
+    display: 0
+    description: 
   - name: "\u65BD\u6CD5\u7B49\u7EA7"
-    value: 50
+    valuePerUnit: 50
+    display: 0
+    description: 
   resetParameters:
   - "\u84C4\u529B\u5C42\u6570"
