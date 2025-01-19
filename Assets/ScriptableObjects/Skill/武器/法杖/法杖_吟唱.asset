@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u6CD5\u6756_\u541F\u5531"
   m_EditorClassIdentifier: 
   displayName: "\u541F\u5531"
+  extraDescription: 
   actionTime: 50
   preConditions:
   - conditionType: 2
