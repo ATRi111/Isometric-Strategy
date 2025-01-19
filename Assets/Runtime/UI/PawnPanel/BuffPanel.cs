@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +15,10 @@ public class BuffPanel : MonoBehaviour
             icons[i].SetBuff(buffs[i]);
             icons[i].canvasGroup.Visible = true;
         }
-        for
+        for(; i < icons.Length;i++ )
+        {
+            icons[i].canvasGroup.Visible = false;
+        }
     }
 
     private void Awake()

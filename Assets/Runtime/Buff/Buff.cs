@@ -5,7 +5,7 @@ using System.Text;
 [Serializable]
 public class Buff
 {
-    public string buffName;
+    public string displayName;
     public int startTime;
     public int endTime;
 
@@ -32,7 +32,7 @@ public class Buff
 
     public Buff(PawnEntity victim, BuffSO so, int startTime)
     {
-        buffName = so.name;
+        displayName = so.name;
         this.victim = victim;
         this.so = so;
         this.startTime = startTime;
@@ -49,7 +49,7 @@ public class Buff
     /// </summary>
     public bool SuperimposeCheck(Buff other)
     {
-        if (buffName != other.buffName)
+        if (displayName != other.displayName)
             return false;
         if (endTime < other.startTime || other.endTime < startTime)
             return false;
@@ -61,12 +61,12 @@ public class Buff
     {
         if (obj is not Buff other)
             return false;
-        return buffName == other.buffName && startTime == other.startTime;
+        return displayName == other.displayName && startTime == other.startTime;
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(buffName, startTime);
+        return HashCode.Combine(displayName, startTime);
     }
 
     public string Description
@@ -81,7 +81,7 @@ public class Buff
 
     private void Describe(StringBuilder sb)
     {
-        sb.AppendLine(buffName.Bold());
+        sb.AppendLine(displayName.Bold());
         sb.Append("开始时间:");
         sb.AppendLine(startTime.ToString());
         sb.Append("结束时间:");
