@@ -19,7 +19,7 @@ MonoBehaviour:
   buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent:
-  - so: {fileID: 11400000, guid: c7d7cbf2fba80e244b375265d4ded4ba, type: 2}
+  - so: {fileID: 11400000, guid: b6c4b4142584b6b46b2aa3d2c208b924, type: 2}
     probability: 100
   powers: []
   buffOnVictim:

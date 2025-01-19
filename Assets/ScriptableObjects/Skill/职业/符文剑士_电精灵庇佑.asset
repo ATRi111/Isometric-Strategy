@@ -19,11 +19,11 @@ MonoBehaviour:
   buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent:
-  - so: {fileID: 11400000, guid: 781f9ea5d9b890345922f54c6709e5e4, type: 2}
+  - so: {fileID: 11400000, guid: 06d8a738e4e00cc4194b1f6e843ffb9a, type: 2}
     probability: 100
   powers: []
   buffOnVictim:
-  - so: {fileID: 11400000, guid: 781f9ea5d9b890345922f54c6709e5e4, type: 2}
+  - so: {fileID: 11400000, guid: e667046168eaea3489a8fddbb3190348, type: 2}
     probability: 100
   minLayer: -32
   maxLayer: 32
