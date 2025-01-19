@@ -1,10 +1,17 @@
 using MyTool;
+using Services;
 using System;
 using System.Text;
 
 [Serializable]
 public class Buff
 {
+    private readonly static GameManager GameManager;
+    static Buff()
+    {
+        GameManager = ServiceLocator.Get<GameManager>();
+    }
+
     public string displayName;
     public int startTime;
     public int endTime;
@@ -82,10 +89,8 @@ public class Buff
     private void Describe(StringBuilder sb)
     {
         sb.AppendLine(displayName.Bold());
-        sb.Append("开始时间:");
-        sb.AppendLine(startTime.ToString());
-        sb.Append("结束时间:");
-        sb.AppendLine(endTime.ToString());
+        sb.Append("剩余时间:");
+        sb.AppendLine((endTime - GameManager.Time).ToString());
         sb.AppendLine();
         sb.Append(so.Description);
     }
