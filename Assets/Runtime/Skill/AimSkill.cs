@@ -7,8 +7,6 @@ using UnityEngine;
 /// </summary>
 public abstract class AimSkill : Skill
 {
-    public const int MaxAccuracy = 100;
-    public int accuracy = MaxAccuracy;
     public List<SkillPower> powers;
     public List<BuffModifier> buffOnVictim;
     public int minLayer = -2, maxLayer = 2;
@@ -40,24 +38,29 @@ public abstract class AimSkill : Skill
         base.Mock(agent, igm, position, target, ret);
         List<Entity> victims = new();
         GetVictims(agent, igm, position, target, victims);
+        //¼ÆËã¸½¼ÓÍþÁ¦
+        List<SkillPower> tempPower = new();
+        tempPower.AddRange(powers);
+        agent.OffenceComponent.ModifyPower?.Invoke(tempPower);
+
         for (int i = 0; i < victims.Count; i++)
         {
             int r = Effect.NextInt();
-            //ÉËº¦
+            //¼ÆËãÉËº¦
             int damage = 0;
             DefenceComponent def = victims[i].DefenceComponent;
-            for (int j = 0; j < powers.Count; j++)
+            for (int j = 0; j < tempPower.Count; j++)
             {
-                float attackPower = agent.OffenceComponent.MockAttackPower(powers[j]);
-                damage += def.MockDamage(powers[j].type, attackPower);
+                float attackPower = agent.OffenceComponent.MockAttackPower(tempPower[j]);
+                damage += def.MockDamage(tempPower[j].type, attackPower);
             }
             int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
-            Effect effect = new HPChangeEffect(victims[i], def.HP, hp, accuracy)
+            Effect effect = new HPChangeEffect(victims[i], def.HP, hp)
             {
                 randomValue = r
             };
             ret.effects.Add(effect);
-            //ËÀÍö
+            //ËÀÍöÅÐ¶¨
             if (hp == 0)
             {
                 effect = new DisableEntityEffect(victims[i])
@@ -66,7 +69,7 @@ public abstract class AimSkill : Skill
                 };
                 ret.effects.Add(effect);
             }
-            //Buff
+            //BuffÅÐ¶¨
             PawnEntity pawn = victims[i] as PawnEntity;
             if(pawn != null)
             {
@@ -84,19 +87,10 @@ public abstract class AimSkill : Skill
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
-        DescribeAccuracy(sb);
         if(powers.Count > 0)
             DescribePower(sb);
         if(buffOnVictim.Count > 0)
             DescribeBuffOnVictim(sb);
-    }
-
-    protected virtual void DescribeAccuracy(StringBuilder sb)
-    {
-        sb.Append("ÃüÖÐÂÊ:");
-        sb.Append(accuracy);
-        sb.Append("%");
-        sb.AppendLine();
     }
 
     protected virtual void DescribePower(StringBuilder sb)

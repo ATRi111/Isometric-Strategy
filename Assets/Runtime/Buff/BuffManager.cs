@@ -42,6 +42,16 @@ public class BuffManager : CharacterComponentBase
         return buffs.Contains(target);
     }
 
+    public Buff FindEnabled(BuffSO so)
+    {
+        foreach(Buff buff in buffs)
+        {
+            if(buff.so == so && buff.Enabled)
+                return buff;
+        }
+        return null;
+    }
+
     public Buff SuprimposeCheck(Buff target)
     {
         foreach(Buff buff in buffs)

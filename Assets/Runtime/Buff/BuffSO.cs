@@ -19,7 +19,7 @@ public class BuffSO : PawnModifierSO
     public ESuperimposeMode superimposeMode = ESuperimposeMode.Refresh;
     public float primitiveValue;
 
-    protected override string TypeName => "状态";
+    protected override string TypeName => "此状态下可用的";
 
     public virtual void Tick(int startTime, int currentTime)
     {

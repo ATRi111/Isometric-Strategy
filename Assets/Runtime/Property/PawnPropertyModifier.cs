@@ -1,5 +1,4 @@
 using Character;
-using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -29,12 +28,13 @@ public class PawnPropertyModifier
         }
     }
 
-    public void Describe(StringBuilder sb)
+    public virtual void Describe(StringBuilder sb)
     {
         for (int i = 0; i < modifiers.Count; i++)
         {
             PropertyModifier modifier = modifiers[i];
-            sb.Append(modifier.so.name);
+            if (modifier.so != null)
+                sb.Append(modifier.so.name);
             switch (modifier.method)
             {
                 case EModifyMethod.DirectAdd:

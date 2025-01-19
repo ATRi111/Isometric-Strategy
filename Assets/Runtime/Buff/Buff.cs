@@ -42,6 +42,9 @@ public class Buff
         so.Tick(startTime, time);
     }
 
+    /// <summary>
+    /// 检查两个Buff是否应当叠加
+    /// </summary>
     public bool SuperimposeCheck(Buff other)
     {
         if (buffName != other.buffName)
@@ -49,12 +52,12 @@ public class Buff
         if (endTime < other.startTime || other.endTime < startTime)
             return false;
         return true;
-     }
+    }
 
+    //同名且起始时间相同的buff只能存在一个
     public override bool Equals(object obj)
     {
-        Buff other = obj as Buff;
-        if(other == null)
+        if (obj is not Buff other)
             return false;
         return buffName == other.buffName && startTime == other.startTime;
     }

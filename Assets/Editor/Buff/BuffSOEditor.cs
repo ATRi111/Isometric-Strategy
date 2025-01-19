@@ -1,7 +1,7 @@
 using EditorExtend;
 using UnityEditor;
 
-[CustomEditor(typeof(BuffSO))]
+[CustomEditor(typeof(BuffSO), true)]
 public class BuffSOEditor : PawnModifierSOEditor
 {
     [AutoProperty]

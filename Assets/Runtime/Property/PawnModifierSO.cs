@@ -1,7 +1,11 @@
+using MyTool;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+///  角色修改器（装备，属性，状态，种族等）
+/// </summary>
 public class PawnModifierSO : ScriptableObject
 {
     public PawnPropertyModifier propertyModifier;
@@ -57,10 +61,14 @@ public class PawnModifierSO : ScriptableObject
         sb.Append("技能：");
         for (int i = 0; i < skillsAttached.Count - 1; i++)
         {
-            sb.Append(skillsAttached[i].displayName);
-            sb.Append(" ");
+            if (skillsAttached[i] != null)
+            {
+                sb.Append(skillsAttached[i].displayName.Bold());
+                sb.Append(" ");
+            }
         }
-        sb.Append(skillsAttached[^1].displayName);
+        if (skillsAttached[^1] != null)
+            sb.Append(skillsAttached[^1].displayName.Bold());
         sb.AppendLine();
     }
 }

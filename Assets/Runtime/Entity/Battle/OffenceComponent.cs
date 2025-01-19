@@ -1,4 +1,6 @@
 using Character;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class OffenceComponent : CharacterComponentBase
@@ -7,6 +9,8 @@ public class OffenceComponent : CharacterComponentBase
     public CharacterProperty dexterity;
     public CharacterProperty intelligence;
     public CharacterProperty mind;
+
+    public Action<List<SkillPower>> ModifyPower;  //给技能附加威力的方法组
 
     /// <summary>
     /// 计算攻击力乘威力
