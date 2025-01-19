@@ -13,7 +13,7 @@ public class ParameterTable : ScriptableObject
         int i = parameters.FindIndex(x => x.name == name);
         if (i == -1)
             return 0;
-        return parameters[i].value;
+        return parameters[i].valuePerUnit;
     }
 
     public List<string> GetParameterNames()
@@ -36,5 +36,7 @@ public class ParameterTable : ScriptableObject
 public class Parameter
 {
     public string name;
-    public int value;
+    public int valuePerUnit;
+    public bool hidden;
+    public string description;
 }
