@@ -103,7 +103,7 @@ public abstract class Skill : ScriptableObject
     protected virtual void Describe(StringBuilder sb)
     {
         DescribeTime(sb);
-        if(preConditions.Count > 0)
+        if(preConditions.Count + buffPreConditions.Count > 0)
             DescribePreConditions(sb);
         if (buffOnAgent.Count > 0)
             DescribeBuffOnAgent(sb);
@@ -117,6 +117,10 @@ public abstract class Skill : ScriptableObject
         for (int i = 0; i < preConditions.Count; i++)
         {
             preConditions[i].Describe(sb);
+        }
+        for (int i = 0; i < buffPreConditions.Count; i++)
+        {
+            buffPreConditions[i].Describe(sb);
         }
         sb.AppendLine();
     }

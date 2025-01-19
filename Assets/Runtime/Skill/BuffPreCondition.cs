@@ -16,7 +16,8 @@ public class BuffPreCondition
     public void Describe(StringBuilder sb)
     {
         sb.Append(requireExist ? "处于" : "未处于");
-        sb.Append(so.name.Bold());
+        if (so != null)
+            sb.Append(so.name.Bold());
         sb.Append("状态中");
         sb.AppendLine();
     }

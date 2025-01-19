@@ -34,25 +34,23 @@ public class PawnPropertyModifier
         {
             PropertyModifier modifier = modifiers[i];
             if (modifier.so != null)
-            {
                 sb.Append(modifier.so.name);
-                switch (modifier.method)
-                {
-                    case EModifyMethod.DirectAdd:
-                    case EModifyMethod.FinalAdd:
-                        if (Mathf.Abs(modifier.value) > 1)
-                            sb.Append(modifier.value.ToString("+0.##;-0.##;0"));
-                        else
-                            sb.Append(modifier.value.ToString("+0%;-0%;0"));
-                        break;
-                    case EModifyMethod.DirectMultiply:
-                    case EModifyMethod.FinalMultiply:
-                        sb.Append("¡Á");
-                        sb.Append((1f + modifier.value).ToString("P0"));
-                        break;
-                }
-                sb.AppendLine();
+            switch (modifier.method)
+            {
+                case EModifyMethod.DirectAdd:
+                case EModifyMethod.FinalAdd:
+                    if (Mathf.Abs(modifier.value) > 1)
+                        sb.Append(modifier.value.ToString("+0.##;-0.##;0"));
+                    else
+                        sb.Append(modifier.value.ToString("+0%;-0%;0"));
+                    break;
+                case EModifyMethod.DirectMultiply:
+                case EModifyMethod.FinalMultiply:
+                    sb.Append("¡Á");
+                    sb.Append((1f + modifier.value).ToString("P0"));
+                    break;
             }
+            sb.AppendLine();
         }
     }
 }

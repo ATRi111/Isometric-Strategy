@@ -15,15 +15,15 @@ public class BuffModifier
             sb.Append(probability);
             sb.Append("%的几率");
         }
+        sb.Append("使");
+        sb.Append(victimName);
+        sb.Append("获得时长为");
         if (so != null)
         {
-            sb.Append("使");
-            sb.Append(victimName);
-            sb.Append("获得时长为");
             sb.Append(so.duration);
             sb.Append("的");
             sb.Append(so.name.Bold());
-            sb.AppendLine();
         }
+        sb.AppendLine();
     }
 }

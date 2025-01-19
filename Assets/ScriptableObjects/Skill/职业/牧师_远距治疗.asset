@@ -16,9 +16,9 @@ MonoBehaviour:
   extraDescription: 
   actionTime: 50
   preConditions: []
+  buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
-  accuracy: 100
   powers:
   - type: 0
     power: -80

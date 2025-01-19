@@ -1,4 +1,3 @@
-using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -20,16 +19,10 @@ public class BuffSO : PawnModifierSO
     public ESuperimposeMode superimposeMode = ESuperimposeMode.Refresh;
     public float primitiveValue;
 
-    protected override string TypeName => "状态";
+    protected override string TypeName => "此状态下可用的";
 
     public virtual void Tick(int startTime, int currentTime)
     {
 
-    }
-
-    protected override void Describe(StringBuilder sb)
-    {
-        sb.AppendLine("在状态持续时间内:");
-        base.Describe(sb);
     }
 }
