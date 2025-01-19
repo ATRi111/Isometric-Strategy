@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ee624bcabb8df4892f86e2c36dd08c, type: 3}
+  m_Name: "\u706B\u5143\u7D20\u6297\u6027"
+  m_EditorClassIdentifier: 
+  propertyModifier:
+    modifiers:
+    - value: 0.5
+      so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
+      method: 3
+  skillsAttached: []
+  extraDescription: 
+  duration: 200
+  superimposeMode: 1
+  primitiveValue: 20
