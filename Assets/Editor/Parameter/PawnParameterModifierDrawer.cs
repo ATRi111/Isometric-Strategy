@@ -10,13 +10,13 @@ public class PawnParameterModifierDrawer : AutoPropertyDrawer
 
     static PawnParameterModifierDrawer()
     {
-        int n = PawnEntity.ParameterTable.parameters.Count;
+        int n = PawnEntity.ParameterTable.Count;
         optionValues = new int[n];
         displayOptions = new string[n];
         for (int i = 0; i < n; i++)
         {
             optionValues[i] = i;
-            displayOptions[i] = PawnEntity.ParameterTable.parameters[i].name;
+            displayOptions[i] = PawnEntity.ParameterTable.IndexToName(i);
         }
     }
 

@@ -15,7 +15,7 @@ public enum EParameterConditionType
 public class ParameterPreCondition
 {
     public string ParameterName
-        => PawnEntity.ParameterTable.parameters[parameterIndex].name;
+        => PawnEntity.ParameterTable.IndexToName(parameterIndex);
 
     public EParameterConditionType conditionType;
     public int parameterIndex;

@@ -1,4 +1,3 @@
-using MyTool;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,19 +5,21 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ParameterTable : ScriptableObject
 {
-    private Dictionary<string, Parameter> searcher;
+    private readonly Dictionary<string, Parameter> searcher = new();
+
     [SerializeField]
     private List<Parameter> parameters;
+
+    /// <summary>
+    /// 自动重置参数
+    /// </summary>
     [SerializeField]
     private List<string> resetParameters;
 
-    public int GetValuePerUnit(string name)
-    {
-        int i = parameters.FindIndex(x => x.name == name);
-        if (i == -1)
-            return 0;
-        return parameters[i].valuePerUnit;
-    }
+    public Parameter this[string parameterName] => searcher[parameterName];
+
+    public int Count => parameters.Count;
+    public string IndexToName(int index) => parameters[index].name;
 
     public List<string> GetParameterNames()
     {
@@ -33,6 +34,13 @@ public class ParameterTable : ScriptableObject
     public HashSet<string> GetResetParameters()
     {
         return resetParameters.ToHashSet();
+    }
+    public void Initialize()
+    {
+        for (int i = 0; i < parameters.Count; i++)
+        {
+            searcher.Add(parameters[i].name, parameters[i]);
+        }
     }
 }
 

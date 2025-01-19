@@ -14,7 +14,10 @@ public class PawnEntity : Entity
         get
         {
             if (parameterTable == null)
+            {
                 parameterTable = Resources.Load<ParameterTable>(nameof(ParameterTable));
+                parameterTable.Initialize();
+            }
             return parameterTable;
         }
     }

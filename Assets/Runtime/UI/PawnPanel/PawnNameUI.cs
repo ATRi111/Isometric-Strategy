@@ -6,7 +6,7 @@ public class PawnNameUI : MonoBehaviour
     private PawnPanel pawnPanel;
     private TextMeshProUGUI tmp;
 
-    private void Refresh(PawnEntity pawnEntity)
+    public void Refresh(PawnEntity pawnEntity)
     {
         tmp.text = pawnEntity.gameObject.name;
     }

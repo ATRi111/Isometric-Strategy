@@ -5,7 +5,7 @@ using System.Text;
 public class PawnParameterModifier
 {
     public string ParameterName
-        => PawnEntity.ParameterTable.parameters[parameterIndex].name;
+        => PawnEntity.ParameterTable.IndexToName(parameterIndex);
 
     public int parameterIndex;
     public int deltaValue;

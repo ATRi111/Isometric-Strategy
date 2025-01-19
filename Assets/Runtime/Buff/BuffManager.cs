@@ -1,6 +1,8 @@
 using Character;
 using MyTool;
 using Services;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BuffManager : CharacterComponentBase
@@ -9,6 +11,11 @@ public class BuffManager : CharacterComponentBase
     private GameManager gameManager;
     [SerializeField]
     private SerializedHashSet<Buff> buffs;
+
+    public List<Buff> GetAll()
+    {
+        return buffs.ToList();
+    }
 
     public void OnTick(int time)
     {
