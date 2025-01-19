@@ -5,11 +5,12 @@ using UnityEditor;
 public class SkillEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty displayName, preConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
+    public SerializedProperty displayName, preConditions, buffPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
 
     protected override void MyOnInspectorGUI()
     {
-        preConditions.ListField("前置条件");
+        preConditions.ListField("参数前置条件");
+        buffPreConditions.ListField("Buff前置条件");
         displayName.TextField("展示技能名");
         actionTime.IntField("固定时间消耗");
         parameterOnAgent.ListField("参数修改");

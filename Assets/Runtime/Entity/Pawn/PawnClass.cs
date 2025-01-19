@@ -8,5 +8,5 @@ public class PawnClass : PawnModifierSO
     public int bestSupprtDistance;
     public int bestOffenseDistance;
 
-    protected override string TypeName => "装备";
+    protected override string TypeName => "职业";
 }

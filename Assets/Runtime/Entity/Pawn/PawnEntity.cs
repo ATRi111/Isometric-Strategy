@@ -44,7 +44,6 @@ public class PawnEntity : Entity
 
     public CounterDictionary parameterDict;
 
-
     /// <summary>
     /// 与目标为友方返回1，与目标为敌方返回-1，目标为中立或非Pawn返回0
     /// </summary>

@@ -57,10 +57,14 @@ public class PawnModifierSO : ScriptableObject
         sb.Append("¼¼ÄÜ£º");
         for (int i = 0; i < skillsAttached.Count - 1; i++)
         {
-            sb.Append(skillsAttached[i].displayName);
-            sb.Append(" ");
+            if (skillsAttached[i] != null)
+            {
+                sb.Append(skillsAttached[i].displayName);
+                sb.Append(" ");
+            }
         }
-        sb.Append(skillsAttached[^1].displayName);
+        if (skillsAttached[^1] != null)
+            sb.Append(skillsAttached[^1].displayName);
         sb.AppendLine();
     }
 }

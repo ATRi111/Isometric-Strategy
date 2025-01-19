@@ -15,15 +15,15 @@ MonoBehaviour:
   parameters:
   - name: "\u88C5\u586B\u6570"
     valuePerUnit: 75
-    display: 0
+    hidden: 0
     description: 
   - name: "\u84C4\u529B\u5C42\u6570"
     valuePerUnit: 0
-    display: 0
+    hidden: 0
     description: 
   - name: "\u65BD\u6CD5\u7B49\u7EA7"
     valuePerUnit: 50
-    display: 0
+    hidden: 0
     description: 
   resetParameters:
   - "\u84C4\u529B\u5C42\u6570"

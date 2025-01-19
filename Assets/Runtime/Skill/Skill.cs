@@ -8,7 +8,8 @@ public abstract class Skill : ScriptableObject
     public string displayName;
     public string extraDescription;
     public int actionTime;
-    public List<SkillPreCondition> preConditions;
+    public List<ParameterPreCondition> preConditions;
+    public List<BuffPreCondition> buffPreConditions;
     public List<PawnParameterModifier> parameterOnAgent;
     public List<BuffModifier> buffOnAgent;
 
@@ -20,6 +21,11 @@ public abstract class Skill : ScriptableObject
         for (int i = 0;i < preConditions.Count;i++)
         {
             if (!preConditions[i].Verify(agent))
+                return false;
+        }
+        for (int i = 0; i < buffPreConditions.Count; i++)
+        {
+            if (!buffPreConditions[i].Verify(agent))
                 return false;
         }
         return true;
