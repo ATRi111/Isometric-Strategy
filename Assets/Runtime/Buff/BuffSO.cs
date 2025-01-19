@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -24,5 +25,11 @@ public class BuffSO : PawnModifierSO
     public virtual void Tick(int startTime, int currentTime)
     {
 
+    }
+
+    protected override void Describe(StringBuilder sb)
+    {
+        sb.AppendLine("在状态持续时间内:");
+        base.Describe(sb);
     }
 }

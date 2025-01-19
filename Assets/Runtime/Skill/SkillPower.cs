@@ -16,12 +16,9 @@ public class SkillPower
     
     public void Describe(StringBuilder sb)
     {
-        bool flag = false;
         void Split()
         {
-            if (flag)
-                sb.Append(" ");
-            flag = false;
+            sb.Append(" ");
         }
 
         string stype = type switch
@@ -49,23 +46,21 @@ public class SkillPower
             sb.Append(Mathf.RoundToInt(100 * strMultiplier));
             sb.Append("%");
             sb.Append("力量加成");
-            flag = true;
+            Split();
         }
         if (dexMultiplier != 0)
         {
-            Split();
             sb.Append(Mathf.RoundToInt(100 * dexMultiplier));
             sb.Append("%");
             sb.Append("灵巧加成");
-            flag = true;
+            Split();
         }
         if (intMultiplier != 0)
         {
-            Split();
             sb.Append(Mathf.RoundToInt(100 * intMultiplier));
             sb.Append("%");
             sb.Append("智力加成");
-            flag = true;
+            Split();
         }
         if (mndMultiplier != 0)
         {
@@ -73,6 +68,7 @@ public class SkillPower
             sb.Append(Mathf.RoundToInt(100 * mndMultiplier));
             sb.Append("%");
             sb.Append("精神加成");
+            Split();
         }
         sb.Append(")");
         sb.AppendLine();

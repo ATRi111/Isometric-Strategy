@@ -1,5 +1,4 @@
 using Character;
-using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -29,28 +28,31 @@ public class PawnPropertyModifier
         }
     }
 
-    public void Describe(StringBuilder sb)
+    public virtual void Describe(StringBuilder sb)
     {
         for (int i = 0; i < modifiers.Count; i++)
         {
             PropertyModifier modifier = modifiers[i];
-            sb.Append(modifier.so.name);
-            switch (modifier.method)
+            if (modifier.so != null)
             {
-                case EModifyMethod.DirectAdd:
-                case EModifyMethod.FinalAdd:
-                    if (Mathf.Abs(modifier.value) > 1)
-                        sb.Append(modifier.value.ToString("+0.##;-0.##;0"));
-                    else
-                        sb.Append(modifier.value.ToString("+0%;-0%;0"));
-                    break;
-                case EModifyMethod.DirectMultiply:
-                case EModifyMethod.FinalMultiply:
-                    sb.Append("¡Á");
-                    sb.Append((1f + modifier.value).ToString("P0"));
-                    break;
+                sb.Append(modifier.so.name);
+                switch (modifier.method)
+                {
+                    case EModifyMethod.DirectAdd:
+                    case EModifyMethod.FinalAdd:
+                        if (Mathf.Abs(modifier.value) > 1)
+                            sb.Append(modifier.value.ToString("+0.##;-0.##;0"));
+                        else
+                            sb.Append(modifier.value.ToString("+0%;-0%;0"));
+                        break;
+                    case EModifyMethod.DirectMultiply:
+                    case EModifyMethod.FinalMultiply:
+                        sb.Append("¡Á");
+                        sb.Append((1f + modifier.value).ToString("P0"));
+                        break;
+                }
+                sb.AppendLine();
             }
-            sb.AppendLine();
         }
     }
 }

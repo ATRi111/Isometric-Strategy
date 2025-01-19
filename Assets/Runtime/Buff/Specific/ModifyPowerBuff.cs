@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "附加伤害的状态", menuName = "状态/附加伤害的状态")]
+[CreateAssetMenu(fileName = "附加威力的状态", menuName = "状态/附加威力的状态")]
 public class ModifyPowerBuff : BuffSO
 {
-    public SkillPower skillPower;
+    public SkillPower power;
 
     public bool CanModifyPower(AimSkill skill)
     {
@@ -20,7 +21,7 @@ public class ModifyPowerBuff : BuffSO
 
     public void ModifyPower(List<SkillPower> powers)
     {
-        powers.Add(skillPower);
+        powers.Add(power);
     }
 
     public override void Register(PawnEntity pawn)
@@ -33,5 +34,14 @@ public class ModifyPowerBuff : BuffSO
     {
         base.Unregister(pawn);
         pawn.OffenceComponent.ModifyPower -= ModifyPower;
+    }
+
+    protected override void Describe(StringBuilder sb)
+    {
+        base.Describe(sb);
+        sb.Append("伤害类技能附加");
+        power.Describe(sb);
+        sb.Remove(sb.Length - 2, 2);    //移除换行符
+        sb.AppendLine("威力");
     }
 }
