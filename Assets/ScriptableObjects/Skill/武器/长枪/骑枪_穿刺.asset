@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f18199efeac69f848a1109db7795af75, type: 3}
-  m_Name: "\u957F\u67AA_\u7A7F\u523A"
+  m_Name: "\u9A91\u67AA_\u7A7F\u523A"
   m_EditorClassIdentifier: 
-  displayName: 
+  displayName: "\u7A7F\u523A"
   extraDescription: 
   actionTime: 50
   preConditions: []
