@@ -16,7 +16,13 @@ MonoBehaviour:
   extraDescription: 
   actionTime: 25
   preConditions: []
-  buffPreConditions: []
+  buffPreConditions:
+  - so: {fileID: 11400000, guid: 472e70ed85de5fb43aa5bf5ddd12880a, type: 2}
+    requireExist: 0
+  - so: {fileID: 11400000, guid: b6c4b4142584b6b46b2aa3d2c208b924, type: 2}
+    requireExist: 0
+  - so: {fileID: 11400000, guid: 06d8a738e4e00cc4194b1f6e843ffb9a, type: 2}
+    requireExist: 0
   parameterOnAgent: []
   buffOnAgent:
   - so: {fileID: 11400000, guid: 472e70ed85de5fb43aa5bf5ddd12880a, type: 2}

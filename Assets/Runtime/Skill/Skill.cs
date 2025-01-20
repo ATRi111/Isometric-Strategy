@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -57,8 +56,11 @@ public abstract class Skill : ScriptableObject
         foreach (string parameterName in parameterToReset)
         {
             int value = agent.parameterDict[parameterName];
-            ModifyParameterEffect effect = new(agent, parameterName, value, 0);
-            ret.effects.Add(effect);
+            if (value != 0)
+            {
+                ModifyParameterEffect effect = new(agent, parameterName, value, 0);
+                ret.effects.Add(effect);   //仅计算效果，尚未应用效果，因此不会影响之后的伤害计算等
+            }
         }
         for (int i = 0; i < buffOnAgent.Count; i++)
         {

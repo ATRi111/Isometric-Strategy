@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee757f831fe20b040b45207d6862cde0, type: 3}
+  m_Name: "\u9A91\u58EB_\u51B2\u950B"
+  m_EditorClassIdentifier: 
+  displayName: "\u51B2\u950B"
+  extraDescription: "\u6BCF\u7ECF\u8FC7\u4E00\u683C\uFF0C\u51B2\u950B\u5C42\u6570+1(\u4E0D\u53EF\u7D2F\u79EF)"
+  actionTime: 10
+  preConditions: []
+  buffPreConditions: []
+  parameterOnAgent: []
+  buffOnAgent: []
+  actionTimePerUnit: 5
+  ZOCActionTime: 10
+  speedMultiplier: 1

@@ -40,8 +40,7 @@ public abstract class AimSkill : Skill
         GetVictims(agent, igm, position, target, victims);
         //计算附加威力
         List<SkillPower> tempPower = new();
-        tempPower.AddRange(powers);
-        agent.OffenceComponent.ModifyPower?.Invoke(tempPower);
+        MockPower(agent, tempPower);
 
         for (int i = 0; i < victims.Count; i++)
         {
@@ -81,6 +80,15 @@ public abstract class AimSkill : Skill
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// 模拟技能威力
+    /// </summary>
+    protected virtual void MockPower(PawnEntity agent, List<SkillPower> ret)
+    {
+        ret.AddRange(powers);
+        agent.OffenceComponent.ModifyPower?.Invoke(ret);
     }
 
     #region 描述

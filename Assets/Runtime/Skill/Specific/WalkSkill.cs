@@ -37,6 +37,11 @@ public class WalkSkill : MoveSkill
     protected override void DescribeTime(StringBuilder sb)
     {
         sb.Append("时间消耗:");
+        if(actionTime > 0)
+        {
+            sb.Append(actionTime);
+            sb.Append("+");
+        }
         sb.Append(actionTimePerUnit);
         sb.Append("×走过的格数");
         sb.Append("(试图从敌人旁离开时+");
