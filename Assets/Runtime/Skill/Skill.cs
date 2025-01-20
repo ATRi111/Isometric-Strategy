@@ -129,7 +129,7 @@ public abstract class Skill : ScriptableObject
 
     protected virtual void DescribeTime(StringBuilder sb)
     {
-        sb.Append("基础时间消耗：");
+        sb.Append("原始时间消耗：");
         sb.Append(actionTime);
         sb.AppendLine();
     }

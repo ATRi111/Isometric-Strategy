@@ -1,5 +1,6 @@
 using EditorExtend;
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(Skill), true)]
 public class SkillEditor : AutoEditor
@@ -11,7 +12,13 @@ public class SkillEditor : AutoEditor
     {
         preConditions.ListField("参数前置条件");
         buffPreConditions.ListField("Buff前置条件");
-        displayName.TextField("展示技能名");
+        EditorGUILayout.BeginHorizontal();
+        displayName.TextField("展示技能名"); 
+        if (GUILayout.Button("自动填充"))
+        {
+            displayName.stringValue = GenerateDisplayName();
+        }
+        EditorGUILayout.EndHorizontal();
         actionTime.IntField("固定时间消耗");
         parameterOnAgent.ListField("参数修改");
         buffOnAgent.ListField("对自身施加的Buff");
@@ -20,5 +27,12 @@ public class SkillEditor : AutoEditor
         EditorGUI.BeginDisabledGroup(true);
         EditorGUILayout.TextArea((target as Skill).Description);
         EditorGUI.EndDisabledGroup();
+    }
+
+    public string GenerateDisplayName()
+    {
+        string fileName = target.name;
+        string[] ss = fileName.Split('_');
+        return ss[^1];
     }
 }

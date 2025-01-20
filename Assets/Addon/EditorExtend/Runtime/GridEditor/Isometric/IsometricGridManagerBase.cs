@@ -152,11 +152,17 @@ namespace EditorExtend.GridEditor
         /// </summary>
         public int AboveGroundLayer(Vector2Int xy)
         {
-            int ret = 0;
             GridObject gridObject = GetObjectXY(xy);
             if (gridObject != null)
-                ret = gridObject.CellPosition.z + gridObject.GroundHeight;
-            return ret;
+                return gridObject.CellPosition.z + gridObject.GroundHeight;
+            return 0;
+        }
+        /// <summary>
+        /// xy坐标上，地面上方的第一个位置
+        /// </summary>
+        public Vector3Int AboveGroundPosition(Vector2Int xy)
+        {
+            return xy.AddZ(AboveGroundLayer(xy));
         }
 
         public override bool CanPlaceAt(Vector3Int cellPosition)

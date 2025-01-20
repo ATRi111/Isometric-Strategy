@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "抛物线型技能", menuName = "技能/抛物线型技能", order = -1)]
+[CreateAssetMenu(fileName = "抛物线弹道技能", menuName = "技能/抛物线弹道技能", order = -1)]
 public class ParabolaSkill : ProjectileSkill
 {
     public static float DefaultHeight = 5f;

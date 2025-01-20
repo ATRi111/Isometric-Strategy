@@ -5,12 +5,11 @@ using UnityEditor;
 public class RangedSkillEditor : AimSkillEditor
 {
     [AutoProperty]
-    public SerializedProperty castingDistance, victimType;
+    public SerializedProperty castingDistance;
 
     protected override void MyOnInspectorGUI()
     {
         base.MyOnInspectorGUI();
         castingDistance.IntField("施放距离");
-        victimType.EnumField<EVictimType>("目标类型");
     }
 }

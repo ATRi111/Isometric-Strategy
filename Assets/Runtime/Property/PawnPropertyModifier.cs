@@ -39,7 +39,7 @@ public class PawnPropertyModifier
             {
                 case EModifyMethod.DirectAdd:
                 case EModifyMethod.FinalAdd:
-                    if (Mathf.Abs(modifier.value) > 1)
+                    if (Mathf.Abs(modifier.value) >= 1)
                         sb.Append(modifier.value.ToString("+0.##;-0.##;0"));
                     else
                         sb.Append(modifier.value.ToString("+0%;-0%;0"));

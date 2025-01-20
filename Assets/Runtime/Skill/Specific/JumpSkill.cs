@@ -30,7 +30,7 @@ public class JumpSkill : MoveSkill
         if (!ObjectCheck.Invoke(agent, aimedObject))
             return false;
 
-        Vector3Int position = fromXY.AddZ(igm.AboveGroundLayer(fromXY));
+        Vector3Int position = igm.AboveGroundPosition(fromXY);
         Vector3 from = agent.GridObject.BottomCenter - agent.MovableGridObject.CellPosition + position;
         Vector3 to = aimedObject.TopCenter;
         if (!GridPhysics.InitialVelocityOfParabola(from, to, jumpAngle, Gravity, out Vector3 velocity, out float _))
@@ -52,7 +52,7 @@ public class JumpSkill : MoveSkill
             Vector2Int toXY = fromXY + castingDistance * Directions[i];
             if (JumpCheck(agent, igm, fromXY, toXY, MovableGridObject.ObjectCheck_AllObject))
             {
-                Vector3Int target = toXY.AddZ(igm.AboveGroundLayer(toXY));
+                Vector3Int target = igm.AboveGroundPosition(toXY);
                 ret.Add(target);
             }
         }
@@ -69,9 +69,9 @@ public class JumpSkill : MoveSkill
 
     protected override void DescribeTime(StringBuilder sb)
     {
-        sb.Append("基础时间消耗:");
+        sb.Append("原始时间消耗:");
         sb.Append(actionTimePerUnit * castingDistance + actionTime);
-        sb.Append("(试图从敌人旁离开时,时间消耗增加");
+        sb.Append("(试图从敌人旁离开时+");
         sb.Append(ZOCActionTime);
         sb.Append(")");
         sb.AppendLine();

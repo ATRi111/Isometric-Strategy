@@ -18,7 +18,7 @@ public abstract class ProjectileSkill : RangedSkill
         if(gridObject != null)
         {
             Entity entity = gridObject.GetComponentInParent<Entity>();
-            if (entity != null && FilterVictim(entity))
+            if (entity != null && FilterVictim(agent, entity))
                 ret.Add(entity);
         }
     }
@@ -55,7 +55,7 @@ public abstract class ProjectileSkill : RangedSkill
     }
 
     /// <summary>
-    /// 计算技能将会命中的目标，并计算弹道
+    /// 计算技能将会命中的目标，并计算弹道（已明确发出点/瞄准点）
     /// </summary>
     public abstract GridObject HitCheck(IsometricGridManager igm, Vector3 from, Vector3 to, Vector3Int target, List<Vector3> trajectory);
 }

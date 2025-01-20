@@ -15,18 +15,15 @@ MonoBehaviour:
   displayName: "\u65A9\u51FB"
   extraDescription: 
   actionTime: 75
-  preConditions:
-  - conditionType: 0
-    parameterIndex: 1
-    value: 0
+  preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
   powers:
   - type: 1
     power: 100
-    strMultiplier: 1
-    dexMultiplier: 0
+    strMultiplier: 0.5
+    dexMultiplier: 0.5
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []

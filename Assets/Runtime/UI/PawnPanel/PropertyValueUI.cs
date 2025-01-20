@@ -12,7 +12,7 @@ public class PropertyValueUI : MonoBehaviour
     {
         so.pawn = pawn;
         CharacterProperty property = so.FindProperty();
-        if(Mathf.Abs(property.CurrentValue) > 1)
+        if(Mathf.Abs(property.CurrentValue) >= 1)
             tmp.text = property.IntValue.ToString();
         else
             tmp.text = property.CurrentValue.ToString("P0");

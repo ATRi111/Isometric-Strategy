@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c63d28fb52e2b4d4cbc43a2427b326bb, type: 3}
+  m_Script: {fileID: 11500000, guid: be08be306136c0e43a26bbd990d4a7df, type: 3}
   m_Name: "\u7B26\u6587\u5251\u58EB_\u51B0\u7CBE\u7075\u5E87\u4F51"
   m_EditorClassIdentifier: 
   displayName: "\u51B0\u7CBE\u7075\u5E87\u4F51"
@@ -31,8 +31,8 @@ MonoBehaviour:
   buffOnVictim:
   - so: {fileID: 11400000, guid: c027032c68ae3be4a9f326d74529f382, type: 2}
     probability: 100
+  victimType: 3
   minLayer: -32
   maxLayer: 32
-  castingDistance: 0
-  victimType: 2
+  castingDistance: 1
   effectRange: 1

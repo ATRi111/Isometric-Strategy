@@ -2,6 +2,15 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+public enum EVictimType
+{
+    Nothing = 0,
+    Entity = 1,
+    Pawn = 2,
+    Ally = 3,
+    Enemy = 4,
+}
+
 /// <summary>
 /// 有目标型技能
 /// </summary>
@@ -9,6 +18,7 @@ public abstract class AimSkill : Skill
 {
     public List<SkillPower> powers;
     public List<BuffModifier> buffOnVictim;
+    public EVictimType victimType = EVictimType.Entity;
     public int minLayer = -2, maxLayer = 2;
 
     public bool LayerCheck(Vector3Int position, Vector3Int target)
@@ -18,19 +28,53 @@ public abstract class AimSkill : Skill
     }
 
     /// <summary>
+    /// 模拟技能影响范围
+    /// </summary>
+    public abstract void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret);
+
+    /// <summary>
+    /// 判断某个entity是否是技能允许的目标
+    /// </summary>
+    public virtual bool FilterVictim(PawnEntity agent, Entity victim)
+    {
+        return victimType switch
+        {
+            EVictimType.Entity => true,
+            EVictimType.Pawn => victim is PawnEntity,
+            EVictimType.Ally => agent.FactionCheck(victim) > 0,
+            EVictimType.Enemy => agent.FactionCheck(victim) < 0,
+            _ => false,
+        };
+    }
+
+    /// <summary>
+    /// 获取指定位置上的技能目标
+    /// </summary>
+    public virtual Entity GetVictim(PawnEntity agent, IsometricGridManager igm, Vector3Int target)
+    {
+        if(igm.EntityDict.ContainsKey(target))
+        {
+            Entity entity = igm.EntityDict[target];
+            if (FilterVictim(agent, entity))
+                return entity;
+        }
+        return null;
+    }
+
+    /// <summary>
     /// 获取技能命中的Entity
     /// </summary>
     public virtual void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
     {
         ret.Clear();
-    }
-
-    /// <summary>
-    /// 判断某个entity是否是技能允许的目标
-    /// </summary>
-    public virtual bool FilterVictim(Entity entity)
-    {
-        return true;
+        List<Vector3Int> area = new();
+        MockArea(igm, position, target, area);
+        for (int i = 0; i < area.Count; i++)
+        {
+            Entity entity = GetVictim(agent, igm, area[i]);
+            if (entity != null)
+                ret.Add(entity);
+        }
     }
 
     public override void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
@@ -99,6 +143,7 @@ public abstract class AimSkill : Skill
             DescribePower(sb);
         if(buffOnVictim.Count > 0)
             DescribeBuffOnVictim(sb);
+        DescribeVictim(sb);
     }
 
     protected virtual void DescribePower(StringBuilder sb)
@@ -124,6 +169,24 @@ public abstract class AimSkill : Skill
         for (int i = 0; i < buffOnVictim.Count; i++)
         {
             buffOnVictim[i].Describe(sb, "目标");
+        }
+        sb.AppendLine();
+    }
+
+    protected virtual void DescribeVictim(StringBuilder sb)
+    {
+        switch(victimType)
+        {
+            case EVictimType.Ally:
+                sb.Append("仅以自身和友方为目标");
+                sb.AppendLine();
+                break;
+            case EVictimType.Enemy:
+                sb.Append("仅以敌方为目标");
+                sb.AppendLine();
+                break;
+            default:
+                break;
         }
     }
 
