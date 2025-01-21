@@ -17,8 +17,33 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 39fbfb33e4e210844aabd5e572ed304c
   m_SerializeEntries:
+  - m_GUID: 3e633e411c78c684f959d05d1d3ed077
+    m_Address: "\u4EBA\u7C7B\u7267\u5E08"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e7aa21708409f04cbfbb334ce7e5ac2
+    m_Address: "\u4EBA\u7C7B\u7B26\u6587\u5251\u58EB"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38994533f49afe749b76c46d2e827f49
+    m_Address: "\u534A\u8EAB\u4EBA\u5F29\u624B"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83a4f34afdcf41f449318a3859c9f158
+    m_Address: "\u732B\u9B45\u65CF\u8BE1\u9A97\u5E08"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 130a1e69cb57daa4a9042d961ef8bd39
+    m_Address: "\u7CBE\u7075\u6CD5\u5E08"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2db685c6ddb7c154a92ff6a155671845
-    m_Address: Player
+    m_Address: "\u8725\u8734\u4EBA\u6218\u58EB"
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
