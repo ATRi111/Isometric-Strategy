@@ -48,16 +48,17 @@ public class GameManager : Service,IService
 
     public void EndBattle()
     {
+        //TODO:»ŒŒÒΩ·À„
         sceneController.UnloadScene(battleSceneIndex);
         battleSceneIndex++;
         sceneController.LoadScene(battleSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
-    private bool EnemyExists()
+    private bool TargetExists()
     {
         foreach(PawnEntity pawn in pawns)
         {
-            if(pawn.faction == EFaction.Enemy) 
+            if(pawn.targetToKill) 
                 return true;
         }
         return false;
@@ -65,7 +66,7 @@ public class GameManager : Service,IService
 
     public void MoveOn()
     {
-        if (!EnemyExists())
+        if (!TargetExists())
         {
             EndBattle();
             return;

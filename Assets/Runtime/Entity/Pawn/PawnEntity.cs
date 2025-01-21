@@ -35,6 +35,7 @@ public class PawnEntity : Entity
     public EquipmentManager EquipmentManager { get; protected set; }
 
     public EFaction faction;
+    public bool targetToKill;
     public PawnClass pClass;
     public Race race;
     public CharacterProperty actionTime;
