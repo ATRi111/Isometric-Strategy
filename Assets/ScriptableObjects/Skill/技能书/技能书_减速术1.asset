@@ -10,24 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60fc8b1b0161ed040b9a45421afd9f04, type: 3}
-  m_Name: "\u7267\u5E08_\u8FDC\u8DDD\u6CBB\u7597"
+  m_Name: "\u6280\u80FD\u4E66_\u51CF\u901F\u672F1"
   m_EditorClassIdentifier: 
-  displayName: "\u8FDC\u8DDD\u6CBB\u7597"
+  displayName: "\u51CF\u901F\u672F1"
   extraDescription: 
-  actionTime: 50
+  actionTime: 25
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
-  powers:
-  - type: 0
-    power: -80
-    strMultiplier: 0
-    dexMultiplier: 0
-    intMultiplier: 0
-    mndMultiplier: 0.5
-  buffOnVictim: []
-  victimType: 2
+  powers: []
+  buffOnVictim:
+  - so: {fileID: 11400000, guid: 74673d26f769a0745abcc02f9a60efc7, type: 2}
+    probability: 100
+  victimType: 1
   minLayer: -32
   maxLayer: 32
   castingDistance: 4
