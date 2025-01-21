@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "冲锋", menuName = "技能/冲锋")]
+[CreateAssetMenu(fileName = "冲锋", menuName = "技能/特殊/冲锋")]
 public class ChargeSkill : WalkSkill
 {
     public const string ParameterName = "冲锋层数";

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "跳跃", menuName = "技能/跳跃")]
+[CreateAssetMenu(fileName = "跳跃", menuName = "技能/特殊/跳跃")]
 public class JumpSkill : MoveSkill
 {
     private readonly static List<Vector2Int> Directions = new()

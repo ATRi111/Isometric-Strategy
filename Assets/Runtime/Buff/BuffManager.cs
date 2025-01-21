@@ -2,7 +2,6 @@ using Character;
 using MyTool;
 using Services;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class BuffManager : CharacterComponentBase
@@ -12,31 +11,35 @@ public class BuffManager : CharacterComponentBase
     [SerializeField]
     private SerializedHashSet<Buff> buffs;
 
-    public List<Buff> GetAll()
+    /// <summary>
+    /// 获取当前生效的所有状态
+    /// </summary>
+    public void GetAllEnabled(List<Buff> ret)
     {
-        return buffs.ToList();
-    }
-
-    public void OnTick(int time)
-    {
+        ret.Clear();
         foreach (Buff buff in buffs)
         {
-            buff.Enabled = time < buff.endTime;
-            if (buff.Enabled)
-                buff.Tick(time);
+            if(buff.Enabled)
+                ret.Add(buff);
         }
     }
 
+    /// <summary>
+    /// 模拟施加状态（新增或刷新）
+    /// </summary>
     public BuffEffect MockAdd(BuffSO so, PawnEntity victim, int probability)
+        => MockAdd(so, victim, gameManager.Time, probability);
+
+    public BuffEffect MockAdd(BuffSO so, PawnEntity victim, int startTime, int probability)
     {
-        Buff buff = new(victim, so, gameManager.Time);
-        switch(so.superimposeMode)
+        Buff buff = new(victim, so, startTime);
+        switch (so.superimposeMode)
         {
             case ESuperimposeMode.Coexist:
                 return new AddBuffEffect(pawn, buff, this, probability);
             case ESuperimposeMode.Refresh:
                 Buff existed = SuprimposeCheck(buff);
-                if(existed == null)
+                if (existed == null)
                     return new AddBuffEffect(pawn, buff, this, probability);
                 return new LengthenBuffEffect(pawn, existed, existed.endTime, this, probability);
             default:
@@ -79,6 +82,16 @@ public class BuffManager : CharacterComponentBase
     {
         buff.Enabled = false;
         buffs.Remove(buff);
+    }
+
+    public void OnTick(int time)
+    {
+        foreach (Buff buff in buffs)
+        {
+            buff.Enabled = time < buff.endTime;
+            if (buff.Enabled)
+                buff.Tick(time);
+        }
     }
 
     protected override void Awake()

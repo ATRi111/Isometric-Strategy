@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "移动", menuName = "技能/移动")]
+[CreateAssetMenu(fileName = "移动", menuName = "技能/特殊/移动")]
 public class WalkSkill : MoveSkill
 {
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)

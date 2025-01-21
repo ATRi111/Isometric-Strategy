@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "³å·æ¹¥»÷", menuName = "¼¼ÄÜ/³å·æ¹¥»÷")]
+[CreateAssetMenu(fileName = "³å·æ¹¥»÷", menuName = "¼¼ÄÜ/ÌØÊâ/³å·æ¹¥»÷")]
 public class ChargeAttackSkill : RangedSkill
 {
     public float powerAmplifier;

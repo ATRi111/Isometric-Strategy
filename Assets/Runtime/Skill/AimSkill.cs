@@ -77,6 +77,53 @@ public abstract class AimSkill : Skill
         }
     }
 
+    /// <summary>
+    /// 模拟技能威力
+    /// </summary>
+    protected virtual void MockPower(PawnEntity agent,  List<SkillPower> ret)
+    {
+        ret.AddRange(powers);
+        agent.OffenceComponent.ModifyPower?.Invoke(ret);
+    }
+
+    /// <summary>
+    /// 模拟技能对指定目标造成的伤害
+    /// </summary>
+    protected virtual void MockDamageOnVictim(PawnEntity agent, Entity victim, List<SkillPower> powers, EffectUnit ret)
+    {
+        int r = Effect.NextInt();
+        //计算伤害
+        int damage = 0;
+        DefenceComponent def = victim.DefenceComponent;
+        for (int j = 0; j < powers.Count; j++)
+        {
+            float attackPower = agent.OffenceComponent.MockAttackPower(powers[j]);
+            damage += def.MockDamage(powers[j].type, attackPower);
+        }
+        int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
+        Effect effect = new HPChangeEffect(victim, def.HP, hp);
+        ret.effects.Add(effect);
+        //死亡判定
+        if (hp == 0)
+        {
+            effect = new DisableEntityEffect(victim);
+            ret.effects.Add(effect);
+        }
+    }
+
+    /// <summary>
+    /// 模拟技能对指定目标施加的状态
+    /// </summary>
+    protected virtual void MockBuffOnVictim(PawnEntity agent, PawnEntity victim, EffectUnit ret)
+    {
+        for (int j = 0; j < buffOnVictim.Count; j++)
+        {
+            BuffEffect buffEffect = agent.BuffManager.MockAdd(buffOnVictim[j].so, victim, buffOnVictim[j].probability);
+            buffEffect.randomValue = Effect.NextInt();
+            ret.effects.Add(buffEffect);
+        }
+    }
+
     public override void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
         base.Mock(agent, igm, position, target, ret);
@@ -88,51 +135,10 @@ public abstract class AimSkill : Skill
 
         for (int i = 0; i < victims.Count; i++)
         {
-            int r = Effect.NextInt();
-            //计算伤害
-            int damage = 0;
-            DefenceComponent def = victims[i].DefenceComponent;
-            for (int j = 0; j < tempPower.Count; j++)
-            {
-                float attackPower = agent.OffenceComponent.MockAttackPower(tempPower[j]);
-                damage += def.MockDamage(tempPower[j].type, attackPower);
-            }
-            int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
-            Effect effect = new HPChangeEffect(victims[i], def.HP, hp)
-            {
-                randomValue = r
-            };
-            ret.effects.Add(effect);
-            //死亡判定
-            if (hp == 0)
-            {
-                effect = new DisableEntityEffect(victims[i])
-                {
-                    randomValue = r
-                };
-                ret.effects.Add(effect);
-            }
-            //Buff判定
-            PawnEntity pawn = victims[i] as PawnEntity;
-            if(pawn != null)
-            {
-                for (int j = 0; j < buffOnVictim.Count; j++)
-                {
-                    BuffEffect buffEffect = agent.BuffManager.MockAdd(buffOnVictim[j].so, pawn, buffOnVictim[j].probability);
-                    buffEffect.randomValue = Effect.NextInt();
-                    ret.effects.Add(buffEffect);
-                }
-            }
+            MockDamageOnVictim(agent, victims[i], powers, ret);
+            if (victims[i] is PawnEntity pawn)
+                MockBuffOnVictim(agent, pawn, ret);
         }
-    }
-
-    /// <summary>
-    /// 模拟技能威力
-    /// </summary>
-    protected virtual void MockPower(PawnEntity agent, List<SkillPower> ret)
-    {
-        ret.AddRange(powers);
-        agent.OffenceComponent.ModifyPower?.Invoke(ret);
     }
 
     #region 描述

@@ -5,10 +5,11 @@ public class BuffPanel : MonoBehaviour
 {
     private PawnPanel pawnPanel;
     private BuffIcon[] icons;
+    private List<Buff> buffs = new();
 
     public void Refresh(PawnEntity pawn)
     {
-        List<Buff> buffs = pawn.BuffManager.GetAll();
+        pawn.BuffManager.GetAllEnabled(buffs);
         int i = 0;
         for (; i < buffs.Count && i < icons.Length; i++)
         {
