@@ -9,17 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7466f6ec6d7b449938c9d099358224, type: 3}
-  m_Name: "\u6CD5\u6756_\u541F\u5531"
+  m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
+  m_Name: "\u4F4D\u7F6E\u4E92\u6362"
   m_EditorClassIdentifier: 
-  displayName: "\u541F\u5531"
+  propertyModifier:
+    modifiers: []
+  skillsAttached:
+  - {fileID: 11400000, guid: 9eb81c5fb57a7c04bb984344e557e135, type: 2}
   extraDescription: 
-  actionTime: 50
-  preConditions:
-  - conditionType: 2
-    parameterIndex: 2
-    value: 3
-  parameterOnAgent:
-  - parameterIndex: 2
-    deltaValue: 1
-  buffOnAgent: []
+  slotType: 3
