@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u6280\u80FD\u4E66_\u4F4D\u7F6E\u4E92\u6362"
   m_EditorClassIdentifier: 
   displayName: "\u4F4D\u7F6E\u4E92\u6362"
-  extraDescription: "\u4EA4\u6362\u4F60\u4E0E\u76EE\u6807\u7684\u4F4D\u7F6E"
+  extraDescription: "\u4EA4\u6362\u8BE5\u5355\u4F4D\u4E0E\u76EE\u6807\u7684\u4F4D\u7F6E"
   actionTime: 50
   preConditions: []
   buffPreConditions: []
