@@ -1,6 +1,7 @@
 using MyTool;
 using Services;
 using Services.Event;
+using Services.SceneManagement;
 using System;
 using UnityEngine;
 
@@ -10,6 +11,10 @@ public class GameManager : Service,IService
     private AnimationManager animationManager;
     [AutoService]
     private IEventSystem eventSystem;
+    [AutoService]
+    private ISceneController sceneController;
+
+    public int battleSceneIndex;
 
     public override Type RegisterType => GetType();
 
@@ -41,9 +46,30 @@ public class GameManager : Service,IService
         MoveOn();
     }
 
+    public void EndBattle()
+    {
+        sceneController.UnloadScene(battleSceneIndex);
+        battleSceneIndex++;
+        sceneController.LoadScene(battleSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+    }
+
+    private bool EnemyExists()
+    {
+        foreach(PawnEntity pawn in pawns)
+        {
+            if(pawn.faction == EFaction.Enemy) 
+                return true;
+        }
+        return false;
+    }
+
     public void MoveOn()
     {
-        //TODO:Õ½¶·½áÊøÅÐ¶¨
+        if (!EnemyExists())
+        {
+            EndBattle();
+            return;
+        }
         foreach(PawnEntity pawn in pawns)
         {
             if (time >= pawn.time)
@@ -71,5 +97,6 @@ public class GameManager : Service,IService
     {
         base.Init();
         animationManager.AfterAnimationComplete += AfterAnimationComplete;
+        battleSceneIndex = 3;
     }
 }

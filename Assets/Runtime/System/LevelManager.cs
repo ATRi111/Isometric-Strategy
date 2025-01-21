@@ -27,14 +27,16 @@ public class LevelManager : MonoBehaviour
 
     private void SwitchToPrepareMenu()
     {
-        levelCamera.gameObject.SetActive(false);
+        if(levelCamera != null)
+            levelCamera.gameObject.SetActive(false);
         prepareMenuCamera.gameObject.SetActive(true);
     }
 
     private void SwitchToLevel()
     {
         prepareMenuCamera.gameObject.SetActive(false);
-        levelCamera.gameObject.SetActive(true);
+        if (levelCamera != null)
+            levelCamera.gameObject.SetActive(true);
     }
 
     private void LoadLevel(int sceneIndex)
@@ -53,6 +55,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void AfterUnLoadScene(int index)
+    {
+        OnReturnToPrepareMenu?.Invoke();
+    }
+
 
     private void Awake()
     {
@@ -66,11 +73,13 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         eventSystem.AddListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
+        eventSystem.AddListener<int>(EEvent.AfterUnLoadScene, AfterUnLoadScene);
     }
 
     private void OnDisable()
     {
         eventSystem.RemoveListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
+        eventSystem.RemoveListener<int>(EEvent.AfterUnLoadScene, AfterUnLoadScene);
     }
 
     private void Start()

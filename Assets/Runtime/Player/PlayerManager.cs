@@ -100,11 +100,8 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void AfterUnLoadScene(int sceneIndex)
+    private void BeforeUnLoadScene(int sceneIndex)
     {
-        if (sceneIndex <= 2)
-            return;
-
         for (int i = 0; i < isSelected.Count; i++)
         {
             Unselect(i);
@@ -169,13 +166,13 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         eventSystem.AddListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
-        eventSystem.AddListener<int>(EEvent.AfterUnLoadScene, AfterUnLoadScene);
+        eventSystem.AddListener<int>(EEvent.BeforeUnLoadScene, BeforeUnLoadScene);
     }
 
     private void OnDisable()
     {
         eventSystem.RemoveListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
-        eventSystem.RemoveListener<int>(EEvent.AfterUnLoadScene, AfterUnLoadScene);
+        eventSystem.RemoveListener<int>(EEvent.BeforeUnLoadScene, BeforeUnLoadScene);
     }
 
     private void Update()
