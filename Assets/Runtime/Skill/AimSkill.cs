@@ -124,6 +124,14 @@ public abstract class AimSkill : Skill
         }
     }
 
+    /// <summary>
+    /// 模拟技能对目标造成伤害和施加状态以外的影响
+    /// </summary>
+    protected virtual void MockOtherEffectOnVictim(PawnEntity agent, Entity victim, EffectUnit ret)
+    {
+
+    }
+
     public override void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
         base.Mock(agent, igm, position, target, ret);
@@ -138,6 +146,7 @@ public abstract class AimSkill : Skill
             MockDamageOnVictim(agent, victims[i], powers, ret);
             if (victims[i] is PawnEntity pawn)
                 MockBuffOnVictim(agent, pawn, ret);
+            MockOtherEffectOnVictim(agent,victims[i], ret);
         }
     }
 
@@ -183,12 +192,16 @@ public abstract class AimSkill : Skill
     {
         switch(victimType)
         {
+            case EVictimType.Pawn:
+                sb.Append("仅以自身/友方/敌方角色为目标");
+                sb.AppendLine();
+                break;
             case EVictimType.Ally:
-                sb.Append("仅以自身和友方为目标");
+                sb.Append("仅以自身/友方角色为目标");
                 sb.AppendLine();
                 break;
             case EVictimType.Enemy:
-                sb.Append("仅以敌方为目标");
+                sb.Append("仅以敌方角色为目标");
                 sb.AppendLine();
                 break;
             default:

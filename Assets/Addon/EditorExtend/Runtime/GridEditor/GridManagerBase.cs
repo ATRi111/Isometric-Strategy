@@ -127,7 +127,7 @@ namespace EditorExtend.GridEditor
         public virtual void RelocateObject(GridObject gridObject,Vector3Int prevPosition)
         {
             if (gridObject.referenceCount != 1)
-                throw new System.InvalidOperationException();
+                throw new InvalidOperationException();
 
             TryRemoveObject(prevPosition); 
             TryAddObject(gridObject);
