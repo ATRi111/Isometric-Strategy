@@ -24,11 +24,22 @@ public class PlayerManager : MonoBehaviour
     [NonSerialized]
     public List<PawnEntity> playerList = new();
 
-    /// <summary>
-    /// 各角色是否选中要出场
-    /// </summary>
-    [SerializeField]
-    private List<bool> isSelected;
+    public Action AfterSelectChange;
+
+    public List<bool> isSelected;
+    public bool FullySelected
+    {
+        get
+        {
+            int sum = 0;
+            for (int i = 0; i < isSelected.Count; i++)
+            {
+                if (isSelected[i])
+                    sum++;
+            }
+            return sum >= spawnController.Count;
+        }
+    }
 
     public PlayerData Find(string entityName)
     {
@@ -92,12 +103,6 @@ public class PlayerManager : MonoBehaviour
             return;
 
         spawnController = Igm.GetComponentInChildren<SpawnController>();
-
-        for (int i = 0; i < isSelected.Count; i++)
-        {
-            if (isSelected[i])
-                Spawn(playerList[i]);
-        }
     }
 
     private void BeforeUnLoadScene(int sceneIndex)
@@ -124,7 +129,6 @@ public class PlayerManager : MonoBehaviour
     public void Spawn(PawnEntity pawn)
     {
         spawnController.Spawn(pawn);
-        pawn.gameObject.SetActive(true);
         ApplyPlayerData(pawn);
     }
     /// <summary>
@@ -133,7 +137,6 @@ public class PlayerManager : MonoBehaviour
     public void Recycle(PawnEntity pawn)
     {
         pawn.gameObject.SetActive(false);
-        spawnController.Recycle(pawn);
         pawn.transform.SetParent(transform);
     }
 
@@ -143,6 +146,7 @@ public class PlayerManager : MonoBehaviour
         {
             isSelected[index] = true;
             Spawn(playerList[index]);
+            AfterSelectChange?.Invoke();
         }
     }
     public void Unselect(int index)
@@ -151,6 +155,8 @@ public class PlayerManager : MonoBehaviour
         {
             isSelected[index] = false;
             Recycle(playerList[index]);
+            spawnController.Refresh();
+            AfterSelectChange?.Invoke();
         }
     }
 

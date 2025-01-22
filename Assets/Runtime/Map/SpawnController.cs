@@ -7,6 +7,8 @@ public class SpawnController : MonoBehaviour
 
     private SpawnPoint[] points;
 
+    public int Count => points.Length;
+
     public void Spawn(PawnEntity pawn)
     {
         for (int i = 0; i < points.Length; i++)
@@ -14,8 +16,9 @@ public class SpawnController : MonoBehaviour
             if (points[i].IsEmpty)
             {
                 points[i].IsEmpty = false;
+                pawn.gameObject.SetActive(true);
                 Vector3Int cellPosition = points[i].CellPosition;
-                pawn.transform.SetParent(transform);
+                pawn.transform.SetParent(transform.parent);
                 pawn.MovableGridObject.CellPosition = cellPosition;
                 pawn.MovableGridObject.Refresh();
                 return;
@@ -25,19 +28,17 @@ public class SpawnController : MonoBehaviour
         Debug.LogWarning("没有空余的生成点");
     }
 
-    public void Recycle(PawnEntity pawn)
+    //空位自动复原
+    public void Refresh()
     {
         for (int i = 0; i < points.Length; i++)
         {
-            if (!points[i].IsEmpty)
+            Vector3Int cellPosition = points[i].CellPosition;
+            GridObject obj = igm.GetObject(cellPosition);
+            if (obj == null)
             {
-                Vector3Int cellPosition = points[i].CellPosition;
-                GridObject obj = igm.GetObject(cellPosition);
-                if (pawn.gameObject == obj)
-                {
-                    points[i].IsEmpty = true;
-                    break;
-                }
+                points[i].IsEmpty = true;
+                break;
             }
         }
     }

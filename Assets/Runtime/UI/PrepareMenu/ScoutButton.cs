@@ -11,13 +11,13 @@ public class ScoutButton : ButtonBase
         {
             levelManager.OnStartScout?.Invoke();
             isScouting = true;
-            tmp.text = "结束侦察";
+            tmp.text = "准备完毕";
         }
         else
         {
             levelManager.OnReturnToPrepareMenu?.Invoke();
             isScouting = false;
-            tmp.text = "侦察";
+            tmp.text = "战前准备";
         }
     }
 

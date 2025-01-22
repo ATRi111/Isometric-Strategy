@@ -3,6 +3,7 @@ using Services.Event;
 using UIExtend;
 using UnityEngine;
 
+//战斗开始时自动隐藏的UI
 [RequireComponent(typeof(CanvasGroupPlus))]
 public class PrepareMenuUI : MonoBehaviour
 {
