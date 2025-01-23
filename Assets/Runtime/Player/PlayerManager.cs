@@ -180,12 +180,4 @@ public class PlayerManager : MonoBehaviour
         eventSystem.RemoveListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
         eventSystem.RemoveListener<int>(EEvent.BeforeUnLoadScene, BeforeUnLoadScene);
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.P))
-            ServiceLocator.Get<ISaveManager>().GetGroup(1).Save();
-        else if (Input.GetKeyUp(KeyCode.L))
-            ServiceLocator.Get<ISaveManager>().GetGroup(1).Load();
-    }
 }

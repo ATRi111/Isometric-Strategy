@@ -14,6 +14,9 @@ public class Plan : IComparable<Plan>
 
     public int CompareTo(Plan other)
     {
-        return other.value.CompareTo(value);
+        if (value > 0 || other.value > 0)
+            return other.value.CompareTo(value);
+
+        return action.Time.CompareTo(other.action.Time);
     }
 }

@@ -232,7 +232,7 @@ namespace AStar
             }
             if (countOfCloseNode > settings.maxDepth)
             {
-                Debug.LogWarning("超出搜索深度限制");
+                Debug.LogWarning($"超出搜索深度限制,最大深度为{settings.maxDepth}");
                 return false;
             }
             if (open.IsEmpty)
