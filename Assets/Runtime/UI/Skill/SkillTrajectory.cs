@@ -21,10 +21,10 @@ public class SkillTrajectory : MonoBehaviour
     private void PreviewAction(PawnAction action)
     {
         currentAction = action;
-        ProjectileSkill skill = action.skill as ProjectileSkill;
-        if (skill != null)
+        ProjectileSkill projectile = action.skill as ProjectileSkill;
+        if (projectile != null)
         {
-            GridObject victim = skill.HitCheck(action.agent, Igm, action.target, trajectory);
+            GridObject victim = projectile.HitCheck(action.agent, Igm, action.target, trajectory);
             points = new Vector3[trajectory.Count];
             for (int i = 0; i < trajectory.Count; i++)
             {
@@ -37,12 +37,11 @@ public class SkillTrajectory : MonoBehaviour
             lineRenderer.SetPositions(points);
             lineRenderer.enabled = true;
         }
-        //TODO:ÏÔÊ¾¼¼ÄÜ·¶Î§
     }
 
     private void StopPreviewAction(PawnAction action)
     {
-        if(action == currentAction)
+        if (action == currentAction)
         {
             currentAction = null;
             lineRenderer.enabled = false;

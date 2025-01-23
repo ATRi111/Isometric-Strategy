@@ -212,6 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea68154b90c0c54a845900c36016e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  message: 
+  canvasGroup: {fileID: 0}
   action:
     agent: {fileID: 0}
     skill: {fileID: 0}
@@ -224,7 +226,7 @@ MonoBehaviour:
         prev: 0
         current: 0
       effects: []
-  extraSortingOrder: 4
+  extraSortingOrder: 3
   references:
     version: 2
     RefIds: []

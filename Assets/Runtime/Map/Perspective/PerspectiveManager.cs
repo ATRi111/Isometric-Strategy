@@ -21,7 +21,7 @@ public class PerspectiveManager : MonoBehaviour
     public bool CoverCheck(Vector3Int position)
     {
         Vector3Int p = position - CoverVector;
-        while (Igm.MaxLayerDict.ContainsKey((Vector2Int)p))
+        while (Igm.Contains((Vector2Int)p))
         {
             GridObject gridObject = Igm.GetObject(p);
             if (gridObject != null && gridObject.IsGround)

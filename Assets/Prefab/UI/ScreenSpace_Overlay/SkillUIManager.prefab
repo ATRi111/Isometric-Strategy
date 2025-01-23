@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc4000720f5a024d96ccb2c8249c935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color_hit: {r: 1, g: 0, b: 0, a: 1}
-  color_miss: {r: 0, g: 1, b: 0.055244684, a: 1}
+  color_hit: {r: 0.042732477, g: 1, b: 0, a: 1}
+  color_miss: {r: 1, g: 0, b: 0.00961256, a: 1}
 --- !u!1 &5652832865422284810
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,4 +196,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9a2e5c0a103ca49842f8aa8eaff284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBrain: {fileID: 0}
+  currentPawn: {fileID: 0}

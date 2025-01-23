@@ -11,11 +11,29 @@ public class SkillUIManager : MonoBehaviour
     }
 
     public IEventSystem EventSystem { get; private set; }
+    /// <summary>
+    /// 启用技能选择面板
+    /// </summary>
     public Action<PawnEntity> SelectSkill;
+    /// <summary>
+    /// 选中一个技能后
+    /// </summary>
     public Action<Skill> AfterSelectSkill;
+    /// <summary>
+    /// 选择技能的释放位置后
+    /// </summary>
     public Action<PawnAction> AfterSelectAction;
+    /// <summary>
+    /// 取消选择技能的释放位置后
+    /// </summary>
     public Action AfterCancelSelectAction;
+    /// <summary>
+    /// 开始预览技能位置
+    /// </summary>
     public Action<PawnAction> PreviewAction;
+    /// <summary>
+    /// 停止预览技能位置
+    /// </summary>
     public Action<PawnAction> StopPreviewAction;
 
     public PawnEntity currentPawn;

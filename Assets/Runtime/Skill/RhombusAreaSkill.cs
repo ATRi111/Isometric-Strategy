@@ -15,7 +15,8 @@ public class RhombusAreaSkill : RangedSkill
         for (int i = 0; i < primitive.Count; i++)
         {
             Vector2Int xy = (Vector2Int)target + primitive[i];
-            ret.Add(igm.AboveGroundPosition(xy));
+            if(igm.Contains(xy))
+                ret.Add(igm.AboveGroundPosition(xy));
         }
     }
 

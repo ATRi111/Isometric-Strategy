@@ -35,8 +35,6 @@ public class ActionIcon : IconUI, IPointerClickHandler
     {
         message = action.ToString();
         this.action = action;
-        canvas.overrideSorting = true;
-        canvas.sortingOrder = Igm.CellToSortingOrder(transform.position) + extraSortingOrder;
     }
 
     protected override void Awake()
@@ -44,6 +42,7 @@ public class ActionIcon : IconUI, IPointerClickHandler
         base.Awake();
         image = GetComponentInChildren<Image>();
         canvas = GetComponent<Canvas>();
+        canvas.overrideSorting = true;
         image.alphaHitTestMinimumThreshold = 0.2f;
     }
 
@@ -51,5 +50,6 @@ public class ActionIcon : IconUI, IPointerClickHandler
     {
         base.OnEnable();
         skillUIManager = SkillUIManager.FindInstance();
+        canvas.sortingOrder = Igm.CellToSortingOrder(transform.position) + extraSortingOrder;
     }
 }

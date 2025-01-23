@@ -21,8 +21,10 @@ public class RangedSkill : AimSkill
         for (int i = 0; i < primitive.Count; i++)
         {
             Vector2Int temp = (Vector2Int)position + primitive[i];
+            if (!igm.Contains(temp))    //判断是否在地图内
+                continue;
             Vector3Int target = igm.AboveGroundPosition(temp);
-            if (!LayerCheck(position, target))
+            if (!LayerCheck(position, target))  //判断释放位置高度差是否过大
                 continue;
             //List<Entity> victims = new();
             //switch(victimType)
@@ -45,7 +47,8 @@ public class RangedSkill : AimSkill
     public override void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret)
     {
         ret.Clear();
-        ret.Add(target);
+        if (igm.Contains((Vector2Int)target))
+            ret.Add(target);
     }
 
     protected override void Describe(StringBuilder sb)

@@ -10,6 +10,9 @@ namespace EditorExtend.GridEditor
         public Dictionary<Vector2Int, int> MaxLayerDict => maxLayerDict;
         public int maxLayer;
 
+        public bool Contains(Vector2Int position)
+            => maxLayerDict.ContainsKey(position);
+
         public override Vector3 CellToWorld(Vector3 cellPosition)
             => IsometricGridUtility.CellToWorld(cellPosition, Grid.cellSize);
 

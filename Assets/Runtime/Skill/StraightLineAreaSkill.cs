@@ -14,7 +14,8 @@ public class StraightLineAreaSkill : RangedSkill
         Vector2Int xy = (Vector2Int)(target);
         for (int i = 0; i < length; i++)
         {
-            ret.Add(igm.AboveGroundPosition(xy));
+            if(igm.Contains(xy))
+                ret.Add(igm.AboveGroundPosition(xy));
             xy += delta;
         }
     }
