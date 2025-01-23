@@ -27,7 +27,7 @@ MonoBehaviour:
     intMultiplier: 1
     mndMultiplier: 0
   buffOnVictim: []
+  victimType: 1
   minLayer: -32
   maxLayer: 32
   castingDistance: 6
-  victimType: 0

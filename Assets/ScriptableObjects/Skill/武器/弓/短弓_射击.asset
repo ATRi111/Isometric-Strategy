@@ -13,20 +13,24 @@ MonoBehaviour:
   m_Name: "\u77ED\u5F13_\u5C04\u51FB"
   m_EditorClassIdentifier: 
   displayName: "\u5C04\u51FB"
+  extraDescription: 
   actionTime: 60
   preConditions: []
-  parameterModifiers: []
-  accuracy: 100
+  buffPreConditions: []
+  parameterOnAgent: []
+  buffOnAgent: []
   powers:
   - type: 2
     power: 80
     strMultiplier: 0
     dexMultiplier: 1
     intMultiplier: 0
+    mndMultiplier: 0
+  buffOnVictim: []
+  victimType: 1
   minLayer: -32
   maxLayer: 32
   castingDistance: 8
-  victimType: 0
   angles:
   - 0
   - 15
