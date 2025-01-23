@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TestLevel.unity
     guid: decd238a03619484494cea66a381ae0c
   - enabled: 1
+    path: Assets/Scenes/Level1_BridgeEncounter.unity
+    guid: cd43840c8d7cdd6448f8008b6d970637
+  - enabled: 1
     path: Assets/Scenes/EndGame.unity
     guid: e03803a2b1afcf54ca68728b8eddcb26
   m_configObjects:

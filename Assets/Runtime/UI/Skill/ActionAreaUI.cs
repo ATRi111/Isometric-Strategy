@@ -36,6 +36,12 @@ public class ActionAreaUI : MonoBehaviour
         }
     }
 
+    private void AfterSelectAction(PawnAction _)
+    {
+        currentAction = null;
+        ObjectPoolUtility.RecycleMyObjects(gameObject);
+    }
+
     private void AfterCancelSelectAction()
     {
         currentAction = null;
@@ -52,6 +58,7 @@ public class ActionAreaUI : MonoBehaviour
     {
         skillUIManager.PreviewAction += PreviewAction;
         skillUIManager.StopPreviewAction += StopPreviewAction;
+        skillUIManager.AfterSelectAction += AfterSelectAction;
         skillUIManager.AfterCancelSelectAction += AfterCancelSelectAction;
     }
 
@@ -59,6 +66,7 @@ public class ActionAreaUI : MonoBehaviour
     {
         skillUIManager.PreviewAction -= PreviewAction;
         skillUIManager.StopPreviewAction -= StopPreviewAction;
+        skillUIManager.AfterSelectAction -= AfterSelectAction;
         skillUIManager.AfterCancelSelectAction -= AfterCancelSelectAction;
     }
 }

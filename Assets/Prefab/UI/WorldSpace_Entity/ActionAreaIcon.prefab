@@ -85,7 +85,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4953459456479311182}
   - component: {fileID: 2755548572415404266}
-  - component: {fileID: 3390449370388022862}
   - component: {fileID: 640888717140188753}
   - component: {fileID: 4622872419809484037}
   - component: {fileID: 2836664353209076063}
@@ -140,23 +139,6 @@ Canvas:
   m_SortingLayerID: -1284782031
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &3390449370388022862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8829755350245929086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!225 &640888717140188753
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -167,7 +149,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 0
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &4622872419809484037
 MonoBehaviour:
@@ -216,4 +198,4 @@ MonoBehaviour:
   minAlpha: 1
   maxAlpha: 1
   period: 2
-  extraSortingOrder: 0
+  extraSortingOrder: 4
