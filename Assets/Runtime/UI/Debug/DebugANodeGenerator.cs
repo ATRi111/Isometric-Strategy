@@ -1,6 +1,4 @@
 using AStar;
-using EditorExtend.GridEditor;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DebugANodeGenerator : MonoBehaviour
@@ -28,27 +26,9 @@ public class DebugANodeGenerator : MonoBehaviour
         }
     }
 
-    internal Vector2Int WorldToNode(Vector3 world)
-        => new(Mathf.FloorToInt(world.x), Mathf.FloorToInt(world.y));
-
     internal Vector3 NodeToWorld(ANode node)
     {
-        List<GridObject> temp = new();
-        Igm.GetObjectsXY(node.Position, temp);
-        if (temp.Count == 0)
-            return Igm.CellToWorld((Vector3Int)node.Position);
-
-        int i = 0;
-        for (; i < temp.Count; i++)
-        {
-            if (temp[i].GetComponent<MovableGridObject>() == null)
-                break;
-        }
-        if (i >= temp.Count)
-            return Igm.CellToWorld((Vector3Int)node.Position);
-
-        Vector3Int cellPosition = temp[i].CellPosition;
-        return Igm.CellToWorld(cellPosition).ResetZ();
+        return Igm.CellToWorld(node.CellPosition);
     }
 
     public void Clear()

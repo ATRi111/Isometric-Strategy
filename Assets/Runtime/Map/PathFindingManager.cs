@@ -104,13 +104,13 @@ public class PathFindingManager : MonoBehaviour
 
     private void Step(float _)
     {
+        AfterStep?.Invoke(current);
         if (!current.NextStep())
         {
             metronome.Paused = true;
             AfterComplete?.Invoke(current);
             current = null;
         }
-        AfterStep?.Invoke(current);
     }
 #endif
 }
