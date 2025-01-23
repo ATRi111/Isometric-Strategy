@@ -50,7 +50,7 @@ public abstract class AimSkill : Skill
     /// <summary>
     /// 获取指定位置上的技能目标
     /// </summary>
-    public virtual Entity GetVictim(PawnEntity agent, IsometricGridManager igm, Vector3Int target)
+    public virtual Entity GetVictimAt(PawnEntity agent, IsometricGridManager igm, Vector3Int target)
     {
         if(igm.EntityDict.ContainsKey(target))
         {
@@ -71,7 +71,7 @@ public abstract class AimSkill : Skill
         MockArea(igm, position, target, area);
         for (int i = 0; i < area.Count; i++)
         {
-            Entity entity = GetVictim(agent, igm, area[i]);
+            Entity entity = GetVictimAt(agent, igm, area[i]);
             if (entity != null)
                 ret.Add(entity);
         }
@@ -82,6 +82,7 @@ public abstract class AimSkill : Skill
     /// </summary>
     protected virtual void MockPower(PawnEntity agent,  List<SkillPower> ret)
     {
+        ret.Clear();
         ret.AddRange(powers);
         agent.OffenceComponent.ModifyPower?.Invoke(ret);
     }

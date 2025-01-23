@@ -12,6 +12,7 @@ public class RhombusAreaSkill : RangedSkill
     {
         ret.Clear();
         List<Vector2Int> primitive = IsometricGridUtility.WithinProjectManhattanDistance(effectRange);
+        primitive.Add(Vector2Int.zero);
         for (int i = 0; i < primitive.Count; i++)
         {
             Vector2Int xy = (Vector2Int)target + primitive[i];
