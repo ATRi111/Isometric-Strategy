@@ -9,26 +9,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60fc8b1b0161ed040b9a45421afd9f04, type: 3}
+  m_Script: {fileID: 11500000, guid: f18199efeac69f848a1109db7795af75, type: 3}
   m_Name: "\u5927\u5251_\u771F\xB7\u84C4\u529B\u65A9"
   m_EditorClassIdentifier: 
   displayName: "\u771F\xB7\u84C4\u529B\u65A9"
+  extraDescription: 
   actionTime: 75
   preConditions:
   - conditionType: 0
     parameterIndex: 1
     value: 2
-  parameterModifiers:
-  - parameterIndex: 0
-    deltaValue: 0
-  accuracy: 100
+  buffPreConditions: []
+  parameterOnAgent: []
+  buffOnAgent: []
   powers:
   - type: 1
     power: 450
     strMultiplier: 1
     dexMultiplier: 0
     intMultiplier: 0
+    mndMultiplier: 0
+  buffOnVictim: []
+  victimType: 1
   minLayer: -2
   maxLayer: 2
   castingDistance: 1
-  victimType: 1
+  length: 2

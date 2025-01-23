@@ -32,7 +32,7 @@ MonoBehaviour:
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
-  victimType: 0
+  victimType: 1
   minLayer: -32
   maxLayer: 32
   castingDistance: 5
