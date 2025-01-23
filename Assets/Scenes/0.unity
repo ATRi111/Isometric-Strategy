@@ -760,7 +760,7 @@ MonoBehaviour:
       HCost: 0
     countOfCloseNode: 0
     countOfQuery: 0
-  debug: 1
+  debug: 0
   stepTime: 0.1
 --- !u!114 &1776701401
 MonoBehaviour:
