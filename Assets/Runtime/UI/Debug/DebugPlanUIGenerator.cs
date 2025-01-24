@@ -8,6 +8,7 @@ public class DebugPlanUIGenerator : MonoBehaviour
     private IsometricGridManager Igm => IsometricGridManager.Instance;
 
     public PawnBrain brain;
+    public SkillManager skillManager;
     public int paintIndex;
 
     public List<Skill> skills;
@@ -46,7 +47,7 @@ public class DebugPlanUIGenerator : MonoBehaviour
             return;
         Clear();
         GameObject obj = new("DebugPlan");
-        skills = brain.learnedSkills.list;
+        skills = skillManager.learnedSkills.list;
         Filter();
         foreach(Plan plan in visiblePlans.Values)
         {

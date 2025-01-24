@@ -157,6 +157,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6104110219867792243}
   - component: {fileID: 6425705250901006814}
+  - component: {fileID: 8906729858977160495}
+  - component: {fileID: 916847958706545871}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -191,17 +193,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1144042e122344ab35c344398fca4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensor: {fileID: 0}
   humanControl: 0
   plans: []
   prepared: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &8906729858977160495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804586430030361790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c7ddf9db9b18754cb61a137bf1ce81d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   learnedSkills:
     list:
     - {fileID: 11400000, guid: 657c8bcd12f11534ca0c14dfb10bc8d5, type: 2}
     - {fileID: 11400000, guid: 6c221d77fbdbf304a9adcdb5da814e20, type: 2}
     - {fileID: 11400000, guid: 1272a1c74637fd54b8d2c7e155ef1993, type: 2}
-  references:
-    version: 2
-    RefIds: []
+--- !u!114 &916847958706545871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804586430030361790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37eeabf3b48d054b9ba821a5aaf8a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7860386800660997329
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class PawnModifierSO : ScriptableObject
         propertyModifier.Register(pawn);
         for (int i = 0; i < skillsAttached.Count; i++)
         {
-            pawn.Brain.Learn(skillsAttached[i]);
+            pawn.SkillManager.Learn(skillsAttached[i]);
         }
     }
 
@@ -26,7 +26,7 @@ public class PawnModifierSO : ScriptableObject
         propertyModifier.Unregister(pawn);
         for (int i = 0; i < skillsAttached.Count; i++)
         {
-            pawn.Brain.Forget(skillsAttached[i]);
+            pawn.SkillManager.Forget(skillsAttached[i]);
         }
     }
 

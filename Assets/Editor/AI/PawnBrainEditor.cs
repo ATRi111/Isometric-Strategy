@@ -6,12 +6,11 @@ using UnityEngine;
 public class PawnBrainEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty humanControl, plans, prepared, learnedSkills;
+    public SerializedProperty humanControl, plans, prepared;
 
     protected override void MyOnInspectorGUI()
     {
         humanControl.BoolField("由玩家控制");
-        learnedSkills.PropertyField("技能");
         if(Application.isPlaying)
         {
             plans.ListField("当前计划");

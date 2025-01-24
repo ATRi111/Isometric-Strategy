@@ -25,6 +25,11 @@ public class PawnEntity : Entity
     [AutoComponent]
     public PawnBrain Brain { get; private set; }
     [AutoComponent]
+    public SkillManager SkillManager { get; private set; }
+    [AutoComponent]
+    public PawnSensor Sensor { get; private set; }
+
+    [AutoComponent]
     public MovableGridObject MovableGridObject { get; private set; }
     [AutoComponent]
     public OffenceComponent OffenceComponent { get; private set; }

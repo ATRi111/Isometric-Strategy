@@ -52,7 +52,7 @@ public class MovableGridObject : GridObject
 
     public virtual bool JumpCheck(Vector2Int fromXY, Vector2Int toXY, Func<PawnEntity,GridObject, bool> ObjectCheck = null)
     {
-        JumpSkill jumpSkill = Pawn.Brain.FindSkill<JumpSkill>();
+        JumpSkill jumpSkill = Pawn.SkillManager.FindSkill<JumpSkill>();
         if (jumpSkill == null)
             return false;
         return jumpSkill.JumpCheck(Pawn, Pawn.Igm, fromXY, toXY, ObjectCheck);

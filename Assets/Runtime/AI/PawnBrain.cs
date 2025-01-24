@@ -1,28 +1,32 @@
-using AStar;
 using Character;
 using EditorExtend.GridEditor;
-using MyTool;
 using Services;
 using Services.Event;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Profiling;
 
+/// <summary>
+/// 控制角色决策
+/// </summary>
 public class PawnBrain : CharacterComponentBase
 {
+    private AIManager AIManager;
     public PawnEntity Pawn => entity as PawnEntity;
-
-    #region 决策
+    public PawnSensor sensor;
 
     public bool humanControl;
 
     public List<Plan> plans;
     private readonly List<Vector3Int> options = new();
+
+    private readonly Dictionary<Vector3Int, float> positionValueCache = new();
+
 #if UNITY_EDITOR
     [SerializeField]
     private bool prepared;
     private DebugPlanUIGenerator generator;
 #endif
+
     public virtual void DoAction()
     {
         Pawn.EventSystem.Invoke(EEvent.BeforeDoAction, Pawn);
@@ -40,6 +44,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 prepared = true;
                 generator.brain = this;
+                generator.skillManager = Pawn.SkillManager;
                 generator.Paint();
             }
             else
@@ -60,19 +65,15 @@ public class PawnBrain : CharacterComponentBase
         return action;
     }
 
-    private readonly Dictionary<Vector3Int, float> positionValueCache = new();
-    private readonly List<PawnEntity> allies = new();
-    private readonly List<PawnEntity> enemies = new();
-
     /// <summary>
     /// 制定计划
     /// </summary>
     public virtual void MakePlan()
     {
+        sensor.Sense();
         plans.Clear();
-        RecognizeEnemyAndAlly();
         positionValueCache.Clear();
-        foreach (Skill skill in learnedSkills)
+        foreach (Skill skill in Pawn.SkillManager.learnedSkills)
         {
             if (skill.CanUse(Pawn, Pawn.Igm))
                 MakePlan(skill, plans);
@@ -102,28 +103,6 @@ public class PawnBrain : CharacterComponentBase
         }
     }
 
-    public void RecognizeEnemyAndAlly()
-    {
-        allies.Clear();
-        enemies.Clear();
-        foreach(PawnEntity pawn in Pawn.GameManager.pawns)
-        {
-            if(pawn == Pawn)
-                continue;
-            int flag = Pawn.FactionCheck(pawn);
-            switch(flag)
-            {
-                case 1:
-                    allies.Add(pawn);
-                    break;
-                case -1:
-                    enemies.Add(pawn);
-                    break;
-                case 0:
-                    break;
-            }
-        }
-    }
     public virtual float Evaluate(PawnAction action)
     {
         float sum = 0;
@@ -141,7 +120,7 @@ public class PawnBrain : CharacterComponentBase
     public virtual float EvaluatePosition(Vector3Int position)
     {
         Dictionary<Vector2Int, ANode> nodeDict = new();
-        Ranging(position, nodeDict);
+        sensor.Ranging(position, nodeDict);
         int DistanceTo(PawnEntity other)
         {
             Vector2Int xy = (Vector2Int)other.GridObject.CellPosition;
@@ -166,10 +145,13 @@ public class PawnBrain : CharacterComponentBase
         float I(PawnEntity pawn)
             => 1- 0.5f * HealthPercent(pawn);
 
+        List<PawnEntity> allies = sensor.allies;
+        List<PawnEntity> enemies = sensor.enemies;
+
         float OfferSupport()
         {
             float sum = 0;
-            for (int i = 0; i < allies.Count; i++)
+            for (int i = 0; i < sensor.allies.Count; i++)
             {
                 sum += I(allies[i]) * SupportDistance(allies[i]);
             }
@@ -213,96 +195,12 @@ public class PawnBrain : CharacterComponentBase
         }
         return positionValueCache[position];
     }
-    #endregion
-
-    #region 寻路
-    public AIManager AIManager { get; private set; }
-
-    public void FindAvailable(Vector3Int from, List<Vector3Int> ret)
-    {
-        Profiler.BeginSample("FindAvailable");
-        ret.Clear();
-        PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover_Default, (Vector2Int)from);
-        for (int i = 0; i < process.available.Count; i++)
-        {
-            ret.Add((process.available[i] as ANode).CellPosition);
-        }
-        Profiler.EndSample();
-    }
-
-    public void FindRoute(Vector3Int from, Vector3Int to, List<Vector3Int> ret)
-    {
-        Profiler.BeginSample("FindRoute");
-        ret.Clear();
-        ret.Add(Pawn.MovableGridObject.CellPosition);
-        PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover_Default, (Vector2Int)from, (Vector2Int)to);
-        for (int i = 0; i < process.output.Count; i++)
-        {
-            ret.Add((process.output[i] as ANode).CellPosition);
-        }
-        Profiler.EndSample();
-    }
-
-    public void Ranging(Vector3Int from, Dictionary<Vector2Int, ANode> ret)
-    {
-        Profiler.BeginSample("Ranging");
-        ret.Clear();
-        PathFindingProcess process = AIManager.PathFinding.Ranging(Pawn.MovableGridObject.Mover_Ranging, (Vector2Int)from);
-        for (int i = 0; i < process.available.Count; i++)
-        {
-            ANode node = process.available[i] as ANode;
-            ret.Add(node.Position, node);
-        }
-        Profiler.EndSample();
-    }
-    #endregion
-
-    #region 技能
-    public SerializedHashSet<Skill> learnedSkills;
-
-    public void Learn(Skill skill)
-    {
-        learnedSkills.Add(skill);
-    }
-    /// <summary>
-    /// 按类型查找技能
-    /// </summary>
-    public T FindSkill<T>() where T : Skill
-    {
-        foreach (Skill skill in learnedSkills)
-        {
-            if (skill is T)
-                return skill as T;
-        }
-        return null;
-    }
-    /// <summary>
-    /// 按名称和类型查找技能（优先看是否有展示名称包含name的技能，再看是否有资产名称包含name的技能）
-    /// </summary>
-    public T FindSkill<T>(string name) where T : Skill
-    {
-        foreach (Skill skill in learnedSkills)
-        {
-            if(skill is T && skill.displayName == name)
-                return skill as T;
-        }
-        foreach (Skill skill in learnedSkills)
-        {
-            if (skill is T && skill.name.Contains(name))
-                return skill as T;
-        }
-        return null;
-    }
-    public bool Forget(Skill skill)
-    {
-        return learnedSkills.Remove(skill);
-    }
-    #endregion
 
     protected override void Awake()
     {
         base.Awake();
         AIManager = ServiceLocator.Get<AIManager>();
+        sensor = GetComponent<PawnSensor>();
 #if UNITY_EDITOR
         generator = AIManager.GetComponent<DebugPlanUIGenerator>();
 #endif
