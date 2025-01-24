@@ -1,5 +1,6 @@
 using AStar;
 using Character;
+using EditorExtend.GridEditor;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,15 @@ public class PawnSensor : CharacterComponentBase
 
     public int PredictDistanceBetween(Vector3Int from, Vector3Int to)
     {
+        float HCost(Node node)
+        {
+            return IsometricGridUtility.ProjectManhattanDistance(node.Position, (Vector2Int)to);
+        }
+        float FCost(Node node)
+        {
+            return node.GCost + HCost(node);
+        }
+
         Pair f2t = new()
         {
             from = (Vector2Int)from,
@@ -84,26 +94,35 @@ public class PawnSensor : CharacterComponentBase
         };
         if (!distanceDict.ContainsKey(f2t))
         {
-            float minG = float.MaxValue;
-            float minH = float.MaxValue;
-
             List<Node> available = new();
-            Ranging(from, available);
-            foreach (Node node in available)
+            List<Node> route = new();
+
+            Ranging(from, available); 
+            Node nearest = available[0];
+            for (int i = 0; i < available.Count; i++)
             {
+                Node node = available[i];
                 Pair f2a = new()
                 {
                     from = (Vector2Int)from,
                     to = node.Position
                 };
                 TryAdd(f2a, node.GCost);
-                if (node.GCost <= minG)
-                {
-                    minG = node.GCost;
-                    minH = Mathf.Min(minH, node.GCost);
-                }
+                if (HCost(node) <= HCost(nearest) && FCost(node) < FCost(nearest))
+                    nearest = node;
             }
-            TryAdd(f2t, minH);
+
+            nearest.Recall(route);
+            for (int i = 0; i < route.Count; i++)
+            {
+                Pair a2t = new()
+                {
+                    from = route[i].Position,
+                    to = (Vector2Int)to
+                };
+                float distance = route[i].GCost - route[0].GCost + HCost(route[0]);
+                TryAdd(a2t, distance);
+            }
         }
         return Mathf.RoundToInt(distanceDict[f2t]);
     }

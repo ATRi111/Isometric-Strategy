@@ -17,4 +17,9 @@ public class AMover_Ranging : AMover
 
         return gridObject.JumpCheck(from.Position, to.Position, MovableGridObject.ObjectCheck_IgnoreAlly);
     }
+
+    public override bool MoveAbilityCheck(Node node)
+    {
+        return true;    //测距时无需考虑移动力限制
+    }
 }
