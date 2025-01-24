@@ -119,16 +119,8 @@ public class PawnBrain : CharacterComponentBase
 
     public virtual float EvaluatePosition(Vector3Int position)
     {
-        Dictionary<Vector2Int, ANode> nodeDict = new();
-        sensor.Ranging(position, nodeDict);
         int DistanceTo(PawnEntity other)
-        {
-            Vector2Int xy = (Vector2Int)other.GridObject.CellPosition;
-            if (nodeDict.ContainsKey(xy))
-                return Mathf.RoundToInt(nodeDict[xy].GCost);
-            Debug.LogWarning($"{other.gameObject.name}²»¿É´ï");
-            return IsometricGridUtility.ProjectManhattanDistance((Vector2Int)position, xy);
-        }
+            => sensor.PredictDistanceBetween(position, other.GridObject.CellPosition);
 
         int SupportDistance(PawnEntity supported)
             => -Mathf.Abs(DistanceTo(supported) - Pawn.pClass.bestSupprtDistance);

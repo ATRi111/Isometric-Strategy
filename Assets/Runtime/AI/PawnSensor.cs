@@ -36,9 +36,11 @@ public class PawnSensor : CharacterComponentBase
     public PawnEntity Pawn => entity as PawnEntity;
     public readonly List<PawnEntity> allies = new();
     public readonly List<PawnEntity> enemies = new();
+    private readonly Dictionary<Pair,float> distanceDict = new();
 
     public void Sense()
     {
+        distanceDict.Clear();
         RecognizeEnemyAndAlly();
     }
 
@@ -65,10 +67,50 @@ public class PawnSensor : CharacterComponentBase
         }
     }
 
+    private void TryAdd(Pair pair,float distance)
+    {
+        if(distanceDict.ContainsKey(pair))
+            distanceDict[pair] = Mathf.Min(distanceDict[pair], distance);
+        else
+            distanceDict.Add(pair, distance);
+    }
 
+    public int PredictDistanceBetween(Vector3Int from, Vector3Int to)
+    {
+        Pair f2t = new()
+        {
+            from = (Vector2Int)from,
+            to = (Vector2Int)to
+        };
+        if (!distanceDict.ContainsKey(f2t))
+        {
+            float minG = float.MaxValue;
+            float minH = float.MaxValue;
 
+            List<Node> available = new();
+            Ranging(from, available);
+            foreach (Node node in available)
+            {
+                Pair f2a = new()
+                {
+                    from = (Vector2Int)from,
+                    to = node.Position
+                };
+                TryAdd(f2a, node.GCost);
+                if (node.GCost <= minG)
+                {
+                    minG = node.GCost;
+                    minH = Mathf.Min(minH, node.GCost);
+                }
+            }
+            TryAdd(f2t, minH);
+        }
+        return Mathf.RoundToInt(distanceDict[f2t]);
+    }
 
-
+    /// <summary>
+    /// 获取从from出发时，所有可达点
+    /// </summary>
     public void FindAvailable(Vector3Int from, List<Vector3Int> ret)
     {
         Profiler.BeginSample("FindAvailable");
@@ -81,6 +123,9 @@ public class PawnSensor : CharacterComponentBase
         Profiler.EndSample();
     }
 
+    /// <summary>
+    /// 计算from通往to的路径
+    /// </summary>
     public void FindRoute(Vector3Int from, Vector3Int to, List<Vector3Int> ret)
     {
         Profiler.BeginSample("FindRoute");
@@ -94,16 +139,15 @@ public class PawnSensor : CharacterComponentBase
         Profiler.EndSample();
     }
 
-    public void Ranging(Vector3Int from, Dictionary<Vector2Int, ANode> ret)
+    /// <summary>
+    /// 预测从from出发时，所有可达节点（忽略友方角色，考虑跳跃）
+    /// </summary>
+    public void Ranging(Vector3Int from, List<Node> ret)
     {
         Profiler.BeginSample("Ranging");
         ret.Clear();
         PathFindingProcess process = AIManager.PathFinding.Ranging(Pawn.MovableGridObject.Mover_Ranging, (Vector2Int)from);
-        for (int i = 0; i < process.available.Count; i++)
-        {
-            ANode node = process.available[i] as ANode;
-            ret.Add(node.Position, node);
-        }
+        ret.AddRange(process.available);
         Profiler.EndSample();
     }
 
