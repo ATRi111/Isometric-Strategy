@@ -35,13 +35,17 @@ public class PawnSensor : CharacterComponentBase
     private AIManager AIManager;
 
     public PawnEntity Pawn => entity as PawnEntity;
+
+    private List<Vector2Int> adjacent = new();  //相邻四格
+
     public readonly List<PawnEntity> allies = new();
     public readonly List<PawnEntity> enemies = new();
-    private readonly Dictionary<Pair,float> distanceDict = new();
+    public HashSet<Vector2Int> pawnPositions = new();
+    private readonly Dictionary<Pair,float> distanceCache = new();
 
     public void Sense()
     {
-        distanceDict.Clear();
+        distanceCache.Clear();
         RecognizeEnemyAndAlly();
     }
 
@@ -49,6 +53,7 @@ public class PawnSensor : CharacterComponentBase
     {
         allies.Clear();
         enemies.Clear();
+        pawnPositions.Clear();
         foreach (PawnEntity pawn in Pawn.GameManager.pawns)
         {
             if (pawn == Pawn)
@@ -65,15 +70,42 @@ public class PawnSensor : CharacterComponentBase
                 case 0:
                     break;
             }
+            pawnPositions.Add((Vector2Int)pawn.GridObject.CellPosition);
         }
     }
 
     private void TryAdd(Pair pair,float distance)
     {
-        if(distanceDict.ContainsKey(pair))
-            distanceDict[pair] = Mathf.Min(distanceDict[pair], distance);
+        if(distanceCache.ContainsKey(pair))
+            distanceCache[pair] = Mathf.Min(distanceCache[pair], distance);
         else
-            distanceDict.Add(pair, distance);
+            distanceCache.Add(pair, distance);
+    }
+
+    private bool DistanceBetween(Pair pair, out int ret)
+    {
+        ret = 0;
+        if (distanceCache.ContainsKey(pair))
+        {
+            ret = Mathf.RoundToInt(distanceCache[pair]);
+            return true;
+        }
+        //如果能到达附近四格，那么一定能到达目标格
+        for (int i = 0; i < adjacent.Count; i++)
+        {
+            Pair temp = new()
+            {
+                from = pair.from,
+                to = pair.to + adjacent[i],
+            };
+            if (distanceCache.ContainsKey(temp))
+            {
+                float dot = Vector2.Dot(adjacent[i],pair.from - pair.to);   //根据方位判断距离应当+1还是-1
+                ret = Mathf.RoundToInt(distanceCache[temp] + Mathf.Sign(dot));
+                return true;
+            }
+        }
+        return false;
     }
 
     public int PredictDistanceBetween(Vector3Int from, Vector3Int to)
@@ -92,39 +124,42 @@ public class PawnSensor : CharacterComponentBase
             from = (Vector2Int)from,
             to = (Vector2Int)to
         };
-        if (!distanceDict.ContainsKey(f2t))
-        {
-            List<Node> available = new();
-            List<Node> route = new();
+        if (DistanceBetween(f2t, out int ret))
+            return ret;
 
-            Ranging(from, available); 
-            Node nearest = available[0];
-            for (int i = 0; i < available.Count; i++)
+        List<Node> available = new();
+        List<Node> route = new();
+
+        Ranging(from, available);
+        Node nearest = available[0];
+        for (int i = 0; i < available.Count; i++)
+        {
+            Node node = available[i];
+            if (pawnPositions.Contains(node.Position))
             {
-                Node node = available[i];
                 Pair f2a = new()
                 {
                     from = (Vector2Int)from,
                     to = node.Position
                 };
                 TryAdd(f2a, node.GCost);
-                if (HCost(node) <= HCost(nearest) && FCost(node) < FCost(nearest))
-                    nearest = node;
             }
-
-            nearest.Recall(route);
-            for (int i = 0; i < route.Count; i++)
-            {
-                Pair a2t = new()
-                {
-                    from = route[i].Position,
-                    to = (Vector2Int)to
-                };
-                float distance = route[i].GCost - route[0].GCost + HCost(route[0]);
-                TryAdd(a2t, distance);
-            }
+            if (HCost(node) <= HCost(nearest) && FCost(node) < FCost(nearest))
+                nearest = node;
         }
-        return Mathf.RoundToInt(distanceDict[f2t]);
+
+        nearest.Recall(route);
+        for (int i = 0; i < route.Count; i++)
+        {
+            Pair a2t = new()
+            {
+                from = route[i].Position,
+                to = (Vector2Int)to
+            };
+            float distance = route[i].GCost - route[0].GCost + HCost(route[0]);
+            TryAdd(a2t, distance);
+        }
+        return Mathf.RoundToInt(distanceCache[f2t]);
     }
 
     /// <summary>
@@ -174,5 +209,6 @@ public class PawnSensor : CharacterComponentBase
     {
         base.Awake();
         AIManager = ServiceLocator.Get<AIManager>();
+        adjacent = IsometricGridUtility.WithinProjectManhattanDistance(1);
     }
 }
