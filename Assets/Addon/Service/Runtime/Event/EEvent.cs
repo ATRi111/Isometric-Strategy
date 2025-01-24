@@ -47,7 +47,7 @@ namespace Services.Event
         /// </summary>
         AfterEntityEnable,
         /// <summary>
-        /// 显示角色面板
+        /// 显示角色面板，参数：Pawn
         /// </summary>
         ShowPawnPanel,
         /// <summary>

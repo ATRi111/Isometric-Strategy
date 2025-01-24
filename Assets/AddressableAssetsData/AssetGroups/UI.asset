@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 3b5bc6082c11b8d43a3427e7827b4e7c
   m_SerializeEntries:
-  - m_GUID: 187b186105bd5c34895cb3f4ea013dd5
-    m_Address: FollowingHPBar
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: acbf2e2846ca1524fa16b45d87cd0907
     m_Address: ActionIcon
     m_ReadOnly: 0

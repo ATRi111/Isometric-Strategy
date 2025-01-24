@@ -12,11 +12,14 @@ public class PawnParameterModifier
 
     public void Describe(StringBuilder sb, string victimName)
     {
-        sb.Append("使");
-        sb.Append(victimName);
-        sb.Append("的");
-        sb.Append(ParameterName.Bold());
-        sb.Append(deltaValue.ToString("+0;-0"));
-        sb.AppendLine();
+        if (deltaValue != 0)
+        {
+            sb.Append("使");
+            sb.Append(victimName);
+            sb.Append("的");
+            sb.Append(ParameterName.Bold());
+            sb.Append(deltaValue.ToString("+0;-0"));
+            sb.AppendLine();
+        }
     }
 }

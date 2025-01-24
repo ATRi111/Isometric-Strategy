@@ -28,7 +28,7 @@ MonoBehaviour:
   - name: "\u51B2\u950B\u5C42\u6570"
     valuePerUnit: 2
     hidden: 0
-    description: "\u6240\u6709\u884C\u52A8\u4F1A\u6E05\u7A7A\u51B2\u950B\u5C42\u6570"
+    description: "\u51B2\u950B\u4EE5\u5916\u7684\u884C\u52A8\u4F1A\u6E05\u7A7A\u51B2\u950B\u5C42\u6570"
   resetParameters:
   - "\u84C4\u529B\u5C42\u6570"
   - "\u51B2\u950B\u5C42\u6570"

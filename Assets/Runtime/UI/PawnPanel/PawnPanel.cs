@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class PawnPanel : MonoBehaviour
 {
+    public IsometricGridManager Igm => IsometricGridManager.Instance;
     private IEventSystem eventSystem;
-    private PlayerManager playerManager;
 
     private CanvasGroupPlus canvasGroup;
 
@@ -19,26 +19,46 @@ public class PawnPanel : MonoBehaviour
 
     public Dictionary<string, float> propertyChangeDict = new();
 
-
     public int selectedIndex;
     /// <summary>
     /// 当前查看的角色列表
     /// </summary>
-    public List<PawnEntity> pawnList;
+    public PawnEntity[] pawnList;
     public PawnEntity SelectedPawn => pawnList[selectedIndex];
 
     public float GetPropertyChange(string propertyName)
     {
-        if(propertyChangeDict.ContainsKey(propertyName))
+        //TODO:装备切换预览
+        if (propertyChangeDict.ContainsKey(propertyName))
             return propertyChangeDict[propertyName];
         return UnityEngine.Random.Range(-2f, 2f);
     }
 
-    private void Show()
+    public void Next()
     {
+        if (pawnList != null && pawnList.Length > 0)
+            selectedIndex = (selectedIndex + 1) % pawnList.Length;
+        RefreshAll?.Invoke(SelectedPawn);
+    }
+
+    public void Previous()
+    {
+        if(pawnList!= null && pawnList.Length > 0)
+            selectedIndex = (selectedIndex + pawnList.Length - 1) % pawnList.Length;
+        RefreshAll?.Invoke(SelectedPawn);
+    }
+
+    private void Show(PawnEntity pawn)
+    {
+        pawnList = Igm.GetComponentsInChildren<PawnEntity>();   //TODO:装备切换
+        selectedIndex = 0;
+        for (int i = 0; i < pawnList.Length; i++)
+        {
+            if(pawnList[i] == pawn)
+                selectedIndex = i;
+        }
         canvasGroup.Visible = true;
         RefreshAll?.Invoke(SelectedPawn);
-        PreviewPropertyChange?.Invoke(SelectedPawn);
     }
 
     private void Hide()
@@ -48,7 +68,7 @@ public class PawnPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        eventSystem.AddListener(EEvent.ShowPawnPanel, Show);
+        eventSystem.AddListener<PawnEntity>(EEvent.ShowPawnPanel, Show);
     }
 
     private void OnDisable()
@@ -60,23 +80,25 @@ public class PawnPanel : MonoBehaviour
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
         canvasGroup = GetComponent<CanvasGroupPlus>();
-        playerManager = PlayerManager.FindInstance();
         selectedIndex = 0;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(canvasGroup.Visible)
         {
-            if (!canvasGroup.Visible)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                pawnList.Clear();
-                pawnList.AddRange(playerManager.playerList);
-                selectedIndex = 0;
-                Show();
-            }
-            else
                 Hide();
+            }
+            else if (Input.GetKeyUp(KeyCode.D))
+            {
+                Next();
+            }
+            else if (Input.GetKeyUp(KeyCode.A))
+            {
+                Previous();
+            }
         }
     }
 }

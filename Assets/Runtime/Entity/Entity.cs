@@ -2,7 +2,6 @@ using Character;
 using EditorExtend.GridEditor;
 using Services;
 using Services.Event;
-using System;
 using UnityEngine;
 
 public class Entity : EntityBase
@@ -29,8 +28,6 @@ public class Entity : EntityBase
             return entityName;
         }
     }
-
-    public Action BeforeDisable;
 
     public virtual void RefreshProperty()
     {
@@ -72,6 +69,5 @@ public class Entity : EntityBase
     protected virtual void OnDisable()
     {
         EventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
-        BeforeDisable?.Invoke();
     }
 }

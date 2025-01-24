@@ -12,7 +12,7 @@ public class ChargeAttackSkill : RangedSkill
         base.MockPower(agent, ret);
         for (int i = 0; i < ret.Count; i++)
         {
-            ret[i].power = Mathf.RoundToInt(ret[i].power * (1f + powerAmplifier * agent.parameterDict[ChargeSkill.ParameterName]));
+            ret[i].power = Mathf.RoundToInt(ret[i].power * (1f + powerAmplifier * agent.parameterDict[ChargeSkill.ChargeLevel]));
         }
     }
 
