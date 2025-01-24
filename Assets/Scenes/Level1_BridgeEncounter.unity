@@ -21585,6 +21585,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 3681028695715984453, guid: 31372ad35fac18646a5b54f510ccc544, type: 3}
+      propertyPath: targetToKill
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4508710216947100420, guid: 31372ad35fac18646a5b54f510ccc544, type: 3}
       propertyPath: cellPosition.x
       value: 9

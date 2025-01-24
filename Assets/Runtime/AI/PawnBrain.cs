@@ -6,6 +6,7 @@ using Services;
 using Services.Event;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 public class PawnBrain : CharacterComponentBase
 {
@@ -219,16 +220,19 @@ public class PawnBrain : CharacterComponentBase
 
     public void FindAvailable(Vector3Int from, List<Vector3Int> ret)
     {
+        Profiler.BeginSample("FindAvailable");
         ret.Clear();
         PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover_Default, (Vector2Int)from);
         for (int i = 0; i < process.available.Count; i++)
         {
             ret.Add((process.available[i] as ANode).CellPosition);
         }
+        Profiler.EndSample();
     }
 
     public void FindRoute(Vector3Int from, Vector3Int to, List<Vector3Int> ret)
     {
+        Profiler.BeginSample("FindRoute");
         ret.Clear();
         ret.Add(Pawn.MovableGridObject.CellPosition);
         PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover_Default, (Vector2Int)from, (Vector2Int)to);
@@ -236,10 +240,12 @@ public class PawnBrain : CharacterComponentBase
         {
             ret.Add((process.output[i] as ANode).CellPosition);
         }
+        Profiler.EndSample();
     }
 
     public void Ranging(Vector3Int from, Dictionary<Vector2Int, ANode> ret)
     {
+        Profiler.BeginSample("Ranging");
         ret.Clear();
         PathFindingProcess process = AIManager.PathFinding.Ranging(Pawn.MovableGridObject.Mover_Ranging, (Vector2Int)from);
         for (int i = 0; i < process.available.Count; i++)
@@ -247,6 +253,7 @@ public class PawnBrain : CharacterComponentBase
             ANode node = process.available[i] as ANode;
             ret.Add(node.Position, node);
         }
+        Profiler.EndSample();
     }
     #endregion
 

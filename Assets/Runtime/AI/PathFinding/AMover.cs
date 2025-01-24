@@ -9,6 +9,9 @@ public abstract class AMover : MoverBase
         this.gridObject = gridObject;
     }
 
+    /// <summary>
+    /// 判断最终能否停留在某个节点
+    /// </summary>
     public override bool StayCheck(Node node)
     {
         if (node.IsObstacle)
@@ -20,6 +23,9 @@ public abstract class AMover : MoverBase
         return true;
     }
 
+    /// <summary>
+    /// 判断能否从某节点移动到另一节点
+    /// </summary>
     public override bool MoveCheck(Node from, Node to)
     {
         if (to.IsObstacle)
@@ -33,6 +39,9 @@ public abstract class AMover : MoverBase
         return true;
     }
 
+    /// <summary>
+    /// 在原始距离的基础上，计算两点间距离
+    /// </summary>
     public override float CalculateCost(Node from, Node to, float primitiveCost)
     {
         float cost = primitiveCost * (to as ANode).difficulty;
