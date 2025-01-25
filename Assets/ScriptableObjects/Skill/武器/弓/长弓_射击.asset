@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 065d4d2cf251bf9418a01d673b593a2a, type: 3}
-  m_Name: "\u77ED\u5F13_\u5C04\u51FB"
+  m_Name: "\u957F\u5F13_\u5C04\u51FB"
   m_EditorClassIdentifier: 
   displayName: "\u5C04\u51FB"
   extraDescription: 
-  actionTime: 30
+  actionTime: 50
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
   powers:
   - type: 2
-    power: 40
-    strMultiplier: 0
-    dexMultiplier: 1
+    power: 70
+    strMultiplier: 0.3
+    dexMultiplier: 0.7
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
   victimType: 1
   minLayer: -32
   maxLayer: 32
-  castingDistance: 6
+  castingDistance: 8
   angles:
   - 0
   - 15
@@ -38,4 +38,4 @@ MonoBehaviour:
   - 45
   - 60
   - 75
-  maxSpeed: 5
+  maxSpeed: 7
