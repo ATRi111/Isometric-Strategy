@@ -207,9 +207,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6714546826842466828, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7257932095638162038, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
       propertyPath: m_Name
       value: PlayerIconToSelect (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1191,6 +1199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerIconToSelect (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1758,9 +1770,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6714546826842466828, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7257932095638162038, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
       propertyPath: m_Name
       value: PlayerIconToSelect (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2170,6 +2190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
   immediate_next: 0
@@ -2291,6 +2312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
   immediate_next: 0
@@ -2457,6 +2479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
   immediate_next: 0
@@ -2731,6 +2754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
   immediate_next: 0
@@ -2848,9 +2872,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6714546826842466828, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7257932095638162038, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
       propertyPath: m_Name
       value: PlayerIconToSelect (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3210,6 +3242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerIconToSelect (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3308,9 +3344,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6714546826842466828, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7257932095638162038, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
       propertyPath: m_Name
       value: PlayerIconToSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3417,6 +3461,10 @@ PrefabInstance:
     - target: {fileID: 7257932095638162038, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
       propertyPath: m_Name
       value: PlayerIconToSelect (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
+      propertyPath: index
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

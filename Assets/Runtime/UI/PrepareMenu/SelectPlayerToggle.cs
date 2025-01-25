@@ -1,19 +1,16 @@
 using UIExtend;
-using UnityEngine;
 
 public class SelectPlayerToggle : ToggleBase
 {
     private PlayerManager playerManager;
-
-    [SerializeField]
-    private int index;
+    private PlayerIcon playerIcon;
 
     protected override void OnToggle(bool value)
     {
         if (value)
-            playerManager.Select(index);
+            playerManager.Select(playerIcon.index);
         else
-            playerManager.Unselect(index);
+            playerManager.Unselect(playerIcon.index);
     }
 
     private void AfterSelectChange()
@@ -24,6 +21,7 @@ public class SelectPlayerToggle : ToggleBase
     protected override void Awake()
     {
         base.Awake();
+        playerIcon = GetComponentInParent<PlayerIcon>();
         playerManager = PlayerManager.FindInstance();
         playerManager.AfterSelectChange += AfterSelectChange;
     }
