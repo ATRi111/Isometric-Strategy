@@ -18,7 +18,8 @@ MonoBehaviour:
   preConditions:
   - conditionType: 2
     parameterIndex: 2
-    value: 3
+    value: 1
+  buffPreConditions: []
   parameterOnAgent:
   - parameterIndex: 2
     deltaValue: 1
