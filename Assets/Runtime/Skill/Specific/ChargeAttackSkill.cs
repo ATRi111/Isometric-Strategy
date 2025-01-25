@@ -9,11 +9,14 @@ public class ChargeAttackSkill : RangedSkill
 
     protected override void MockPower(PawnEntity agent, List<SkillPower> ret)
     {
-        base.MockPower(agent, ret);
-        for (int i = 0; i < ret.Count; i++)
+        ret.Clear();
+        for (int i = 0; i < powers.Count; i++)
         {
-            ret[i].power = Mathf.RoundToInt(ret[i].power * (1f + powerAmplifier * agent.parameterDict[ChargeSkill.ChargeLevel]));
+            SkillPower temp = powers[i];
+            temp.power = Mathf.RoundToInt(ret[i].power * (1f + powerAmplifier * agent.parameterDict[ChargeSkill.ChargeLevel]));
+            ret.Add(temp);
         }
+        agent.OffenceComponent.ModifyPower?.Invoke(ret);
     }
 
     protected override void Describe(StringBuilder sb)

@@ -17,6 +17,8 @@ public class BuffSO : PawnModifierSO
 {
     public int duration;
     public ESuperimposeMode superimposeMode = ESuperimposeMode.Refresh;
+
+    //TODO:价值判断
     public float primitiveValue;
 
     protected override string TypeName => "此状态下可用的";

@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// ¼¼ÄÜÍşÁ¦
 /// </summary>
-public class SkillPower
+public struct SkillPower
 {
     public EDamageType type;
     public int power;
