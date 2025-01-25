@@ -98,6 +98,5 @@ public class GameManager : Service,IService
     {
         base.Init();
         animationManager.AfterAnimationComplete += AfterAnimationComplete;
-        battleSceneIndex = 3;
     }
 }

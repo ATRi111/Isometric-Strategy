@@ -13,13 +13,6 @@ public class PlayerManagerSaveData : SaveData
     public readonly List<PlayerSaveData> playerList = new();
     public readonly List<string> unusedEquipmentList = new();
 
-    public override void Initialize(string identifier, Object obj)
-    {
-        base.Initialize(identifier, obj);
-        assetLoader = ServiceLocator.Get<IAssetLoader>();
-        manager = (obj as GameObject).GetComponent<PlayerManager>();
-    }
-
     public override void Load()
     {
         manager.playerDataList.Clear();
@@ -47,6 +40,12 @@ public class PlayerManagerSaveData : SaveData
         {
             unusedEquipmentList.Add(manager.unusedEquipmentList[i].name);
         }
+    }
+    public override void Initialize(string identifier, Object obj)
+    {
+        base.Initialize(identifier, obj);
+        assetLoader = ServiceLocator.Get<IAssetLoader>();
+        manager = (obj as GameObject).GetComponent<PlayerManager>();
     }
 }
 

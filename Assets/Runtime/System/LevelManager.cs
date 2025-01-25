@@ -85,6 +85,5 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         prepareMenuCamera = Camera.main;
-        LoadLevel(3);
     }
 }

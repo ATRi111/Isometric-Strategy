@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 434299362}
   - component: {fileID: 434299361}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 919935037}
   - component: {fileID: 919935040}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
