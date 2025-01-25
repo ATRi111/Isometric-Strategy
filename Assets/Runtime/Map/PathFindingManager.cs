@@ -70,16 +70,6 @@ public class PathFindingManager : MonoBehaviour
         return ranging;
     }
 
-    public static void GetAdjoinNodes(PathFindingProcess process, Node node, List<Node> ret)
-    {
-        PathFindingUtility.GetAdjoinNodes_Four(process, node, ret);
-    }
-
-    public Node GenerateNode(PathFindingProcess process, Vector2Int position)
-    {
-        return new ANode(process, position, Igm, 1f);   //TODO:À§ÄÑµØÐÎ
-    }
-
 
 #if UNITY_EDITOR
     public UnityAction<PathFindingProcess> AfterStep;

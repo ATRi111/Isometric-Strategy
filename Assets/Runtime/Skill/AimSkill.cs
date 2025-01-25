@@ -52,9 +52,9 @@ public abstract class AimSkill : Skill
     /// </summary>
     public virtual Entity GetVictimAt(PawnEntity agent, IsometricGridManager igm, Vector3Int target)
     {
-        if(igm.EntityDict.ContainsKey(target))
+        if(igm.entityDict.ContainsKey(target))
         {
-            Entity entity = igm.EntityDict[target];
+            Entity entity = igm.entityDict[target];
             if (FilterVictim(agent, entity))
                 return entity;
         }

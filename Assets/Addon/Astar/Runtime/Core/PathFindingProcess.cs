@@ -203,7 +203,7 @@ namespace AStar
                 {
                     case ENodeState.Blank:
                         node.HCost = node.CostTo(To);
-                        node.Parent = currentNode;      //一开始得到的GCost不一定是最小的，故不在这里进行MoveAbilityCheck
+                        node.Parent = currentNode;
                         node.state = ENodeState.Open;
                         open.Push(node);
                         break;

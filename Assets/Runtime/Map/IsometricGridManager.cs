@@ -23,8 +23,8 @@ public class IsometricGridManager : IsometricGridManagerBase
         }
     }
 
-    private readonly Dictionary<Vector3Int, Entity> entityDict = new();
-    public Dictionary<Vector3Int,Entity> EntityDict => entityDict;
+    public readonly Dictionary<Vector3Int, Entity> entityDict = new();
+    public readonly Dictionary<Vector2Int, ANode> aNodeCache = new();
 
     public override void Clear()
     {
