@@ -17,6 +17,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a10d616be3b731146954ddf04cfe0dd2, type: 2}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: faction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: actionTime.defaultValue
       value: 5
       objectReference: {fileID: 0}
