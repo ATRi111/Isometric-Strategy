@@ -1,5 +1,6 @@
 using MyTool;
 using System;
+using System.Text;
 
 [Serializable]
 public abstract class Effect
@@ -33,11 +34,17 @@ public abstract class Effect
         }
     }
 
+    /// <summary>
+    /// 是否隐藏(不描述)此效果
+    /// </summary>
+    public bool hidden;
+
     public Effect(Entity victim, int probability = MaxProbability)
     {
         this.victim = victim;
         this.probability = probability;
         randomValue = -1;
+        hidden = false;
     }
 
     public abstract bool Appliable { get; }
@@ -70,8 +77,17 @@ public abstract class Effect
     /// </summary>
     public abstract float PrimitiveValueFor(PawnEntity pawn);
 
-    public override string ToString()
+    /// <param name="result">描述时是否包含结果信息</param>
+    public virtual void Describe(StringBuilder sb, bool result)
     {
-        return GetType().Name;
+        if (hidden)
+            return;
+        if (!result && probability != MaxProbability)
+        {
+            sb.Append(probability);
+            sb.Append("%");
+        }
+        sb.Append("使");
+        sb.Append(victim.gameObject.name.Bold());
     }
 }

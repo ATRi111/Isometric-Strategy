@@ -1,3 +1,4 @@
+using MyTool;
 using System.Text;
 using UnityEngine;
 
@@ -34,6 +35,7 @@ public class PawnAction
     /// </summary>
     public void Play(AnimationManager animationManager)
     {
+        Debug.Log(ResultDescription);
         AnimationProcess animation = skill.GenerateAnimation();
         if (animation != null)
             animationManager.Register(animation);
@@ -41,11 +43,39 @@ public class PawnAction
         animationManager.StartAnimationCheck();
     }
 
-    public override string ToString()
+    public string Description
     {
-        StringBuilder sb = new();
-        sb.AppendLine(skill.name);
+        get
+        {
+            StringBuilder sb = new();
+            Describe(sb, false);
+            return sb.ToString();
+        }
+    }
+
+    public string ResultDescription
+    {
+        get
+        {
+            StringBuilder sb = new();
+            Describe(sb, true);
+            return sb.ToString();
+        }
+    }
+
+    private void Describe(StringBuilder sb, bool result)
+    {
+        if(result)
+        {
+            sb.Append(agent.name.Bold());
+            sb.Append("使用了");
+        }
+        sb.Append(skill.displayName.Bold());
+        sb.AppendLine();
         sb.AppendLine($"时间花费:{Time}");
-        return sb.ToString();
+        for (int i = 0; i < effectUnit.effects.Count; i++)
+        {
+            effectUnit.effects[i].Describe(sb, result);
+        }
     }
 }

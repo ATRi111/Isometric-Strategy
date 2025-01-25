@@ -1,4 +1,6 @@
 using System;
+using static UnityEngine.Rendering.DebugUI;
+using System.Text;
 
 [Serializable]
 public class HPChangeEffect : Effect
@@ -36,5 +38,14 @@ public class HPChangeEffect : Effect
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
         return (current - prev) * pawn.FactionCheck(victim);
+    }
+    public override void Describe(StringBuilder sb, bool result)
+    {
+        base.Describe(sb, result);
+        sb.Append("的生命从");
+        sb.Append(prev);
+        sb.Append("变为");
+        sb.Append(current);
+        sb.AppendLine();
     }
 }

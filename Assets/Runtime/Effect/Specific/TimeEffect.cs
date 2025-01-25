@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 [Serializable]
 public class TimeEffect : Effect
@@ -42,5 +43,13 @@ public class TimeEffect : Effect
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
         return (prev - current) * pawn.FactionCheck(victim);
+    }
+
+    public override void Describe(StringBuilder sb, bool result)
+    {
+        base.Describe(sb, result);
+        sb.Append("的等待时间增加");
+        sb.Append(current - prev);
+        sb.AppendLine();
     }
 }

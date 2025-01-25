@@ -54,5 +54,9 @@ namespace Services.Event
         /// 隐藏角色面板
         /// </summary>
         HidePawnPanel,
+        /// <summary>
+        /// 输出战斗日志，参数：日志内容
+        /// </summary>
+        BattleLog,
     }
 }

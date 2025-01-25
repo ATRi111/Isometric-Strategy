@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using UnityEngine;
 
 [Serializable]
@@ -36,5 +37,15 @@ public class TeleportEffect : Effect
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
         return pawn.Brain.EvaluatePosition(to) - pawn.Brain.EvaluatePosition(from);
+    }
+
+    public override void Describe(StringBuilder sb, bool result)
+    {
+        base.Describe(sb, result);
+        sb.Append("´Ó");
+        sb.Append(from);
+        sb.Append("ÒÆ¶¯µ½");
+        sb.Append(to);
+        sb.AppendLine();
     }
 }

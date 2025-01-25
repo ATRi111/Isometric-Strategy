@@ -13,7 +13,10 @@ public class SwitchPositionSkill : RangedSkill
         {
             Vector3Int position_agent = agent.MovableGridObject.CellPosition;
             Vector3Int position_victim = pawn.MovableGridObject.CellPosition;
-            TeleportEffect removeAgent = new(agent, position_agent, position_agent + BeyondMapOffset);
+            TeleportEffect removeAgent = new(agent, position_agent, position_agent + BeyondMapOffset)
+            {
+                hidden = true
+            };
             TeleportEffect moveVictim = new(pawn, position_victim, position_agent);
             TeleportEffect moveAgent = new(agent, position_agent + BeyondMapOffset, position_victim);
             ret.effects.Add(removeAgent);

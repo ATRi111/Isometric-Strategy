@@ -1,4 +1,6 @@
+using MyTool;
 using System;
+using System.Text;
 
 [Serializable]
 public class LengthenBuffEffect : BuffEffect
@@ -32,5 +34,15 @@ public class LengthenBuffEffect : BuffEffect
     {
         base.Revoke();
         buff.endTime = endTime_prev;
+    }
+
+    public override void Describe(StringBuilder sb, bool result)
+    {
+        base.Describe(sb, result);
+        sb.Append("的");
+        sb.Append(buff.displayName.Bold());
+        sb.Append("状态的持续时间延长");
+        sb.Append(endTime - endTime_prev);
+        sb.AppendLine();
     }
 }

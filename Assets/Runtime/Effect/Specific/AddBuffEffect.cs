@@ -1,4 +1,6 @@
+using MyTool;
 using System;
+using System.Text;
 
 [Serializable]
 public class AddBuffEffect : BuffEffect
@@ -27,5 +29,16 @@ public class AddBuffEffect : BuffEffect
     {
         base.Revoke();
         buffManager.Remove(buff);
+    }
+
+    public override void Describe(StringBuilder sb, bool result)
+    {
+        base.Describe(sb, result);
+        sb.Append("获得剩余时间为");
+        sb.Append(buff.endTime - gameManager.Time);
+        sb.Append("的");
+        sb.Append(buff.displayName.Bold());
+        sb.Append("状态");
+        sb.AppendLine();
     }
 }

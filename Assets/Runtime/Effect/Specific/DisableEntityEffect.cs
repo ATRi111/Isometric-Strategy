@@ -1,3 +1,5 @@
+using System.Text;
+
 public class DisableEntityEffect : Effect
 {
     public override bool Appliable => victim.gameObject.activeInHierarchy;
@@ -29,5 +31,12 @@ public class DisableEntityEffect : Effect
     public override float PrimitiveValueFor(PawnEntity pawn)
     {
         return -100f * pawn.FactionCheck(victim);
+    }
+
+    public override void Describe(StringBuilder sb, bool result)
+    {
+        base.Describe(sb, result);
+        sb.Append("±»»÷µ¹");
+        sb.AppendLine();
     }
 }

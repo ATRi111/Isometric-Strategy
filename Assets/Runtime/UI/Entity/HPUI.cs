@@ -26,12 +26,6 @@ public class HPUI : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroupPlus>();
     }
 
-    protected virtual void OnDisable()
-    {
-        if (defenceComponent != null)
-            defenceComponent.AfterHPChange -= AfterHPChange;
-    }
-
     protected virtual void Update()
     {
         

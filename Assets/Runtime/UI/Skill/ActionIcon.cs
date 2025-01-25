@@ -34,7 +34,7 @@ public class ActionIcon : IconUI, IPointerClickHandler
 
     public void SetAction(PawnAction action)
     {
-        message = action.ToString();
+        message = action.Description;
         this.action = action;
     }
 
