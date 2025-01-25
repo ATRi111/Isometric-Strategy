@@ -54,5 +54,5 @@ MonoBehaviour:
   extraDescription: 
   supportAbility: 0.2
   offenseAbility: 1
-  bestSupprtDistance: 2
+  bestSupprtDistance: 1
   bestOffenseDistance: 1

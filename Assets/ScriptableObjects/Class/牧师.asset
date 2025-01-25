@@ -50,7 +50,7 @@ MonoBehaviour:
   skillsAttached:
   - {fileID: 11400000, guid: c9218331d73e45544980fcc354495698, type: 2}
   extraDescription: 
-  supportAbility: 0.5
-  offenseAbility: 0.5
-  bestSupprtDistance: 4
+  supportAbility: 0.6
+  offenseAbility: 0.4
+  bestSupprtDistance: 3
   bestOffenseDistance: 1
