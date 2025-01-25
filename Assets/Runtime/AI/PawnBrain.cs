@@ -120,7 +120,7 @@ public class PawnBrain : CharacterComponentBase
     public virtual float EvaluatePosition(Vector3Int position)
     {
         int DistanceTo(PawnEntity other)
-            => sensor.PredictDistanceBetween(position, other.GridObject.CellPosition);
+            => sensor.PredictDistanceBetween((Vector2Int)position, (Vector2Int)other.GridObject.CellPosition);
 
         int SupportDistance(PawnEntity supported)
             => -Mathf.Abs(DistanceTo(supported) - Pawn.pClass.bestSupprtDistance);

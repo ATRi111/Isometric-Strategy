@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 8016771454672937739}
   - component: {fileID: 1956848092881504749}
   m_Layer: 5
-  m_Name: FollowingHPBar
+  m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +327,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &4927457905797862002
 MonoBehaviour:
@@ -345,7 +345,7 @@ MonoBehaviour:
   threshold_blockRaycast: 1
   immediate_next: 0
   immediate: 1
-  visibleOnAwake: 0
+  visibleOnAwake: 1
 --- !u!114 &8016771454672937739
 MonoBehaviour:
   m_ObjectHideFlags: 0

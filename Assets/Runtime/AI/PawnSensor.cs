@@ -2,7 +2,6 @@ using AStar;
 using Character;
 using EditorExtend.GridEditor;
 using Services;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
@@ -12,26 +11,6 @@ using UnityEngine.Profiling;
 /// </summary>
 public class PawnSensor : CharacterComponentBase
 {
-    private struct Pair
-    {
-        public Vector2Int from;
-        public Vector2Int to;
-
-        public override readonly bool Equals(object obj)
-        {
-            if(obj is Pair other)
-            {
-                return from == other.from && to == other.to;
-            }
-            return false;
-        }
-
-        public override readonly int GetHashCode()
-        {
-            return HashCode.Combine(from, to);
-        }
-    }
-
     private AIManager AIManager;
 
     public PawnEntity Pawn => entity as PawnEntity;
@@ -40,11 +19,11 @@ public class PawnSensor : CharacterComponentBase
 
     public readonly List<PawnEntity> allies = new();
     public readonly List<PawnEntity> enemies = new();
-    private readonly Dictionary<Pair,float> gCostCache = new();
+    private readonly Dictionary<Vector2Int, List<Node>> nodeCache = new();
 
     public void Sense()
     {
-        gCostCache.Clear();
+        nodeCache.Clear();
         RecognizeEnemyAndAlly();
     }
 
@@ -71,102 +50,45 @@ public class PawnSensor : CharacterComponentBase
         }
     }
 
-    private void TryAdd(Pair pair,float distance)
+    public int FCostOfNearest(Vector2Int from,Vector2Int to)
     {
-        if(gCostCache.ContainsKey(pair))
-            gCostCache[pair] = Mathf.Min(gCostCache[pair], distance);
-        else
-            gCostCache.Add(pair, distance);
-    }
-
-    private bool DistanceBetween(Pair pair, out int ret)
-    {
-        ret = 0;
-        if (gCostCache.ContainsKey(pair))
+        static float FCost(Node node, Vector2Int to)
         {
-            ret = Mathf.RoundToInt(gCostCache[pair]);
-            return true;
+            return node.GCost + IsometricGridUtility.ProjectManhattanDistance(node.Position, to);
         }
-        //如果能到达附近四格，那么一定能到达目标格
-        for (int i = 0; i < adjacent.Count; i++)
+
+        List<Node> nodes = nodeCache[from];
+        Node nearest = nodes[0];
+        float fCost = FCost(nearest, to);
+        for (int i = 1; i < nodes.Count; i++)
         {
-            Pair temp = new()
+            if (nodes[i].GCost <= nearest.GCost)
             {
-                from = pair.from,
-                to = pair.to + adjacent[i],
-            };
-            if (gCostCache.ContainsKey(temp))
-            {
-                float dot = Vector2.Dot(adjacent[i],pair.from - pair.to);   //根据方位判断距离应当+1还是-1
-                ret = Mathf.RoundToInt(gCostCache[temp] + Mathf.Sign(dot));
-                return true;
+                nearest = nodes[i];
+                fCost = Mathf.Min(fCost, FCost(nearest, to));
             }
         }
-        return false;
+        return Mathf.RoundToInt(fCost);
     }
 
-    public int PredictDistanceBetween(Vector3Int from, Vector3Int to)
+    public int PredictDistanceBetween(Vector2Int from, Vector2Int to)
     {
-        float HCost(Node node)
+        if (!nodeCache.ContainsKey(from))
         {
-            return IsometricGridUtility.ProjectManhattanDistance(node.Position, (Vector2Int)to);
+            nodeCache.Add(from, new List<Node>());
+            Ranging(from, nodeCache[from]);
         }
-        float FCost(Node node)
-        {
-            return node.GCost + HCost(node);
-        }
-
-        Pair f2t = new()
-        {
-            from = (Vector2Int)from,
-            to = (Vector2Int)to
-        };
-        if (DistanceBetween(f2t, out int ret))
-            return ret;
-
-        List<Node> available = new();
-        List<Node> route = new();
-
-        Ranging(from, available);
-        Node nearest = available[0];
-        for (int i = 0; i < available.Count; i++)
-        {
-            Node node = available[i];
-            if (pawnPositions.Contains(node.Position))
-            {
-                Pair f2a = new()
-                {
-                    from = (Vector2Int)from,
-                    to = node.Position
-                };
-                TryAdd(f2a, node.GCost);
-            }
-            if (HCost(node) <= HCost(nearest) && FCost(node) < FCost(nearest))
-                nearest = node;
-        }
-
-        nearest.Recall(route);
-        for (int i = 0; i < route.Count; i++)
-        {
-            Pair a2t = new()
-            {
-                from = route[i].Position,
-                to = (Vector2Int)to
-            };
-            float distance = route[i].GCost - route[0].GCost + HCost(route[0]);
-            TryAdd(a2t, distance);
-        }
-        return Mathf.RoundToInt(gCostCache[f2t]);
+        return FCostOfNearest(from, to);
     }
 
     /// <summary>
     /// 获取从from出发时，所有可达点
     /// </summary>
-    public void FindAvailable(Vector3Int from, List<Vector3Int> ret)
+    public void FindAvailable(Vector2Int from, List<Vector3Int> ret)
     {
         Profiler.BeginSample("FindAvailable");
         ret.Clear();
-        PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover_Default, (Vector2Int)from);
+        PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover_Default, from);
         for (int i = 0; i < process.available.Count; i++)
         {
             ret.Add((process.available[i] as ANode).CellPosition);
@@ -177,12 +99,12 @@ public class PawnSensor : CharacterComponentBase
     /// <summary>
     /// 计算from通往to的路径
     /// </summary>
-    public void FindRoute(Vector3Int from, Vector3Int to, List<Vector3Int> ret)
+    public void FindRoute(Vector2Int from, Vector2Int to, List<Vector3Int> ret)
     {
         Profiler.BeginSample("FindRoute");
         ret.Clear();
         ret.Add(Pawn.MovableGridObject.CellPosition);
-        PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover_Default, (Vector2Int)from, (Vector2Int)to);
+        PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover_Default, from,to);
         for (int i = 0; i < process.output.Count; i++)
         {
             ret.Add((process.output[i] as ANode).CellPosition);
@@ -193,11 +115,11 @@ public class PawnSensor : CharacterComponentBase
     /// <summary>
     /// 预测从from出发时，所有可达节点（忽略友方角色，考虑跳跃）
     /// </summary>
-    public void Ranging(Vector3Int from, List<Node> ret)
+    public void Ranging(Vector2Int from, List<Node> ret)
     {
         Profiler.BeginSample("Ranging");
         ret.Clear();
-        PathFindingProcess process = AIManager.PathFinding.Ranging(Pawn.MovableGridObject.Mover_Ranging, (Vector2Int)from);
+        PathFindingProcess process = AIManager.PathFinding.Ranging(Pawn.MovableGridObject.Mover_Ranging, from);
         ret.AddRange(process.available);
         Profiler.EndSample();
     }

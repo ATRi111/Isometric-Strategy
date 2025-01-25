@@ -9,7 +9,7 @@ public class WalkSkill : MoveSkill
     public override void GetOptions(PawnEntity agent, IsometricGridManager igm, Vector3Int position, List<Vector3Int> ret)
     {
         base.GetOptions(agent, igm, position, ret);
-        agent.Sensor.FindAvailable(position, ret);
+        agent.Sensor.FindAvailable((Vector2Int)position, ret);
         ret.Remove(position);
     }
 
@@ -17,7 +17,7 @@ public class WalkSkill : MoveSkill
     public override void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
         base.Mock(agent, igm, position, target, ret);
-        agent.Sensor.FindRoute(position, target, route);
+        agent.Sensor.FindRoute((Vector2Int)position, (Vector2Int)target, route);
         List<Vector3> temp = new();
         if(route.Count > 0)
         {
