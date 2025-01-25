@@ -9,14 +9,6 @@ public class GridObjectPerspectiveController : PerspectiveController
         return perspectiveManager.CoverCheck(gridObject.CellPosition);
     }
 
-    protected override void ExitPerspectiveMode()
-    {
-        for (int i = 0; i < spriteRenderers.Length; i++)
-        {
-            SetAlpha(spriteRenderers[i], alphas[i]);
-        }
-    }
-
     protected override void Awake()
     {
         base.Awake();

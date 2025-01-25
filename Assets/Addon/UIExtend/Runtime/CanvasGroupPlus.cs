@@ -9,7 +9,7 @@ namespace UIExtend
     {
         protected CanvasGroup canvasGroup;
         private LinearTransformation linear;
-        protected float alpha_default;
+        public float alpha_default;
 
         [SerializeField]
         protected float fadeTime = 0.2f;

@@ -35,7 +35,7 @@ public class PerspectiveManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
             EnterPerspectiveMode?.Invoke();
-        else if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
             ExitPerspectiveMode?.Invoke();
     }
 }

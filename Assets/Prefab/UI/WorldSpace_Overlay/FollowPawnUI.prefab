@@ -264,10 +264,8 @@ GameObject:
   m_Component:
   - component: {fileID: 748784544802278227}
   - component: {fileID: 7862337282603194189}
-  - component: {fileID: 769240647092536031}
   - component: {fileID: 8411144243845981957}
   - component: {fileID: 4927457905797862002}
-  - component: {fileID: 8016771454672937739}
   - component: {fileID: 1956848092881504749}
   m_Layer: 5
   m_Name: HPBar
@@ -304,19 +302,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4272227738786578387}
   m_CullTransparentMesh: 1
---- !u!114 &769240647092536031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4272227738786578387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a1a8126a6c408b479598d2bb41f943d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 0
 --- !u!225 &8411144243845981957
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -341,24 +326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 1
   immediate_next: 0
   immediate: 1
   visibleOnAwake: 1
---- !u!114 &8016771454672937739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4272227738786578387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 532cdf245cfe5134e823df7c8c5fae4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alphaMultiplier_perspectiveMode: 0.1
 --- !u!114 &1956848092881504749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +361,7 @@ GameObject:
   - component: {fileID: 7246904506428445504}
   - component: {fileID: 7237224208818489542}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,6 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: 
   canvasGroup: {fileID: 0}
+  skillUIManager: {fileID: 0}
 --- !u!225 &7246904506428445504
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -489,8 +463,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
   immediate_next: 0
-  immediate: 0
+  immediate: 1
   visibleOnAwake: 1

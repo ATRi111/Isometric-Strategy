@@ -2,8 +2,8 @@ using UIExtend;
 
 public abstract class PerspectiveController : AlphaController
 {
-    protected CanvasGroupPlus canvasGroup;
     protected PerspectiveManager perspectiveManager;
+    protected CanvasGroupPlus[] canvasGroups;
     public float alphaMultiplier_perspectiveMode = 0.1f;
 
     protected abstract bool CoverCheck();
@@ -16,8 +16,10 @@ public abstract class PerspectiveController : AlphaController
             {
                 SetAlpha(spriteRenderers[i], alphaMultiplier_perspectiveMode * alphas[i]);
             }
-            if (canvasGroup != null)
-                canvasGroup.Visible = false;
+            for (int i = 0;i < canvasGroups.Length; i++)
+            {
+                canvasGroups[i].Visible = false;
+            }
         }
     }
     protected virtual void ExitPerspectiveMode()
@@ -26,15 +28,17 @@ public abstract class PerspectiveController : AlphaController
         {
             SetAlpha(spriteRenderers[i], alphas[i]);
         }
-        if (canvasGroup != null)
-            canvasGroup.Visible = true;
+        for (int i = 0; i < canvasGroups.Length; i++)
+        {
+            canvasGroups[i].Visible = true;
+        }
     }
 
     protected override void Awake()
     {
         base.Awake();
         perspectiveManager = PerspectiveManager.FindInstance();
-        canvasGroup = GetComponentInChildren<CanvasGroupPlus>();
+        canvasGroups = GetComponentsInChildren<CanvasGroupPlus>();
     }
 
     protected virtual void OnEnable()

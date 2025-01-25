@@ -28,7 +28,8 @@ public class ActionIcon : IconUI, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        skillUIManager.AfterSelectAction?.Invoke(action);
+        if (eventData.button == PointerEventData.InputButton.Left)
+            skillUIManager.AfterSelectAction?.Invoke(action);
     }
 
     public void SetAction(PawnAction action)
