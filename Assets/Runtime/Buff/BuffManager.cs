@@ -27,12 +27,12 @@ public class BuffManager : CharacterComponentBase
     /// <summary>
     /// 模拟施加状态（新增或刷新）
     /// </summary>
-    public BuffEffect MockAdd(BuffSO so, PawnEntity victim, int probability)
-        => MockAdd(so, victim, gameManager.Time, probability);
+    public BuffEffect MockAdd(BuffSO so, int probability)
+        => MockAdd(so, gameManager.Time, probability);
 
-    public BuffEffect MockAdd(BuffSO so, PawnEntity victim, int startTime, int probability)
+    public BuffEffect MockAdd(BuffSO so, int startTime, int probability)
     {
-        Buff buff = new(victim, so, startTime);
+        Buff buff = new(pawn, so, startTime);
         switch (so.superimposeMode)
         {
             case ESuperimposeMode.Coexist:

@@ -64,7 +64,7 @@ public abstract class Skill : ScriptableObject
         }
         for (int i = 0; i < buffOnAgent.Count; i++)
         {
-            BuffEffect buffEffect = agent.BuffManager.MockAdd(buffOnAgent[i].so, agent, buffOnAgent[i].probability);
+            BuffEffect buffEffect = agent.BuffManager.MockAdd(buffOnAgent[i].so, buffOnAgent[i].probability);
             buffEffect.randomValue = Effect.NextInt();
             ret.effects.Add(buffEffect);
         }

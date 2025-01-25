@@ -20,5 +20,6 @@ public class HPBar : HPUI
     {
         base.Awake();
         entity = GetComponentInParent<Entity>();
+        entity.DefenceComponent.AfterHPChange += AfterHPChange;
     }
 }

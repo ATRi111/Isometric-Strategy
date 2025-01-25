@@ -12,7 +12,7 @@ public class CopyBuffSkill : RangedSkill
         for (int i = 0; i < buffs.Count; i++)
         {
             Buff buff = buffs[i];
-            BuffEffect buffEffect = agent.BuffManager.MockAdd(buff.so, agent, buff.startTime, Effect.MaxProbability);
+            BuffEffect buffEffect = agent.BuffManager.MockAdd(buff.so, buff.startTime, Effect.MaxProbability);
             ret.effects.Add(buffEffect);
         }
     }
