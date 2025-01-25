@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HPBar : HPUI
+public class FollowHPBar : HPUI
 {
     [SerializeField]
     private Image image;
@@ -19,7 +19,6 @@ public class HPBar : HPUI
     protected override void Awake()
     {
         base.Awake();
-        entity = GetComponentInParent<Entity>();
-        entity.DefenceComponent.AfterHPChange += AfterHPChange;
+        SetEntity(GetComponentInParent<Entity>());
     }
 }

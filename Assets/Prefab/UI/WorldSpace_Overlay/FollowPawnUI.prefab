@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 2405099112256392994}
 --- !u!1 &7610574531576286078
 GameObject:
   m_ObjectHideFlags: 0

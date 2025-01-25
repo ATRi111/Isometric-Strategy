@@ -18,7 +18,7 @@ public class SpawnController : MonoBehaviour
                 points[i].IsEmpty = false;
                 pawn.gameObject.SetActive(true);
                 Vector3Int cellPosition = points[i].CellPosition;
-                pawn.transform.SetParent(transform.parent);
+                pawn.transform.SetParent(transform);
                 pawn.MovableGridObject.CellPosition = cellPosition;
                 pawn.MovableGridObject.Refresh();
                 return;
