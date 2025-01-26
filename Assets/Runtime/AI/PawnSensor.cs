@@ -91,7 +91,7 @@ public class PawnSensor : CharacterComponentBase
         PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover_Default, from);
         for (int i = 0; i < process.available.Count; i++)
         {
-            ret.Add((process.available[i] as ANode).CellPosition);
+            ret.Add((process.available[i] as ANode).cellPosition);
         }
     }
 
@@ -105,7 +105,7 @@ public class PawnSensor : CharacterComponentBase
         PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover_Default, from,to);
         for (int i = 0; i < process.output.Count; i++)
         {
-            ret.Add((process.output[i] as ANode).CellPosition);
+            ret.Add((process.output[i] as ANode).cellPosition);
         }
     }
 

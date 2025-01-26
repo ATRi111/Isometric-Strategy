@@ -2708,11 +2708,15 @@ MonoBehaviour:
     equipmentList:
     - {fileID: 11400000, guid: 4027596200e3f4b45b4133264478549b, type: 2}
     - {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
+  - prefab: {fileID: 2338041512611947571, guid: 075aeb86b5c724948904009f3d499d2f, type: 3}
+    equipmentList:
+    - {fileID: 11400000, guid: a465a4f6f753d8d4d99f48234da73911, type: 2}
+    - {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
   unusedEquipmentList:
   - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
   - {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}
   - {fileID: 11400000, guid: b0eb86003d6849b4290c5546439e452a, type: 2}
-  isSelected: 00000000
+  isSelected: 0000000000000000
 --- !u!114 &1404961335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3087,7 +3091,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 3
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -3409,7 +3413,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 6
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1

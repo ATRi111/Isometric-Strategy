@@ -28,7 +28,7 @@ public class DebugANodeGenerator : MonoBehaviour
 
     internal Vector3 NodeToWorld(ANode node)
     {
-        return Igm.CellToWorld(node.CellPosition);
+        return Igm.CellToWorld(node.cellPosition);
     }
 
     public void Clear()

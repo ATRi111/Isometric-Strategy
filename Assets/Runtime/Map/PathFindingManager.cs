@@ -1,6 +1,5 @@
 using AStar;
 using MyTimer;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 

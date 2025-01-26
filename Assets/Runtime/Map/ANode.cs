@@ -5,21 +5,14 @@ using UnityEngine;
 public class ANode : Node
 {
     protected IsometricGridManager igm;
+    public GridObject gridObject;
+    public MovableGridObject movableGridObject;
+    public int aboveGroundLayer;
+    public Vector3Int cellPosition;
 
-    public GridObject CurrentObject => igm.GetObjectXY(position);
-    public virtual int AboveGroundLayer => igm.AboveGroundLayer(Position);
-    public Vector3Int CellPosition => Position.AddZ(AboveGroundLayer);
-
-    public override bool IsObstacle
-    {
-        get
-        {
-            int layer = igm.AboveGroundLayer(position);
-            if (layer == 0)
-                return true;
-            return AboveGroundLayer >= GridUtility.MaxHeight;
-        }
-    }
+    protected bool isObstacle;
+    public override bool IsObstacle => isObstacle;
+    public bool isPawn;
 
     public float difficulty;
 
@@ -28,5 +21,11 @@ public class ANode : Node
     {
         this.igm = igm;
         this.difficulty = difficulty;
+        gridObject = igm.GetObjectXY(position);
+        aboveGroundLayer = igm.AboveGroundLayer(Position);
+        cellPosition =  Position.AddZ(aboveGroundLayer);
+        isObstacle = gridObject == null;     //只有不存在地面这一种情况是绝对的障碍物
+        movableGridObject = gridObject as MovableGridObject;
+        isPawn = movableGridObject != null;
     }
 }

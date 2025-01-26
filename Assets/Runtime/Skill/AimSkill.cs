@@ -144,7 +144,7 @@ public abstract class AimSkill : Skill
 
         for (int i = 0; i < victims.Count; i++)
         {
-            MockDamageOnVictim(agent, victims[i], powers, ret);
+            MockDamageOnVictim(agent, victims[i], tempPower, ret);
             if (victims[i] is PawnEntity pawn)
                 MockBuffOnVictim(agent, pawn, ret);
             MockOtherEffectOnVictim(agent,victims[i], ret);

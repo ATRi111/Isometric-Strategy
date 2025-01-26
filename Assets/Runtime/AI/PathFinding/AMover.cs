@@ -1,46 +1,31 @@
 using AStar;
-using EditorExtend.GridEditor;
 
 public abstract class AMover : MoverBase
 {
-    protected MovableGridObject gridObject;
-    public AMover(MovableGridObject gridObject) 
+    protected MovableGridObject movable;
+    public AMover(MovableGridObject movable) 
     {
-        this.gridObject = gridObject;
+        this.movable = movable;
     }
 
     public override bool StayCheck(Node node)
     {
-        if (node.IsObstacle)
-            return false;
-        GridObject obj = (node as ANode).CurrentObject;
-        if (obj == null)
-            return false;
-
-        return true;
+        return base.StayCheck(node);
     }
 
     public override bool MoveCheck(Node from, Node to)
     {
-        if (to.IsObstacle)
-            return false;
-        GridObject obj = (to as ANode).CurrentObject;
-        if (obj == null)
-            return false;
-        if (!gridObject.HeightCheck(from, to))
-            return false;
-
-        return true;
+        return base.StayCheck(to)
+            && movable.HeightCheck(from, to);
     }
 
     public override float CalculateCost(Node from, Node to, float primitiveCost)
     {
-        float cost = primitiveCost * (to as ANode).difficulty;
-        if (from is ANode aFrom && to is ANode aTo)
-        {
-            if (aFrom.AboveGroundLayer != aTo.AboveGroundLayer)
-                cost += PathFindingUtility.Epsilon;     //优先选择经过平地
-        }
+        ANode aFrom = (ANode)from;
+        ANode aTo = (ANode)to;
+        float cost = primitiveCost * aTo.difficulty;
+        if (aFrom.aboveGroundLayer != aTo.aboveGroundLayer)
+            cost += PathFindingUtility.Epsilon;     //优先选择平地
         return cost;
     }
 }

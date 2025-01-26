@@ -27,11 +27,11 @@ namespace AStar
         /// </summary>
         internal Node GetNode(Vector2Int pos)
         {
+            countOfQuery++;
             if (discoveredNodes.ContainsKey(pos))
                 return discoveredNodes[pos];
             Node node = settings.GenerateNode(this, pos);
             discoveredNodes.Add(pos, node);
-            countOfQuery++;
             return node;
         }
 
@@ -42,12 +42,16 @@ namespace AStar
         {
             adjoins.Clear();
             adjoins_filtered.Clear();
+            Profiler.BeginSample("2.1");
             settings.GetAdjoinNodes.Invoke(this, from, adjoins);
+            Profiler.EndSample();
+            Profiler.BeginSample("2.2");
             foreach (Node to in adjoins)
             {
                 if (mover.MoveCheck(from, to))
                     adjoins_filtered.Add(to);
             }
+            Profiler.EndSample();
         }
 
         public Node[] GetAllNodes()
@@ -181,6 +185,7 @@ namespace AStar
                 return false;
             }
 
+            Profiler.BeginSample("1");
             currentNode = open.Pop();
             currentNode.state = ENodeState.Close;
             countOfCloseNode++;
@@ -191,6 +196,7 @@ namespace AStar
             }
             if (currentNode.HCost < nearest.HCost)
                 nearest = currentNode;
+            Profiler.EndSample();
 
             if (currentNode == To)
             {
@@ -199,8 +205,11 @@ namespace AStar
                 return false;
             }
 
+            Profiler.BeginSample("2");
             GetFilteredAdjoinNodes(currentNode);
+            Profiler.EndSample();
 
+            Profiler.BeginSample("3");
             foreach (Node node in adjoins_filtered)
             {
                 switch (node.state)
@@ -216,6 +225,8 @@ namespace AStar
                         break;
                 }
             }
+            Profiler.EndSample();
+
             Profiler.EndSample();
             return true;
         }
