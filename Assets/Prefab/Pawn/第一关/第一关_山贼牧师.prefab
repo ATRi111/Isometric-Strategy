@@ -40,6 +40,26 @@ PrefabInstance:
       propertyPath: actionTime.defaultValue
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4451063528451210290, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: buffResistances.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451063528451210290, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: buffResistances.Array.data[0].so
+      value: 
+      objectReference: {fileID: 11400000, guid: 62065c3f34916424c841fbec7354bb0c, type: 2}
+    - target: {fileID: 4451063528451210290, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: buffResistances.Array.data[1].so
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
+    - target: {fileID: 4451063528451210290, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: buffResistances.Array.data[0].value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451063528451210290, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: buffResistances.Array.data[1].value
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5737828582266420397, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
