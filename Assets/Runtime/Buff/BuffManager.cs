@@ -8,8 +8,13 @@ public class BuffManager : CharacterComponentBase
 {
     private PawnEntity pawn;
     private GameManager gameManager;
+
     [SerializeField]
     private SerializedHashSet<Buff> buffs;
+
+    private readonly Dictionary<string, int> resistanceSearcher = new();
+    [SerializeField]
+    private List<BuffResistance> buffResistances;
 
     /// <summary>
     /// 获取当前生效的所有状态
@@ -33,6 +38,10 @@ public class BuffManager : CharacterComponentBase
     public BuffEffect MockAdd(BuffSO so, int startTime, int probability)
     {
         Buff buff = new(pawn, so, startTime);
+        if(resistanceSearcher.ContainsKey(so.name))
+            probability -= resistanceSearcher[so.name];
+        probability = Mathf.Clamp(probability, 0, 100);
+
         switch (so.superimposeMode)
         {
             case ESuperimposeMode.Coexist:
@@ -94,10 +103,23 @@ public class BuffManager : CharacterComponentBase
         }
     }
 
+    public void Clear()
+    {
+        foreach (Buff buff in buffs)
+        {
+            buff.Enabled = false;   
+        }
+        buffs.Clear();
+    }
+
     protected override void Awake()
     {
         base.Awake();
         gameManager = ServiceLocator.Get<GameManager>();
         pawn = entity as PawnEntity;
+        for (int i = 0; i < buffResistances.Count; i++)
+        {
+            resistanceSearcher.Add(buffResistances[i].so.name, buffResistances[i].value);
+        }
     }
 }

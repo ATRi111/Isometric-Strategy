@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffs:
     list: []
+  buffResistances: []
 --- !u!114 &6595715262542743162
 MonoBehaviour:
   m_ObjectHideFlags: 0

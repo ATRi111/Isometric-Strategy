@@ -49,6 +49,7 @@ public class GameManager : Service,IService
     public void EndBattle()
     {
         //TODO:»ŒŒÒΩ·À„
+        eventSystem.Invoke(EEvent.AfterBattle);
         sceneController.UnloadScene(battleSceneIndex);
         battleSceneIndex++;
         sceneController.LoadScene(battleSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);

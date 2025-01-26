@@ -1,5 +1,6 @@
 using Character;
 using MyTool;
+using Services.Event;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,6 +84,12 @@ public class PawnEntity : Entity
         BuffManager.OnTick(time);
     }
 
+    private void AfterBattle()
+    {
+        BuffManager.Clear();
+        parameterDict.Clear();
+    }
+
     public override void RefreshProperty()
     {
         base.RefreshProperty();
@@ -102,6 +109,7 @@ public class PawnEntity : Entity
         RefreshProperty();
         time = actionTime.IntValue;   //»Î≥°AT
         DefenceComponent.HP = DefenceComponent.maxHP.IntValue;
+        EventSystem.AddListener(EEvent.AfterBattle, AfterBattle);
     }
 
     protected override void OnDisable()
@@ -110,6 +118,7 @@ public class PawnEntity : Entity
         GameManager.Unregister(this);
         pClass.Unregister(this);
         race.Unregister(this);
+        EventSystem.RemoveListener(EEvent.AfterBattle, AfterBattle);
     }
 }
 

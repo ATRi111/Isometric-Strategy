@@ -43,10 +43,6 @@ namespace Services.Event
         /// </summary>
         OnTick,
         /// <summary>
-        /// Entity激活后，参数：Entity
-        /// </summary>
-        AfterEntityEnable,
-        /// <summary>
         /// 显示角色面板，参数：Pawn
         /// </summary>
         ShowPawnPanel,

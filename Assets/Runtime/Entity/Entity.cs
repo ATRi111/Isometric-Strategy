@@ -60,7 +60,6 @@ public class Entity : EntityBase
     protected virtual void OnEnable()
     {
         EventSystem.AddListener<int>(EEvent.OnTick, OnTick);
-        EventSystem.Invoke(EEvent.AfterEntityEnable, this);
         DefenceComponent.Initialize();
         RefreshProperty();
         DefenceComponent.HP = DefenceComponent.maxHP.IntValue;
