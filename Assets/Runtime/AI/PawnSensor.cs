@@ -87,14 +87,12 @@ public class PawnSensor : CharacterComponentBase
     /// </summary>
     public void FindAvailable(Vector2Int from, List<Vector3Int> ret)
     {
-        Profiler.BeginSample("FindAvailable");
         ret.Clear();
         PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover_Default, from);
         for (int i = 0; i < process.available.Count; i++)
         {
             ret.Add((process.available[i] as ANode).CellPosition);
         }
-        Profiler.EndSample();
     }
 
     /// <summary>
@@ -102,7 +100,6 @@ public class PawnSensor : CharacterComponentBase
     /// </summary>
     public void FindRoute(Vector2Int from, Vector2Int to, List<Vector3Int> ret)
     {
-        Profiler.BeginSample("FindRoute");
         ret.Clear();
         ret.Add(Pawn.MovableGridObject.CellPosition);
         PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover_Default, from,to);
@@ -110,7 +107,6 @@ public class PawnSensor : CharacterComponentBase
         {
             ret.Add((process.output[i] as ANode).CellPosition);
         }
-        Profiler.EndSample();
     }
 
     /// <summary>

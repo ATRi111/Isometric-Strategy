@@ -58,7 +58,7 @@ namespace EditorExtend
                 base.OnInspectorGUI();
             serializedObject.Update();
             EditorGUILayout.BeginVertical();
-            if (monoScript != null)
+            if (monoScript != null && !appendInspector)
             {
                 EditorGUI.BeginDisabledGroup(true);
                 EditorGUILayout.ObjectField("Script", monoScript, targetType, false);

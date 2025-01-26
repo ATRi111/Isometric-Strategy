@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace AStar
 {
@@ -171,10 +172,12 @@ namespace AStar
         /// </summary>
         public bool NextStep()
         {
+            Profiler.BeginSample("Step");
             if (!CheckNextStep())
             {
                 if (isRunning)
                     Stop();
+                Profiler.EndSample();
                 return false;
             }
 
@@ -192,6 +195,7 @@ namespace AStar
             if (currentNode == To)
             {
                 Stop();     //移动力受限的情况下，如果权重系数超过1，有可能在没有找到更短可行路径的情况下提前退出
+                Profiler.EndSample();
                 return false;
             }
 
@@ -212,6 +216,7 @@ namespace AStar
                         break;
                 }
             }
+            Profiler.EndSample();
             return true;
         }
         /// <summary>

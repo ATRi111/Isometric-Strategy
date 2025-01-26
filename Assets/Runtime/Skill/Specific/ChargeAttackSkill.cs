@@ -13,7 +13,7 @@ public class ChargeAttackSkill : RangedSkill
         for (int i = 0; i < powers.Count; i++)
         {
             SkillPower temp = powers[i];
-            temp.power = Mathf.RoundToInt(ret[i].power * (1f + powerAmplifier * agent.parameterDict[ChargeSkill.ChargeLevel]));
+            temp.power = Mathf.RoundToInt(powers[i].power * (1f + powerAmplifier * agent.parameterDict[ChargeSkill.ChargeLevel]));
             ret.Add(temp);
         }
         agent.OffenceComponent.ModifyPower?.Invoke(ret);
