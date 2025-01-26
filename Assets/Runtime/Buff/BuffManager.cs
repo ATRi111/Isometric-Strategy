@@ -38,8 +38,8 @@ public class BuffManager : CharacterComponentBase
     public BuffEffect MockAdd(BuffSO so, int startTime, int probability)
     {
         Buff buff = new(pawn, so, startTime);
-        if(resistanceSearcher.ContainsKey(so.name))
-            probability -= resistanceSearcher[so.name];
+        if (resistanceSearcher.ContainsKey(so.name))
+            probability *= (Effect.MaxProbability - resistanceSearcher[so.name]) / Effect.MaxProbability;
         probability = Mathf.Clamp(probability, 0, 100);
 
         switch (so.superimposeMode)
