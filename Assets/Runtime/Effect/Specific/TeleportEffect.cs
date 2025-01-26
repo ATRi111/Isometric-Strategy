@@ -34,7 +34,7 @@ public class TeleportEffect : Effect
         victim.GridObject.CellPosition = from;
     }
 
-    public override float PrimitiveValueFor(PawnEntity pawn)
+    public override float ValueFor(PawnEntity pawn)
     {
         return pawn.Brain.EvaluatePosition(to) - pawn.Brain.EvaluatePosition(from);
     }

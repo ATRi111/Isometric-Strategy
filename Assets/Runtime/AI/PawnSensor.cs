@@ -2,6 +2,7 @@ using AStar;
 using Character;
 using EditorExtend.GridEditor;
 using Services;
+using Services.Event;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
@@ -124,10 +125,25 @@ public class PawnSensor : CharacterComponentBase
         Profiler.EndSample();
     }
 
+    private void BeforeDoAction(PawnEntity _)
+    {
+        Sense();
+    }
+
     protected override void Awake()
     {
         base.Awake();
         AIManager = ServiceLocator.Get<AIManager>();
         adjacent = IsometricGridUtility.WithinProjectManhattanDistance(1);
+    }
+
+    private void OnEnable()
+    {
+        Pawn.EventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);    
+    }
+
+    private void OnDisable()
+    {
+        Pawn.EventSystem.RemoveListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
     }
 }

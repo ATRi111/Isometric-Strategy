@@ -28,7 +28,7 @@ public class DisableEntityEffect : Effect
         victim.Revive();
     }
 
-    public override float PrimitiveValueFor(PawnEntity pawn)
+    public override float ValueFor(PawnEntity pawn)
     {
         return -100f * pawn.FactionCheck(victim);
     }

@@ -35,7 +35,7 @@ public class HPChangeEffect : Effect
         victim.DefenceComponent.HP = prev;
     }
 
-    public override float PrimitiveValueFor(PawnEntity pawn)
+    public override float ValueFor(PawnEntity pawn)
     {
         return (current - prev) * pawn.FactionCheck(victim);
     }

@@ -75,7 +75,7 @@ public abstract class Effect
     /// <summary>
     /// 计算此效果对某个角色的价值（不考虑概率）
     /// </summary>
-    public abstract float PrimitiveValueFor(PawnEntity pawn);
+    public abstract float ValueFor(PawnEntity pawn);
 
     /// <param name="result">描述时是否包含结果信息</param>
     public virtual void Describe(StringBuilder sb, bool result)

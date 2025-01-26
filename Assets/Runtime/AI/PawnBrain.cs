@@ -70,7 +70,6 @@ public class PawnBrain : CharacterComponentBase
     /// </summary>
     public virtual void MakePlan()
     {
-        sensor.Sense();
         plans.Clear();
         positionValueCache.Clear();
         foreach (Skill skill in Pawn.SkillManager.learnedSkills)
@@ -109,7 +108,7 @@ public class PawnBrain : CharacterComponentBase
         List<Effect> effects = action.effectUnit.effects;
         for (int i = 0; i < effects.Count; i++)
         {
-            sum += (float)effects[i].probability / Effect.MaxProbability * effects[i].PrimitiveValueFor(Pawn);
+            sum += (float)effects[i].probability / Effect.MaxProbability * effects[i].ValueFor(Pawn);
         }
         return sum / action.Time;
     }

@@ -9,7 +9,7 @@ namespace Services.Save
     /// </summary>
     public sealed class SaveTargetController : MonoBehaviour
     {
-        public SaveGroupController Group { get; protected set; }
+        public SaveGroupController Group { get; private set; }
         [SerializeField]
         private int groupId;
 

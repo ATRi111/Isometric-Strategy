@@ -28,3 +28,4 @@ MonoBehaviour:
   duration: 125
   superimposeMode: 1
   primitiveValue: 45
+  modifier: {fileID: 11400000, guid: 42fc1a69187dfe240a1e42e75b58b12b, type: 2}

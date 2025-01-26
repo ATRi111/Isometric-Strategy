@@ -18,10 +18,20 @@ public class BuffSO : PawnModifierSO
     public int duration;
     public ESuperimposeMode superimposeMode = ESuperimposeMode.Refresh;
 
-    //TODO:价值判断
     public float primitiveValue;
+    public ValueModifier modifier;
 
     protected override string TypeName => "此状态下可用的";
+
+    /// <summary>
+    /// 假设victim被施加了此状态，由victim考虑此事对自身的价值
+    /// </summary>
+    public float ValueForVictim(PawnEntity victim)
+    {
+        if (modifier != null)
+            return modifier.CalculateValue(primitiveValue, victim);
+        return primitiveValue;
+    }
 
     public virtual void Tick(int startTime, int currentTime)
     {

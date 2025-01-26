@@ -40,7 +40,7 @@ public class TimeEffect : Effect
         PawnVictim.time = prev;
     }
 
-    public override float PrimitiveValueFor(PawnEntity pawn)
+    public override float ValueFor(PawnEntity pawn)
     {
         return (prev - current) * pawn.FactionCheck(victim);
     }
