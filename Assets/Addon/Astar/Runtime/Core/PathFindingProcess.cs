@@ -36,22 +36,11 @@ namespace AStar
         }
 
         /// <summary>
-        /// 获取与一个节点相邻的节点(过滤不可通行节点)
+        /// 获取与一个节点相邻的可达节点
         /// </summary>
-        internal void GetFilteredAdjoinNodes(Node from)
+        internal void GetMovableNodes(Node from)
         {
-            adjoins.Clear();
-            adjoins_filtered.Clear();
-            Profiler.BeginSample("2.1");
-            settings.GetAdjoinNodes.Invoke(this, from, adjoins);
-            Profiler.EndSample();
-            Profiler.BeginSample("2.2");
-            foreach (Node to in adjoins)
-            {
-                if (mover.MoveCheck(from, to))
-                    adjoins_filtered.Add(to);
-            }
-            Profiler.EndSample();
+            settings.GetAdjoinNodes.Invoke(this, from, mover.MoveCheck, adjoins);
         }
 
         public Node[] GetAllNodes()
@@ -86,7 +75,6 @@ namespace AStar
         internal Dictionary<Vector2, Node> discoveredNodes;
 
         private List<Node> adjoins;
-        private List<Node> adjoins_filtered;
         /// <summary>
         /// 待访问节点表
         /// </summary>
@@ -125,7 +113,6 @@ namespace AStar
 
             discoveredNodes = new();
             adjoins = new();
-            adjoins_filtered = new();
             output = new();
             available = new();
             open = new Heap<Node>(settings.capacity, new Comparer_Cost());
@@ -206,11 +193,11 @@ namespace AStar
             }
 
             Profiler.BeginSample("2");
-            GetFilteredAdjoinNodes(currentNode);
+            GetMovableNodes(currentNode);
             Profiler.EndSample();
 
             Profiler.BeginSample("3");
-            foreach (Node node in adjoins_filtered)
+            foreach (Node node in adjoins)
             {
                 switch (node.state)
                 {

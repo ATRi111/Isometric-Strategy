@@ -16,16 +16,16 @@ MonoBehaviour:
     modifiers:
     - value: -0.3
       so: {fileID: 11400000, guid: 5f8dd69d93622f84ea09757942e148f8, type: 2}
-      method: 0
+      method: 1
     - value: -0.3
       so: {fileID: 11400000, guid: 5b7aa0fa7bb7c034a98950b2b8078463, type: 2}
-      method: 0
+      method: 1
     - value: -0.3
       so: {fileID: 11400000, guid: 606e749310a6d3b45a86ef1cfbf647ea, type: 2}
-      method: 0
+      method: 1
     - value: -0.3
       so: {fileID: 11400000, guid: 90b59691706183d44b8946b924be3dce, type: 2}
-      method: 0
+      method: 1
   skillsAttached: []
   extraDescription: 
   duration: 200
