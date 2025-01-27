@@ -10,13 +10,21 @@ public class GetFourWithJumpSO : GetMovableNodesSO
 
     public override void GetMovableNodes(PathFindingProcess process, Node from, Func<Node, Node, bool> moveCheck, List<Node> ret)
     {
-        PathFindingUtility.GetAdjoinNodes_Four(process, from, moveCheck, ret);
+        ret.Clear();
         Node to;
         foreach (Vector2Int direction in PathFindingUtility.FourDirections)
         {
-            to = process.GetNode(from.Position + jumpDistance * direction);
+            to = process.GetNode(from.Position + direction);
             if (moveCheck(from, to))
+            {
                 ret.Add(to);
+            }
+            else
+            {
+                to = process.GetNode(from.Position + jumpDistance * direction); //相邻格不可进入时，才会考虑跳跃
+                if (moveCheck(from, to))
+                    ret.Add(to);
+            }
         }
     }
 }
