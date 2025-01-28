@@ -26,20 +26,6 @@ public class RangedSkill : AimSkill
             Vector3Int target = igm.AboveGroundPosition(temp);
             if (!LayerCheck(position, target))  //判断释放位置高度差是否过大
                 continue;
-            //List<Entity> victims = new();
-            //switch(victimType)
-            //{
-            //    case EVictimType.Everything:
-            //        if(igm.ObjectDict.ContainsKey(target + Vector3Int.back))
-            //            ret.Add(target);
-            //        break;
-            //    case EVictimType.Entity:
-            //    case EVictimType.Pawn:
-            //        GetVictims(agent, igm, position, target, victims);
-            //        if (victims.Count > 0)
-            //            ret.Add(target);
-            //        break;
-            //}
             ret.Add(target);
         }
     }
