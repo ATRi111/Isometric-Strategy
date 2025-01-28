@@ -9,7 +9,7 @@ public class ANode : Node
     public MovableGridObject movableGridObject;
     public int aboveGroundLayer;
     public Vector3Int cellPosition;
-    public GridGround gridGround;
+    public GridSurface surface;
 
     protected bool isObstacle;
     public override bool IsObstacle => isObstacle;
@@ -28,9 +28,9 @@ public class ANode : Node
         movableGridObject = gridObject as MovableGridObject;
         isPawn = movableGridObject != null;
         difficulty = 1;
-        if (gridObject != null && gridObject.TryGetComponent(out gridGround))
+        if (gridObject != null && gridObject.TryGetComponent(out surface))
         {
-            difficulty = gridGround.difficulty;
+            difficulty = surface.difficulty;
         }
     }
 }

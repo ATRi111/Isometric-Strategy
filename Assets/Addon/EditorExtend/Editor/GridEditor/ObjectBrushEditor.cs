@@ -10,7 +10,7 @@ namespace EditorExtend.GridEditor
 
         private string[] displayOptions;
         [AutoProperty]
-        public SerializedProperty prefab, mountIndex;
+        public SerializedProperty prefab, mountIndex, pillarMode;
         private string prefabName;
 
         protected override void OnEnable()
@@ -33,6 +33,9 @@ namespace EditorExtend.GridEditor
             if (Application.isPlaying)
                 return;
 
+            EditorGUI.BeginDisabledGroup(true);
+            EditorGUILayout.Vector3IntField("当前坐标", ObjectBrush.cellPosition);
+            EditorGUI.EndDisabledGroup();
             prefab.PropertyField("笔刷");
             if (prefab.objectReferenceValue != null && prefabName != prefab.objectReferenceValue.name)
             {
@@ -40,6 +43,7 @@ namespace EditorExtend.GridEditor
                 UpdateMountPoint(prefabName);
             }
             mountIndex.intValue = EditorGUILayout.Popup("挂载点", mountIndex.intValue, displayOptions);
+            pillarMode.BoolField("柱形绘制模式");
         }
 
         protected void UpdateMountPoint(string prefabName)
@@ -109,13 +113,13 @@ namespace EditorExtend.GridEditor
         {
             Vector3 world = SceneViewUtility.SceneToWorld(mousePosition);
             ObjectBrush.cellPosition = ObjectBrush.CalculateCellPosition(world);
+            Repaint();
             SceneView.RepaintAll();
         }
 
-        protected virtual void Brush()
+        private void TryBrushAt(Vector3Int position)
         {
-            currentEvent.Use();
-            if (!ObjectBrush.Manager.CanPlaceAt(ObjectBrush.cellPosition))
+            if (!ObjectBrush.Manager.CanPlaceAt(position))
                 return;
 
             if (ObjectBrush.prefab != null)
@@ -126,10 +130,28 @@ namespace EditorExtend.GridEditor
 
                 SerializedObject temp = new(gridObject);
                 SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
-                cellPosition.vector3IntValue = ObjectBrush.cellPosition;
-                gridObject.CellPosition = ObjectBrush.cellPosition;
+                cellPosition.vector3IntValue = position;
+                gridObject.CellPosition = position;
                 temp.ApplyModifiedProperties();
                 //ObjectBrush.Manager.AddObject(gridObject);   //Editor模式下GridManager会自动刷新以获取新的GridObject
+            }
+        }
+
+        protected virtual void Brush()
+        {
+            currentEvent.Use();
+            GridObject gridObject = ObjectBrush.prefab.GetComponent<GridObject>();
+            if (ObjectBrush.pillarMode && gridObject.GroundHeight == 1)
+            {
+                Vector3Int position = ObjectBrush.cellPosition;
+                for (; position.z >= 0; position += Vector3Int.back)
+                {
+                    TryBrushAt(position);
+                }
+            }
+            else
+            {
+                TryBrushAt(ObjectBrush.cellPosition);
             }
         }
 

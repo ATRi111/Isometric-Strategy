@@ -21,7 +21,7 @@ public class SummonSkill : RangedSkill
             if (!LayerCheck(position, target))  //判断释放位置高度差是否过大
                 continue;
             GridObject gridObject = igm.GetObjectXY(temp);
-            if (!gridObject.TryGetComponent(out GridGround _))
+            if (!gridObject.TryGetComponent(out GridSurface _))
                 continue;                       //判断释放位置是否为空地
             ret.Add(target);
         }
