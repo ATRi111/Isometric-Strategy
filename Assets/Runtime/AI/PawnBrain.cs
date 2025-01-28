@@ -1,5 +1,4 @@
 using Character;
-using EditorExtend.GridEditor;
 using Services;
 using Services.Event;
 using System.Collections.Generic;
@@ -113,10 +112,24 @@ public class PawnBrain : CharacterComponentBase
         return sum / action.Time;
     }
 
-    public float HealthPercent(PawnEntity pawn)
+    public static float HealthPercent(PawnEntity pawn)
         => pawn.DefenceComponent.HP / pawn.DefenceComponent.maxHP.CurrentValue;
 
-    public virtual float EvaluatePosition(Vector3Int position)
+    public float EvaluatePosition(Vector3Int position)
+        => EvaluateFormation(position) + EvaluateTerrain(position);
+
+    /// <summary>
+    /// 计算地形分
+    /// </summary>
+    protected virtual float EvaluateTerrain(Vector3Int position)
+    {
+        return AIManager.trend.terrain * position.z;
+    }
+
+    /// <summary>
+    /// 计算阵型分
+    /// </summary>
+    protected virtual float EvaluateFormation(Vector3Int position)
     {
         int DistanceTo(PawnEntity other)
             => sensor.PredictDistanceBetween((Vector2Int)position, (Vector2Int)other.GridObject.CellPosition);
