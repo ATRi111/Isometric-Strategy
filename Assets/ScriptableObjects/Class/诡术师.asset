@@ -49,3 +49,4 @@ MonoBehaviour:
   offenseAbility: 0.6
   bestSupprtDistance: 3
   bestOffenseDistance: 5
+  terrainCoefficient: 1
