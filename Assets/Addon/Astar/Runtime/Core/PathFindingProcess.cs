@@ -142,7 +142,7 @@ namespace AStar
 
             from = GetNode(fromPos);
             From.Parent = null;
-            From.HCost = From.CostTo(To);
+            From.HCost = From.PredictCostTo(To);
 
             open.Push(From);
             nearest = From;
@@ -202,7 +202,7 @@ namespace AStar
                 switch (node.state)
                 {
                     case ENodeState.Blank:
-                        node.HCost = node.CostTo(To);
+                        node.HCost = node.PredictCostTo(To);
                         node.Parent = currentNode;
                         node.state = ENodeState.Open;
                         open.Push(node);

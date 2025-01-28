@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4768781221979206086}
   - component: {fileID: 1665012081464818511}
   - component: {fileID: 2958572610767909616}
+  - component: {fileID: 2350513379803116693}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -104,7 +105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPosition: {x: 0, y: 0, z: 0}
   groundHeight: 1
-  autoSortingOrder: 1
 --- !u!114 &4768781221979206086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,3 +144,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraSortingOrder: 0
+--- !u!114 &2350513379803116693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2383143098659270522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f3379bf0cd0d146a493befc6fa2687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 1

@@ -45,13 +45,16 @@ public class ModifyParameterEffect : Effect
 
     public override void Describe(StringBuilder sb, bool result)
     {
-        base.Describe(sb, result);
-        sb.Append("的");
-        sb.Append(parameterName.Bold());
-        sb.Append("从");
-        sb.Append(value_prev);
-        sb.Append("变为");
-        sb.Append(value);
-        sb.AppendLine();
+        if(value_prev != value)
+        {
+            base.Describe(sb, result);
+            sb.Append("的");
+            sb.Append(parameterName.Bold());
+            sb.Append("从");
+            sb.Append(value_prev);
+            sb.Append("变为");
+            sb.Append(value);
+            sb.AppendLine();
+        }
     }
 }

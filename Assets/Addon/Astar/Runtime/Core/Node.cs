@@ -49,9 +49,18 @@ namespace AStar
             this.position = position;
             state = ENodeState.Blank;
         }
-
-
-        public float CostTo(Node to)
+        /// <summary>
+        /// 当前节点能直接到达到目标节点时,计算两点间距离
+        /// </summary>
+        public virtual float CostTo(Node to)
+        {
+            float primitiveCost = PrimitiveCostTo(to);
+            return process.mover.CalculateCost(this, to, primitiveCost);
+        }
+        /// <summary>
+        /// 当前节点不能直接到达目标节点时,预测两点间距离
+        /// </summary>
+        public virtual float PredictCostTo(Node to)
         {
             float primitiveCost = PrimitiveCostTo(to);
             return process.mover.CalculateCost(this, to, primitiveCost);

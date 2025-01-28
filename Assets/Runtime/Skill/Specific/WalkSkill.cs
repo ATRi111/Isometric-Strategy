@@ -16,8 +16,8 @@ public class WalkSkill : MoveSkill
     private readonly List<Vector3Int> route = new();
     public override void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
-        base.Mock(agent, igm, position, target, ret);
         agent.Sensor.FindRoute((Vector2Int)position, (Vector2Int)target, route);
+        base.Mock(agent, igm, position, target, ret);
         List<Vector3> temp = new();
         if(route.Count > 0)
         {

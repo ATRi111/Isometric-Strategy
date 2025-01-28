@@ -8,7 +8,6 @@ public class GenerateANodeSO : GenerateNodeSO
 
     public override Node GenerateNode(PathFindingProcess process, Vector2Int position)
     {
-        //TODO:À§ÄÑµØÐÎ
-        return new ANode(process, position, Igm, 1f);
+        return new ANode(process, position, Igm);
     }
 }

@@ -34,7 +34,7 @@ namespace EditorExtend.GridEditor
                 return;
 
             prefab.PropertyField("± À¢");
-            if (prefabName != prefab.objectReferenceValue.name)
+            if (prefab.objectReferenceValue != null && prefabName != prefab.objectReferenceValue.name)
             {
                 prefabName = prefab.objectReferenceValue.name;
                 UpdateMountPoint(prefabName);
