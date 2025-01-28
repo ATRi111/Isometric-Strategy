@@ -15,4 +15,5 @@ MonoBehaviour:
   propertyModifier:
     modifiers: []
   skillsAttached: []
+  extraDescription: 
   slotType: 2

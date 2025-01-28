@@ -52,6 +52,8 @@ public class PawnEntity : Entity
     /// </summary>
     public int time;
 
+    public bool hidden;
+
     public CounterDictionary parameterDict;
 
     public List<string> GetVisibleParameters()

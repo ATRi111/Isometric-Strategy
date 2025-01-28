@@ -682,7 +682,7 @@ MonoBehaviour:
       maxDepth: 0
       hCostWeight: 1
       getAdjoinedNodesSO: {fileID: 11400000, guid: 7992b2de22549654da1a50fe569be08a, type: 2}
-      calculateDistanceSO: {fileID: 11400000, guid: 373974ec36da4444bbb6fdd6d54fd24b, type: 2}
+      calculateDistanceSO: {fileID: 11400000, guid: b346faa5941fed041ac884f60e167da5, type: 2}
       generateNodeSO: {fileID: 11400000, guid: cfac00c5fb1ba3249b766a7c9cbb350c, type: 2}
     mountPoint: {fileID: 0}
     output: []

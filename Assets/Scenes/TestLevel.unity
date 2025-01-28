@@ -4284,6 +4284,7 @@ GameObject:
   - component: {fileID: 1551605950}
   - component: {fileID: 1551605951}
   - component: {fileID: 1551605952}
+  - component: {fileID: 1551605953}
   m_Layer: 0
   m_Name: IsometricGridManager
   m_TagString: Untagged
@@ -4362,6 +4363,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a949efecd47efd44b9d0626056ed53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1551605953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551605946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e0287ab14feba448591a8b617d243f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weather: 0
 --- !u!1001 &1563731160
 PrefabInstance:
   m_ObjectHideFlags: 0

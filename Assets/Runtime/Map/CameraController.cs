@@ -21,8 +21,11 @@ public class CameraController : MonoBehaviour
 
     private void BeforeDoAction(PawnEntity pawn)
     {
-        follow = pawn.transform;
-        isFollowing = true;
+        if (!pawn.hidden)
+        {
+            follow = pawn.transform;
+            isFollowing = true;
+        }
     }
 
     private void Awake()
