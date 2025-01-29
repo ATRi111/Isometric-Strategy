@@ -22,12 +22,15 @@ public abstract class Effect
     public int probability;
     public int randomValue;
     public bool AlwaysHappen => probability == MaxProbability;
+    public bool NeverHappen => probability == 0;
     public bool WillHappen
     {
         get
         {
             if(AlwaysHappen)
                 return true;
+            if (NeverHappen)
+                return false;
             if (randomValue == -1)
                 randomValue = NextInt();
             return randomValue <= probability;

@@ -6,14 +6,14 @@ public class ANode : Node
 {
     protected IsometricGridManager igm;
     public GridObject gridObject;
-    public MovableGridObject movableGridObject;
+    public Entity entity;
     public int aboveGroundLayer;
     public Vector3Int cellPosition;
     public GridSurface surface;
 
     protected bool isObstacle;
     public override bool IsObstacle => isObstacle;
-    public bool isPawn;
+    public bool isEntity;
 
     public float difficulty;    //移动力的影响体现在AMover中(因为可能有AMover无视移动难度)
 
@@ -25,8 +25,8 @@ public class ANode : Node
         aboveGroundLayer = igm.AboveGroundLayer(Position);
         cellPosition =  Position.AddZ(aboveGroundLayer);
         isObstacle = gridObject == null;     //只有不存在地面这一种情况是绝对的障碍物
-        movableGridObject = gridObject as MovableGridObject;
-        isPawn = movableGridObject != null;
+        entity = gridObject.GetComponent<Entity>();
+        isEntity = entity != null;
         difficulty = 1;
         if (gridObject != null && gridObject.TryGetComponent(out surface))
         {

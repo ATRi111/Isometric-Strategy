@@ -58,9 +58,12 @@ public class MovableGridObject : GridObject
         return jumpSkill.JumpCheck(Pawn, Pawn.Igm, fromXY, toXY, ObjectCheck);
     }
 
-    public virtual bool FactionCheck(MovableGridObject other)
+    /// <summary>
+    /// 判断entity是否为友方单位
+    /// </summary>
+    public virtual bool FactionCheck(Entity entity)
     {
-        return Pawn.faction == other.Pawn.faction;
+        return Pawn.FactionCheck(entity) == 1;
     }
 
     public virtual bool HeightCheck(Node from, Node to)

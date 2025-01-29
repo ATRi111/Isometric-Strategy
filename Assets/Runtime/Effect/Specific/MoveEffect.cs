@@ -12,13 +12,14 @@ public class MoveEffect : TeleportEffect
     public MoveEffect(PawnEntity victim, Vector3Int from, Vector3Int to, List<Vector3> route, float speedMultiplier = 1f, int probability = MaxProbability)
         : base(victim, from, to, probability)
     {
-        this.route = new();
-        this.route.AddRange(route);
+        this.route = route;
         this.speedMultiplier = speedMultiplier;
     }
 
     public override AnimationProcess GenerateAnimation()
     {
-        return new AnimationProcess_Move(this, speedMultiplier);
+        if (route != null && route.Count > 1)
+            return new AnimationProcess_Move(this, speedMultiplier);
+        return null;
     }
 }
