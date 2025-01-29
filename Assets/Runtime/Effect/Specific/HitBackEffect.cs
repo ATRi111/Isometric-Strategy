@@ -91,7 +91,7 @@ public class HitBackEffect : MoveEffect
         if (currentHP < prevHP)
         {
             sb.Append("，");
-            sb.Append("造成");
+            sb.Append("再造成");
             sb.Append(prevHP - currentHP);
             if (to != from)
                 sb.Append("点坠落伤害");
