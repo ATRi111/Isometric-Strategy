@@ -85,7 +85,7 @@ public abstract class Effect
     {
         if (hidden)
             return;
-        if (!result && probability != MaxProbability)
+        if (!result && !AlwaysHappen)
         {
             sb.Append(probability);
             sb.Append("%");

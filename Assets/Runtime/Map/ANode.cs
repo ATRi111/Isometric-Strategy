@@ -25,7 +25,8 @@ public class ANode : Node
         aboveGroundLayer = igm.AboveGroundLayer(Position);
         cellPosition =  Position.AddZ(aboveGroundLayer);
         isObstacle = gridObject == null;     //只有不存在地面这一种情况是绝对的障碍物
-        entity = gridObject.GetComponent<Entity>();
+        if(gridObject != null)
+            entity = gridObject.GetComponent<Entity>();
         isEntity = entity != null;
         difficulty = 1;
         if (gridObject != null && gridObject.TryGetComponent(out surface))
