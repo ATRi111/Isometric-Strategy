@@ -9,6 +9,7 @@ public class HitBackEffect : MoveEffect
     public static int CollideAttackPower = 3000;
     public static int DropAttackPower = 1000;
     public static float DefaultSpeedMultiplier = 2f;
+    public static float hitBackDistance = 0.3f;
 
     public int prevHP;
     public int currentHP;
@@ -27,9 +28,15 @@ public class HitBackEffect : MoveEffect
 
         int damage;
         int newHP;
-        List<Vector3> route = null;
+        List<Vector3> route;
         if (hitBackPosition.z > victimPosition.z || gridObject == null || gridObject.TryGetComponent(out Entity _))
         {
+            route = new()
+            {
+                victimPosition,
+                Vector3.Lerp(victimPosition, hitBackPosition, hitBackDistance),
+                victimPosition
+            };
             hitBackPosition = victimPosition;
             damage = def.MockDamage(EDamageType.Crush, CollideAttackPower);
             newHP = Mathf.Clamp(HP - damage, 0, def.maxHP.IntValue);
@@ -58,11 +65,17 @@ public class HitBackEffect : MoveEffect
         this.currentHP = currentHP;
     }
 
-
     public override void Apply()
     {
         base.Apply();
         victim.DefenceComponent.HP = currentHP;
+    }
+
+    public override AnimationProcess GenerateAnimation()
+    {
+        FollowHPBar HPBar = victim.GetComponentInChildren<FollowHPBar>();
+        Vector3 position = HPBar.UseDamageNumberPosition();
+        return new HitBackAnimationProcess(this, HPBar.transform, position, prevHP - currentHP);
     }
 
     public override void Revoke()

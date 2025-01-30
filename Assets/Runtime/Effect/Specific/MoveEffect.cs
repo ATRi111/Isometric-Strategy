@@ -19,7 +19,7 @@ public class MoveEffect : TeleportEffect
     public override AnimationProcess GenerateAnimation()
     {
         if (route != null && route.Count > 1)
-            return new AnimationProcess_Move(this, speedMultiplier);
-        return null;
+            return new MoveAnimationProcess(this);
+        return base.GenerateAnimation();
     }
 }

@@ -109,11 +109,12 @@ public class PawnEntity : Entity
     protected override void OnDisable()
     {
         base.OnDisable();
-        BuffManager.Clear();
-        parameterDict.Clear();
         GameManager.Unregister(this);
         pClass.Unregister(this);
         race.Unregister(this);
+        BuffManager.Clear();
+        parameterDict.Clear();
+        time = 0;
     }
 }
 

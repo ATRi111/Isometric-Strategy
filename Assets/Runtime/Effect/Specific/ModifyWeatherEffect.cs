@@ -44,11 +44,6 @@ public class ModifyWeatherEffect : Effect
         battleField.Weather = prev;
     }
 
-    public override AnimationProcess GenerateAnimation()
-    {
-        return null;
-    }
-
     public override float ValueFor(PawnEntity pawn)
     {
         return 0;

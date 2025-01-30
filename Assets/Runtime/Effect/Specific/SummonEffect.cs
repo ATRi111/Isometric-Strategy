@@ -46,11 +46,6 @@ public class SummonEffect : Effect
         summoned = null;
     }
 
-    public override AnimationProcess GenerateAnimation()
-    {
-        return null;
-    }
-
     public override float ValueFor(PawnEntity pawn)
     {
         return 0;

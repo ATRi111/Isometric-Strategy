@@ -23,11 +23,6 @@ public class TimeEffect : Effect
 
     public override bool Revokable => PawnVictim.time == current;
 
-    public override AnimationProcess GenerateAnimation()
-    {
-        return null; //TODO
-    }
-
     public override void Apply()
     {
         base.Apply();

@@ -10,12 +10,6 @@ public class DisableEntityEffect : Effect
     {
     }
 
-    public override AnimationProcess GenerateAnimation()
-    {
-        //TODO
-        return null;
-    }
-
     public override void Apply()
     {
         base.Apply();

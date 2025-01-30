@@ -21,11 +21,6 @@ public class ModifyParameterEffect : Effect
         pawn = victim as PawnEntity;
     }
 
-    public override AnimationProcess GenerateAnimation()
-    {
-        return null;
-    }
-
     public override float ValueFor(PawnEntity pawn)
     {
         return (value - value_prev) * PawnEntity.ParameterTable[parameterName].valuePerUnit * pawn.FactionCheck(victim);

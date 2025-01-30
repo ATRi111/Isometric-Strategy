@@ -2,15 +2,15 @@ using Services;
 using System.Collections;
 using UnityEngine;
 
-public class AnimationProcess
+public abstract class AnimationProcess
 {
     protected AnimationManager manager;
-    public Effect effect;
+    public bool completed;
 
-    public AnimationProcess(Effect effect)
+    public AnimationProcess()
     {
         manager = ServiceLocator.Get<AnimationManager>();
-        this.effect = effect;
+        completed = false;
     }
 
     /// <summary>
@@ -34,41 +34,18 @@ public class AnimationProcess
     /// <summary>
     /// 播放动画
     /// </summary>
-    public virtual void Play()
+    public abstract void Play();
+    /// <summary>
+    /// 动画播放结束
+    /// </summary>
+    public virtual void Complete()
     {
-
+        completed = true;
+        manager.Unregister(this);
     }
+
     /// <summary>
     /// 在动画结束后应用效果
     /// </summary>
-    public virtual void Apply()
-    {
-        effect?.Apply();
-    }
-}
-
-/// <summary>
-/// 在固定时间后自动结束的动画过程
-/// </summary>
-public class AnimationProcess_FixedTime : AnimationProcess
-{
-    public float time;
-
-    public AnimationProcess_FixedTime(Effect effect,float time)
-        : base(effect)
-    {
-        this.time = time;
-    }
-
-    public override void Play()
-    {
-        base.Play();
-        manager.StartCoroutine(Delay());
-    }
-
-    private IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(time);
-        manager.Unregister(this);
-    }
+    public abstract void Apply();
 }

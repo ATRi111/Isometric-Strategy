@@ -172,22 +172,13 @@ namespace EditorExtend.GridEditor
         {
             if (!base.CanPlaceAt(cellPosition))
                 return false;
-            if (!maxLayerDict.ContainsKey((Vector2Int)cellPosition))
-                return true;
-            if (cellPosition.z > maxLayerDict[(Vector2Int)cellPosition])
-                return cellPosition.z >= AboveGroundLayer((Vector2Int)cellPosition);
-            
-            for (int layer = cellPosition.z; layer >= 0; layer--)
+
+            List<GridObject> objects = new();
+            GetObjectsXY((Vector2Int)cellPosition, objects);
+            for (int i = 0; i < objects.Count; i++)
             {
-                Vector3Int temp = cellPosition.ResetZ(layer);
-                GridObject obj = GetObject(temp);
-                if (obj != null)
-                {
-                    if (cellPosition.z < obj.GroundHeight + obj.CellPosition.z)
-                        return false;
-                    if (obj.Overlap(temp))
-                        return false;
-                }
+                if (objects[i].Overlap(cellPosition))
+                    return false;
             }
             return true;
         }

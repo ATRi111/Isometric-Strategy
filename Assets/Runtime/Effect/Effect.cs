@@ -53,15 +53,18 @@ public abstract class Effect
     public abstract bool Appliable { get; }
     public abstract bool Revokable { get; }
 
-    public abstract AnimationProcess GenerateAnimation();
+    public virtual AnimationProcess GenerateAnimation()
+    {
+        return new EffectAnimationProcess(this);
+    }
 
     public virtual void Play(AnimationManager animationManager, float latency)
     {
         AnimationProcess animation = GenerateAnimation();
-        if (animation != null)
-            animationManager.Register(animation, latency);
-        else
+        if (animation == null)
             Apply();
+        else
+            animationManager.Register(animation, latency);
     }
     public virtual void Apply()
     {
