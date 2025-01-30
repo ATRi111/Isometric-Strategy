@@ -85,8 +85,9 @@ public abstract class Skill : ScriptableObject
         return actionTime;
     }
 
-    public virtual AnimationProcess GenerateAnimation()
+    public virtual AnimationProcess GenerateAnimation(out float time)
     {
+        time = 0;
         return null;
     }
 

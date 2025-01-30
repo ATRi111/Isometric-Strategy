@@ -17,9 +17,9 @@ public class AnimationManager : Service,IService
     public Action AfterAnimationComplete;
 
     /// <summary>
-    /// 注册并立即播放动画
+    /// 注册并在latency秒后播放动画
     /// </summary>
-    public void Register(AnimationProcess animation)
+    public void Register(AnimationProcess animation, float latency)
     {
         if(!ImmediateMode)
         {

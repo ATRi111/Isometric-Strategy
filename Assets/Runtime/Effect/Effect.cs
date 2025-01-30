@@ -55,11 +55,11 @@ public abstract class Effect
 
     public abstract AnimationProcess GenerateAnimation();
 
-    public virtual void Play(AnimationManager animationManager)
+    public virtual void Play(AnimationManager animationManager, float latency)
     {
         AnimationProcess animation = GenerateAnimation();
         if (animation != null)
-            animationManager.Register(animation);
+            animationManager.Register(animation, latency);
         else
             Apply();
     }

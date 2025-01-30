@@ -14,6 +14,24 @@ public class AnimationProcess
     }
 
     /// <summary>
+    /// 在一定延迟后播放动画
+    /// </summary>
+    /// <param name="latency"></param>
+    public virtual void Play(float latency)
+    {
+        if (latency == 0f)
+            Play();
+        else
+            manager.StartCoroutine(DelayPlay(latency));
+    }
+
+    private IEnumerator DelayPlay(float latency)
+    {
+        yield return new WaitForSeconds(latency);
+        Play();
+    }
+
+    /// <summary>
     /// 播放动画
     /// </summary>
     public virtual void Play()

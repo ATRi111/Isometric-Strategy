@@ -36,10 +36,10 @@ public class PawnAction
     public void Play(AnimationManager animationManager)
     {
         Debug.Log(ResultDescription);
-        AnimationProcess animation = skill.GenerateAnimation();
+        AnimationProcess animation = skill.GenerateAnimation(out float time);
         if (animation != null)
-            animationManager.Register(animation);
-        effectUnit.Play(animationManager);
+            animationManager.Register(animation, 0f);
+        effectUnit.Play(animationManager, time);
         animationManager.StartAnimationCheck();
     }
 
