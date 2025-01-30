@@ -8,52 +8,48 @@ namespace EditorExtend.GridEditor
     {
         public new IsometricObjectBrush ObjectBrush => target as IsometricObjectBrush;
         [AutoProperty]
-        public SerializedProperty lockLayer, layer;
+        public SerializedProperty lockLayer, layer, lockXY;
 
         protected override void MyOnInspectorGUI()
         {
             base.MyOnInspectorGUI();
+            lockXY.BoolField("锁定XY");
             lockLayer.BoolField("锁定层数");
             if(lockLayer.boolValue)
             {
                 layer.IntField("层数");
             }
-            EditorGUILayout.HelpBox("按住Ctrl锁定XY;按数字键锁定或解锁层数", MessageType.Info);
+            EditorGUILayout.HelpBox("按住Ctrl锁定XY;按住Shift锁定层数", MessageType.Info);
         }
 
         protected override void OnKeyDown(KeyCode keyCode)
         {
             if (keyCode == KeyCode.LeftControl || keyCode == KeyCode.RightControl)
             {
-                ObjectBrush.lockXY = true;
+                currentEvent.Use();
+                lockXY.boolValue = true;
+                lockLayer.boolValue = false;
             }
-            else if (keyCode >= KeyCode.Alpha0 && keyCode <= KeyCode.Alpha9)
+            else if (keyCode == KeyCode.LeftShift || keyCode == KeyCode.RightShift)
             {
                 currentEvent.Use();
-                int num = keyCode - KeyCode.Alpha0;
-                if (lockLayer.boolValue)
-                {
-                    if (layer.intValue == num)
-                        lockLayer.boolValue = false;
-                    else
-                        layer.intValue = num;
-                }
-                else
-                {
-                    lockLayer.boolValue = true;
-                    layer.intValue = num;
-                }
-            }
-            else if(keyCode == KeyCode.BackQuote)
-            {
-                currentEvent.Use();
-                lockLayer.boolValue = !lockLayer.boolValue;
+                lockLayer.boolValue = true;
+                layer.intValue = ObjectBrush.cellPosition.z;
+                lockXY.boolValue = false;
             }
         }
         protected override void OnKeyUp(KeyCode keyCode)
         {
             if (keyCode == KeyCode.LeftControl || keyCode == KeyCode.RightControl)
-                ObjectBrush.lockXY = false;
+            {
+                currentEvent.Use();
+                lockXY.boolValue = false;
+            }
+            else if (keyCode == KeyCode.LeftShift || keyCode == KeyCode.RightShift)
+            {
+                currentEvent.Use();
+                lockLayer.boolValue = false;
+            }
         }
     }
 }
