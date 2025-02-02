@@ -36,6 +36,11 @@ public class PawnAction
     public void Play(AnimationManager animationManager)
     {
         Debug.Log(ResultDescription);
+        if (target != agent.GridObject.CellPosition)
+        {
+            Vector2Int direction = (Vector2Int)(target - agent.GridObject.CellPosition);
+            agent.faceDirection = EDirectionTool.NearestDirection4(direction);
+        }
         AnimationProcess animation = skill.GenerateAnimation(out float time);
         if (animation != null)
             animationManager.Register(animation, 0f);

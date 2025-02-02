@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1144042e122344ab35c344398fca4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pawn: {fileID: 0}
   sensor: {fileID: 0}
   humanControl: 0
   plans: []
@@ -400,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37eeabf3b48d054b9ba821a5aaf8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pawn: {fileID: 0}
 --- !u!1 &7860386800660997329
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +576,7 @@ GameObject:
   - component: {fileID: 6422787771892813284}
   - component: {fileID: 3349650844118745429}
   - component: {fileID: 216437392464030992}
+  - component: {fileID: 2236603713405674883}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -661,7 +664,7 @@ Animator:
   m_GameObject: {fileID: 9010022718326903551}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a68fcc4df3cd4e4f83da3a6a842ed0a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -686,6 +689,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraSortingOrder: 5
+--- !u!114 &2236603713405674883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9010022718326903551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613b0ba555331de40ba5de606f1babd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pawn: {fileID: 0}
+  id_x: 0
+  id_y: 0
 --- !u!1001 &2464543842463257361
 PrefabInstance:
   m_ObjectHideFlags: 0

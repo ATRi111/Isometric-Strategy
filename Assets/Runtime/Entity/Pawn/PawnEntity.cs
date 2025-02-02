@@ -1,5 +1,6 @@
 using Character;
 using MyTool;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,6 +46,8 @@ public class PawnEntity : Entity
     public Race race;
     public CharacterProperty actionTime;
     public CharacterProperty speedUpRate;
+    [NonSerialized]
+    public Vector2Int faceDirection;
 
     /// <summary>
     /// 全局计时器的值达到此值时，轮到此角色行动
@@ -104,6 +107,7 @@ public class PawnEntity : Entity
         RefreshProperty();
         time += actionTime.IntValue;   //入场AT
         DefenceComponent.HP = DefenceComponent.maxHP.IntValue;
+        faceDirection = Vector2Int.left;
     }
 
     protected override void OnDisable()

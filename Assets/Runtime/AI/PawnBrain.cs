@@ -10,7 +10,7 @@ using UnityEngine;
 public class PawnBrain : CharacterComponentBase
 {
     private AIManager AIManager;
-    public PawnEntity Pawn => entity as PawnEntity;
+    public PawnEntity pawn;
     public PawnSensor sensor;
 
     public bool humanControl;
@@ -28,7 +28,7 @@ public class PawnBrain : CharacterComponentBase
 
     public virtual void DoAction()
     {
-        Pawn.EventSystem.Invoke(EEvent.BeforeDoAction, Pawn);
+        pawn.EventSystem.Invoke(EEvent.BeforeDoAction, pawn);
         if (humanControl)
         {
 #if UNITY_EDITOR
@@ -39,11 +39,11 @@ public class PawnBrain : CharacterComponentBase
         {
             MakePlan();
 #if UNITY_EDITOR
-            if (Pawn.GameManager.debug)
+            if (pawn.GameManager.debug)
             {
                 prepared = true;
                 generator.brain = this;
-                generator.skillManager = Pawn.SkillManager;
+                generator.skillManager = pawn.SkillManager;
                 generator.Paint();
             }
             else
@@ -54,13 +54,13 @@ public class PawnBrain : CharacterComponentBase
 
     public void ExecuteAction(PawnAction action)
     {
-        action.Play(Pawn.AnimationManager);
+        action.Play(pawn.AnimationManager);
     }
 
     public PawnAction MockSkill(Skill skill, Vector3Int target)
     {
-        PawnAction action = new(Pawn, skill, target);
-        action.Mock(Pawn, Pawn.Igm);
+        PawnAction action = new(pawn, skill, target);
+        action.Mock(pawn, pawn.Igm);
         return action;
     }
 
@@ -71,16 +71,16 @@ public class PawnBrain : CharacterComponentBase
     {
         plans.Clear();
         positionValueCache.Clear();
-        foreach (Skill skill in Pawn.SkillManager.learnedSkills)
+        foreach (Skill skill in pawn.SkillManager.learnedSkills)
         {
-            if (skill.CanUse(Pawn, Pawn.Igm))
+            if (skill.CanUse(pawn, pawn.Igm))
                 MakePlan(skill, plans);
         }
         plans.Sort();
     }
     private void MakePlan(Skill skill, List<Plan> ret)
     {
-        skill.GetOptions(Pawn, Pawn.Igm, Pawn.GridObject.CellPosition, options);
+        skill.GetOptions(pawn, pawn.Igm, pawn.GridObject.CellPosition, options);
         for(int i = 0; i < options.Count; i++)
         {
             PawnAction action = MockSkill(skill, options[i]);
@@ -94,7 +94,7 @@ public class PawnBrain : CharacterComponentBase
     public void MakeAction(Skill skill, List<PawnAction> actions)
     {
         actions.Clear();
-        skill.GetOptions(Pawn, Pawn.Igm, Pawn.GridObject.CellPosition, options);
+        skill.GetOptions(pawn, pawn.Igm, pawn.GridObject.CellPosition, options);
         for (int i = 0; i < options.Count; i++)
         {
             actions.Add(MockSkill(skill, options[i]));
@@ -107,7 +107,7 @@ public class PawnBrain : CharacterComponentBase
         List<Effect> effects = action.effectUnit.effects;
         for (int i = 0; i < effects.Count; i++)
         {
-            sum += (float)effects[i].probability / Effect.MaxProbability * effects[i].ValueFor(Pawn);
+            sum += (float)effects[i].probability / Effect.MaxProbability * effects[i].ValueFor(pawn);
         }
         return sum / action.Time;
     }
@@ -135,12 +135,12 @@ public class PawnBrain : CharacterComponentBase
             => sensor.PredictDistanceBetween((Vector2Int)position, (Vector2Int)other.GridObject.CellPosition);
 
         int SupportDistance(PawnEntity supported)
-            => -Mathf.Abs(DistanceTo(supported) - Pawn.pClass.bestSupprtDistance);
+            => -Mathf.Abs(DistanceTo(supported) - pawn.pClass.bestSupprtDistance);
         int SupportedDistance(PawnEntity supporter)
             => -Mathf.Abs(DistanceTo(supporter) - supporter.pClass.bestSupprtDistance);
 
         int OffenseDistance(PawnEntity victim)
-            => -Mathf.Abs(DistanceTo(victim) - Pawn.pClass.bestOffenseDistance);
+            => -Mathf.Abs(DistanceTo(victim) - pawn.pClass.bestOffenseDistance);
         int DefenseDistance(PawnEntity agent)
             => -Mathf.Abs(DistanceTo(agent) - agent.pClass.bestOffenseDistance);
 
@@ -159,7 +159,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 sum += I(allies[i]) * SupportDistance(allies[i]);
             }
-            sum *= Pawn.pClass.supportAbility;
+            sum *= pawn.pClass.supportAbility;
             return sum;
         }
         float SeekSupport()
@@ -167,9 +167,9 @@ public class PawnBrain : CharacterComponentBase
             float sum = 0;
             for (int i = 0; i < allies.Count; i++)
             {
-                sum += allies[i].pClass.supportAbility * SupportedDistance(Pawn);
+                sum += allies[i].pClass.supportAbility * SupportedDistance(pawn);
             }
-            sum *= I(Pawn);
+            sum *= I(pawn);
             return sum;
         }
         float Offense()
@@ -179,7 +179,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 sum += OffenseDistance(enemies[i]);
             }
-            sum *= H(Pawn) * Pawn.pClass.offenseAbility;
+            sum *= H(pawn) * pawn.pClass.offenseAbility;
             return sum;
         }
         float Defense()
@@ -208,6 +208,7 @@ public class PawnBrain : CharacterComponentBase
 #if UNITY_EDITOR
         generator = AIManager.GetComponent<DebugPlanUIGenerator>();
 #endif
+        pawn = (PawnEntity)entity;
     }
 
     protected void Update()
@@ -217,7 +218,7 @@ public class PawnBrain : CharacterComponentBase
         {
             if (Input.GetKeyUp(KeyCode.O))
             {
-                plans[0].action.Play(Pawn.AnimationManager);
+                plans[0].action.Play(pawn.AnimationManager);
                 prepared = false;
             }
         }

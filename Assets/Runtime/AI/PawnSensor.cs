@@ -14,7 +14,7 @@ public class PawnSensor : CharacterComponentBase
 {
     private AIManager AIManager;
 
-    public PawnEntity Pawn => entity as PawnEntity;
+    public PawnEntity pawn;
 
     private List<Vector2Int> adjacent = new();  //œ‡¡⁄Àƒ∏Ò
 
@@ -32,11 +32,11 @@ public class PawnSensor : CharacterComponentBase
     {
         allies.Clear();
         enemies.Clear();
-        foreach (PawnEntity pawn in Pawn.GameManager.pawns)
+        foreach (PawnEntity pawn in pawn.GameManager.pawns)
         {
-            if (pawn == Pawn)
+            if (pawn == this.pawn)
                 continue;
-            int flag = Pawn.FactionCheck(pawn);
+            int flag = this.pawn.FactionCheck(pawn);
             switch (flag)
             {
                 case 1:
@@ -88,7 +88,7 @@ public class PawnSensor : CharacterComponentBase
     public void FindAvailable(Vector2Int from, List<Vector3Int> ret)
     {
         ret.Clear();
-        PathFindingProcess process = AIManager.PathFinding.FindAvailable(Pawn.MovableGridObject.Mover_Default, from);
+        PathFindingProcess process = AIManager.PathFinding.FindAvailable(pawn.MovableGridObject.Mover_Default, from);
         for (int i = 0; i < process.available.Count; i++)
         {
             ret.Add((process.available[i] as ANode).cellPosition);
@@ -101,8 +101,8 @@ public class PawnSensor : CharacterComponentBase
     public void FindRoute(Vector2Int from, Vector2Int to, List<Vector3Int> ret)
     {
         ret.Clear();
-        ret.Add(Pawn.MovableGridObject.CellPosition);
-        PathFindingProcess process = AIManager.PathFinding.FindRoute(Pawn.MovableGridObject.Mover_Default, from,to);
+        ret.Add(pawn.MovableGridObject.CellPosition);
+        PathFindingProcess process = AIManager.PathFinding.FindRoute(pawn.MovableGridObject.Mover_Default, from,to);
         for (int i = 0; i < process.output.Count; i++)
         {
             ret.Add((process.output[i] as ANode).cellPosition);
@@ -116,7 +116,7 @@ public class PawnSensor : CharacterComponentBase
     {
         Profiler.BeginSample("Ranging");
         ret.Clear();
-        PathFindingProcess process = AIManager.PathFinding.Ranging(Pawn.MovableGridObject.Mover_Ranging, from);
+        PathFindingProcess process = AIManager.PathFinding.Ranging(pawn.MovableGridObject.Mover_Ranging, from);
         ret.AddRange(process.available);
         Profiler.EndSample();
     }
@@ -131,15 +131,16 @@ public class PawnSensor : CharacterComponentBase
         base.Awake();
         AIManager = ServiceLocator.Get<AIManager>();
         adjacent = IsometricGridUtility.WithinProjectManhattanDistance(1);
+        pawn = (PawnEntity)entity;
     }
 
     private void OnEnable()
     {
-        Pawn.EventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);    
+        pawn.EventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);    
     }
 
     private void OnDisable()
     {
-        Pawn.EventSystem.RemoveListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
+        pawn.EventSystem.RemoveListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
     }
 }

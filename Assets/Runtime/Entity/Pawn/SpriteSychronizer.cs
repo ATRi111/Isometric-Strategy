@@ -13,7 +13,7 @@ public class SpriteSychronizer : MonoBehaviour
         spriteRenderer.color = targetSpriteRenderer.color;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         Sychronize();
     }
@@ -22,5 +22,7 @@ public class SpriteSychronizer : MonoBehaviour
     {
         if (spriteRenderer != null && targetSpriteRenderer != null)
             Sychronize();
+
+        
     }
 }
