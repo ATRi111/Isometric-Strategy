@@ -117,10 +117,10 @@ namespace EditorExtend.GridEditor
             SceneView.RepaintAll();
         }
 
-        private void TryBrushAt(Vector3Int position)
+        private bool TryBrushAt(Vector3Int position)
         {
             if (!ObjectBrush.Manager.CanPlaceAt(position))
-                return;
+                return false;
 
             if (ObjectBrush.prefab != null)
             {
@@ -134,7 +134,9 @@ namespace EditorExtend.GridEditor
                 gridObject.CellPosition = position;
                 temp.ApplyModifiedProperties();
                 //ObjectBrush.Manager.AddObject(gridObject);   //Editor模式下GridManager会自动刷新以获取新的GridObject
+                return true;
             }
+            return false;
         }
 
         protected virtual void Brush()
@@ -146,7 +148,8 @@ namespace EditorExtend.GridEditor
                 Vector3Int position = ObjectBrush.cellPosition;
                 for (; position.z >= 0; position += Vector3Int.back)
                 {
-                    TryBrushAt(position);
+                    if (!TryBrushAt(position))
+                        break;
                 }
             }
             else
