@@ -57454,84 +57454,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8547882795469722229, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
   m_PrefabInstance: {fileID: 1493574354}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1496055950
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1499311359}
-    m_Modifications:
-    - target: {fileID: 1866981148666096205, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_SortingOrder
-      value: -89
-      objectReference: {fileID: 0}
-    - target: {fileID: 2383143098659270522, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_Name
-      value: "\u77F3\u5757"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7051102911839030281, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: cellPosition.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7051102911839030281, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: cellPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7051102911839030281, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: cellPosition.z
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
---- !u!4 &1496055951 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8547882795469722229, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-  m_PrefabInstance: {fileID: 1496055950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1499311358
 GameObject:
   m_ObjectHideFlags: 0
@@ -57560,8 +57482,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1496055951}
+  m_Children: []
   m_Father: {fileID: 1551605948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1500122185
@@ -59597,8 +59518,8 @@ MonoBehaviour:
   mountIndex: 3
   pillarMode: 1
   lockLayer: 0
-  layer: 0
-  lockXY: 1
+  layer: 25
+  lockXY: 0
 --- !u!114 &1551605951
 MonoBehaviour:
   m_ObjectHideFlags: 0

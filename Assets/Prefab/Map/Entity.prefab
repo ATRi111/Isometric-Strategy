@@ -59,11 +59,11 @@ MonoBehaviour:
         currentValue: 0
     - key: 1
       value:
-        defaultValue: 200
+        defaultValue: 100
         currentValue: 0
     - key: 2
       value:
-        defaultValue: 150
+        defaultValue: 100
         currentValue: 0
     - key: 3
       value:
@@ -79,7 +79,7 @@ MonoBehaviour:
         currentValue: 0
     - key: 6
       value:
-        defaultValue: 200
+        defaultValue: 100
         currentValue: 0
 --- !u!1 &304610717944198105
 GameObject:
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 4768781221979206086}
   - component: {fileID: 4140801394191401413}
   m_Layer: 0
-  m_Name: "\u77F3\u5757"
+  m_Name: Entity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
