@@ -59514,8 +59514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d20a51230373d4c90bd5fd27b0ba0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2383143098659270522, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
-  mountIndex: 3
+  prefab: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
+  mountIndex: 2
   pillarMode: 1
   lockLayer: 0
   layer: 25
