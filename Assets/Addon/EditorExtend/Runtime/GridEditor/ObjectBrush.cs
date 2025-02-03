@@ -20,6 +20,8 @@ namespace EditorExtend.GridEditor
         }
 
         public GameObject prefab;
+        public bool overrideMode;
+
         [NonSerialized]
         public Vector3Int cellPosition;
 

@@ -10,7 +10,7 @@ namespace EditorExtend.GridEditor
 
         private string[] displayOptions;
         [AutoProperty]
-        public SerializedProperty prefab, mountIndex, pillarMode;
+        public SerializedProperty prefab, mountIndex, overrideMode;
         private string prefabName;
 
         protected Vector3Int lockedPosition;
@@ -45,7 +45,7 @@ namespace EditorExtend.GridEditor
                 UpdateMountPoint(prefabName);
             }
             mountIndex.intValue = EditorGUILayout.Popup("挂载点", mountIndex.intValue, displayOptions);
-            pillarMode.BoolField("柱形绘制模式");
+            overrideMode.BoolField("强制覆盖模式");
         }
 
         protected void UpdateMountPoint(string prefabName)
@@ -121,24 +121,28 @@ namespace EditorExtend.GridEditor
 
         protected virtual bool TryBrushAt(Vector3Int position)
         {
-            if (!ObjectBrush.Manager.CanPlaceAt(position))
+            if (ObjectBrush.prefab == null)
                 return false;
 
-            if (ObjectBrush.prefab != null)
+            if (!ObjectBrush.Manager.CanPlaceAt(position))
             {
-                GameObject obj = PrefabUtility.InstantiatePrefab(ObjectBrush.prefab, ObjectBrush.MountPoint) as GameObject;
-                Undo.RegisterCreatedObjectUndo(obj, "Create " + obj.name);
-                GridObject gridObject = obj.GetComponent<GridObject>();
-
-                SerializedObject temp = new(gridObject);
-                SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
-                cellPosition.vector3IntValue = position;
-                gridObject.CellPosition = position;
-                temp.ApplyModifiedProperties();
-                //ObjectBrush.Manager.AddObject(gridObject);   //Editor模式下GridManager会自动刷新以获取新的GridObject
-                return true;
+                if(overrideMode.boolValue)
+                    TryEraseAt(position);
+                else
+                    return false;
             }
-            return false;
+
+            GameObject obj = PrefabUtility.InstantiatePrefab(ObjectBrush.prefab, ObjectBrush.MountPoint) as GameObject;
+            Undo.RegisterCreatedObjectUndo(obj, "Create " + obj.name);
+            GridObject gridObject = obj.GetComponent<GridObject>();
+
+            SerializedObject temp = new(gridObject);
+            SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
+            cellPosition.vector3IntValue = position;
+            gridObject.CellPosition = position;
+            temp.ApplyModifiedProperties();
+
+            return true;
         }
 
         protected virtual void Brush()

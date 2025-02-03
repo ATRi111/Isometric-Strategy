@@ -8,11 +8,12 @@ namespace EditorExtend.GridEditor
     {
         public new IsometricObjectBrush ObjectBrush => target as IsometricObjectBrush;
         [AutoProperty]
-        public SerializedProperty lockLayer, layer, lockXY;
+        public SerializedProperty pillarMode, lockLayer, layer, lockXY;
 
         protected override void MyOnInspectorGUI()
         {
             base.MyOnInspectorGUI();
+            pillarMode.BoolField("柱形绘制模式");
             lockXY.BoolField("锁定XY");
             lockLayer.BoolField("锁定层数");
             if(lockLayer.boolValue)
