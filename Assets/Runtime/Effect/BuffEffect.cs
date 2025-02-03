@@ -19,9 +19,4 @@ public abstract class BuffEffect : Effect
         this.buff = buff;
         this.buffManager = buffManager;
     }
-
-    public override AnimationProcess GenerateAnimation()
-    {
-        return null;
-    }
 }

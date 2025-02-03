@@ -17,11 +17,6 @@ public class TeleportEffect : Effect
         this.to = to;
     }
 
-    public override AnimationProcess GenerateAnimation()
-    {
-        return null;
-    }
-
     public override void Apply()
     {
         base.Apply();

@@ -8,7 +8,6 @@ namespace EditorExtend.GridEditor
 #if UNITY_EDITOR
         public bool lockLayer;
         public int layer;
-        [NonSerialized]
         public bool lockXY;
 
         public override Vector3Int CalculateCellPosition(Vector3 worldPosition)
@@ -20,49 +19,13 @@ namespace EditorExtend.GridEditor
                 return cellPosition;
             }
 
-            int tempLayer;
             if (lockLayer)
             {
-                tempLayer = layer;
+                float z = igm.LayerToWorldZ(layer);  //世界坐标的z分量不影响图像位置,但影响转换后cellPosition的z及xy
+                return Manager.WorldToCell(worldPosition.ResetZ(z));
             }
-            else if (!Absorb(worldPosition, out tempLayer))
-            {
-                tempLayer = 0;
-            }
-            float z = igm.LayerToWorldZ(tempLayer);  //世界坐标的z分量不影响图像位置,但影响转换后cellPosition的z及xy
-            worldPosition = worldPosition.ResetZ(z);
-            cellPosition = Manager.WorldToCell(worldPosition);
-            return cellPosition;
-        }
 
-        /// <summary>
-        /// 吸附到附近的GridObject
-        /// </summary>
-        public bool Absorb(Vector3 worldPosition, out int retLayer)
-        {
-            IsometricGridManagerBase igm = Manager as IsometricGridManagerBase;
-            if (!igm.MatchMaxLayer(worldPosition, out retLayer))
-            {
-                float sumLayer = 0;
-                int count = 0;
-                for (int i = 0; i < GridUtility.AdjoinPoints8.Length; i++)
-                {
-                    Vector3 temp = worldPosition + Manager.CellToWorld(GridUtility.AdjoinPoints8[i]);
-                    if (igm.MatchMaxLayer(temp, out int tempLayer))
-                    {
-                        sumLayer += tempLayer;
-                        count++;
-                    }
-                }
-                if(count == 0)
-                {
-                    retLayer = 0;
-                    return false;
-                }
-                retLayer = Mathf.RoundToInt(sumLayer / count);
-                return true;
-            }
-            return true;
+            return igm.AbsorbSurfaceOfCube(worldPosition);
         }
 
         private static readonly Vector3Int[] BottomCellPositions =

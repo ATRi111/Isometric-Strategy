@@ -116,7 +116,7 @@ public class BuffManager : CharacterComponentBase
     {
         base.Awake();
         gameManager = ServiceLocator.Get<GameManager>();
-        pawn = entity as PawnEntity;
+        pawn = (PawnEntity)entity;
         for (int i = 0; i < buffResistances.Count; i++)
         {
             resistanceSearcher.Add(buffResistances[i].so.name, buffResistances[i].value);

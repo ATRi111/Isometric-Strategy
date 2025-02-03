@@ -56,6 +56,8 @@ namespace EditorExtend.GridEditor
         }
         public int mountIndex;
 
+        public bool pillarMode;
+
         public abstract Vector3Int CalculateCellPosition(Vector3 worldPosition);
 
         private readonly List<Vector3> gizmoPoints = new();

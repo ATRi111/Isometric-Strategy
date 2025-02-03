@@ -1,3 +1,4 @@
+using MyTool;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -18,6 +19,7 @@ public abstract class AimSkill : Skill
 {
     public List<SkillPower> powers;
     public List<BuffModifier> buffOnVictim;
+    public int hitBackProbability;
     public EVictimType victimType = EVictimType.Entity;
     public int minLayer = -2, maxLayer = 2;
 
@@ -88,11 +90,10 @@ public abstract class AimSkill : Skill
     }
 
     /// <summary>
-    /// 模拟技能对指定目标造成的伤害
+    /// 模拟技能对指定目标造成的伤害(含击退效果)
     /// </summary>
-    protected virtual void MockDamageOnVictim(PawnEntity agent, Entity victim, List<SkillPower> powers, EffectUnit ret)
+    protected virtual void MockDamageAndOnVictim(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target, List<SkillPower> powers, EffectUnit ret)
     {
-        int r = Effect.NextInt();
         //计算伤害
         int damage = 0;
         DefenceComponent def = victim.DefenceComponent;
@@ -101,14 +102,29 @@ public abstract class AimSkill : Skill
             float attackPower = agent.OffenceComponent.MockAttackPower(powers[j]);
             damage += def.MockDamage(powers[j].type, attackPower);
         }
-        int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
-        Effect effect = new HPChangeEffect(victim, def.HP, hp);
+        
+        int HP = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
+        Effect effect = new HPChangeEffect(victim, def.HP, HP);
         ret.effects.Add(effect);
-        //死亡判定
-        if (hp == 0)
+        if (HP == 0)
         {
             effect = new DisableEntityEffect(victim);
             ret.effects.Add(effect);
+        }
+        else if(victim is PawnEntity pawnVictim)
+        {
+            int r = Effect.NextInt();
+            effect = HitBackEffect.MockHitBack(igm, position, pawnVictim, HP, hitBackProbability);
+            effect.randomValue = r;
+            ret.effects.Add(effect);
+            if ((effect as HitBackEffect).currentHP == 0)
+            {
+                effect = new DisableEntityEffect(victim)
+                {
+                    randomValue = r
+                };
+                ret.effects.Add(effect);
+            }
         }
     }
 
@@ -144,7 +160,7 @@ public abstract class AimSkill : Skill
 
         for (int i = 0; i < victims.Count; i++)
         {
-            MockDamageOnVictim(agent, victims[i], tempPower, ret);
+            MockDamageAndOnVictim(igm, agent, victims[i], position, target, tempPower, ret);
             if (victims[i] is PawnEntity pawn)
                 MockBuffOnVictim(agent, pawn, ret);
             MockOtherEffectOnVictim(agent,victims[i], ret);

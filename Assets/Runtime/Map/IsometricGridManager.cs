@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(PerspectiveManager))]
 public class IsometricGridManager : IsometricGridManagerBase
 {
+    public static Vector3Int CoverVector = new(1, 1, -2);
     private static IsometricGridManager instance;
     public static IsometricGridManager Instance
     {

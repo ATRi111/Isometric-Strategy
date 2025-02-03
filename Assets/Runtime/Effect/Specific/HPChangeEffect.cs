@@ -1,6 +1,6 @@
 using System;
-using static UnityEngine.Rendering.DebugUI;
 using System.Text;
+using UnityEngine;
 
 [Serializable]
 public class HPChangeEffect : Effect
@@ -20,7 +20,9 @@ public class HPChangeEffect : Effect
 
     public override AnimationProcess GenerateAnimation()
     {
-        return null;    //TODO
+        FollowHPBar HPBar = victim.GetComponentInChildren<FollowHPBar>();
+        Vector3 position = HPBar.UseDamageNumberPosition();
+        return new DamageNumberAnimationProcess(this, HPBar.transform, position, prev - current);
     }
 
     public override void Apply()

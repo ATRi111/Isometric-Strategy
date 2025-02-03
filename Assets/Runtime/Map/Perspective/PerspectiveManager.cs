@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PerspectiveManager : MonoBehaviour
 {
-    public static Vector3Int CoverVector = new(1, 1, -2);
     public static PerspectiveManager FindInstance()
     {
         return GameObject.Find(nameof(PerspectiveManager)).GetComponent<PerspectiveManager>();
@@ -20,13 +19,13 @@ public class PerspectiveManager : MonoBehaviour
     /// </summary>
     public bool CoverCheck(Vector3Int position)
     {
-        Vector3Int p = position - CoverVector;
+        Vector3Int p = position - IsometricGridManager.CoverVector;
         while (Igm.Contains((Vector2Int)p))
         {
             GridObject gridObject = Igm.GetObject(p);
             if (gridObject != null && gridObject.IsGround)
                 return false;
-            p -= CoverVector;
+            p -= IsometricGridManager.CoverVector;
         }
         return true;
     }

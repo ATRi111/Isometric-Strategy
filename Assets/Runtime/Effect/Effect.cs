@@ -22,12 +22,15 @@ public abstract class Effect
     public int probability;
     public int randomValue;
     public bool AlwaysHappen => probability == MaxProbability;
+    public bool NeverHappen => probability == 0;
     public bool WillHappen
     {
         get
         {
             if(AlwaysHappen)
                 return true;
+            if (NeverHappen)
+                return false;
             if (randomValue == -1)
                 randomValue = NextInt();
             return randomValue <= probability;
@@ -50,15 +53,18 @@ public abstract class Effect
     public abstract bool Appliable { get; }
     public abstract bool Revokable { get; }
 
-    public abstract AnimationProcess GenerateAnimation();
+    public virtual AnimationProcess GenerateAnimation()
+    {
+        return new EffectAnimationProcess(this);
+    }
 
-    public virtual void Play(AnimationManager animationManager)
+    public virtual void Play(AnimationManager animationManager, float latency)
     {
         AnimationProcess animation = GenerateAnimation();
-        if (animation != null)
-            animationManager.Register(animation);
-        else
+        if (animation == null)
             Apply();
+        else
+            animationManager.Register(animation, latency);
     }
     public virtual void Apply()
     {
@@ -82,7 +88,7 @@ public abstract class Effect
     {
         if (hidden)
             return;
-        if (!result && probability != MaxProbability)
+        if (!result && !AlwaysHappen)
         {
             sb.Append(probability);
             sb.Append("%");

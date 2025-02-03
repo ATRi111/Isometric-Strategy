@@ -14,13 +14,16 @@ public class AnimationManager : Service,IService
 
     private readonly HashSet<AnimationProcess> currenAnimations = new();
 
+    private Action ApplyAll;    //应用动画结束后产生的所有效果，必须确保按顺序应用
     public Action AfterAnimationComplete;
 
     /// <summary>
-    /// 注册并立即播放动画
+    /// 注册并在latency秒后播放动画
     /// </summary>
-    public void Register(AnimationProcess animation)
+    public void Register(AnimationProcess animation, float latency)
     {
+        Debug.Log($"{animation.GetType()} register");
+        ApplyAll += animation.Apply;
         if(!ImmediateMode)
         {
             currenAnimations.Add(animation);
@@ -32,9 +35,9 @@ public class AnimationManager : Service,IService
 
     public void Unregister(AnimationProcess animation)
     {
-        if(!ImmediateMode)
+        Debug.Log($"{animation.GetType()} unregister");
+        if (!ImmediateMode)
             currenAnimations.Remove(animation);
-        animation.Apply();
         if (currenAnimations.Count == 0)
             StartAnimationCheck();
     }
@@ -48,6 +51,10 @@ public class AnimationManager : Service,IService
     {
         yield return new WaitForEndOfFrame();
         if (currenAnimations.Count == 0)
+        {
+            ApplyAll?.Invoke();
+            ApplyAll = null;
             AfterAnimationComplete?.Invoke();
+        }
     }
 }

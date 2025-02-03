@@ -24,6 +24,7 @@ public struct Trend
     public float seekSupport;
     public float offense;
     public float defense;
+    public float terrain;
 
     public readonly float Multiply(float a, float b, float c, float d)
     {

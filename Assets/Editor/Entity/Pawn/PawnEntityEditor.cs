@@ -3,7 +3,7 @@ using MyTool;
 using UnityEditor;
 
 [CustomEditor(typeof(PawnEntity))]
-public class PawnEntityEditor : AutoEditor
+public class PawnEntityEditor : EntityEditor
 {
     [AutoProperty]
     public SerializedProperty faction, targetToKill, pClass, race, actionTime, speedUpRate, time, hidden;
@@ -12,6 +12,7 @@ public class PawnEntityEditor : AutoEditor
 
     protected override void MyOnInspectorGUI()
     {   
+        base.MyOnInspectorGUI();
         faction.EnumField<EFaction>("阵营");
         if ((EFaction)faction.enumValueIndex == EFaction.Enemy)
             targetToKill.BoolField("任务目标");

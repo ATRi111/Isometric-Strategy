@@ -16,13 +16,13 @@ public class EffectUnit
         timeEffect.current += agent.actionTime.IntValue;
     }
 
-    public void Play(AnimationManager animationManager)
+    public void Play(AnimationManager animationManager, float latency)
     {
         for (int i = 0; i < effects.Count; i++)
         {
             if (effects[i].WillHappen)
-                effects[i].Play(animationManager);
+                effects[i].Play(animationManager, latency);
         }
-        timeEffect.Play(animationManager);
+        timeEffect.Play(animationManager, latency);
     }
 }
