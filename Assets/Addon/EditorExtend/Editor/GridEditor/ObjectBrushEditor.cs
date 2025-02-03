@@ -148,8 +148,7 @@ namespace EditorExtend.GridEditor
                 Vector3Int position = ObjectBrush.cellPosition;
                 for (; position.z >= 0; position += Vector3Int.back)
                 {
-                    if (!TryBrushAt(position))
-                        break;
+                    TryBrushAt(position);
                 }
             }
             else
