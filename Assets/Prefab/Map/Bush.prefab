@@ -8,9 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1866981148666096205, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083917042323596351, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
+      propertyPath: maxHP.defaultValue
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083917042323596351, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
+      propertyPath: resistance.list.Array.data[3].value.defaultValue
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083917042323596351, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
+      propertyPath: resistance.list.Array.data[4].value.defaultValue
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2383143098659270522, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
       propertyPath: m_Name
-      value: "\u704C\u6728\u4E1B"
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 4140801394191401413, guid: 59d86c28415611e4cb37e28bed0dc842, type: 3}
       propertyPath: entityName
