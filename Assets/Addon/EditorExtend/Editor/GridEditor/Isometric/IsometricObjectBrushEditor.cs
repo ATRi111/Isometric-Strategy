@@ -22,20 +22,58 @@ namespace EditorExtend.GridEditor
             EditorGUILayout.HelpBox("按住Ctrl锁定XY;按住Shift锁定层数", MessageType.Info);
         }
 
+        protected override void Brush()
+        {
+            base.Brush();
+            if(ObjectBrush.pillarMode)
+            {
+                GridObject gridObject = ObjectBrush.prefab.GetComponent<GridObject>();
+                if (gridObject.GroundHeight == 1)
+                {
+                    Vector3Int position = ObjectBrush.cellPosition + Vector3Int.back;
+                    for (; position.z >= 0; position += Vector3Int.back)
+                    {
+                        TryBrushAt(position);
+                    }
+                }
+            }
+        }
+
+        protected override void Erase()
+        {
+            base.Erase(); 
+            if (ObjectBrush.pillarMode && lockLayer.boolValue)
+            {
+                GridObject gridObject = ObjectBrush.prefab.GetComponent<GridObject>();
+                if (gridObject.GroundHeight == 1)
+                {
+                    Vector3Int position = ObjectBrush.cellPosition + Vector3Int.back;
+                    for (; position.z >= 0; position += Vector3Int.back)
+                    {
+                        TryEraseAt(position);
+                    }
+                }
+            }
+        }
+
         protected override void OnKeyDown(KeyCode keyCode)
         {
             if (keyCode == KeyCode.LeftControl || keyCode == KeyCode.RightControl)
             {
                 currentEvent.Use();
+                UpdateCellPosition();
                 lockXY.boolValue = true;
                 lockLayer.boolValue = false;
+                lockedPosition = ObjectBrush.cellPosition;
             }
             else if (keyCode == KeyCode.LeftShift || keyCode == KeyCode.RightShift)
             {
                 currentEvent.Use();
+                UpdateCellPosition();
                 lockLayer.boolValue = true;
                 layer.intValue = ObjectBrush.cellPosition.z;
                 lockXY.boolValue = false;
+                lockedPosition = ObjectBrush.cellPosition;
             }
         }
         protected override void OnKeyUp(KeyCode keyCode)

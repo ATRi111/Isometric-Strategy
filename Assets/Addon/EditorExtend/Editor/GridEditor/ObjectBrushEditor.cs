@@ -13,6 +13,8 @@ namespace EditorExtend.GridEditor
         public SerializedProperty prefab, mountIndex, pillarMode;
         private string prefabName;
 
+        protected Vector3Int lockedPosition;
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -112,12 +114,12 @@ namespace EditorExtend.GridEditor
         protected virtual void UpdateCellPosition()
         {
             Vector3 world = SceneViewUtility.SceneToWorld(mousePosition);
-            ObjectBrush.cellPosition = ObjectBrush.CalculateCellPosition(world);
+            ObjectBrush.cellPosition = ObjectBrush.CalculateCellPosition(world, lockedPosition);
             Repaint();
             SceneView.RepaintAll();
         }
 
-        private bool TryBrushAt(Vector3Int position)
+        protected virtual bool TryBrushAt(Vector3Int position)
         {
             if (!ObjectBrush.Manager.CanPlaceAt(position))
                 return false;
@@ -142,29 +144,27 @@ namespace EditorExtend.GridEditor
         protected virtual void Brush()
         {
             currentEvent.Use();
-            GridObject gridObject = ObjectBrush.prefab.GetComponent<GridObject>();
-            if (ObjectBrush.pillarMode && gridObject.GroundHeight == 1)
+            TryBrushAt(ObjectBrush.cellPosition);
+        }
+
+        protected virtual bool TryEraseAt(Vector3Int position)
+        {
+            if (ObjectBrush.Manager.ObjectDict.ContainsKey(position))
             {
-                Vector3Int position = ObjectBrush.cellPosition;
-                for (; position.z >= 0; position += Vector3Int.back)
+                GridObject gridObject = ObjectBrush.Manager.TryRemoveObject(position);
+                if(gridObject != null)
                 {
-                    TryBrushAt(position);
+                    ExternalTool.Destroy(gridObject.gameObject);
+                    return true;
                 }
             }
-            else
-            {
-                TryBrushAt(ObjectBrush.cellPosition);
-            }
+            return false;
         }
 
         protected virtual void Erase()
         {
-            if(ObjectBrush.Manager.ObjectDict.ContainsKey(ObjectBrush.cellPosition))
-            {
-                GridObject gridObject = ObjectBrush.Manager.TryRemoveObject(ObjectBrush.cellPosition);
-                ExternalTool.Destroy(gridObject.gameObject);
-            }
             currentEvent.Use();
+            TryEraseAt(ObjectBrush.cellPosition);
         }
     }
 }
