@@ -23,4 +23,5 @@ MonoBehaviour:
   skillsAttached:
   - {fileID: 11400000, guid: c8423dbc77b374c48b2882292fc8b6a4, type: 2}
   - {fileID: 11400000, guid: d3009eb9369018f49a5c73130ff895fa, type: 2}
+  extraDescription: 
   slotType: 0

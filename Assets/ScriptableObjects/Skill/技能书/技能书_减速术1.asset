@@ -15,14 +15,20 @@ MonoBehaviour:
   displayName: "\u51CF\u901F\u672F1"
   extraDescription: 
   actionTime: 25
-  preConditions: []
+  preConditions:
+  - conditionType: 3
+    parameterIndex: 2
+    value: 1
   buffPreConditions: []
-  parameterOnAgent: []
+  parameterOnAgent:
+  - parameterIndex: 2
+    deltaValue: -1
   buffOnAgent: []
   powers: []
   buffOnVictim:
   - so: {fileID: 11400000, guid: 74673d26f769a0745abcc02f9a60efc7, type: 2}
     probability: 100
+  hitBackProbability: 0
   victimType: 1
   minLayer: -32
   maxLayer: 32
