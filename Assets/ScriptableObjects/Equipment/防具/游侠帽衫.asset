@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
+  m_Name: "\u6E38\u4FA0\u5E3D\u886B"
+  m_EditorClassIdentifier: 
+  propertyModifier:
+    modifiers:
+    - value: 15
+      so: {fileID: 11400000, guid: f44c63f2c03dd144dbb628b191d38e27, type: 2}
+      method: 0
+    - value: 15
+      so: {fileID: 11400000, guid: a3ad2a85dce498e42ade88cb461c3bec, type: 2}
+      method: 0
+    - value: 15
+      so: {fileID: 11400000, guid: f8958f741a08a044f817ce25723a428e, type: 2}
+      method: 0
+    - value: 5
+      so: {fileID: 11400000, guid: 5b7aa0fa7bb7c034a98950b2b8078463, type: 2}
+      method: 0
+    - value: 2
+      so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
+      method: 0
+  skillsAttached: []
+  extraDescription: 
+  slotType: 1
