@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
-  m_Name: "\u706B\u7403"
+  m_Name: "\u51CF\u901F\u6280\u80FD\u4E66"
   m_EditorClassIdentifier: 
   propertyModifier:
     modifiers: []
   skillsAttached:
-  - {fileID: 11400000, guid: 1554c4dd4a74e7a40bc26d3bceca306a, type: 2}
+  - {fileID: 11400000, guid: 81d9fb6f1b9d6d541beb4028dfc9031e, type: 2}
+  extraDescription: 
   slotType: 3

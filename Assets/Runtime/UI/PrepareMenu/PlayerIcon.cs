@@ -1,22 +1,35 @@
-using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerIcon : MonoBehaviour
+public class PlayerIcon : IconUI
 {
     private LevelManager levelManager;
     private PlayerManager playerManager;
+    private Image image;
 
     public int index;
 
     public void CheckAvailable()
     {
-        gameObject.SetActive(index < playerManager.playerList.Count);
+        if (index < playerManager.playerList.Count)
+        {
+            canvasGroup.Visible = true;
+            image.sprite = playerManager.playerList[index].icon;
+            message = playerManager.playerList[index].EntityName;
+        }
+        else
+        {
+            canvasGroup.Visible = false;
+            message = string.Empty;
+        }
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         playerManager = PlayerManager.FindInstance();
         levelManager = GetComponentInParent<LevelManager>();
         levelManager.OnReturnToPrepareMenu += CheckAvailable;
+        image = GetComponentInParent<Image>();
     }
 
     private void Start()
