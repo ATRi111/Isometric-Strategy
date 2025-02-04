@@ -801,11 +801,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5849528532893411366, guid: 34d5062c8c9c3d74a842dc0a90be1cbc, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.5226256
       objectReference: {fileID: 0}
     - target: {fileID: 5849528532893411366, guid: 34d5062c8c9c3d74a842dc0a90be1cbc, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.5226256
       objectReference: {fileID: 0}
     - target: {fileID: 5849528532893411366, guid: 34d5062c8c9c3d74a842dc0a90be1cbc, type: 3}
       propertyPath: m_SortingOrder
@@ -46814,7 +46814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4987607054979538339, guid: 5fca83759e1151c4baa7f45758d7baa9, type: 3}
       propertyPath: m_Name
-      value: "\u654C\u4EBA\u589E\u63F4"
+      value: "\u589E\u63F4\u70B9"
       objectReference: {fileID: 0}
     - target: {fileID: 5511107082583336669, guid: 5fca83759e1151c4baa7f45758d7baa9, type: 3}
       propertyPath: learnedSkills.list.Array.size
@@ -60310,6 +60310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
+  overrideMode: 0
   mountIndex: 2
   pillarMode: 1
   lockLayer: 0

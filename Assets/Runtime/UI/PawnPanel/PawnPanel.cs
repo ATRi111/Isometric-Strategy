@@ -23,7 +23,7 @@ public class PawnPanel : MonoBehaviour
     /// <summary>
     /// 当前查看的角色列表
     /// </summary>
-    public PawnEntity[] pawnList;
+    public List<PawnEntity> pawnList;
     public PawnEntity SelectedPawn => pawnList[selectedIndex];
 
     public float GetPropertyChange(string propertyName)
@@ -36,23 +36,29 @@ public class PawnPanel : MonoBehaviour
 
     public void Next()
     {
-        if (pawnList != null && pawnList.Length > 0)
-            selectedIndex = (selectedIndex + 1) % pawnList.Length;
+        if (pawnList != null && pawnList.Count > 0)
+            selectedIndex = (selectedIndex + 1) % pawnList.Count;
         RefreshAll?.Invoke(SelectedPawn);
     }
 
     public void Previous()
     {
-        if(pawnList!= null && pawnList.Length > 0)
-            selectedIndex = (selectedIndex + pawnList.Length - 1) % pawnList.Length;
+        if(pawnList!= null && pawnList.Count > 0)
+            selectedIndex = (selectedIndex + pawnList.Count - 1) % pawnList.Count;
         RefreshAll?.Invoke(SelectedPawn);
     }
 
     private void Show(PawnEntity pawn)
     {
-        pawnList = Igm.GetComponentsInChildren<PawnEntity>();   //TODO:装备切换
+        //TODO:装备切换
+        PawnEntity[] temp = Igm.GetComponentsInChildren<PawnEntity>();
+        for (int i = 0; i < temp.Length; i++)
+        {
+            if (!temp[i].hidden)
+                pawnList.Add(temp[i]);
+        } 
         selectedIndex = 0;
-        for (int i = 0; i < pawnList.Length; i++)
+        for (int i = 0; i < pawnList.Count; i++)
         {
             if(pawnList[i] == pawn)
                 selectedIndex = i;
@@ -90,14 +96,6 @@ public class PawnPanel : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Hide();
-            }
-            else if (Input.GetKeyUp(KeyCode.D))
-            {
-                Next();
-            }
-            else if (Input.GetKeyUp(KeyCode.A))
-            {
-                Previous();
             }
         }
     }
