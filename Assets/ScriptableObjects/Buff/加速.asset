@@ -19,6 +19,7 @@ MonoBehaviour:
       method: 0
   skillsAttached: []
   extraDescription: 
-  duration: 200
+  duration: 250
   superimposeMode: 1
   primitiveValue: 50
+  modifier: {fileID: 0}
