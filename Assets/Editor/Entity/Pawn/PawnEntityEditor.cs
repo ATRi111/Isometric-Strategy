@@ -6,13 +6,14 @@ using UnityEditor;
 public class PawnEntityEditor : EntityEditor
 {
     [AutoProperty]
-    public SerializedProperty faction, targetToKill, pClass, race, actionTime, speedUpRate, time, hidden;
+    public SerializedProperty icon, faction, targetToKill, pClass, race, actionTime, speedUpRate, time, hidden;
 
     public bool foldout;
 
     protected override void MyOnInspectorGUI()
     {   
         base.MyOnInspectorGUI();
+        icon.PropertyField("头像");
         faction.EnumField<EFaction>("阵营");
         if ((EFaction)faction.enumValueIndex == EFaction.Enemy)
             targetToKill.BoolField("任务目标");

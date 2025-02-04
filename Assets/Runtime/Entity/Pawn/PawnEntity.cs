@@ -40,6 +40,7 @@ public class PawnEntity : Entity
     [AutoComponent]
     public EquipmentManager EquipmentManager { get; protected set; }
 
+    public Sprite icon;
     public EFaction faction;
     public bool targetToKill;
     public PawnClass pClass;

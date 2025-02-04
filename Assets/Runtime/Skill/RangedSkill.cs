@@ -10,6 +10,7 @@ using UnityEngine;
 public class RangedSkill : AimSkill
 {
     public int castingDistance = 1;
+    public bool aimAtSelf;
 
     /// <summary>
     /// 获取可选施放位置
@@ -18,6 +19,8 @@ public class RangedSkill : AimSkill
     {
         base.GetOptions(agent, igm, position, ret);
         List<Vector2Int> primitive = IsometricGridUtility.WithinProjectManhattanDistance(castingDistance);
+        if (aimAtSelf)
+            primitive.Add(Vector2Int.zero);
         for (int i = 0; i < primitive.Count; i++)
         {
             Vector2Int temp = (Vector2Int)position + primitive[i];
