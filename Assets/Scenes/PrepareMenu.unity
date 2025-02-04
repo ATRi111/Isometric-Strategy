@@ -2708,10 +2708,12 @@ MonoBehaviour:
     equipmentList:
     - {fileID: 11400000, guid: 4027596200e3f4b45b4133264478549b, type: 2}
     - {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
-  - prefab: {fileID: 2338041512611947571, guid: 075aeb86b5c724948904009f3d499d2f, type: 3}
+  - prefab: {fileID: 2338041512611947571, guid: 3e633e411c78c684f959d05d1d3ed077, type: 3}
     equipmentList:
-    - {fileID: 11400000, guid: a465a4f6f753d8d4d99f48234da73911, type: 2}
+    - {fileID: 11400000, guid: 6dce1efcbd7097c4ea13491534b0919d, type: 2}
     - {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
+    - {fileID: 11400000, guid: 79f2949b0f34cb34e966bacb98f2e164, type: 2}
+    - {fileID: 11400000, guid: 6f71e06fdb82ca74686efcacae923067, type: 2}
   unusedEquipmentList:
   - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
   - {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}

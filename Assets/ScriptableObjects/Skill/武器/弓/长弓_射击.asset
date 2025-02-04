@@ -27,6 +27,7 @@ MonoBehaviour:
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
+  hitBackProbability: 0
   victimType: 1
   minLayer: -32
   maxLayer: 32
@@ -38,4 +39,4 @@ MonoBehaviour:
   - 45
   - 60
   - 75
-  maxSpeed: 7
+  maxSpeed: 7.1
