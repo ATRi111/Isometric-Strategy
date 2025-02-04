@@ -49,7 +49,7 @@ MonoBehaviour:
       method: 0
   skillsAttached:
   - {fileID: 11400000, guid: 0ac16ca80088f2e40b161416ff6d144f, type: 2}
-  extraDescription: 
+  extraDescription: "\u9A91\u58EB"
   supportAbility: 0.2
   offenseAbility: 1
   bestSupprtDistance: 3

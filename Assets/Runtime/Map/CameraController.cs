@@ -1,3 +1,4 @@
+using MyTool;
 using Services;
 using Services.Event;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(follow != null && isFollowing)
-            transform.position = follow.position + offset;
+        if (follow != null && isFollowing)
+            transform.position = (follow.position + offset).ResetZ(-10);
     }
 }
