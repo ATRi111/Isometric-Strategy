@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propertyModifier:
     modifiers: []
-  skillsAttached: []
+  skillsAttached:
+  - {fileID: 11400000, guid: eea3c391b28a8c840a78918bac050724, type: 2}
   extraDescription: 
   slotType: 3
