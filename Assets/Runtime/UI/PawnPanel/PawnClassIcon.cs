@@ -8,7 +8,7 @@ public class PawnClassIcon : IconUI
     public void Refresh(PawnEntity pawnEntity)
     {
         tmp.text = pawnEntity.pClass.name;
-        message = pawnEntity.pClass.extraDescription;
+        info = pawnEntity.pClass.extraDescription;
     }
 
     protected override void Awake()

@@ -1,12 +1,10 @@
 using Character;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 public class EquipmentManager : CharacterComponentBase
 {
-    [SerializeField]
-    private List<EquipmentSlot> slots;
+    public List<EquipmentSlot> slots;
     private PawnEntity pawn;
 
     public EquipmentSlot this[ESlotType slot]

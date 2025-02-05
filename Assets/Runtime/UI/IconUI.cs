@@ -10,19 +10,19 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected IEventSystem eventSystem;
     protected GameManager gameManager;
     [SerializeField]
-    protected string message;
+    protected string info;
     [HideInInspector]
     public CanvasGroupPlus canvasGroup;
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
-        if (!string.IsNullOrEmpty(message))
-            eventSystem.Invoke(EEvent.ShowMessage, (object)this, eventData.position, message);
+        if (!string.IsNullOrEmpty(info))
+            eventSystem.Invoke(EEvent.ShowInfo, (object)this, eventData.position, info);
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
-        eventSystem.Invoke(EEvent.HideMessage, (object)this);
+        eventSystem.Invoke(EEvent.HideInfo, (object)this);
     }
 
     protected virtual void Awake()
@@ -39,6 +39,6 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     protected virtual void OnDisable()
     {
-        eventSystem.Invoke(EEvent.HideMessage, (object)this);
+        eventSystem.Invoke(EEvent.HideInfo, (object)this);
     }
 }

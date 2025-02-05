@@ -7,6 +7,6 @@ public class SkillIcon : IconUI
     public void SetSkill(Skill skill)
     {
         this.skill = skill;
-        message = skill.displayName.Bold() + "\n" + skill.Description;
+        info = skill.displayName.Bold() + "\n" + skill.Description;
     }
 }

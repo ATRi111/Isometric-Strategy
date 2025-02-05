@@ -19,6 +19,6 @@ public class TimeAxisIcon : IconUI
         sb.Append(" £”‡ ±º‰:");
         sb.Append(pawns[0].time - gameManager.Time);
         sb.AppendLine();
-        message = sb.ToString();
+        info = sb.ToString();
     }
 }

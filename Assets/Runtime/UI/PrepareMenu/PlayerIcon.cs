@@ -14,12 +14,12 @@ public class PlayerIcon : IconUI
         {
             canvasGroup.Visible = true;
             image.sprite = playerManager.playerList[index].icon;
-            message = playerManager.playerList[index].EntityName;
+            info = playerManager.playerList[index].EntityName;
         }
         else
         {
             canvasGroup.Visible = false;
-            message = string.Empty;
+            info = string.Empty;
         }
     }
 
