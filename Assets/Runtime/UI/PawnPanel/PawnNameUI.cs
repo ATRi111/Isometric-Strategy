@@ -8,7 +8,7 @@ public class PawnNameUI : MonoBehaviour
 
     public void Refresh(PawnEntity pawnEntity)
     {
-        tmp.text = pawnEntity.gameObject.name;
+        tmp.text = pawnEntity.EntityName;
     }
 
     private void Awake()
