@@ -52,6 +52,6 @@ public class PawnIcon : IconUI , IPointerClickHandler
 
     private void Start()
     {
-        info = pawn.gameObject.name; //等待名称改完后
+        info = pawn.EntityName; //等待名称改完后
     }
 }

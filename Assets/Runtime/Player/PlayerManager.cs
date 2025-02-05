@@ -66,7 +66,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void UpdatePlayerData(PawnEntity pawn)
     {
-        string entityName = pawn.gameObject.name;
+        string entityName = pawn.EntityName;
         PlayerData data = Find(entityName);
         if (data == null)
         {
@@ -85,7 +85,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void ApplyPlayerData(PawnEntity pawn)
     {
-        string entityName = pawn.gameObject.name;
+        string entityName = pawn.EntityName;
         PlayerData data = Find(entityName);
         if (data == null)
             return;
