@@ -25,6 +25,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: entityName
+      value: "\u7070\u70EC"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: setting.faction
       value: 0
       objectReference: {fileID: 0}
@@ -94,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
-      value: "\u9F99\u4EBA\u90AA\u9A91\u58EB"
+      value: "\u9F99\u4EBA\u6050\u60E7\u9A91\u58EB"
       objectReference: {fileID: 0}
     - target: {fileID: 8906729858977160495, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: learnedSkills.list.Array.size

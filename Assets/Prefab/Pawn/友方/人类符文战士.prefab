@@ -17,6 +17,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: entityName
+      value: "\u6D1B\u4F26\u4F50"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: actionTime.defaultValue
       value: 0
       objectReference: {fileID: 0}
@@ -66,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
-      value: "\u4EBA\u7C7B\u7B26\u6587\u5251\u58EB"
+      value: "\u4EBA\u7C7B\u7B26\u6587\u6218\u58EB"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

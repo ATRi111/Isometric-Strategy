@@ -42,7 +42,7 @@ MonoBehaviour:
       so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
       method: 0
   skillsAttached: []
-  extraDescription: 
+  extraDescription: "\u53E4\u4EE3\u9B54\u6CD5\u7814\u4E60\u8005\uFF0C\u62E5\u6709\u975E\u5E38\u9AD8\u7684\u667A\u529B\u3002\u7F3A\u70B9\u662F\u5BF9\u7269\u7406\u653B\u51FB\u6297\u6027\u5DEE\u3002"
   supportAbility: 0.2
   offenseAbility: 1
   bestSupprtDistance: 3

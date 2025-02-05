@@ -78,11 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: entityName
-      value: "\u963F\u5EB7"
+      value: "\u53DB\u9003\u5341\u4EBA\u957F\xB7\u963F\u5EB7"
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: targetToKill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: actionTime.defaultValue
