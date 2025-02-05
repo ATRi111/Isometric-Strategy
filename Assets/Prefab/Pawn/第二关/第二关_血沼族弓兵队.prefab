@@ -20,6 +20,34 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9490196
       objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[0].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[1].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[2].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[3].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[4].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[5].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[6].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3544415595762364013, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -54,11 +82,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757642395551545054, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: strength.defaultValue
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757642395551545054, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: dexterity.defaultValue
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5737828582266420397, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_LocalPosition.x

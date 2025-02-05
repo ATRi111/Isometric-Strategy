@@ -16,6 +16,34 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[0].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[1].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[2].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[3].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[4].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[5].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: resistance.list.Array.data[6].value.defaultValue
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3544415595762364013, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Sprite
       value: 

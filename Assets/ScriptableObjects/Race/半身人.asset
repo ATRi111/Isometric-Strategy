@@ -20,7 +20,7 @@ MonoBehaviour:
     - value: 1
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
-    - value: 4
+    - value: 5
       so: {fileID: 11400000, guid: ecc7dc55b1bb91944bdec7cdf6c16e94, type: 2}
       method: 0
     - value: 2
