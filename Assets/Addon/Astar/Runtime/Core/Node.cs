@@ -78,7 +78,7 @@ namespace AStar
         }
 
         /// <summary>
-        /// 回溯路径
+        /// 回溯路径（会考虑移动力，但不会考虑能否停留）
         /// </summary>
         public void Recall(List<Node> ret = null)
         {
