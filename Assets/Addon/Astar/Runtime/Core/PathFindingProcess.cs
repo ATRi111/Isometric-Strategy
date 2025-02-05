@@ -172,7 +172,6 @@ namespace AStar
                 return false;
             }
 
-            Profiler.BeginSample("1");
             currentNode = open.Pop();
             currentNode.state = ENodeState.Close;
             countOfCloseNode++;
@@ -183,7 +182,6 @@ namespace AStar
             }
             if (currentNode.HCost < nearest.HCost)
                 nearest = currentNode;
-            Profiler.EndSample();
 
             if (currentNode == To)
             {
@@ -192,11 +190,8 @@ namespace AStar
                 return false;
             }
 
-            Profiler.BeginSample("2");
             GetMovableNodes(currentNode);
-            Profiler.EndSample();
 
-            Profiler.BeginSample("3");
             foreach (Node node in adjoins)
             {
                 switch (node.state)
@@ -212,7 +207,6 @@ namespace AStar
                         break;
                 }
             }
-            Profiler.EndSample();
 
             Profiler.EndSample();
             return true;

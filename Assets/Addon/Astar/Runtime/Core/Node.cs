@@ -83,7 +83,7 @@ namespace AStar
         public void Recall(List<Node> ret = null)
         {
             Parent?.Recall(ret);
-            if (process.mover.MoveAbilityCheck(this) && process.mover.StayCheck(this))
+            if (process.mover.MoveAbilityCheck(this))
                 ret?.Add(this);
         }
 
