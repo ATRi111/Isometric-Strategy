@@ -211,10 +211,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerIconToSelect (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
-      propertyPath: index
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1191,10 +1187,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerIconToSelect (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
-      propertyPath: index
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1929,10 +1921,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerIconToSelect (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
-      propertyPath: index
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2475,8 +2463,9 @@ GameObject:
   - component: {fileID: 1323077358}
   - component: {fileID: 1323077357}
   - component: {fileID: 1323077356}
+  - component: {fileID: 1323077359}
   m_Layer: 5
-  m_Name: SelectPanel
+  m_Name: SelectPlayerPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2583,6 +2572,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1323077359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323077352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11ef4abaf3805b4d855b9b504b82c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1387175711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,10 +3272,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerIconToSelect (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
-      propertyPath: index
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3765,10 +3762,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerIconToSelect (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
-      propertyPath: index
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3870,10 +3863,6 @@ PrefabInstance:
     - target: {fileID: 7257932095638162038, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
       propertyPath: m_Name
       value: PlayerIconToSelect
-      objectReference: {fileID: 0}
-    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
-      propertyPath: index
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4114,10 +4103,6 @@ PrefabInstance:
     - target: {fileID: 7257932095638162038, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
       propertyPath: m_Name
       value: PlayerIconToSelect (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8763484946679675135, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
-      propertyPath: index
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

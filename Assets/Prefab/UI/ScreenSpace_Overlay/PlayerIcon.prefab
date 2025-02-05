@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7557676311495921800}
   - component: {fileID: 7463780984412178598}
   - component: {fileID: 5420129235711667757}
-  - component: {fileID: 6045533644128581072}
   - component: {fileID: 2060264063255571929}
   - component: {fileID: 1620947713478726504}
+  - component: {fileID: 6045533644128581072}
   m_Layer: 5
   m_Name: PlayerIcon
   m_TagString: Untagged
@@ -78,21 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6045533644128581072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5674941491647907673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22190bdf690a6c54b9d29470defd3788, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  message: 
-  canvasGroup: {fileID: 0}
-  index: 0
 --- !u!225 &2060264063255571929
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -123,3 +108,18 @@ MonoBehaviour:
   immediate_next: 0
   immediate: 1
   visibleOnAwake: 1
+--- !u!114 &6045533644128581072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5674941491647907673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22190bdf690a6c54b9d29470defd3788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: 
+  canvasGroup: {fileID: 0}
+  index: 0

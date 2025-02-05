@@ -46804,6 +46804,10 @@ PrefabInstance:
       propertyPath: time
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 357412971327885239, guid: 5fca83759e1151c4baa7f45758d7baa9, type: 3}
+      propertyPath: pClass
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c3730d40c79ac941b04ae713da8e1c3, type: 2}
     - target: {fileID: 680682503844417782, guid: 5fca83759e1151c4baa7f45758d7baa9, type: 3}
       propertyPath: cellPosition.y
       value: -2
