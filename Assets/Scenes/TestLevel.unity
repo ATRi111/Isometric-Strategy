@@ -3944,6 +3944,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u7B2C\u4E00\u5173_\u5C71\u8D3C\u5F13\u7BAD\u624B"
       objectReference: {fileID: 0}
+    - target: {fileID: 8097847722429923281, guid: 34d5062c8c9c3d74a842dc0a90be1cbc, type: 3}
+      propertyPath: targetToKill
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9072177695655321744, guid: 34d5062c8c9c3d74a842dc0a90be1cbc, type: 3}
       propertyPath: cellPosition.y
       value: -4
@@ -4871,6 +4875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
+  overrideMode: 0
   mountIndex: 2
   pillarMode: 0
   lockLayer: 0

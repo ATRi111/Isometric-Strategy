@@ -95,6 +95,7 @@ public class PlayerManager : MonoBehaviour
             return;
 
         spawnController = Igm.GetComponentInChildren<SpawnController>();
+        AfterSelectChange?.Invoke();
     }
 
     private void BeforeUnLoadScene(int sceneIndex)
