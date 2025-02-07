@@ -1,6 +1,5 @@
 using Services;
 using Services.Event;
-using Services.Save;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,20 +25,13 @@ public class PlayerManager : MonoBehaviour
 
     public Action AfterSelectChange;
 
-    public List<bool> isSelected;
-    public bool FullySelected
-    {
-        get
-        {
-            int sum = 0;
-            for (int i = 0; i < isSelected.Count; i++)
-            {
-                if (isSelected[i])
-                    sum++;
-            }
-            return sum >= spawnController.Count;
-        }
-    }
+    [SerializeField]
+    private List<bool> isSelected;
+    [SerializeField]
+    private int selectedCount;
+    public int SelectedCount => selectedCount;
+    public int MaxSelectedCount => spawnController.Count;
+    public bool FullySelected => selectedCount >= MaxSelectedCount;
 
     public PlayerData Find(string entityName)
     {
@@ -145,6 +137,7 @@ public class PlayerManager : MonoBehaviour
         if (!isSelected[index])
         {
             isSelected[index] = true;
+            selectedCount++;
             Spawn(playerList[index]);
             AfterSelectChange?.Invoke();
         }
@@ -154,6 +147,7 @@ public class PlayerManager : MonoBehaviour
         if (isSelected[index])
         {
             isSelected[index] = false;
+            selectedCount--;
             Recycle(playerList[index]);
             spawnController.Refresh();
             AfterSelectChange?.Invoke();
