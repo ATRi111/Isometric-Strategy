@@ -8,6 +8,7 @@ using UnityEngine;
 /// </summary>
 public class PawnModifierSO : ScriptableObject
 {
+    public Sprite icon;
     public PawnPropertyModifier propertyModifier;
     public List<Skill> skillsAttached;
     public string extraDescription;
