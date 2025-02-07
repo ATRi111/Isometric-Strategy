@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Skill : ScriptableObject
 {
     public string displayName;
+    public Sprite icon;
     public string extraDescription;
     public int actionTime;
     public List<ParameterPreCondition> preConditions;
