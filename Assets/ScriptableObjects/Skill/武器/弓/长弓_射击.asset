@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\u5C04\u51FB"
   extraDescription: 
-  actionTime: 50
+  actionTime: 60
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
