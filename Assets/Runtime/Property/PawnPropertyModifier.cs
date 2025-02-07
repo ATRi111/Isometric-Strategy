@@ -7,7 +7,7 @@ using UnityEngine;
 public class PawnPropertyModifier
 {
     public List<PropertyModifier> modifiers;
-
+    
     public void Register(PawnEntity pawn)
     {
         for(int i = 0;i < modifiers.Count;i++)

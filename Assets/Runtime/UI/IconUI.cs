@@ -3,6 +3,7 @@ using Services.Event;
 using UIExtend;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroupPlus))]
 public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -13,6 +14,7 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected string info;
     [HideInInspector]
     public CanvasGroupPlus canvasGroup;
+    protected Image image;
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
@@ -30,6 +32,7 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         gameManager = ServiceLocator.Get<GameManager>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
         canvasGroup = GetComponent<CanvasGroupPlus>();
+        image = GetComponentInChildren<Image>();
     }
 
     protected virtual void OnEnable()

@@ -8,7 +8,7 @@ public class SelectedCountUI : MonoBehaviour
 
     private void AfterSelectChange()
     {
-        tmp.text = $"还可以选择{playerManager.MaxSelectedCount - playerManager.SelectedCount}位角色出战";
+        tmp.text = $"还可以选择{playerManager.MaxSelectedCount - playerManager.SelectedCount}名角色出战";
     }
 
     private void Awake()

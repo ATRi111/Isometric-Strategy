@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class ActionIcon : IconUI, IPointerClickHandler
 {
@@ -8,7 +7,6 @@ public class ActionIcon : IconUI, IPointerClickHandler
 
     private SkillUIManager skillUIManager;
 
-    private Image image;
     private Canvas canvas;
     public PawnAction action;
 
@@ -41,7 +39,6 @@ public class ActionIcon : IconUI, IPointerClickHandler
     protected override void Awake()
     {
         base.Awake();
-        image = GetComponentInChildren<Image>();
         canvas = GetComponent<Canvas>();
         canvas.overrideSorting = true;
         image.alphaHitTestMinimumThreshold = 0.2f;

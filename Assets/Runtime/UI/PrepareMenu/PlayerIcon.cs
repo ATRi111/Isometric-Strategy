@@ -4,7 +4,6 @@ public class PlayerIcon : IconUI
 {
     private LevelManager levelManager;
     private PlayerManager playerManager;
-    private Image image;
 
     public int index;
 

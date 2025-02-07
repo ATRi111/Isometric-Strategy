@@ -4,11 +4,12 @@ public class EquipmentIcon : IconUI
 {
     private PawnPanel pawnPanel;
     private EquipmentSlot slot;
-
+    
     public int index;
 
     public void Refresh(PawnEntity pawnEntity)
     {
+        image.sprite = null;   //TODO:ø’¿∏ŒªÕº±Í
         if (index < pawnEntity.EquipmentManager.slots.Count)
         {
             canvasGroup.Visible = true;
@@ -16,7 +17,10 @@ public class EquipmentIcon : IconUI
             if (slot != null)
             {
                 if (slot.equipment != null)
+                {
                     info = slot.equipment.name.Bold() + "\n" + slot.equipment.Description;
+                    image.sprite = slot.equipment.icon;
+                }
                 else
                     info = $"ø’{EquipmentSlot.SlotTypeName(slot.slotType)}¿∏Œª";
             }

@@ -5,10 +5,11 @@ using UnityEditor;
 public class PawnModifierSOEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty propertyModifier, skillsAttached, extraDescription;
+    public SerializedProperty icon,propertyModifier, skillsAttached, extraDescription;
 
     protected override void MyOnInspectorGUI()
     {
+        icon.PropertyField("图标");
         propertyModifier.PropertyField("属性词条");
         skillsAttached.ListField("附带技能");
         extraDescription.TextArea("额外描述");
