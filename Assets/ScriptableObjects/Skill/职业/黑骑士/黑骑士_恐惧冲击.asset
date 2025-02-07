@@ -21,7 +21,7 @@ MonoBehaviour:
   buffOnAgent: []
   powers:
   - type: 0
-    power: 75
+    power: 100
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 0
@@ -29,7 +29,9 @@ MonoBehaviour:
   buffOnVictim:
   - so: {fileID: 11400000, guid: 62065c3f34916424c841fbec7354bb0c, type: 2}
     probability: 75
+  hitBackProbability: 0
   victimType: 1
   minLayer: -2
   maxLayer: 2
   castingDistance: 1
+  aimAtSelf: 0

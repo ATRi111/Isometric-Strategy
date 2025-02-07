@@ -15,22 +15,21 @@ MonoBehaviour:
   displayName: "\u65A9\u51FB"
   extraDescription: 
   actionTime: 50
-  preConditions:
-  - conditionType: 0
-    parameterIndex: 1
-    value: 0
+  preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
   powers:
   - type: 1
-    power: 75
+    power: 100
     strMultiplier: 0.5
     dexMultiplier: 0.5
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
+  hitBackProbability: 0
+  victimType: 1
   minLayer: -2
   maxLayer: 2
   castingDistance: 1
-  victimType: 1
+  aimAtSelf: 0

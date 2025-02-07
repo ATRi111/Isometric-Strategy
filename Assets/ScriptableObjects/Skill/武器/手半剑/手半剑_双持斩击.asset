@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60fc8b1b0161ed040b9a45421afd9f04, type: 3}
   m_Name: "\u624B\u534A\u5251_\u53CC\u6301\u65A9\u51FB"
   m_EditorClassIdentifier: 
-  displayName: "\u65A9\u51FB"
+  displayName: "\u53CC\u6301\u65A9\u51FB"
   extraDescription: 
   actionTime: 75
   preConditions: []
@@ -21,13 +21,15 @@ MonoBehaviour:
   buffOnAgent: []
   powers:
   - type: 1
-    power: 100
+    power: 150
     strMultiplier: 0.5
     dexMultiplier: 0.5
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
+  hitBackProbability: 0
+  victimType: 1
   minLayer: -2
   maxLayer: 2
   castingDistance: 1
-  victimType: 1
+  aimAtSelf: 0

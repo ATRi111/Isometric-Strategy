@@ -21,7 +21,7 @@ MonoBehaviour:
   buffOnAgent: []
   powers:
   - type: 0
-    power: -80
+    power: -70
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 0
@@ -32,3 +32,4 @@ MonoBehaviour:
   minLayer: -32
   maxLayer: 32
   castingDistance: 5
+  aimAtSelf: 0
