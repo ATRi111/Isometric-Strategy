@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: fcba0ec73d146684799f3dcff5c0ffee, type: 3}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: race
       value: 
@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
-      value: "\u8725\u8734\u4EBA\u6218\u58EB"
+      value: "\u963F\u66FC"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
