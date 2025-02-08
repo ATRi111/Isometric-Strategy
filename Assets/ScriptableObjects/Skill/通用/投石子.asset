@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u6295\u77F3\u5B50"
   m_EditorClassIdentifier: 
   displayName: "\u6295\u77F3\u5B50"
+  icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
   preConditions: []
@@ -27,10 +28,12 @@ MonoBehaviour:
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
+  hitBackProbability: 1
   victimType: 1
   minLayer: -32
   maxLayer: 32
   castingDistance: 5
+  aimAtSelf: 0
   angles:
   - 0
   - 15

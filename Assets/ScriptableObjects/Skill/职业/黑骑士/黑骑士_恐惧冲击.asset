@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u9ED1\u9A91\u58EB_\u6050\u60E7\u51B2\u51FB"
   m_EditorClassIdentifier: 
   displayName: "\u6050\u60E7\u51B2\u51FB"
+  icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
   preConditions: []
@@ -21,7 +22,7 @@ MonoBehaviour:
   buffOnAgent: []
   powers:
   - type: 0
-    power: 75
+    power: 100
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 0
@@ -29,7 +30,9 @@ MonoBehaviour:
   buffOnVictim:
   - so: {fileID: 11400000, guid: 62065c3f34916424c841fbec7354bb0c, type: 2}
     probability: 75
+  hitBackProbability: 15
   victimType: 1
   minLayer: -2
   maxLayer: 2
   castingDistance: 1
+  aimAtSelf: 0

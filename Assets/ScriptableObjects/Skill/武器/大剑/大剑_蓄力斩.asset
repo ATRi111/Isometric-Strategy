@@ -13,20 +13,27 @@ MonoBehaviour:
   m_Name: "\u5927\u5251_\u84C4\u529B\u65A9"
   m_EditorClassIdentifier: 
   displayName: "\u84C4\u529B\u65A9"
+  icon: {fileID: 0}
+  extraDescription: 
   actionTime: 75
   preConditions:
   - conditionType: 0
     parameterIndex: 1
     value: 1
-  parameterModifiers: []
-  accuracy: 100
+  buffPreConditions: []
+  parameterOnAgent: []
+  buffOnAgent: []
   powers:
   - type: 1
     power: 300
     strMultiplier: 1
     dexMultiplier: 0
     intMultiplier: 0
+    mndMultiplier: 0
+  buffOnVictim: []
+  hitBackProbability: 30
+  victimType: 1
   minLayer: -2
   maxLayer: 2
   castingDistance: 1
-  victimType: 1
+  aimAtSelf: 0
