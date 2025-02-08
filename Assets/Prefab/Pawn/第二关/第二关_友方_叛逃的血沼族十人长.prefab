@@ -148,6 +148,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: personality.defense
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: personality.offense
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: personality.terrain
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: personality.seekSupport
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[0].equipment
       value: 
