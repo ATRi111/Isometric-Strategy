@@ -7,7 +7,7 @@ public class PawnClass : PawnModifierSO
     public float offenseAbility;
     public int bestSupprtDistance;
     public int bestOffenseDistance;
-    public float terrainCoefficient;
+    public float terrainAbility;
 
     protected override string TypeName => "ְҵ";
 }

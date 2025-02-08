@@ -20,6 +20,8 @@ public class PawnBrain : CharacterComponentBase
 
     private readonly Dictionary<Vector3Int, float> positionValueCache = new();
 
+    public Trend personality;
+
 #if UNITY_EDITOR
     [SerializeField]
     private bool prepared;
@@ -123,7 +125,7 @@ public class PawnBrain : CharacterComponentBase
     /// </summary>
     protected virtual float EvaluateTerrain(Vector3Int position)
     {
-        return AIManager.trend.terrain * position.z;
+        return (AIManager.trend.terrain + personality.terrain) * pawn.pClass.terrainAbility * position.z;
     }
 
     /// <summary>
@@ -194,7 +196,7 @@ public class PawnBrain : CharacterComponentBase
 
         if (!positionValueCache.ContainsKey(position))
         {
-            float value = AIManager.trend.Multiply(OfferSupport(), SeekSupport(), Offense(), Defense());
+            float value = (AIManager.trend + personality).Multiply(OfferSupport(), SeekSupport(), Offense(), Defense());
             positionValueCache.Add(position, value);
         }
         return positionValueCache[position];

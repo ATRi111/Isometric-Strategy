@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f8185e3a01d1f41a2a3a74abf4c790, type: 3}
   m_Name: "\u5F13\u7BAD\u624B"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers:
     - value: 50
@@ -50,4 +51,4 @@ MonoBehaviour:
   offenseAbility: 0.8
   bestSupprtDistance: 3
   bestOffenseDistance: 5
-  terrainCoefficient: 10
+  terrainAbility: 1

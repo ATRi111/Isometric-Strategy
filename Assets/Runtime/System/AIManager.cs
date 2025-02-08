@@ -30,4 +30,17 @@ public struct Trend
     {
         return offerSupport * a + seekSupport * b + offense * c + defense * d;
     }
+
+    public static Trend operator+(Trend a, Trend b)
+    {
+        Trend ret = new()
+        {
+            offerSupport = a.offerSupport + b.offerSupport,
+            seekSupport = a.seekSupport + b.seekSupport,
+            offense = a.offense + b.offense,
+            defense = a.defense + b.defense,
+            terrain = a.terrain,
+        };
+        return ret;
+    }
 }
