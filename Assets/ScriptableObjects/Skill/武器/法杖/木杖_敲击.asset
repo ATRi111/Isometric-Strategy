@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: "\u6728\u6756_\u6572\u51FB"
   m_EditorClassIdentifier: 
   displayName: "\u6572\u51FB"
+  icon: {fileID: 0}
+  extraDescription: 
   actionTime: 40
   preConditions: []
+  buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
-  accuracy: 100
   powers:
   - type: 3
     power: 50
@@ -26,7 +28,9 @@ MonoBehaviour:
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
+  hitBackProbability: 66
+  victimType: 1
   minLayer: -2
   maxLayer: 2
   castingDistance: 1
-  victimType: 1
+  aimAtSelf: 0

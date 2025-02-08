@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u5927\u5251_\u771F\xB7\u84C4\u529B\u65A9"
   m_EditorClassIdentifier: 
   displayName: "\u771F\xB7\u84C4\u529B\u65A9"
+  icon: {fileID: 0}
   extraDescription: 
   actionTime: 75
   preConditions:
@@ -30,7 +31,7 @@ MonoBehaviour:
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
-  hitBackProbability: 0
+  hitBackProbability: 66
   victimType: 1
   minLayer: -2
   maxLayer: 2
