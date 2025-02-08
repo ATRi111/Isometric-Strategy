@@ -10,13 +10,6 @@ public class IsometricGridManagerEditor : IsometricGridManagerBaseEditor
     public SerializedProperty sortingOrderThreshold;
     private IsometricGridManager Igm => target as IsometricGridManager;
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        if(!Application.isPlaying)
-            Igm.ResetSortingOrderThreshold();
-    }
-
     protected override void MyOnInspectorGUI()
     {
         base.MyOnInspectorGUI();
