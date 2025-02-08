@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 41901fdad4bb76143a1aec278a24d1ea, type: 3}
+    - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: race
       value: 
       objectReference: {fileID: 11400000, guid: 1a5a9d843868a7d4ab1e9593aa06fd31, type: 2}
@@ -98,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
-      value: "\u4EBA\u7C7B\u9A91\u58EB"
+      value: "\u683C\u6797"
       objectReference: {fileID: 0}
     - target: {fileID: 8906729858977160495, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: learnedSkills.list.Array.size
