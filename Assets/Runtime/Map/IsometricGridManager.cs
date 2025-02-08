@@ -24,8 +24,8 @@ public class IsometricGridManager : IsometricGridManagerBase
         }
     }
 
+    #region 物体管理
     public readonly Dictionary<Vector3Int, Entity> entityDict = new();
-    public readonly Dictionary<Vector2Int, ANode> aNodeCache = new();
 
     public override void Clear()
     {
@@ -52,7 +52,9 @@ public class IsometricGridManager : IsometricGridManagerBase
         }
         return gridObject;
     }
+    #endregion
 
+    #region 物理系统
     private readonly List<Vector2Int> overlap = new();
     /// <summary>
     /// 获取第一个与有向线段相交的GridObject(自动忽略与from重合的物体)，并计算第一个交点位置
@@ -165,4 +167,42 @@ public class IsometricGridManager : IsometricGridManagerBase
         }
         return null;
     }
+    #endregion
+
+#if UNITY_EDITOR
+
+    public int sortingOrderThreshold;   //sortingOrder小于等于此值的物体可见
+
+    public void ModifySortingOrderThreshold(int deltaValue)
+    {
+        sortingOrderThreshold += deltaValue;
+        Perspect();
+    }
+
+    public void ResetSortingOrderThreshold()
+    {
+        int max = int.MinValue;
+        List<GridObject> gridObjects = new();
+        GeneralTool.GetComponentsInAllChildren(transform, gridObjects);
+        for (int i = 0; i < gridObjects.Count; i++)
+        {
+            GridObject gridObject = gridObjects[i];
+            gridObject.gameObject.SetActive(true);
+            max = Mathf.Max(max, CellToSortingOrder(gridObject.transform.position));
+        }
+        sortingOrderThreshold = max;
+        Perspect();
+    }
+
+    public void Perspect()
+    {
+        List<GridObject> gridObjects = new();
+        GeneralTool.GetComponentsInAllChildren(transform, gridObjects);
+        for(int i = 0; i < gridObjects.Count; i++)
+        {
+            GridObject gridObject = gridObjects[i];
+            gridObject.gameObject.SetActive(CellToSortingOrder(gridObject.transform.position) <= sortingOrderThreshold);
+        }
+    }
+#endif
 }
