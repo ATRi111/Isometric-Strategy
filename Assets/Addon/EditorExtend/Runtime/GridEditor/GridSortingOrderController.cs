@@ -4,7 +4,7 @@ namespace EditorExtend.GridEditor
 {
     public class GridSortingOrderController : MonoBehaviour
     {
-        [Range(0, 20)]
+        [Range(0, 30)]
         public int extraSortingOrder;
 
         private IsometricGridManager Igm => IsometricGridManager.Instance;

@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67016f1e37813d44dbeb7ab4fc72bf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraSortingOrder: 15
+  extraSortingOrder: 25
 --- !u!114 &6782087825818961779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +368,12 @@ MonoBehaviour:
   sensor: {fileID: 0}
   humanControl: 0
   plans: []
+  personality:
+    offerSupport: 0
+    seekSupport: 0
+    offense: 0
+    defense: 0
+    terrain: 0
   prepared: 0
   references:
     version: 2
