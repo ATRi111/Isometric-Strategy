@@ -1,4 +1,3 @@
-using MyTool;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -175,6 +174,8 @@ public abstract class AimSkill : Skill
             DescribePower(sb);
         if(buffOnVictim.Count > 0)
             DescribeBuffOnVictim(sb);
+        if (hitBackProbability > 0)
+            DescribeHitback(sb);
         DescribeVictim(sb);
     }
 
@@ -193,6 +194,18 @@ public abstract class AimSkill : Skill
         {
             powers[i].Describe(sb);
         }
+        sb.AppendLine();
+    }
+
+    public virtual void DescribeHitback(StringBuilder sb)
+    {
+        if (hitBackProbability < Effect.MaxProbability)
+        {
+            sb.Append("有");
+            sb.Append(hitBackProbability);
+            sb.Append("%的概率");
+        }
+        sb.Append("将目标击退一格");
         sb.AppendLine();
     }
 
