@@ -31,6 +31,14 @@ namespace Services.Event
         /// </summary>
         HideInfo,
         /// <summary>
+        /// 显示二级信息，参数：屏幕坐标，信息内容
+        /// </summary>
+        ShowSecondaryInfo,
+        /// <summary>
+        /// 隐藏二级信息
+        /// </summary>
+        HideSecondaryInfo,
+        /// <summary>
         /// 战斗开始前
         /// </summary>
         BeforeBattle,

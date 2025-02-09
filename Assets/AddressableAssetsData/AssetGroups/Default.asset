@@ -27,8 +27,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 28b334d83b2eef247867802df0f28eea
-    m_Address: DamageNumberUI
+  - m_GUID: 7eab808f163bece4485fb7c04f389c11
+    m_Address: KeyWordList
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

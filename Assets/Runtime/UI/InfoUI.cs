@@ -1,17 +1,31 @@
+using Services;
+using Services.Asset;
 using Services.Event;
+using TMPro;
 using UIExtend;
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroupPlus))]
 public class InfoUI : TextBase
 {
+    public static string Mark(string text)
+    {
+        return $"<link=\"{text}\"><u>{text}</u></link>";
+    }
+
     private RectTransform rectTransform;
     private CanvasGroupPlus canvasGrounp;
+    private KeyWordList keyWordList;
     private object source;  //当前引发消息的对象
+
+    private bool focusOnIcon;
+    private bool containsMouse;
 
     private void ShowInfo(object source, Vector2 screenPoint, string info)
     {
         this.source = source;
+        focusOnIcon = true;
+        info = keyWordList.MarkAllKeyWords(info, Mark);
         TextUI.text = info;
         transform.position = screenPoint;
         canvasGrounp.Visible = true;
@@ -21,8 +35,7 @@ public class InfoUI : TextBase
     {
         if (source != this.source)
             return;
-        canvasGrounp.Visible = false;
-        this.source = null;
+        focusOnIcon = false;
     }
 
     protected override void Awake()
@@ -30,6 +43,8 @@ public class InfoUI : TextBase
         base.Awake();
         rectTransform = GetComponent<RectTransform>();
         canvasGrounp = GetComponent<CanvasGroupPlus>();
+        keyWordList = ServiceLocator.Get<IAssetLoader>().Load<KeyWordList>(nameof(KeyWordList));
+        keyWordList.Initialize();
     }
 
     private void OnEnable()
@@ -46,7 +61,34 @@ public class InfoUI : TextBase
 
     private void Update()
     {
-        if(canvasGrounp.Visible)
+        UIExtendUtility.GetBorder(rectTransform, out float left, out float right, out float bottom, out float top);
+        Vector2 mouse = Input.mousePosition;
+        containsMouse = mouse.x >= left && mouse.x <= right
+            && mouse.y >= bottom && mouse.y <= top;
+
+        if (!containsMouse && !focusOnIcon)
+            canvasGrounp.Visible = false;
+
+        if (canvasGrounp.Visible)
+        {
             UIExtendUtility.ClampInScreen(rectTransform);
+            HandleLink();
+        }
+    }
+
+    private void HandleLink()
+    {
+        Vector3 mouse = Input.mousePosition;
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(TextUI, mouse, null);
+        if (linkIndex > -1)
+        {
+            TMP_LinkInfo linkInfo = TextUI.textInfo.linkInfo[linkIndex];
+            string description = keyWordList.GetDescription(linkInfo.GetLinkText());
+            eventSystem.Invoke(EEvent.ShowSecondaryInfo, (Vector2)Input.mousePosition, description);
+        }
+        else
+        {
+            eventSystem.Invoke(EEvent.HideSecondaryInfo);
+        }
     }
 }
