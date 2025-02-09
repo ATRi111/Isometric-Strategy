@@ -11,7 +11,8 @@ public class SecondaryInfoUI : TextBase
     private void ShowInfo(Vector2 screenPoint, string info)
     {
         TextUI.text = info;
-        transform.position = screenPoint;
+        transform.position = screenPoint; 
+        UIExtendUtility.ClampInScreen(rectTransform);
         canvasGrounp.Visible = true;
     }
 
@@ -37,11 +38,5 @@ public class SecondaryInfoUI : TextBase
     {
         eventSystem.RemoveListener<Vector2, string>(EEvent.ShowSecondaryInfo, ShowInfo);
         eventSystem.RemoveListener(EEvent.HideSecondaryInfo, HideInfo);
-    }
-
-    private void Update()
-    {
-        if (canvasGrounp.Visible)
-            UIExtendUtility.ClampInScreen(rectTransform);
     }
 }

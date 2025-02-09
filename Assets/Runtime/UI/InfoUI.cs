@@ -28,6 +28,7 @@ public class InfoUI : TextBase
         info = keyWordList.MarkAllKeyWords(info, Mark);
         TextUI.text = info;
         transform.position = screenPoint;
+        UIExtendUtility.ClampInScreen(rectTransform);
         canvasGrounp.Visible = true;
     }
 
@@ -71,12 +72,12 @@ public class InfoUI : TextBase
 
         if (canvasGrounp.Visible)
         {
+            CheckSecondaryInfo();
             UIExtendUtility.ClampInScreen(rectTransform);
-            HandleLink();
         }
     }
 
-    private void HandleLink()
+    private void CheckSecondaryInfo()
     {
         Vector3 mouse = Input.mousePosition;
         int linkIndex = TMP_TextUtilities.FindIntersectingLink(TextUI, mouse, null);
