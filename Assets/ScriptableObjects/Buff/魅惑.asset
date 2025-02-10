@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d76b4b483518394db8453108c3423a8, type: 3}
   m_Name: "\u9B45\u60D1"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers: []
   skillsAttached: []
   extraDescription: 
-  duration: 200
+  duration: 250
   superimposeMode: 1
   primitiveValue: -50
   modifier: {fileID: 0}
