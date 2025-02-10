@@ -907,7 +907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5849528532893411366, guid: 34d5062c8c9c3d74a842dc0a90be1cbc, type: 3}
       propertyPath: m_SortingOrder
-      value: 65
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 9072177695655321744, guid: 34d5062c8c9c3d74a842dc0a90be1cbc, type: 3}
       propertyPath: cellPosition.x
@@ -37523,7 +37523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4525291184679452185, guid: e497f2c794b73c943a8dc06aee84b135, type: 3}
       propertyPath: m_SortingOrder
-      value: 75
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 6792472720491281402, guid: e497f2c794b73c943a8dc06aee84b135, type: 3}
       propertyPath: m_Name
@@ -56879,7 +56879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2803002593121334460, guid: 5eb1100a7f3386a4287b2523e75aab17, type: 3}
       propertyPath: m_SortingOrder
-      value: 35
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 5073553096870818143, guid: 5eb1100a7f3386a4287b2523e75aab17, type: 3}
       propertyPath: m_Name
@@ -61724,7 +61724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7765868316651392134, guid: 76ddc14b3193abc4d8e25318ff3ed9ac, type: 3}
       propertyPath: m_SortingOrder
-      value: 55
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79115,7 +79115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2803002593121334460, guid: 941732191333eaa458eb0e4b2522fc1a, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5073553096870818143, guid: 941732191333eaa458eb0e4b2522fc1a, type: 3}
       propertyPath: m_Name

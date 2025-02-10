@@ -16,8 +16,18 @@ public class LevelManager : MonoBehaviour
     public Camera prepareMenuCamera;
     public Camera levelCamera;
 
+    /// <summary>
+    /// 开始侦察战场
+    /// </summary>
     public Action OnStartScout;
+    /// <summary>
+    /// （战斗结束或侦察结束后）回到准备菜单
+    /// </summary>
     public Action OnReturnToPrepareMenu;
+    /// <summary>
+    /// 显示关卡描述
+    /// </summary>
+    public Action ShowLevelDescription;
 
     public void StartBattle()
     {
@@ -59,7 +69,6 @@ public class LevelManager : MonoBehaviour
     {
         OnReturnToPrepareMenu?.Invoke();
     }
-
 
     private void Awake()
     {
