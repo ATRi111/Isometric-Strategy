@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
-  m_Name: "\u77ED\u5F13"
+  m_Name: "\u9ED1\u68EE\u6797\u77ED\u5F13"
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   propertyModifier:
@@ -19,7 +19,7 @@ MonoBehaviour:
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
   skillsAttached:
-  - {fileID: 11400000, guid: 8891086fc4cb79749bbdbd04a0d6bdd6, type: 2}
-  - {fileID: 11400000, guid: abfe8d47df625f8409806d7cb85d9c9b, type: 2}
+  - {fileID: 11400000, guid: 9a86b4b4625bb174c90175cb13148a9e, type: 2}
+  - {fileID: 11400000, guid: 599c0c2292856e542adf6d4f4d862d77, type: 2}
   extraDescription: 
   slotType: 0
