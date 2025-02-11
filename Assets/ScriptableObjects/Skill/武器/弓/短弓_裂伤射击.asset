@@ -30,7 +30,7 @@ MonoBehaviour:
   buffOnVictim:
   - so: {fileID: 11400000, guid: 41d0bf3bcf5238247aaec83fb6d8d8d4, type: 2}
     probability: 50
-  hitBackProbability: 66
+  hitBackProbability: 0
   victimType: 1
   minLayer: -32
   maxLayer: 32

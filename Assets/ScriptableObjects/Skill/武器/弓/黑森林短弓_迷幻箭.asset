@@ -30,7 +30,15 @@ MonoBehaviour:
   buffOnVictim:
   - so: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
     probability: 50
-  hitBackProbability: 66
+  - so: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
+    probability: 50
+  - so: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
+    probability: 50
+  - so: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
+    probability: 50
+  - so: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
+    probability: 50
+  hitBackProbability: 0
   victimType: 1
   minLayer: -32
   maxLayer: 32
