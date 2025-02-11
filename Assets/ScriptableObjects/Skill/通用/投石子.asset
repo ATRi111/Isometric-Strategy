@@ -28,7 +28,7 @@ MonoBehaviour:
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
-  hitBackProbability: 1
+  hitBackProbability: 5
   victimType: 1
   minLayer: -32
   maxLayer: 32
