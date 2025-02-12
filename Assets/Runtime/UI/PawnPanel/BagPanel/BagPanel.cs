@@ -5,8 +5,9 @@ public class BagPanel : MonoBehaviour
 {
     private PawnPanel pawnPanel;
     private CanvasGroupPlus canvasGroup;
-    private EquipmentManager equipmentManager;
-    private EquipmentSlot currentSlot;
+
+    public EquipmentManager equipmentManager;
+    public EquipmentSlot currentSlot;
 
     public void Refresh(PawnEntity pawnEntity)
     {
@@ -27,13 +28,17 @@ public class BagPanel : MonoBehaviour
         }
     }
 
-
+    private EquipmentIconInBag[] icons;
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroupPlus>();
         pawnPanel = GetComponentInParent<PawnPanel>();
         pawnPanel.RefreshAll += Refresh;
         pawnPanel.ChangeEquipment += ChangeEquipment;
+        icons = GetComponentsInChildren<EquipmentIconInBag>();
+        for (int i = 0; i < icons.Length; i++)
+        {
+            icons[i].index = i;
+        }
     }
-
 }

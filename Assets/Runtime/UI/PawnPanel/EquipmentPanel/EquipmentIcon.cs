@@ -30,6 +30,7 @@ public class EquipmentIcon : IconUI
         else
         {
             canvasGroup.Visible = false;
+            info = string.Empty;
         }
     }
 

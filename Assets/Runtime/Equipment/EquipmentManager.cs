@@ -35,44 +35,11 @@ public class EquipmentManager : CharacterComponentBase
     }
 
     /// <summary>
-    /// 获取slotType类型的第index个装备槽
-    /// </summary>
-    public EquipmentSlot Get(ESlotType slotType, int index)
-    {
-        for (int i = 0; i < slots.Count; i++)
-        {
-            if (slots[i].slotType == slotType)
-            {
-                if (index == 0)
-                    return slots[i];
-                index--;
-            }
-        }
-        throw new System.ArgumentException();
-    }
-
-    /// <summary>
-    /// 获取slotType类型的第一个空余装备槽（若无空余则返回第一个装备槽）
-    /// </summary>
-    private EquipmentSlot GetSlot(ESlotType slotType)
-    {
-        for (int i = 0; i < slots.Count; i++)
-        {
-            if (slots[i].slotType == slotType && slots[i].equipment == null)
-            {
-                 return slots[i];
-            }
-        }
-        return Get(slotType, 0);
-    }
-
-    /// <summary>
     /// 装上装备（返回被卸下的装备）
     /// </summary>
-    public Equipment Equip(Equipment equipment)
+    public Equipment Equip(EquipmentSlot slot, Equipment equipment)
     {
         Equipment ret = null;
-        EquipmentSlot slot = GetSlot(equipment.slotType);
         if (slot.equipment != null)
         {
             ret = slot.equipment;
@@ -84,12 +51,34 @@ public class EquipmentManager : CharacterComponentBase
         return ret;
     }
 
+    // 获取slotType类型的第一个空余装备槽（若无空余则返回第一个装备槽）
+    private EquipmentSlot GetSlot(ESlotType slotType)
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].slotType == slotType && slots[i].equipment == null)
+            {
+                return slots[i];
+            }
+        }
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].slotType == slotType)
+            {
+                return slots[i];
+            }
+        }
+        return null;
+    }
+
+    public Equipment Equip(Equipment equipment)
+        => Equip(GetSlot(equipment.slotType), equipment);
+
     /// <summary>
     /// 卸下装备（返回被卸下的装备）
     /// </summary>
-    public Equipment Unequip(ESlotType slotType, int index)
+    public Equipment Unequip(EquipmentSlot slot)
     {
-        EquipmentSlot slot = Get(slotType, index);
         if (slot.equipment != null)
         {
             slot.equipment.Unregister(pawn);

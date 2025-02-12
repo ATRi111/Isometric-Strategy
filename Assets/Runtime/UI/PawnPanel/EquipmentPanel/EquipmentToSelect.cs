@@ -8,8 +8,11 @@ public class EquipmentToSelect : MonoBehaviour , IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (icon.slot != null)
-            pawnPanel.ChangeEquipment?.Invoke(icon.slot);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (icon.slot != null)
+                pawnPanel.ChangeEquipment?.Invoke(icon.slot);
+        }
     }
 
     private void Awake()
