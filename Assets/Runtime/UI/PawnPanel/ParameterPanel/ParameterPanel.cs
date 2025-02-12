@@ -6,8 +6,9 @@ public class ParameterPanel : MonoBehaviour
     private PawnPanel pawnPanel;
     private ParameterIcon[] icons;
 
-    public void Refresh(PawnEntity pawn)
+    public void Refresh()
     {
+        PawnEntity pawn = pawnPanel.SelectedPawn;
         List<string> parameterNames = pawn.GetVisibleParameters();
         int i = 0;
         for (; i < parameterNames.Count && i < icons.Length; i++)

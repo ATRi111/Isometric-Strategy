@@ -5,10 +5,11 @@ public class PawnClassIcon : IconUI
     private PawnPanel pawnPanel;
     private TextMeshProUGUI tmp;
 
-    public void Refresh(PawnEntity pawnEntity)
+    public void Refresh()
     {
-        tmp.text = pawnEntity.pClass.name;
-        info = pawnEntity.pClass.extraDescription;
+        PawnEntity pawn = pawnPanel.SelectedPawn;
+        tmp.text = pawn.pClass.name;
+        info = pawn.pClass.extraDescription;
     }
 
     protected override void Awake()

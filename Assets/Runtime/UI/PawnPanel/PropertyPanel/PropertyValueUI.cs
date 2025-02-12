@@ -8,8 +8,9 @@ public class PropertyValueUI : MonoBehaviour
     private PawnPanel pawnPanel;
     private TextMeshProUGUI tmp;
 
-    public void Refresh(PawnEntity pawn)
+    public void Refresh()
     {
+        PawnEntity pawn = pawnPanel.SelectedPawn;
         so.pawn = pawn;
         CharacterProperty property = so.FindProperty();
         if(Mathf.Abs(property.CurrentValue) >= 1)

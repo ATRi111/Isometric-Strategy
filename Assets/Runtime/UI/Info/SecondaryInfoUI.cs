@@ -7,11 +7,13 @@ public class SecondaryInfoUI : TextBase
 {
     private RectTransform rectTransform;
     private CanvasGroupPlus canvasGrounp;
+    [SerializeField]
+    private Vector2 offset;
 
     private void ShowInfo(Vector2 screenPoint, string info)
     {
         TextUI.text = info;
-        transform.position = screenPoint; 
+        transform.position = screenPoint + offset;
         UIExtendUtility.ClampInScreen(rectTransform);
         canvasGrounp.Visible = true;
     }

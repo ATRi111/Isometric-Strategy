@@ -7,8 +7,9 @@ public class BuffPanel : MonoBehaviour
     private BuffIcon[] icons;
     private List<Buff> buffs = new();
 
-    public void Refresh(PawnEntity pawn)
+    public void Refresh()
     {
+        PawnEntity pawn = pawnPanel.SelectedPawn;
         pawn.BuffManager.GetAllEnabled(buffs);
         int i = 0;
         for (; i < buffs.Count && i < icons.Length; i++)

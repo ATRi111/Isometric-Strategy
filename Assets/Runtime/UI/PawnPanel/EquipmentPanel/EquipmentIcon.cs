@@ -9,13 +9,14 @@ public class EquipmentIcon : IconUI
     
     public int index;
 
-    public void Refresh(PawnEntity pawnEntity)
+    public void Refresh()
     {
+        PawnEntity pawn = pawnPanel.SelectedPawn;
         image.sprite = null;   //TODO:ø’¿∏ŒªÕº±Í
-        if (index < pawnEntity.EquipmentManager.slots.Count)
+        if (index < pawn.EquipmentManager.slots.Count)
         {
             canvasGroup.Visible = true;
-            slot = pawnEntity.EquipmentManager.slots[index];
+            slot = pawn.EquipmentManager.slots[index];
             if (slot != null)
             {
                 if (slot.equipment != null)

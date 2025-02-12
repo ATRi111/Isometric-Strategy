@@ -9,7 +9,7 @@ public class PreviousPawnButton : ButtonBase
         pawnPanel.Previous();
     }
 
-    private void Refresh(PawnEntity _)
+    private void Refresh()
     {
         gameObject.SetActive(pawnPanel.pawnList.Count > 1);
     }

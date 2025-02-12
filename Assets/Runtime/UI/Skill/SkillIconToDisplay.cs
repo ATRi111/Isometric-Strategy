@@ -6,12 +6,13 @@ public class SkillIconToDisplay : MonoBehaviour
     private SkillIcon skillIcon;
     public int index;
 
-    private void Refresh(PawnEntity pawnEntity)
+    private void Refresh()
     {
-        if(index < pawnEntity.SkillManager.learnedSkills.Count)
+        PawnEntity pawn = pawnPanel.SelectedPawn;
+        if (index < pawn.SkillManager.learnedSkills.Count)
         {
             skillIcon.canvasGroup.Visible = true;
-            skillIcon.SetSkill(pawnEntity.SkillManager.learnedSkills[index]);
+            skillIcon.SetSkill(pawn.SkillManager.learnedSkills[index]);
         }
         else
         {

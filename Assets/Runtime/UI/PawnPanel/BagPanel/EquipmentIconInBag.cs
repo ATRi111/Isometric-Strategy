@@ -1,20 +1,21 @@
 using MyTool;
+using Services.Event;
 using UnityEngine.EventSystems;
 
 public class EquipmentIconInBag : IconUI , IPointerClickHandler
 {
     private PawnPanel pawnPanel;
-    private PlayerManager playerManager;
     private BagPanel bagPanel;
+    private PlayerManager playerManager;
 
     public int index;
 
-    public void Refresh(PawnEntity pawnEntity)
+    public void Refresh()
     {
-        image.sprite = null;   //TODO:ø’ŒªÕº±Í
-        if (index < playerManager.unusedEquipmentList.Count)
+        if (index < bagPanel.visibleEquipments.Count)
         {
-            Equipment equipment = playerManager.unusedEquipmentList[index];
+            Equipment equipment = bagPanel.visibleEquipments[index];
+            image.sprite = equipment.icon;
             canvasGroup.Visible = true;
             info = equipment.name.Bold() + "\n" + equipment.Description;
         }
@@ -25,15 +26,30 @@ public class EquipmentIconInBag : IconUI , IPointerClickHandler
         }
     }
 
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+        pawnPanel.PreviewPropertyChange?.Invoke();
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        pawnPanel.StopPreviewPropertyChange?.Invoke();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Equipment equipment = playerManager.unusedEquipmentList[index];
-            playerManager.unusedEquipmentList.RemoveAt(index);
+            Equipment equipment = bagPanel.visibleEquipments[index];
+            playerManager.unusedEquipmentList.Remove(equipment);
             Equipment unequipped = bagPanel.equipmentManager.Equip(bagPanel.currentSlot, equipment);
             if (unequipped != null)
                 playerManager.unusedEquipmentList.Add(unequipped);
+            pawnPanel.RefreshAll?.Invoke();
+            if (!string.IsNullOrEmpty(info))
+                eventSystem.Invoke(EEvent.ShowInfo, (object)this, eventData.position, info);
         }
     }
 

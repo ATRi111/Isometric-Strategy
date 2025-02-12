@@ -7,15 +7,16 @@ public class PawnNameUI : MonoBehaviour
     private PawnPanel pawnPanel;
     private TextMeshProUGUI tmp;
 
-    public void Refresh(PawnEntity pawnEntity)
+    public void Refresh()
     {
-        string color = pawnEntity.faction switch
+        PawnEntity pawn = pawnPanel.SelectedPawn;
+        string color = pawn.faction switch
         {
             EFaction.Ally => "#4EEE94",
             EFaction.Enemy => "red",
             _ => "black"
         };
-        tmp.text = pawnEntity.EntityName.ColorText(color);
+        tmp.text = pawn.EntityName.ColorText(color);
     }
 
     private void Awake()

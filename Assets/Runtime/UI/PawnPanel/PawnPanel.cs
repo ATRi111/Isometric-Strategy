@@ -12,12 +12,12 @@ public class PawnPanel : MonoBehaviour
 
     private CanvasGroupPlus canvasGroup;
 
-    public Action<PawnEntity> RefreshAll;
+    public Action RefreshAll;
 
     /// <summary>
     /// 开始显示角色属性变化
     /// </summary>
-    public Action<PawnEntity> PreviewPropertyChange;
+    public Action PreviewPropertyChange;
     /// <summary>
     /// 停止显示角色属性变化
     /// </summary>
@@ -48,14 +48,14 @@ public class PawnPanel : MonoBehaviour
     {
         if (pawnList != null && pawnList.Count > 0)
             selectedIndex = (selectedIndex + 1) % pawnList.Count;
-        RefreshAll?.Invoke(SelectedPawn);
+        RefreshAll?.Invoke();
     }
 
     public void Previous()
     {
         if(pawnList!= null && pawnList.Count > 0)
             selectedIndex = (selectedIndex + pawnList.Count - 1) % pawnList.Count;
-        RefreshAll?.Invoke(SelectedPawn);
+        RefreshAll?.Invoke();
     }
 
     private void Show(PawnEntity pawn)
@@ -74,7 +74,7 @@ public class PawnPanel : MonoBehaviour
                 selectedIndex = i;
         }
         canvasGroup.Visible = true;
-        RefreshAll?.Invoke(SelectedPawn);
+        RefreshAll?.Invoke();
     }
 
     private void Hide()
