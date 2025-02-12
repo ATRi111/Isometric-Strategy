@@ -21,7 +21,7 @@ public class DamageNumberUI : MonoBehaviour
         if (damage > 0)
             tmp.text = damage.ToString().ColorText("red");
         else
-            tmp.text = $"+{-damage}".ColorText("green");      //伤害小于0视为治疗
+            tmp.text = $"+{-damage}".ColorText("#4EEE94");      //伤害小于0视为治疗
         StartCoroutine(Delay());
     }
 

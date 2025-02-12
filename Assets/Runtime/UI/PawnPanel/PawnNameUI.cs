@@ -1,3 +1,4 @@
+using MyTool;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +9,13 @@ public class PawnNameUI : MonoBehaviour
 
     public void Refresh(PawnEntity pawnEntity)
     {
-        tmp.text = pawnEntity.EntityName;
+        string color = pawnEntity.faction switch
+        {
+            EFaction.Ally => "#4EEE94",
+            EFaction.Enemy => "red",
+            _ => "black"
+        };
+        tmp.text = pawnEntity.EntityName.ColorText(color);
     }
 
     private void Awake()

@@ -1,3 +1,4 @@
+using MyTool;
 using TMPro;
 using UnityEngine;
 
@@ -16,15 +17,16 @@ public class PropertyValueChangeUI : MonoBehaviour
             tmp.text = string.Empty;
         else
         {
+            string color;
             if (deltaValue > 0)
-                tmp.color = Color.green;
+                color = "red";
             else
-                tmp.color = Color.red;
+                color = "#4EEE94";
 
             if (Mathf.Abs(deltaValue) >= 1)
-                tmp.text = Mathf.RoundToInt(deltaValue).ToString("+0.##;-0.##");
+                tmp.text = Mathf.RoundToInt(deltaValue).ToString("+0.##;-0.##").ColorText(color);
             else
-                tmp.text = deltaValue.ToString("+0%;-0%");
+                tmp.text = deltaValue.ToString("+0%;-0%").ColorText(color);
         }
     }
 

@@ -10,7 +10,7 @@ public class InfoUI : TextBase
 {
     public static string Mark(string text)
     {
-        return $"<link=\"{text}\"><u>{text}</u></link>";
+        return $"<link=\"{text}\"><u><color=\"blue\">{text}</color></u></link>";
     }
 
     private RectTransform rectTransform;
@@ -20,6 +20,8 @@ public class InfoUI : TextBase
 
     private bool focusOnIcon;
     private bool containsMouse;
+    [SerializeField]
+    private Vector2 offset;
 
     private void ShowInfo(object source, Vector2 screenPoint, string info)
     {
@@ -27,7 +29,7 @@ public class InfoUI : TextBase
         focusOnIcon = true;
         info = keyWordList.MarkAllKeyWords(info, Mark);
         TextUI.text = info;
-        transform.position = screenPoint;
+        transform.position = screenPoint + offset;
         UIExtendUtility.ClampInScreen(rectTransform);
         canvasGrounp.Visible = true;
     }
