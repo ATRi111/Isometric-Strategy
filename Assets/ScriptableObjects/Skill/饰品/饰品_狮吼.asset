@@ -35,5 +35,5 @@ MonoBehaviour:
   minLayer: -32
   maxLayer: 32
   castingDistance: 0
-  aimAtSelf: 0
+  aimAtSelf: 1
   effectRange: 2

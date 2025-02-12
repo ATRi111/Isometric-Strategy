@@ -1,9 +1,11 @@
 using MyTool;
+using System;
 
 public class EquipmentIcon : IconUI
 {
     private PawnPanel pawnPanel;
-    private EquipmentSlot slot;
+    [NonSerialized]
+    public EquipmentSlot slot;
     
     public int index;
 

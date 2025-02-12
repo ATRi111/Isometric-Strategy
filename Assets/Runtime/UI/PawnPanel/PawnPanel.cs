@@ -14,8 +14,18 @@ public class PawnPanel : MonoBehaviour
 
     public Action<PawnEntity> RefreshAll;
 
+    /// <summary>
+    /// 开始显示角色属性变化
+    /// </summary>
     public Action<PawnEntity> PreviewPropertyChange;
+    /// <summary>
+    /// 停止显示角色属性变化
+    /// </summary>
     public Action StopPreviewPropertyChange;
+    /// <summary>
+    /// 点击装备栏位来开始或停止切换装备
+    /// </summary>
+    public Action<EquipmentSlot> ChangeEquipment;
 
     public Dictionary<string, float> propertyChangeDict = new();
 

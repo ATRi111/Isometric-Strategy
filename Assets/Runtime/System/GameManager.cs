@@ -15,6 +15,8 @@ public class GameManager : Service,IService
     private ISceneController sceneController;
 
     public int battleSceneIndex;
+    [NonSerialized]
+    public bool inBattle;
 
     public override Type RegisterType => GetType();
 
@@ -42,6 +44,7 @@ public class GameManager : Service,IService
     public void StartBattle()
     {
         time = 0;
+        inBattle = true;
         eventSystem.Invoke(EEvent.BeforeBattle);
         MoveOn();
     }
@@ -49,6 +52,7 @@ public class GameManager : Service,IService
     public void EndBattle()
     {
         //TODO:»ŒŒÒΩ·À„
+        inBattle = false;
         eventSystem.Invoke(EEvent.AfterBattle);
         sceneController.UnloadScene(battleSceneIndex);
         battleSceneIndex++;

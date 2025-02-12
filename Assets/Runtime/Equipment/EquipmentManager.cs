@@ -6,6 +6,7 @@ public class EquipmentManager : CharacterComponentBase
 {
     public List<EquipmentSlot> slots;
     private PawnEntity pawn;
+    public bool CanChangeEquipment => !pawn.GameManager.inBattle && pawn.Brain.humanControl;
 
     public EquipmentSlot this[ESlotType slot]
         => slots.Find(x => x.slotType == slot);
