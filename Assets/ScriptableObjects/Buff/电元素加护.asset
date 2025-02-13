@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ee624bcabb8df4892f86e2c36dd08c, type: 3}
   m_Name: "\u7535\u5143\u7D20\u52A0\u62A4"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers:
     - value: 0.5
@@ -21,4 +22,6 @@ MonoBehaviour:
   extraDescription: 
   duration: 200
   superimposeMode: 1
+  removeFlag: 1
   primitiveValue: 30
+  modifier: {fileID: 0}

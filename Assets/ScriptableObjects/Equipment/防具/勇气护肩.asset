@@ -9,25 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ee624bcabb8df4892f86e2c36dd08c, type: 3}
-  m_Name: "\u5BF9\u76F4\u63A5\u653B\u51FB\u9632\u5FA1\u964D\u4F4E"
+  m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
+  m_Name: "\u52C7\u6C14\u62A4\u80A9"
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   propertyModifier:
     modifiers:
-    - value: -0.25
+    - value: 5
+      so: {fileID: 11400000, guid: 5f8dd69d93622f84ea09757942e148f8, type: 2}
+      method: 0
+    - value: 20
       so: {fileID: 11400000, guid: f44c63f2c03dd144dbb628b191d38e27, type: 2}
-      method: 3
-    - value: -0.25
+      method: 0
+    - value: 20
       so: {fileID: 11400000, guid: a3ad2a85dce498e42ade88cb461c3bec, type: 2}
-      method: 3
-    - value: -0.25
+      method: 0
+    - value: 20
       so: {fileID: 11400000, guid: f8958f741a08a044f817ce25723a428e, type: 2}
-      method: 3
-  skillsAttached: []
+      method: 0
+  skillsAttached:
+  - {fileID: 11400000, guid: cf264154a4c745b48ad31f7190b41f37, type: 2}
   extraDescription: 
-  duration: 250
-  superimposeMode: 1
-  removeFlag: 2
-  primitiveValue: 0
-  modifier: {fileID: 0}
+  slotType: 1

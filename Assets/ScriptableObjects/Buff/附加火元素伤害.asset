@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83fbd26f043b33468a7c1b2cb7c3057, type: 3}
   m_Name: "\u9644\u52A0\u706B\u5143\u7D20\u4F24\u5BB3"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers: []
   skillsAttached: []
   extraDescription: 
   duration: 200
   superimposeMode: 1
+  removeFlag: 1
   primitiveValue: 50
+  modifier: {fileID: 0}
   power:
     type: 4
     power: 25
