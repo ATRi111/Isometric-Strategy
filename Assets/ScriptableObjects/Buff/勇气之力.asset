@@ -9,19 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ee624bcabb8df4892f86e2c36dd08c, type: 3}
-  m_Name: "\u706B\u5143\u7D20\u52A0\u62A4"
+  m_Script: {fileID: 11500000, guid: a83fbd26f043b33468a7c1b2cb7c3057, type: 3}
+  m_Name: "\u52C7\u6C14\u4E4B\u529B"
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   propertyModifier:
-    modifiers:
-    - value: 0.5
-      so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
-      method: 3
+    modifiers: []
   skillsAttached: []
   extraDescription: 
-  duration: 200
+  duration: 50
   superimposeMode: 1
   removeFlag: 1
-  primitiveValue: 30
+  primitiveValue: 100
   modifier: {fileID: 0}
+  power:
+    type: 0
+    power: 100
+    strMultiplier: 0.5
+    dexMultiplier: 0
+    intMultiplier: 0
+    mndMultiplier: 0

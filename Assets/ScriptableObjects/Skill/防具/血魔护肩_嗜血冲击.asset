@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fc8b1b0161ed040b9a45421afd9f04, type: 3}
+  m_Name: "\u8840\u9B54\u62A4\u80A9_\u55DC\u8840\u51B2\u51FB"
+  m_EditorClassIdentifier: 
+  displayName: "\u55DC\u8840\u51B2\u51FB"
+  icon: {fileID: 0}
+  extraDescription: 
+  actionTime: 50
+  preConditions: []
+  buffPreConditions:
+  - so: {fileID: 11400000, guid: b34e6ce593a248c4fa7ad5cd51a066ce, type: 2}
+    requireExist: 0
+  parameterOnAgent: []
+  buffOnAgent:
+  - so: {fileID: 11400000, guid: b34e6ce593a248c4fa7ad5cd51a066ce, type: 2}
+    probability: 100
+  powers:
+  - type: 0
+    power: 100
+    strMultiplier: 0.5
+    dexMultiplier: 0
+    intMultiplier: 0
+    mndMultiplier: 0
+  buffOnVictim:
+  - so: {fileID: 11400000, guid: 74673d26f769a0745abcc02f9a60efc7, type: 2}
+    probability: 100
+  hitBackProbability: 0
+  victimType: 1
+  minLayer: -2
+  maxLayer: 2
+  castingDistance: 1
+  aimAtSelf: 0

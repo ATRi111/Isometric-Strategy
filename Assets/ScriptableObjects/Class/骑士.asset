@@ -50,7 +50,7 @@ MonoBehaviour:
       method: 0
   skillsAttached:
   - {fileID: 11400000, guid: 0ac16ca80088f2e40b161416ff6d144f, type: 2}
-  extraDescription: "\u8EAB\u9A91\u5750\u9A91\uFF0C\u64C5\u957F\u5411\u654C\u9635\u51B2\u950B\u7684\u9A91\u5175\u3002\u62E5\u6709\u4E0D\u9519\u7684\u653B\u51FB\u529B\u548C\u9632\u5FA1\u529B\u3002"
+  extraDescription: "\u8EAB\u9A91\u5750\u9A91\uFF0C\u64C5\u957F\u5411\u654C\u9635\u51B2\u950B\u7684\u9A91\u5175\u3002\u62E5\u6709\u4E0D\u9519\u7684\u653B\u51FB\u548C\u9632\u5FA1\u529B\u3002"
   supportAbility: 0.2
   offenseAbility: 1
   bestSupprtDistance: 3

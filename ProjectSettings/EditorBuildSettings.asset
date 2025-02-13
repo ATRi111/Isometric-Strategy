@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndGame.unity
     guid: e03803a2b1afcf54ca68728b8eddcb26
+  - enabled: 1
+    path: Assets/Scenes/SkillTestLevel.unity
+    guid: 19c24c3ca3101804d94c737368d8113f
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a6ce5357601ba464e96847ba8bc7dd9d, type: 2}
   m_UseUCBPForAssetBundles: 0

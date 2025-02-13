@@ -10,18 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50ee624bcabb8df4892f86e2c36dd08c, type: 3}
-  m_Name: "\u706B\u5143\u7D20\u52A0\u62A4"
+  m_Name: "\u65E0\u754F\u51B2\u950B\u51B7\u5374"
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   propertyModifier:
-    modifiers:
-    - value: 0.5
-      so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
-      method: 3
+    modifiers: []
   skillsAttached: []
-  extraDescription: 
+  extraDescription: "\u5728\u8BE5debuff\u6301\u7EED\u65F6\u95F4\u5185\uFF0C\u65E0\u6CD5\u518D\u6B21\u91CA\u653E\u65E0\u754F\u51B2\u950B\u3002"
   duration: 200
   superimposeMode: 1
-  removeFlag: 1
-  primitiveValue: 30
+  removeFlag: 2
+  primitiveValue: 0
   modifier: {fileID: 0}
