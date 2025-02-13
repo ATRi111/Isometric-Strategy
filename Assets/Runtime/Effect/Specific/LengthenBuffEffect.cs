@@ -21,9 +21,8 @@ public class LengthenBuffEffect : BuffEffect
     public override float ValueFor(PawnEntity pawn)
     {
         int delta = endTime - buff.endTime;
-        PawnEntity pawnVictim = victim as PawnEntity;
-        if (pawnVictim != null)
-            return delta / buff.so.duration * buff.so.ValueForVictim(pawnVictim) * pawn.FactionCheck(victim);
+        if (PawnVictim != null)
+            return delta / buff.so.duration * buff.so.ValueForVictim(PawnVictim) * pawn.FactionCheck(victim);
         return 0f;
     }
 

@@ -17,10 +17,9 @@ public class RemoveBuffEffect : BuffEffect
 
     public override float ValueFor(PawnEntity pawn)
     {
-        PawnEntity pawnVictim = victim as PawnEntity;
         int delta = Mathf.Max(gameManager.Time - buff.endTime, 0); //delta为负数，表示buff持续时间减少
-        if (pawnVictim != null)
-            return delta / buff.so.duration * buff.so.ValueForVictim(pawnVictim) * pawn.FactionCheck(victim);
+        if (PawnVictim != null)
+            return delta / buff.so.duration * buff.so.ValueForVictim(PawnVictim) * pawn.FactionCheck(victim);
         return 0f;
     }
 
