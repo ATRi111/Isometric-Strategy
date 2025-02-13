@@ -32,7 +32,7 @@ public class Buff
                 if(value)
                     so.Register(victim);
                 else
-                    so.Unregister(victim);
+                    so.Unregister(victim);R
             }
         }
     }

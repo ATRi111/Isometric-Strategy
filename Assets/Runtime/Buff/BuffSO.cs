@@ -9,6 +9,13 @@ public enum ESuperimposeMode
     Refresh,
 }
 
+public enum ERemoveFlag
+{
+    Unremovable,
+    Buff,
+    Debuff,
+}
+
 /// <summary>
 /// 持续一段时间，影响角色属性（不应当影响参数）的对象
 /// </summary>
@@ -17,6 +24,7 @@ public class BuffSO : PawnModifierSO
 {
     public int duration;
     public ESuperimposeMode superimposeMode = ESuperimposeMode.Refresh;
+    public ERemoveFlag removeFlag = ERemoveFlag.Unremovable;
 
     public float primitiveValue;
     public ValueModifier modifier;

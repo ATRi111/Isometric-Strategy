@@ -1,27 +1,24 @@
 using MyTool;
 using System;
 using System.Text;
+using UnityEngine;
 
 [Serializable]
-public class LengthenBuffEffect : BuffEffect
+public class RemoveBuffEffect : BuffEffect
 {
-    public int endTime_prev;
-    public int endTime;
-    public override bool Appliable => buffManager.Contains(buff) && buff.endTime == endTime_prev;
+    public override bool Appliable => !buffManager.Contains(buff);
 
-    public override bool Revokable => buffManager.Contains(buff) && buff.endTime == endTime;
+    public override bool Revokable => buffManager.Contains(buff);
 
-    public LengthenBuffEffect(Entity victim, Buff buff, int endTime, BuffManager buffManager, int probability = MaxProbability) 
+    public RemoveBuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability) 
         : base(victim, buff, buffManager, probability)
     {
-        endTime_prev = buff.endTime;
-        this.endTime = endTime;
     }
 
     public override float ValueFor(PawnEntity pawn)
     {
-        int delta = endTime - buff.endTime;
         PawnEntity pawnVictim = victim as PawnEntity;
+        int delta = Mathf.Max(gameManager.Time - buff.endTime, 0); //delta为负数，表示buff持续时间减少
         if (pawnVictim != null)
             return delta / buff.so.duration * buff.so.ValueForVictim(pawnVictim) * pawn.FactionCheck(victim);
         return 0f;
@@ -30,22 +27,23 @@ public class LengthenBuffEffect : BuffEffect
     public override void Apply()
     {
         base.Apply();
-        buff.endTime = endTime;
+        buffManager.Add(buff);
     }
 
     public override void Revoke()
     {
         base.Revoke();
-        buff.endTime = endTime_prev;
+        buffManager.Remove(buff);
     }
 
     public override void Describe(StringBuilder sb, bool result)
     {
         base.Describe(sb, result);
+        sb.Append("获得剩余时间为");
+        sb.Append(buff.endTime - gameManager.Time);
         sb.Append("的");
         sb.Append(buff.displayName.Bold());
-        sb.Append("状态的持续时间延长");
-        sb.Append(endTime - endTime_prev);
+        sb.Append("状态");
         sb.AppendLine();
     }
 }
