@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60fc8b1b0161ed040b9a45421afd9f04, type: 3}
+  m_Script: {fileID: 11500000, guid: 73893e74ee150a248bfac5422754ed78, type: 3}
   m_Name: "\u8840\u9B54\u62A4\u80A9_\u55DC\u8840\u51B2\u51FB"
   m_EditorClassIdentifier: 
   displayName: "\u55DC\u8840\u51B2\u51FB"
@@ -35,8 +35,9 @@ MonoBehaviour:
   - so: {fileID: 11400000, guid: 74673d26f769a0745abcc02f9a60efc7, type: 2}
     probability: 100
   hitBackProbability: 0
-  victimType: 1
+  victimType: 2
   minLayer: -2
   maxLayer: 2
   castingDistance: 1
   aimAtSelf: 0
+  absorbPercent: 0.75
