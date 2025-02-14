@@ -49,15 +49,12 @@ public static class HitBackUtility
             newHP = Mathf.Clamp(HP - damage, 0, def.maxHP.IntValue);
         }
 
-        int r = Effect.NextInt();
-        if (victimPosition != hitBackPosition)
+        int r = Effect.NextInt(); 
+        MoveEffect moveEffect = new(victim, victimPosition, hitBackPosition, route, DefaultSpeedMultiplier, probability)
         {
-            MoveEffect moveEffect = new(victim, victimPosition, hitBackPosition, route, DefaultSpeedMultiplier, probability)
-            {
-                probability = r
-            };
-            ret.effects.Add(moveEffect);
-        }
+            probability = r
+        };
+        ret.effects.Add(moveEffect);
         if (HP != newHP)
         {
             HPChangeEffect hpChangeEffect = new(victim, HP, newHP, probability)

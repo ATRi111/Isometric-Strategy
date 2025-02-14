@@ -28,7 +28,7 @@ public class AnimationManager : Service,IService
         if(!ImmediateMode)
         {
             currenAnimations.Add(animation);
-            animation.Play();
+            animation.Play(latency);
         }
         else
             Unregister(animation);

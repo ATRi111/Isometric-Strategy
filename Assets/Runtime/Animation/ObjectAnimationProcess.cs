@@ -43,6 +43,6 @@ public class ObjectAnimationProcess : AnimationProcess
 
     public override void Apply()
     {
-        
+        source.Apply();
     }
 }

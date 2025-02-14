@@ -23,7 +23,7 @@ public class HPChangeEffect : Effect
         return new ObjectAnimationProcess(this,
             "DamageNumberUI",
             hpBar.transform,
-            hpBar.transform.position);
+            hpBar.UseDamageNumberPosition());
     }
 
     public override void Apply()
