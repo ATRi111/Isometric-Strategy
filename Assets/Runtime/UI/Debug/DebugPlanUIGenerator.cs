@@ -43,9 +43,9 @@ public class DebugPlanUIGenerator : MonoBehaviour
 
     public void Paint()
     {
+        Clear();
         if (brain == null)
             return;
-        Clear();
         GameObject obj = new("DebugPlan");
         skills = skillManager.learnedSkills.list;
         Filter();

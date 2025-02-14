@@ -1,18 +1,15 @@
 using MyTool;
-using Services.ObjectPools;
-using System.Collections;
 using TMPro;
-using UnityEngine;
 
-public class DamageNumberUI : MonoBehaviour
+public class DamageNumberUI : AnimationObject
 {
     private TextMeshProUGUI tmp;
-    private MyObject myObject;
-    public float lifeSpan;
 
-    public void SetDamage(int damage)
+    public override void Activate(IAnimationSource source)
     {
-        if(damage == 0)
+        HPChangeEffect effect = source as HPChangeEffect;
+        int damage = effect.prev - effect.current;
+        if (damage == 0)
         {
             myObject.Recycle();
             return;
@@ -22,19 +19,13 @@ public class DamageNumberUI : MonoBehaviour
             tmp.text = damage.ToString().ColorText("red");
         else
             tmp.text = $"+{-damage}".ColorText("#4EEE94");      //伤害小于0视为治疗
-        StartCoroutine(Delay());
+        StartCoroutine(DelayRecycle(lifeSpan));
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         tmp = GetComponent<TextMeshProUGUI>();
-        myObject = GetComponent<MyObject>();
         tmp.text = string.Empty;
-    }
-
-    private IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(lifeSpan);
-        myObject.Recycle(); 
     }
 }

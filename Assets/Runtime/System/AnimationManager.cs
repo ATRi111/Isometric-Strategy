@@ -1,6 +1,6 @@
+using MyTimer;
 using Services;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +16,7 @@ public class AnimationManager : Service,IService
 
     private Action ApplyAll;    //应用动画结束后产生的所有效果，必须确保按顺序应用
     public Action AfterAnimationComplete;
+    private TimerOnly timer;
 
     /// <summary>
     /// 注册并在latency秒后播放动画
@@ -39,22 +40,29 @@ public class AnimationManager : Service,IService
         if (!ImmediateMode)
             currenAnimations.Remove(animation);
         if (currenAnimations.Count == 0)
-            StartAnimationCheck();
+            CheckAnimation();
     }
 
-    public void StartAnimationCheck()
+    public void CheckAnimation()
     {
-        StartCoroutine(AnimationCheck());
+        timer.Restart();
     }
 
-    private IEnumerator AnimationCheck()
+    private void AfterComplete(float _)
     {
-        yield return new WaitForEndOfFrame();
-        if (currenAnimations.Count == 0)
+        if(currenAnimations.Count == 0)
         {
             ApplyAll?.Invoke();
             ApplyAll = null;
             AfterAnimationComplete?.Invoke();
         }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        timer = new TimerOnly();
+        timer.Initialize(0.01f, false);
+        timer.AfterComplete += AfterComplete;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public abstract class Skill : ScriptableObject
+public abstract class Skill : ScriptableObject , IAnimationSource
 {
     public string displayName;
     public Sprite icon;
@@ -86,10 +86,18 @@ public abstract class Skill : ScriptableObject
         return actionTime;
     }
 
-    public virtual AnimationProcess GenerateAnimation(out float time)
+    /// <summary>
+    /// 模拟技能动画，并提前计算动画所需的时间
+    /// </summary>
+    public virtual AnimationProcess MockAnimation(PawnAction action, out float time)
     {
         time = 0;
         return null;
+    }
+
+    public void Apply()
+    {
+        
     }
 
     #region 描述

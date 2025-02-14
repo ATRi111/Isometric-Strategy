@@ -33,9 +33,9 @@ public class RangedSkill : AimSkill
         }
     }
 
-    public override AnimationProcess GenerateAnimation(out float time)
+    public override AnimationProcess MockAnimation(PawnAction action, out float time)
     {
-        time = 0.5f;    //≤‚ ‘”√
+        time = 0.5f;
         return null;
     }
 

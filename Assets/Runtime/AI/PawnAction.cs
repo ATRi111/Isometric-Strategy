@@ -41,11 +41,10 @@ public class PawnAction
             Vector2Int direction = (Vector2Int)(target - agent.GridObject.CellPosition);
             agent.faceDirection = EDirectionTool.NearestDirection4(direction);
         }
-        AnimationProcess animation = skill.GenerateAnimation(out float time);
+        AnimationProcess animation = skill.MockAnimation(this, out float time);
         if (animation != null)
             animationManager.Register(animation, 0f);
         effectUnit.Play(animationManager, time);
-        animationManager.StartAnimationCheck();
     }
 
     public string Description

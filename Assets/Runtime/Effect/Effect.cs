@@ -3,8 +3,10 @@ using System;
 using System.Text;
 
 [Serializable]
-public abstract class Effect
+public abstract class Effect : IAnimationSource
 {
+    public static IsometricGridManager Igm => IsometricGridManager.Instance;
+
     public const int MaxProbability = 100;
 
     private static readonly RandomGroup randomGroup;

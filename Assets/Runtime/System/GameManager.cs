@@ -80,6 +80,7 @@ public class GameManager : Service,IService
         {
             if (time >= pawn.time)
             {
+                Debug.Log($"ÂÖµ½{pawn.EntityName}ÐÐ¶¯");
                 waitingForAnimation = true;
                 pawn.Brain.DoAction();
                 return;
@@ -88,7 +89,7 @@ public class GameManager : Service,IService
         time++;
         eventSystem.Invoke(EEvent.OnTick, time);
         waitingForAnimation = true;
-        animationManager.StartAnimationCheck();
+        animationManager.CheckAnimation();
     }
 
     private void AfterAnimationComplete()

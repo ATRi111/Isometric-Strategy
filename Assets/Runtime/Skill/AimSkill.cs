@@ -112,18 +112,7 @@ public abstract class AimSkill : Skill
         }
         else if(victim is PawnEntity pawnVictim)
         {
-            int r = Effect.NextInt();
-            effect = HitBackEffect.MockHitBack(igm, position, pawnVictim, HP, hitBackProbability);
-            effect.randomValue = r;
-            ret.effects.Add(effect);
-            if ((effect as HitBackEffect).currentHP == 0)
-            {
-                effect = new DisableEntityEffect(victim)
-                {
-                    randomValue = r
-                };
-                ret.effects.Add(effect);
-            }
+            HitBackUtility.MockHitBack(igm, position, pawnVictim, HP, hitBackProbability, ret);
         }
     }
 
