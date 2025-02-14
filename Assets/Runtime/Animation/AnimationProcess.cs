@@ -14,6 +14,11 @@ public abstract class AnimationProcess
     }
 
     /// <summary>
+    /// 预计算播放此动画需要的时间
+    /// </summary>
+    public abstract float MockTime();
+
+    /// <summary>
     /// 在一定延迟后播放动画
     /// </summary>
     /// <param name="latency"></param>

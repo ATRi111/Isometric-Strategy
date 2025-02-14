@@ -33,12 +33,6 @@ public class RangedSkill : AimSkill
         }
     }
 
-    public override AnimationProcess MockAnimation(PawnAction action, out float time)
-    {
-        time = 0.5f;
-        return null;
-    }
-
     public override void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret)
     {
         ret.Clear();

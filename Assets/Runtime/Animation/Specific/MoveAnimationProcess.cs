@@ -12,6 +12,11 @@ public class MoveAnimationProcess : EffectAnimationProcess
         speedMultiplier = effect.speedMultiplier;
     }
 
+    public override float MockTime()
+    {
+        return moveController.MockTime((effect as MoveEffect).route, speedMultiplier * moveController.defaultSpeed);
+    }
+
     public override void Play()
     {
         moveController.AfterMove += OneOffComplete;

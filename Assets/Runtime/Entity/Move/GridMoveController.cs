@@ -14,6 +14,22 @@ public class GridMoveController : MoveController
     /// </summary>
     public bool animationOnly = true;
 
+    public float MockTime(List<Vector3> route, float speed)
+    {
+        if (route.Count < 2)
+            return 0f;
+        Vector3 prev = route[0];
+        Vector3 current;
+        float length = 0;
+        for (int i = 1; i < route.Count; i++)
+        {
+            current = Igm.CellToWorld(route[i]);
+            length += (current - prev).magnitude;
+            prev = current;
+        }
+        return length / speed;
+    }
+
     public void SetGridRoute(List<Vector3> route, float speed)
     {
         if(route.Count < 2)

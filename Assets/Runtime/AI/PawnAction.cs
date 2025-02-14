@@ -6,7 +6,7 @@ using UnityEngine;
 /// 一个动作
 /// </summary>
 [System.Serializable]
-public class PawnAction
+public class PawnAction : IAnimationSource
 {
     public PawnEntity agent;
     public Skill skill;
@@ -41,9 +41,13 @@ public class PawnAction
             Vector2Int direction = (Vector2Int)(target - agent.GridObject.CellPosition);
             agent.faceDirection = EDirectionTool.NearestDirection4(direction);
         }
-        AnimationProcess animation = skill.MockAnimation(this, out float time);
+        AnimationProcess animation = skill.MockAnimation(this);
+        float time = 0f;
         if (animation != null)
+        {
+            time = animation.MockTime();
             animationManager.Register(animation, 0f);
+        }
         effectUnit.Play(animationManager, time);
     }
 
@@ -81,5 +85,10 @@ public class PawnAction
         {
             effectUnit.effects[i].Describe(sb, result);
         }
+    }
+
+    public void Apply()
+    {
+        
     }
 }

@@ -11,6 +11,11 @@ public class EffectAnimationProcess : AnimationProcess
         this.effect = effect;
     }
 
+    public override float MockTime()
+    {
+        return 0f;
+    }
+
     public override void Play()
     {
         Complete(); //默认的效果动画播放后立即结束（不应继承此语句）
@@ -20,5 +25,4 @@ public class EffectAnimationProcess : AnimationProcess
     {
         effect?.Apply();
     }
-
 }

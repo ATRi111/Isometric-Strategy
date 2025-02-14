@@ -25,6 +25,13 @@ public class ObjectAnimationProcess : AnimationProcess
         this.position = position;
     }
 
+    public override float MockTime()
+    {
+        IMyObject obj = objectManager.Peek(prefabName);
+        AnimationObject animationObject = obj.Transform.GetComponent<AnimationObject>();
+        return animationObject.lifeSpan;
+    }
+
     public void OneOffComplete()
     {
         Complete();
@@ -34,10 +41,8 @@ public class ObjectAnimationProcess : AnimationProcess
     public override void Play()
     {
         myObject = objectManager.Activate(prefabName, position, Vector3.zero, parent) as MyObject;
-        if (myObject.TryGetComponent(out AnimationObject animationObject))
-        {
-            animationObject.Activate(source);
-        }
+        AnimationObject animationObject = myObject.GetComponent<AnimationObject>();
+        animationObject.Activate(source);
         myObject.OnRecycle += OneOffComplete;
     }
 

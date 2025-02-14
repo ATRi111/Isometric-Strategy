@@ -2,12 +2,14 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public abstract class Skill : ScriptableObject , IAnimationSource
+public abstract class Skill : ScriptableObject
 {
     public string displayName;
     public Sprite icon;
     public string extraDescription;
     public int actionTime;
+    public string animationName;
+
     public List<ParameterPreCondition> preConditions;
     public List<BuffPreCondition> buffPreConditions;
     public List<PawnParameterModifier> parameterOnAgent;
@@ -89,15 +91,17 @@ public abstract class Skill : ScriptableObject , IAnimationSource
     /// <summary>
     /// 模拟技能动画，并提前计算动画所需的时间
     /// </summary>
-    public virtual AnimationProcess MockAnimation(PawnAction action, out float time)
+    public virtual AnimationProcess MockAnimation(PawnAction action)
     {
-        time = 0;
+        if (animationName != null)
+        {
+            ObjectAnimationProcess animationProcess = new(
+                action, animationName,
+                action.agent.transform,
+                action.agent.transform.position);
+            return animationProcess;
+        }
         return null;
-    }
-
-    public void Apply()
-    {
-        
     }
 
     #region 描述

@@ -6,11 +6,12 @@ using UnityEngine;
 public class SkillEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty icon, displayName, preConditions, buffPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
+    public SerializedProperty icon, displayName, animationName, preConditions, buffPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
 
     protected override void MyOnInspectorGUI()
     {
         displayName.TextField("展示技能名");
+        animationName.TextField("动画资源名");
         icon.PropertyField("图标");
         preConditions.ListField("参数前置条件");
         buffPreConditions.ListField("Buff前置条件");
