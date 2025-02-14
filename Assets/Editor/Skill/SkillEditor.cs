@@ -11,15 +11,15 @@ public class SkillEditor : AutoEditor
     protected override void MyOnInspectorGUI()
     {
         displayName.TextField("展示技能名");
+        if (GUILayout.Button("自动填充"))
+        {
+            displayName.stringValue = GenerateDisplayName();
+        }
         animationName.TextField("动画资源名");
         icon.PropertyField("图标");
         preConditions.ListField("参数前置条件");
         buffPreConditions.ListField("Buff前置条件");
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("自动填充"))
-        {
-            displayName.stringValue = GenerateDisplayName();
-        }
         EditorGUILayout.EndHorizontal();
         actionTime.IntField("固定时间消耗");
         parameterOnAgent.ListField("参数修改");
