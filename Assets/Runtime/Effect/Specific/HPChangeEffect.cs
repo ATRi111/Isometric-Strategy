@@ -17,7 +17,7 @@ public class HPChangeEffect : Effect
 
     public override bool Revokable => victim.DefenceComponent.HP == current;
 
-    public override AnimationProcess GenerateAnimation()
+    protected override AnimationProcess GenerateAnimation_Local()
     {
         FollowHPBar hpBar = victim.GetComponentInChildren<FollowHPBar>();
         return new ObjectAnimationProcess(this,

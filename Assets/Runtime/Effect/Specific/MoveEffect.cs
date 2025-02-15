@@ -16,10 +16,10 @@ public class MoveEffect : TeleportEffect
         this.speedMultiplier = speedMultiplier;
     }
 
-    public override AnimationProcess GenerateAnimation()
+    protected override AnimationProcess GenerateAnimation_Local()
     {
         if (route != null && route.Count > 1)
             return new MoveAnimationProcess(this);
-        return base.GenerateAnimation();
+        return base.GenerateAnimation_Local();
     }
 }

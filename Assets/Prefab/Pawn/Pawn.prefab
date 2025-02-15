@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09dc5f97424cd4146b38581bddbcac94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpeed: 5
+  defaultSpeed: 2
   currentRoute: []
   animationOnly: 1
 --- !u!114 &28454254504980518

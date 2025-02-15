@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class AnimationProcess
 {
     protected AnimationManager manager;
+    public AnimationProcess joinedAnimation;
     public bool completed;
 
     public AnimationProcess()
@@ -24,15 +25,19 @@ public abstract class AnimationProcess
     /// <param name="latency"></param>
     public virtual void Play(float latency)
     {
-        if (latency == 0f)
-            Play();
-        else
-            manager.StartCoroutine(DelayPlay(latency));
+        manager.StartCoroutine(DelayPlay(latency));
     }
 
-    private IEnumerator DelayPlay(float latency)
+    protected virtual IEnumerator DelayPlay(float latency)
     {
         yield return new WaitForSeconds(latency);
+        if (joinedAnimation != null)
+        {
+            while (!joinedAnimation.completed)
+            {
+                yield return null;
+            }
+        }
         Play();
     }
 

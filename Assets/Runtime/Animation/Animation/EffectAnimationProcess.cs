@@ -1,5 +1,5 @@
 /// <summary>
-/// 效果附带的动画
+/// 默认的效果附带的动画
 /// </summary>
 public class EffectAnimationProcess : AnimationProcess
 {

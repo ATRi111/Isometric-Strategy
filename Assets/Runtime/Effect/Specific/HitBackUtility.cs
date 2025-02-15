@@ -7,7 +7,7 @@ public static class HitBackUtility
 {
     public static int CollideAttackPower = 3000;
     public static int DropAttackPower = 1000;
-    public static float DefaultSpeedMultiplier = 2f;
+    public static float DefaultSpeedMultiplier = 3f;
     public static float hitBackDistance = 0.3f;
 
     public static void MockHitBack(IsometricGridManager igm, Vector3Int agentPosition, PawnEntity victim, int HP, int probability, EffectUnit ret)
@@ -52,7 +52,7 @@ public static class HitBackUtility
         int r = Effect.NextInt(); 
         MoveEffect moveEffect = new(victim, victimPosition, hitBackPosition, route, DefaultSpeedMultiplier, probability)
         {
-            probability = r
+            randomValue = r
         };
         ret.effects.Add(moveEffect);
         if (HP != newHP)
@@ -61,6 +61,7 @@ public static class HitBackUtility
             {
                 randomValue = r
             };
+            hpChangeEffect.Join(moveEffect);
             ret.effects.Add(hpChangeEffect);
         }
     }

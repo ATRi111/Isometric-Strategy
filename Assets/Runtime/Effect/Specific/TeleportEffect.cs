@@ -36,6 +36,8 @@ public class TeleportEffect : Effect
 
     public override void Describe(StringBuilder sb, bool result)
     {
+        if (from == to)
+            return;
         base.Describe(sb, result);
         sb.Append("´Ó");
         sb.Append(from);

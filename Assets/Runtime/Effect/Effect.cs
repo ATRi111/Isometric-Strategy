@@ -55,9 +55,28 @@ public abstract class Effect : IAnimationSource
     public abstract bool Appliable { get; }
     public abstract bool Revokable { get; }
 
-    public virtual AnimationProcess GenerateAnimation()
+    protected Effect joinedEffect;  //等待此Effect的动画播放完毕后,自身的Effect才可以播放
+    protected AnimationProcess animation;
+
+    public AnimationProcess GenerateAnimation()
+    {
+        animation ??= GenerateAnimation_Local();
+        if (joinedEffect != null)
+            animation.joinedAnimation = joinedEffect.GenerateAnimation();
+        return animation;
+    }
+
+    protected virtual AnimationProcess GenerateAnimation_Local()
     {
         return new EffectAnimationProcess(this);
+    }
+
+    /// <summary>
+    /// 使自身附带的动画等到effect附带的动画播放完毕后播放
+    /// </summary>
+    public void Join(Effect effect)
+    {
+        joinedEffect = effect;
     }
 
     public virtual void Play(AnimationManager animationManager, float latency)
