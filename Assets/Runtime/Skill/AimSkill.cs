@@ -156,6 +156,17 @@ public abstract class AimSkill : Skill
     }
 
     #region √Ë ˆ
+
+    public override void ExtractKeyWords(KeyWordList keyWordList)
+    {
+        base.ExtractKeyWords(keyWordList);
+        for (int i = 0; i < buffOnVictim.Count; i++)
+        {
+            BuffSO so = buffOnVictim[i].so;
+            keyWordList.Push(so.name, so.Description);
+        }
+    }
+
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);

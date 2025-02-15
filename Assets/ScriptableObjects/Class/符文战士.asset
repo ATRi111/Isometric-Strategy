@@ -52,7 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7039d3cd6464f4b478b9e6ed6dcdc331, type: 2}
   - {fileID: 11400000, guid: d3a915ebc67fa94439f65cf5a46cc90c, type: 2}
   - {fileID: 11400000, guid: 2692a27974c2a5b4fa940d64919177a0, type: 2}
-  extraDescription: "\u4E0E\u7CBE\u7075\u7B7E\u8BA2\u5951\u7EA6\u7684\u9B54\u6CD5\u6218\u58EB\uFF0C\u517C\u4FEE\u7269\u7406\u4E0E\u9B54\u6CD5\u7684\u5168\u80FD\u624B\u3002"
+  extraDescription: "\u4E0E\u7CBE\u7075\u7B7E\u8BA2\u5951\u7EA6\u7684\u9B54\u6CD5\u6218\u58EB\uFF0C\u517C\u4FEE\u7269\u7406\u4E0E\u9B54\u6CD5\u7684\u5168\u80FD\u624B"
   supportAbility: 0.2
   offenseAbility: 1
   bestSupprtDistance: 1

@@ -96,6 +96,6 @@ public abstract class Effect : IAnimationSource
             sb.Append("%");
         }
         sb.Append("ʹ");
-        sb.Append(victim.gameObject.name.Bold());
+        sb.Append(victim.EntityName.Bold());
     }
 }

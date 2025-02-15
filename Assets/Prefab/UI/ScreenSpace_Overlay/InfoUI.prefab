@@ -283,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alpha_default: 0
   fadeTime: 0.2
-  threshold_blockRaycast: 0.5
+  threshold_blockRaycast: 1
   immediate_next: 0
   immediate: 0
   visibleOnAwake: 0
@@ -299,4 +299,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4ef4e0b36b1fa479eac27fd40d8c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 10, y: -10}
+  offset: {x: 0, y: 0}

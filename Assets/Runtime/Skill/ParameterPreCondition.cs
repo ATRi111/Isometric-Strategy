@@ -38,7 +38,7 @@ public class ParameterPreCondition
 
     public void Describe(StringBuilder sb)
     {
-        sb.Append(ParameterName.Bold());
+        sb.Append(ParameterName);
         string stype = conditionType switch
         {
             EParameterConditionType.Equal => "µÈÓÚ",

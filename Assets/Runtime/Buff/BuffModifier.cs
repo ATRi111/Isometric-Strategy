@@ -1,4 +1,3 @@
-using MyTool;
 using System.Text;
 
 [System.Serializable]
@@ -22,7 +21,7 @@ public class BuffModifier
         {
             sb.Append(so.duration);
             sb.Append("µÄ");
-            sb.Append(so.name.Bold());
+            sb.Append(so.name);
         }
         sb.AppendLine();
     }

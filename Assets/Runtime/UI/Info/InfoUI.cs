@@ -25,6 +25,8 @@ public class InfoUI : TextBase
 
     private void ShowInfo(object source, Vector2 screenPoint, string info)
     {
+        if (this.source != null)
+            return;
         this.source = source;
         focusOnIcon = true;
         info = keyWordList.MarkAllKeyWords(info, Mark);
@@ -39,6 +41,7 @@ public class InfoUI : TextBase
         if (source != this.source)
             return;
         focusOnIcon = false;
+        this.source = null;
     }
 
     protected override void Awake()

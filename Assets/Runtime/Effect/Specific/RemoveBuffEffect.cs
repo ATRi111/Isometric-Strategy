@@ -41,7 +41,7 @@ public class RemoveBuffEffect : BuffEffect
         sb.Append("获得剩余时间为");
         sb.Append(buff.endTime - gameManager.Time);
         sb.Append("的");
-        sb.Append(buff.displayName.Bold());
+        sb.Append(buff.displayName);
         sb.Append("状态");
         sb.AppendLine();
     }

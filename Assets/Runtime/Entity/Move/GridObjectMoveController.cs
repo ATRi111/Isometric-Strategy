@@ -1,10 +1,8 @@
-using Character;
 using EditorExtend.GridEditor;
 using UnityEngine;
 
 public class GridObjectMoveController : GridMoveController
 {
-    [AutoComponent(EComponentPosition.SelfOrParent)]
     protected GridObject gridObject;
     /// <summary>
     /// 仅播放动画，不改变网格位置
@@ -23,5 +21,12 @@ public class GridObjectMoveController : GridMoveController
         base.ForceComplete();
         if(!animationOnly)
             gridObject.AlignXY(); 
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        gridObject = GetComponentInParent<GridObject>();
+        target = gridObject.transform;
     }
 }

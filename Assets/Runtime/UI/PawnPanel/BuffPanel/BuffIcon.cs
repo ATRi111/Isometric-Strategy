@@ -5,6 +5,12 @@ public class BuffIcon : IconUI
     public Buff buff;
     private TextMeshProUGUI tmp;
 
+    protected override void ExtractKeyWords()
+    {
+        base.ExtractKeyWords();
+        buff.so.ExtractKeyWords(keyWordList);
+    }
+
     public void SetBuff(Buff buff)
     {
         this.buff = buff;

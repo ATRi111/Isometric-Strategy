@@ -44,7 +44,7 @@ public class ModifyParameterEffect : Effect
         {
             base.Describe(sb, result);
             sb.Append("的");
-            sb.Append(parameterName.Bold());
+            sb.Append(parameterName);
             sb.Append("从");
             sb.Append(value_prev);
             sb.Append("变为");

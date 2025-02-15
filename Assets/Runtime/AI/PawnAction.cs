@@ -6,7 +6,7 @@ using UnityEngine;
 /// 一个动作
 /// </summary>
 [System.Serializable]
-public class PawnAction : IAnimationSource
+public class PawnAction : IAnimationSource , IDescription
 {
     public PawnEntity agent;
     public Skill skill;
@@ -71,6 +71,11 @@ public class PawnAction : IAnimationSource
         }
     }
 
+    public void ExtractKeyWords(KeyWordList keyWordList)
+    {
+        keyWordList.Push(skill.displayName, skill.Description);
+    }
+
     private void Describe(StringBuilder sb, bool result)
     {
         if(result)
@@ -78,7 +83,7 @@ public class PawnAction : IAnimationSource
             sb.Append(agent.name.Bold());
             sb.Append("使用了");
         }
-        sb.Append(skill.displayName.Bold());
+        sb.Append(skill.displayName);
         sb.AppendLine();
         sb.AppendLine($"时间花费:{Time}");
         for (int i = 0; i < effectUnit.effects.Count; i++)

@@ -42,7 +42,7 @@ public class LengthenBuffEffect : BuffEffect
     {
         base.Describe(sb, result);
         sb.Append("的");
-        sb.Append(buff.displayName.Bold());
+        sb.Append(buff.displayName);
         sb.Append("状态的持续时间延长");
         sb.Append(endTime - endTime_prev);
         sb.AppendLine();

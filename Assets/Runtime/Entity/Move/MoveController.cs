@@ -29,11 +29,12 @@ public class MoveController : MonoBehaviour
     protected UniformFoldLineMotion ufm;
 
     public Action AfterMove;
+    protected Transform target;
 
     public Vector3 Position
     {
-        get => transform.position;
-        set => transform.position = value;
+        get => target.position;
+        set => target.position = value;
     }
 
     public float MockTime(List<Vector3> route, float speed)
@@ -75,6 +76,7 @@ public class MoveController : MonoBehaviour
         ufm = new UniformFoldLineMotion();
         ufm.OnTick += OnTick;
         ufm.AfterComplete += AfterComplete;
+        target = transform;
     }
 
     protected virtual void OnDisable()

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public abstract class Skill : ScriptableObject
+public abstract class Skill : ScriptableObject , IDescription
 {
     public string displayName;
     public Sprite icon;
@@ -105,14 +105,44 @@ public abstract class Skill : ScriptableObject
     }
 
     #region √Ë ˆ
+
+    public virtual void ExtractKeyWords(KeyWordList keyWordList)
+    {
+        for (int i = 0;i < preConditions.Count;i++)
+        {
+            Parameter p = PawnEntity.ParameterTable[preConditions[i].ParameterName];
+            keyWordList.Push(p.name, p.description);
+        }
+        for (int i = 0; i < buffPreConditions.Count; i++)
+        {
+            BuffSO so = buffPreConditions[i].so;
+            keyWordList.Push(so.name, so.Description);
+        }
+        for (int i = 0; i < parameterOnAgent.Count; i++)
+        {
+            Parameter p = PawnEntity.ParameterTable[parameterOnAgent[i].ParameterName];
+            keyWordList.Push(p.name, p.description);
+        }
+        for (int i = 0; i < buffOnAgent.Count; i++)
+        {
+            BuffSO so = buffOnAgent[i].so;
+            keyWordList.Push(so.name, so.Description);
+        }
+    }
+
+    private string description;
     public string Description
     {
         get
         {
-            StringBuilder sb = new();
-            Describe(sb);
-            sb.Append(extraDescription);
-            return sb.ToString();
+            if (string.IsNullOrEmpty(description))
+            {
+                StringBuilder sb = new();
+                Describe(sb);
+                sb.Append(extraDescription);
+                description = sb.ToString();
+            }
+            return description;
         }
     }
 

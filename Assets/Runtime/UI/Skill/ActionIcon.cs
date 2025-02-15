@@ -12,6 +12,12 @@ public class ActionIcon : IconUI, IPointerClickHandler
 
     public int extraSortingOrder;
 
+    protected override void ExtractKeyWords()
+    {
+        base.ExtractKeyWords();
+        action.ExtractKeyWords(keyWordList);
+    }
+
     public override void OnPointerEnter(PointerEventData eventData)
     {
         base.OnPointerEnter(eventData);

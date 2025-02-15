@@ -9,6 +9,13 @@ public class EquipmentIcon : IconUI
     
     public int index;
 
+    protected override void ExtractKeyWords()
+    {
+        base.ExtractKeyWords();
+        if (slot.equipment != null)
+            slot.equipment.ExtractKeyWords(keyWordList);
+    }
+
     public void Refresh()
     {
         PawnEntity pawn = pawnPanel.SelectedPawn;

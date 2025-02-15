@@ -4,6 +4,12 @@ public class SkillIcon : IconUI
 {
     public Skill skill;
 
+    protected override void ExtractKeyWords()
+    {
+        base.ExtractKeyWords();
+        skill.ExtractKeyWords(keyWordList);
+    }
+
     public void SetSkill(Skill skill)
     {
         this.skill = skill;

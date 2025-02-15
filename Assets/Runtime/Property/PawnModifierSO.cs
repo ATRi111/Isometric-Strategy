@@ -1,5 +1,4 @@
 using Character;
-using MyTool;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -7,7 +6,7 @@ using UnityEngine;
 /// <summary>
 ///  角色修改器（装备，属性，状态，种族等）
 /// </summary>
-public class PawnModifierSO : ScriptableObject
+public class PawnModifierSO : ScriptableObject , IDescription
 {
     public Sprite icon;
     public PawnPropertyModifier propertyModifier;
@@ -48,14 +47,34 @@ public class PawnModifierSO : ScriptableObject
         }
     }
 
+    public virtual void ExtractKeyWords(KeyWordList keyWordList)
+    {
+        for (int i = 0; i < propertyModifier.modifiers.Count; i++)
+        {
+            FindPawnPropertySO so = (FindPawnPropertySO)propertyModifier.modifiers[i].so;
+            keyWordList.Push(so.name, so.description);
+        }
+        for (int i = 0; i < skillsAttached.Count; i++)
+        {
+            Skill skill = skillsAttached[i];
+            keyWordList.Push(skill.displayName, skill.Description);
+        }
+    }
+
+
+    private string description;
     public string Description
     {
         get
         {
-            StringBuilder sb = new();
-            Describe(sb);
-            sb.Append(extraDescription);
-            return sb.ToString();
+            if (string.IsNullOrEmpty(description))
+            {
+                StringBuilder sb = new();
+                Describe(sb);
+                sb.Append(extraDescription);
+                description = sb.ToString();
+            }
+            return description;
         }
     }
 
@@ -81,12 +100,12 @@ public class PawnModifierSO : ScriptableObject
         {
             if (skillsAttached[i] != null)
             {
-                sb.Append(skillsAttached[i].displayName.Bold());
+                sb.Append(skillsAttached[i].displayName);
                 sb.Append(" ");
             }
         }
         if (skillsAttached[^1] != null)
-            sb.Append(skillsAttached[^1].displayName.Bold());
+            sb.Append(skillsAttached[^1].displayName);
         sb.AppendLine();
     }
 }

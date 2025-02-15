@@ -88,7 +88,6 @@ public class Buff
 
     private void Describe(StringBuilder sb)
     {
-        sb.AppendLine(displayName.Bold());
         sb.Append(" £”‡ ±º‰:");
         sb.AppendLine((endTime - GameManager.Time).ToString());
         sb.AppendLine();

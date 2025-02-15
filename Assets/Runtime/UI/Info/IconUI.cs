@@ -1,4 +1,5 @@
 using Services;
+using Services.Asset;
 using Services.Event;
 using UIExtend;
 using UnityEngine;
@@ -15,11 +16,19 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [HideInInspector]
     public CanvasGroupPlus canvasGroup;
     protected Image image;
+    protected KeyWordList keyWordList;
+
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        ExtractKeyWords();
         if (!string.IsNullOrEmpty(info))
             eventSystem.Invoke(EEvent.ShowInfo, (object)this, eventData.position, info);
+    }
+
+    protected virtual void ExtractKeyWords()
+    {
+        keyWordList.PopExtra();
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
@@ -33,6 +42,7 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         eventSystem = ServiceLocator.Get<IEventSystem>();
         canvasGroup = GetComponent<CanvasGroupPlus>();
         image = GetComponentInChildren<Image>();
+        keyWordList = ServiceLocator.Get<IAssetLoader>().Load<KeyWordList>(nameof(KeyWordList));
     }
 
     protected virtual void OnEnable()
