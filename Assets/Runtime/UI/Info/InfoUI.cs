@@ -67,6 +67,11 @@ public class InfoUI : TextBase
 
     private void Update()
     {
+        if(Input.GetMouseButtonDown(0))
+        {
+            canvasGrounp.Visible = false;
+        }
+
         UIExtendUtility.GetBorder(rectTransform, out float left, out float right, out float bottom, out float top);
         Vector2 mouse = Input.mousePosition;
         containsMouse = mouse.x >= left && mouse.x <= right
