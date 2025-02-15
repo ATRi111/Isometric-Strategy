@@ -8,11 +8,6 @@ public class PropertyValueChangeUI : MonoBehaviour
     private PawnPanel pawnPanel;
     private TextMeshProUGUI tmp;
 
-    public void Refresh()
-    {
-        StopPreview();
-    }
-
     public void StopPreview()
     {
         tmp.text = string.Empty;
@@ -47,8 +42,7 @@ public class PropertyValueChangeUI : MonoBehaviour
         string propertyName = transform.parent.GetComponent<TextMeshProUGUI>().text;
         so = PawnPropertyUtility.GetProperty(propertyName);
         pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnPanel.RefreshAll += StopPreview;
         pawnPanel.PreviewPropertyChange += Preview;
-        pawnPanel.StopPreviewPropertyChange += StopPreview;
     }
 }

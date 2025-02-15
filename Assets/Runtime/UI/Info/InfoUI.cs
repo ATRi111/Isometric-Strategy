@@ -13,6 +13,21 @@ public class InfoUI : TextBase
         return $"<link=\"{text}\"><u><color=\"blue\">{text}</color></u></link>";
     }
 
+    public static void DevideFirstLine(string text, out string firstLine, out string left)
+    {
+        int index = text.IndexOf("\n");
+        if (index != -1)
+        {
+            firstLine = text[..index];
+            left = text[(index + 1)..];
+        }
+        else
+        {
+            firstLine = text;
+            left = string.Empty;
+        }
+    }
+
     private RectTransform rectTransform;
     private CanvasGroupPlus canvasGrounp;
     private KeyWordList keyWordList;
@@ -29,7 +44,8 @@ public class InfoUI : TextBase
             return;
         this.source = source;
         focusOnIcon = true;
-        info = keyWordList.MarkAllKeyWords(info, Mark);
+        DevideFirstLine(info, out string firstLine, out string left);
+        info = firstLine + "\n" + keyWordList.MarkAllKeyWords(left, Mark);     //第一行不会被标记
         TextUI.text = info;
         transform.position = screenPoint + offset;
         UIExtendUtility.ClampInScreen(rectTransform);

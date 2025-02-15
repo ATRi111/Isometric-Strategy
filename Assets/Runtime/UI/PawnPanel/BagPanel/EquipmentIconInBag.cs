@@ -45,13 +45,6 @@ public class EquipmentIconInBag : IconUI , IPointerClickHandler
         equipment.ExtractKeyWords(keyWordList);
     }
 
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-        pawnPanel.propertyChangeDict.Clear();
-        pawnPanel.StopPreviewPropertyChange?.Invoke();
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
