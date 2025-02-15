@@ -22,7 +22,7 @@ public class MovableGridObject : GridObject
     public PawnEntity Pawn { get; protected set; }
     public AMover Mover_Default { get; protected set; }
     public AMover Mover_Ranging { get; protected set; }
-    public GridMoveController MoveController { get; protected set; }
+    public GridObjectMoveController MoveController { get; protected set; }
 
     public CharacterProperty climbAbility;
     public CharacterProperty dropAbility;
@@ -32,7 +32,7 @@ public class MovableGridObject : GridObject
     {
         base.Awake();
         Pawn = GetComponentInParent<PawnEntity>();
-        MoveController = GetComponentInChildren<GridMoveController>();
+        MoveController = GetComponentInChildren<GridObjectMoveController>();
         Mover_Default = new AMover_Default(this)
         {
             GetMoveAbility = () => moveAbility.IntValue

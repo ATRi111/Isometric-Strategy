@@ -301,10 +301,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3255350977429458662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 821ab4b08d093474ab7a3ab2963fe490, type: 3}
+  m_Script: {fileID: 11500000, guid: 09dc5f97424cd4146b38581bddbcac94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpeed: 2
+  defaultSpeed: 1
   currentRoute: []
   animationOnly: 1
 --- !u!114 &2418777279693463431

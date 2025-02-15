@@ -9,6 +9,7 @@ public class PawnPanel : MonoBehaviour
 {
     public IsometricGridManager Igm => IsometricGridManager.Instance;
     private IEventSystem eventSystem;
+    private LevelManager levelManager;
 
     private CanvasGroupPlus canvasGroup;
 
@@ -41,7 +42,7 @@ public class PawnPanel : MonoBehaviour
         //TODO:装备切换预览
         if (propertyChangeDict.ContainsKey(propertyName))
             return propertyChangeDict[propertyName];
-        return UnityEngine.Random.Range(-2f, 2f);
+        return 0f;
     }
 
     public void Next()
@@ -60,7 +61,6 @@ public class PawnPanel : MonoBehaviour
 
     private void Show(PawnEntity pawn)
     {
-        //TODO:装备切换
         PawnEntity[] temp = Igm.GetComponentsInChildren<PawnEntity>();
         for (int i = 0; i < temp.Length; i++)
         {
@@ -81,23 +81,28 @@ public class PawnPanel : MonoBehaviour
     {
         canvasGroup.Visible = false;
     }
-
-    private void OnEnable()
-    {
-        eventSystem.AddListener<PawnEntity>(EEvent.ShowPawnPanel, Show);
-    }
-
-    private void OnDisable()
-    {
-        eventSystem.RemoveListener(EEvent.HidePawnPanel, Hide);
-    }
-
     private void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
         canvasGroup = GetComponent<CanvasGroupPlus>();
         selectedIndex = 0;
+        levelManager = GameObject.Find("PrepareMenu").GetComponent<LevelManager>();
     }
+
+    private void OnEnable()
+    {
+        eventSystem.AddListener<PawnEntity>(EEvent.ShowPawnPanel, Show);
+        levelManager.OnReturnToPrepareMenu += Hide;
+        levelManager.OnStartScout += Hide;
+    }
+
+    private void OnDisable()
+    {
+        eventSystem.RemoveListener(EEvent.HidePawnPanel, Hide);
+        levelManager.OnReturnToPrepareMenu -= Hide;
+        levelManager.OnStartScout -= Hide;
+    }
+
 
     private void Update()
     {

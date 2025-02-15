@@ -2,7 +2,7 @@ using EditorExtend;
 using UnityEditor;
 
 [CustomEditor(typeof(ParabolaSkill), true)]
-public class ParabolaSkillEditor : RangedSkillEditor
+public class ParabolaSkillEditor : ProjectileSkillEditor
 {
     [AutoProperty]
     public SerializedProperty angles, maxSpeed;

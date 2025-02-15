@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
+  animationName: Projectile
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
@@ -34,6 +35,7 @@ MonoBehaviour:
   maxLayer: 32
   castingDistance: 5
   aimAtSelf: 0
+  speedMultiplier: 1
   angles:
   - 0
   - 15

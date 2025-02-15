@@ -29,12 +29,16 @@ public class EquipmentIconInBag : IconUI , IPointerClickHandler
     public override void OnPointerEnter(PointerEventData eventData)
     {
         base.OnPointerEnter(eventData);
+        pawnPanel.propertyChangeDict.Clear();
+        bagPanel.visibleEquipments[index].MockPropertyChange(true, pawnPanel.propertyChangeDict);
+        bagPanel.currentSlot.equipment.MockPropertyChange(false, pawnPanel.propertyChangeDict);
         pawnPanel.PreviewPropertyChange?.Invoke();
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
         base.OnPointerExit(eventData);
+        pawnPanel.propertyChangeDict.Clear();
         pawnPanel.StopPreviewPropertyChange?.Invoke();
     }
 

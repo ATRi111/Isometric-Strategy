@@ -12,9 +12,9 @@ public class PawnNameUI : MonoBehaviour
         PawnEntity pawn = pawnPanel.SelectedPawn;
         string color = pawn.faction switch
         {
-            EFaction.Ally => "#4EEE94",
-            EFaction.Enemy => "red",
-            _ => "black"
+            EFaction.Ally => FontUtility.SpringGreen3,
+            EFaction.Enemy => FontUtility.Red,
+            _ => FontUtility.Black
         };
         tmp.text = pawn.EntityName.ColorText(color);
     }

@@ -1,11 +1,27 @@
-using Character;
 using MyTimer;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveController : CharacterComponentBase
+public class MoveController : MonoBehaviour
 {
+    public static float CalculateLength(List<Vector3> route)
+    {
+        if (route.Count < 2)
+            return 0f;
+        IsometricGridManager igm = IsometricGridManager.Instance;
+        Vector3 prev = route[0];
+        Vector3 current;
+        float length = 0;
+        for (int i = 1; i < route.Count; i++)
+        {
+            current = igm.CellToWorld(route[i]);
+            length += (current - prev).magnitude;
+            prev = current;
+        }
+        return length;
+    }
+
     public float defaultSpeed = 1f;
     [SerializeField]
     protected Vector3[] currentRoute;
@@ -16,21 +32,13 @@ public class MoveController : CharacterComponentBase
 
     public Vector3 Position
     {
-        get => entity.transform.position;
-        set => entity.transform.position = value;
+        get => transform.position;
+        set => transform.position = value;
     }
 
-    protected override void Awake()
+    public float MockTime(List<Vector3> route, float speed)
     {
-        base.Awake(); 
-        ufm = new UniformFoldLineMotion();
-        ufm.OnTick += OnTick;
-        ufm.AfterComplete += AfterComplete;
-    }
-
-    protected virtual void OnDisable()
-    {
-        ufm.Paused = true;
+        return CalculateLength(route) / speed;
     }
 
     public void SetRoute(List<Vector3> route, float speed)
@@ -60,5 +68,17 @@ public class MoveController : CharacterComponentBase
     public virtual void ForceComplete()
     {
         ufm.ForceComplete();
+    }
+
+    protected virtual void Awake()
+    {
+        ufm = new UniformFoldLineMotion();
+        ufm.OnTick += OnTick;
+        ufm.AfterComplete += AfterComplete;
+    }
+
+    protected virtual void OnDisable()
+    {
+        ufm.Paused = true;
     }
 }

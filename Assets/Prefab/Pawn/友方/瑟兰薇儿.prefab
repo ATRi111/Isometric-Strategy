@@ -44,18 +44,6 @@ PrefabInstance:
       propertyPath: defaultProperty.actionTime
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4508710216947100420, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
-      propertyPath: dropAbility.defaultValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508710216947100420, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
-      propertyPath: moveAbility.defaultValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4508710216947100420, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
-      propertyPath: climbAbility.defaultValue
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5737828582266420397, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

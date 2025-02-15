@@ -13,7 +13,7 @@ public class Entity : EntityBase
     [AutoComponent]
     public GridObject GridObject { get; protected set; }
     [AutoComponent]
-    public GridMoveController MoveController { get; protected set; }
+    public GridObjectMoveController MoveController { get; protected set; }
     [AutoComponent]
     public DefenceComponent DefenceComponent { get; protected set; }
 

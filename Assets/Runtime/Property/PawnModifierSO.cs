@@ -1,3 +1,4 @@
+using Character;
 using MyTool;
 using System.Collections.Generic;
 using System.Text;
@@ -28,6 +29,22 @@ public class PawnModifierSO : ScriptableObject
         for (int i = 0; i < skillsAttached.Count; i++)
         {
             pawn.SkillManager.Forget(skillsAttached[i]);
+        }
+    }
+
+    /// <summary>
+    /// 模拟启用/禁用此对象产生的属性改变
+    /// </summary>
+    public void MockPropertyChange(bool register, Dictionary<string, float> ret)
+    {
+        float k = register ? 1f : -1f;
+        for (int i = 0; i < propertyModifier.modifiers.Count; i++)
+        {
+            PropertyModifier modifier = propertyModifier.modifiers[i];
+            string propertyName = modifier.so.name;
+            if (!ret.ContainsKey(propertyName))
+                ret.Add(propertyName, 0);
+            ret[propertyName] += k * modifier.value;
         }
     }
 

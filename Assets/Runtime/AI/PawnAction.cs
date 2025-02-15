@@ -45,7 +45,7 @@ public class PawnAction : IAnimationSource
         float time = 0f;
         if (animation != null)
         {
-            time = animation.MockTime();
+            time = animation.MockTime(this);
             animationManager.Register(animation, 0f);
         }
         effectUnit.Play(animationManager, time);

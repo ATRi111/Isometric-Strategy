@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a6d59543d5ca04ea79e038bb3e0253, type: 3}
   m_Name: "\u57FA\u7840\u884C\u52A8\u65F6\u95F4"
   m_EditorClassIdentifier: 
+  negative: 1
   description: "\u6240\u6709\u884C\u52A8\u989D\u5916\u82B1\u8D39\u7684\u65F6\u95F4"

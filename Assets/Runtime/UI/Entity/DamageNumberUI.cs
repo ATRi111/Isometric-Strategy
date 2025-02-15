@@ -16,9 +16,9 @@ public class DamageNumberUI : AnimationObject
         }
 
         if (damage > 0)
-            tmp.text = damage.ToString().ColorText("red");
+            tmp.text = damage.ToString().ColorText(FontUtility.Red);
         else
-            tmp.text = $"+{-damage}".ColorText("#4EEE94");      //伤害小于0视为治疗
+            tmp.text = $"+{-damage}".ColorText(FontUtility.SpringGreen3);      //伤害小于0视为治疗
         StartCoroutine(DelayRecycle(lifeSpan));
     }
 

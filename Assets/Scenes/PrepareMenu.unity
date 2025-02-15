@@ -4404,7 +4404,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 79f2949b0f34cb34e966bacb98f2e164, type: 2}
     - {fileID: 11400000, guid: 6f71e06fdb82ca74686efcacae923067, type: 2}
   unusedEquipmentList:
-  - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
+  - {fileID: 11400000, guid: fe1898dd34da5a44490ed3e2777f9021, type: 2}
   - {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}
   - {fileID: 11400000, guid: b0eb86003d6849b4290c5546439e452a, type: 2}
   isSelected: 0000000000000000

@@ -28,10 +28,11 @@ public class PropertyValueChangeUI : MonoBehaviour
         else
         {
             string color;
-            if (deltaValue > 0)
-                color = "red";
+            float k = so.negative ? -1f : 1f;
+            if (k * deltaValue > 0)
+                color = FontUtility.SpringGreen3;
             else
-                color = "#4EEE94";
+                color = FontUtility.Red;
 
             if (Mathf.Abs(deltaValue) >= 1)
                 tmp.text = Mathf.RoundToInt(deltaValue).ToString("+0.##;-0.##").ColorText(color);

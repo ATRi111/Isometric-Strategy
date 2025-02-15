@@ -7,8 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class ProjectileSkill : RangedSkill
 {
-    //应当在Mock时更新此
-    public readonly List<Vector3> currentTrajectory = new();
+    public float speedMultiplier = 1f;
 
     public override void GetVictims(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Entity> ret)
     {
