@@ -1,4 +1,5 @@
 using MyTool;
+using Services.Event;
 using System.Text;
 using UnityEngine;
 
@@ -33,9 +34,9 @@ public class PawnAction : IAnimationSource , IDescription
     /// <summary>
     /// 执行并播放动作
     /// </summary>
-    public void Play(AnimationManager animationManager)
+    public void Play(IEventSystem eventSystem, AnimationManager animationManager)
     {
-        Debug.Log(ResultDescription);
+        eventSystem.Invoke(EEvent.BattleLog, ResultDescription);
         if (target != agent.GridObject.CellPosition)
         {
             Vector2Int direction = (Vector2Int)(target - agent.GridObject.CellPosition);
@@ -73,7 +74,7 @@ public class PawnAction : IAnimationSource , IDescription
 
     public void ExtractKeyWords(KeyWordList keyWordList)
     {
-        keyWordList.Push(skill.displayName, skill.Description);
+
     }
 
     private void Describe(StringBuilder sb, bool result)
@@ -83,7 +84,7 @@ public class PawnAction : IAnimationSource , IDescription
             sb.Append(agent.name.Bold());
             sb.Append("使用了");
         }
-        sb.Append(skill.displayName);
+        sb.Append(skill.displayName.Bold());
         sb.AppendLine();
         sb.AppendLine($"时间花费:{Time}");
         for (int i = 0; i < effectUnit.effects.Count; i++)

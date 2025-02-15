@@ -10,6 +10,7 @@ using UnityEngine;
 public class PawnBrain : CharacterComponentBase
 {
     private AIManager AIManager;
+    private IEventSystem eventSystem; 
     public PawnEntity pawn;
     public PawnSensor sensor;
 
@@ -56,7 +57,7 @@ public class PawnBrain : CharacterComponentBase
 
     public void ExecuteAction(PawnAction action)
     {
-        action.Play(pawn.AnimationManager);
+        action.Play(eventSystem, pawn.AnimationManager);
     }
 
     public PawnAction MockSkill(Skill skill, Vector3Int target)
@@ -206,6 +207,7 @@ public class PawnBrain : CharacterComponentBase
     {
         base.Awake();
         AIManager = ServiceLocator.Get<AIManager>();
+        eventSystem = ServiceLocator.Get<IEventSystem>();
         sensor = GetComponent<PawnSensor>();
 #if UNITY_EDITOR
         generator = AIManager.GetComponent<DebugPlanUIGenerator>();
@@ -220,7 +222,7 @@ public class PawnBrain : CharacterComponentBase
         {
             if (Input.GetKeyUp(KeyCode.O))
             {
-                plans[0].action.Play(pawn.AnimationManager);
+                plans[0].action.Play(eventSystem, pawn.AnimationManager);
                 prepared = false;
             }
         }
