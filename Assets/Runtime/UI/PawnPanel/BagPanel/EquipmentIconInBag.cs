@@ -28,6 +28,7 @@ public class EquipmentIconInBag : IconUI , IPointerClickHandler
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
+        base.OnPointerEnter(eventData);
         Equipment equipment = bagPanel.visibleEquipments[index];
         pawnPanel.propertyChangeDict.Clear();
         equipment.MockPropertyChange(true, pawnPanel.propertyChangeDict);
@@ -35,7 +36,6 @@ public class EquipmentIconInBag : IconUI , IPointerClickHandler
         if (equipment != null)
             equipment.MockPropertyChange(false, pawnPanel.propertyChangeDict);
         pawnPanel.PreviewPropertyChange?.Invoke();
-        base.OnPointerEnter(eventData);
     }
 
     protected override void ExtractKeyWords()
@@ -43,13 +43,6 @@ public class EquipmentIconInBag : IconUI , IPointerClickHandler
         base.ExtractKeyWords();
         Equipment equipment = bagPanel.visibleEquipments[index];
         equipment.ExtractKeyWords(keyWordList);
-    }
-
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-        pawnPanel.propertyChangeDict.Clear();
-        pawnPanel.StopPreviewPropertyChange?.Invoke();
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -17,7 +17,7 @@ public class BagPanel : MonoBehaviour
     {
         PawnEntity pawn = pawnPanel.SelectedPawn;
         equipmentManager = pawn.EquipmentManager;
-        canvasGroup.Visible = equipmentManager.CanChangeEquipment;
+        canvasGroup.Visible = canvasGroup.Visible && equipmentManager.CanChangeEquipment;
         visibleEquipments.Clear();
         for (int i = 0; i < playerManager.unusedEquipmentList.Count; i++)
         {

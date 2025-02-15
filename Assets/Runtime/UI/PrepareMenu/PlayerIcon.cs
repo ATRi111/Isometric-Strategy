@@ -14,7 +14,7 @@ public class PlayerIcon : IconUI
             canvasGroup.Visible = true;
             image.sprite = playerManager.playerList[index].icon;
             PawnEntity pawn = playerManager.playerList[index];
-            info = pawn.EntityName + " " + pawn.pClass.name;
+            info = pawn.EntityName + "\n" + pawn.pClass.name;
 
         }
         else
