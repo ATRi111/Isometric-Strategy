@@ -3,13 +3,9 @@ using UnityEngine.UI;
 
 public class FollowHPBar : HPUI
 {
-    [SerializeField]
-    private Image front;
-    [SerializeField]
-    private Image back;
-
-    [SerializeField]
-    private Vector3 damageNumberOffset;
+    public Image front;
+    public Image back;
+    public Vector3 damageNumberOffset;
 
     public int damageNumberCount;
 

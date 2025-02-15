@@ -15,9 +15,9 @@ public abstract class AnimationProcess
     }
 
     /// <summary>
-    /// 预计算播放此动画需要的时间
+    /// 预计算延迟（即后续动画的等待时间）
     /// </summary>
-    public abstract float MockTime(IAnimationSource source);
+    public abstract float MockLatency(IAnimationSource source);
 
     /// <summary>
     /// 在一定延迟后播放动画

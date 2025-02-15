@@ -12,7 +12,7 @@ public class MoveAnimationProcess : EffectAnimationProcess
         speedMultiplier = effect.speedMultiplier;
     }
 
-    public override float MockTime(IAnimationSource source)
+    public override float MockLatency(IAnimationSource source)
     {
         return moveController.MockTime_CellPosition((effect as MoveEffect).route, speedMultiplier * moveController.defaultSpeed);
     }

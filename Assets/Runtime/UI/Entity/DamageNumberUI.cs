@@ -5,7 +5,7 @@ public class DamageNumberUI : AnimationObject
 {
     private TextMeshProUGUI tmp;
 
-    public override void Activate(IAnimationSource source)
+    public override void Initialize(IAnimationSource source)
     {
         HPChangeEffect effect = source as HPChangeEffect;
         int damage = effect.prev - effect.current;
@@ -19,7 +19,8 @@ public class DamageNumberUI : AnimationObject
             tmp.text = damage.ToString().ColorText(FontUtility.Red);
         else
             tmp.text = $"+{-damage}".ColorText(FontUtility.SpringGreen3);      //伤害小于0视为治疗
-        StartCoroutine(DelayRecycle(lifeSpan));
+
+        base.Initialize(source);
     }
 
     protected override void Awake()

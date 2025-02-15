@@ -5,7 +5,7 @@ public class Projectile : AnimationObject
 {
     protected GridMoveController moveController;
 
-    public override void Activate(IAnimationSource source)
+    public override void Initialize(IAnimationSource source)
     {
         PawnAction action = (PawnAction)source;
         ProjectileSkill skill = (ProjectileSkill)action.skill;
@@ -14,10 +14,10 @@ public class Projectile : AnimationObject
         moveController.SetRoute_CellPosition(trajectory, skill.speedMultiplier * moveController.defaultSpeed);
         lifeSpan = moveController.MockTime_CellPosition(trajectory, skill.speedMultiplier * moveController.defaultSpeed);
         transform.position = trajectory[0];
-        StartCoroutine(DelayRecycle(lifeSpan));
+        base.Initialize(source);
     }
 
-    public override float CalculateLifeSpan(IAnimationSource source)
+    public override float GetAnimationLatency(IAnimationSource source)
     {
         PawnAction action = (PawnAction)source;
         ProjectileSkill skill = (ProjectileSkill)action.skill;

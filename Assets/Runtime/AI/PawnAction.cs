@@ -20,7 +20,6 @@ public class PawnAction : IAnimationSource , IDescription
         this.skill = skill;
         this.target = target;
         this.agent = agent;
-        effectUnit = new(agent);
     }
 
     /// <summary>
@@ -28,6 +27,7 @@ public class PawnAction : IAnimationSource , IDescription
     /// </summary>
     public void Mock(PawnEntity agent, IsometricGridManager igm)
     {
+        effectUnit = new(agent);
         skill.Mock(agent, igm, agent.GridObject.CellPosition, target, effectUnit);
     }
 
@@ -43,13 +43,13 @@ public class PawnAction : IAnimationSource , IDescription
             agent.faceDirection = EDirectionTool.NearestDirection4(direction);
         }
         AnimationProcess animation = skill.MockAnimation(this);
-        float time = 0f;
+        float latency = 0f;
         if (animation != null)
         {
-            time = animation.MockTime(this);
+            latency = animation.MockLatency(this);
             animationManager.Register(animation, 0f);
         }
-        effectUnit.Play(animationManager, time);
+        effectUnit.Play(animationManager, latency);
     }
 
     public string Description

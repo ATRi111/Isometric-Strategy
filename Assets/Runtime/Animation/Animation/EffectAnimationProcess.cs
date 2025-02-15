@@ -11,7 +11,7 @@ public class EffectAnimationProcess : AnimationProcess
         this.effect = effect;
     }
 
-    public override float MockTime(IAnimationSource source)
+    public override float MockLatency(IAnimationSource source)
     {
         return 0f;
     }

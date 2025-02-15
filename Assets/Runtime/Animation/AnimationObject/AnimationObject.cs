@@ -14,9 +14,15 @@ public abstract class AnimationObject : MonoBehaviour
     [SerializeField]
     protected float lifeSpan;
 
-    public abstract void Activate(IAnimationSource source);
+    public virtual void Initialize(IAnimationSource source)
+    {
+        StartCoroutine(DelayRecycle(lifeSpan));
+    }
 
-    public virtual float CalculateLifeSpan(IAnimationSource source)
+    /// <summary>
+    /// 预计算延迟（即后续动画的等待时间），可以小于lifeSpan（表示动画未播放完时即衔接后续动画）
+    /// </summary>
+    public virtual float GetAnimationLatency(IAnimationSource source)
     {
         return lifeSpan;
     }
