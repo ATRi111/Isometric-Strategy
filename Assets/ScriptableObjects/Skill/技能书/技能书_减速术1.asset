@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: "\u6280\u80FD\u4E66_\u51CF\u901F\u672F1"
   m_EditorClassIdentifier: 
   displayName: "\u51CF\u901F\u672F1"
+  icon: {fileID: 0}
   extraDescription: 
   actionTime: 25
-  preConditions: []
+  animationName: 
+  preConditions:
+  - conditionType: 3
+    parameterIndex: 2
+    value: 1
   buffPreConditions:
   - so: {fileID: 11400000, guid: 74673d26f769a0745abcc02f9a60efc7, type: 2}
     requireExist: 0
