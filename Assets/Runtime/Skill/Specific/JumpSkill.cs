@@ -71,7 +71,7 @@ public class JumpSkill : MoveSkill
     {
         sb.Append("原始时间消耗:");
         sb.Append(actionTimePerUnit * castingDistance + actionTime);
-        sb.Append("(试图从敌人旁离开时+");
+        sb.Append("(试图离开控制区时+");
         sb.Append(ZOCActionTime);
         sb.Append(")");
         sb.AppendLine();

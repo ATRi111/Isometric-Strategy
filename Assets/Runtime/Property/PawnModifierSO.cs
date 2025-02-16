@@ -67,6 +67,10 @@ public class PawnModifierSO : ScriptableObject , IDescription
     {
         get
         {
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+                description = null;
+#endif
             if (string.IsNullOrEmpty(description))
             {
                 StringBuilder sb = new();

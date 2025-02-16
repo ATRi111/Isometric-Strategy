@@ -44,9 +44,16 @@ public class WalkSkill : MoveSkill
         }
         sb.Append(actionTimePerUnit);
         sb.Append("×走过的格数");
-        sb.Append("(试图从敌人旁离开时+");
-        sb.Append(ZOCActionTime);
-        sb.Append(")");
+        if(ZOCActionTime > 0)
+        {
+            sb.Append("(试图离开控制区时+");
+            sb.Append(ZOCActionTime);
+            sb.Append(")");
+        }
+        else
+        {
+            sb.Append("(无视控制区)");
+        }
         sb.AppendLine();
     }
 }
