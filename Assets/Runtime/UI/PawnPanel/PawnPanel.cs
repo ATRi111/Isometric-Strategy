@@ -86,7 +86,7 @@ public class PawnPanel : MonoBehaviour
         eventSystem = ServiceLocator.Get<IEventSystem>();
         canvasGroup = GetComponent<CanvasGroupPlus>();
         selectedIndex = 0;
-        levelManager = GameObject.Find("PrepareMenu").GetComponent<LevelManager>();
+        levelManager = LevelManager.FindInstance();
     }
 
     private void OnEnable()

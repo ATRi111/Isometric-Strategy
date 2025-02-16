@@ -9,6 +9,11 @@ using UnityEngine;
 /// </summary>
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager FindInstance()
+    {
+        return GameObject.Find("PrepareMenu").GetComponent<LevelManager>();
+    }
+
     private ISceneController sceneController;
     private IEventSystem eventSystem;
     private GameManager gameManager;

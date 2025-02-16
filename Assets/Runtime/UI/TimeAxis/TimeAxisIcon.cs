@@ -9,9 +9,22 @@ public class TimeAxisIcon : IconUI
 {
     public void SetPawns(List<PawnEntity> pawns)
     {
-        //TODO:ÑÕÉ«
+        Vector3 sum = Vector3.zero;
+        for (int i = 0; i < pawns.Count; i++)
+        {
+            Color color = pawns[i].faction switch
+            {
+                EFaction.Ally => Color.green,
+                EFaction.Enemy => Color.red,
+                _ => Color.black
+            };
+            sum += new Vector3(color.r, color.g, color.b);
+        }
+        sum /= pawns.Count;
+        image.color = new Color(sum.x, sum.y, sum.z, 1f);
+
         StringBuilder sb = new();
-        for (int i = 0; i < pawns.Count - 1; i++)
+        for (int i = 0; i < pawns.Count; i++)
         {
             string colorString = pawns[i].faction switch
             {
@@ -22,7 +35,6 @@ public class TimeAxisIcon : IconUI
             sb.Append(pawns[i].EntityName.ColorText(colorString));
             sb.Append(" ");
         }
-        sb.Append(pawns[^1].EntityName);
         sb.AppendLine();
         sb.Append("Ê£ÓàÊ±¼ä:");
         sb.Append(pawns[0].time - gameManager.Time);

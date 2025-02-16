@@ -15,7 +15,7 @@ public class LevelDescription : MonoBehaviour
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroupPlus>();
-        levelManager = GameObject.Find("PrepareMenu").GetComponent<LevelManager>();
+        levelManager = LevelManager.FindInstance();
     }
 
     private void OnEnable()

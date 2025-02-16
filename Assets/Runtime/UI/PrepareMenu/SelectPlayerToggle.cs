@@ -3,6 +3,7 @@ using UIExtend;
 public class SelectPlayerToggle : ToggleBase
 {
     private PlayerManager playerManager;
+    private LevelManager levelManager;
     private PlayerIcon playerIcon;
 
     protected override void OnToggle(bool value)
@@ -13,7 +14,13 @@ public class SelectPlayerToggle : ToggleBase
             playerManager.Unselect(playerIcon.index);
     }
 
-    private void AfterSelectChange()
+    public void Refresh()
+    {
+        Toggle.isOn = false;
+        CheckInteractable();
+    }
+
+    private void CheckInteractable()
     {
         Toggle.interactable = !playerManager.FullySelected || Toggle.isOn;
     }
@@ -22,7 +29,9 @@ public class SelectPlayerToggle : ToggleBase
     {
         base.Awake();
         playerIcon = GetComponentInParent<PlayerIcon>();
+        levelManager = GetComponentInParent<LevelManager>();
+        levelManager.OnReturnToPrepareMenu += Refresh;
         playerManager = PlayerManager.FindInstance();
-        playerManager.AfterSelectChange += AfterSelectChange;
+        playerManager.AfterSelectChange += CheckInteractable;
     }
 }

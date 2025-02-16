@@ -25,8 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     public Action AfterSelectChange;
 
-    [SerializeField]
-    private bool[] isSelected;
+    public bool[] isSelected;
     [SerializeField]
     private int selectedCount;
     public int SelectedCount => selectedCount;
