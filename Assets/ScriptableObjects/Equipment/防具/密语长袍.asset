@@ -30,7 +30,6 @@ MonoBehaviour:
     - value: 1
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
-  skillsAttached:
-  - {fileID: 0}
+  skillsAttached: []
   extraDescription: 
   slotType: 1

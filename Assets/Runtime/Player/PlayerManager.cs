@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
     public Action AfterSelectChange;
 
     [SerializeField]
-    private List<bool> isSelected;
+    private bool[] isSelected;
     [SerializeField]
     private int selectedCount;
     public int SelectedCount => selectedCount;
@@ -51,6 +51,12 @@ public class PlayerManager : MonoBehaviour
                 return i;
         }
         return -1;
+    }
+
+    public void AddPlayerData(PlayerData data)
+    {
+        playerDataList.Add(data);
+        Generate(data);
     }
 
     /// <summary>
@@ -100,7 +106,7 @@ public class PlayerManager : MonoBehaviour
 
     private void BeforeUnLoadScene(int sceneIndex)
     {
-        for (int i = 0; i < isSelected.Count; i++)
+        for (int i = 0; i < isSelected.Length; i++)
         {
             Unselect(i);
         }

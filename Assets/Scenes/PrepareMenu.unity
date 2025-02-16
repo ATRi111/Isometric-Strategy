@@ -367,7 +367,6 @@ GameObject:
   m_Component:
   - component: {fileID: 243889537}
   - component: {fileID: 243889536}
-  - component: {fileID: 243889535}
   - component: {fileID: 243889538}
   m_Layer: 0
   m_Name: PrepareMenuCamera
@@ -376,14 +375,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &243889535
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243889534}
-  m_Enabled: 1
 --- !u!20 &243889536
 Camera:
   m_ObjectHideFlags: 0
@@ -516,6 +507,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 85604685913702717, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 272485423627095064, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 272485423627095064, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 272485423627095064, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 359145839509387197, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
@@ -1472,6 +1475,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4719219977419809238, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741115623692416116, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741115623692416116, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4824902243338988233, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}

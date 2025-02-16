@@ -73,15 +73,11 @@ public class PlayerSaveData
 
     public PlayerData ToPlayerData(IAssetLoader assetLoader)
     {
-        PlayerData ret = new()
+        List<Equipment> list = new();
+        for (int i = 0; i < equipmentList.Count; i++)
         {
-            prefab = assetLoader.Load<GameObject>(prefabName),
-            equipmentList = new()
-        };
-        for (int i = 0;i < equipmentList.Count;i++)
-        {
-            ret.equipmentList.Add(assetLoader.Load<Equipment>(equipmentList[i]));
+            list.Add(assetLoader.Load<Equipment>(equipmentList[i]));
         }
-        return ret;
+        return new(assetLoader.Load<GameObject>(prefabName), list);
     }
 }
