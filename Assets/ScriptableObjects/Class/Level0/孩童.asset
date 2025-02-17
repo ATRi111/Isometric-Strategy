@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f8185e3a01d1f41a2a3a74abf4c790, type: 3}
+  m_Name: "\u5B69\u7AE5"
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  propertyModifier:
+    modifiers: []
+  skillsAttached:
+  - {fileID: 11400000, guid: a34ae36d0a4942c408580afebf28b350, type: 2}
+  extraDescription: "\u5929\u771F\u65E0\u90AA\u7684\u513F\u7AE5\u3002"
+  supportAbility: 0.2
+  offenseAbility: 0.8
+  bestSupprtDistance: 3
+  bestOffenseDistance: 5
+  terrainAbility: 1
