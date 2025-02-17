@@ -23,7 +23,7 @@ MonoBehaviour:
   buffOnAgent: []
   powers:
   - type: 3
-    power: 100
+    power: 80
     strMultiplier: 1
     dexMultiplier: 0
     intMultiplier: 0
