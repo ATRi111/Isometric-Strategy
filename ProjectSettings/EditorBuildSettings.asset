@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PrepareMenu.unity
     guid: 9912cda6ca982ec47a9f1e8ea30f57d9
   - enabled: 1
+    path: Assets/Scenes/Level0_SnowballFight.unity
+    guid: f19cfa87f8ae35d4985c575f557be75c
+  - enabled: 1
     path: Assets/Scenes/Level1_BridgeEncounter.unity
     guid: cd43840c8d7cdd6448f8008b6d970637
   - enabled: 1
