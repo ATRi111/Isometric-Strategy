@@ -3,6 +3,7 @@ using Character;
 using EditorExtend.GridEditor;
 using Services;
 using Services.Event;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
@@ -16,6 +17,10 @@ public class PawnSensor : CharacterComponentBase
 
     public PawnEntity pawn;
 
+    //自我认知中的阵营
+    [NonSerialized]
+    public EFaction percievedFaction;
+
     private List<Vector2Int> adjacent = new();  //相邻四格
 
     public readonly List<PawnEntity> allies = new();
@@ -28,6 +33,14 @@ public class PawnSensor : CharacterComponentBase
         RecognizeEnemyAndAlly();
     }
 
+    public int FactionCheck(Entity entity)
+    {
+        PawnEntity pawn = entity as PawnEntity;
+        if (pawn == null)
+            return 0;
+        return ((int)percievedFaction - 1) * ((int)pawn.faction - 1);
+    }
+
     public void RecognizeEnemyAndAlly()
     {
         allies.Clear();
@@ -36,7 +49,7 @@ public class PawnSensor : CharacterComponentBase
         {
             if (pawn == this.pawn)
                 continue;
-            int flag = this.pawn.FactionCheck(pawn);
+            int flag = FactionCheck(pawn);
             switch (flag)
             {
                 case 1:
@@ -132,6 +145,7 @@ public class PawnSensor : CharacterComponentBase
         AIManager = ServiceLocator.Get<AIManager>();
         adjacent = IsometricGridUtility.WithinProjectManhattanDistance(1);
         pawn = (PawnEntity)entity;
+        percievedFaction = pawn.faction;
     }
 
     private void OnEnable()

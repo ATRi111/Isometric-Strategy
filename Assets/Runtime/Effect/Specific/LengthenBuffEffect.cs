@@ -22,7 +22,7 @@ public class LengthenBuffEffect : BuffEffect
     {
         int delta = endTime - buff.endTime;
         if (PawnVictim != null)
-            return delta / buff.so.duration * buff.so.ValueForVictim(PawnVictim) * pawn.FactionCheck(victim);
+            return delta / buff.so.duration * buff.so.ValueForVictim(PawnVictim) * pawn.Sensor.FactionCheck(victim);
         return 0f;
     }
 

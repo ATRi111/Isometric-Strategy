@@ -16,7 +16,7 @@ MonoBehaviour:
   propertyModifier:
     modifiers: []
   skillsAttached: []
-  extraDescription: 
+  extraDescription: "\u6682\u65F6\u4E3A\u654C\u65B9\u6218\u6597"
   duration: 250
   superimposeMode: 1
   removeFlag: 2

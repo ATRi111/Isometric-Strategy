@@ -24,7 +24,7 @@ public class DisableEntityEffect : Effect
 
     public override float ValueFor(PawnEntity pawn)
     {
-        return -100f * pawn.FactionCheck(victim);
+        return -100f * pawn.Sensor.FactionCheck(victim);
     }
 
     public override void Describe(StringBuilder sb, bool result)

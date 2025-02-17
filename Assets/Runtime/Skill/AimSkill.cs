@@ -42,8 +42,8 @@ public abstract class AimSkill : Skill
         {
             EVictimType.Entity => true,
             EVictimType.Pawn => victim is PawnEntity,
-            EVictimType.Ally => agent.FactionCheck(victim) > 0,
-            EVictimType.Enemy => agent.FactionCheck(victim) < 0,
+            EVictimType.Ally => agent.Sensor.FactionCheck(victim) > 0,
+            EVictimType.Enemy => agent.Sensor.FactionCheck(victim) < 0,
             _ => false,
         };
     }
@@ -223,7 +223,7 @@ public abstract class AimSkill : Skill
         switch(victimType)
         {
             case EVictimType.Pawn:
-                sb.Append("仅以自身/友方/敌方角色为目标");
+                sb.Append("仅以角色为目标");
                 sb.AppendLine();
                 break;
             case EVictimType.Ally:

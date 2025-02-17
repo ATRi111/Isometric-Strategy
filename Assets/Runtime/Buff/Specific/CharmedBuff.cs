@@ -6,7 +6,7 @@ public class CharmedBuff : BuffSO
     public override void Register(PawnEntity pawn)
     {
         base.Register(pawn);
-        pawn.faction = pawn.faction switch
+        pawn.Sensor.percievedFaction = pawn.faction switch
         {
             EFaction.Enemy => EFaction.Ally,
             EFaction.Ally => EFaction.Enemy,
@@ -17,11 +17,6 @@ public class CharmedBuff : BuffSO
     public override void Unregister(PawnEntity pawn)
     {
         base.Unregister(pawn);
-        pawn.faction = pawn.faction switch
-        {
-            EFaction.Enemy => EFaction.Ally,
-            EFaction.Ally => EFaction.Enemy,
-            _ => EFaction.Neutral,
-        };
+        pawn.Sensor.percievedFaction = pawn.faction;
     }
 }

@@ -23,7 +23,7 @@ public class ModifyParameterEffect : Effect
 
     public override float ValueFor(PawnEntity pawn)
     {
-        return (value - value_prev) * PawnEntity.ParameterTable[parameterName].valuePerUnit * pawn.FactionCheck(victim);
+        return (value - value_prev) * PawnEntity.ParameterTable[parameterName].valuePerUnit * pawn.Sensor.FactionCheck(victim);
     }
 
     public override void Apply()

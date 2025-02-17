@@ -15,7 +15,7 @@ public class HealthAbsorbSkill : RangedSkill
         {
             if(ret.effects[i] is HPChangeEffect hpChangeEffect)
             {
-                if(agent.FactionCheck(hpChangeEffect.victim) < 0 && hpChangeEffect.probability == Effect.MaxProbability)
+                if(hpChangeEffect.probability == Effect.MaxProbability)
                 {
                     int hp = agent.DefenceComponent.HP + Mathf.RoundToInt(absorbPercent * (hpChangeEffect.prev - hpChangeEffect.current));
                     HPChangeEffect absorb = new(agent, agent.DefenceComponent.HP, hp, hpChangeEffect.probability)

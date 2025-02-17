@@ -19,7 +19,7 @@ public class RemoveBuffEffect : BuffEffect
     {
         int delta = Mathf.Max(gameManager.Time - buff.endTime, 0); //delta为负数，表示buff持续时间减少
         if (PawnVictim != null)
-            return delta / buff.so.duration * buff.so.ValueForVictim(PawnVictim) * pawn.FactionCheck(victim);
+            return delta / buff.so.duration * buff.so.ValueForVictim(PawnVictim) * pawn.Sensor.FactionCheck(victim);
         return 0f;
     }
 

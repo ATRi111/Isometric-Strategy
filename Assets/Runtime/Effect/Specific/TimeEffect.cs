@@ -37,7 +37,7 @@ public class TimeEffect : Effect
 
     public override float ValueFor(PawnEntity pawn)
     {
-        return (prev - current) * pawn.FactionCheck(victim);
+        return (prev - current) * pawn.Sensor.FactionCheck(victim);
     }
 
     public override void Describe(StringBuilder sb, bool result)

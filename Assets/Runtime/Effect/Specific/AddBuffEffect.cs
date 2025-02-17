@@ -16,7 +16,7 @@ public class AddBuffEffect : BuffEffect
     public override float ValueFor(PawnEntity pawn)
     {
         if (PawnVictim != null)
-            return buff.so.ValueForVictim(PawnVictim) * pawn.FactionCheck(victim);
+            return buff.so.ValueForVictim(PawnVictim) * pawn.Sensor.FactionCheck(victim);
         return 0f;
     }
 

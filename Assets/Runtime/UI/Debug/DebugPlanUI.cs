@@ -27,7 +27,7 @@ public class DebugPlanUI : MonoBehaviour
         this.plan = plan;
         textbox.text = 
             $"V:{plan.value:F2}\n" +
-            $"{plan.action.skill.name}\n" +
+            $"{plan.action.skill.displayName}\n" +
             $"T:{plan.action.Time}\n";
     }
 
