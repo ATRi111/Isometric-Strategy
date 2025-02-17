@@ -91,7 +91,7 @@ public abstract class AimSkill : Skill
     /// <summary>
     /// 模拟技能对指定目标造成的伤害(含击退效果)
     /// </summary>
-    protected virtual void MockDamageAndOnVictim(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target, List<SkillPower> powers, EffectUnit ret)
+    protected virtual void MockDamageOnVictim(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target, List<SkillPower> powers, EffectUnit ret)
     {
         //计算伤害
         int damage = 0;
@@ -148,7 +148,7 @@ public abstract class AimSkill : Skill
 
         for (int i = 0; i < victims.Count; i++)
         {
-            MockDamageAndOnVictim(igm, agent, victims[i], position, target, tempPower, ret);
+            MockDamageOnVictim(igm, agent, victims[i], position, target, tempPower, ret);
             if (victims[i] is PawnEntity pawn)
                 MockBuffOnVictim(agent, pawn, ret);
             MockOtherEffectOnVictim(agent,victims[i], ret);

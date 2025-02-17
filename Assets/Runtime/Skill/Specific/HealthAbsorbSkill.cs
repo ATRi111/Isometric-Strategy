@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "生命吸取", menuName = "技能/生命吸取")]
+[CreateAssetMenu(fileName = "生命吸取", menuName = "技能/特殊/生命吸取")]
 public class HealthAbsorbSkill : RangedSkill
 {
     public float absorbPercent;
 
-    protected override void MockDamageAndOnVictim(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target, List<SkillPower> powers, EffectUnit ret)
+    protected override void MockDamageOnVictim(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target, List<SkillPower> powers, EffectUnit ret)
     {
-        base.MockDamageAndOnVictim(igm, agent, victim, position, target, powers, ret);
+        base.MockDamageOnVictim(igm, agent, victim, position, target, powers, ret);
         int n = ret.effects.Count;  //中途可能会插入新元素
         for (int i = 0; i < n; i++)
         {
@@ -23,7 +23,7 @@ public class HealthAbsorbSkill : RangedSkill
                         randomValue = hpChangeEffect.randomValue
                     };
                     ret.effects.Add(absorb);
-                    break;
+                    break;  //只有第一段伤害能触发吸血
                 }
             }
         }

@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
+  animationName: 
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
@@ -28,7 +29,7 @@ MonoBehaviour:
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
-  hitBackProbability: 15
+  hitBackProbability: 20
   victimType: 1
   minLayer: -2
   maxLayer: 2
