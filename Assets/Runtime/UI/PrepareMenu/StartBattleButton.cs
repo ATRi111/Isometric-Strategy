@@ -13,6 +13,9 @@ public class StartBattleButton : ButtonBase
     private void AfterSelectChange()
     {
         Button.interactable = playerManager.SelectedCount == playerManager.MaxSelectedCount;
+#if UNITY_EDITOR
+        Button.interactable = true;
+#endif
     }
 
     protected override void Awake()
