@@ -4682,14 +4682,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
     - {fileID: 11400000, guid: 79f2949b0f34cb34e966bacb98f2e164, type: 2}
     - {fileID: 11400000, guid: 6f71e06fdb82ca74686efcacae923067, type: 2}
-  - prefab: {fileID: 5073553096870818143, guid: fb4d2c811061c6b4fafe0df29b8c96fb, type: 3}
-    equipmentList: []
-  - prefab: {fileID: 5073553096870818143, guid: 7c5a1bfa059962b40a02f97d679c7adf, type: 3}
-    equipmentList: []
-  - prefab: {fileID: 5073553096870818143, guid: 6c20ecb5bde136140b6d232dba6bb007, type: 3}
-    equipmentList: []
-  - prefab: {fileID: 5073553096870818143, guid: a55ff6e7c2c489d488afe0df0244978c, type: 3}
-    equipmentList: []
   unusedEquipmentList:
   - {fileID: 11400000, guid: fe1898dd34da5a44490ed3e2777f9021, type: 2}
   - {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}

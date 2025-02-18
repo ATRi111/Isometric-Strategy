@@ -12,7 +12,7 @@ public class StartBattleButton : ButtonBase
 
     private void AfterSelectChange()
     {
-        Button.interactable = playerManager.SelectedCount > 0;
+        Button.interactable = playerManager.SelectedCount == playerManager.MaxSelectedCount;
     }
 
     protected override void Awake()
@@ -21,10 +21,5 @@ public class StartBattleButton : ButtonBase
         levelManager = GetComponentInParent<LevelManager>();
         playerManager = PlayerManager.FindInstance();
         playerManager.AfterSelectChange += AfterSelectChange;
-    }
-
-    private void Start()
-    {
-        AfterSelectChange();
     }
 }
