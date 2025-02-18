@@ -54,7 +54,7 @@ MonoBehaviour:
     - value: 50
       so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
       method: 0
-    - value: 5
+    - value: 50
       so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
       method: 0
     - value: 50
