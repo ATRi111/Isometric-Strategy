@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
   immediate_next: 0
@@ -212,8 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea68154b90c0c54a845900c36016e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: 
+  info: 
   canvasGroup: {fileID: 0}
+  infoPivot: {x: 0, y: 0}
+  infoOffset: {x: 100, y: 0}
   action:
     agent: {fileID: 0}
     skill: {fileID: 0}
@@ -223,6 +226,7 @@ MonoBehaviour:
         victim: {fileID: 0}
         probability: 0
         randomValue: 0
+        hidden: 0
         prev: 0
         current: 0
       effects: []

@@ -40,6 +40,11 @@ public class ActionIcon : IconUI, IPointerClickHandler
     {
         info = action.Description;
         this.action = action;
+        Vector3 cell = action.target - action.agent.GridObject.CellPosition;
+        Vector2 world = Igm.CellToWorld(cell);
+        world = world.normalized;
+        infoPivot = 0.5f * (Vector2.one - world);
+        infoOffset = infoOffset.magnitude * world;
     }
 
     protected override void Awake()

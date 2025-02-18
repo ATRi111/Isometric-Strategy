@@ -31,22 +31,19 @@ public class InfoUI : TextBase
     private RectTransform rectTransform;
     private CanvasGroupPlus canvasGrounp;
     private KeyWordList keyWordList;
-    private object source;  //当前引发消息的对象
 
     private bool focusOnIcon;
     private bool containsMouse;
     [SerializeField]
     private Vector2 offset;
 
-    private void ShowInfo(object source, Vector2 screenPoint, string info)
+    private void ShowInfo(Vector2 screenPoint, Vector2 pivot, string info)
     {
-        if (this.source != null)
-            return;
-        this.source = source;
         focusOnIcon = true;
         DevideFirstLine(info, out string firstLine, out string left);
         info = firstLine + "\n" + keyWordList.MarkAllKeyWords(left, Mark);     //第一行不会被标记
         TextUI.text = info;
+        rectTransform.pivot = pivot;
         transform.position = screenPoint + offset;
         UIExtendUtility.ClampInScreen(rectTransform);
         canvasGrounp.Visible = true;
@@ -54,10 +51,7 @@ public class InfoUI : TextBase
 
     private void HideInfo(object source)
     {
-        if (source != this.source)
-            return;
         focusOnIcon = false;
-        this.source = null;
     }
 
     protected override void Awake()
@@ -71,13 +65,13 @@ public class InfoUI : TextBase
 
     private void OnEnable()
     {
-        eventSystem.AddListener<object, Vector2, string>(EEvent.ShowInfo, ShowInfo);
+        eventSystem.AddListener<Vector2, Vector2, string>(EEvent.ShowInfo, ShowInfo);
         eventSystem.AddListener<object>(EEvent.HideInfo, HideInfo);
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener<object, Vector2, string>(EEvent.ShowInfo, ShowInfo);
+        eventSystem.RemoveListener<Vector2, Vector2, string>(EEvent.ShowInfo, ShowInfo);
         eventSystem.RemoveListener<object>(EEvent.HideInfo, HideInfo);
     }
 

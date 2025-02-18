@@ -36,7 +36,7 @@ public class TimeAxisIcon : IconUI
             sb.Append(" ");
         }
         sb.AppendLine();
-        sb.Append("剩余时间:");
+        sb.Append("剩余等待时间:");
         sb.Append(pawns[0].time - gameManager.Time);
         sb.AppendLine();
         info = sb.ToString();

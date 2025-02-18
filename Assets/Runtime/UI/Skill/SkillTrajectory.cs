@@ -12,7 +12,9 @@ public class SkillTrajectory : MonoBehaviour
 
     private Vector3[] points;
     [SerializeField]
-    private Color color_hit;
+    private Color color_hitAlly;
+    [SerializeField]
+    private Color color_hitEnemy;
     [SerializeField]
     private Color color_miss;
 
@@ -31,7 +33,7 @@ public class SkillTrajectory : MonoBehaviour
                 points[i] = Igm.CellToWorld(trajectory[i]);
             }
             bool hitEntity = victim != null && victim.GetComponent<Entity>() != null;
-            Color color = hitEntity ? color_hit : color_miss;
+            Color color = hitEntity ? color_hitAlly : color_miss;
             lineRenderer.startColor = lineRenderer.endColor = color;
             lineRenderer.positionCount = points.Length;
             lineRenderer.SetPositions(points);

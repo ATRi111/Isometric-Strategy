@@ -18,12 +18,14 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected Image image;
     protected KeyWordList keyWordList;
 
+    public Vector2 infoPivot;
+    public Vector2 infoOffset;
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         ExtractKeyWords();
         if (!string.IsNullOrEmpty(info))
-            eventSystem.Invoke(EEvent.ShowInfo, (object)this, eventData.position, info);
+            eventSystem.Invoke(EEvent.ShowInfo, eventData.position + infoOffset, infoPivot, info);
     }
 
     protected virtual void ExtractKeyWords()
@@ -43,6 +45,7 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         canvasGroup = GetComponent<CanvasGroupPlus>();
         image = GetComponentInChildren<Image>();
         keyWordList = ServiceLocator.Get<IAssetLoader>().Load<KeyWordList>(nameof(KeyWordList));
+        infoPivot = Vector2.up;
     }
 
     protected virtual void OnEnable()
