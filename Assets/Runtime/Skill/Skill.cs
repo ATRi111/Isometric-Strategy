@@ -93,7 +93,7 @@ public abstract class Skill : ScriptableObject , IDescription
     /// </summary>
     public virtual AnimationProcess MockAnimation(PawnAction action)
     {
-        if (animationName != null)
+        if (!string.IsNullOrEmpty(animationName))
         {
             ObjectAnimationProcess animationProcess = new(
                 action, animationName,
