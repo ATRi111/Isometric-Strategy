@@ -16,8 +16,8 @@ MonoBehaviour:
   propertyModifier:
     modifiers: []
   skillsAttached:
-  - {fileID: 11400000, guid: a34ae36d0a4942c408580afebf28b350, type: 2}
-  extraDescription: "\u5929\u771F\u65E0\u90AA\u7684\u513F\u7AE5\u3002"
+  - {fileID: 11400000, guid: 391374c3f5ac59c44832cee877c34f5b, type: 2}
+  extraDescription: "\u5929\u771F\u65E0\u90AA\u7684\u513F\u7AE5"
   supportAbility: 0.2
   offenseAbility: 0.8
   bestSupprtDistance: 3

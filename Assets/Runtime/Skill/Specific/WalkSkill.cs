@@ -36,7 +36,7 @@ public class WalkSkill : MoveSkill
 
     protected override void DescribeTime(StringBuilder sb)
     {
-        sb.Append("原始时间消耗:");
+        sb.Append("时间消耗:");
         if(actionTime > 0)
         {
             sb.Append(actionTime);

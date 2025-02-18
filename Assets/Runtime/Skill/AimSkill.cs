@@ -110,7 +110,7 @@ public abstract class AimSkill : Skill
             effect = new DisableEntityEffect(victim);
             ret.effects.Add(effect);
         }
-        else if(victim is PawnEntity pawnVictim)
+        else if(victim is PawnEntity pawnVictim && hitBackProbability > 0)
         {
             HitBackUtility.MockHitBack(igm, position, pawnVictim, HP, hitBackProbability, ret);
         }

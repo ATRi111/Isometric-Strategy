@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e597e1cdf21a484285316e512db9089, type: 3}
+  m_Script: {fileID: 11500000, guid: 065d4d2cf251bf9418a01d673b593a2a, type: 3}
   m_Name: "\u6559\u5B66\u5173_\u4E22\u96EA\u7403"
   m_EditorClassIdentifier: 
   displayName: "\u4E22\u96EA\u7403"
@@ -33,6 +33,14 @@ MonoBehaviour:
   victimType: 1
   minLayer: -32
   maxLayer: 32
-  castingDistance: 4
+  castingDistance: 6
   aimAtSelf: 0
-  speedMultiplier: 1
+  speedMultiplier: 2
+  angles:
+  - 0
+  - 15
+  - 30
+  - 45
+  - 60
+  - 75
+  maxSpeed: 5.5

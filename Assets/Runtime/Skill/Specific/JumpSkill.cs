@@ -69,7 +69,7 @@ public class JumpSkill : MoveSkill
 
     protected override void DescribeTime(StringBuilder sb)
     {
-        sb.Append("原始时间消耗:");
+        sb.Append("时间消耗:");
         sb.Append(actionTimePerUnit * castingDistance + actionTime);
         sb.Append("(试图离开控制区时+");
         sb.Append(ZOCActionTime);
