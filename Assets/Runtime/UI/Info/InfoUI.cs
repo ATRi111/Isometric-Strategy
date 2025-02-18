@@ -41,7 +41,10 @@ public class InfoUI : TextBase
     {
         focusOnIcon = true;
         DevideFirstLine(info, out string firstLine, out string left);
-        info = firstLine + "\n" + keyWordList.MarkAllKeyWords(left, Mark);     //第一行不会被标记
+        if (firstLine.StartsWith("<b>") && firstLine.EndsWith("</b>"))
+            info = firstLine + "\n" + keyWordList.MarkAllKeyWords(left, Mark);     //第一行如果为粗体,则不会被标记
+        else
+            info = keyWordList.MarkAllKeyWords(info, Mark);
         TextUI.text = info;
         rectTransform.pivot = pivot;
         transform.position = screenPoint + offset;
@@ -105,7 +108,8 @@ public class InfoUI : TextBase
         {
             TMP_LinkInfo linkInfo = TextUI.textInfo.linkInfo[linkIndex];
             string description = keyWordList.GetDescription(linkInfo.GetLinkText());
-            eventSystem.Invoke(EEvent.ShowSecondaryInfo, (Vector2)Input.mousePosition, description);
+            if (!string.IsNullOrWhiteSpace(description))
+                eventSystem.Invoke(EEvent.ShowSecondaryInfo, (Vector2)Input.mousePosition, description);
         }
         else
         {

@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 3856516778560775587}
   - component: {fileID: 4783213863467078949}
   - component: {fileID: 6082496325184181627}
+  - component: {fileID: 5230056257630304462}
   m_Layer: 5
   m_Name: PawnName
   m_TagString: Untagged
@@ -161,8 +162,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 53, y: 329.37}
-  m_SizeDelta: {x: 257.7189, y: 50}
+  m_AnchoredPosition: {x: 48, y: 329.37}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3856516778560775587
 CanvasRenderer:
@@ -192,7 +193,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u4EBA\u7269\u540D12345"
+  m_text: "\u4EBA\u7269\u540D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 53804a6e542e7b74eb1cb14ee6aab633, type: 2}
   m_sharedMaterial: {fileID: -8196901046368968537, guid: 53804a6e542e7b74eb1cb14ee6aab633, type: 2}
@@ -275,6 +276,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b566d381ab87f6444b27232237b48983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5230056257630304462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482321115555150072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &778127819411629907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,6 +2746,7 @@ GameObject:
   - component: {fileID: 2928959410430713566}
   - component: {fileID: 3801861503379190993}
   - component: {fileID: 7366787372601841113}
+  - component: {fileID: 2552185673466069085}
   m_Layer: 5
   m_Name: PawnClass
   m_TagString: Untagged
@@ -2755,7 +2771,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 53, y: 265}
-  m_SizeDelta: {x: 257.7189, y: 50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &192145474467818525
 CanvasRenderer:
@@ -2785,7 +2801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u804C\u4E1A\u540D12345"
+  m_text: "\u804C\u4E1A\u540D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 53804a6e542e7b74eb1cb14ee6aab633, type: 2}
   m_sharedMaterial: {fileID: -8196901046368968537, guid: 53804a6e542e7b74eb1cb14ee6aab633, type: 2}
@@ -2900,6 +2916,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: 
   canvasGroup: {fileID: 0}
+  infoPivot: {x: 0, y: 0}
+  infoOffset: {x: 0, y: 0}
+--- !u!114 &2552185673466069085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280384118210616145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &8031107498634238794
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,6 +57,10 @@ PrefabInstance:
       value: "\u7BA1\u5BB6"
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: description
+      value: "\u4F18\u96C5\u6253\u7406\u597D\u6240\u6709\u5BB6\u52A1\u4E8B\u7684\u7BA1\u5BB6\u5148\u751F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: actionTime.defaultValue
       value: 0
       objectReference: {fileID: 0}

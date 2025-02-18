@@ -14,8 +14,7 @@ public class PlayerIcon : IconUI
             canvasGroup.Visible = true;
             image.sprite = playerManager.playerList[index].icon;
             PawnEntity pawn = playerManager.playerList[index];
-            info = pawn.EntityName + "\n" + pawn.pClass.name;
-
+            info = pawn.EntityName + " " + pawn.pClass.name;
         }
         else
         {
@@ -28,6 +27,7 @@ public class PlayerIcon : IconUI
     {
         base.ExtractKeyWords();
         PawnEntity pawn = playerManager.playerList[index];
+        keyWordList.Push(pawn.EntityName, pawn.Description);
         keyWordList.Push(pawn.pClass.name, pawn.pClass.Description);
     }
 

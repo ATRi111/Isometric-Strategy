@@ -53,6 +53,10 @@ PrefabInstance:
       value: "\u9A6C\u4FEE"
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: description
+      value: "\u683C\u4F26\u7684\u7236\u4EB2\uFF0C\u8FD9\u7247\u571F\u5730\u7684\u9886\u4E3B\n\u540C\u65F6\u4E5F\u662F\u4E00\u4F4D\u70ED\u7231\u5192\u9669\u7684\u63A2\u9669\u5BB6"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: targetToKill
       value: 1
       objectReference: {fileID: 0}

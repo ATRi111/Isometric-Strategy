@@ -24,7 +24,7 @@ public class IconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         ExtractKeyWords();
-        if (!string.IsNullOrEmpty(info))
+        if (!string.IsNullOrWhiteSpace(info))
             eventSystem.Invoke(EEvent.ShowInfo, eventData.position + infoOffset, infoPivot, info);
     }
 

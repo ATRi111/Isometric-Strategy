@@ -20,7 +20,7 @@ MonoBehaviour:
       method: 0
   skillsAttached:
   - {fileID: 11400000, guid: 391374c3f5ac59c44832cee877c34f5b, type: 2}
-  extraDescription: "\u4F18\u96C5\u6253\u7406\u597D\u6240\u6709\u5BB6\u52A1\u4E8B\u7684\u7BA1\u5BB6\u5148\u751F"
+  extraDescription: 
   supportAbility: 0.2
   offenseAbility: 0.8
   bestSupprtDistance: 3

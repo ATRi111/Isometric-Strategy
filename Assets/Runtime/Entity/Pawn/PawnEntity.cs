@@ -121,6 +121,20 @@ public class PawnEntity : Entity
         parameterDict.Clear();
         time = 0;
     }
+
+    public override string EntityNameWithColor
+    {
+        get
+        {
+            string color = faction switch
+            {
+                EFaction.Ally => FontUtility.SpringGreen3,
+                EFaction.Enemy => FontUtility.Red,
+                _ => FontUtility.Black
+            };
+            return EntityName.ColorText(color);
+        }
+    }
 }
 
 public class Comparer_PawnEntity_ActionTime : IComparer<PawnEntity>

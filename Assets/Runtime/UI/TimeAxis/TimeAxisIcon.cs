@@ -1,4 +1,3 @@
-using MyTool;
 using System.Collections.Generic;
 using System.Text;
 using UIExtend;
@@ -26,13 +25,7 @@ public class TimeAxisIcon : IconUI
         StringBuilder sb = new();
         for (int i = 0; i < pawns.Count; i++)
         {
-            string colorString = pawns[i].faction switch
-            {
-                EFaction.Ally => FontUtility.SpringGreen3,
-                EFaction.Enemy => FontUtility.Red,
-                _ => FontUtility.Black
-            };
-            sb.Append(pawns[i].EntityName.ColorText(colorString));
+            sb.Append(pawns[i].EntityNameWithColor);
             sb.Append(" ");
         }
         sb.AppendLine();

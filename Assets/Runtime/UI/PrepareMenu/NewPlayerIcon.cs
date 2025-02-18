@@ -10,13 +10,14 @@ public class NewPlayerIcon : IconUI
     {
         this.player = player;
         image.sprite = player.icon;
-        info = player.EntityName + "\n" + player.pClass.name;
+        info = player.EntityName + " " + player.pClass.name;
         canvasGroup.Visible = true;
     }
 
     protected override void ExtractKeyWords()
     {
         base.ExtractKeyWords();
+        keyWordList.Push(player.EntityName, player.Description);
         keyWordList.Push(player.pClass.name, player.pClass.Description);
     }
 

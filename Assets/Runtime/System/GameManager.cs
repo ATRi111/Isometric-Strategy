@@ -83,7 +83,7 @@ public class GameManager : Service,IService
         {
             if (time >= pawn.time)
             {
-                Debug.Log($"轮到{pawn.EntityName}行动");
+                Debug.Log($"轮到{pawn.EntityNameWithColor}行动");
                 waitingForAnimation = true;
                 pawn.Brain.DoAction();
                 return;

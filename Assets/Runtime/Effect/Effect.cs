@@ -115,6 +115,6 @@ public abstract class Effect : IAnimationSource
             sb.Append("%");
         }
         sb.Append("ʹ");
-        sb.Append(victim.EntityName.Bold());
+        sb.Append(victim.EntityNameWithColor);
     }
 }

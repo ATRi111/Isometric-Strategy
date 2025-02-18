@@ -1,5 +1,6 @@
 using Character;
 using EditorExtend.GridEditor;
+using MyTool;
 using Services;
 using Services.Event;
 using UnityEngine;
@@ -76,5 +77,14 @@ public class Entity : EntityBase , IDescription
     public void ExtractKeyWords(KeyWordList keyWordList)
     {
         
+    }
+
+    public virtual string EntityNameWithColor
+    {
+        get
+        {
+            string color = FontUtility.Black;
+            return EntityName.ColorText(color);
+        }
     }
 }
