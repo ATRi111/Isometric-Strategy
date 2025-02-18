@@ -4,7 +4,7 @@ using Services;
 using Services.Event;
 using UnityEngine;
 
-public class Entity : EntityBase
+public class Entity : EntityBase , IDescription
 {
     public IsometricGridManager Igm => IsometricGridManager.Instance;
     public GameManager GameManager { get; protected set; }
@@ -68,5 +68,13 @@ public class Entity : EntityBase
     protected virtual void OnDisable()
     {
         EventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
+    }
+
+    public string description;
+    public string Description => description;
+
+    public void ExtractKeyWords(KeyWordList keyWordList)
+    {
+        
     }
 }
