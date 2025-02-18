@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
-  animationName: 
+  animationName: Snowball
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
