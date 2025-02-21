@@ -5033,13 +5033,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d20a51230373d4c90bd5fd27b0ba0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8366711203925685837, guid: 39363f2567f51744b9689b7d3387b971, type: 3}
-  overrideMode: 1
+  prefab: {fileID: 6459502741142243490, guid: 3db47d9b2af6df34aaca086274b8d9c9, type: 3}
+  overrideMode: 0
   mountIndex: 2
   pillarMode: 1
   lockLayer: 0
   layer: 4
-  lockXY: 0
+  lockXY: 1
 --- !u!114 &1551605951
 MonoBehaviour:
   m_ObjectHideFlags: 0

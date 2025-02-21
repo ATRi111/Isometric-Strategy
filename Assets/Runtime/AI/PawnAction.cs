@@ -81,7 +81,7 @@ public class PawnAction : IAnimationSource , IDescription
     {
         if(result)
         {
-            sb.Append(agent.name.Bold());
+            sb.Append(agent.EntityName.Bold());
             sb.Append("สนำรมห");
         }
         sb.Append(skill.displayName.Bold());

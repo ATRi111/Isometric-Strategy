@@ -1,23 +1,9 @@
-using Services;
-using Services.Event;
-using UIExtend;
-using UnityEngine;
-
-public class RewardUI : MonoBehaviour
+public class RewardUI : AfterBattleUI
 {
-    private IEventSystem eventSystem;
-    private CanvasGroupPlus canvasGroup;
     public Reward reward;
 
-    public void Show()
+    protected override void Awake()
     {
-        canvasGroup.Visible = true; 
-    }
-
-    private void Awake()
-    {
-        eventSystem = ServiceLocator.Get<IEventSystem>();
-        canvasGroup = GetComponentInChildren<CanvasGroupPlus>();
         if(reward != null)
         {
             NewPlayerIcon playerIcon = GetComponentInChildren<NewPlayerIcon>();
@@ -35,15 +21,5 @@ public class RewardUI : MonoBehaviour
                 equipmentIcons[i].gameObject.SetActive(false);
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        eventSystem.AddListener(EEvent.AfterBattle, Show);
-    }
-
-    private void OnDisable()
-    {
-        eventSystem.AddListener(EEvent.AfterBattle, Show);
     }
 }
