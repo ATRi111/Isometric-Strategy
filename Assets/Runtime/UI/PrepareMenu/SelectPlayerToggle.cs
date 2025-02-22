@@ -1,9 +1,9 @@
+using Services.Event;
 using UIExtend;
 
 public class SelectPlayerToggle : ToggleBase
 {
     private PlayerManager playerManager;
-    private LevelManager levelManager;
     private PlayerIcon playerIcon;
 
     protected override void OnToggle(bool value)
@@ -14,7 +14,7 @@ public class SelectPlayerToggle : ToggleBase
             playerManager.Unselect(playerIcon.index);
     }
 
-    public void Refresh()
+    public void AfterBattle()
     {
         Toggle.isOn = false;
         CheckInteractable();
@@ -29,9 +29,17 @@ public class SelectPlayerToggle : ToggleBase
     {
         base.Awake();
         playerIcon = GetComponentInParent<PlayerIcon>();
-        levelManager = GetComponentInParent<LevelManager>();
-        levelManager.OnReturnToPrepareMenu += Refresh;
         playerManager = PlayerManager.FindInstance();
         playerManager.AfterSelectChange += CheckInteractable;
+    }
+
+    private void OnEnable()
+    {
+        eventSystem.AddListener(EEvent.AfterBattle, AfterBattle);
+    }
+
+    private void OnDisable()
+    {
+        eventSystem.RemoveListener(EEvent.AfterBattle, AfterBattle);
     }
 }

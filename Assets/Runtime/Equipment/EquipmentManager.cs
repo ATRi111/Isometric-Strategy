@@ -24,13 +24,23 @@ public class EquipmentManager : CharacterComponentBase
         };
     }
 
-    public void Initialize(PawnEntity pawn)
+    public void Register(PawnEntity pawn)
     {
         this.pawn = pawn;
         foreach (EquipmentSlot slot in slots)
         {
             if (slot.equipment != null)
                 slot.equipment.Register(pawn);
+        }
+    }
+
+    public void Unregister(PawnEntity pawn)
+    {
+        this.pawn = pawn;
+        foreach (EquipmentSlot slot in slots)
+        {
+            if (slot.equipment != null)
+                slot.equipment.Unregister(pawn);
         }
     }
 

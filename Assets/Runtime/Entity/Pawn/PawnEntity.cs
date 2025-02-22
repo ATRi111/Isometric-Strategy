@@ -102,7 +102,7 @@ public class PawnEntity : Entity
     {
         base.OnEnable();
         GameManager.Register(this);
-        EquipmentManager.Initialize(this);
+        EquipmentManager.Register(this);
         pClass.Register(this);
         race.Register(this);
         RefreshProperty();
@@ -115,6 +115,7 @@ public class PawnEntity : Entity
     {
         base.OnDisable();
         GameManager.Unregister(this);
+        EquipmentManager.Unregister(this);
         pClass.Unregister(this);
         race.Unregister(this);
         BuffManager.Clear();

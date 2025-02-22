@@ -42,7 +42,10 @@ public class ActionIcon : IconUI, IPointerClickHandler
         this.action = action;
         Vector3 cell = action.target - action.agent.GridObject.CellPosition;
         Vector2 world = Igm.CellToWorld(cell);
-        world = world.normalized;
+        if (world == Vector2.zero)
+            world = Vector2.down;
+        else
+            world = world.normalized;
         infoPivot = 0.5f * (Vector2.one - world);
         infoOffset = infoOffset.magnitude * world;
     }
