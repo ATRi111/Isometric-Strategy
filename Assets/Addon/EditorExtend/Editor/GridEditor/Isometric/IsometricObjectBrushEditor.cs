@@ -29,7 +29,7 @@ namespace EditorExtend.GridEditor
             if(ObjectBrush.pillarMode)
             {
                 GridObject gridObject = ObjectBrush.prefab.GetComponent<GridObject>();
-                if (gridObject.GroundHeight > 1)
+                if (gridObject.IsGround)
                 {
                     Vector3Int position = ObjectBrush.cellPosition + Vector3Int.back;
                     for (; position.z >= 0; position += Vector3Int.back)
@@ -46,7 +46,7 @@ namespace EditorExtend.GridEditor
             if (ObjectBrush.pillarMode && lockLayer.boolValue)
             {
                 GridObject gridObject = ObjectBrush.prefab.GetComponent<GridObject>();
-                if (gridObject.GroundHeight > 1)
+                if (gridObject.IsGround)
                 {
                     Vector3Int position = ObjectBrush.cellPosition + Vector3Int.back;
                     for (; position.z >= 0; position += Vector3Int.back)

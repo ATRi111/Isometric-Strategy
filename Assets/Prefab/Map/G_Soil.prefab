@@ -11,10 +11,10 @@ PrefabInstance:
     - target: {fileID: 1226048150741817513, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f4bdd92fb2654f84395acea770340d96, type: 3}
+      objectReference: {fileID: 21300000, guid: 9d6298f2cc3f78643a2c2a7645effaf0, type: 3}
     - target: {fileID: 2383143098659270522, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
       propertyPath: m_Name
-      value: Soil
+      value: G_Soil
       objectReference: {fileID: 0}
     - target: {fileID: 8547882795469722229, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
       propertyPath: m_LocalPosition.x
