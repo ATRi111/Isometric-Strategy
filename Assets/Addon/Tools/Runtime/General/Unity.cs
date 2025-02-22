@@ -91,6 +91,7 @@ namespace MyTool
             }
         }
 
+#if UNITY_EDITOR
         /// <summary>
         /// 根据CreateAssetMenuAttribute自动创建ScriptableObject
         /// </summary>
@@ -116,6 +117,7 @@ namespace MyTool
             AssetDatabase.SaveAssets();
             return so;
         }
+#endif
     }
 }
 
