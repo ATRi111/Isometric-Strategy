@@ -4,10 +4,10 @@ using UnityEngine;
 [Serializable]
 public class ShadowVertex
 {
-    public Vector3 cellPosition;
-    public Vector3 cellNormal;
+    public readonly Vector3Int cellPosition;
+    public readonly Vector3Int cellNormal;
 
-    public ShadowVertex(Vector3 cellPosition, Vector3 cellNormal)
+    public ShadowVertex(Vector3Int cellPosition, Vector3Int cellNormal)
     {
         this.cellPosition = cellPosition;
         this.cellNormal = cellNormal;

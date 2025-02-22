@@ -4,6 +4,7 @@ public class RewardUI : AfterBattleUI
 
     protected override void Awake()
     {
+        base.Awake();
         if(reward != null)
         {
             NewPlayerIcon playerIcon = GetComponentInChildren<NewPlayerIcon>();
