@@ -101,9 +101,20 @@ namespace EditorExtend.GridEditor
                 return false;
             }
 
-            ObjectDict.Add(gridObject.CellPosition, gridObject);
-            gridObject.referenceCount++;
-            return true;
+            if(!ObjectDict.ContainsKey(gridObject.CellPosition))
+            {
+                ObjectDict.Add(gridObject.CellPosition, gridObject);
+                gridObject.referenceCount++;
+                return true;
+            }
+            else
+            {
+#if UNITY_EDITOR
+                if (!Application.isPlaying)
+                    DestroyImmediate(gridObject.gameObject);
+#endif
+                return false;
+            }
         }
 
         public virtual GridObject TryRemoveObject(Vector3Int cellPosition)

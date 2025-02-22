@@ -90,11 +90,11 @@ public class ShadowManager : MonoBehaviour
         Vector3Int basePosition = vertex.cellPosition;
         float unitDistance = new Vector3(CellSize.x * direction.x, CellSize.y * direction.y, CellSize.z * direction.z).magnitude;
         float unitHeight = vertex.cellNormal.z != 0 ? 0.5f : 1f;
-        for (int i = 1; i <= AmbientOcculasionDistance; i++)
+        for (int i = 0; i < AmbientOcculasionDistance; i++)
         {
             basePosition += direction;
             float h = GetHeight(basePosition, vertex.cellNormal) * unitHeight;
-            float d = i * unitDistance;
+            float d = (i + 0.5f) * unitDistance;
             if (h > 0)
             {
                 float angle = Mathf.Atan(h / d);
