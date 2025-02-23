@@ -35,4 +35,4 @@ MonoBehaviour:
   maxLayer: 2
   castingDistance: 1
   aimAtSelf: 0
-  powerAmplifier: 0.1
+  damageAmplifier: 0.1

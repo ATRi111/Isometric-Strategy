@@ -101,7 +101,9 @@ public abstract class AimSkill : Skill
             float attackPower = agent.OffenceComponent.MockAttackPower(powers[j]);
             damage += def.MockDamage(powers[j].type, attackPower);
         }
-        
+
+        damage = Mathf.RoundToInt(damage * (1f + MockDamageAmplifier(igm, agent, victim, position, target)));
+
         int HP = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
         Effect effect = new HPChangeEffect(victim, def.HP, HP);
         ret.effects.Add(effect);
@@ -114,6 +116,15 @@ public abstract class AimSkill : Skill
         {
             HitBackUtility.MockHitBack(igm, position, pawnVictim, HP, hitBackProbability, ret);
         }
+    }
+
+
+    /// <summary>
+    /// 模拟技能对指定目标的额外伤害倍率
+    /// </summary>
+    protected virtual float MockDamageAmplifier(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target)
+    {
+        return 0f;
     }
 
     /// <summary>

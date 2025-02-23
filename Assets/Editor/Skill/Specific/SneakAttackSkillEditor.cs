@@ -5,11 +5,11 @@ using UnityEditor;
 public class SneakAttackSkillEditor : RangedSkillEditor
 {
     [AutoProperty]
-    public SerializedProperty powerAmplifier;
+    public SerializedProperty damageAmplifier;
 
     protected override void MyOnInspectorGUI()
     {
         base.MyOnInspectorGUI();
-        powerAmplifier.FloatField("±³´ÌÉËº¦Ôö·ù");
+        damageAmplifier.FloatField("±³´ÌÉËº¦Ôö·ù");
     }
 }
