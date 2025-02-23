@@ -12,19 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
   m_Name: "\u957F\u888D"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers:
-    - value: 25
+    - value: 5
+      so: {fileID: 11400000, guid: f44c63f2c03dd144dbb628b191d38e27, type: 2}
+      method: 0
+    - value: 5
+      so: {fileID: 11400000, guid: f8958f741a08a044f817ce25723a428e, type: 2}
+      method: 0
+    - value: 10
+      so: {fileID: 11400000, guid: a3ad2a85dce498e42ade88cb461c3bec, type: 2}
+      method: 0
+    - value: 10
       so: {fileID: 11400000, guid: 63c3c5b3fdad04f4094600f35ea76815, type: 2}
       method: 0
-    - value: 25
+    - value: 10
       so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
       method: 0
-    - value: 25
+    - value: 10
       so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
       method: 0
-    - value: 1
+    - value: 2
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
   skillsAttached: []
+  extraDescription: 
   slotType: 1
