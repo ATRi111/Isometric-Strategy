@@ -6,7 +6,7 @@ using UnityEditor;
 public class DefenceComponentEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty maxHP, hp, damageMultiplier, resistance;
+    public SerializedProperty maxHP, hp , resistance;
     public SerializedProperty list;
 
     protected override void OnEnable()
@@ -20,7 +20,6 @@ public class DefenceComponentEditor : AutoEditor
     {
         maxHP.PropertyField("最大生命");
         hp.IntField("当前生命");
-        damageMultiplier.PropertyField("承伤系数");
         list.PropertyField("抗性");
     }
 }
