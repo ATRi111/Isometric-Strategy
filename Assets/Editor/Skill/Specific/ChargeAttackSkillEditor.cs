@@ -5,11 +5,11 @@ using UnityEditor;
 public class ChargeAttackSkillEditor : RangedSkillEditor
 {
     [AutoProperty]
-    public SerializedProperty powerAmplifier;
+    public SerializedProperty damageAmplifier;
 
     protected override void MyOnInspectorGUI()
     {
         base.MyOnInspectorGUI();
-        powerAmplifier.FloatField("ÉËº¦Ôö·ù");
+        damageAmplifier.FloatField("ÉËº¦Ôö·ù");
     }
 }

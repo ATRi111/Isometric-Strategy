@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: "\u6233\u523A"
   icon: {fileID: 0}
   extraDescription: 
-  actionTime: 0
+  actionTime: 50
   animationName: 
   preConditions: []
   buffPreConditions: []
@@ -35,4 +35,4 @@ MonoBehaviour:
   maxLayer: 2
   castingDistance: 1
   aimAtSelf: 0
-  powerAmplifier: 1
+  damageAmplifier: 0.5

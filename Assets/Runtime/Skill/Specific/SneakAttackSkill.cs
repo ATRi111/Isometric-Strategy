@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -15,40 +14,19 @@ public class SneakAttackSkill : RangedSkill
         return false;
     }
 
-    public float powerAmplifier;
+    public float damageAmplifier;
 
-    protected override void MockDamageOnVictim(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target, List<SkillPower> powers, EffectUnit ret)
+    protected override float MockDamageAmplifier(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target)
     {
-        int damage = 0;
-        DefenceComponent def = victim.DefenceComponent;
-        for (int j = 0; j < powers.Count; j++)
-        {
-            float attackPower = agent.OffenceComponent.MockAttackPower(powers[j]);
-            damage += def.MockDamage(powers[j].type, attackPower);
-        }
         if (SneakCheck(agent, victim))
-        {
-            damage = Mathf.RoundToInt(damage * (1f + powerAmplifier));
-        }
-
-        int HP = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
-        Effect effect = new HPChangeEffect(victim, def.HP, HP);
-        ret.effects.Add(effect);
-        if (HP == 0)
-        {
-            effect = new DisableEntityEffect(victim);
-            ret.effects.Add(effect);
-        }
-        else if (victim is PawnEntity pawnVictim)
-        {
-            HitBackUtility.MockHitBack(igm, position, pawnVictim, HP, hitBackProbability, ret);
-        }
+            return damageAmplifier;
+        return 0f;
     }
 
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
         sb.Append("从背后攻击敌人时,伤害提高");
-        sb.Append(powerAmplifier.ToString("P0"));
+        sb.Append(damageAmplifier.ToString("P0"));
     }
 }
