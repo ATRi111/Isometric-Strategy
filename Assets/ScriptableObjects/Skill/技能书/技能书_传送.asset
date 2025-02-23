@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afe2b62140f7fdb4e9b57d2edc05e97c, type: 3}
-  m_Name: "\u6280\u80FD\u4E66_\u4F4D\u7F6E\u4E92\u6362"
+  m_Script: {fileID: 11500000, guid: 77fb6a15e83b01946abb4634c77c6faf, type: 3}
+  m_Name: "\u6280\u80FD\u4E66_\u4F20\u9001"
   m_EditorClassIdentifier: 
-  displayName: "\u4F4D\u7F6E\u4E92\u6362"
+  displayName: "\u4F20\u9001"
   icon: {fileID: 0}
-  extraDescription: "\u4EA4\u6362\u8BE5\u5355\u4F4D\u4E0E\u76EE\u6807\u7684\u4F4D\u7F6E"
-  actionTime: 50
+  extraDescription: "\u5C06\u81EA\u8EAB\u4F20\u9001\u5230\u6307\u5B9A\u4F4D\u7F6E"
+  actionTime: 0
   animationName: 
   preConditions: []
   buffPreConditions: []
@@ -24,8 +24,8 @@ MonoBehaviour:
   powers: []
   buffOnVictim: []
   hitBackProbability: 0
-  victimType: 2
+  victimType: 0
   minLayer: -32
   maxLayer: 32
-  castingDistance: 5
+  castingDistance: 1
   aimAtSelf: 0
