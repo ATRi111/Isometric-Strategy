@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
   m_Name: "\u957F\u5F13"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers:
-    - value: 3
+    - value: 2
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
   skillsAttached:

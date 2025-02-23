@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
   m_Name: "\u5F29"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers:
-    - value: 1
+    - value: 2
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
   skillsAttached:
   - {fileID: 11400000, guid: 703f873ad2f962742a36196d814e7e3d, type: 2}
   - {fileID: 11400000, guid: f5313cf1c46894347b14e97e8dee23d9, type: 2}
+  extraDescription: 
   slotType: 0

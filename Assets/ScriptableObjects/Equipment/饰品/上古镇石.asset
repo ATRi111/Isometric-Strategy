@@ -34,9 +34,6 @@ MonoBehaviour:
       so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
       method: 0
     - value: 50
-      so: {fileID: 11400000, guid: 2f40af2282f603840aed3b7ba2012e76, type: 2}
-      method: 0
-    - value: 50
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
   skillsAttached: []

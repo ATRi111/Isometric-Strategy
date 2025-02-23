@@ -18,10 +18,10 @@ MonoBehaviour:
     - value: 25
       so: {fileID: 11400000, guid: 5b7aa0fa7bb7c034a98950b2b8078463, type: 2}
       method: 0
-    - value: 25
+    - value: 30
       so: {fileID: 11400000, guid: 606e749310a6d3b45a86ef1cfbf647ea, type: 2}
       method: 0
-    - value: 25
+    - value: 20
       so: {fileID: 11400000, guid: 90b59691706183d44b8946b924be3dce, type: 2}
       method: 0
     - value: 10

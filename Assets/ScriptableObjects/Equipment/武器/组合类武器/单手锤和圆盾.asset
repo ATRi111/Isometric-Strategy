@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
   m_Name: "\u5355\u624B\u9524\u548C\u5706\u76FE"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers:
+    - value: 15
+      so: {fileID: 11400000, guid: f44c63f2c03dd144dbb628b191d38e27, type: 2}
+      method: 0
+    - value: 15
+      so: {fileID: 11400000, guid: a3ad2a85dce498e42ade88cb461c3bec, type: 2}
+      method: 0
+    - value: 15
+      so: {fileID: 11400000, guid: f8958f741a08a044f817ce25723a428e, type: 2}
+      method: 0
     - value: 4
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0

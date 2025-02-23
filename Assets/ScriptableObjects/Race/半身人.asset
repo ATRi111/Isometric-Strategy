@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8782a79a3e23c9a40b7a1960b0ffd34b, type: 3}
   m_Name: "\u534A\u8EAB\u4EBA"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers:
     - value: 450
       so: {fileID: 11400000, guid: 789e380388b3a264c912d4f3ea9205f0, type: 2}
       method: 0
-    - value: 1
+    - value: 2
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
     - value: 5
