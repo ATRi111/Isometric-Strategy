@@ -11,7 +11,7 @@ public class ShadowObject : MonoBehaviour
     private ShadowManager shadowManager;
     private GridObject gridObject;
     private SpriteRenderer upRenderer;
-    private ShadowVertex up;
+    private ShadowVertex vertex;
 
     public int height = 1;
 
@@ -19,14 +19,21 @@ public class ShadowObject : MonoBehaviour
     {
         shadowManager = GetComponentInParent<ShadowManager>();
         gridObject = GetComponentInParent<GridObject>();
-        up = new(gridObject.CellPosition, cellNormal);
+        vertex = new(gridObject.CellPosition, cellNormal);
         upRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
-        float visibility = shadowManager.GetVisibility(up);
-        float radiance = maxRadiance * visibility;
-        upRenderer.color = upRenderer.color.SetAlpha(1f - radiance);
+        if(!shadowManager.VisibleCheck(vertex))
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            float visibility = shadowManager.GetVisibility(vertex);
+            float radiance = maxRadiance * visibility;
+            upRenderer.color = upRenderer.color.SetAlpha(1f - radiance);
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShadowManager : MonoBehaviour
 {
-    public static int AmbientOcculasionDistance = 5;
+    public static int SampleDistance = 20;
     public static Vector3 CellSize = new(1f, 1f, 0.5f);
 
     public static Vector3Int[] XYDirections =
@@ -50,18 +50,18 @@ public class ShadowManager : MonoBehaviour
     public float GetVisibility(ShadowVertex vertex)
     {
         if (!visibilityCache.ContainsKey(vertex))
-            visibilityCache.Add(vertex, CalculateVisibility(vertex));
+            visibilityCache.Add(vertex, AmbientOcculasion(vertex));
         return visibilityCache[vertex];
     }
 
-    private float CalculateVisibility(ShadowVertex vertex)
+    public bool VisibleCheck(ShadowVertex vertex)
     {
         if (igm.ObjectDict.TryGetValue(vertex.cellPosition + vertex.cellNormal, out GridObject gridObject))
         {
-            if (gridObject.GetComponent<ShadowObject>() != null)
-                return 0f;
+            if (gridObject.GetComponentInChildren<ShadowObject>() != null)
+                return false;
         }
-        return AmbientOcculasion(vertex);
+        return true;
     }
 
     private float AmbientOcculasion(ShadowVertex vertex)
@@ -90,7 +90,7 @@ public class ShadowManager : MonoBehaviour
         Vector3Int basePosition = vertex.cellPosition;
         float unitDistance = new Vector3(CellSize.x * direction.x, CellSize.y * direction.y, CellSize.z * direction.z).magnitude;
         float unitHeight = vertex.cellNormal.z != 0 ? 0.5f : 1f;
-        for (int i = 0; i < AmbientOcculasionDistance; i++)
+        for (int i = 0; i < SampleDistance; i++)
         {
             basePosition += direction;
             float h = GetHeight(basePosition, vertex.cellNormal) * unitHeight;
