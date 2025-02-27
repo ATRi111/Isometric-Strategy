@@ -14,21 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parameters:
   - name: "\u88C5\u586B\u6570"
+    maxValue: 10
     valuePerUnit: 75
     hidden: 0
-    description: 
+    description: "\u5DF2\u88C5\u586B\u5F39\u836F\u7684\u6570\u91CF"
   - name: "\u84C4\u529B\u5C42\u6570"
+    maxValue: 2
     valuePerUnit: 0
     hidden: 0
-    description: "\u84C4\u529B\u4EE5\u5916\u7684\u884C\u52A8\u4F1A\u6E05\u7A7A\u84C4\u529B\u5C42\u6570"
-  - name: "\u65BD\u6CD5\u7B49\u7EA7"
+    description: "\u7528\u4E8E\u91CA\u653E\u84C4\u529B\u65A9\u548C\u771F\xB7\u84C4\u529B\u65A9"
+  - name: "\u6CD5\u672F\u4F4D"
+    maxValue: 3
     valuePerUnit: 50
     hidden: 0
-    description: 
+    description: "\u7528\u4E8E\u91CA\u653E\u90E8\u5206\u6CD5\u672F\u7684\u8D44\u6E90(\u4E0A\u9650\u4E3A3)"
   - name: "\u51B2\u950B\u5C42\u6570"
+    maxValue: 10
     valuePerUnit: 2
     hidden: 0
-    description: "\u51B2\u950B\u4EE5\u5916\u7684\u884C\u52A8\u4F1A\u6E05\u7A7A\u51B2\u950B\u5C42\u6570"
+    description: "\u63D0\u9AD8\u51B2\u950B\u653B\u51FB\u7684\u4F24\u5BB3(\u4E0A\u9650\u4E3A10)"
   resetParameters:
   - "\u84C4\u529B\u5C42\u6570"
   - "\u51B2\u950B\u5C42\u6570"

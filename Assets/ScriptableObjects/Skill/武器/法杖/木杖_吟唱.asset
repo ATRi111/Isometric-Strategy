@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: "\u6728\u6756_\u541F\u5531"
   m_EditorClassIdentifier: 
   displayName: "\u541F\u5531"
+  icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
+  animationName: 
   preConditions:
   - conditionType: 2
     parameterIndex: 2

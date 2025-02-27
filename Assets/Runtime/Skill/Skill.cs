@@ -61,7 +61,10 @@ public abstract class Skill : ScriptableObject , IDescription
             int value = agent.parameterDict[parameterName];
             if (value != 0)
             {
-                ModifyParameterEffect effect = new(agent, parameterName, value, 0);
+                ModifyParameterEffect effect = new(agent, parameterName, value, 0)
+                {
+                    reset = true
+                };
                 ret.effects.Add(effect);   //仅计算效果，尚未应用效果，因此不会影响之后的伤害计算等
             }
         }

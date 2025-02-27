@@ -6,7 +6,7 @@ public class DisableEntityEffect : Effect
 
     public override bool Revokable => !victim.gameObject.activeInHierarchy;
 
-    public DisableEntityEffect(Entity victim, int probability = 100) : base(victim, probability)
+    public DisableEntityEffect(Entity victim, int probability = MaxProbability) : base(victim, probability)
     {
     }
 

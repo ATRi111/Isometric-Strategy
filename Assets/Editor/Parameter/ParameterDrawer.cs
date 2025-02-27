@@ -6,11 +6,12 @@ using UnityEngine;
 public class ParameterDrawer : AutoPropertyDrawer
 {
     [AutoProperty]
-    public SerializedProperty name, valuePerUnit, hidden, description;
+    public SerializedProperty name, maxValue, valuePerUnit, hidden, description;
 
     protected override void MyOnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         name.TextField("参数名", NextRectRelative());
+        maxValue.IntField("上限", NextRectRelative());
         valuePerUnit.IntField("单位价值", NextRectRelative());
         hidden.BoolField("隐藏参数", NextRectRelative());
         description.TextField("描述", NextRectRelative());

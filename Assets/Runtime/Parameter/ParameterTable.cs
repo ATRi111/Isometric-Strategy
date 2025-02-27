@@ -48,6 +48,7 @@ public class ParameterTable : ScriptableObject
 public class Parameter
 {
     public string name;
+    public int maxValue = 10;
     public int valuePerUnit;
     public bool hidden;
     public string description;

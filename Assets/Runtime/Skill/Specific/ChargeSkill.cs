@@ -10,7 +10,6 @@ public class ChargeSkill : WalkSkill
         base.Mock(agent, igm, position, target, ret);
         int value_prev = agent.parameterDict[ChargeLevel];
         int value = value_prev + DistanceBetween(position, target);
-        value = Mathf.Clamp(value, 0, 10);
         ModifyParameterEffect effect = new(agent, ChargeLevel, value_prev, value);
         ret.effects.Add(effect);
     }
