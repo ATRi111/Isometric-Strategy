@@ -29,7 +29,7 @@ MonoBehaviour:
   powers: []
   buffOnVictim: []
   hitBackProbability: 0
-  victimType: 1
+  victimType: 0
   minLayer: -32
   maxLayer: 32
   castingDistance: 6
