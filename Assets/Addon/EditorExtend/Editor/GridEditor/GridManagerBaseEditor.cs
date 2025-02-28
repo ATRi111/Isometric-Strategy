@@ -28,6 +28,7 @@ namespace EditorExtend.GridEditor
                 {
                     gridObjects[i].Refresh();
                 }
+                GridManager.AddAllObjects();
             }
             if (GUILayout.Button("全部Z不变对齐"))
             {
@@ -39,6 +40,7 @@ namespace EditorExtend.GridEditor
                     cellPosition.vector3IntValue = gridObjects[i].AlignXY();
                     temp.ApplyModifiedProperties();
                 }
+                GridManager.AddAllObjects();
             }
             if (GUILayout.Button("全部XY不变对齐"))
             {
@@ -50,6 +52,7 @@ namespace EditorExtend.GridEditor
                     cellPosition.vector3IntValue = gridObjects[i].AlignZ();
                     temp.ApplyModifiedProperties();
                 }
+                GridManager.AddAllObjects();
             }
         }
 

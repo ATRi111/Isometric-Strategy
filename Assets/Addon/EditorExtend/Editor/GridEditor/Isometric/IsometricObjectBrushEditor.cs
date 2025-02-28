@@ -16,7 +16,7 @@ namespace EditorExtend.GridEditor
             pillarMode.BoolField("柱形绘制模式");
             lockXY.BoolField("锁定XY");
             lockLayer.BoolField("锁定层数");
-            if(lockLayer.boolValue)
+            if (lockLayer.boolValue)
             {
                 layer.IntField("层数");
             }

@@ -69,13 +69,14 @@ namespace EditorExtend.GridEditor
 
         protected override void MyOnSceneGUI()
         {
-            base.MyOnSceneGUI();
             if (Application.isPlaying)
                 return;
 
             HandleKeyInput();
             UpdateCellPosition();
             HandleMouseInput();
+            if (currentEvent.type == EventType.Repaint)
+                Paint();
         }
 
         protected override void HandleMouseInput()
@@ -116,7 +117,6 @@ namespace EditorExtend.GridEditor
             Vector3 world = SceneViewUtility.SceneToWorld(mousePosition);
             ObjectBrush.cellPosition = ObjectBrush.CalculateCellPosition(world, lockedPosition);
             Repaint();
-            SceneView.RepaintAll();
         }
 
         protected virtual bool TryBrushAt(Vector3Int position)

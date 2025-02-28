@@ -19,10 +19,15 @@ namespace EditorExtend.GridEditor
             spriteRenderer.sortingOrder = IsometricGridManager.Instance.CellToSortingOrder(transform.position) + extraSortingOrder;
         }
 
+        public void Refresh()
+        {
+
+        }
+
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            if (!Application.isPlaying && spriteRenderer == null)
+            if (spriteRenderer == null && !Application.isPlaying)
             {
                 spriteRenderer = GetComponentInChildren<SpriteRenderer>();
                 spriteRenderer.sortingOrder = IsometricGridManager.Instance.CellToSortingOrder(transform.position) + extraSortingOrder;
