@@ -49,7 +49,7 @@ public class ModifyParameterEffect : Effect
             base.Describe(sb, result);
             sb.Append("µÄ");
             sb.Append(parameterName);
-            if(reset)
+            if (reset)
             {
                 sb.Append("´Ó");
                 sb.Append(value_prev);
