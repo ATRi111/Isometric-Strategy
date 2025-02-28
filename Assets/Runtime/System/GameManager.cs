@@ -27,6 +27,7 @@ public class GameManager : Service,IService
     public int Time => time;
 
     public bool waitingForAnimation;
+    public bool allyTargetDied;
 
 #if UNITY_EDITOR
     public bool debug;
@@ -39,6 +40,8 @@ public class GameManager : Service,IService
     public void Unregister(PawnEntity entity)
     {
         pawns.Remove(entity);
+        if (entity.taskTarget && entity.faction == EFaction.Ally)
+            allyTargetDied = true;
     }
 
     public void StartBattle()
@@ -72,21 +75,12 @@ public class GameManager : Service,IService
         return false;
     }
 
-    private bool AllyTargetAlive()
-    {
-        foreach (PawnEntity pawn in pawns)
-        {
-            if (pawn.taskTarget && pawn.faction == EFaction.Ally && !pawn.gameObject.activeInHierarchy)
-                return false;
-        }
-        return true;
-    }
-
     public void MoveOn()
     {
-        if(!AllyTargetAlive())
+        if (allyTargetDied)
         {
             EndBattle(false);
+            allyTargetDied = false;
             return;
         }
         if (!EnemyTargetExists())
