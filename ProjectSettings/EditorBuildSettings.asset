@@ -24,8 +24,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Level2_Rain.unity
     guid: 5e460c12759d8fc4287d26600f5992ea
   - enabled: 1
-    path: Assets/Scenes/Level3_FrostCastle.unity
-    guid: f5435e4d8c140284abe853b00cccb1d4
+    path: Assets/Scenes/Level3_FrostCastle 1.unity
+    guid: 2dbbcec1291e7b34bb65d2ac231a6bed
   - enabled: 1
     path: Assets/Scenes/TestLevel.unity
     guid: decd238a03619484494cea66a381ae0c

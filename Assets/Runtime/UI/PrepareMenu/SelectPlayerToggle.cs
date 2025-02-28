@@ -14,9 +14,9 @@ public class SelectPlayerToggle : ToggleBase
             playerManager.Unselect(playerIcon.index);
     }
 
-    public void AfterBattle()
+    public void AfterBattle(bool _)
     {
-        Toggle.isOn = false;
+        Toggle.isOn = false;    //修改Toggle的值会导致角色被回收
         CheckInteractable();
     }
 
@@ -35,11 +35,11 @@ public class SelectPlayerToggle : ToggleBase
 
     private void OnEnable()
     {
-        eventSystem.AddListener(EEvent.AfterBattle, AfterBattle);
+        eventSystem.AddListener<bool>(EEvent.AfterBattle, AfterBattle);
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener(EEvent.AfterBattle, AfterBattle);
+        eventSystem.RemoveListener<bool>(EEvent.AfterBattle, AfterBattle);
     }
 }

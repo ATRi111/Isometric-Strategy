@@ -42,7 +42,7 @@ public class PawnEntity : Entity
 
     public Sprite icon;
     public EFaction faction;
-    public bool targetToKill;
+    public bool taskTarget;
     public PawnClass pClass;
     public Race race;
     public CharacterProperty actionTime;

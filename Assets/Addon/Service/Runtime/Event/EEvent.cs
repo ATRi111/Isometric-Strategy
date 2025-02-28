@@ -39,7 +39,7 @@ namespace Services.Event
         /// </summary>
         HideSecondaryInfo,
         /// <summary>
-        /// 战斗开始前
+        /// 战斗开始前，参数:战斗是否胜利
         /// </summary>
         BeforeBattle,
         /// <summary>

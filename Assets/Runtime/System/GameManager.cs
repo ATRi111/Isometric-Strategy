@@ -49,10 +49,10 @@ public class GameManager : Service,IService
         MoveOn();
     }
 
-    public void EndBattle()
+    public void EndBattle(bool win)
     {
         inBattle = false;
-        eventSystem.Invoke(EEvent.AfterBattle);
+        eventSystem.Invoke(EEvent.AfterBattle, win);
     }
 
     public void LoadNextLevel()
@@ -62,21 +62,36 @@ public class GameManager : Service,IService
         sceneController.LoadScene(battleSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
-    private bool TargetExists()
+    private bool EnemyTargetExists()
     {
         foreach(PawnEntity pawn in pawns)
         {
-            if(pawn.targetToKill) 
+            if (pawn.taskTarget && pawn.faction == EFaction.Enemy && pawn.gameObject.activeInHierarchy) 
                 return true;
         }
         return false;
     }
 
+    private bool AllyTargetAlive()
+    {
+        foreach (PawnEntity pawn in pawns)
+        {
+            if (pawn.taskTarget && pawn.faction == EFaction.Ally && !pawn.gameObject.activeInHierarchy)
+                return false;
+        }
+        return true;
+    }
+
     public void MoveOn()
     {
-        if (!TargetExists())
+        if(!AllyTargetAlive())
         {
-            EndBattle();
+            EndBattle(false);
+            return;
+        }
+        if (!EnemyTargetExists())
+        {
+            EndBattle(true);
             return;
         }
         foreach(PawnEntity pawn in pawns)
