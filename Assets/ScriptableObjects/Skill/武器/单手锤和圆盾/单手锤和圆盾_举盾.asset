@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: "\u5355\u624B\u9524\u548C\u5706\u76FE_\u4E3E\u76FE"
   m_EditorClassIdentifier: 
   displayName: "\u4E3E\u76FE"
+  icon: {fileID: 0}
+  extraDescription: 
   actionTime: 25
+  animationName: 
+  movementName: 
+  movementLatency: 0
   preConditions: []
+  buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent:
   - so: {fileID: 11400000, guid: d8fc9dda4b18c8848914b57cefbdabda, type: 2}

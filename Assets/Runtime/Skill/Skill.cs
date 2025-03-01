@@ -6,9 +6,12 @@ public abstract class Skill : ScriptableObject , IDescription
 {
     public string displayName;
     public Sprite icon;
+
     public string extraDescription;
     public int actionTime;
     public string animationName;
+    public string movementName;
+    public float movementLatency;
 
     public List<ParameterPreCondition> preConditions;
     public List<BuffPreCondition> buffPreConditions;
@@ -105,6 +108,15 @@ public abstract class Skill : ScriptableObject , IDescription
             return animationProcess;
         }
         return null;
+    }
+
+    /// <summary>
+    /// 播放人物动作
+    /// </summary>
+    public virtual void PlayMovement(PawnAnimator pawnAnimator)
+    {
+        if (!string.IsNullOrWhiteSpace(movementName))
+            pawnAnimator.Play(movementName, movementLatency);
     }
 
     #region 描述

@@ -30,7 +30,7 @@ public class SummonSkill : RangedSkill
     public override void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
         base.Mock(agent, igm, position, target, ret);
-        SummonEffect effect = new(agent, prefab, target, igm);
+        SummonEffect effect = new(agent, prefab, target);
         ret.effects.Add(effect);
     }
 

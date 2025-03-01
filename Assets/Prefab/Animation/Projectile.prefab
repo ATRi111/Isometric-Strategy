@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff6190aa757dd845b7506f2d1480998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpeed: 5
+  defaultSpeed: 10
   currentRoute: []
 --- !u!114 &3105049299055975640
 MonoBehaviour:
@@ -142,4 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b5cedab893c0041b5b13ab5a168efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio_activate: 
+  audio_recycle: 
   lifeSpan: 0

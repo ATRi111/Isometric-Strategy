@@ -1,26 +1,17 @@
 using EditorExtend.GridEditor;
-using Services;
-using Services.Asset;
+using System.Text;
 using UnityEngine;
 
 public class SummonEffect : Effect
 {
-    private readonly static IAssetLoader assetLoader;
-    static SummonEffect()
-    {
-        assetLoader = ServiceLocator.Get<IAssetLoader>();
-    }
-
     public GameObject prefab;
     public Vector3Int cellPosition;
     private GameObject summoned;
-    private IsometricGridManager igm;
 
-    public SummonEffect(PawnEntity victim, GameObject prefab,Vector3Int cellPosition,IsometricGridManager igm, int probability = 100) 
+    public SummonEffect(PawnEntity victim, GameObject prefab,Vector3Int cellPosition,int probability = 100) 
         : base(victim, probability)
     {
         this.prefab = prefab;
-        this.igm = igm;
         this.cellPosition = cellPosition;
     }
 
@@ -49,5 +40,18 @@ public class SummonEffect : Effect
     public override float ValueFor(PawnEntity pawn)
     {
         return 0;
+    }
+
+    public override void Describe(StringBuilder sb, bool result)
+    {
+        if (!result && !AlwaysHappen)
+        {
+            sb.Append(probability);
+            sb.Append("%");
+        }
+        sb.Append("在");
+        sb.Append(cellPosition);
+        sb.Append("处召唤一个");
+        sb.Append(prefab.name);
     }
 }

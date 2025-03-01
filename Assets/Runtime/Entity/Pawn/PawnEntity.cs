@@ -39,6 +39,8 @@ public class PawnEntity : Entity
     public BuffManager BuffManager { get; protected set; }
     [AutoComponent]
     public EquipmentManager EquipmentManager { get; protected set; }
+    [AutoComponent]
+    public PawnAnimator PawnAnimator { get; protected set; }
 
     public Sprite icon;
     public EFaction faction;

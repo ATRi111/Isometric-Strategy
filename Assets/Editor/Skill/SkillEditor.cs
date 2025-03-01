@@ -6,7 +6,9 @@ using UnityEngine;
 public class SkillEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty icon, displayName, animationName, preConditions, buffPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
+    public SerializedProperty icon, displayName, animationName, movementName, movementLatency;
+    [AutoProperty]
+    public SerializedProperty preConditions, buffPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
 
     protected override void MyOnInspectorGUI()
     {
@@ -15,7 +17,10 @@ public class SkillEditor : AutoEditor
         {
             displayName.stringValue = GenerateDisplayName();
         }
-        animationName.TextField("动画资源名");
+        animationName.TextField("技能特效名");
+        movementName.TextField("人物动作名");
+        if (!string.IsNullOrEmpty(movementName.stringValue))
+            movementLatency.FloatField("人物动作延迟");
         icon.PropertyField("图标");
         preConditions.ListField("参数前置条件");
         buffPreConditions.ListField("Buff前置条件");

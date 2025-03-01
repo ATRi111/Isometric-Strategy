@@ -22,7 +22,5 @@ public class SpriteSychronizer : MonoBehaviour
     {
         if (spriteRenderer != null && targetSpriteRenderer != null)
             Sychronize();
-
-        
     }
 }

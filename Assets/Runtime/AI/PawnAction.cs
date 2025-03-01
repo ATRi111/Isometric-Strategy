@@ -43,6 +43,7 @@ public class PawnAction : IAnimationSource , IDescription
             agent.faceDirection = EDirectionTool.NearestDirection4(direction);
         }
         AnimationProcess animation = skill.MockAnimation(this);
+        skill.PlayMovement(agent.PawnAnimator);
         float latency = 0f;
         if (animation != null)
         {
