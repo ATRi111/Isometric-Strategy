@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd0d10c3cb6e494b92533df9102e68f, type: 3}
+  m_Name: "\u706B\u7EF3\u67AA_\u5F31\u70B9\u5C04\u51FB"
+  m_EditorClassIdentifier: 
+  displayName: "\u5F31\u70B9\u5C04\u51FB"
+  icon: {fileID: 0}
+  extraDescription: 
+  actionTime: 75
+  animationName: 
+  movementName: 
+  movementLatency: 0
+  preConditions: []
+  buffPreConditions: []
+  parameterOnAgent: []
+  buffOnAgent: []
+  powers:
+  - type: 2
+    power: 60
+    strMultiplier: 0
+    dexMultiplier: 1
+    intMultiplier: 0
+    mndMultiplier: 0
+  - type: 3
+    power: 60
+    strMultiplier: 0
+    dexMultiplier: 1
+    intMultiplier: 0
+    mndMultiplier: 0
+  buffOnVictim: []
+  hitBackProbability: 0
+  victimType: 1
+  minLayer: -32
+  maxLayer: 32
+  castingDistance: 8
+  aimAtSelf: 0
+  speedMultiplier: 1
+  damageAmplifier: 0
+  so: {fileID: 0}

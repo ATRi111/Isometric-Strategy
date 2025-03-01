@@ -19,7 +19,7 @@ MonoBehaviour:
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
   skillsAttached:
-  - {fileID: 11400000, guid: 703f873ad2f962742a36196d814e7e3d, type: 2}
+  - {fileID: 11400000, guid: 9ff2c016e68cfa34f8b592d194aca3cc, type: 2}
   - {fileID: 11400000, guid: f5313cf1c46894347b14e97e8dee23d9, type: 2}
   extraDescription: 
   slotType: 0
