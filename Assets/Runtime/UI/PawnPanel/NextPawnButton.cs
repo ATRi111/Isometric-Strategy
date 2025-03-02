@@ -6,7 +6,7 @@ public class NextPawnButton : ButtonBase
 
     protected override void OnClick()
     {
-        pawnPanel.Previous();
+        pawnPanel.Next();
     }
 
     private void Refresh()

@@ -115,7 +115,7 @@ public abstract class Skill : ScriptableObject , IDescription
     /// </summary>
     public virtual void PlayMovement(PawnAnimator pawnAnimator)
     {
-        if (pawnAnimationState != EPawnAnimationState.Walk)
+        if (pawnAnimator != null && pawnAnimationState != EPawnAnimationState.Walk)
             pawnAnimator.Play(pawnAnimationState.ToString(), movementLatency);
     }
 

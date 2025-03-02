@@ -4700,11 +4700,18 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 79f2949b0f34cb34e966bacb98f2e164, type: 2}
     - {fileID: 11400000, guid: 6f71e06fdb82ca74686efcacae923067, type: 2}
   unusedEquipmentList:
-  - {fileID: 11400000, guid: fe1898dd34da5a44490ed3e2777f9021, type: 2}
-  - {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}
   - {fileID: 11400000, guid: b0eb86003d6849b4290c5546439e452a, type: 2}
-  - {fileID: 11400000, guid: 503e46c9334a73c4cb0b49ad323388ce, type: 2}
+  - {fileID: 11400000, guid: 7a80d9a9c57a3d548a6a7556a942e6a0, type: 2}
+  - {fileID: 11400000, guid: 4027596200e3f4b45b4133264478549b, type: 2}
+  - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
+  - {fileID: 11400000, guid: 9496cf22c4dc3be4a8f8efe9eb875f39, type: 2}
   - {fileID: 11400000, guid: 4c3029e142f1a4049a46743bfe5dad8d, type: 2}
+  - {fileID: 11400000, guid: 503e46c9334a73c4cb0b49ad323388ce, type: 2}
+  - {fileID: 11400000, guid: fe1898dd34da5a44490ed3e2777f9021, type: 2}
+  - {fileID: 11400000, guid: ed9d6eb0564ca8b4b937afcc099a69e4, type: 2}
+  - {fileID: 11400000, guid: b0ac65350a2662c408273bbd7b218030, type: 2}
+  - {fileID: 11400000, guid: 6d90c30a0ff99144187a4451fe5d2f32, type: 2}
+  - {fileID: 11400000, guid: 1d387d53f7c802841a0bdcf2509d29d1, type: 2}
   isSelected: 0000000000000000
   selectedCount: 0
 --- !u!114 &1404961335
