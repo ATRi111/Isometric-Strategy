@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alpha_default: 0
   fadeTime: 0.2
-  threshold_blockRaycast: 0
+  threshold_blockRaycast: 0.2
   immediate_next: 0
   immediate: 0
   visibleOnAwake: 0

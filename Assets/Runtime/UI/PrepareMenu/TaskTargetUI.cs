@@ -1,8 +1,7 @@
 using UIExtend;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class TaskTargetUI : MonoBehaviour , IPointerEnterHandler, IPointerExitHandler
+public class TaskTargetUI : MonoBehaviour
 {
     private LevelManager levelManager;
     private CanvasGroupPlus canvasGroup;
@@ -33,15 +32,5 @@ public class TaskTargetUI : MonoBehaviour , IPointerEnterHandler, IPointerExitHa
     {
         levelManager.OnStartScout -= OnStartScout;
         levelManager.OnReturnToPrepareMenu -= OnReturnToPrepareMenu;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        canvasGroup.Visible = false;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        canvasGroup.Visible = true;
     }
 }
