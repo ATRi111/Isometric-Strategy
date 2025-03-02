@@ -54,7 +54,7 @@ public class PawnPanel : MonoBehaviour
 
     public void Previous()
     {
-        if(pawnList!= null && pawnList.Count > 0)
+        if (pawnList != null && pawnList.Count > 0)
             selectedIndex = (selectedIndex + pawnList.Count - 1) % pawnList.Count;
         RefreshAll?.Invoke();
     }

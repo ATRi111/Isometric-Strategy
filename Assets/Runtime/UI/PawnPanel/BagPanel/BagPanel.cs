@@ -10,7 +10,7 @@ public class BagPanel : MonoBehaviour
     private EquipmentIconInBag[] icons;
 
     public EquipmentManager equipmentManager;
-    public EquipmentSlot currentSlot;
+    public EquipmentSlot currentSlot;   //当前需要切换装备的槽位
     public List<Equipment> visibleEquipments = new();
 
     public void Refresh()
@@ -18,11 +18,19 @@ public class BagPanel : MonoBehaviour
         PawnEntity pawn = pawnPanel.SelectedPawn;
         equipmentManager = pawn.EquipmentManager;
         canvasGroup.Visible = canvasGroup.Visible && equipmentManager.CanChangeEquipment;
+        RefreshVisibleEquipments();
+    }
+
+    public void RefreshVisibleEquipments()
+    {
         visibleEquipments.Clear();
-        for (int i = 0; i < playerManager.unusedEquipmentList.Count; i++)
+        if (currentSlot != null)
         {
-            if (playerManager.unusedEquipmentList[i].slotType == currentSlot.slotType)
-                visibleEquipments.Add(playerManager.unusedEquipmentList[i]);
+            for (int i = 0; i < playerManager.unusedEquipmentList.Count; i++)
+            {
+                if (playerManager.unusedEquipmentList[i].slotType == currentSlot.slotType)
+                    visibleEquipments.Add(playerManager.unusedEquipmentList[i]);
+            }
         }
         for (int i = 0; i < icons.Length; i++)
         {
@@ -41,7 +49,7 @@ public class BagPanel : MonoBehaviour
         {
             currentSlot = slot;
             canvasGroup.Visible = equipmentManager.CanChangeEquipment;
-            Refresh();
+            RefreshVisibleEquipments();
         }
     }
 
