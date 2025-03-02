@@ -2,6 +2,15 @@ using Character;
 using System.Collections;
 using UnityEngine;
 
+public enum EPawnAnimationState
+{
+    Idle,
+    Walk,
+    Pierce,
+    Slash,
+    Raise,
+}
+
 public class PawnAnimator : EntityAnimator
 {
     protected PawnEntity pawn;

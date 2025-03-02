@@ -10,7 +10,7 @@ public abstract class Skill : ScriptableObject , IDescription
     public string extraDescription;
     public int actionTime;
     public string animationName;
-    public string movementName;
+    public EPawnAnimationState pawnAnimationState;
     public float movementLatency;
 
     public List<ParameterPreCondition> preConditions;
@@ -115,8 +115,8 @@ public abstract class Skill : ScriptableObject , IDescription
     /// </summary>
     public virtual void PlayMovement(PawnAnimator pawnAnimator)
     {
-        if (!string.IsNullOrWhiteSpace(movementName))
-            pawnAnimator.Play(movementName, movementLatency);
+        if (pawnAnimationState != EPawnAnimationState.Walk)
+            pawnAnimator.Play(pawnAnimationState.ToString(), movementLatency);
     }
 
     #region √Ë ˆ

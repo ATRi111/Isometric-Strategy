@@ -6,7 +6,7 @@ using UnityEngine;
 public class SkillEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty icon, displayName, animationName, movementName, movementLatency;
+    public SerializedProperty icon, displayName, animationName, pawnAnimationState, movementLatency;
     [AutoProperty]
     public SerializedProperty preConditions, buffPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
 
@@ -18,9 +18,8 @@ public class SkillEditor : AutoEditor
             displayName.stringValue = GenerateDisplayName();
         }
         animationName.TextField("技能特效名");
-        movementName.TextField("人物动作名");
-        if (!string.IsNullOrEmpty(movementName.stringValue))
-            movementLatency.FloatField("人物动作延迟");
+        pawnAnimationState.EnumField<EPawnAnimationState>("人物动作");
+        movementLatency.FloatField("人物动作延迟");
         icon.PropertyField("图标");
         preConditions.ListField("参数前置条件");
         buffPreConditions.ListField("Buff前置条件");
