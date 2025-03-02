@@ -91,10 +91,12 @@ public class EquipmentManager : CharacterComponentBase
     {
         if (slot.equipment != null)
         {
+            Equipment ret = slot.equipment;
             slot.equipment.Unregister(pawn);
-            return slot.equipment;
+            slot.equipment = null;
+            pawn.RefreshProperty();
+            return ret;
         }
-        pawn.RefreshProperty();
         return null;
     }
 

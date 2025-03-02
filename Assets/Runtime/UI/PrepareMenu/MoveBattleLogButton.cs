@@ -47,6 +47,7 @@ public class MoveBattleLogButton : ButtonBase
         ulm.AfterComplete += AfterComplete;
         ulm.OnTick += OnTick;
         target = transform.parent.GetComponent<RectTransform>();
+        OnClick();
     }
 
     private void OnDisable()
