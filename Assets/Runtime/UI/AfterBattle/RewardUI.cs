@@ -5,15 +5,20 @@ public class RewardUI : AfterBattleUI
     protected override void Awake()
     {
         base.Awake();
-        if(reward != null)
+        if (reward != null)
         {
-            NewPlayerIcon playerIcon = GetComponentInChildren<NewPlayerIcon>();
-            if (reward.newPlayer != null)
-                playerIcon.SetPlayer(reward.newPlayer.GetComponent<PawnEntity>());
-
+            NewPlayerIcon[] playerIcons = GetComponentsInChildren<NewPlayerIcon>();
             NewEquipmentIcon[] equipmentIcons = GetComponentsInChildren<NewEquipmentIcon>();
             int i = 0;
-            for (; i < reward.equipmentList.Count; i++)
+            for (; i < reward.newPlayerList.Count; i++)
+            {
+                playerIcons[i].SetPlayer(reward.newPlayerList[i].GetComponent<PawnEntity>());
+            }
+            for (; i < playerIcons.Length; i++)
+            {
+                playerIcons[i].gameObject.SetActive(false);
+            }
+            for (i = 0; i < reward.equipmentList.Count; i++)
             {
                 equipmentIcons[i].SetEquipment(reward.equipmentList[i]);
             }
