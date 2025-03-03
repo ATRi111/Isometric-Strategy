@@ -40,6 +40,8 @@ public class PawnAnimator : EntityAnimator
                 GameObject obj = Instantiate(weapon.animationPrefab);
                 obj.transform.SetParent(transform);
                 obj.transform.localScale = Vector3.zero;
+                WeaponAnimator weaponAnimator = obj.GetComponent<WeaponAnimator>();
+                weaponAnimator.Play(movementName, spriteRenderer.sortingOrder + 1);
             }
         }
     }
