@@ -30,6 +30,7 @@ public class PlayerManagerSaveData : SaveData
 
     public override void Save()
     {
+        manager.UpdateAllPlayerData();
         playerList.Clear(); 
         for (int i = 0; i < manager.playerDataList.Count; i++)
         {

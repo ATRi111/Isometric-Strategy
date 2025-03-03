@@ -33,6 +33,10 @@ MonoBehaviour:
     - value: 10
       so: {fileID: 11400000, guid: 63c3c5b3fdad04f4094600f35ea76815, type: 2}
       method: 0
+    - value: 5
+      so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
+      method: 0
   skillsAttached: []
   extraDescription: 
   slotType: 1
+  animationPrefab: {fileID: 0}

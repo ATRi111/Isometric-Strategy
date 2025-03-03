@@ -50,5 +50,5 @@ MonoBehaviour:
   supportAbility: 0.2
   offenseAbility: 0.8
   bestSupprtDistance: 3
-  bestOffenseDistance: 5
+  bestOffenseDistance: 6
   terrainAbility: 1
