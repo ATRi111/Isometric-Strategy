@@ -13,6 +13,8 @@ public enum EPawnAnimationState
 
 public class PawnAnimator : EntityAnimator
 {
+    public static string BaseLayer = "BaseLayer.";
+
     protected PawnEntity pawn;
     protected SpriteRenderer spriteRenderer;
 
@@ -29,9 +31,9 @@ public class PawnAnimator : EntityAnimator
 
     private IEnumerator DelayPlay(string movementName, float latency, bool weaponAnimation)
     {
-        animator.Play("Idle");
+        animator.Play(BaseLayer + "Idle");
         yield return new WaitForSeconds(latency);
-        animator.Play(movementName);
+        animator.Play(BaseLayer + movementName);
         if (weaponAnimation)
         {
             Equipment weapon = pawn.EquipmentManager.GetFirst(ESlotType.Weapon).equipment;
