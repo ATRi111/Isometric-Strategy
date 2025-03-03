@@ -61,16 +61,11 @@ public class EquipmentManager : CharacterComponentBase
         return ret;
     }
 
-    // 获取slotType类型的第一个空余装备槽（若无空余则返回第一个装备槽）
-    private EquipmentSlot GetSlot(ESlotType slotType)
+    /// <summary>
+    /// 获取slotType类型的第一个装备槽
+    /// </summary>
+    public EquipmentSlot GetFirst(ESlotType slotType)
     {
-        for (int i = 0; i < slots.Count; i++)
-        {
-            if (slots[i].slotType == slotType && slots[i].equipment == null)
-            {
-                return slots[i];
-            }
-        }
         for (int i = 0; i < slots.Count; i++)
         {
             if (slots[i].slotType == slotType)
@@ -81,8 +76,23 @@ public class EquipmentManager : CharacterComponentBase
         return null;
     }
 
+    /// <summary>
+    /// 获取slotType类型的第一个空余装备槽（若无空余则返回第一个装备槽）
+    /// </summary>
+    public EquipmentSlot GetFirstEmpty(ESlotType slotType)
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].slotType == slotType && slots[i].equipment == null)
+            {
+                return slots[i];
+            }
+        }
+        return GetFirst(slotType);
+    }
+
     public Equipment Equip(Equipment equipment)
-        => Equip(GetSlot(equipment.slotType), equipment);
+        => Equip(GetFirstEmpty(equipment.slotType), equipment);
 
     /// <summary>
     /// 卸下装备（返回被卸下的装备）

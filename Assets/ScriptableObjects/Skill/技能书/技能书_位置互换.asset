@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\u4F4D\u7F6E\u4E92\u6362"
   icon: {fileID: 0}
-  extraDescription: "\u4EA4\u6362\u8BE5\u5355\u4F4D\u4E0E\u76EE\u6807\u7684\u4F4D\u7F6E"
+  extraDescription: "\u81EA\u8EAB\u4E0E\u6280\u80FD\u76EE\u6807\u4EA4\u6362\u4F4D\u7F6E"
   actionTime: 50
   animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []

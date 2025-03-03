@@ -6,13 +6,14 @@ using UnityEngine;
 public class SkillEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty icon, displayName, animationName, pawnAnimationState, movementLatency;
+    public SerializedProperty icon, displayName, animationName, pawnAnimationState, movementLatency, weaponAnimation;
     [AutoProperty]
     public SerializedProperty preConditions, buffPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
 
     protected override void MyOnInspectorGUI()
     {
         displayName.TextField("展示技能名");
+        icon.PropertyField("图标");
         if (GUILayout.Button("自动填充"))
         {
             displayName.stringValue = GenerateDisplayName();
@@ -20,7 +21,7 @@ public class SkillEditor : AutoEditor
         animationName.TextField("技能特效名");
         pawnAnimationState.EnumField<EPawnAnimationState>("人物动作");
         movementLatency.FloatField("人物动作延迟");
-        icon.PropertyField("图标");
+        weaponAnimation.BoolField("启用武器动画");
         preConditions.ListField("参数前置条件");
         buffPreConditions.ListField("Buff前置条件");
         EditorGUILayout.BeginHorizontal();

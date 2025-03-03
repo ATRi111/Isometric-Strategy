@@ -4,6 +4,7 @@ using UnityEngine;
 public class Equipment : PawnModifierSO
 {
     public ESlotType slotType;
+    public GameObject animationPrefab;
 
     protected override string TypeName => "×°±¸";
 }

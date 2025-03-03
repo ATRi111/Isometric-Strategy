@@ -12,6 +12,7 @@ public abstract class Skill : ScriptableObject , IDescription
     public string animationName;
     public EPawnAnimationState pawnAnimationState;
     public float movementLatency;
+    public bool weaponAnimation;
 
     public List<ParameterPreCondition> preConditions;
     public List<BuffPreCondition> buffPreConditions;
@@ -116,7 +117,7 @@ public abstract class Skill : ScriptableObject , IDescription
     public virtual void PlayMovement(PawnAnimator pawnAnimator)
     {
         if (pawnAnimator != null && pawnAnimationState != EPawnAnimationState.Walk)
-            pawnAnimator.Play(pawnAnimationState.ToString(), movementLatency);
+            pawnAnimator.Play(pawnAnimationState.ToString(), movementLatency, weaponAnimation);
     }
 
     #region √Ë ˆ

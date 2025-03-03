@@ -22,16 +22,26 @@ public class PawnAnimator : EntityAnimator
     public bool up;
     public bool right;
 
-    public void Play(string movementName, float latency)
+    public void Play(string movementName, float latency, bool weaponAnimation)
     {
-        StartCoroutine(DelayPlay(movementName, latency));
+        StartCoroutine(DelayPlay(movementName, latency, weaponAnimation));
     }
 
-    private IEnumerator DelayPlay(string movementName, float latency)
+    private IEnumerator DelayPlay(string movementName, float latency, bool weaponAnimation)
     {
         animator.Play("Idle");
         yield return new WaitForSeconds(latency);
         animator.Play(movementName);
+        if (weaponAnimation)
+        {
+            Equipment weapon = pawn.EquipmentManager.GetFirst(ESlotType.Weapon).equipment;
+            if (weapon != null && weapon.animationPrefab != null)
+            {
+                GameObject obj = Instantiate(weapon.animationPrefab);
+                obj.transform.SetParent(transform);
+                obj.transform.localScale = Vector3.zero;
+            }
+        }
     }
 
     protected override void Awake()
