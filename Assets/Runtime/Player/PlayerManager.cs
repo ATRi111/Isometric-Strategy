@@ -58,6 +58,14 @@ public class PlayerManager : MonoBehaviour
         Generate(data);
     }
 
+    public void UpdateAllPlayerData()
+    {
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            UpdatePlayerData(playerList[i]);
+        }
+    }
+
     /// <summary>
     /// 将当前角色状态记录到数据中
     /// </summary>
@@ -66,15 +74,9 @@ public class PlayerManager : MonoBehaviour
         string entityName = pawn.EntityName;
         PlayerData data = Find(entityName);
         if (data == null)
-        {
             playerDataList.Add(data);
-        }
-        List<Equipment> temp = new();
-        pawn.EquipmentManager.GetAll(temp);
-        for (int i = 0; i < temp.Count; i++)
-        {
-            data.equipmentList.Add(temp[i]);
-        }
+        data.equipmentList.Clear();
+        pawn.EquipmentManager.GetAll(data.equipmentList);
     }
 
     /// <summary>

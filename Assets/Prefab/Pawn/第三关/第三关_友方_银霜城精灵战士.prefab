@@ -99,7 +99,7 @@ PrefabInstance:
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[1].equipment
       value: 
-      objectReference: {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
+      objectReference: {fileID: 11400000, guid: f946773809340b84cb6ade3f4193c498, type: 2}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[2].equipment
       value: 
