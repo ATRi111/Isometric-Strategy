@@ -1,5 +1,6 @@
 using Services;
 using System;
+using UnityEngine;
 
 public class AIManager : Service,IService
 {
@@ -42,5 +43,23 @@ public struct Trend
             terrain = a.terrain,
         };
         return ret;
+    }
+}
+
+public class PNorm
+{
+    public float p;
+    public float sum;
+
+    public float Result => Mathf.Pow(sum, 1 / p);
+
+    public PNorm(float p)
+    {
+        this.p = p;
+    }
+
+    public void Add(float value)
+    {
+        sum += Mathf.Pow(value, p);
     }
 }

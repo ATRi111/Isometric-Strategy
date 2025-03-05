@@ -1,7 +1,6 @@
 using Character;
 using Services;
 using Services.Event;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +9,8 @@ using UnityEngine;
 /// </summary>
 public class PawnBrain : CharacterComponentBase
 {
+    public static float POfNorm = 2f;
+
     private AIManager AIManager;
     private IEventSystem eventSystem; 
     public PawnEntity pawn;
@@ -158,42 +159,39 @@ public class PawnBrain : CharacterComponentBase
 
         float OfferSupport()
         {
-            float sum = 0;
+            PNorm norm = new(POfNorm);
             for (int i = 0; i < sensor.allies.Count; i++)
             {
-                sum += I(allies[i]) * SupportDistance(allies[i]);
+                norm.Add(I(allies[i]) * SupportDistance(allies[i]));
             }
-            sum *= pawn.pClass.supportAbility;
-            return sum;
+            return norm.Result * pawn.pClass.supportAbility;
         }
         float SeekSupport()
         {
-            float sum = 0;
+            PNorm norm = new(POfNorm);
             for (int i = 0; i < allies.Count; i++)
             {
-                sum += allies[i].pClass.supportAbility * SupportedDistance(pawn);
+                norm.Add(allies[i].pClass.supportAbility * SupportedDistance(pawn));
             }
-            sum *= I(pawn);
-            return sum;
+            return norm.Result * I(pawn);
         }
         float Offense()
         {
-            float sum = 0;
+            PNorm norm = new(POfNorm);
             for (int i = 0; i < enemies.Count; i++)
             {
-                sum += OffenseDistance(enemies[i]);
+                norm.Add(OffenseDistance(enemies[i]));
             }
-            sum *= H(pawn) * pawn.pClass.offenseAbility;
-            return sum;
+            return norm.Result * H(pawn) * pawn.pClass.offenseAbility;
         }
         float Defense()
         {
-            float sum = 0;
+            PNorm norm = new(POfNorm);
             for (int i = 0; i < enemies.Count; i++)
             {
-                sum -= H(enemies[i]) * enemies[i].pClass.offenseAbility * DefenseDistance(enemies[i]);
+                norm.Add(H(enemies[i]) * enemies[i].pClass.offenseAbility * DefenseDistance(enemies[i]));
             }
-            return sum;
+            return -norm.Result;
         }
 
         if (!positionValueCache.ContainsKey(position))
