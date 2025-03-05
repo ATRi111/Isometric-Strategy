@@ -1,4 +1,5 @@
 using EditorExtend.GridEditor;
+using Services;
 using System.Text;
 using UnityEngine;
 
@@ -28,6 +29,8 @@ public class SummonEffect : Effect
         GridObject gridObject = summoned.GetComponent<GridObject>();
         gridObject.CellPosition = cellPosition;
         summoned.SetActive(true);
+        PawnEntity pawnEntity = summoned.GetComponent<PawnEntity>();
+        pawnEntity.time = ServiceLocator.Get<GameManager>().Time;
     }
 
     public override void Revoke()
