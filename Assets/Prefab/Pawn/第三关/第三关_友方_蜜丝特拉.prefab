@@ -107,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[3].equipment
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: fa0ea84dca827ba45bb4988f8d96f116, type: 2}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[4].equipment
       value: 

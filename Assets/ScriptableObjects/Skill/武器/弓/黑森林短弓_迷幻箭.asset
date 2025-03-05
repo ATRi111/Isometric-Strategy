@@ -15,17 +15,20 @@ MonoBehaviour:
   displayName: "\u8FF7\u5E7B\u7BAD"
   icon: {fileID: 0}
   extraDescription: 
-  actionTime: 30
+  actionTime: 40
   animationName: Arrow
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
   powers:
   - type: 2
-    power: 45
+    power: 48
     strMultiplier: 0
-    dexMultiplier: 1
+    dexMultiplier: 0.5
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim:
