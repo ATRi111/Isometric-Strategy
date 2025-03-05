@@ -15,7 +15,7 @@ public class Background : MonoBehaviour
         cameraPosition = levelCamera.transform.position;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         transform.position = selfPosition + depth / (depth - 1f) * (levelCamera.transform.position - cameraPosition);
     }
