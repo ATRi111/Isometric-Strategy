@@ -31,14 +31,14 @@ PrefabInstance:
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: pClass
       value: 
-      objectReference: {fileID: 11400000, guid: 0c4d6825ca201534a9a97458c5adf663, type: 2}
+      objectReference: {fileID: 11400000, guid: a10d616be3b731146954ddf04cfe0dd2, type: 2}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: faction
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: entityName
-      value: "\u9ED1\u6697\u7CBE\u7075\u6218\u58EB"
+      value: "\u5353\u5C14\u6CD5\u5E08"
       objectReference: {fileID: 0}
     - target: {fileID: 5737828582266420397, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -93,20 +93,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[2].slotType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[0].equipment
       value: 
-      objectReference: {fileID: 11400000, guid: b0eb86003d6849b4290c5546439e452a, type: 2}
+      objectReference: {fileID: 11400000, guid: 84bee3dab16b8be4787fb025e5a5cbf1, type: 2}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[1].equipment
       value: 
-      objectReference: {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
+      objectReference: {fileID: 11400000, guid: 925a77553499bca40885a6f65b31a7db, type: 2}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[2].equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 0f781578453936b42a2ff443ff547d09, type: 2}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[3].equipment
       value: 
-      objectReference: {fileID: 11400000, guid: fa9f3adbf89ae944bb3aab7858da0326, type: 2}
+      objectReference: {fileID: 11400000, guid: a23ee6fba3ac9004aae6bf3283b64ab5, type: 2}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
-      value: "\u7B2C\u4E09\u5173_\u9ED1\u6697\u7CBE\u7075\u6218\u58EB"
+      value: "\u7B2C\u4E09\u5173_\u5353\u5C14\u6CD5\u5E08\uFF08\u5B9A\u8EAB\u672F\uFF09"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

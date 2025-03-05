@@ -52,6 +52,6 @@ public class SummonEffect : Effect
         sb.Append("在");
         sb.Append(cellPosition);
         sb.Append("处召唤一个");
-        sb.Append(prefab.name);
+        sb.Append(prefab.GetComponent<PawnEntity>().EntityName);
     }
 }
