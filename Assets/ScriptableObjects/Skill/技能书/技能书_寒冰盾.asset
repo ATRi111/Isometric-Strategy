@@ -15,19 +15,22 @@ MonoBehaviour:
   displayName: "\u5BD2\u51B0\u76FE"
   icon: {fileID: 0}
   extraDescription: 
-  actionTime: 50
+  actionTime: 30
   animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
-  buffOnAgent:
-  - so: {fileID: 11400000, guid: 8de60d846c64f5849b68dd68721db3ca, type: 2}
-    probability: 100
+  buffOnAgent: []
   powers: []
-  buffOnVictim: []
+  buffOnVictim:
+  - so: {fileID: 11400000, guid: ef08b435ae07f8e4fa393422bf9458e6, type: 2}
+    probability: 100
   hitBackProbability: 0
-  victimType: 1
+  victimType: 2
   minLayer: -32
   maxLayer: 32
   castingDistance: 5
-  aimAtSelf: 0
+  aimAtSelf: 1

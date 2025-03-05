@@ -26,13 +26,13 @@ MonoBehaviour:
   buffOnAgent: []
   powers:
   - type: 2
-    power: 55
+    power: 40
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 1
     mndMultiplier: 0
   - type: 5
-    power: 55
+    power: 40
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 1

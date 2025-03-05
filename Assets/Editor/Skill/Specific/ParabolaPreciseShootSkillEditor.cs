@@ -2,7 +2,7 @@ using EditorExtend;
 using UnityEditor;
 
 [CustomEditor(typeof(ParabolaPreciseShootSkill))]
-public class ParabolaPreciseShootSkillEditor : ProjectileSkillEditor
+public class ParabolaPreciseShootSkillEditor : ParabolaSkillEditor
 {
     [AutoProperty]
     public SerializedProperty damageAmplifier, so;

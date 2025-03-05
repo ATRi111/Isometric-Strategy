@@ -17,6 +17,9 @@ MonoBehaviour:
   extraDescription: 
   actionTime: 50
   animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
@@ -32,7 +35,7 @@ MonoBehaviour:
   - so: {fileID: 11400000, guid: 62065c3f34916424c841fbec7354bb0c, type: 2}
     probability: 70
   hitBackProbability: 10
-  victimType: 1
+  victimType: 4
   minLayer: -32
   maxLayer: 32
   castingDistance: 0

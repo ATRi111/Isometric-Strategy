@@ -17,5 +17,6 @@ public class ParabolaSkillEditor : ProjectileSkillEditor
         float h = (target as ParabolaSkill).MaxProjectDistance(ParabolaSkill.DefaultHeight);
         EditorGUILayout.FloatField("最大飞行距离(平地)", f);
         EditorGUILayout.FloatField("最大飞行距离(高处)", h);
+        EditorGUI.EndDisabledGroup();
     }
 }

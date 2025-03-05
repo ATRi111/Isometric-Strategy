@@ -17,13 +17,16 @@ MonoBehaviour:
   extraDescription: 
   actionTime: 30
   animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
   powers:
   - type: 6
-    power: 30
+    power: 45
     strMultiplier: 0
     dexMultiplier: 0.5
     intMultiplier: 0.5

@@ -2,7 +2,7 @@ using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "抛物线弱点射击", menuName = "技能/特殊/抛物线弱点射击")]
-public class ParabolaPreciseShootSkill : StraightLineSkill
+public class ParabolaPreciseShootSkill : ParabolaSkill
 {
     public float damageAmplifier;
     public BuffSO so;
