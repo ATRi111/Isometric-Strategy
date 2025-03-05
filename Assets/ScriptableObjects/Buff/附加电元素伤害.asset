@@ -20,7 +20,7 @@ MonoBehaviour:
   duration: 200
   superimposeMode: 1
   removeFlag: 1
-  primitiveValue: 50
+  primitiveValue: 40
   modifier: {fileID: 0}
   power:
     type: 6

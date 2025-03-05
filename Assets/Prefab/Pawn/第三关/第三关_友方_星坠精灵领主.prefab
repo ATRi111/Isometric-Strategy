@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: maxHP.defaultValue
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: race
       value: 
@@ -91,6 +95,14 @@ PrefabInstance:
     - target: {fileID: 6422787771892813284, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: personality.defense
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: personality.seekSupport
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[0].equipment

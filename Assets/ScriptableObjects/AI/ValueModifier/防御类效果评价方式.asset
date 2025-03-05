@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407dcd3bffbe5d84595dfe46b2e5f68c, type: 3}
   m_Name: "\u9632\u5FA1\u7C7B\u6548\u679C\u8BC4\u4EF7\u65B9\u5F0F"
   m_EditorClassIdentifier: 
-  radius: 5
+  radius: 10
   amplitude_enemy: 1
   amplitude_ally: -0.2

@@ -23,5 +23,5 @@ MonoBehaviour:
   duration: 250
   superimposeMode: 1
   removeFlag: 2
-  primitiveValue: -40
+  primitiveValue: -30
   modifier: {fileID: 0}
