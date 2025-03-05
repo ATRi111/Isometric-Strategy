@@ -164,7 +164,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 norm.Add(I(allies[i]) * SupportDistance(allies[i]));
             }
-            return norm.Result * pawn.pClass.supportAbility;
+            return -norm.Result * pawn.pClass.supportAbility;
         }
         float SeekSupport()
         {
@@ -173,7 +173,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 norm.Add(allies[i].pClass.supportAbility * SupportedDistance(pawn));
             }
-            return norm.Result * I(pawn);
+            return -norm.Result * I(pawn);
         }
         float Offense()
         {
@@ -182,7 +182,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 norm.Add(OffenseDistance(enemies[i]));
             }
-            return norm.Result * H(pawn) * pawn.pClass.offenseAbility;
+            return -norm.Result * H(pawn) * pawn.pClass.offenseAbility;
         }
         float Defense()
         {
@@ -191,7 +191,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 norm.Add(H(enemies[i]) * enemies[i].pClass.offenseAbility * DefenseDistance(enemies[i]));
             }
-            return -norm.Result;
+            return norm.Result;
         }
 
         if (!positionValueCache.ContainsKey(position))

@@ -239,15 +239,15 @@ public abstract class AimSkill : Skill
         switch(victimType)
         {
             case EVictimType.Pawn:
-                sb.Append("仅以角色为目标");
+                sb.Append("仅对角色生效");
                 sb.AppendLine();
                 break;
             case EVictimType.Ally:
-                sb.Append("仅以自身/友方角色为目标");
+                sb.Append("仅对自身/友方角色生效");
                 sb.AppendLine();
                 break;
             case EVictimType.Enemy:
-                sb.Append("仅以敌方角色为目标");
+                sb.Append("仅对敌方角色生效");
                 sb.AppendLine();
                 break;
             default:

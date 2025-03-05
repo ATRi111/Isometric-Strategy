@@ -14,6 +14,8 @@ public abstract class PerspectiveController : AlphaController
         {
             for (int i = 0; i < spriteRenderers.Length; i++)
             {
+                if (spriteRenderers[i] == null)
+                    continue;
                 SetAlpha(spriteRenderers[i], alphaMultiplier_perspectiveMode * alphas[i]);
             }
             for (int i = 0;i < canvasGroups.Length; i++)
