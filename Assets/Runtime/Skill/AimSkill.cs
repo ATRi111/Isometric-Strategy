@@ -104,21 +104,22 @@ public abstract class AimSkill : Skill
 
         damage = Mathf.RoundToInt(damage * (1f + MockDamageAmplifier(igm, agent, victim, position, target)));
 
-        int HP = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
+        int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
 
-        if(def.HP != HP)
+        if (def.HP != hp)
         {
-            Effect effect = new HPChangeEffect(victim, def.HP, HP);
-            ret.effects.Add(effect);
+            HPChangeEffect hpChangeEffect = new HPChangeEffect(victim, def.HP, hp);
+            ret.effects.Add(hpChangeEffect);
+            if (hp == 0)
+            {
+                DisableEntityEffect disableEntityEffect = new(victim);
+                disableEntityEffect.Join(hpChangeEffect);
+                ret.effects.Add(disableEntityEffect);
+            }
         }
-        if (HP == 0)
+        else if (hp > 0 && victim is PawnEntity pawnVictim && hitBackProbability > 0)
         {
-            Effect effect = new DisableEntityEffect(victim);
-            ret.effects.Add(effect);
-        }
-        else if (victim is PawnEntity pawnVictim && hitBackProbability > 0)
-        {
-            HitBackUtility.MockHitBack(igm, position, pawnVictim, HP, hitBackProbability, ret);
+            HitBackUtility.MockHitBack(igm, position, pawnVictim, hp, hitBackProbability, ret);
         }
     }
 

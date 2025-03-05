@@ -10,7 +10,7 @@ public static class HitBackUtility
     public static float DefaultSpeedMultiplier = 3f;
     public static float hitBackDistance = 0.3f;
 
-    public static void MockHitBack(IsometricGridManager igm, Vector3Int agentPosition, PawnEntity victim, int HP, int probability, EffectUnit ret)
+    public static void MockHitBack(IsometricGridManager igm, Vector3Int agentPosition, PawnEntity victim, int hp, int probability, EffectUnit ret)
     {
         Vector3Int victimPosition = victim.GridObject.CellPosition;
         Vector2 delta = (Vector3)(victimPosition - agentPosition);
@@ -33,7 +33,7 @@ public static class HitBackUtility
             };
             hitBackPosition = victimPosition;
             damage = def.MockDamage(EDamageType.Crush, CollideAttackPower);
-            newHP = Mathf.Clamp(HP - damage, 0, def.maxHP.IntValue);
+            newHP = Mathf.Clamp(hp - damage, 0, def.maxHP.IntValue);
         }
         else
         {
@@ -46,7 +46,7 @@ public static class HitBackUtility
                 route.Insert(1, hitBackPosition.ResetZ(victimPosition.z));
             int h = Mathf.Clamp(victimPosition.z - victim.MovableGridObject.dropAbility.IntValue - hitBackPosition.z, 0, 5);
             damage = def.MockDamage(EDamageType.Crush, h * h * DropAttackPower);
-            newHP = Mathf.Clamp(HP - damage, 0, def.maxHP.IntValue);
+            newHP = Mathf.Clamp(hp - damage, 0, def.maxHP.IntValue);
         }
 
         int r = Effect.NextInt(); 
@@ -55,14 +55,23 @@ public static class HitBackUtility
             randomValue = r
         };
         ret.effects.Add(moveEffect);
-        if (HP != newHP)
+        if (hp != newHP)
         {
-            HPChangeEffect hpChangeEffect = new(victim, HP, newHP, probability)
+            HPChangeEffect hpChangeEffect = new(victim, hp, newHP, probability)
             {
                 randomValue = r
             };
             hpChangeEffect.Join(moveEffect);
             ret.effects.Add(hpChangeEffect);
+            if(newHP == 0)
+            {
+                DisableEntityEffect disableEntityEffect = new(victim)
+                {
+                    randomValue = r
+                };
+                disableEntityEffect.Join(hpChangeEffect);
+                ret.effects.Add(disableEntityEffect);
+            }
         }
     }
 }
