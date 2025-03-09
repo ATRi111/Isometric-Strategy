@@ -9,12 +9,12 @@ public class AlphaController : MonoBehaviour
         spriteRenderer.color = color;
     }
 
+    [SerializeField]
     protected SpriteRenderer[] spriteRenderers;
     protected float[] alphas;
 
     protected virtual void Awake()
     {
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         alphas = new float[spriteRenderers.Length];
         for(int i = 0; i < spriteRenderers.Length; i++)
         {

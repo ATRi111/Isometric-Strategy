@@ -83,6 +83,7 @@ namespace EditorExtend.GridEditor
         {
             UpdateCellPosition();
             base.HandleMouseInput();
+            SceneView.RepaintAll();
         }
 
         protected override void OnMouseDown(int button)

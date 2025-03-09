@@ -568,6 +568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2938ef97e0f1045bf48139a90643f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderers:
+  - {fileID: 6422787771892813284}
   alphaMultiplier_perspectiveMode: 0.1
 --- !u!1 &9010022718326903551
 GameObject:
