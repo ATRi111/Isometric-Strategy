@@ -36,4 +36,4 @@ MonoBehaviour:
   superimposeMode: 1
   removeFlag: 1
   primitiveValue: 50
-  modifier: {fileID: 0}
+  modifier: {fileID: 11400000, guid: 42fc1a69187dfe240a1e42e75b58b12b, type: 2}

@@ -149,9 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc4000720f5a024d96ccb2c8249c935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color_hitAlly: {r: 1, g: 0, b: 0, a: 1}
-  color_hitEnemy: {r: 0.0021754007, g: 0.69182384, b: 0.06302679, a: 1}
-  color_miss: {r: 0, g: 0, b: 0, a: 1}
+  color_hitAlly: {r: 0.003921569, g: 0.6901961, b: 0.0627451, a: 1}
+  color_hitEnemy: {r: 1, g: 0, b: 0, a: 1}
+  color_hitNeural: {r: 0, g: 0, b: 0, a: 1}
+  color_miss: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
 --- !u!1 &5652832865422284810
 GameObject:
   m_ObjectHideFlags: 0
