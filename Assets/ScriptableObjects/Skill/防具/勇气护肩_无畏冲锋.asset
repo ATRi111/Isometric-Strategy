@@ -16,13 +16,17 @@ MonoBehaviour:
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 0
+  animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions:
   - so: {fileID: 11400000, guid: 39153f23d11abb949910859dad2d7452, type: 2}
     requireExist: 0
   parameterOnAgent: []
   buffOnAgent:
-  - so: {fileID: 11400000, guid: d44019e9e73ca2e46b5be86396a7294f, type: 2}
+  - so: {fileID: 11400000, guid: aa88b36c200665746b5d9e19b4381e7c, type: 2}
     probability: 100
   - so: {fileID: 11400000, guid: 39153f23d11abb949910859dad2d7452, type: 2}
     probability: 100

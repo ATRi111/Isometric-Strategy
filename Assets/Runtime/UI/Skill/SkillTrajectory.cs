@@ -16,6 +16,8 @@ public class SkillTrajectory : MonoBehaviour
     [SerializeField]
     private Color color_hitEnemy;
     [SerializeField]
+    private Color color_hitNeural;
+    [SerializeField]
     private Color color_miss;
 
     private readonly List<Vector3> trajectory = new();
@@ -26,14 +28,26 @@ public class SkillTrajectory : MonoBehaviour
         ProjectileSkill projectile = action.skill as ProjectileSkill;
         if (projectile != null)
         {
-            GridObject victim = projectile.HitCheck(action.agent, Igm, action.target, trajectory);
+            GridObject obj = projectile.HitCheck(action.agent, Igm, action.target, trajectory);
             points = new Vector3[trajectory.Count];
             for (int i = 0; i < trajectory.Count; i++)
             {
                 points[i] = Igm.CellToWorld(trajectory[i]);
             }
-            bool hitEntity = victim != null && victim.GetComponent<Entity>() != null;
-            Color color = hitEntity ? color_hitAlly : color_miss;
+            Color color;
+            if (obj != null && obj.TryGetComponent(out Entity victim))
+            {
+                color = action.agent.FactionCheck(victim) switch
+                {
+                    >0 => color_hitAlly,
+                    0 => color_hitNeural,
+                    <0 => color_hitEnemy,
+                };
+            }
+            else
+            {
+                color = color_miss;
+            }
             lineRenderer.startColor = lineRenderer.endColor = color;
             lineRenderer.positionCount = points.Length;
             lineRenderer.SetPositions(points);
