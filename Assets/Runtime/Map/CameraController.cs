@@ -1,4 +1,4 @@
-using MyTool;
+using EditorExtend.GridEditor;
 using Services;
 using Services.Event;
 using System.Collections.Generic;
@@ -14,11 +14,22 @@ public class CameraController : MonoBehaviour
         { KeyCode.D,Vector3.right },
     };
 
+    private static int Extend = 2;
+
     private IEventSystem eventSystem;
     public Transform follow;
     public bool isFollowing;
     public float moveSpeed;
     public Vector3 offset;
+
+    public float xMin, yMin, xMax, yMax;
+
+    public void ClampInMap()
+    {
+        float x = Mathf.Clamp(transform.position.x, xMin, xMax);
+        float y = Mathf.Clamp(transform.position.y, yMin, yMax);
+        transform.position = new Vector3(x, y, transform.position.z);
+    }
 
     private void BeforeDoAction(PawnEntity pawn)
     {
@@ -32,6 +43,28 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
+    }
+
+    private void Start()
+    {
+        IsometricGridManager igm = IsometricGridManager.Instance;
+        xMin = xMax = transform.position.x;
+        yMin = yMax = transform.position.y;
+        foreach (GridObject obj in igm.ObjectDict.Values)
+        {
+            if(obj.IsGround)
+            {
+                Vector2 position = obj.transform.position;
+                xMin = Mathf.Min(xMin, position.x);
+                xMax = Mathf.Max(xMax, position.x);
+                yMin = Mathf.Min(yMin, position.y);
+                yMax = Mathf.Max(yMax, position.y);
+            }
+        }
+        xMin -= Extend;
+        yMin -= Extend;
+        xMax += Extend;
+        yMax += Extend;
     }
 
     private void OnEnable()
@@ -61,6 +94,7 @@ public class CameraController : MonoBehaviour
                 }
             }
         }
+        ClampInMap();
     }
 
     private void LateUpdate()
