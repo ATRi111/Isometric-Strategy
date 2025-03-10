@@ -33,6 +33,13 @@ public class RangedSkill : AimSkill
         }
     }
 
+    public override bool FilterVictim(PawnEntity agent, Entity victim)
+    {
+        if (!LayerCheck(agent.GridObject.CellPosition, victim.GridObject.CellPosition))
+            return false;
+        return base.FilterVictim(agent, victim);
+    }
+
     public override void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret)
     {
         ret.Clear();
