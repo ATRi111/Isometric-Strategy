@@ -139,15 +139,22 @@ public class PawnBrain : CharacterComponentBase
         int DistanceTo(PawnEntity other)
             => sensor.PredictDistanceBetween((Vector2Int)position, (Vector2Int)other.GridObject.CellPosition);
 
-        int SupportDistance(PawnEntity supported)
-            => -Mathf.Abs(DistanceTo(supported) - pawn.pClass.bestSupprtDistance);
-        int SupportedDistance(PawnEntity supporter)
-            => -Mathf.Abs(DistanceTo(supporter) - supporter.pClass.bestSupprtDistance);
+        float DistanceValue(float distance, float bestDistance)
+        {
+            if (distance <= bestDistance)
+                return 0f;
+            return Mathf.Log(distance - bestDistance + 1);
+        }
 
-        int OffenseDistance(PawnEntity victim)
-            => -Mathf.Abs(DistanceTo(victim) - pawn.pClass.bestOffenseDistance);
-        int DefenseDistance(PawnEntity agent)
-            => -Mathf.Abs(DistanceTo(agent) - agent.pClass.bestOffenseDistance);
+        float SupportDistanceValue(PawnEntity supported)
+            => DistanceValue(DistanceTo(supported), pawn.pClass.bestSupprtDistance);
+        float SupportedDistanceValue(PawnEntity supporter)
+            => DistanceValue(DistanceTo(supporter), supporter.pClass.bestSupprtDistance);
+
+        float OffenseDistanceValue(PawnEntity victim)
+            => DistanceValue(DistanceTo(victim), pawn.pClass.bestOffenseDistance);
+        float DefenseDistanceValue(PawnEntity agent)
+            => DistanceValue(DistanceTo(agent), agent.pClass.bestOffenseDistance);
 
         float H(PawnEntity pawn)
             => 0.5f + 0.5f * HealthPercent(pawn);
@@ -162,7 +169,7 @@ public class PawnBrain : CharacterComponentBase
             PNorm norm = new(POfNorm);
             for (int i = 0; i < sensor.allies.Count; i++)
             {
-                norm.Add(I(allies[i]) * SupportDistance(allies[i]));
+                norm.Add(I(allies[i]) * SupportDistanceValue(allies[i]));
             }
             return -norm.Result * pawn.pClass.supportAbility;
         }
@@ -171,7 +178,7 @@ public class PawnBrain : CharacterComponentBase
             PNorm norm = new(POfNorm);
             for (int i = 0; i < allies.Count; i++)
             {
-                norm.Add(allies[i].pClass.supportAbility * SupportedDistance(pawn));
+                norm.Add(allies[i].pClass.supportAbility * SupportedDistanceValue(pawn));
             }
             return -norm.Result * I(pawn);
         }
@@ -180,7 +187,7 @@ public class PawnBrain : CharacterComponentBase
             PNorm norm = new(POfNorm);
             for (int i = 0; i < enemies.Count; i++)
             {
-                norm.Add(OffenseDistance(enemies[i]));
+                norm.Add(OffenseDistanceValue(enemies[i]));
             }
             return -norm.Result * H(pawn) * pawn.pClass.offenseAbility;
         }
@@ -189,7 +196,7 @@ public class PawnBrain : CharacterComponentBase
             PNorm norm = new(POfNorm);
             for (int i = 0; i < enemies.Count; i++)
             {
-                norm.Add(H(enemies[i]) * enemies[i].pClass.offenseAbility * DefenseDistance(enemies[i]));
+                norm.Add(H(enemies[i]) * enemies[i].pClass.offenseAbility * DefenseDistanceValue(enemies[i]));
             }
             return norm.Result;
         }
