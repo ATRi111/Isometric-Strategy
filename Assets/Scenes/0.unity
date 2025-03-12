@@ -661,10 +661,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trend:
-    offerSupport: 5
-    seekSupport: 5
-    offense: 10
-    defense: 5
+    offerSupport: 10
+    seekSupport: 10
+    offense: 20
+    defense: 10
     terrain: 5
 --- !u!114 &1776701400
 MonoBehaviour:
