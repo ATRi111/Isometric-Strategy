@@ -19,6 +19,6 @@ MonoBehaviour:
   extraDescription: "\u6301\u7EED\u65F6\u95F4\u5185\uFF0C\u65E0\u6CD5\u518D\u6B21\u91CA\u653E\u55DC\u8840\u51B2\u51FB"
   duration: 200
   superimposeMode: 1
-  removeFlag: 1
+  removeFlag: 2
   primitiveValue: 0
   modifier: {fileID: 0}
