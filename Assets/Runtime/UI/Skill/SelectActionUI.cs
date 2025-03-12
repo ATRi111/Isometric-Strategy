@@ -19,10 +19,14 @@ public class SelectActionUI : MonoBehaviour
         ObjectPoolUtility.RecycleMyObjects(gameObject);
         currentActions.Clear();
         skillUIManager.currentPawn.Brain.MakeAction(skill, currentActions);
+
+        IMyObject obj = objectManager.Activate("ActorIcon", Igm.CellToWorld(currentActions[0].agent.GridObject.CellPosition), Vector3.zero, transform);
+        obj.Transform.SetLossyScale(Vector3.one);
+
         for (int i = 0; i < currentActions.Count; i++)
         {
             Vector3 world = Igm.CellToWorld(currentActions[i].target);
-            IMyObject obj = objectManager.Activate("ActionIcon", world, Vector3.zero, transform);
+            obj = objectManager.Activate("ActionIcon", world, Vector3.zero, transform);
             obj.Transform.SetLossyScale(Vector3.one);
             ActionIcon icon = obj.Transform.GetComponent<ActionIcon>();
             icon.SetAction(currentActions[i]);
