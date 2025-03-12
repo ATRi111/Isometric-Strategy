@@ -230,7 +230,7 @@ MonoBehaviour:
         prev: 0
         current: 0
       effects: []
-  extraSortingOrder: 3
+  extraSortingOrder: -1
   references:
     version: 2
     RefIds: []
@@ -246,4 +246,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673e5793a11a68842ad93f923ef167c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderers: []
   alphaMultiplier_perspectiveMode: 0.1

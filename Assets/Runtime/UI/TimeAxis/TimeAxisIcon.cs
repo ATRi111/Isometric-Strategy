@@ -13,6 +13,7 @@ public class TimeAxisIcon : IconUI
     private IsometricGridManager Igm => IsometricGridManager.Instance;
     private IObjectManager objectManager;
     private readonly List<PawnEntity> pawns = new();
+    private GameObject mountPoint;
 
     public void SetPawns(List<PawnEntity> pawns)
     {
@@ -49,6 +50,7 @@ public class TimeAxisIcon : IconUI
     {
         base.Awake();
         objectManager = ServiceLocator.Get<IObjectManager>();
+        mountPoint = new GameObject("TimeAxisMountPoint");
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
@@ -56,7 +58,7 @@ public class TimeAxisIcon : IconUI
         base.OnPointerEnter(eventData);
         for (int i = 0; i < pawns.Count; i++)
         {
-            IMyObject obj = objectManager.Activate("ActorIcon", Igm.CellToWorld(pawns[i].GridObject.CellPosition), Vector3.zero, transform);
+            IMyObject obj = objectManager.Activate("ActorIcon", Igm.CellToWorld(pawns[i].GridObject.CellPosition), Vector3.zero, mountPoint.transform);
             obj.Transform.SetLossyScale(Vector3.one);
         }
     }
@@ -64,6 +66,6 @@ public class TimeAxisIcon : IconUI
     public override void OnPointerExit(PointerEventData eventData)
     {
         base.OnPointerExit(eventData);
-        ObjectPoolUtility.RecycleMyObjects(gameObject);
+        ObjectPoolUtility.RecycleMyObjects(mountPoint);
     }
 }
