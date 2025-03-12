@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class PawnBrain : CharacterComponentBase
 {
-    public static float POfNorm = 2f;
+    public static float POfNorm = 4f;
 
     private AIManager AIManager;
     private IEventSystem eventSystem; 
