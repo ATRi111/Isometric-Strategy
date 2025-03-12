@@ -143,7 +143,7 @@ public class PawnBrain : CharacterComponentBase
         {
             if (distance <= bestDistance)
                 return 0f;
-            return Mathf.Log(distance - bestDistance + 1);
+            return Mathf.Pow(distance - bestDistance, 0.8f);
         }
 
         float SupportDistanceValue(PawnEntity supported)
