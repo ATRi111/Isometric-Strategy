@@ -13,9 +13,17 @@ MonoBehaviour:
   m_Name: "\u79FB\u52A8"
   m_EditorClassIdentifier: 
   displayName: "\u79FB\u52A8"
+  icon: {fileID: 21300000, guid: 15fd52ecc22cd0d4aab0b20451510b4f, type: 3}
+  extraDescription: 
   actionTime: 0
-  accuracy: 100
-  powers: []
+  animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
+  preConditions: []
+  buffPreConditions: []
+  parameterOnAgent: []
+  buffOnAgent: []
   actionTimePerUnit: 10
   ZOCActionTime: 10
   speedMultiplier: 1

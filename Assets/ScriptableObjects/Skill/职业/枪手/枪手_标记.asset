@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: "\u67AA\u624B_\u6807\u8BB0"
   m_EditorClassIdentifier: 
   displayName: "\u6807\u8BB0"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 5b3166cb38415a442bbd72635341bb17, type: 3}
   extraDescription: 
   actionTime: 0
   animationName: 
-  movementName: 
+  pawnAnimationState: 0
   movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions:
   - so: {fileID: 11400000, guid: 21def3fa248d19e4cae761c296074f06, type: 2}
