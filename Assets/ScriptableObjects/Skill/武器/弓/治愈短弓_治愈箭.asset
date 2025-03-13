@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u6CBB\u6108\u77ED\u5F13_\u6CBB\u6108\u7BAD"
   m_EditorClassIdentifier: 
   displayName: "\u6CBB\u6108\u7BAD"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 994fa16e40032cb40bf2340b77df9410, type: 3}
   extraDescription: 
   actionTime: 50
   animationName: Arrow

@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: "\u624B\u534A\u5251_\u53CC\u624B\u65A9\u51FB"
   m_EditorClassIdentifier: 
   displayName: "\u53CC\u624B\u65A9\u51FB"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0c3f04e044359764f91c52d2862e8dfe, type: 3}
   extraDescription: 
   actionTime: 75
   animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
