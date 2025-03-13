@@ -6,7 +6,7 @@ using UnityEditor;
 public class PawnEntityEditor : EntityEditor
 {
     [AutoProperty]
-    public SerializedProperty icon, faction, taskTarget, pClass, race, actionTime, speedUpRate, time, hidden;
+    public SerializedProperty icon, tachie, faction, taskTarget, pClass, race, actionTime, speedUpRate, time, hidden;
 
     public bool foldout;
 
@@ -14,6 +14,7 @@ public class PawnEntityEditor : EntityEditor
     {   
         base.MyOnInspectorGUI();
         icon.PropertyField("头像");
+        tachie.PropertyField("立绘");
         faction.EnumField<EFaction>("阵营");
         taskTarget.BoolField("任务目标");
         pClass.PropertyField("职业");
