@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
   immediate_next: 0
@@ -182,8 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958715328f3419d4b9e2657aa1f4afc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: 
+  info: 
   canvasGroup: {fileID: 0}
+  infoPivot: {x: 0, y: 0}
+  infoOffset: {x: 0, y: 0}
 --- !u!1 &4567219781913189827
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +223,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 255.94518, y: 0}
-  m_SizeDelta: {x: 90.2929, y: 29.2596}
+  m_SizeDelta: {x: 90.2929, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4120648729048789916
 CanvasRenderer:
@@ -369,7 +372,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 359.5066, y: 0}
-  m_SizeDelta: {x: 109.1061, y: 29.26}
+  m_SizeDelta: {x: 109.1061, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5045209956610856979
 CanvasRenderer:

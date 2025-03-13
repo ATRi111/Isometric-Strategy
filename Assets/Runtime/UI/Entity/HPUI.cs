@@ -11,6 +11,8 @@ public class HPUI : MonoBehaviour
 
     public virtual void SetEntity(Entity entity)
     {
+        if(defenceComponent != null)
+            defenceComponent.AfterHPChange -= AfterHPChange;
         this.entity = entity;
         defenceComponent = entity.DefenceComponent;
         defenceComponent.AfterHPChange += AfterHPChange;

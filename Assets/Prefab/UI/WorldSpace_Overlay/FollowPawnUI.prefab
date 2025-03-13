@@ -85,7 +85,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1561586475702273015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +441,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: 
   canvasGroup: {fileID: 0}
+  infoPivot: {x: 0, y: 0}
+  infoOffset: {x: 0, y: 0}
   skillUIManager: {fileID: 0}
 --- !u!225 &7246904506428445504
 CanvasGroup:
