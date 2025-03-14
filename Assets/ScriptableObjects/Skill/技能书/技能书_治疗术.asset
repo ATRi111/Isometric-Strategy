@@ -36,5 +36,5 @@ MonoBehaviour:
   victimType: 1
   minLayer: -32
   maxLayer: 32
-  castingDistance: 5
+  castingDistance: 6
   aimAtSelf: 1

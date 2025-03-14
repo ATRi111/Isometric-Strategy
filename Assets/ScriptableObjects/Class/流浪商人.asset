@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f8185e3a01d1f41a2a3a74abf4c790, type: 3}
+  m_Name: "\u6D41\u6D6A\u5546\u4EBA"
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  propertyModifier:
+    modifiers:
+    - value: 25
+      so: {fileID: 11400000, guid: 789e380388b3a264c912d4f3ea9205f0, type: 2}
+      method: 0
+    - value: 25
+      so: {fileID: 11400000, guid: 5f8dd69d93622f84ea09757942e148f8, type: 2}
+      method: 0
+    - value: 55
+      so: {fileID: 11400000, guid: 5b7aa0fa7bb7c034a98950b2b8078463, type: 2}
+      method: 0
+    - value: 10
+      so: {fileID: 11400000, guid: 90b59691706183d44b8946b924be3dce, type: 2}
+      method: 0
+    - value: 10
+      so: {fileID: 11400000, guid: f44c63f2c03dd144dbb628b191d38e27, type: 2}
+      method: 0
+    - value: 10
+      so: {fileID: 11400000, guid: a3ad2a85dce498e42ade88cb461c3bec, type: 2}
+      method: 0
+    - value: 10
+      so: {fileID: 11400000, guid: f8958f741a08a044f817ce25723a428e, type: 2}
+      method: 0
+    - value: 5
+      so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
+      method: 0
+    - value: 5
+      so: {fileID: 11400000, guid: 63c3c5b3fdad04f4094600f35ea76815, type: 2}
+      method: 0
+    - value: 5
+      so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
+      method: 0
+  skillsAttached:
+  - {fileID: 11400000, guid: fef0da3c657bedf47ad62f2237d67cb8, type: 2}
+  - {fileID: 11400000, guid: bfc6cd32c6a9d774b839deb495370a04, type: 2}
+  extraDescription: "\u56DB\u5904\u6D41\u6D6A\u7684\u884C\u5546\uFF0C\u5728\u65C5\u9014\u4E2D\u5B66\u5230\u4E86\u5404\u79CD\u77E5\u8BC6\uFF0C\u8FD8\u7814\u53D1\u51FA\u4E86\u72EC\u5BB6\u7684\u7279\u5236\u836F\u6C34\n\u4E3A\u4E86\u65B9\u4FBF\u552E\u5356\uFF0C\u5546\u4EBA\u8FD8\u5236\u4F5C\u4E86\u7279\u6B8A\u8170\u5E26\uFF0C\u80FD\u591F\u4E00\u6B21\u6027\u5BB9\u7EB3\u6570\u74F6\u836F\u6C34"
+  supportAbility: 0.2
+  offenseAbility: 0.8
+  bestSupprtDistance: 3
+  bestOffenseDistance: 6
+  terrainAbility: 1
