@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: "\u6CBB\u7597\u672F"
   icon: {fileID: 21300000, guid: 77968cf714de79d4bb2f066f98fec85f, type: 3}
   extraDescription: 
-  actionTime: 50
+  actionTime: 80
   animationName: 
   pawnAnimationState: 0
   movementLatency: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   buffOnAgent: []
   powers:
   - type: 0
-    power: -45
+    power: -75
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 0
