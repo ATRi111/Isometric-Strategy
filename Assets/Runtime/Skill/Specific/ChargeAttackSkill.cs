@@ -11,6 +11,13 @@ public class ChargeAttackSkill : RangedSkill
         return agent.parameterDict[ChargeSkill.ChargeLevel] * damageAmplifier;
     }
 
+    public override void ExtractKeyWords(KeyWordList keyWordList)
+    {
+        base.ExtractKeyWords(keyWordList);
+        Parameter p = PawnEntity.ParameterTable[ChargeSkill.ChargeLevel];
+        keyWordList.Push(p.name, p.description);
+    }
+
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);

@@ -71,6 +71,17 @@ public class BuffManager : CharacterComponentBase
         return null;
     }
 
+    public List<Buff> FindRemovable(ERemoveFlag removeFlag)
+    {
+        List<Buff> ret = new();
+        foreach(Buff buff in buffs)
+        {
+            if(buff.Enabled && buff.so.removeFlag == removeFlag)
+                ret.Add(buff);
+        }
+        return ret;
+    }
+
     public Buff SuprimposeCheck(Buff target)
     {
         foreach(Buff buff in buffs)

@@ -9,7 +9,7 @@ public abstract class Effect : IAnimationSource
 
     public const int MaxProbability = 100;
 
-    private static readonly RandomGroup randomGroup;
+    public static readonly RandomGroup randomGroup;
     static Effect()
     {
         randomGroup = RandomTool.GetGroup(ERandomGrounp.Battle);
