@@ -15,6 +15,7 @@ public class MarchSkill : RangedSkill
         int deltaTime = -Mathf.Min(agent.parameterDict[ChargeSkill.ChargeLevel] * deltaTimePerLevel, pawnVictim.time - gameManager.Time);
         TimeEffect effect = new(pawnVictim);
         effect.current += deltaTime;
+        ret.effects.Add(effect);
     }
 
     public override void ExtractKeyWords(KeyWordList keyWordList)
