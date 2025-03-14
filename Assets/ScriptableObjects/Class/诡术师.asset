@@ -45,7 +45,8 @@ MonoBehaviour:
   skillsAttached:
   - {fileID: 11400000, guid: 378cbdfdc43b6e54485772a9a5511cd3, type: 2}
   - {fileID: 11400000, guid: 85f5d06ec52e8104296ca5ea94fe388e, type: 2}
-  extraDescription: "\u6211\u7684\u7279\u70B9? \u4F60\u731C...?"
+  - {fileID: 11400000, guid: 9eb81c5fb57a7c04bb984344e557e135, type: 2}
+  extraDescription: "\u968F\u4FBF\u6253\u63A2\u5973\u5B69\u5B50\u7684\u9690\u79C1\u53EF\u662F\u574F\u4E60\u60EF\u5594...\uFF1F"
   supportAbility: 0.8
   offenseAbility: 0.2
   bestSupprtDistance: 2
