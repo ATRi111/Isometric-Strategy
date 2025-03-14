@@ -13,4 +13,11 @@ public class ChargeSkill : WalkSkill
         ModifyParameterEffect effect = new(agent, ChargeLevel, value_prev, value);
         ret.effects.Add(effect);
     }
+
+    public override void ExtractKeyWords(KeyWordList keyWordList)
+    {
+        base.ExtractKeyWords(keyWordList);
+        Parameter p = PawnEntity.ParameterTable[ChargeLevel];
+        keyWordList.Push(p.name, p.description);
+    }
 }

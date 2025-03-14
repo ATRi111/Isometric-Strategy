@@ -43,7 +43,7 @@ public class PawnAnimator : EntityAnimator
                 obj.transform.SetParent(transform);
                 obj.transform.localScale = Vector3.zero;
                 WeaponAnimator weaponAnimator = obj.GetComponent<WeaponAnimator>();
-                weaponAnimator.Play(movementName, spriteRenderer.sortingOrder + 1);
+                weaponAnimator.Play(movementName, spriteRenderer.sortingOrder);
             }
         }
     }

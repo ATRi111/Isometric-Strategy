@@ -43,6 +43,7 @@ public class PawnEntity : Entity
     public PawnAnimator PawnAnimator { get; protected set; }
 
     public Sprite icon;
+    public Sprite tachie;
     public EFaction faction;
     public bool taskTarget;
     public PawnClass pClass;

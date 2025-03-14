@@ -83,12 +83,12 @@ public abstract class Skill : ScriptableObject , IDescription
     /// <summary>
     /// 模拟技能花费的时间
     /// </summary>
-    public int MockTime(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target)
+    public virtual int MockTime(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target)
     {
         return Mathf.RoundToInt((1f - agent.speedUpRate.CurrentValue) * MockPrimitiveTime(agent, igm, position, target));
     }
     /// <summary>
-    /// 模拟技能花费的时间（不考虑加速率）
+    /// 模拟技能花费的原始时间
     /// </summary>
     protected virtual int MockPrimitiveTime(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target)
     {

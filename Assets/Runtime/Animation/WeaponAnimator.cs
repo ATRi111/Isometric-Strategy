@@ -7,10 +7,11 @@ public class WeaponAnimator : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    public int extraSortingOrder;
 
     public void Play(string movementName, int sortingOrder)
     {
-        spriteRenderer.sortingOrder = sortingOrder;
+        spriteRenderer.sortingOrder = sortingOrder + extraSortingOrder;
         animator.Play(BaseLayer + movementName);
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         float t = stateInfo.length;

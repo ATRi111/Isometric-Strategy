@@ -1,7 +1,6 @@
 using TMPro;
-using UnityEngine;
 
-public class WaitTimeUI : MonoBehaviour
+public class WaitTimeUI : IconUI
 {
     private PawnPanel pawnPanel;
     private TextMeshProUGUI tmp;
@@ -11,10 +10,12 @@ public class WaitTimeUI : MonoBehaviour
         tmp.text = $"剩余等待时间:{pawnPanel.SelectedPawn.time}";
     }
 
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         tmp = GetComponentInChildren<TextMeshProUGUI>();
         pawnPanel = GetComponentInParent<PawnPanel>();
         pawnPanel.RefreshAll += Refresh;
+        info = "等待时间变为0后,轮到此角色行动";
     }
 }

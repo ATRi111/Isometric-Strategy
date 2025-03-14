@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -44,5 +45,14 @@ public class BuffSO : PawnModifierSO
     public virtual void Tick(int startTime, int currentTime)
     {
 
+    }
+
+    protected override void Describe(StringBuilder sb)
+    {
+        base.Describe(sb);
+        if (removeFlag == ERemoveFlag.Unremovable)
+        {
+            sb.AppendLine("²»¿ÉÒÆ³ý");
+        }
     }
 }
