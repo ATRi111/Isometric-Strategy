@@ -36,8 +36,8 @@ MonoBehaviour:
   victimType: 1
   minLayer: -32
   maxLayer: 32
-  castingDistance: 8
-  aimAtSelf: 0
+  castingDistance: 9
+  aimAtSelf: 1
   speedMultiplier: 1
   angles:
   - 0
@@ -46,4 +46,4 @@ MonoBehaviour:
   - 45
   - 60
   - 75
-  maxSpeed: 7.1
+  maxSpeed: 9

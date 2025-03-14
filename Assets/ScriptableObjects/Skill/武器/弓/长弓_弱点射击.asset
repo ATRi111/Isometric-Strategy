@@ -36,7 +36,7 @@ MonoBehaviour:
   victimType: 1
   minLayer: -32
   maxLayer: 32
-  castingDistance: 8
+  castingDistance: 9
   aimAtSelf: 0
   speedMultiplier: 1
   angles:
@@ -46,6 +46,6 @@ MonoBehaviour:
   - 45
   - 60
   - 75
-  maxSpeed: 7.1
+  maxSpeed: 9
   damageAmplifier: 0.5
   so: {fileID: 11400000, guid: f4bcec32846e7ee4fbbb88483150a335, type: 2}
