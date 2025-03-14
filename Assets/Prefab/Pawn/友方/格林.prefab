@@ -19,7 +19,7 @@ PrefabInstance:
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: pClass
       value: 
-      objectReference: {fileID: 11400000, guid: 471ecb498603ead4c9d09e99f8951ee6, type: 2}
+      objectReference: {fileID: 11400000, guid: 970b5b7b4d4eb1c47b75832ed7f9e860, type: 2}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: faction
       value: 0

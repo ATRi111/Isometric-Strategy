@@ -37,6 +37,7 @@ public class ParameterTable : ScriptableObject
     }
     public void Initialize()
     {
+        searcher.Clear();
         for (int i = 0; i < parameters.Count; i++)
         {
             searcher.Add(parameters[i].name, parameters[i]);

@@ -19,6 +19,10 @@ public class PawnEntity : Entity
                 parameterTable = Resources.Load<ParameterTable>(nameof(ParameterTable));
                 parameterTable.Initialize();
             }
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+                parameterTable.Initialize();
+#endif
             return parameterTable;
         }
     }
