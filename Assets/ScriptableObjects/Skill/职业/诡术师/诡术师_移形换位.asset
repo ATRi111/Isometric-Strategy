@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afe2b62140f7fdb4e9b57d2edc05e97c, type: 3}
-  m_Name: "\u6280\u80FD\u4E66_\u4F4D\u7F6E\u4E92\u6362"
+  m_Name: "\u8BE1\u672F\u5E08_\u79FB\u5F62\u6362\u4F4D"
   m_EditorClassIdentifier: 
-  displayName: "\u4F4D\u7F6E\u4E92\u6362"
+  displayName: "\u79FB\u5F62\u6362\u4F4D"
   icon: {fileID: 0}
   extraDescription: "\u81EA\u8EAB\u4E0E\u6280\u80FD\u76EE\u6807\u4EA4\u6362\u4F4D\u7F6E"
   actionTime: 50
   animationName: 
   pawnAnimationState: 0
   movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
@@ -29,5 +30,5 @@ MonoBehaviour:
   victimType: 2
   minLayer: -32
   maxLayer: 32
-  castingDistance: 5
+  castingDistance: 6
   aimAtSelf: 0

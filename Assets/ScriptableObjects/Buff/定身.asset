@@ -17,9 +17,9 @@ MonoBehaviour:
     modifiers: []
   skillsAttached: []
   extraDescription: 
-  duration: 500
+  duration: 250
   superimposeMode: 1
   removeFlag: 0
   primitiveValue: -250
   modifier: {fileID: 11400000, guid: 42fc1a69187dfe240a1e42e75b58b12b, type: 2}
-  time: 500
+  time: 250
