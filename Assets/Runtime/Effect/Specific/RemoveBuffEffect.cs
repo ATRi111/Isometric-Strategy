@@ -6,9 +6,9 @@ using UnityEngine;
 [Serializable]
 public class RemoveBuffEffect : BuffEffect
 {
-    public override bool Appliable => !buffManager.Contains(buff);
+    public override bool Appliable => buffManager.Contains(buff);
 
-    public override bool Revokable => buffManager.Contains(buff);
+    public override bool Revokable => !buffManager.Contains(buff);
 
     public RemoveBuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability) 
         : base(victim, buff, buffManager, probability)
@@ -38,11 +38,9 @@ public class RemoveBuffEffect : BuffEffect
     public override void Describe(StringBuilder sb, bool result)
     {
         base.Describe(sb, result);
-        sb.Append("获得剩余时间为");
-        sb.Append(buff.endTime - gameManager.Time);
         sb.Append("的");
         sb.Append(buff.displayName);
-        sb.Append("状态");
+        sb.Append("状态被移除");
         sb.AppendLine();
     }
 }

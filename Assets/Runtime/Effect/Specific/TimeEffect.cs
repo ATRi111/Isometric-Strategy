@@ -43,8 +43,17 @@ public class TimeEffect : Effect
     public override void Describe(StringBuilder sb, bool result)
     {
         base.Describe(sb, result);
-        sb.Append("的等待时间增加");
-        sb.Append(current - prev);
+        sb.Append("的等待时间");
+        if(current > prev)
+        {
+            sb.Append("增加");
+            sb.Append(current - prev);
+        }
+        else
+        {
+            sb.Append("减少");
+            sb.Append(prev - current);
+        }
         sb.AppendLine();
     }
 }
