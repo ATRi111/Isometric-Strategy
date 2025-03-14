@@ -45,5 +45,5 @@ MonoBehaviour:
   castingDistance: 8
   aimAtSelf: 0
   speedMultiplier: 1
-  damageAmplifier: 25
+  damageAmplifier: 0.5
   so: {fileID: 11400000, guid: f4bcec32846e7ee4fbbb88483150a335, type: 2}
