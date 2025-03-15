@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1322161308720702386, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Color.b
-      value: 0.77254903
+      value: 0.7958047
       objectReference: {fileID: 0}
     - target: {fileID: 1322161308720702386, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Color.g
-      value: 0.5254902
+      value: 0.8113208
       objectReference: {fileID: 0}
     - target: {fileID: 1322161308720702386, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Color.r
-      value: 0.4117647
+      value: 0.5128159
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: icon
@@ -110,15 +110,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6422787771892813284, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Color.b
-      value: 0.77254903
+      value: 0.7958047
       objectReference: {fileID: 0}
     - target: {fileID: 6422787771892813284, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Color.g
-      value: 0.5254902
+      value: 0.8113208
       objectReference: {fileID: 0}
     - target: {fileID: 6422787771892813284, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Color.r
-      value: 0.4117647
+      value: 0.5128159
       objectReference: {fileID: 0}
     - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: humanControl

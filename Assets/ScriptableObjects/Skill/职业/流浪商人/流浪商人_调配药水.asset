@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u6D41\u6D6A\u5546\u4EBA_\u8C03\u914D\u836F\u6C34"
   m_EditorClassIdentifier: 
   displayName: "\u8C03\u914D\u836F\u6C34"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c2cf0da53fab8a84abfc06b944d5c80d, type: 3}
   extraDescription: 
   actionTime: 25
   animationName: 

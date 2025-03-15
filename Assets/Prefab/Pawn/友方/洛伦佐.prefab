@@ -68,9 +68,17 @@ PrefabInstance:
       propertyPath: humanControl
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[0].equipment
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[1].equipment
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
-      value: "\u4EBA\u7C7B\u7B26\u6587\u6218\u58EB"
+      value: "\u6D1B\u4F26\u4F50"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
