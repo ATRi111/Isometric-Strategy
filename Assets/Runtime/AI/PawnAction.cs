@@ -90,7 +90,7 @@ public class PawnAction : IAnimationSource , IDescription
         sb.AppendLine($"时间花费:{Time}");
         for (int i = 0; i < effectUnit.effects.Count; i++)
         {
-            if (!result || effectUnit.effects[i].WillHappen)
+            if (!result || !effectUnit.effects[i].NeverHappen)
                 effectUnit.effects[i].Describe(sb, result);
         }
     }

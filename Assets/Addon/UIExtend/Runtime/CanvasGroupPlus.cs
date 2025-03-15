@@ -13,8 +13,8 @@ namespace UIExtend
 
         [SerializeField]
         protected float fadeTime = 0.2f;
-        [SerializeField]
-        private float threshold_blockRaycast = 0.5f;
+
+        public float threshold_blockRaycast = 0.5f;
 
         /// <summary>
         /// 下一次显示/隐藏是否立即完成
