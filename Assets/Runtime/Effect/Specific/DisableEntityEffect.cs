@@ -30,7 +30,10 @@ public class DisableEntityEffect : Effect
     public override void Describe(StringBuilder sb, bool result)
     {
         base.Describe(sb, result);
-        sb.Append("±»»÷µ¹");
+        if (victim is PawnEntity)
+            sb.Append("±»»÷µ¹");
+        else
+            sb.Append("±»ÆÆ»µ");
         sb.AppendLine();
     }
 }
