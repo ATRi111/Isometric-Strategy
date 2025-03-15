@@ -12,9 +12,14 @@ public class BattleLog : MonoBehaviour
     private TextMeshProUGUI tmp;
     private ScrollRect scrollRect;
 
-    private void Log(string message)
+    public void Log(string message)
     {
         tmp.text += message + "\n";
+        StartCoroutine(Drag());
+    }
+    public void Clear()
+    {
+        tmp.text = string.Empty;
         StartCoroutine(Drag());
     }
 
@@ -34,10 +39,11 @@ public class BattleLog : MonoBehaviour
     private void OnEnable()
     {
         eventSystem.AddListener<string>(EEvent.BattleLog, Log);
+        eventSystem.AddListener(EEvent.AfterBattle, Clear);
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener<string>(EEvent.BattleLog, Log);
+        eventSystem.RemoveListener(EEvent.AfterBattle, Clear);
     }
 }
