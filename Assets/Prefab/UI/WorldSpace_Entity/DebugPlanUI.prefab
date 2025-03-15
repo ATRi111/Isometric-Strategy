@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
   immediate_next: 1
@@ -381,6 +382,7 @@ MonoBehaviour:
           victim: {fileID: 0}
           probability: 0
           randomValue: 0
+          hidden: 0
           prev: 0
           current: 0
         effects: []
@@ -413,4 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349ecbd34fb847748a8fb82d105d742f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderers:
+  - {fileID: 1374839061621688563}
+  canvasGroups:
+  - {fileID: 413221311737601828}
   alphaMultiplier_perspectiveMode: 0.1

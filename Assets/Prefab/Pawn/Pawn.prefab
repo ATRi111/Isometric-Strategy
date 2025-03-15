@@ -544,6 +544,7 @@ MonoBehaviour:
   entityName: 
   description: 
   icon: {fileID: 0}
+  tachie: {fileID: 0}
   faction: 1
   taskTarget: 0
   pClass: {fileID: 11400000, guid: 0c4d6825ca201534a9a97458c5adf663, type: 2}
@@ -570,6 +571,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderers:
   - {fileID: 6422787771892813284}
+  canvasGroups:
+  - {fileID: 7076640962269369195}
   alphaMultiplier_perspectiveMode: 0.1
 --- !u!1 &9010022718326903551
 GameObject:
@@ -816,3 +819,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7830238050133761407, guid: dce712112bb11ac43a085c19b44ea866, type: 3}
   m_PrefabInstance: {fileID: 2762008040886419737}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7076640962269369195 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4927457905797862002, guid: dce712112bb11ac43a085c19b44ea866, type: 3}
+  m_PrefabInstance: {fileID: 2762008040886419737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

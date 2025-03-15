@@ -37,6 +37,8 @@ public class InfoUI : TextBase
     [SerializeField]
     private Vector2 offset;
 
+    private bool locked;
+
     private void ShowInfo(Vector2 screenPoint, Vector2 pivot, string info)
     {
         focusOnIcon = true;
@@ -55,6 +57,20 @@ public class InfoUI : TextBase
     private void HideInfo(object source)
     {
         focusOnIcon = false;
+    }
+
+    private void LockUnlock()
+    {
+        if(locked)
+        {
+            canvasGrounp.threshold_blockRaycast = 1f;
+            locked = false;
+        }
+        else
+        {
+            canvasGrounp.threshold_blockRaycast = 0f;
+            locked = true;
+        }
     }
 
     protected override void Awake()
@@ -90,7 +106,7 @@ public class InfoUI : TextBase
         containsMouse = mouse.x >= left && mouse.x <= right
             && mouse.y >= bottom && mouse.y <= top;
 
-        if (!containsMouse && !focusOnIcon)
+        if (!containsMouse && !focusOnIcon && !locked)
             canvasGrounp.Visible = false;
 
         if (canvasGrounp.Visible)
@@ -98,6 +114,9 @@ public class InfoUI : TextBase
             CheckSecondaryInfo();
             UIExtendUtility.ClampInScreen(rectTransform);
         }
+
+        if(Input.GetKeyUp(KeyCode.T))
+            LockUnlock();
     }
 
     private void CheckSecondaryInfo()

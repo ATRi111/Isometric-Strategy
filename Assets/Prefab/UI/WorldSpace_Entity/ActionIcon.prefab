@@ -247,4 +247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderers: []
+  canvasGroups:
+  - {fileID: 4622872419809484037}
   alphaMultiplier_perspectiveMode: 0.1
