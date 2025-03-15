@@ -77,9 +77,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[0].equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 6dce1efcbd7097c4ea13491534b0919d, type: 2}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[1].equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[2].equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 79f2949b0f34cb34e966bacb98f2e164, type: 2}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[3].equipment
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 6f71e06fdb82ca74686efcacae923067, type: 2}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[4].equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 18576eb61bd42734abb4694eb50cebcb, type: 2}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
       value: "\u4F0A\u83B1\u4E9A\u65AF"

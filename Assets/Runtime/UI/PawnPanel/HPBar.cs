@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class HPBar : HPUI
 {
-    private TextMeshProUGUI tmp;
     private PawnPanel pawnPanel;
+    public TextMeshProUGUI tmp;
     public Image front;
     public Image back;
 
@@ -40,7 +40,6 @@ public class HPBar : HPUI
     protected override void Awake()
     {
         base.Awake();
-        tmp = GetComponentInChildren<TextMeshProUGUI>();
         pawnPanel = GetComponentInParent<PawnPanel>();
         pawnPanel.RefreshAll += Refresh;
     }

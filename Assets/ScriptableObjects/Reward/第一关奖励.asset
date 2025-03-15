@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0789d099338f1946925b30d4f96c252, type: 3}
   m_Name: "\u7B2C\u4E00\u5173\u5956\u52B1"
   m_EditorClassIdentifier: 
-  newPlayer: {fileID: 2338041512611947571, guid: 83a4f34afdcf41f449318a3859c9f158, type: 3}
+  newPlayerList:
+  - {fileID: 2338041512611947571, guid: 2db685c6ddb7c154a92ff6a155671845, type: 3}
   equipmentList:
-  - {fileID: 11400000, guid: 7a6d068aec076514f885b592cd0efb7d, type: 2}
+  - {fileID: 11400000, guid: 4027596200e3f4b45b4133264478549b, type: 2}
+  - {fileID: 11400000, guid: 599bf278f2e67304db491a7d9e470cd6, type: 2}
+  - {fileID: 11400000, guid: fe1898dd34da5a44490ed3e2777f9021, type: 2}

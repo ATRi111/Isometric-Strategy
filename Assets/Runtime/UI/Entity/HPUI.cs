@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CanvasGroupPlus))]
 public class HPUI : MonoBehaviour
 {
+    [HideInInspector]
     public Entity entity;
 
     protected CanvasGroupPlus canvasGroup;
