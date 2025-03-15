@@ -9,6 +9,7 @@ public enum EPawnAnimationState
     Pierce,
     Slash,
     Raise,
+    Static,
 }
 
 public class PawnAnimator : EntityAnimator
@@ -24,6 +25,9 @@ public class PawnAnimator : EntityAnimator
     public bool up;
     public bool right;
 
+    public void Play(string movementName)
+        => animator.Play(BaseLayer + movementName);
+
     public void Play(string movementName, float latency, bool weaponAnimation)
     {
         StartCoroutine(DelayPlay(movementName, latency, weaponAnimation));
@@ -31,9 +35,9 @@ public class PawnAnimator : EntityAnimator
 
     private IEnumerator DelayPlay(string movementName, float latency, bool weaponAnimation)
     {
-        animator.Play(BaseLayer + "Idle");
+        Play("Static");
         yield return new WaitForSeconds(latency);
-        animator.Play(BaseLayer + movementName);
+        Play(movementName);
         if (weaponAnimation)
         {
             Equipment weapon = pawn.EquipmentManager.GetFirst(ESlotType.Weapon).equipment;

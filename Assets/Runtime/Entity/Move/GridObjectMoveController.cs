@@ -26,6 +26,7 @@ public class GridObjectMoveController : GridMoveController
     protected override void AfterComplete(Vector3 v)
     {
         base.AfterComplete(v);
+        pawnEntity.PawnAnimator.Play(EPawnAnimationState.Idle.ToString());
         if (!animationOnly)
             gridObject.AlignXY();
     }

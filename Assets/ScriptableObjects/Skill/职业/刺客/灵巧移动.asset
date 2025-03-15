@@ -17,6 +17,9 @@ MonoBehaviour:
   extraDescription: 
   actionTime: 0
   animationName: 
+  pawnAnimationState: 1
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
   parameterOnAgent: []
