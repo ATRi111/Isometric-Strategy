@@ -30,6 +30,9 @@ public class BattleLog : MonoBehaviour
         scrollRect.normalizedPosition = Vector2.zero;
     }
 
+    private void AfterBattle(bool _)
+        => Clear();
+
     private void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
@@ -39,11 +42,11 @@ public class BattleLog : MonoBehaviour
     private void OnEnable()
     {
         eventSystem.AddListener<string>(EEvent.BattleLog, Log);
-        eventSystem.AddListener(EEvent.AfterBattle, Clear);
+        eventSystem.AddListener<bool>(EEvent.AfterBattle, AfterBattle);
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener(EEvent.AfterBattle, Clear);
+        eventSystem.RemoveListener<bool>(EEvent.AfterBattle, AfterBattle);
     }
 }

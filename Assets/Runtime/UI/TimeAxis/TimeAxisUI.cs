@@ -22,9 +22,15 @@ public class TimeAxisUI : MonoBehaviour
     public Vector3 left;
     public Vector3 right;
 
+    [SerializeField]
+    private float leftBlankSpace;
+    [SerializeField]
+    private float rightBlankSpace;
+
     public Vector3 TimeToPosition(int time)
     {
-        float p = 0.05f + 0.9f * (time / timeSpan);
+        float p = leftBlankSpace + (1f - leftBlankSpace - rightBlankSpace) * (time / timeSpan);
+        p = Mathf.Clamp01(p);
         return Vector3.Lerp(left, right, p);
     }
 
@@ -37,8 +43,7 @@ public class TimeAxisUI : MonoBehaviour
         List<PawnEntity> entites = new();
         foreach (PawnEntity pawn in gameManager.pawns)
         {
-            if (pawn.time - time < timeSpan)
-                entites.Add(pawn);
+            entites.Add(pawn);
         }
         entites.Sort(comparer);
         int current = entites[0].time;
