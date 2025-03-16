@@ -1,5 +1,7 @@
+using MyTool;
 using Services;
 using Services.Event;
+using Services.ObjectPools;
 using System;
 using UnityEngine;
 
@@ -10,7 +12,11 @@ public class SkillUIManager : MonoBehaviour
         return GameObject.Find(nameof(SkillUIManager)).GetComponent<SkillUIManager>();
     }
 
-    public IEventSystem EventSystem { get; private set; }
+    private IEventSystem eventSystem;
+    private IObjectManager objectManager;
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
+    private IMyObject actorIcon;
+    
     /// <summary>
     /// 启用技能选择面板
     /// </summary>
@@ -51,6 +57,10 @@ public class SkillUIManager : MonoBehaviour
         currentPawn = pawn;
         if (pawn.Brain.humanControl)
             SelectSkill?.Invoke(currentPawn);
+
+        actorIcon?.Recycle();
+        actorIcon = objectManager.Activate("ActorIcon", Igm.CellToWorld(currentPawn.GridObject.CellPosition), Vector3.zero, transform);
+        actorIcon.Transform.SetLossyScale(Vector3.one);
     }
 
     private void ReselectSkill()
@@ -66,18 +76,19 @@ public class SkillUIManager : MonoBehaviour
 
     private void Awake()
     {
-        EventSystem = ServiceLocator.Get<IEventSystem>();
+        eventSystem = ServiceLocator.Get<IEventSystem>();
+        objectManager = ServiceLocator.Get<IObjectManager>();
         AfterCancelSelectAction += ReselectSkill;
         AfterSelectAction += ExecuteAction;
     }
 
     private void OnEnable()
     {
-        EventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
+        eventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
     }
 
     private void OnDisable()
     {
-        EventSystem.RemoveListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
+        eventSystem.RemoveListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
     }
 }
