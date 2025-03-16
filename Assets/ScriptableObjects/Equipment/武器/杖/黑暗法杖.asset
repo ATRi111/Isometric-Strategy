@@ -42,3 +42,6 @@ MonoBehaviour:
   extraDescription: 
   slotType: 0
   animationPrefab: {fileID: 0}
+  parameterOnAgent:
+  - parameterIndex: 2
+    deltaValue: 1
