@@ -33,7 +33,7 @@ MonoBehaviour:
     mndMultiplier: 1
   buffOnVictim: []
   hitBackProbability: 0
-  victimType: 1
+  victimType: 2
   minLayer: -32
   maxLayer: 32
   castingDistance: 6
