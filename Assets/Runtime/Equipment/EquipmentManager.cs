@@ -44,6 +44,15 @@ public class EquipmentManager : CharacterComponentBase
         }
     }
 
+    public void ApplyAllParameter()
+    {
+        foreach (EquipmentSlot slot in slots)
+        {
+            if (slot.equipment != null)
+                slot.equipment.ApplyParameter(pawn);
+        }
+    }
+
     /// <summary>
     /// 装上装备（返回被卸下的装备）
     /// </summary>

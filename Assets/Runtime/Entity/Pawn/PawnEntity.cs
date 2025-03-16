@@ -105,6 +105,12 @@ public class PawnEntity : Entity
         OffenceComponent.RefreshProperty();
     }
 
+    protected override void BeforeBattle()
+    {
+        base.BeforeBattle();
+        EquipmentManager.ApplyAllParameter();
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();

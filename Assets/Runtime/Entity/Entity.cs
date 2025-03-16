@@ -50,6 +50,11 @@ public class Entity : EntityBase , IDescription
         gameObject.SetActive(true);
     }
 
+    protected virtual void BeforeBattle()
+    {
+
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -61,6 +66,7 @@ public class Entity : EntityBase , IDescription
     protected virtual void OnEnable()
     {
         EventSystem.AddListener<int>(EEvent.OnTick, OnTick);
+        EventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
         DefenceComponent.Initialize();
         RefreshProperty();
         DefenceComponent.HP = DefenceComponent.maxHP.IntValue;
@@ -69,6 +75,7 @@ public class Entity : EntityBase , IDescription
     protected virtual void OnDisable()
     {
         EventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
+        EventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
     }
 
     public string description;

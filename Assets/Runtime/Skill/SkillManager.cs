@@ -12,7 +12,6 @@ public class SkillManager : CharacterComponentBase
     public SerializedHashSet<Skill> learnedSkills;
 
     public readonly HashSet<Vector3Int> offenseArea = new();
-    private int maxOffenseDistance;
 
     public void Learn(Skill skill)
     {
@@ -55,7 +54,6 @@ public class SkillManager : CharacterComponentBase
     public void PredictOffenseArea()
     {
         offenseArea.Clear();
-        maxOffenseDistance = 0;
         List<Vector3Int> temp = new();
         foreach(Skill skill in learnedSkills)
         {
