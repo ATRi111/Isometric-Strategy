@@ -88,6 +88,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1812786644135953398, guid: 1a38aeaec659ba940b191d9d37b2ca28, type: 3}
+      propertyPath: disabledColor.b
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812786644135953398, guid: 1a38aeaec659ba940b191d9d37b2ca28, type: 3}
+      propertyPath: disabledColor.g
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812786644135953398, guid: 1a38aeaec659ba940b191d9d37b2ca28, type: 3}
+      propertyPath: disabledColor.r
+      value: 0.5882353
+      objectReference: {fileID: 0}
     - target: {fileID: 8794353635203881506, guid: 1a38aeaec659ba940b191d9d37b2ca28, type: 3}
       propertyPath: m_Name
       value: SkillIconToSelect
