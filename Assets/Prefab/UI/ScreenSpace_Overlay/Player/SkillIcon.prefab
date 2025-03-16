@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha_default: 0
   fadeTime: 0.2
   threshold_blockRaycast: 0.5
   immediate_next: 0
@@ -119,5 +120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15aaf6dbcfa3092438c512abbb510bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGrounp: {fileID: 0}
+  info: 
+  canvasGroup: {fileID: 0}
+  infoPivot: {x: 0, y: 0}
+  infoOffset: {x: 0, y: 0}
   skill: {fileID: 0}
+  canUse: 0
+  enabledColor: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}

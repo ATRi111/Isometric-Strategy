@@ -12,7 +12,7 @@ public class SkillIconToDisplay : MonoBehaviour
         if (index < pawn.SkillManager.learnedSkills.Count)
         {
             skillIcon.canvasGroup.Visible = true;
-            skillIcon.SetSkill(pawn.SkillManager.learnedSkills[index]);
+            skillIcon.SetSkill(pawn.SkillManager.learnedSkills[index], true);
         }
         else
         {

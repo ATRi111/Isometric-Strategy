@@ -22,7 +22,16 @@ public class SelectSkillUI : MonoBehaviour
             if (skill.CanUse(pawn, pawn.Igm))
             {
                 icons[count].canvasGroup.Visible = true;
-                icons[count].SetSkill(skill);
+                icons[count].SetSkill(skill, true);
+                count++;
+            }
+        }
+        foreach (Skill skill in pawn.SkillManager.learnedSkills)
+        {
+            if (!skill.CanUse(pawn, pawn.Igm))
+            {
+                icons[count].canvasGroup.Visible = true;
+                icons[count].SetSkill(skill, false);
                 count++;
             }
         }

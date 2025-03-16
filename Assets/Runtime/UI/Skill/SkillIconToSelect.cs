@@ -8,7 +8,7 @@ public class SkillIconToSelect : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if (icon.canUse && eventData.button == PointerEventData.InputButton.Left)
             skillUIManager.AfterSelectSkill?.Invoke(icon.skill);
     }
 

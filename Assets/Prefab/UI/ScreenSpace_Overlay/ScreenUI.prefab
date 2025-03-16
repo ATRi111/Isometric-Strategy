@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59775f2770b0114289a53ce9041c163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxIconCount: 10
+  maxIconCount: 20
   prefab: {fileID: 179303851197694342, guid: 807edb116c632b84e8482519902d6026, type: 3}
 --- !u!114 &3190087255646189243
 MonoBehaviour:
