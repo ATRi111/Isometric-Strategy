@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: resistance.list.Array.data[0].value.defaultValue
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2158848222964706217, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: resistance.list.Array.data[1].value.defaultValue

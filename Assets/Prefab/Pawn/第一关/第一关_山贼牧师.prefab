@@ -54,12 +54,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4451063528451210290, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: buffResistances.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4451063528451210290, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: buffResistances.Array.data[0].so
       value: 
-      objectReference: {fileID: 11400000, guid: 62065c3f34916424c841fbec7354bb0c, type: 2}
+      objectReference: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
     - target: {fileID: 4451063528451210290, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: buffResistances.Array.data[1].so
       value: 
@@ -125,6 +125,10 @@ PrefabInstance:
       value: 0.04198265
       objectReference: {fileID: 0}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[0].equipment
       value: 
       objectReference: {fileID: 11400000, guid: 6dce1efcbd7097c4ea13491534b0919d, type: 2}
@@ -134,6 +138,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[2].equipment
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[3].equipment
       value: 
       objectReference: {fileID: 11400000, guid: 6f71e06fdb82ca74686efcacae923067, type: 2}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
