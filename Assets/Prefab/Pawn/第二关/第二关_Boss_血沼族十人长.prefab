@@ -90,11 +90,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757642395551545054, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: strength.defaultValue
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3757642395551545054, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: dexterity.defaultValue
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5737828582266420397, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_LocalPosition.x
