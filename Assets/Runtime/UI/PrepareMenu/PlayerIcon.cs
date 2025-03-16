@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-public class PlayerIcon : IconUI
+public class PlayerIcon : InfoIcon
 {
     private LevelManager levelManager;
     private PlayerManager playerManager;

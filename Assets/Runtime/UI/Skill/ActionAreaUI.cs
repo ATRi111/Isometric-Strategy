@@ -8,12 +8,10 @@ public class ActionAreaUI : MonoBehaviour
     private IsometricGridManager Igm => IsometricGridManager.Instance;
     private SkillUIManager skillUIManager;
     private IObjectManager objectManager;
-    private PawnAction currentAction;
     private readonly List<Vector3Int> area = new();
 
     private void PreviewAction(PawnAction action)
     {
-        currentAction = action;
         ObjectPoolUtility.RecycleMyObjects(gameObject);
         AimSkill aimSkill = action.skill as AimSkill;
         if(aimSkill != null)
@@ -27,24 +25,18 @@ public class ActionAreaUI : MonoBehaviour
         }
     }
 
-    private void StopPreviewAction(PawnAction action)
+    private void StopPreviewAction(PawnAction _)
     {
-        if (action == currentAction)
-        {
-            currentAction = null;
-            ObjectPoolUtility.RecycleMyObjects(gameObject);
-        }
+        ObjectPoolUtility.RecycleMyObjects(gameObject);
     }
 
     private void AfterSelectAction(PawnAction _)
     {
-        currentAction = null;
         ObjectPoolUtility.RecycleMyObjects(gameObject);
     }
 
     private void AfterCancelSelectAction()
     {
-        currentAction = null;
         ObjectPoolUtility.RecycleMyObjects(gameObject);
     }
 

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.UI;
 
-public class NewPlayerIcon : IconUI
+public class NewPlayerIcon : InfoIcon
 {
     [NonSerialized]
     public PawnEntity player;

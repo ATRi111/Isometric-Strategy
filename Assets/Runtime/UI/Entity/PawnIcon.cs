@@ -1,7 +1,7 @@
 using Services.Event;
 using UnityEngine.EventSystems;
 
-public class PawnIcon : IconUI , IPointerClickHandler
+public class PawnIcon : InfoIcon , IPointerClickHandler
 {
     public SkillUIManager skillUIManager;
     private PawnEntity pawn;
@@ -10,6 +10,18 @@ public class PawnIcon : IconUI , IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
             eventSystem.Invoke(EEvent.ShowPawnPanel, pawn);
+    }
+
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+        skillUIManager.PreviewOffenseArea?.Invoke(pawn);
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        skillUIManager.StopPreviewOffenseArea?.Invoke(pawn);
     }
 
     private void AfterSelectSkill(Skill _)

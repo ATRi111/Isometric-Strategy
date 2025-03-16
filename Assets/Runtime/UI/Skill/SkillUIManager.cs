@@ -35,6 +35,14 @@ public class SkillUIManager : MonoBehaviour
     /// Í£Ö¹Ô¤ÀÀ¼¼ÄÜÎ»ÖÃ
     /// </summary>
     public Action<PawnAction> StopPreviewAction;
+    /// <summary>
+    /// ¿ªÊ¼Ô¤ÀÀÍşĞ²·¶Î§
+    /// </summary>
+    public Action<PawnEntity> PreviewOffenseArea;
+    /// <summary>
+    /// Í£Ö¹Ô¤ÀÀÍşĞ²·¶Î§
+    /// </summary>
+    public Action<PawnEntity> StopPreviewOffenseArea;
 
     public PawnEntity currentPawn;
 

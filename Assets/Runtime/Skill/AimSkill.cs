@@ -22,6 +22,9 @@ public abstract class AimSkill : Skill
     public EVictimType victimType = EVictimType.Entity;
     public int minLayer = -2, maxLayer = 2;
 
+    public override bool Offensive => powers.Count > 0 && powers[0].power > 0 
+        || buffOnVictim.Count > 0 && buffOnVictim[0].so.removeFlag != ERemoveFlag.Buff;
+
     public bool LayerCheck(Vector3Int position, Vector3Int target)
     {
         int delta = target.z - position.z;

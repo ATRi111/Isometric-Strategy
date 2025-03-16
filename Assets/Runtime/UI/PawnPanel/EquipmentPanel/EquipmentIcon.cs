@@ -1,7 +1,7 @@
 using MyTool;
 using System;
 
-public class EquipmentIcon : IconUI
+public class EquipmentIcon : InfoIcon
 {
     private PawnPanel pawnPanel;
     [NonSerialized]

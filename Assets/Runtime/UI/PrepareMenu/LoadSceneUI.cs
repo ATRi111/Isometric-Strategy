@@ -1,5 +1,6 @@
 using Services;
 using Services.Event;
+using System.Collections;
 using UIExtend;
 using UnityEngine;
 
@@ -10,12 +11,19 @@ public class LoadSceneUI : MonoBehaviour
 
     private void AfterLoadScene(int _)
     {
-        canvasGroup.Visible = false;
+        StartCoroutine(DelayHide());
     }
 
     private void BeforeUnLoadScene(int _)
     {
         canvasGroup.Visible = true;
+    }
+
+    private IEnumerator DelayHide()
+    {
+        yield return null;
+        yield return new WaitForEndOfFrame(); 
+        canvasGroup.Visible = false;
     }
 
     private void Awake()

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class ParameterIcon : IconUI
+public class ParameterIcon : InfoIcon
 {
     public string parameterName;
     private TextMeshProUGUI tmp;

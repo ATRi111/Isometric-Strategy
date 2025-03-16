@@ -1,6 +1,6 @@
 using TMPro;
 
-public class PropertyIcon : IconUI
+public class PropertyIcon : InfoIcon
 {
     private TextMeshProUGUI tmp;
 

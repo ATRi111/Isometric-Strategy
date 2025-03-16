@@ -19,6 +19,8 @@ public abstract class Skill : ScriptableObject , IDescription
     public List<PawnParameterModifier> parameterOnAgent;
     public List<BuffModifier> buffOnAgent;
 
+    public virtual bool Offensive => false;
+
     /// <summary>
     /// 判断当前能否使用此技能
     /// </summary>

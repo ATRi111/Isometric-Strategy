@@ -1,6 +1,6 @@
 using TMPro;
 
-public class WaitTimeUI : IconUI
+public class WaitTimeUI : InfoIcon
 {
     private PawnPanel pawnPanel;
     private TextMeshProUGUI tmp;

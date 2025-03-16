@@ -1,9 +1,18 @@
 using Character;
 using MyTool;
+using Services;
+using Services.Event;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class SkillManager : CharacterComponentBase
 {
+    private IEventSystem eventSystem;
+    private PawnEntity pawn;
     public SerializedHashSet<Skill> learnedSkills;
+
+    public readonly HashSet<Vector3Int> offenseArea = new();
+    private int maxOffenseDistance;
 
     public void Learn(Skill skill)
     {
@@ -41,5 +50,57 @@ public class SkillManager : CharacterComponentBase
     public bool Forget(Skill skill)
     {
         return learnedSkills.Remove(skill);
+    }
+
+    public void PredictOffenseArea()
+    {
+        offenseArea.Clear();
+        maxOffenseDistance = 0;
+        List<Vector3Int> temp = new();
+        foreach(Skill skill in learnedSkills)
+        {
+            if(skill is RangedSkill rangedSkill)
+            {
+                if (rangedSkill.Offensive)
+                    rangedSkill.GetOptions(pawn, pawn.Igm, pawn.GridObject.CellPosition, temp);
+            }
+            for (int i = 0; i < temp.Count; i++)
+            {
+                offenseArea.Add(temp[i]);
+            }
+        }
+    }
+
+    private void BeforeDoAction(PawnEntity agent)
+    {
+        if (agent.Brain.humanControl)
+            PredictOffenseArea();   //自身为敌人，且轮到玩家行动时，更新威胁范围
+        else
+            offenseArea.Clear();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        eventSystem = ServiceLocator.Get<IEventSystem>();
+        pawn = (PawnEntity)entity; 
+    }
+
+    private void OnEnable()
+    {
+        if (pawn.faction == EFaction.Enemy)
+            eventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
+    }
+
+    private void OnDisable()
+    {
+        if (pawn.faction == EFaction.Enemy)
+            eventSystem.RemoveListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
+    }
+
+    private void Start()
+    {
+        if (pawn.faction == EFaction.Enemy)
+            PredictOffenseArea();
     }
 }

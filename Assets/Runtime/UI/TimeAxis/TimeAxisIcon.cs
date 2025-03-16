@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(CanvasGroupPlus))]
-public class TimeAxisIcon : IconUI
+public class TimeAxisIcon : InfoIcon
 {
     private IsometricGridManager Igm => IsometricGridManager.Instance;
     private IObjectManager objectManager;

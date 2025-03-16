@@ -1,6 +1,6 @@
 using TMPro;
 
-public class BuffIcon : IconUI
+public class BuffIcon : InfoIcon
 {
     public Buff buff;
     private TextMeshProUGUI tmp;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ActionIcon : IconUI, IPointerClickHandler
+public class ActionIcon : InfoIcon, IPointerClickHandler
 {
     private IsometricGridManager Igm => IsometricGridManager.Instance;
 

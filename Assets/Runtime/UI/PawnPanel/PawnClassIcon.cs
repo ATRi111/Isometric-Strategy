@@ -1,6 +1,6 @@
 using TMPro;
 
-public class PawnClassIcon : IconUI
+public class PawnClassIcon : InfoIcon
 {
     private PawnPanel pawnPanel;
     private TextMeshProUGUI tmp;

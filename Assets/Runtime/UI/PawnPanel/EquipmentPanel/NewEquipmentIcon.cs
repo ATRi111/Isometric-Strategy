@@ -1,7 +1,7 @@
 using MyTool;
 using System;
 
-public class NewEquipmentIcon : IconUI
+public class NewEquipmentIcon : InfoIcon
 {
     [NonSerialized]
     public Equipment equipment;

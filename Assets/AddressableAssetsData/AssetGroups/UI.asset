@@ -22,7 +22,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 65b329c78b12b8b4aa81d7bdeb7e33a5
+  - m_GUID: 69beba8894cf8e24b836f5697b6e8328
     m_Address: ActionAreaIcon
     m_ReadOnly: 0
     m_SerializedLabels: []
@@ -34,6 +34,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9d44b4f3aac77db40852e28c0cd6f42e
     m_Address: ActorIcon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a67561c3b4210af43862d902f66acff0
+    m_Address: OffenseAreaIcon
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

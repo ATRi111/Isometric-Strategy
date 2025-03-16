@@ -1,6 +1,6 @@
 using MyTool;
 
-public class SkillIcon : IconUI
+public class SkillIcon : InfoIcon
 {
     public Skill skill;
 
