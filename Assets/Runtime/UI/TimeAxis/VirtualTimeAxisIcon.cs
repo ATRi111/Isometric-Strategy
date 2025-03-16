@@ -5,6 +5,11 @@ public class VirtualTimeAxisIcon : MonoBehaviour
     private SkillUIManager skillUIManager;
     private TimeAxisUI timeAxisUI;
 
+    public void Hide()
+    {
+        transform.position = new Vector3(0, 0, -100);
+    }
+
     private void PreviewAction(PawnAction action)
     {
         int predictTime = action.effectUnit.timeEffect.current;
@@ -12,9 +17,7 @@ public class VirtualTimeAxisIcon : MonoBehaviour
     }
 
     private void StopPreviewAction(PawnAction _)
-    {
-        transform.position = timeAxisUI.TimeToPosition(10000);
-    }
+        => Hide();
 
     private void Awake()
     {
@@ -22,5 +25,7 @@ public class VirtualTimeAxisIcon : MonoBehaviour
         skillUIManager = SkillUIManager.FindInstance();
         skillUIManager.PreviewAction += PreviewAction;
         skillUIManager.StopPreviewAction += StopPreviewAction;
+        skillUIManager.AfterSelectAction += StopPreviewAction;
+        skillUIManager.AfterCancelSelectAction += Hide;
     }
 }
