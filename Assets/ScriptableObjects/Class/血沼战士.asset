@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f8185e3a01d1f41a2a3a74abf4c790, type: 3}
+  m_Name: "\u8840\u6CBC\u6218\u58EB"
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  propertyModifier:
+    modifiers:
+    - value: 100
+      so: {fileID: 11400000, guid: 789e380388b3a264c912d4f3ea9205f0, type: 2}
+      method: 0
+    - value: 55
+      so: {fileID: 11400000, guid: 5f8dd69d93622f84ea09757942e148f8, type: 2}
+      method: 0
+    - value: 25
+      so: {fileID: 11400000, guid: 5b7aa0fa7bb7c034a98950b2b8078463, type: 2}
+      method: 0
+    - value: 10
+      so: {fileID: 11400000, guid: 90b59691706183d44b8946b924be3dce, type: 2}
+      method: 0
+    - value: 15
+      so: {fileID: 11400000, guid: f44c63f2c03dd144dbb628b191d38e27, type: 2}
+      method: 0
+    - value: 15
+      so: {fileID: 11400000, guid: a3ad2a85dce498e42ade88cb461c3bec, type: 2}
+      method: 0
+    - value: 15
+      so: {fileID: 11400000, guid: f8958f741a08a044f817ce25723a428e, type: 2}
+      method: 0
+    - value: 5
+      so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
+      method: 0
+    - value: 5
+      so: {fileID: 11400000, guid: 63c3c5b3fdad04f4094600f35ea76815, type: 2}
+      method: 0
+    - value: 5
+      so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
+      method: 0
+  skillsAttached: []
+  extraDescription: "\u4EE5\u5F3A\u58EE\u8EAB\u8EAF\u4E3A\u50B2\u7684\u653B\u51FB\u624B\uFF0C\u53EF\u4EE5\u6D3B\u8DC3\u4E8E\u5404\u79CD\u573A\u5408"
+  supportAbility: 0.2
+  offenseAbility: 1
+  bestSupprtDistance: 3
+  bestOffenseDistance: 1
+  terrainAbility: 0.1
