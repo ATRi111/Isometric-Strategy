@@ -1,4 +1,3 @@
-using MyTool;
 using System;
 using System.Text;
 using UnityEngine;
@@ -26,13 +25,13 @@ public class RemoveBuffEffect : BuffEffect
     public override void Apply()
     {
         base.Apply();
-        buffManager.Add(buff);
+        buffManager.Remove(buff);
     }
 
     public override void Revoke()
     {
         base.Revoke();
-        buffManager.Remove(buff);
+        buffManager.Add(buff);
     }
 
     public override void Describe(StringBuilder sb, bool result)
