@@ -26,3 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d3009eb9369018f49a5c73130ff895fa, type: 2}
   extraDescription: 
   slotType: 0
+  animationPrefab: {fileID: 0}
+  parameterOnAgent:
+  - parameterIndex: 2
+    deltaValue: 1

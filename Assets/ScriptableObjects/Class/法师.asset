@@ -24,13 +24,13 @@ MonoBehaviour:
     - value: 20
       so: {fileID: 11400000, guid: 90b59691706183d44b8946b924be3dce, type: 2}
       method: 0
-    - value: 0
+    - value: 5
       so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
       method: 0
-    - value: 0
+    - value: 5
       so: {fileID: 11400000, guid: 63c3c5b3fdad04f4094600f35ea76815, type: 2}
       method: 0
-    - value: 0
+    - value: 5
       so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
       method: 0
   skillsAttached: []
