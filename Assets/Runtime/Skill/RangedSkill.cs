@@ -52,6 +52,11 @@ public class RangedSkill : AimSkill
         sb.Append("施放范围:");
         sb.Append(castingDistance);
         sb.AppendLine();
+        sb.Append("施放高度差:");
+        sb.Append(minLayer);
+        sb.Append("~");
+        sb.Append(maxLayer.ToString("+0"));
+        sb.AppendLine();
     }
 
     protected virtual void DescribeArea(StringBuilder sb)

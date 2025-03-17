@@ -233,6 +233,10 @@ MonoBehaviour:
   isFollowing: 0
   moveSpeed: 5
   offset: {x: 0, y: 0, z: 0}
+  zoomSpeed: 0.5
+  maxSize: 8
+  minSize: 2
+  cameraFrame: {fileID: 3780480785254341869}
 --- !u!81 &2619865863303858734
 AudioListener:
   m_ObjectHideFlags: 0

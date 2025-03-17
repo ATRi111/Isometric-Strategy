@@ -14,15 +14,29 @@ public class CameraController : MonoBehaviour
         { KeyCode.D,Vector3.right },
     };
 
-    private static int Extend = 2;
+    private readonly static int Extend = 2;
+
+    private float defaultSize;
+    public float CameraSize
+    {
+        get => myCamera.orthographicSize;
+        set => myCamera.orthographicSize = value;
+    }
 
     private IEventSystem eventSystem;
+    private Camera myCamera;
+
     public Transform follow;
     public bool isFollowing;
     public float moveSpeed;
     public Vector3 offset;
 
-    public float xMin, yMin, xMax, yMax;
+    public float zoomSpeed;
+    public float maxSize;
+    public float minSize;
+    public Transform cameraFrame;
+
+    private float xMin, yMin, xMax, yMax;
 
     public void ClampInMap()
     {
@@ -43,6 +57,8 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
+        myCamera = GetComponent<Camera>();
+        defaultSize = CameraSize;
     }
 
     private void Start()
@@ -79,9 +95,19 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.R))
+        float delta = Input.GetAxisRaw("Mouse ScrollWheel");
+        float size = CameraSize * (1f - zoomSpeed * delta);
+        size = Mathf.Clamp(size, minSize, maxSize);
+        float zoomRatio = size / CameraSize;
+        cameraFrame.transform.localScale *= zoomRatio;
+        CameraSize = size;
+
+        if (Input.GetKeyUp(KeyCode.R))
         {
             isFollowing = true;
+            zoomRatio = defaultSize / CameraSize;
+            cameraFrame.transform.localScale *= zoomRatio;
+            CameraSize = defaultSize;
         }
         else
         {
@@ -90,7 +116,7 @@ public class CameraController : MonoBehaviour
                 if (Input.GetKey(keyCode))
                 {
                     isFollowing = false;
-                    transform.position += moveSpeed * Time.deltaTime * DirectionDict[keyCode];
+                    transform.position += CameraSize / defaultSize * moveSpeed * Time.deltaTime * DirectionDict[keyCode];
                 }
             }
         }
