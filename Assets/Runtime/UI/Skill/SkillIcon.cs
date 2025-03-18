@@ -13,7 +13,7 @@ public class SkillIcon : InfoIcon
     protected override void ExtractKeyWords()
     {
         base.ExtractKeyWords();
-        skill.ExtractKeyWords(keyWordList);
+        skill.ExtractKeyWords(KeyWordList);
     }
 
     public void SetSkill(Skill skill, bool canUse)

@@ -47,6 +47,7 @@ public class BattleLog : MonoBehaviour
 
     private void OnDisable()
     {
+        eventSystem.RemoveListener<string>(EEvent.BattleLog, Log);
         eventSystem.RemoveListener<bool>(EEvent.AfterBattle, AfterBattle);
     }
 }

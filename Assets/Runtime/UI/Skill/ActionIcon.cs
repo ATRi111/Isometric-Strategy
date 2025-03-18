@@ -15,7 +15,7 @@ public class ActionIcon : InfoIcon, IPointerClickHandler
     protected override void ExtractKeyWords()
     {
         base.ExtractKeyWords();
-        action.ExtractKeyWords(keyWordList);
+        action.ExtractKeyWords(KeyWordList);
     }
 
     public override void OnPointerEnter(PointerEventData eventData)

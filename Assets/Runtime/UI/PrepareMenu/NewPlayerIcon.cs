@@ -1,5 +1,4 @@
 using System;
-using UnityEngine.UI;
 
 public class NewPlayerIcon : InfoIcon
 {
@@ -17,13 +16,7 @@ public class NewPlayerIcon : InfoIcon
     protected override void ExtractKeyWords()
     {
         base.ExtractKeyWords();
-        keyWordList.Push(player.EntityName, player.Description);
-        keyWordList.Push(player.pClass.name, player.pClass.Description);
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        image = GetComponentInParent<Image>();
+        KeyWordList.Push(player.EntityName, player.Description);
+        KeyWordList.Push(player.pClass.name, player.pClass.Description);
     }
 }

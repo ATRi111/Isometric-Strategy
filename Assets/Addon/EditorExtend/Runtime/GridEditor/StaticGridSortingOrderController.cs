@@ -11,17 +11,12 @@ namespace EditorExtend.GridEditor
 
         private void Awake()
         {
-            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Start()
         {
             spriteRenderer.sortingOrder = IsometricGridManager.Instance.CellToSortingOrder(transform.position) + extraSortingOrder;
-        }
-
-        public void Refresh()
-        {
-
         }
 
 #if UNITY_EDITOR

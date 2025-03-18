@@ -1,6 +1,5 @@
 using EditorExtend.GridEditor;
 using MyTool;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,8 +11,6 @@ public class ShadowObject : MonoBehaviour
     private GridObject gridObject;
     private SpriteRenderer myRenderer;
     private ShadowVertex vertex;
-
-    public int height = 1;
 
     private void Awake()
     {
@@ -44,15 +41,14 @@ public class ShadowObject : MonoBehaviour
         vertex = new(gridObject.CellPosition, cellNormal);
         float radiance = shadowManager.AmbientOcculasion(vertex);
         myRenderer.color = myRenderer.color.SetAlpha(1f - radiance);
-        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
 
     public void ResetColor()
     {
         myRenderer = GetComponent<SpriteRenderer>();
         myRenderer.color = myRenderer.color.SetAlpha(0f);
-        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
-
 #endif
 }

@@ -13,7 +13,7 @@ public class EquipmentIcon : InfoIcon
     {
         base.ExtractKeyWords();
         if (slot.equipment != null)
-            slot.equipment.ExtractKeyWords(keyWordList);
+            slot.equipment.ExtractKeyWords(KeyWordList);
     }
 
     public void Refresh()

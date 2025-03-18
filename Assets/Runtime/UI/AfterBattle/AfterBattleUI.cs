@@ -34,6 +34,6 @@ public class AfterBattleUI : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        eventSystem.AddListener<bool>(EEvent.AfterBattle, AfterBattle);
+        eventSystem.RemoveListener<bool>(EEvent.AfterBattle, AfterBattle);
     }
 }

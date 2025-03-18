@@ -8,7 +8,7 @@ public class BuffIcon : InfoIcon
     protected override void ExtractKeyWords()
     {
         base.ExtractKeyWords();
-        buff.so.ExtractKeyWords(keyWordList);
+        buff.so.ExtractKeyWords(KeyWordList);
     }
 
     public void SetBuff(Buff buff)

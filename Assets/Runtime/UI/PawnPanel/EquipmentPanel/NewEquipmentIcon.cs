@@ -18,6 +18,6 @@ public class NewEquipmentIcon : InfoIcon
     {
         base.ExtractKeyWords();
         if (equipment != null)
-            equipment.ExtractKeyWords(keyWordList);
+            equipment.ExtractKeyWords(KeyWordList);
     }
 }

@@ -27,8 +27,8 @@ public class PlayerIcon : InfoIcon
     {
         base.ExtractKeyWords();
         PawnEntity pawn = playerManager.playerList[index];
-        keyWordList.Push(pawn.EntityName, pawn.Description);
-        keyWordList.Push(pawn.pClass.name, pawn.pClass.Description);
+        KeyWordList.Push(pawn.EntityName, pawn.Description);
+        KeyWordList.Push(pawn.pClass.name, pawn.pClass.Description);
     }
 
     protected override void Awake()

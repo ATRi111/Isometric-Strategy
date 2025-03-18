@@ -9,6 +9,17 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasGroupPlus))]
 public class InfoIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    private static KeyWordList keyWordList;
+    protected static KeyWordList KeyWordList
+    {
+        get
+        {
+            if (keyWordList == null)
+                keyWordList = ServiceLocator.Get<IAssetLoader>().Load<KeyWordList>("KeyWordList");
+            return keyWordList;
+        }
+    }
+
     protected IEventSystem eventSystem;
     protected GameManager gameManager;
     [SerializeField]
@@ -16,21 +27,20 @@ public class InfoIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [HideInInspector]
     public CanvasGroupPlus canvasGroup;
     protected Image image;
-    protected KeyWordList keyWordList;
 
     public Vector2 infoPivot;
     public Vector2 infoOffset;
+
+    protected virtual void ExtractKeyWords()
+    {
+        KeyWordList.PopExtra();
+    }
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         ExtractKeyWords();
         if (!string.IsNullOrWhiteSpace(info))
             eventSystem.Invoke(EEvent.ShowInfo, eventData.position + infoOffset, infoPivot, info);
-    }
-
-    protected virtual void ExtractKeyWords()
-    {
-        keyWordList.PopExtra();
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
@@ -44,7 +54,6 @@ public class InfoIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         eventSystem = ServiceLocator.Get<IEventSystem>();
         canvasGroup = GetComponent<CanvasGroupPlus>();
         image = GetComponentInChildren<Image>();
-        keyWordList = ServiceLocator.Get<IAssetLoader>().Load<KeyWordList>(nameof(KeyWordList));
         infoPivot = Vector2.up;
     }
 

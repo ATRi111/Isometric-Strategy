@@ -42,7 +42,7 @@ public class EquipmentIconInBag : InfoIcon , IPointerClickHandler
     {
         base.ExtractKeyWords();
         Equipment equipment = bagPanel.visibleEquipments[index];
-        equipment.ExtractKeyWords(keyWordList);
+        equipment.ExtractKeyWords(KeyWordList);
     }
 
     public void OnPointerClick(PointerEventData eventData)
