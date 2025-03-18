@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class ShadowObject : MonoBehaviour
 {
-    [Range(0f,1f)]
-    public float maxRadiance = 1f;
     public Vector3Int cellNormal;
 
     private ShadowManager shadowManager;
     private GridObject gridObject;
-    private SpriteRenderer upRenderer;
+    private SpriteRenderer myRenderer;
     private ShadowVertex vertex;
 
     public int height = 1;
@@ -20,7 +18,7 @@ public class ShadowObject : MonoBehaviour
         shadowManager = GetComponentInParent<ShadowManager>();
         gridObject = GetComponentInParent<GridObject>();
         vertex = new(gridObject.CellPosition, cellNormal);
-        upRenderer = GetComponent<SpriteRenderer>();
+        myRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -31,9 +29,26 @@ public class ShadowObject : MonoBehaviour
         }
         else
         {
-            float visibility = shadowManager.GetVisibility(vertex);
-            float radiance = maxRadiance * visibility;
-            upRenderer.color = upRenderer.color.SetAlpha(1f - radiance);
+            float radiance = shadowManager.GetVisibility(vertex);
+            myRenderer.color = myRenderer.color.SetAlpha(1f - radiance);
         }
     }
+
+#if UNITY_EDITOR
+    public void UpdateColor(ShadowManager shadowManager)
+    {
+        myRenderer = GetComponent<SpriteRenderer>();
+        gridObject = GetComponentInParent<GridObject>();
+        vertex = new(gridObject.CellPosition, cellNormal);
+        float radiance = shadowManager.AmbientOcculasion(vertex);
+        myRenderer.color = myRenderer.color.SetAlpha(1f - radiance);
+    }
+
+    public void ResetColor()
+    {
+        myRenderer = GetComponent<SpriteRenderer>();
+        myRenderer.color = myRenderer.color.SetAlpha(0f);
+    }
+
+#endif
 }

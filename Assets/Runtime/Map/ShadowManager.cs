@@ -44,9 +44,13 @@ public class ShadowManager : MonoBehaviour
     };
 
     private IsometricGridManager igm;
-    private readonly HashSet<Vector3Int> shadowCache = new();
+    private readonly HashSet<Vector3Int> objectCache = new();
     private readonly Dictionary<ShadowVertex, float> visibilityCache = new();
-    
+
+    public float radiance_up = 1f;
+    public float radiance_left = 0.3f;
+    public float radiance_right = 0.7f;
+
     public float GetVisibility(ShadowVertex vertex)
     {
         if (!visibilityCache.ContainsKey(vertex))
@@ -64,10 +68,10 @@ public class ShadowManager : MonoBehaviour
         return true;
     }
 
-    private float AmbientOcculasion(ShadowVertex vertex)
+    public float AmbientOcculasion(ShadowVertex vertex)
     {
-        float visibility = 0f;
         Vector3Int[] directions;
+        float visibility = 0f;
         if (vertex.cellNormal.x != 0)
             directions = YZDirections;
         else if (vertex.cellNormal.y != 0)
@@ -81,7 +85,17 @@ public class ShadowManager : MonoBehaviour
         {
             visibility += AmbientOcculasion(vertex, directions[i]);
         }
-        return visibility / directions.Length;
+        visibility /= directions.Length;
+        float radiance;
+        if (vertex.cellNormal == Vector3Int.forward)
+            radiance = radiance_up;
+        else if (vertex.cellNormal == Vector3Int.left)
+            radiance = radiance_left;
+        else if (vertex.cellNormal == Vector3Int.down)
+            radiance = radiance_right;
+        else
+            throw new System.ArgumentException();
+        return radiance * visibility;
     }
 
     private float AmbientOcculasion(ShadowVertex vertex, Vector3Int direction)
@@ -107,7 +121,7 @@ public class ShadowManager : MonoBehaviour
     private float GetHeight(Vector3Int basePosition, Vector3Int normal)
     {
         int h = 0;
-        while (shadowCache.Contains(basePosition))
+        while (objectCache.Contains(basePosition))
         {
             basePosition += normal;
             h++;
@@ -122,7 +136,29 @@ public class ShadowManager : MonoBehaviour
         for (int i = 0; i < shadowObjects.Length; i++)
         {
             Vector3Int cellPosition = igm.WorldToCell(shadowObjects[i].transform.position);
-            shadowCache.Add(cellPosition);
+            objectCache.Add(cellPosition);
         }
     }
+
+#if UNITY_EDITOR
+    public void UpdateAllShadow()
+    {
+        igm = GetComponent<IsometricGridManager>();
+        ShadowObject[] shadowObjects = GetComponentsInChildren<ShadowObject>();
+        for (int i = 0; i < shadowObjects.Length; i++)
+        {
+            shadowObjects[i].UpdateColor(this);
+        }
+    }
+
+    public void ResetAllShadow()
+    {
+        igm = GetComponent<IsometricGridManager>();
+        ShadowObject[] shadowObjects = GetComponentsInChildren<ShadowObject>();
+        for (int i = 0; i < shadowObjects.Length; i++)
+        {
+            shadowObjects[i].ResetColor();
+        }
+    }
+#endif
 }
