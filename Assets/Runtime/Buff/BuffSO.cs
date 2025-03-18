@@ -50,9 +50,17 @@ public class BuffSO : PawnModifierSO
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
-        if (removeFlag == ERemoveFlag.Unremovable)
+        switch(removeFlag)
         {
-            sb.AppendLine("不可移除");
+            case ERemoveFlag.Unremovable:
+                sb.AppendLine("不可移除");
+                break;
+            case ERemoveFlag.Buff:
+                sb.AppendLine("正面状态");
+                break;
+            case ERemoveFlag.Debuff:
+                sb.AppendLine("负面状态");
+                break;
         }
     }
 }

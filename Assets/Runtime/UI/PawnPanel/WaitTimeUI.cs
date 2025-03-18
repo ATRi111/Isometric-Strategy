@@ -7,7 +7,7 @@ public class WaitTimeUI : InfoIcon
 
     private void Refresh()
     {
-        tmp.text = $"{pawnPanel.SelectedPawn.time}";
+        tmp.text = $"{pawnPanel.SelectedPawn.time - gameManager.Time}";
     }
 
     protected override void Awake()
