@@ -2,7 +2,9 @@ using EditorExtend.GridEditor;
 using MyTool;
 using System;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-500)]
 [RequireComponent(typeof(PerspectiveManager))]
@@ -203,6 +205,7 @@ public class IsometricGridManager : IsometricGridManagerBase
             GridObject gridObject = gridObjects[i];
             gridObject.gameObject.SetActive(CellToSortingOrder(gridObject.transform.position) <= sortingOrderThreshold);
         }
+        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
 #endif
 }

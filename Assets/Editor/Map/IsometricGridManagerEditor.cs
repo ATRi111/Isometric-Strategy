@@ -8,12 +8,13 @@ public class IsometricGridManagerEditor : IsometricGridManagerBaseEditor
 {
     [AutoProperty]
     public SerializedProperty sortingOrderThreshold;
-    private IsometricGridManager Igm => target as IsometricGridManager;
+    private IsometricGridManager igm;
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        Igm.ResetSortingOrderThreshold();
+        igm = target as IsometricGridManager;
+        igm.ResetSortingOrderThreshold();
     }
 
     protected override void MyOnInspectorGUI()
@@ -25,15 +26,15 @@ public class IsometricGridManagerEditor : IsometricGridManagerBaseEditor
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("更深"))
             {
-                Igm.ModifySortingOrderThreshold(-10);
+                igm.ModifySortingOrderThreshold(-10);
             }
             if (GUILayout.Button("更浅"))
             {
-                Igm.ModifySortingOrderThreshold(+10);
+                igm.ModifySortingOrderThreshold(+10);
             }
             if (GUILayout.Button("复原"))
             {
-                Igm.ResetSortingOrderThreshold();
+                igm.ResetSortingOrderThreshold();
             }
             EditorGUILayout.EndHorizontal();
         }

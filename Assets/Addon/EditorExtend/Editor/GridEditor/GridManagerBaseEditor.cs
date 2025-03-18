@@ -1,5 +1,7 @@
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace EditorExtend.GridEditor
 {
@@ -29,6 +31,7 @@ namespace EditorExtend.GridEditor
                     gridObjects[i].Refresh();
                 }
                 GridManager.AddAllObjects();
+                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
             if (GUILayout.Button("全部Z不变对齐"))
             {
@@ -41,6 +44,7 @@ namespace EditorExtend.GridEditor
                     temp.ApplyModifiedProperties();
                 }
                 GridManager.AddAllObjects();
+                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
             if (GUILayout.Button("全部XY不变对齐"))
             {
@@ -53,6 +57,7 @@ namespace EditorExtend.GridEditor
                     temp.ApplyModifiedProperties();
                 }
                 GridManager.AddAllObjects();
+                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
         }
 
