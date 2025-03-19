@@ -23,7 +23,7 @@ namespace EditorExtend.GridEditor
             return Mathf.RoundToInt(10f * (-cell.x - cell.y + cell.z));
         }
 
-        public float LayerToWorldZ(int layer)
+        public float LayerToWorldZ(float layer)
         {
             return layer * Grid.cellSize.z;
         }

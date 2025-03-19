@@ -7,32 +7,38 @@ public abstract class PerspectiveController : AlphaController
     [SerializeField]
     protected CanvasGroupPlus[] canvasGroups;
     public float alphaMultiplier_perspectiveMode = 0.1f;
+    private bool perspectived;
 
     protected abstract bool CoverCheck();
 
     protected virtual void EnterPerspectiveMode()
     {
-        if (CoverCheck())
+        if (CoverCheck() && !perspectived)
         {
             for (int i = 0; i < spriteRenderers.Length; i++)
             {
-                SetAlpha(spriteRenderers[i], alphaMultiplier_perspectiveMode * alphas[i]);
+                SetAlpha(spriteRenderers[i], alphaMultiplier_perspectiveMode);
             }
             for (int i = 0;i < canvasGroups.Length; i++)
             {
-                canvasGroups[i].Visible = false;
+                SetAlpha(canvasGroups[i], alphaMultiplier_perspectiveMode);
             }
+            perspectived = true;
         }
     }
     protected virtual void ExitPerspectiveMode()
     {
-        for (int i = 0; i < spriteRenderers.Length; i++)
+        if(perspectived)
         {
-            SetAlpha(spriteRenderers[i], alphas[i]);
-        }
-        for (int i = 0; i < canvasGroups.Length; i++)
-        {
-            canvasGroups[i].Visible = true;
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                SetAlpha(spriteRenderers[i], 1 / alphaMultiplier_perspectiveMode);
+            }
+            for (int i = 0; i < canvasGroups.Length; i++)
+            {
+                SetAlpha(canvasGroups[i], 1 / alphaMultiplier_perspectiveMode);
+            }
+            perspectived = false;
         }
     }
 
@@ -46,6 +52,7 @@ public abstract class PerspectiveController : AlphaController
     {
         perspectiveManager.EnterPerspectiveMode += EnterPerspectiveMode;
         perspectiveManager.ExitPerspectiveMode += ExitPerspectiveMode;
+        perspectived = false;
     }
 
     protected virtual void OnDisable()

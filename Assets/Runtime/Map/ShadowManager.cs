@@ -45,24 +45,30 @@ public class ShadowManager : MonoBehaviour
 
     private IsometricGridManager igm;
     private readonly HashSet<Vector3Int> objectCache = new();
-    private readonly Dictionary<ShadowVertex, float> visibilityCache = new();
+    private readonly Dictionary<ShadowVertex, float> radianceCache = new();
 
     public float radiance_up = 1f;
     public float radiance_left = 0.3f;
     public float radiance_right = 0.7f;
+    public float projectShadowIntensity = 0.5f;
 
-    public float GetVisibility(ShadowVertex vertex)
+    public float GetRadiance(ShadowVertex vertex)
     {
-        if (!visibilityCache.ContainsKey(vertex))
-            visibilityCache.Add(vertex, AmbientOcculasion(vertex));
-        return visibilityCache[vertex];
+        if (!radianceCache.ContainsKey(vertex))
+            radianceCache.Add(vertex, AmbientOcculasion(vertex));
+        return radianceCache[vertex];
+    }
+
+    public float GetProjectRadiance()
+    {
+        return projectShadowIntensity * radiance_up;
     }
 
     public bool VisibleCheck(ShadowVertex vertex)
     {
         if (igm.ObjectDict.TryGetValue(vertex.cellPosition + vertex.cellNormal, out GridObject gridObject))
         {
-            if (gridObject.GetComponentInChildren<ShadowObject>() != null)
+            if (gridObject.GetComponentInChildren<FaceShadow>() != null)
                 return false;
         }
         return true;
@@ -132,10 +138,10 @@ public class ShadowManager : MonoBehaviour
     private void Awake()
     {
         igm = GetComponent<IsometricGridManager>();
-        ShadowObject[] shadowObjects = GetComponentsInChildren<ShadowObject>();
-        for (int i = 0; i < shadowObjects.Length; i++)
+        FaceShadow[] shadows = GetComponentsInChildren<FaceShadow>();
+        for (int i = 0; i < shadows.Length; i++)
         {
-            Vector3Int cellPosition = igm.WorldToCell(shadowObjects[i].transform.position);
+            Vector3Int cellPosition = igm.WorldToCell(shadows[i].transform.position);
             objectCache.Add(cellPosition);
         }
     }
@@ -144,20 +150,20 @@ public class ShadowManager : MonoBehaviour
     public void UpdateAllShadow()
     {
         igm = GetComponent<IsometricGridManager>();
-        ShadowObject[] shadowObjects = GetComponentsInChildren<ShadowObject>();
-        for (int i = 0; i < shadowObjects.Length; i++)
+        FaceShadow[] shadows = GetComponentsInChildren<FaceShadow>();
+        for (int i = 0; i < shadows.Length; i++)
         {
-            shadowObjects[i].UpdateColor(this);
+            shadows[i].UpdateColor(this);
         }
     }
 
     public void ResetAllShadow()
     {
         igm = GetComponent<IsometricGridManager>();
-        ShadowObject[] shadowObjects = GetComponentsInChildren<ShadowObject>();
-        for (int i = 0; i < shadowObjects.Length; i++)
+        FaceShadow[] shadows = GetComponentsInChildren<FaceShadow>();
+        for (int i = 0; i < shadows.Length; i++)
         {
-            shadowObjects[i].ResetColor();
+            shadows[i].ResetColor();
         }
     }
 #endif

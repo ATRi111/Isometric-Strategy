@@ -31,7 +31,8 @@ namespace EditorExtend.GridEditor
                     gridObjects[i].Refresh();
                 }
                 GridManager.AddAllObjects();
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+                if (!Application.isPlaying)
+                    EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
             if (GUILayout.Button("全部Z不变对齐"))
             {
@@ -44,7 +45,8 @@ namespace EditorExtend.GridEditor
                     temp.ApplyModifiedProperties();
                 }
                 GridManager.AddAllObjects();
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+                if (!Application.isPlaying)
+                    EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
             if (GUILayout.Button("全部XY不变对齐"))
             {
@@ -57,7 +59,8 @@ namespace EditorExtend.GridEditor
                     temp.ApplyModifiedProperties();
                 }
                 GridManager.AddAllObjects();
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+                if (!Application.isPlaying)
+                    EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
         }
 

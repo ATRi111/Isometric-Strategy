@@ -259,7 +259,7 @@ MonoBehaviour:
   time: 0
   waitingForAnimation: 0
   allyTargetDied: 0
-  debug: 1
+  debug: 0
 --- !u!114 &647449064
 MonoBehaviour:
   m_ObjectHideFlags: 0

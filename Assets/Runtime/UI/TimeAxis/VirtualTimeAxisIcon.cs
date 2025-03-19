@@ -7,7 +7,7 @@ public class VirtualTimeAxisIcon : MonoBehaviour
 
     public void Hide()
     {
-        transform.position = new Vector3(0, 0, -100);
+        transform.position = new Vector3(-1000, 0, 0);
     }
 
     private void PreviewAction(PawnAction action)

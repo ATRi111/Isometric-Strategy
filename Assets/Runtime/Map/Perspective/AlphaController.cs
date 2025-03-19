@@ -1,25 +1,26 @@
+using MyTool;
+using UIExtend;
 using UnityEngine;
 
 public class AlphaController : MonoBehaviour
 {
-    public static void SetAlpha(SpriteRenderer spriteRenderer, float alpha)
+    public static void SetAlpha(SpriteRenderer spriteRenderer, float multiplier)
     {
         Color color = spriteRenderer.color;
-        color = new Color(color.r, color.g, color.b, alpha);
-        spriteRenderer.color = color;
+        spriteRenderer.color = color.SetAlpha(multiplier * color.a);
+    }
+
+    public static void SetAlpha(CanvasGroupPlus canvasGroup, float multiplier)
+    {
+        canvasGroup.Alpha *= multiplier;
     }
 
     [SerializeField]
     protected SpriteRenderer[] spriteRenderers;
-    protected float[] alphas;
-
+    
     protected virtual void Awake()
     {
-        alphas = new float[spriteRenderers.Length];
-        for(int i = 0; i < spriteRenderers.Length; i++)
-        {
-            alphas[i] = spriteRenderers[i].color.a;
-        }
+
     }
 
     protected virtual void Start()

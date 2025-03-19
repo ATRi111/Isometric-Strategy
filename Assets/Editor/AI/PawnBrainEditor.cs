@@ -12,7 +12,7 @@ public class PawnBrainEditor : AutoEditor
     {
         humanControl.BoolField("由玩家控制");
         if (!humanControl.boolValue)
-            personality.PropertyField("个性");
+            personality.PropertyField("个性(与全局系数相加)");
         if (Application.isPlaying)
         {
             plans.ListField("当前计划");
