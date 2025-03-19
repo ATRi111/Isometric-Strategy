@@ -160,7 +160,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Standalone: com.Memo.general
+    Standalone: com.Memo.IsometricStretegy
   buildNumber:
     Bratwurst: 0
     Standalone: 0

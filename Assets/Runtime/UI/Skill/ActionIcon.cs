@@ -30,7 +30,7 @@ public class ActionIcon : InfoIcon, IPointerClickHandler
     {
         base.OnPointerExit(eventData);
         skillUIManager.StopPreviewAction?.Invoke(action);
-        eventSystem.Invoke<PawnEntity>(EEvent.SetPawnTaregt, null);
+        //eventSystem.Invoke<PawnEntity>(EEvent.SetPawnTaregt, null);
     }
 
     public void OnPointerClick(PointerEventData eventData)

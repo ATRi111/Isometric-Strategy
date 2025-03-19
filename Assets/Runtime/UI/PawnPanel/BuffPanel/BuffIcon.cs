@@ -1,9 +1,8 @@
-using TMPro;
+using MyTool;
 
 public class BuffIcon : InfoIcon
 {
     public Buff buff;
-    private TextMeshProUGUI tmp;
 
     protected override void ExtractKeyWords()
     {
@@ -14,13 +13,12 @@ public class BuffIcon : InfoIcon
     public void SetBuff(Buff buff)
     {
         this.buff = buff;
-        tmp.text = buff.displayName;
-        info = buff.Description;
+        info = buff.displayName.Bold() + "\n" + buff.Description;
+        image.sprite = buff.so.icon;
     }
 
     protected override void Awake()
     {
         base.Awake();
-        tmp = GetComponent<TextMeshProUGUI>();
     }
 }

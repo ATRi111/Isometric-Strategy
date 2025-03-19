@@ -23,7 +23,7 @@ public class PawnIcon : InfoIcon , IPointerClickHandler
     {
         base.OnPointerExit(eventData);
         skillUIManager.StopPreviewOffenseArea?.Invoke(pawn);
-        eventSystem.Invoke<PawnEntity>(EEvent.SetPawnTaregt, null);
+        //eventSystem.Invoke<PawnEntity>(EEvent.SetPawnTaregt, null);
     }
 
     private void AfterSelectSkill(Skill _)

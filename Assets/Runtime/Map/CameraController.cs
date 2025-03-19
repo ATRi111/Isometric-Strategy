@@ -127,6 +127,8 @@ public class CameraController : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
             moveDirection = new Vector3(x, y, 0).normalized;
+            if (moveDirection != Vector3.zero)
+                isFollowing = false;
         }
     }
 
