@@ -7,9 +7,6 @@ public class ProjectShadow : MonoBehaviour
     private IsometricGridManager igm;
     private ShadowManager shadowManager;
     private SpriteRenderer myRenderer;
-    [SerializeField]
-    private float radius;
-
 
     private void Awake()
     {
