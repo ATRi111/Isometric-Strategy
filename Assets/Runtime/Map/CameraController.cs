@@ -1,6 +1,7 @@
 using EditorExtend.GridEditor;
 using Services;
 using Services.Event;
+using System;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -13,6 +14,8 @@ public class CameraController : MonoBehaviour
         get => myCamera.orthographicSize;
         private set => myCamera.orthographicSize = value;
     }
+
+    public Action AfterFixedUpdate;
 
     private IEventSystem eventSystem;
     private Camera myCamera;
@@ -133,5 +136,6 @@ public class CameraController : MonoBehaviour
         Zoom();
         Follow();
         ClampInMap();
+        AfterFixedUpdate?.Invoke();
     }
 }
