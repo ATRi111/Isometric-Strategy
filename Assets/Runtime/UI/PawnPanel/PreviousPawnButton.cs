@@ -18,6 +18,6 @@ public class PreviousPawnButton : ButtonBase
     {
         base.Awake();
         pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnPanel.OnRefresh += Refresh;
     }
 }

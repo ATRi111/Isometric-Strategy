@@ -16,12 +16,14 @@ public class PawnIcon : InfoIcon , IPointerClickHandler
     {
         base.OnPointerEnter(eventData);
         skillUIManager.PreviewOffenseArea?.Invoke(pawn);
+        eventSystem.Invoke(EEvent.SetPawnTaregt, pawn);
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
         base.OnPointerExit(eventData);
         skillUIManager.StopPreviewOffenseArea?.Invoke(pawn);
+        eventSystem.Invoke<PawnEntity>(EEvent.SetPawnTaregt, null);
     }
 
     private void AfterSelectSkill(Skill _)
@@ -60,10 +62,5 @@ public class PawnIcon : InfoIcon , IPointerClickHandler
         skillUIManager.AfterSelectSkill -= AfterSelectSkill;
         skillUIManager.AfterCancelSelectAction -= AfterCancelSelectAction;
         skillUIManager.AfterSelectAction -= AfterSelectAction;
-    }
-
-    private void Start()
-    {
-        info = pawn.EntityNameWithColor; //等待名称改完后
     }
 }

@@ -15,7 +15,7 @@ public class BagPanel : MonoBehaviour
 
     public void Refresh()
     {
-        PawnEntity pawn = pawnPanel.SelectedPawn;
+        PawnEntity pawn = pawnPanel.CurrentPawn;
         equipmentManager = pawn.EquipmentManager;
         canvasGroup.Visible = canvasGroup.Visible && equipmentManager.CanChangeEquipment;
         RefreshVisibleEquipments();
@@ -58,7 +58,7 @@ public class BagPanel : MonoBehaviour
         playerManager = PlayerManager.FindInstance();
         canvasGroup = GetComponent<CanvasGroupPlus>();
         pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnPanel.OnRefresh += Refresh;
         pawnPanel.ChangeEquipment += ChangeEquipment;
         icons = GetComponentsInChildren<EquipmentIconInBag>();
         for (int i = 0; i < icons.Length; i++)

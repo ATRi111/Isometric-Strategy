@@ -22,7 +22,7 @@ public class RemoveEquipmentIcon : InfoIcon , IPointerClickHandler
             Equipment unequipped = bagPanel.equipmentManager.Unequip(bagPanel.currentSlot);
             if (unequipped != null)
                 playerManager.unusedEquipmentList.Add(unequipped);
-            pawnPanel.RefreshAll?.Invoke();
+            pawnPanel.OnRefresh?.Invoke();
         }
     }
 

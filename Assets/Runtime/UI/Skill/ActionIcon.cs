@@ -1,3 +1,4 @@
+using Services.Event;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -22,12 +23,14 @@ public class ActionIcon : InfoIcon, IPointerClickHandler
     {
         base.OnPointerEnter(eventData);
         skillUIManager.PreviewAction?.Invoke(action);
+        eventSystem.Invoke(EEvent.SetPawnTaregt, action.FirstPawnVictim);
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
         base.OnPointerExit(eventData);
         skillUIManager.StopPreviewAction?.Invoke(action);
+        eventSystem.Invoke<PawnEntity>(EEvent.SetPawnTaregt, null);
     }
 
     public void OnPointerClick(PointerEventData eventData)

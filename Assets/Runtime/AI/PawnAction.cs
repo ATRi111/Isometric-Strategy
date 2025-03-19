@@ -14,6 +14,21 @@ public class PawnAction : IAnimationSource , IDescription
     public Vector3Int target;
     public EffectUnit effectUnit;
     public int Time => effectUnit.timeEffect.current - effectUnit.timeEffect.prev;
+    /// <summary>
+    /// 遍历effect，获取第一个不同于agent的PawnVictim
+    /// </summary>
+    public PawnEntity FirstPawnVictim
+    {
+        get
+        {
+            foreach (Effect effect in effectUnit.effects)
+            {
+                if (effect.PawnVictim != null && effect.PawnVictim != agent)
+                    return effect.PawnVictim;
+            }
+            return null;
+        }
+    }
 
     public PawnAction(PawnEntity agent, Skill skill, Vector3Int target)
     {

@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class SkillIconToDisplay : MonoBehaviour
 {
-    private PawnPanel pawnPanel;
+    private IPawnReference pawnReference;
     private SkillIcon skillIcon;
     public int index;
 
     private void Refresh()
     {
-        PawnEntity pawn = pawnPanel.SelectedPawn;
+        PawnEntity pawn = pawnReference.CurrentPawn;
         if (index < pawn.SkillManager.learnedSkills.Count)
         {
             skillIcon.canvasGroup.Visible = true;
@@ -23,7 +23,7 @@ public class SkillIconToDisplay : MonoBehaviour
     private void Awake()
     {
         skillIcon = GetComponent<SkillIcon>();
-        pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnReference = GetComponentInParent<IPawnReference>();
+        pawnReference.OnRefresh += Refresh;
     }
 }

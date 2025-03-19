@@ -54,7 +54,7 @@ public class EquipmentIconInBag : InfoIcon , IPointerClickHandler
             Equipment unequipped = bagPanel.equipmentManager.Equip(bagPanel.currentSlot, equipment);
             if (unequipped != null)
                 playerManager.unusedEquipmentList.Add(unequipped);
-            pawnPanel.RefreshAll?.Invoke();
+            pawnPanel.OnRefresh?.Invoke();
             if (!string.IsNullOrWhiteSpace(info))
                 eventSystem.Invoke(EEvent.ShowInfo, eventData.position, infoPivot, info);
         }
@@ -64,7 +64,7 @@ public class EquipmentIconInBag : InfoIcon , IPointerClickHandler
     {
         base.Awake();
         pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnPanel.OnRefresh += Refresh;
         playerManager = PlayerManager.FindInstance();
         bagPanel = GetComponentInParent<BagPanel>();
     }

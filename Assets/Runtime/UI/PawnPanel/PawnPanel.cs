@@ -1,19 +1,12 @@
-using Services;
 using Services.Event;
 using System;
 using System.Collections.Generic;
-using UIExtend;
 using UnityEngine;
 
-public class PawnPanel : MonoBehaviour
+public class PawnPanel : PawnReference
 {
     public IsometricGridManager Igm => IsometricGridManager.Instance;
-    private IEventSystem eventSystem;
     private LevelManager levelManager;
-
-    private CanvasGroupPlus canvasGroup;
-
-    public Action RefreshAll;
 
     /// <summary>
     /// 开始显示角色属性变化
@@ -35,7 +28,7 @@ public class PawnPanel : MonoBehaviour
     /// 当前查看的角色列表
     /// </summary>
     public List<PawnEntity> pawnList;
-    public PawnEntity SelectedPawn => pawnList[selectedIndex];
+    public override PawnEntity CurrentPawn => pawnList[selectedIndex];
 
     public float GetPropertyChange(string propertyName)
     {
@@ -49,14 +42,14 @@ public class PawnPanel : MonoBehaviour
     {
         if (pawnList != null && pawnList.Count > 0)
             selectedIndex = (selectedIndex + 1) % pawnList.Count;
-        RefreshAll?.Invoke();
+        OnRefresh?.Invoke();
     }
 
     public void Previous()
     {
         if (pawnList != null && pawnList.Count > 0)
             selectedIndex = (selectedIndex + pawnList.Count - 1) % pawnList.Count;
-        RefreshAll?.Invoke();
+        OnRefresh?.Invoke();
     }
 
     private void Show(PawnEntity pawn)
@@ -74,30 +67,31 @@ public class PawnPanel : MonoBehaviour
                 selectedIndex = i;
         }
         canvasGroup.Visible = true;
-        RefreshAll?.Invoke();
+        OnRefresh?.Invoke();
     }
 
     private void Hide()
     {
         canvasGroup.Visible = false;
     }
-    private void Awake()
+    protected override void Awake()
     {
-        eventSystem = ServiceLocator.Get<IEventSystem>();
-        canvasGroup = GetComponent<CanvasGroupPlus>();
+        base.Awake();
         selectedIndex = 0;
         levelManager = LevelManager.FindInstance();
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         eventSystem.AddListener<PawnEntity>(EEvent.ShowPawnPanel, Show);
         levelManager.OnReturnToPrepareMenu += Hide;
         levelManager.OnStartScout += Hide;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         eventSystem.RemoveListener(EEvent.HidePawnPanel, Hide);
         levelManager.OnReturnToPrepareMenu -= Hide;
         levelManager.OnStartScout -= Hide;

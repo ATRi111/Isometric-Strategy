@@ -55,6 +55,10 @@ namespace Services.Event
         /// </summary>
         ShowPawnPanel,
         /// <summary>
+        /// 将角色设为模板，参数：Pawn
+        /// </summary>
+        SetPawnTaregt,
+        /// <summary>
         /// 隐藏角色面板
         /// </summary>
         HidePawnPanel,

@@ -3,7 +3,7 @@ using System;
 
 public class EquipmentIcon : InfoIcon
 {
-    private PawnPanel pawnPanel;
+    private IPawnReference pawnReference;
     [NonSerialized]
     public EquipmentSlot slot;
     
@@ -18,7 +18,7 @@ public class EquipmentIcon : InfoIcon
 
     public void Refresh()
     {
-        PawnEntity pawn = pawnPanel.SelectedPawn;
+        PawnEntity pawn = pawnReference.CurrentPawn;
         image.sprite = null;   //TODO:ø’¿∏ŒªÕº±Í
         if (index < pawn.EquipmentManager.slots.Count)
         {
@@ -45,7 +45,7 @@ public class EquipmentIcon : InfoIcon
     protected override void Awake()
     {
         base.Awake();
-        pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnReference = GetComponentInParent<IPawnReference>();
+        pawnReference.OnRefresh += Refresh;
     }
 }

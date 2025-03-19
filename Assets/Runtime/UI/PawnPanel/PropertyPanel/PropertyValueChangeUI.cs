@@ -15,7 +15,7 @@ public class PropertyValueChangeUI : MonoBehaviour
 
     public void Preview()
     {
-        so.pawn = pawnPanel.SelectedPawn;
+        so.pawn = pawnPanel.CurrentPawn;
         float deltaValue = pawnPanel.GetPropertyChange(so.name);
 
         if (deltaValue == 0)
@@ -42,7 +42,7 @@ public class PropertyValueChangeUI : MonoBehaviour
         string propertyName = transform.parent.GetComponent<TextMeshProUGUI>().text;
         so = PawnPropertyUtility.GetProperty(propertyName);
         pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += StopPreview;
+        pawnPanel.OnRefresh += StopPreview;
         pawnPanel.PreviewPropertyChange += Preview;
     }
 }

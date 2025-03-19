@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class BuffPanel : MonoBehaviour
 {
-    private PawnPanel pawnPanel;
+    private IPawnReference pawnReference;
     private BuffIcon[] icons;
-    private List<Buff> buffs = new();
+    private readonly List<Buff> buffs = new();
 
     public void Refresh()
     {
-        PawnEntity pawn = pawnPanel.SelectedPawn;
+        PawnEntity pawn = pawnReference.CurrentPawn;
         pawn.BuffManager.GetAllEnabled(buffs);
         int i = 0;
         for (; i < buffs.Count && i < icons.Length; i++)
@@ -25,8 +25,8 @@ public class BuffPanel : MonoBehaviour
 
     private void Awake()
     {
-        pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnReference = GetComponentInParent<IPawnReference>();
+        pawnReference.OnRefresh += Refresh;
         icons = GetComponentsInChildren<BuffIcon>();
     }
 }

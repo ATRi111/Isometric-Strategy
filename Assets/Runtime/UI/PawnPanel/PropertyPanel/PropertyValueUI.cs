@@ -5,12 +5,12 @@ using UnityEngine;
 public class PropertyValueUI : MonoBehaviour
 {
     private FindPawnPropertySO so;
-    private PawnPanel pawnPanel;
+    private IPawnReference pawnReference;
     private TextMeshProUGUI tmp;
 
     public void Refresh()
     {
-        PawnEntity pawn = pawnPanel.SelectedPawn;
+        PawnEntity pawn = pawnReference.CurrentPawn;
         so.pawn = pawn;
         CharacterProperty property = so.FindProperty();
         if(Mathf.Abs(property.CurrentValue) >= 1)
@@ -24,7 +24,7 @@ public class PropertyValueUI : MonoBehaviour
         tmp = GetComponent<TextMeshProUGUI>();
         string propertyName = transform.parent.GetComponent<TextMeshProUGUI>().text;
         so = PawnPropertyUtility.GetProperty(propertyName);
-        pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnReference = GetComponentInParent<IPawnReference>();
+        pawnReference.OnRefresh += Refresh;
     }
 }

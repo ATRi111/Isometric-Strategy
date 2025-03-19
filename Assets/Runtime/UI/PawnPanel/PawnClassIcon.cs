@@ -2,12 +2,12 @@ using TMPro;
 
 public class PawnClassIcon : InfoIcon
 {
-    private PawnPanel pawnPanel;
+    private IPawnReference pawnRefernce;
     private TextMeshProUGUI tmp;
 
     public void Refresh()
     {
-        PawnEntity pawn = pawnPanel.SelectedPawn;
+        PawnEntity pawn = pawnRefernce.CurrentPawn;
         tmp.text = pawn.pClass.name;
         info = pawn.pClass.extraDescription;
     }
@@ -15,8 +15,8 @@ public class PawnClassIcon : InfoIcon
     protected override void Awake()
     {
         base.Awake();
-        pawnPanel = GetComponentInParent<PawnPanel>();
+        pawnRefernce = GetComponentInParent<IPawnReference>();
         tmp = GetComponent<TextMeshProUGUI>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnRefernce.OnRefresh += Refresh;
     }
 }

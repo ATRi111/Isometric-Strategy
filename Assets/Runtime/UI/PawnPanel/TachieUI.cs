@@ -3,18 +3,18 @@ using UnityEngine.UI;
 
 public class TachieUI : MonoBehaviour
 {
-    private PawnPanel pawnPanel;
+    private IPawnReference pawnRefernce;
     private Image image;
 
     private void Refresh()
     {
-        image.sprite = pawnPanel.SelectedPawn.tachie;
+        image.sprite = pawnRefernce.CurrentPawn.tachie;
     }
 
     private void Awake()
     {
         image = GetComponentInChildren<Image>();
-        pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnRefernce = GetComponentInParent<IPawnReference>();
+        pawnRefernce.OnRefresh += Refresh;
     }
 }

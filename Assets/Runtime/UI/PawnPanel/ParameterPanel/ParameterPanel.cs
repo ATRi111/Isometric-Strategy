@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class ParameterPanel : MonoBehaviour
 {
-    private PawnPanel pawnPanel;
+    private IPawnReference pawnReference;
     private ParameterIcon[] icons;
 
     public void Refresh()
     {
-        PawnEntity pawn = pawnPanel.SelectedPawn;
+        PawnEntity pawn = pawnReference.CurrentPawn;
         List<string> parameterNames = pawn.GetVisibleParameters();
         int i = 0;
         for (; i < parameterNames.Count && i < icons.Length; i++)
@@ -24,8 +24,8 @@ public class ParameterPanel : MonoBehaviour
 
     private void Awake()
     {
-        pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnReference = GetComponentInParent<IPawnReference>();
+        pawnReference.OnRefresh += Refresh;
         icons = GetComponentsInChildren<ParameterIcon>();
     }
 }

@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class HPBar : HPUI
 {
-    private PawnPanel pawnPanel;
+    private IPawnReference pawnReference;
     public TextMeshProUGUI tmp;
     public Image front;
     public Image back;
 
     private void Refresh()
     {
-        SetEntity(pawnPanel.SelectedPawn);
+        SetEntity(pawnReference.CurrentPawn);
         Color color;
         if (entity is PawnEntity pawn)
         {
@@ -40,7 +40,7 @@ public class HPBar : HPUI
     protected override void Awake()
     {
         base.Awake();
-        pawnPanel = GetComponentInParent<PawnPanel>();
-        pawnPanel.RefreshAll += Refresh;
+        pawnReference = GetComponentInParent<IPawnReference>();
+        pawnReference.OnRefresh += Refresh;
     }
 }
