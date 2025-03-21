@@ -33,11 +33,11 @@ MonoBehaviour:
     valuePerUnit: 2
     hidden: 0
     description: "\u63D0\u9AD8\u51B2\u950B\u653B\u51FB\u7684\u4F24\u5BB3(\u4E0A\u9650\u4E3A10)"
-  - name: "\u836F\u6C34\u6570\u91CF"
+  - name: "\u9053\u5177\u6570\u91CF"
     maxValue: 3
     valuePerUnit: 10
     hidden: 0
-    description: "\u76AE\u59C6\u8170\u5E26\u4E0A\u7CFB\u6302\u7684\u836F\u6C34\u6570\u91CF"
+    description: "\u7279\u5236\u9053\u5177\u7684\u4F7F\u7528\u6B21\u6570\u3002"
   resetParameters:
   - "\u84C4\u529B\u5C42\u6570"
   - "\u51B2\u950B\u5C42\u6570"

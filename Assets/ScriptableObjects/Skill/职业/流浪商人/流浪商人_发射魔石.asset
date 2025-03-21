@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 065d4d2cf251bf9418a01d673b593a2a, type: 3}
-  m_Name: "\u6D41\u6D6A\u5546\u4EBA_\u76AE\u59C6\u72EC\u5BB6\u836F\u6C34"
+  m_Name: "\u6D41\u6D6A\u5546\u4EBA_\u53D1\u5C04\u9B54\u77F3"
   m_EditorClassIdentifier: 
-  displayName: "\u76AE\u59C6\u72EC\u5BB6\u836F\u6C34"
-  icon: {fileID: 21300000, guid: 0074030a53d457d4fb2ee6fda98ca242, type: 3}
+  displayName: "\u53D1\u5C04\u9B54\u77F3"
+  icon: {fileID: 0}
   extraDescription: 
-  actionTime: 25
+  actionTime: 0
   animationName: 
   pawnAnimationState: 0
   movementLatency: 0
@@ -30,16 +30,16 @@ MonoBehaviour:
     deltaValue: -1
   buffOnAgent: []
   powers:
-  - type: 0
-    power: -88
-    strMultiplier: 0.25
-    dexMultiplier: 0.25
-    intMultiplier: 0.25
-    mndMultiplier: 0.25
+  - type: 3
+    power: 10
+    strMultiplier: 0
+    dexMultiplier: 1
+    intMultiplier: 0
+    mndMultiplier: 0
   buffOnVictim:
-  - so: {fileID: 11400000, guid: e6e0193b4dc248243bac521f7415ebca, type: 2}
+  - so: {fileID: 11400000, guid: 595c429d7817b3e4ca930f0a12402e6e, type: 2}
     probability: 100
-  hitBackProbability: 0
+  hitBackProbability: 60
   victimType: 2
   minLayer: -32
   maxLayer: 32
