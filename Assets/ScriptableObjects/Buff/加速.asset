@@ -18,6 +18,12 @@ MonoBehaviour:
     - value: 0.25
       so: {fileID: 11400000, guid: 9a627552732749041a7b8cf8bd08fd2b, type: 2}
       method: 0
+    - value: 1
+      so: {fileID: 11400000, guid: d7202108696a81d40bf525c98d8709da, type: 2}
+      method: 0
+    - value: 1
+      so: {fileID: 11400000, guid: 6c4cd8f6435e610438f8fd5f29594ee8, type: 2}
+      method: 0
   skillsAttached: []
   extraDescription: 
   duration: 250
