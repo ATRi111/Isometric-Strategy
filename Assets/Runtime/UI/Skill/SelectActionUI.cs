@@ -4,6 +4,9 @@ using Services.ObjectPools;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 选择技能释放位置
+/// </summary>
 public class SelectActionUI : MonoBehaviour
 {
     private IsometricGridManager Igm => IsometricGridManager.Instance;

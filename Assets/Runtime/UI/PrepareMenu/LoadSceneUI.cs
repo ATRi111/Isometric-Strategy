@@ -21,8 +21,10 @@ public class LoadSceneUI : MonoBehaviour
 
     private IEnumerator DelayHide()
     {
-        yield return null;
-        yield return new WaitForEndOfFrame(); 
+        for (int i = 0; i < 10; i++) 
+        {
+            yield return null;
+        }        
         canvasGroup.Visible = false;
     }
 

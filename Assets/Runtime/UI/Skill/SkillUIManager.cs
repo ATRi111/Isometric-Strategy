@@ -34,11 +34,19 @@ public class SkillUIManager : MonoBehaviour
     /// </summary>
     public Action AfterCancelSelectAction;
     /// <summary>
-    /// 开始预览技能位置
+    /// 开始预览技能可选范围
+    /// </summary>
+    public Action<Skill> PreviewSkillOption;
+    /// <summary>
+    /// 停止预览技能可选范围
+    /// </summary>
+    public Action StopPreviewSkillOption;
+    /// <summary>
+    /// 开始预览行动
     /// </summary>
     public Action<PawnAction> PreviewAction;
     /// <summary>
-    /// 停止预览技能位置
+    /// 停止预览行动
     /// </summary>
     public Action<PawnAction> StopPreviewAction;
     /// <summary>

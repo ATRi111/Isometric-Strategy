@@ -3,6 +3,9 @@ using Services.ObjectPools;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 技能作用范围
+/// </summary>
 public class ActionAreaUI : MonoBehaviour
 {
     private IsometricGridManager Igm => IsometricGridManager.Instance;

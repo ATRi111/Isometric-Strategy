@@ -3,6 +3,9 @@ using Services.ObjectPools;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// µĞÈËÍşĞ²·¶Î§
+/// </summary>
 public class OffenseAreaUI : MonoBehaviour
 {
     private IsometricGridManager Igm => IsometricGridManager.Instance;
