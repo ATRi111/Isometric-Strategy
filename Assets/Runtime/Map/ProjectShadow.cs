@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectShadow : MonoBehaviour
 {
-    private IsometricGridManager igm;
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
     private ShadowManager shadowManager;
     private SpriteRenderer myRenderer;
 
@@ -16,7 +16,6 @@ public class ProjectShadow : MonoBehaviour
     private void OnEnable()
     {
         shadowManager = GetComponentInParent<ShadowManager>();
-        igm = GetComponentInParent<IsometricGridManager>();
         if(shadowManager != null)
         {
             float radiance = shadowManager.GetProjectRadiance();
@@ -26,10 +25,10 @@ public class ProjectShadow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 cell = IsometricGridUtility.WorldToCell(transform.parent.position, igm.Grid.cellSize);
+        Vector3 cell = IsometricGridUtility.WorldToCell(transform.parent.position, Igm.Grid.cellSize);
         Vector2Int xy = new(Mathf.RoundToInt(cell.x), Mathf.RoundToInt(cell.y));
-        int layer = igm.AboveGroundLayer(xy);
+        int layer = Igm.AboveGroundLayer(xy);
         cell = new Vector3(cell.x, cell.y, layer);
-        transform.position = IsometricGridUtility.CellToWorld(cell, igm.Grid.cellSize);
+        transform.position = IsometricGridUtility.CellToWorld(cell, Igm.Grid.cellSize);
     }
 }
