@@ -46,6 +46,7 @@ MonoBehaviour:
       so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
       method: 0
   skillsAttached:
+  - {fileID: 11400000, guid: 77277e20617a06b48aae8709eafb8709, type: 2}
   - {fileID: 11400000, guid: fef0da3c657bedf47ad62f2237d67cb8, type: 2}
   - {fileID: 11400000, guid: bfc6cd32c6a9d774b839deb495370a04, type: 2}
   extraDescription: "\u56DB\u5904\u6D41\u6D6A\u7684\u884C\u5546\uFF0C\u5728\u65C5\u9014\u4E2D\u5B66\u5230\u4E86\u5404\u79CD\u77E5\u8BC6\uFF0C\u8FD8\u7814\u53D1\u51FA\u4E86\u72EC\u5BB6\u7684\u7279\u5236\u836F\u6C34\n\u4E3A\u4E86\u65B9\u4FBF\u552E\u5356\uFF0C\u5546\u4EBA\u8FD8\u5236\u4F5C\u4E86\u7279\u6B8A\u8170\u5E26\uFF0C\u80FD\u591F\u4E00\u6B21\u6027\u5BB9\u7EB3\u6570\u74F6\u836F\u6C34"
