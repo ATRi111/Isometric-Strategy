@@ -1,6 +1,5 @@
 using Services;
 using Services.Event;
-using System.Collections;
 using UIExtend;
 using UnityEngine;
 
@@ -9,23 +8,14 @@ public class LoadSceneUI : MonoBehaviour
     private IEventSystem eventSystem;
     private CanvasGroupPlus canvasGroup;
 
-    private void AfterLoadScene(int _)
+    private void AfterMapInitialize()
     {
-        StartCoroutine(DelayHide());
+        canvasGroup.Visible = false;
     }
 
     private void BeforeUnLoadScene(int _)
     {
         canvasGroup.Visible = true;
-    }
-
-    private IEnumerator DelayHide()
-    {
-        for (int i = 0; i < 10; i++) 
-        {
-            yield return null;
-        }        
-        canvasGroup.Visible = false;
     }
 
     private void Awake()
@@ -36,13 +26,13 @@ public class LoadSceneUI : MonoBehaviour
 
     private void OnEnable()
     {
-        eventSystem.AddListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
+        eventSystem.AddListener(EEvent.AfterMapInitialize, AfterMapInitialize);
         eventSystem.AddListener<int>(EEvent.BeforeUnLoadScene, BeforeUnLoadScene);
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener<int>(EEvent.AfterLoadScene, AfterLoadScene);
+        eventSystem.RemoveListener(EEvent.AfterMapInitialize, AfterMapInitialize);
         eventSystem.RemoveListener<int>(EEvent.BeforeUnLoadScene, BeforeUnLoadScene);
     }
 }

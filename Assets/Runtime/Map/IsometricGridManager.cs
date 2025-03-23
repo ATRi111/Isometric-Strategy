@@ -1,5 +1,7 @@
 using EditorExtend.GridEditor;
 using MyTool;
+using Services;
+using Services.Event;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -208,4 +210,9 @@ public class IsometricGridManager : IsometricGridManagerBase
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
 #endif
+
+    private void Start()
+    {
+        ServiceLocator.Get<IEventSystem>().Invoke(EEvent.AfterMapInitialize);
+    }
 }
