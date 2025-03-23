@@ -15,7 +15,7 @@ public class ModifyWeatherSkill : AimlessSkill
         {
             if(r < weatherModifiers[i].probability)
             {
-                BattleField battleField = igm.GetComponent<BattleField>();
+                BattleField battleField = igm.BattleField;
                 ModifyWeatherEffect effect = new(battleField, battleField.Weather, weatherModifiers[i].weather);
                 ret.effects.Add(effect);
                 break;

@@ -27,6 +27,8 @@ public class IsometricGridManager : IsometricGridManagerBase
         }
     }
 
+    public BattleField BattleField { get; private set; }
+
     #region 物体管理
     public readonly Dictionary<Vector3Int, Entity> entityDict = new();
 
@@ -210,6 +212,11 @@ public class IsometricGridManager : IsometricGridManagerBase
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
 #endif
+
+    private void Awake()
+    {
+        BattleField = GetComponentInChildren<BattleField>();
+    }
 
     private void Start()
     {

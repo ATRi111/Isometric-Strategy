@@ -10,13 +10,14 @@ public class ModifyWeatherEffect : Effect
         {
             { EWeather.Sunny,"ÇçÌì"},
             { EWeather.Rainy,"ÓêÌì"},
+            { EWeather.Snowy,"Ñ©Ìì"},
         };
     }
 
     public static string WeatherName(EWeather weather)
         => WeatherNameDict[weather];
 
-    private BattleField battleField;
+    private readonly BattleField battleField;
     public EWeather prev;
     public EWeather current;
 
@@ -46,7 +47,7 @@ public class ModifyWeatherEffect : Effect
 
     public override float ValueFor(PawnEntity pawn)
     {
-        return 0;
+        return pawn.Brain.EvaluateWeather(current) - pawn.Brain.EvaluateWeather(prev);
     }
 
     public override void Describe(StringBuilder sb, bool result)

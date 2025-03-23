@@ -4,6 +4,7 @@ public enum EWeather
 {
     Sunny,
     Rainy,
+    Snowy
 }
 
 [System.Serializable]

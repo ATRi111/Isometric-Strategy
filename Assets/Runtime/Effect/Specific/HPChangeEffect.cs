@@ -40,8 +40,9 @@ public class HPChangeEffect : Effect
 
     public override float ValueFor(PawnEntity pawn)
     {
-        return (current - prev) * pawn.Sensor.FactionCheck(victim);
+        return pawn.Brain.EvaluateWeather(current) - pawn.Brain.eva(prev);
     }
+
     public override void Describe(StringBuilder sb, bool result)
     {
         base.Describe(sb, result);
