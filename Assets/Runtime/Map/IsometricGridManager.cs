@@ -1,5 +1,7 @@
 using EditorExtend.GridEditor;
 using MyTool;
+using Services;
+using Services.Event;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +26,8 @@ public class IsometricGridManager : IsometricGridManagerBase
             return instance;
         }
     }
+
+    public BattleField BattleField { get; private set; }
 
     #region 物体管理
     public readonly Dictionary<Vector3Int, Entity> entityDict = new();
@@ -208,4 +212,14 @@ public class IsometricGridManager : IsometricGridManagerBase
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
 #endif
+
+    private void Awake()
+    {
+        BattleField = GetComponentInChildren<BattleField>();
+    }
+
+    private void Start()
+    {
+        ServiceLocator.Get<IEventSystem>().Invoke(EEvent.AfterMapInitialize);
+    }
 }

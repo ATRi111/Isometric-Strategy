@@ -24,7 +24,7 @@ public class FaceShadow : MonoBehaviour
     {
         if(!shadowManager.VisibleCheck(vertex))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else
         {

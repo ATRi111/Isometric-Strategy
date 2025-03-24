@@ -120,13 +120,16 @@ public class PawnBrain : CharacterComponentBase
     public static float HealthPercent(PawnEntity pawn)
         => pawn.DefenceComponent.HP / pawn.DefenceComponent.maxHP.CurrentValue;
 
+    /// <summary>
+    /// 计算位置分
+    /// </summary>
     public float EvaluatePosition(Vector3Int position)
         => EvaluateFormation(position) + EvaluateTerrain(position);
 
     /// <summary>
     /// 计算地形分
     /// </summary>
-    protected virtual float EvaluateTerrain(Vector3Int position)
+    private float EvaluateTerrain(Vector3Int position)
     {
         return (AIManager.trend.terrain + personality.terrain) * pawn.pClass.terrainAbility * position.z;
     }
@@ -134,7 +137,7 @@ public class PawnBrain : CharacterComponentBase
     /// <summary>
     /// 计算阵型分
     /// </summary>
-    protected virtual float EvaluateFormation(Vector3Int position)
+    private float EvaluateFormation(Vector3Int position)
     {
         int DistanceTo(PawnEntity other)
             => sensor.PredictDistanceBetween((Vector2Int)position, (Vector2Int)other.GridObject.CellPosition);
@@ -169,7 +172,7 @@ public class PawnBrain : CharacterComponentBase
             PNorm norm = new(POfNorm);
             for (int i = 0; i < sensor.allies.Count; i++)
             {
-                norm.Add(I(allies[i]) * SupportDistanceValue(allies[i]));
+                norm.Add(H(allies[i]) * SupportDistanceValue(allies[i]));
             }
             return -norm.Result * pawn.pClass.supportAbility;
         }
@@ -180,7 +183,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 norm.Add(allies[i].pClass.supportAbility * SupportedDistanceValue(pawn));
             }
-            return -norm.Result * I(pawn);
+            return -norm.Result * H(pawn);
         }
         float Offense()
         {
@@ -189,7 +192,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 norm.Add(OffenseDistanceValue(enemies[i]));
             }
-            return -norm.Result * H(pawn) * pawn.pClass.offenseAbility;
+            return -norm.Result * I(pawn) * pawn.pClass.offenseAbility;
         }
         float Defense()
         {
@@ -207,6 +210,14 @@ public class PawnBrain : CharacterComponentBase
             positionValueCache.Add(position, value);
         }
         return positionValueCache[position];
+    }
+
+    /// <summary>
+    /// 计算天气分
+    /// </summary>
+    public virtual float EvaluateWeather(EWeather weather)
+    {
+        return 0f;
     }
 
     protected override void Awake()

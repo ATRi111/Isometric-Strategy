@@ -42,6 +42,7 @@ public class HPChangeEffect : Effect
     {
         return (current - prev) * pawn.Sensor.FactionCheck(victim);
     }
+
     public override void Describe(StringBuilder sb, bool result)
     {
         base.Describe(sb, result);

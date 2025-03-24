@@ -11,6 +11,10 @@ namespace Services.Event
         /// </summary>
         AfterLoadScene,
         /// <summary>
+        /// 地图初始化完成后
+        /// </summary>
+        AfterMapInitialize,
+        /// <summary>
         /// 卸载场景前，参数：即将卸载的场景号
         /// </summary>
         BeforeUnLoadScene,
