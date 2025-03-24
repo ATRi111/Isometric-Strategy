@@ -12,3 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b4806af8d94ca4fbf21dfa1b3e6af0, type: 3}
   m_Name: WeatherSettings
   m_EditorClassIdentifier: 
+  dataList:
+  - damageMultiplier: 1.25
+    damageType: 4
+    weather: 1
+  - damageMultiplier: 0.8
+    damageType: 5
+    weather: 1
+  - damageMultiplier: 0.8
+    damageType: 6
+    weather: 1
+  - damageMultiplier: 0.8
+    damageType: 4
+    weather: 2
+  - damageMultiplier: 0.8
+    damageType: 5
+    weather: 2
+  - damageMultiplier: 1.25
+    damageType: 6
+    weather: 2
+  - damageMultiplier: 0.8
+    damageType: 4
+    weather: 3
+  - damageMultiplier: 1.25
+    damageType: 5
+    weather: 3
+  - damageMultiplier: 0.8
+    damageType: 6
+    weather: 3

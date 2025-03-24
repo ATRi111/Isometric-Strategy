@@ -237,7 +237,19 @@ public class PawnBrain : CharacterComponentBase
     /// </summary>
     public float EvaluateWeatherUnitTimeMyself(EWeather weather)
     {
-        return 0f;
+        float sum = 0f;
+        foreach (Skill skill in pawn.SkillManager.learnedSkills)
+        {
+            if(skill is AimSkill aimSkill && aimSkill.powers.Count > 0)
+            {
+                EDamageType type = aimSkill.powers[0].type;
+                float v = pawn.Igm.BattleField.MockPowerMultiplier(type) - 1f;
+                sum += Mathf.Sign(v) * Mathf.Pow(v, 4f);
+            }
+        }
+        sum = Mathf.Max(sum, 0f);
+        sum = Mathf.Pow(sum, 0.25f);
+        return sum;
     }
 
     protected override void Awake()

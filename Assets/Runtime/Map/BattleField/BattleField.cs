@@ -48,7 +48,7 @@ public class BattleField : MonoBehaviour
 
     public float MockPowerMultiplier(EDamageType damageType)
     {
-        return 1f;
+        return weatherSettings.PowerMultiplier(weather, damageType);
     }
 
     private void OnTick(int time)

@@ -11,7 +11,7 @@ public class AirCrashSkill : TeleportSkill
 
     protected override float MockDamageAmplifier(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target)
     {
-        return Mathf.Max(0, powerAmplifier * (position - target).z);
+        return Mathf.Max(0, powerAmplifier * (position.z - target.z));
     }
 
     protected override void MockOtherEffectOnAgent(IsometricGridManager igm, PawnEntity agent, Vector3Int position, Vector3Int target, EffectUnit ret)
