@@ -24,13 +24,7 @@ MonoBehaviour:
   buffPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
-  powers:
-  - type: 2
-    power: 48
-    strMultiplier: 0
-    dexMultiplier: 0.5
-    intMultiplier: 0
-    mndMultiplier: 0
+  powers: []
   buffOnVictim:
   - so: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
     probability: 50
