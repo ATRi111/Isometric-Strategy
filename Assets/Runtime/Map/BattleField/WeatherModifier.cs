@@ -1,12 +1,5 @@
 using System.Text;
 
-public enum EWeather
-{
-    Sunny,
-    Rainy,
-    Snowy
-}
-
 [System.Serializable]
 public class WeatherModifier
 {

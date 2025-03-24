@@ -22,8 +22,13 @@ public class PawnSensor : CharacterComponentBase
     public EFaction percievedFaction;
 
     private List<Vector2Int> adjacent = new();  //相邻四格
-
+    /// <summary>
+    /// 自我认知中的友方单位(不含自身)
+    /// </summary>
     public readonly List<PawnEntity> allies = new();
+    /// <summary>
+    /// 自我认知中的敌方单位
+    /// </summary>
     public readonly List<PawnEntity> enemies = new();
     private readonly Dictionary<Vector2Int, List<Node>> nodeCache = new();
 

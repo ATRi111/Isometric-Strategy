@@ -8,6 +8,7 @@ public class ModifyWeatherEffect : Effect
     {
         WeatherNameDict = new Dictionary<EWeather, string>()
         {
+            { EWeather.None,"无天气"},
             { EWeather.Sunny,"晴天"},
             { EWeather.Rainy,"雨天"},
             { EWeather.Snowy,"雪天"},
@@ -47,7 +48,8 @@ public class ModifyWeatherEffect : Effect
 
     public override float ValueFor(PawnEntity pawn)
     {
-        return pawn.Brain.EvaluateWeather(current) - pawn.Brain.EvaluateWeather(prev);
+        return BattleField.WeatherDuration * pawn.Brain.EvaluateWeatherUnitTime(current) 
+            - Igm.BattleField.RemainingTime * pawn.Brain.EvaluateWeatherUnitTime(prev);
     }
 
     public override void Describe(StringBuilder sb, bool result)

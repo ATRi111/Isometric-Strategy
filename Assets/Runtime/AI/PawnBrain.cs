@@ -170,7 +170,7 @@ public class PawnBrain : CharacterComponentBase
         float OfferSupport()
         {
             PNorm norm = new(POfNorm);
-            for (int i = 0; i < sensor.allies.Count; i++)
+            for (int i = 0; i < allies.Count; i++)
             {
                 norm.Add(H(allies[i]) * SupportDistanceValue(allies[i]));
             }
@@ -213,9 +213,29 @@ public class PawnBrain : CharacterComponentBase
     }
 
     /// <summary>
-    /// 计算天气分
+    /// 计算单位时间的天气对友方的价值
     /// </summary>
-    public virtual float EvaluateWeather(EWeather weather)
+    public float EvaluateWeatherUnitTime(EWeather weather)
+    {
+        float sum = 0f;
+        List<PawnEntity> allies = sensor.allies;
+        List<PawnEntity> enemies = sensor.enemies;
+        sum += EvaluateWeatherUnitTimeMyself(weather);
+        for (int i = 0; i < allies.Count ; i++)
+        {
+            sum += allies[i].Brain.EvaluateWeatherUnitTimeMyself(weather);
+        }
+        for (int i = 0;i < enemies.Count ; i++)
+        {
+            sum -= enemies[i].Brain.EvaluateWeatherUnitTimeMyself(weather);
+        }
+        return sum;
+    }
+
+    /// <summary>
+    /// 计算单位时间的天气对自身的价值
+    /// </summary>
+    public float EvaluateWeatherUnitTimeMyself(EWeather weather)
     {
         return 0f;
     }
