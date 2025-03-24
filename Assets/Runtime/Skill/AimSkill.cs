@@ -94,24 +94,26 @@ public abstract class AimSkill : Skill
     /// <summary>
     /// 模拟技能对指定目标造成的伤害(含击退效果)
     /// </summary>
-    protected virtual void MockDamageOnVictim(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target, List<SkillPower> powers, EffectUnit ret)
+    protected void MockDamageOnVictim(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target, List<SkillPower> powers, EffectUnit ret)
     {
         //计算伤害
         int damage = 0;
         DefenceComponent def = victim.DefenceComponent;
+        BattleField battleField = igm.BattleField;
         for (int j = 0; j < powers.Count; j++)
         {
             float attackPower = agent.OffenceComponent.MockAttackPower(powers[j]);
+            attackPower *= battleField.MockPowerMultiplier(powers[j].type);
             damage += def.MockDamage(powers[j].type, attackPower);
         }
 
         damage = Mathf.RoundToInt(damage * (1f + MockDamageAmplifier(igm, agent, victim, position, target)));
-
+        
         int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
 
         if (def.HP != hp)
         {
-            HPChangeEffect hpChangeEffect = new HPChangeEffect(victim, def.HP, hp);
+            HPChangeEffect hpChangeEffect = new(victim, def.HP, hp);
             ret.effects.Add(hpChangeEffect);
             if (hp == 0)
             {
@@ -125,7 +127,6 @@ public abstract class AimSkill : Skill
             HitBackUtility.MockHitBack(igm, position, pawnVictim, hp, hitBackProbability, ret);
         }
     }
-
 
     /// <summary>
     /// 模拟技能对指定目标的额外伤害倍率
@@ -149,9 +150,17 @@ public abstract class AimSkill : Skill
     }
 
     /// <summary>
-    /// 模拟技能对目标造成伤害和施加状态以外的影响
+    /// 模拟技能对目标的其他影响
     /// </summary>
     protected virtual void MockOtherEffectOnVictim(PawnEntity agent, Entity victim, EffectUnit ret)
+    {
+
+    }
+
+    /// <summary>
+    /// 模拟技能对自身造成的其他影响
+    /// </summary>
+    protected virtual void MockOtherEffectOnAgent(IsometricGridManager igm, PawnEntity agent, Vector3Int position, Vector3Int target,EffectUnit ret)
     {
 
     }
@@ -172,6 +181,7 @@ public abstract class AimSkill : Skill
                 MockBuffOnVictim(agent, pawn, ret);
             MockOtherEffectOnVictim(agent,victims[i], ret);
         }
+        MockOtherEffectOnAgent(igm, agent, position, target, ret);
     }
 
     #region 描述

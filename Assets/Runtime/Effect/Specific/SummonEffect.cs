@@ -9,8 +9,8 @@ public class SummonEffect : Effect
     public Vector3Int cellPosition;
     private GameObject summoned;
 
-    public SummonEffect(PawnEntity victim, GameObject prefab,Vector3Int cellPosition,int probability = 100) 
-        : base(victim, probability)
+    public SummonEffect(PawnEntity agent, GameObject prefab,Vector3Int cellPosition,int probability = 100) 
+        : base(agent, probability)
     {
         this.prefab = prefab;
         this.cellPosition = cellPosition;

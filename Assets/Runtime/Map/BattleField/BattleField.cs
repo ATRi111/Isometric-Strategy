@@ -46,6 +46,11 @@ public class BattleField : MonoBehaviour
         }
     }
 
+    public float MockPowerMultiplier(EDamageType damageType)
+    {
+        return 1f;
+    }
+
     private void OnTick(int time)
     {
         if (time == nextResetTime)

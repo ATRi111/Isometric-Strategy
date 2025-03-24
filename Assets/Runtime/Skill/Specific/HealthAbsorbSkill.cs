@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -7,15 +6,14 @@ public class HealthAbsorbSkill : RangedSkill
 {
     public float absorbPercent;
 
-    protected override void MockDamageOnVictim(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target, List<SkillPower> powers, EffectUnit ret)
+    protected override void MockOtherEffectOnAgent(IsometricGridManager igm, PawnEntity agent, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
-        base.MockDamageOnVictim(igm, agent, victim, position, target, powers, ret);
-        int n = ret.effects.Count;  //中途可能会插入新元素
-        for (int i = 0; i < n; i++)
+        base.MockOtherEffectOnAgent(igm, agent, position, target, ret);
+        for (int i = 0; i < ret.effects.Count; i++)
         {
-            if(ret.effects[i] is HPChangeEffect hpChangeEffect)
+            if (ret.effects[i] is HPChangeEffect hpChangeEffect)
             {
-                if(hpChangeEffect.probability == Effect.MaxProbability)
+                if (hpChangeEffect.probability == Effect.MaxProbability)
                 {
                     int hp = agent.DefenceComponent.HP + Mathf.RoundToInt(absorbPercent * (hpChangeEffect.prev - hpChangeEffect.current));
                     HPChangeEffect absorb = new(agent, agent.DefenceComponent.HP, hp, hpChangeEffect.probability)
