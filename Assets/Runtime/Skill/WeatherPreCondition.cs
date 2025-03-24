@@ -17,7 +17,7 @@ public class WeatherPreCondition
     {
         sb.Append("天气");
         sb.Append(requireExist ? "是" : "不是");
-        sb.Append(ModifyWeatherEffect.WeatherName(weather));
+        sb.Append(WeatherData.WeatherName(weather));
         sb.AppendLine();
     }
 }

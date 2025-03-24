@@ -13,30 +13,30 @@ MonoBehaviour:
   m_Name: WeatherSettings
   m_EditorClassIdentifier: 
   dataList:
-  - damageMultiplier: 1.25
-    damageType: 4
-    weather: 1
-  - damageMultiplier: 0.8
-    damageType: 5
-    weather: 1
-  - damageMultiplier: 0.8
-    damageType: 6
-    weather: 1
-  - damageMultiplier: 0.8
-    damageType: 4
-    weather: 2
-  - damageMultiplier: 0.8
-    damageType: 5
-    weather: 2
-  - damageMultiplier: 1.25
-    damageType: 6
-    weather: 2
-  - damageMultiplier: 0.8
-    damageType: 4
-    weather: 3
-  - damageMultiplier: 1.25
-    damageType: 5
-    weather: 3
-  - damageMultiplier: 0.8
-    damageType: 6
-    weather: 3
+  - weather: 1
+    powerMultiplierDict:
+      list:
+      - key: 4
+        value: 1.25
+      - key: 5
+        value: 0.8
+      - key: 6
+        value: 0.8
+  - weather: 2
+    powerMultiplierDict:
+      list:
+      - key: 4
+        value: 0.8
+      - key: 5
+        value: 0.8
+      - key: 6
+        value: 1.25
+  - weather: 3
+    powerMultiplierDict:
+      list:
+      - key: 4
+        value: 0.8
+      - key: 5
+        value: 1.25
+      - key: 6
+        value: 0.8
