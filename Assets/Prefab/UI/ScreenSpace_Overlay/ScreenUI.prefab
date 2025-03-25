@@ -173,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -754.2, y: 405.1}
+  m_AnchoredPosition: {x: 751, y: 405.1}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2365693983564239630
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 1169205720453313523}
   - component: {fileID: 7298672192139236997}
   m_Layer: 5
-  m_Name: Button
+  m_Name: TimeScaleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 736.8, y: 406}
+  m_AnchoredPosition: {x: -733, y: 409}
   m_SizeDelta: {x: 105.4921, y: 53.0537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5741559721451034876
@@ -3941,7 +3941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7594123183938549411, guid: d8dcc91d0b07d2d4bbc05397bbe5ec91, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -31.969
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 7594123183938549411, guid: d8dcc91d0b07d2d4bbc05397bbe5ec91, type: 3}
       propertyPath: m_AnchoredPosition.y
