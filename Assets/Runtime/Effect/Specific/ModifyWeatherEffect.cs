@@ -16,18 +16,10 @@ public class ModifyWeatherEffect : Effect
 
     public override bool Appliable => battleField.Weather == prev;
 
-    public override bool Revokable => battleField.Weather == current;
-
     public override void Apply()
     {
         base.Apply();
         battleField.Weather = current;
-    }
-
-    public override void Revoke()
-    {
-        base.Revoke();
-        battleField.Weather = prev;
     }
 
     public override float ValueFor(PawnEntity pawn)
@@ -45,10 +37,28 @@ public class ModifyWeatherEffect : Effect
             sb.Append(probability);
             sb.Append("%");
         }
-        sb.Append("使天气由");
-        sb.Append(WeatherData.WeatherName(prev));
-        sb.Append("变为");
-        sb.Append(WeatherData.WeatherName(current));
-        sb.AppendLine();
+
+        if(prev != current)
+        {
+            sb.Append("使天气由");
+            sb.Append(WeatherData.WeatherName(prev));
+            sb.Append("变为");
+            sb.Append("持续");
+            sb.Append(BattleField.WeatherDuration);
+            sb.Append("的");
+            sb.Append(WeatherData.WeatherName(current));
+            sb.AppendLine();
+        }
+        else
+        {
+            sb.Append("使");
+            sb.Append(WeatherData.WeatherName(current));
+            sb.Append("的剩余时间");
+            sb.Append("由");
+            sb.Append(battleField.RemainingTime);
+            sb.Append("延长为");
+            sb.Append(BattleField.WeatherDuration);
+            sb.AppendLine();
+        }
     }
 }

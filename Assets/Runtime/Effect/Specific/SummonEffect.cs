@@ -18,8 +18,6 @@ public class SummonEffect : Effect
 
     public override bool Appliable => summoned == null;
 
-    public override bool Revokable => summoned != null;
-
     public override void Apply()
     {
         base.Apply();
@@ -31,13 +29,6 @@ public class SummonEffect : Effect
         summoned.SetActive(true);
         PawnEntity pawnEntity = summoned.GetComponent<PawnEntity>();
         pawnEntity.time = ServiceLocator.Get<GameManager>().Time;
-    }
-
-    public override void Revoke()
-    {
-        base.Revoke();
-        Object.Destroy(summoned);
-        summoned = null;
     }
 
     public override float ValueFor(PawnEntity pawn)

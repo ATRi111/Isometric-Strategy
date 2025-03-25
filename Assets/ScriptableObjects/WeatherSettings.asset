@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: WeatherSettings
   m_EditorClassIdentifier: 
   dataList:
-  - weather: 1
+  - icon: {fileID: 0}
+    weather: 0
+    powerMultiplierDict:
+      list: []
+  - icon: {fileID: 0}
+    weather: 1
     powerMultiplierDict:
       list:
       - key: 4
@@ -22,7 +27,8 @@ MonoBehaviour:
         value: 0.8
       - key: 6
         value: 0.8
-  - weather: 2
+  - icon: {fileID: 0}
+    weather: 2
     powerMultiplierDict:
       list:
       - key: 4
@@ -31,7 +37,8 @@ MonoBehaviour:
         value: 0.8
       - key: 6
         value: 1.25
-  - weather: 3
+  - icon: {fileID: 0}
+    weather: 3
     powerMultiplierDict:
       list:
       - key: 4

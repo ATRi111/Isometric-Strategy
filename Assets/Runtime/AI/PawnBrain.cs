@@ -238,12 +238,13 @@ public class PawnBrain : CharacterComponentBase
     public float EvaluateWeatherUnitTimeMyself(EWeather weather)
     {
         float sum = 0f;
+        WeatherData data = pawn.Igm.BattleField.weatherSettings[weather];
         foreach (Skill skill in pawn.SkillManager.learnedSkills)
         {
             if(skill is AimSkill aimSkill && aimSkill.powers.Count > 0)
             {
                 EDamageType type = aimSkill.powers[0].type;
-                float v = pawn.Igm.BattleField.MockPowerMultiplier(type) - 1f;
+                float v = data.PowerMultiplier(type) - 1f;
                 sum += Mathf.Sign(v) * Mathf.Pow(v, 4f);
             }
         }

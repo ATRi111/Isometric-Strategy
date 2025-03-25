@@ -53,7 +53,6 @@ public abstract class Effect : IAnimationSource
     }
 
     public abstract bool Appliable { get; }
-    public abstract bool Revokable { get; }
 
     protected Effect joinedEffect;  //等待此Effect的动画播放完毕后,自身的Effect才可以播放
     protected AnimationProcess animation;
@@ -87,12 +86,6 @@ public abstract class Effect : IAnimationSource
     public virtual void Apply()
     {
         if (!Appliable)
-            throw new InvalidOperationException();
-    }
-
-    public virtual void Revoke()
-    {
-        if (!Revokable)
             throw new InvalidOperationException();
     }
 

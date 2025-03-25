@@ -9,8 +9,6 @@ public class LengthenBuffEffect : BuffEffect
     public int endTime;
     public override bool Appliable => buffManager.Contains(buff) && buff.endTime == endTime_prev;
 
-    public override bool Revokable => buffManager.Contains(buff) && buff.endTime == endTime;
-
     public LengthenBuffEffect(Entity victim, Buff buff, int endTime, BuffManager buffManager, int probability = MaxProbability) 
         : base(victim, buff, buffManager, probability)
     {
@@ -30,12 +28,6 @@ public class LengthenBuffEffect : BuffEffect
     {
         base.Apply();
         buff.endTime = endTime;
-    }
-
-    public override void Revoke()
-    {
-        base.Revoke();
-        buff.endTime = endTime_prev;
     }
 
     public override void Describe(StringBuilder sb, bool result)

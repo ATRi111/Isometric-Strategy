@@ -21,18 +21,10 @@ public class TimeEffect : Effect
 
     public override bool Appliable => PawnVictim.time == prev;
 
-    public override bool Revokable => PawnVictim.time == current;
-
     public override void Apply()
     {
         base.Apply();
         PawnVictim.time = current;
-    }
-
-    public override void Revoke()
-    {
-        base.Revoke();
-        PawnVictim.time = prev;
     }
 
     public override float ValueFor(PawnEntity pawn)

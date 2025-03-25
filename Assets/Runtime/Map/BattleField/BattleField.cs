@@ -1,7 +1,6 @@
 using Services;
 using Services.Asset;
 using Services.Event;
-using System;
 using UnityEngine;
 
 public class BattleField : MonoBehaviour
@@ -12,7 +11,6 @@ public class BattleField : MonoBehaviour
     private GameManager gameManager;
 
     public WeatherSettings weatherSettings;
-    public Action<EWeather> AfterWeatherChange;
 
     public int nextResetTime;
 
@@ -28,10 +26,12 @@ public class BattleField : MonoBehaviour
                 weather = value;
                 if(value != EWeather.None)
                     nextResetTime = gameManager.Time + WeatherDuration;
-                AfterWeatherChange?.Invoke(weather);
+                eventSystem.Invoke(EEvent.AfterBattleFieldChange, this);
             }
         }
     }
+
+    public WeatherData WeatherData => weatherSettings[weather];
 
     /// <summary>
     /// 当前天气的剩余时间
@@ -48,7 +48,7 @@ public class BattleField : MonoBehaviour
 
     public float MockPowerMultiplier(EDamageType damageType)
     {
-        return weatherSettings.GetPowerMultiplier(weather, damageType);
+        return weatherSettings[weather].PowerMultiplier(damageType);
     }
 
     private void OnTick(int time)
@@ -61,7 +61,7 @@ public class BattleField : MonoBehaviour
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
         gameManager = ServiceLocator.Get<GameManager>();
-        weatherSettings = ServiceLocator.Get<IAssetLoader>().Load<WeatherSettings>(nameof(weatherSettings));
+        weatherSettings = ServiceLocator.Get<IAssetLoader>().Load<WeatherSettings>(nameof(WeatherSettings));
     }
 
     private void OnEnable()
@@ -76,8 +76,8 @@ public class BattleField : MonoBehaviour
 
     private void Start()
     {
-        AfterWeatherChange?.Invoke(weather);
         if (nextResetTime == 0)
             nextResetTime = WeatherDuration;
+        eventSystem.Invoke(EEvent.AfterBattleFieldChange, this);
     }
 }
