@@ -11,7 +11,7 @@ public class WeatherModifier
         sb.Append(probability);
         sb.Append("%");
         sb.Append("将天气改为");
-        sb.Append(ModifyWeatherEffect.WeatherName(weather));
+        sb.Append(WeatherData.WeatherName(weather));
         sb.AppendLine();
     }
 }

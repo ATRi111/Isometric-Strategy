@@ -4,8 +4,6 @@ public class DisableEntityEffect : Effect
 {
     public override bool Appliable => victim.gameObject.activeInHierarchy;
 
-    public override bool Revokable => !victim.gameObject.activeInHierarchy;
-
     public DisableEntityEffect(Entity victim, int probability = MaxProbability) : base(victim, probability)
     {
     }
@@ -14,12 +12,6 @@ public class DisableEntityEffect : Effect
     {
         base.Apply();
         victim.Die();
-    }
-
-    public override void Revoke()
-    {
-        base.Revoke();
-        victim.Revive();
     }
 
     public override float ValueFor(PawnEntity pawn)

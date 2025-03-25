@@ -15,8 +15,6 @@ public class HPChangeEffect : Effect
 
     public override bool Appliable => victim.DefenceComponent.HP == prev;
 
-    public override bool Revokable => victim.DefenceComponent.HP == current;
-
     protected override AnimationProcess GenerateAnimation_Local()
     {
         FollowHPBar hpBar = victim.GetComponentInChildren<FollowHPBar>();
@@ -30,12 +28,6 @@ public class HPChangeEffect : Effect
     {
         base.Apply();
         victim.DefenceComponent.HP = current;
-    }
-
-    public override void Revoke()
-    {
-        base.Revoke();
-        victim.DefenceComponent.HP = prev;
     }
 
     public override float ValueFor(PawnEntity pawn)

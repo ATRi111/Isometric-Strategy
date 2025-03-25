@@ -12,3 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b4806af8d94ca4fbf21dfa1b3e6af0, type: 3}
   m_Name: WeatherSettings
   m_EditorClassIdentifier: 
+  dataList:
+  - icon: {fileID: 0}
+    weather: 0
+    powerMultiplierDict:
+      list: []
+  - icon: {fileID: 0}
+    weather: 1
+    powerMultiplierDict:
+      list:
+      - key: 4
+        value: 1.25
+      - key: 5
+        value: 0.8
+      - key: 6
+        value: 0.8
+  - icon: {fileID: 0}
+    weather: 2
+    powerMultiplierDict:
+      list:
+      - key: 4
+        value: 0.8
+      - key: 5
+        value: 0.8
+      - key: 6
+        value: 1.25
+  - icon: {fileID: 0}
+    weather: 3
+    powerMultiplierDict:
+      list:
+      - key: 4
+        value: 0.8
+      - key: 5
+        value: 1.25
+      - key: 6
+        value: 0.8

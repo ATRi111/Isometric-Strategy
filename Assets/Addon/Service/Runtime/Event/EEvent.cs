@@ -27,6 +27,10 @@ namespace Services.Event
         /// </summary>
         BeforeDoAction,
         /// <summary>
+        /// 战场发生变化，参数：BattleField
+        /// </summary>
+        AfterBattleFieldChange,
+        /// <summary>
         /// 显示信息，参数：引发事件的对象，屏幕坐标，信息内容
         /// </summary>
         ShowInfo,
@@ -59,7 +63,7 @@ namespace Services.Event
         /// </summary>
         ShowPawnPanel,
         /// <summary>
-        /// 将角色设为模板，参数：Pawn
+        /// 将角色设为观察目标，参数：Pawn
         /// </summary>
         SetPawnTaregt,
         /// <summary>

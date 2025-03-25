@@ -21,5 +21,6 @@ public class WeaponAnimator : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 }

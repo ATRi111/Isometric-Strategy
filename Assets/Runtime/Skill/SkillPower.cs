@@ -7,6 +7,20 @@ using UnityEngine;
 /// </summary>
 public struct SkillPower
 {
+    public static string DamageTypeName(EDamageType type)
+    {
+        return type switch
+        {
+            EDamageType.Slash => "ÇÐ¶Ï",
+            EDamageType.Pierce => "´©´Ì",
+            EDamageType.Crush => "´ò»÷",
+            EDamageType.Fire => "»ð",
+            EDamageType.Ice => "±ù",
+            EDamageType.Lightning => "À×",
+            _ => string.Empty
+        };
+    }
+
     public EDamageType type;
     public int power;
     public float strMultiplier;
@@ -21,17 +35,8 @@ public struct SkillPower
             sb.Append(" ");
         }
 
-        string stype = type switch
-        {
-            EDamageType.Slash => "ÇÐ¶Ï",
-            EDamageType.Pierce => "´©´Ì",
-            EDamageType.Crush => "´ò»÷",
-            EDamageType.Fire => "»ð",
-            EDamageType.Ice => "±ù",
-            EDamageType.Lightning => "À×",
-            _ => string.Empty
-        };
-        if(!string.IsNullOrEmpty(stype))
+        string stype = DamageTypeName(type);
+        if (!string.IsNullOrEmpty(stype))
         {
             sb.Append("(");
             sb.Append(stype);

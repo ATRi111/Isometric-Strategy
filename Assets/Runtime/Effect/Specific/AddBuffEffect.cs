@@ -6,8 +6,6 @@ public class AddBuffEffect : BuffEffect
 {
     public override bool Appliable => !buffManager.Contains(buff);
 
-    public override bool Revokable => buffManager.Contains(buff);
-
     public AddBuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability) 
         : base(victim, buff, buffManager, probability)
     {
@@ -24,12 +22,6 @@ public class AddBuffEffect : BuffEffect
     {
         base.Apply();
         buffManager.Add(buff);
-    }
-
-    public override void Revoke()
-    {
-        base.Revoke();
-        buffManager.Remove(buff);
     }
 
     public override void Describe(StringBuilder sb, bool result)

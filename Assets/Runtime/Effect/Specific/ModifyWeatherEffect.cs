@@ -1,23 +1,7 @@
-using System.Collections.Generic;
 using System.Text;
 
 public class ModifyWeatherEffect : Effect
 {
-    private static readonly Dictionary<EWeather, string> WeatherNameDict;
-    static ModifyWeatherEffect()
-    {
-        WeatherNameDict = new Dictionary<EWeather, string>()
-        {
-            { EWeather.None,"无天气"},
-            { EWeather.Sunny,"晴天"},
-            { EWeather.Rainy,"雨天"},
-            { EWeather.Snowy,"雪天"},
-        };
-    }
-
-    public static string WeatherName(EWeather weather)
-        => WeatherNameDict[weather];
-
     private readonly BattleField battleField;
     public EWeather prev;
     public EWeather current;
@@ -32,24 +16,16 @@ public class ModifyWeatherEffect : Effect
 
     public override bool Appliable => battleField.Weather == prev;
 
-    public override bool Revokable => battleField.Weather == current;
-
     public override void Apply()
     {
         base.Apply();
         battleField.Weather = current;
     }
 
-    public override void Revoke()
-    {
-        base.Revoke();
-        battleField.Weather = prev;
-    }
-
     public override float ValueFor(PawnEntity pawn)
     {
         return BattleField.WeatherDuration * pawn.Brain.EvaluateWeatherUnitTime(current) 
-            - Igm.BattleField.RemainingTime * pawn.Brain.EvaluateWeatherUnitTime(prev);
+            - Igm.BattleField.WeatherRemainingTime * pawn.Brain.EvaluateWeatherUnitTime(prev);
     }
 
     public override void Describe(StringBuilder sb, bool result)
@@ -61,10 +37,28 @@ public class ModifyWeatherEffect : Effect
             sb.Append(probability);
             sb.Append("%");
         }
-        sb.Append("使天气由");
-        sb.Append(WeatherName(prev));
-        sb.Append("变为");
-        sb.Append(WeatherName(current));
-        sb.AppendLine();
+
+        if(prev != current)
+        {
+            sb.Append("使天气由");
+            sb.Append(WeatherData.WeatherName(prev));
+            sb.Append("变为");
+            sb.Append("持续");
+            sb.Append(BattleField.WeatherDuration);
+            sb.Append("的");
+            sb.Append(WeatherData.WeatherName(current));
+            sb.AppendLine();
+        }
+        else
+        {
+            sb.Append("使");
+            sb.Append(WeatherData.WeatherName(current));
+            sb.Append("的剩余时间");
+            sb.Append("由");
+            sb.Append(battleField.WeatherRemainingTime);
+            sb.Append("延长为");
+            sb.Append(BattleField.WeatherDuration);
+            sb.AppendLine();
+        }
     }
 }

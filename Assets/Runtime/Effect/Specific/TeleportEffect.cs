@@ -8,7 +8,6 @@ public class TeleportEffect : Effect
     public Vector3Int from, to;
 
     public override bool Appliable => victim.GridObject.CellPosition == from;
-    public override bool Revokable => victim.GridObject.CellPosition == to;
 
     public TeleportEffect(PawnEntity victim, Vector3Int from, Vector3Int to, int probability = MaxProbability)
         : base(victim, probability)
@@ -21,12 +20,6 @@ public class TeleportEffect : Effect
     {
         base.Apply();
         victim.GridObject.CellPosition = to;
-    }
-
-    public override void Revoke()
-    {
-        base.Revoke();
-        victim.GridObject.CellPosition = from;
     }
 
     public override float ValueFor(PawnEntity pawn)

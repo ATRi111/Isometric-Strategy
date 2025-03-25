@@ -13,8 +13,6 @@ public class ModifyParameterEffect : Effect
 
     public override bool Appliable => pawn.parameterDict[parameterName] == value_prev;
 
-    public override bool Revokable => pawn.parameterDict[parameterName] == value;
-
     public ModifyParameterEffect(Entity victim, string parameterName, int value_prev, int value, int probability = MaxProbability)
         : base(victim, probability)
     {
@@ -34,12 +32,6 @@ public class ModifyParameterEffect : Effect
     {
         base.Apply();
         pawn.parameterDict[parameterName] = value;
-    }
-
-    public override void Revoke()
-    {
-        base.Revoke();
-        pawn.parameterDict[parameterName] = value_prev;
     }
 
     public override void Describe(StringBuilder sb, bool result)

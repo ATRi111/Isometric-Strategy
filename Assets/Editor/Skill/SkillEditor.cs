@@ -8,7 +8,7 @@ public class SkillEditor : AutoEditor
     [AutoProperty]
     public SerializedProperty icon, displayName, animationName, pawnAnimationState, movementLatency, weaponAnimation;
     [AutoProperty]
-    public SerializedProperty preConditions, buffPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
+    public SerializedProperty preConditions, buffPreConditions, weatherPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
 
     protected override void MyOnInspectorGUI()
     {
@@ -24,6 +24,7 @@ public class SkillEditor : AutoEditor
         weaponAnimation.BoolField("启用武器动画");
         preConditions.ListField("参数前置条件");
         buffPreConditions.ListField("Buff前置条件");
+        weatherPreConditions.ListField("天气前置条件");
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.EndHorizontal();
         actionTime.IntField("固定时间消耗");
