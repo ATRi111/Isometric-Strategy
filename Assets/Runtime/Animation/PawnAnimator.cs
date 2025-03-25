@@ -25,6 +25,8 @@ public class PawnAnimator : EntityAnimator
 
     public bool up;
     public bool right;
+    [SerializeField]
+    private Vector3 weaponOffset;
 
     public void Play(string movementName)
         => animator.Play(BaseLayer + movementName + DownState, 0);
@@ -46,7 +48,7 @@ public class PawnAnimator : EntityAnimator
             {
                 GameObject obj = Instantiate(weapon.animationPrefab);
                 obj.transform.SetParent(transform);
-                obj.transform.localScale = Vector3.zero;
+                obj.transform.localScale = weaponOffset;
                 WeaponAnimator weaponAnimator = obj.GetComponent<WeaponAnimator>();
                 weaponAnimator.Play(movementName, spriteRenderer.sortingOrder);
             }

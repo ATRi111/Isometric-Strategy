@@ -1,11 +1,20 @@
 using Services.Event;
+using System.Text;
 
 public class WeatherIcon : InfoIcon
 {
     private void AfterBattleFieldChange(BattleField battleField)
     {
         WeatherData data = battleField.WeatherData;
-        info = data.Name + "\n" + data.Description;
+        StringBuilder sb = new();
+        sb.AppendLine(data.Name);
+        if(battleField.Weather != EWeather.None)
+        {
+            sb.Append("持续时间:");
+            sb.Append(battleField.WeatherRemainingTime);
+            sb.Append(data.Description);
+        }
+        info = sb.ToString();
         image.sprite = data.icon;
     }
 

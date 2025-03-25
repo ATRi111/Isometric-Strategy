@@ -25,7 +25,7 @@ public class ModifyWeatherEffect : Effect
     public override float ValueFor(PawnEntity pawn)
     {
         return BattleField.WeatherDuration * pawn.Brain.EvaluateWeatherUnitTime(current) 
-            - Igm.BattleField.RemainingTime * pawn.Brain.EvaluateWeatherUnitTime(prev);
+            - Igm.BattleField.WeatherRemainingTime * pawn.Brain.EvaluateWeatherUnitTime(prev);
     }
 
     public override void Describe(StringBuilder sb, bool result)
@@ -55,7 +55,7 @@ public class ModifyWeatherEffect : Effect
             sb.Append(WeatherData.WeatherName(current));
             sb.Append("的剩余时间");
             sb.Append("由");
-            sb.Append(battleField.RemainingTime);
+            sb.Append(battleField.WeatherRemainingTime);
             sb.Append("延长为");
             sb.Append(BattleField.WeatherDuration);
             sb.AppendLine();

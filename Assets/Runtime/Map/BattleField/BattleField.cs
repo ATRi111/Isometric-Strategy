@@ -1,6 +1,7 @@
 using Services;
 using Services.Asset;
 using Services.Event;
+using System;
 using UnityEngine;
 
 public class BattleField : MonoBehaviour
@@ -10,6 +11,7 @@ public class BattleField : MonoBehaviour
     private IEventSystem eventSystem;
     private GameManager gameManager;
 
+    [NonSerialized]
     public WeatherSettings weatherSettings;
 
     public int nextResetTime;
@@ -36,7 +38,7 @@ public class BattleField : MonoBehaviour
     /// <summary>
     /// 当前天气的剩余时间
     /// </summary>
-    public int RemainingTime
+    public int WeatherRemainingTime
     {
         get
         {
