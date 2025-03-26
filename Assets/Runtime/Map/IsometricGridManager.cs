@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-500)]
-[RequireComponent(typeof(PerspectiveManager))]
+[RequireComponent(typeof(PerspectiveManager), typeof(BattleField), typeof(ShadowManager))]
 public class IsometricGridManager : IsometricGridManagerBase
 {
     public static Vector3Int CoverVector = new(1, 1, -2);

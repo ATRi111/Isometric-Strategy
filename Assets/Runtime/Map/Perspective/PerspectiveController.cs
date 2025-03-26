@@ -40,7 +40,7 @@ public abstract class PerspectiveController : AlphaController
     protected override void Awake()
     {
         base.Awake();
-        perspectiveManager = PerspectiveManager.FindInstance();
+        perspectiveManager = IsometricGridManager.Instance.GetComponent<PerspectiveManager>();
     }
 
     protected virtual void OnEnable()

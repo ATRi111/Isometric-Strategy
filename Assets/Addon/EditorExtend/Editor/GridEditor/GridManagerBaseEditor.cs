@@ -15,7 +15,6 @@ namespace EditorExtend.GridEditor
 
         protected override void MyOnInspectorGUI()
         {
-            RefreshObjects();
             EditorGUI.BeginDisabledGroup(true);
             EditorGUILayout.IntField("物体总数", GridManager.ObjectDict.Count);
             EditorGUI.EndDisabledGroup();
@@ -61,22 +60,6 @@ namespace EditorExtend.GridEditor
                 GridManager.AddAllObjects();
                 if (!Application.isPlaying)
                     EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-            }
-        }
-
-        protected override void MyOnSceneGUI()
-        {
-            base.MyOnSceneGUI();
-            RefreshObjects();
-        }
-
-        protected void RefreshObjects()
-        {
-            if(!Application.isPlaying)
-            {
-                GridObject[] objects = GridManager.GetComponentsInChildren<GridObject>();
-                if (GridManager.ObjectDict.Count != objects.Length)
-                    GridManager.AddAllObjects();
             }
         }
     }

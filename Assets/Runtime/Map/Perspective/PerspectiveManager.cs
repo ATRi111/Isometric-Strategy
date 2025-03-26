@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PerspectiveManager : MonoBehaviour
 {
-    public static PerspectiveManager FindInstance()
-    {
-        return GameObject.Find(nameof(PerspectiveManager)).GetComponent<PerspectiveManager>();
-    }
-
     private IsometricGridManager Igm => IsometricGridManager.Instance;
 
     public Action EnterPerspectiveMode;
