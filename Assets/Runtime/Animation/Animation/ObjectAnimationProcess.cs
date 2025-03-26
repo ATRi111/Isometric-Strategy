@@ -3,12 +3,12 @@ using Services.ObjectPools;
 using UnityEngine;
 
 /// <summary>
-/// 通过激活/回收MyObject来实现的动画
+/// 通过激活/回收MyObject来实现的动画，不应继承此类，应该继承AnimationObject
 /// </summary>
-public class ObjectAnimationProcess : AnimationProcess
+public sealed class ObjectAnimationProcess : AnimationProcess
 {
-    protected readonly IObjectManager objectManager;
-    protected MyObject myObject;
+    private readonly IObjectManager objectManager;
+    private MyObject myObject;
 
     public IAnimationSource source;
     public string prefabName;

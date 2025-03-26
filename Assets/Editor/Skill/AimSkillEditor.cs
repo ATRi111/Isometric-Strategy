@@ -12,7 +12,7 @@ public class AimSkillEditor : SkillEditor
         base.MyOnInspectorGUI();
         victimType.EnumField<EVictimType>("目标类型");
         powers.ListField("威力");
-        buffOnVictim.ListField("对目标施加的Buff");
+        buffOnVictim.ListField("对目标施加/移除Buff");
         hitBackProbability.IntSlider("击退概率", 0, 100);
         EditorExtendGUI.IntMinMaxSlider(minLayer, maxLayer, "施放高度差范围", -32, 32);
         EditorGUILayout.BeginHorizontal();

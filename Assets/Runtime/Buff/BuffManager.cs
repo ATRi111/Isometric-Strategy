@@ -56,6 +56,19 @@ public class BuffManager : CharacterComponentBase
         }
     }
 
+    /// <summary>
+    /// 模拟移除状态（不存在则返回null）
+    /// </summary>
+    public BuffEffect MockRemove(BuffSO so,int probability)
+    {
+        foreach (Buff buff in buffs)
+        {
+            if (buff.Enabled && buff.so == so)
+                return new RemoveBuffEffect(pawn, buff, this, probability);
+        }
+        return null;
+    }
+
     public bool Contains(Buff target)
     {
         return buffs.Contains(target);

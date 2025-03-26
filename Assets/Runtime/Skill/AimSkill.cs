@@ -124,7 +124,7 @@ public abstract class AimSkill : Skill
         }
         else if (hp > 0 && victim is PawnEntity pawnVictim && hitBackProbability > 0)
         {
-            HitBackUtility.MockHitBack(igm, position, pawnVictim, hp, hitBackProbability, ret);
+            HitBackUtility.MockHitBack(igm, position, target, pawnVictim, hp, hitBackProbability, ret);
         }
     }
 

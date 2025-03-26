@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// 用于呈现动画效果的实体
+/// 动画脚本可能有多个，应当令生命周期最长的脚本继承此类，以控制回收，其他脚本持有此类
 /// </summary>
 [RequireComponent(typeof(MyObject))]
 public abstract class AnimationObject : MonoBehaviour
@@ -17,9 +17,11 @@ public abstract class AnimationObject : MonoBehaviour
     public string audio_activate;
     public string audio_recycle;
     public float lifeSpan;
+    public IAnimationSource source;
 
     public virtual void Initialize(IAnimationSource source)
     {
+        this.source = source;
         StartCoroutine(DelayRecycle(lifeSpan));
         if (!string.IsNullOrWhiteSpace(audio_activate))
             audioPlayer.CreateAudioByPrefab(audio_activate, transform.position);
@@ -38,6 +40,7 @@ public abstract class AnimationObject : MonoBehaviour
         yield return new WaitForSeconds(t);
         if (!string.IsNullOrWhiteSpace(audio_recycle))
             audioPlayer.CreateAudioByPrefab(audio_recycle, transform.position);
+        source = null;
         myObject.Recycle();
     }
 

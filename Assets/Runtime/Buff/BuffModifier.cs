@@ -4,6 +4,7 @@ using System.Text;
 public class BuffModifier
 {
     public BuffSO so;
+    public bool remove;
     public int probability = Effect.MaxProbability;
 
     public void Describe(StringBuilder sb, string victimName)
@@ -14,14 +15,27 @@ public class BuffModifier
             sb.Append(probability);
             sb.Append("%的几率");
         }
-        sb.Append("使");
-        sb.Append(victimName);
-        sb.Append("获得时长为");
-        if (so != null)
+        if (!remove)
         {
-            sb.Append(so.duration);
+            sb.Append("使");
+            sb.Append(victimName);
+            sb.Append("获得时长为");
+            if (so != null)
+            {
+                sb.Append(so.duration);
+                sb.Append("的");
+                sb.Append(so.name);
+            }
+        }
+        else
+        {
+            sb.Append("移除");
+            sb.Append(victimName);
             sb.Append("的");
-            sb.Append(so.name);
+            if (so != null)
+            {
+                sb.Append(so.name);
+            }
         }
         sb.AppendLine();
     }

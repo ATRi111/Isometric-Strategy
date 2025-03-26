@@ -10,10 +10,13 @@ public static class HitBackUtility
     public static float DefaultSpeedMultiplier = 3f;
     public static float hitBackDistance = 0.3f;
 
-    public static void MockHitBack(IsometricGridManager igm, Vector3Int agentPosition, PawnEntity victim, int hp, int probability, EffectUnit ret)
+    public static void MockHitBack(IsometricGridManager igm, Vector3Int agentPosition, Vector3Int skillPosition, PawnEntity victim, int hp, int probability, EffectUnit ret)
     {
         Vector3Int victimPosition = victim.GridObject.CellPosition;
-        Vector2 delta = (Vector3)(victimPosition - agentPosition);
+        Vector2 delta = (Vector3)(skillPosition - agentPosition);
+        if (delta != Vector2.zero)
+            return;
+
         Vector2Int direction = EDirectionTool.NearestDirection4(delta);
         Vector2Int temp = (Vector2Int)victimPosition + direction;
         Vector3Int hitBackPosition = igm.AboveGroundPosition(temp);

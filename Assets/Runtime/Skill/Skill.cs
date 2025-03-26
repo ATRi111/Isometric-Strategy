@@ -82,9 +82,18 @@ public abstract class Skill : ScriptableObject , IDescription
         }
         for (int i = 0; i < buffOnAgent.Count; i++)
         {
-            BuffEffect buffEffect = agent.BuffManager.MockAdd(buffOnAgent[i].so, buffOnAgent[i].probability);
-            buffEffect.randomValue = Effect.NextInt();
-            ret.effects.Add(buffEffect);
+            BuffEffect buffEffect;
+            if (buffOnAgent[i].remove)
+                buffEffect = agent.BuffManager.MockAdd(buffOnAgent[i].so, buffOnAgent[i].probability);
+            else
+                buffEffect = agent.BuffManager.MockRemove(buffOnAgent[i].so, buffOnAgent[i].probability);
+
+            if (buffEffect != null)
+            {
+                if(!buffEffect.AlwaysHappen)
+                    buffEffect.randomValue = Effect.NextInt();
+                ret.effects.Add(buffEffect);
+            }
         }
     }
 
@@ -104,7 +113,7 @@ public abstract class Skill : ScriptableObject , IDescription
     }
 
     /// <summary>
-    /// 模拟技能动画，并提前计算动画所需的时间
+    /// 模拟技能动画
     /// </summary>
     public virtual AnimationProcess MockAnimation(PawnAction action)
     {

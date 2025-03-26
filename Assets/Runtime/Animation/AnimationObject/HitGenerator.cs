@@ -1,4 +1,7 @@
-public class Attack : AnimationObject
+/// <summary>
+/// 使命中目标抖动
+/// </summary>
+public class HitGenerator : AnimationObject
 {
     public override void Initialize(IAnimationSource source)
     {

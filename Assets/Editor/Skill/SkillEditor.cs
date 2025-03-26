@@ -29,7 +29,7 @@ public class SkillEditor : AutoEditor
         EditorGUILayout.EndHorizontal();
         actionTime.IntField("固定时间消耗");
         parameterOnAgent.ListField("参数修改");
-        buffOnAgent.ListField("对自身施加的Buff");
+        buffOnAgent.ListField("对自身施加/移除Buff");
         extraDescription.TextArea("额外描述");
         EditorGUILayout.LabelField("技能描述");
         EditorGUI.BeginDisabledGroup(true);
