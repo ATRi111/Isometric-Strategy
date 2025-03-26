@@ -14,7 +14,6 @@ public class IsometricGridManagerEditor : IsometricGridManagerBaseEditor
     {
         base.OnEnable();
         igm = target as IsometricGridManager;
-        igm.ResetSortingOrderThreshold();
     }
 
     protected override void MyOnInspectorGUI()

@@ -129,7 +129,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g)
     {
         if (g <= 0)
-            throw new System.ArgumentException();
+            throw new ArgumentException();
         List<GridObject> gridObjects = new();
         float deltaTime = Mathf.Max(1f / velocity.magnitude / GridPhysics.settings.parabolaPrecision, 0.01f);
         for (float t = 0f; ; t += deltaTime)
@@ -176,6 +176,7 @@ public class IsometricGridManager : IsometricGridManagerBase
 
 #if UNITY_EDITOR
 
+    #region 透视
     public int sortingOrderThreshold;   //sortingOrder小于等于此值的物体可见
 
     public void ModifySortingOrderThreshold(int deltaValue)
@@ -211,6 +212,8 @@ public class IsometricGridManager : IsometricGridManagerBase
         if(!Application.isPlaying)
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
+    #endregion
+
 #endif
 
     private void Awake()

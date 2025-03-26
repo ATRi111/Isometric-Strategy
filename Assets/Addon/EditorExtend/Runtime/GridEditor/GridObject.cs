@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
+    [SelectionBase]
     public class GridObject : MonoBehaviour
     {
         #region ×é¼þ

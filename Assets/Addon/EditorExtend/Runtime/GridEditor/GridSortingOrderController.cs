@@ -2,33 +2,21 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    public class GridSortingOrderController : MonoBehaviour
+    public class GridSortingOrderController : GridSortingOrderControllerBase
     {
-        [Range(-10, 30)]
-        public int extraSortingOrder;
-
-        private IsometricGridManager Igm => IsometricGridManager.Instance;
+        private IsometricGridManager igm;
 
         private SpriteRenderer spriteRenderer;
-        public SpriteRenderer SpriteRenderer
+
+        protected override void Start()
         {
-            get
-            {
-                if (spriteRenderer == null)
-                    spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-                return spriteRenderer;
-            }
-        }
-        protected virtual void Update()
-        {
-            if(Igm != null)
-                SpriteRenderer.sortingOrder = Igm.CellToSortingOrder(transform.position) + extraSortingOrder;
+            igm = IsometricGridManager.Instance;
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
-        private void OnDrawGizmos()
+        protected virtual void Update()
         {
-            if (Igm != null)
-                SpriteRenderer.sortingOrder = Igm.CellToSortingOrder(transform.position) + extraSortingOrder;
+            spriteRenderer.sortingOrder = igm.CellToSortingOrder(transform.position) + extraSortingOrder;
         }
     }
 }

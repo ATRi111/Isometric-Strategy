@@ -1,11 +1,6 @@
-using UIExtend;
-using UnityEngine;
-
 public abstract class PerspectiveController : AlphaController
 {
     protected PerspectiveManager perspectiveManager;
-    [SerializeField]
-    protected CanvasGroupPlus[] canvasGroups;
     public float alphaMultiplier_perspectiveMode = 0.1f;
     private bool perspectived;
 

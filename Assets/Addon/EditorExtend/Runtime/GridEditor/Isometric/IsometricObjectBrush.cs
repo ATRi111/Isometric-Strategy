@@ -15,8 +15,8 @@ namespace EditorExtend.GridEditor
             IsometricGridManagerBase igm = Manager as IsometricGridManagerBase;
             if(lockXY)
             {
-                cellPosition = igm.ClosestZ(lockedPosition.ResetZ(cellPosition.z), worldPosition);  //锁定后，X和Y不能变化
-                return cellPosition;
+                Vector3Int temp = igm.ClosestZ(lockedPosition.ResetZ(cellPosition.z), worldPosition);  //锁定后，X和Y不能变化
+                return temp;
             }
 
             if (lockLayer)
@@ -36,29 +36,6 @@ namespace EditorExtend.GridEditor
             }
 
             return igm.AbsorbSurfaceOfCube(worldPosition);
-        }
-
-        private static readonly Vector3Int[] BottomCellPositions =
-        {
-            Vector3Int.up,
-            Vector3Int.zero,
-            Vector3Int.right,
-        };
-        protected override void OnDrawGizmosSelected()
-        {
-            base.OnDrawGizmosSelected();
-            Vector3[] points;
-            if (cellPosition.z > 0)
-            {
-                Gizmos.color = Color.green;
-                points = new Vector3[BottomCellPositions.Length * 2];
-                for (int i = 0; i < BottomCellPositions.Length; i++)
-                {
-                    points[i * 2] = Manager.CellToWorld(BottomCellPositions[i] + cellPosition).ResetZ();
-                    points[i * 2 + 1] = Manager.CellToWorld(BottomCellPositions[i] + cellPosition - cellPosition.z * Vector3Int.forward).ResetZ();
-                }
-                Gizmos.DrawLineList(points);
-            }
         }
 #endif
     }

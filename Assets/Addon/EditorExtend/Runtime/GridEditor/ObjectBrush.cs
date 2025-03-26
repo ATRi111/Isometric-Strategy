@@ -59,30 +59,6 @@ namespace EditorExtend.GridEditor
         public int mountIndex;
 
         public abstract Vector3Int CalculateCellPosition(Vector3 worldPosition, Vector3Int lockedPosition);
-
-        private readonly List<Vector3> gizmoPoints = new();
-        protected virtual void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            if(prefab == null)
-            {
-                IGridShape.GetStrip_Default(gizmoPoints);
-            }
-            else
-            {
-                GridCollider collider = prefab.GetComponentInChildren<GridCollider>();
-                if (collider == null)
-                    IGridShape.GetStrip_Default(gizmoPoints);
-                else
-                    collider.GetStrip(gizmoPoints);
-            }
-            Vector3[] temp = new Vector3[gizmoPoints.Count];
-            for(int i = 0; i < gizmoPoints.Count; i++)
-            {
-                temp[i] = Manager.CellToWorld(gizmoPoints[i] + cellPosition).ResetZ();
-            }
-            Gizmos.DrawLineStrip(temp, false);
-        }
 #endif
     }
 }

@@ -15,9 +15,9 @@ public class AlphaController : MonoBehaviour
         canvasGroup.Alpha *= multiplier;
     }
 
-    [SerializeField]
-    protected SpriteRenderer[] spriteRenderers;
-    
+    public SpriteRenderer[] spriteRenderers;
+    public CanvasGroupPlus[] canvasGroups;
+
     protected virtual void Awake()
     {
 

@@ -1,3 +1,4 @@
+using MyTool;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,21 +7,55 @@ namespace EditorExtend.GridEditor
     [CustomEditor(typeof(IsometricObjectBrush))]
     public class IsometricObjectBrushEditor : ObjectBrushEditor
     {
+        private static readonly Vector3Int[] BottomCellPositions =
+        {
+            Vector3Int.up,
+            Vector3Int.zero,
+            Vector3Int.right,
+        };
+
         public new IsometricObjectBrush ObjectBrush => target as IsometricObjectBrush;
         [AutoProperty]
         public SerializedProperty pillarMode, lockLayer, layer, lockXY;
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            lockXY.boolValue = false;
+            lockLayer.boolValue = false;
+        }
+
         protected override void MyOnInspectorGUI()
         {
             base.MyOnInspectorGUI();
-            pillarMode.BoolField("柱形绘制模式");
-            lockXY.BoolField("锁定XY");
-            lockLayer.BoolField("锁定层数");
-            if (lockLayer.boolValue)
+            if (isEditting)
             {
-                layer.IntField("层数");
+                pillarMode.BoolField("柱形绘制模式");
+                lockXY.BoolField("锁定XY");
+                lockLayer.BoolField("锁定层数");
+                if (lockLayer.boolValue)
+                {
+                    layer.IntField("层数");
+                }
+                EditorGUILayout.HelpBox("按住Ctrl锁定XY;按住Shift锁定层数", MessageType.Info);
             }
-            EditorGUILayout.HelpBox("按住Ctrl锁定XY;按住Shift锁定层数", MessageType.Info);
+        }
+
+        protected override void Paint()
+        {
+            base.Paint();
+            Vector3Int cellPosition = ObjectBrush.cellPosition;
+            if (cellPosition.z > 0)
+            {
+                Handles.color = Color.green;
+                Gizmos.color = Color.green;
+                for (int i = 0; i < BottomCellPositions.Length; i++)
+                {
+                    Vector3 from = manager.CellToWorld(BottomCellPositions[i] + cellPosition).ResetZ();
+                    Vector3 to = manager.CellToWorld(BottomCellPositions[i] + cellPosition - cellPosition.z * Vector3Int.forward).ResetZ();
+                    HandleUI.DrawLine(from, to, 1f);
+                }
+            }
         }
 
         protected override void Brush()
@@ -38,6 +73,17 @@ namespace EditorExtend.GridEditor
                     }
                 }
             }
+        }
+
+        protected override GridObject TryBrushAt(Vector3Int position)
+        {
+            GridObject gridObject = base.TryBrushAt(position);
+            GridSortingOrderControllerBase[] controllers = gridObject.GetComponentsInChildren<GridSortingOrderControllerBase>();
+            for (int i = 0; i < controllers.Length; i++)
+            {
+                controllers[i].RefreshSortingOrder();
+            }
+            return gridObject;
         }
 
         protected override void Erase()
