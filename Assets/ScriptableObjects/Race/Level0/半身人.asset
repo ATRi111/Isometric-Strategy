@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8782a79a3e23c9a40b7a1960b0ffd34b, type: 3}
+  m_Name: "\u534A\u8EAB\u4EBA"
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  propertyModifier:
+    modifiers:
+    - value: 40
+      so: {fileID: 11400000, guid: 789e380388b3a264c912d4f3ea9205f0, type: 2}
+      method: 0
+    - value: 1
+      so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
+      method: 0
+    - value: 4
+      so: {fileID: 11400000, guid: ecc7dc55b1bb91944bdec7cdf6c16e94, type: 2}
+      method: 0
+    - value: 2
+      so: {fileID: 11400000, guid: d7202108696a81d40bf525c98d8709da, type: 2}
+      method: 0
+    - value: 3
+      so: {fileID: 11400000, guid: 6c4cd8f6435e610438f8fd5f29594ee8, type: 2}
+      method: 0
+    - value: 25
+      so: {fileID: 11400000, guid: 5f8dd69d93622f84ea09757942e148f8, type: 2}
+      method: 0
+    - value: 60
+      so: {fileID: 11400000, guid: 5b7aa0fa7bb7c034a98950b2b8078463, type: 2}
+      method: 0
+    - value: 40
+      so: {fileID: 11400000, guid: 606e749310a6d3b45a86ef1cfbf647ea, type: 2}
+      method: 0
+    - value: 40
+      so: {fileID: 11400000, guid: 90b59691706183d44b8946b924be3dce, type: 2}
+      method: 0
+    - value: 40
+      so: {fileID: 11400000, guid: f44c63f2c03dd144dbb628b191d38e27, type: 2}
+      method: 0
+    - value: 30
+      so: {fileID: 11400000, guid: a3ad2a85dce498e42ade88cb461c3bec, type: 2}
+      method: 0
+    - value: 40
+      so: {fileID: 11400000, guid: f8958f741a08a044f817ce25723a428e, type: 2}
+      method: 0
+    - value: 40
+      so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
+      method: 0
+    - value: 40
+      so: {fileID: 11400000, guid: c3deae89c5f9d9a4fa645dd0ff69b119, type: 2}
+      method: 0
+    - value: 40
+      so: {fileID: 11400000, guid: 63c3c5b3fdad04f4094600f35ea76815, type: 2}
+      method: 0
+    - value: 50
+      so: {fileID: 11400000, guid: 2f40af2282f603840aed3b7ba2012e76, type: 2}
+      method: 0
+  skillsAttached: []
+  extraDescription: 
