@@ -43,7 +43,7 @@ PrefabInstance:
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: race
       value: 
-      objectReference: {fileID: 11400000, guid: 6ca5c9957652a47489b2b031e8c0b666, type: 2}
+      objectReference: {fileID: 11400000, guid: bb18b46c9c43fcd4eb85d47ae647330b, type: 2}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: pClass
       value: 
