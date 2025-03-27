@@ -10,11 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89f8185e3a01d1f41a2a3a74abf4c790, type: 3}
-  m_Name: "\u65E0\u804C\u4E1A"
+  m_Name: "\u51B0\u9B54\u50CF"
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   propertyModifier:
-    modifiers: []
+    modifiers:
+    - value: 50
+      so: {fileID: 11400000, guid: dee948b06935cdb42b03a5a47feea2e9, type: 2}
+      method: 0
+    - value: -25
+      so: {fileID: 11400000, guid: a3ad2a85dce498e42ade88cb461c3bec, type: 2}
+      method: 0
+    - value: 50
+      so: {fileID: 11400000, guid: 5f8dd69d93622f84ea09757942e148f8, type: 2}
+      method: 0
   skillsAttached: []
   extraDescription: 
   supportAbility: 0
