@@ -19,6 +19,7 @@ public abstract class Skill : ScriptableObject , IDescription
     public List<WeatherPreCondition> weatherPreConditions;
     public List<PawnParameterModifier> parameterOnAgent;
     public List<BuffModifier> buffOnAgent;
+    public int HPCost;
 
     public virtual bool Offensive => false;
 
@@ -94,6 +95,13 @@ public abstract class Skill : ScriptableObject , IDescription
                     buffEffect.randomValue = Effect.NextInt();
                 ret.effects.Add(buffEffect);
             }
+        }
+        if(HPCost > 0)
+        {
+            int hp = agent.DefenceComponent.HP;
+            int newHP = Mathf.Max(hp - HPCost, 0);
+            HPChangeEffect effect = new(agent, hp, newHP);
+            ret.effects.Add(effect);
         }
     }
 
@@ -186,7 +194,9 @@ public abstract class Skill : ScriptableObject , IDescription
     protected virtual void Describe(StringBuilder sb)
     {
         DescribeTime(sb);
-        if(preConditions.Count + buffPreConditions.Count + weatherPreConditions.Count > 0)
+        if (HPCost != 0)
+            DescribeHPCost(sb);
+        if (preConditions.Count + buffPreConditions.Count + weatherPreConditions.Count > 0)
             DescribePreConditions(sb);
         if (buffOnAgent.Count > 0)
             DescribeBuffOnAgent(sb);
@@ -216,6 +226,14 @@ public abstract class Skill : ScriptableObject , IDescription
     {
         sb.Append("基本时间消耗：");
         sb.Append(actionTime);
+        sb.AppendLine();
+    }
+
+    protected virtual void DescribeHPCost(StringBuilder sb)
+    {
+        sb.Append("消耗自身");
+        sb.Append(HPCost);
+        sb.Append("点生命");
         sb.AppendLine();
     }
 
