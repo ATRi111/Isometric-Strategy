@@ -8,7 +8,7 @@ public class SkillEditor : AutoEditor
     [AutoProperty]
     public SerializedProperty icon, displayName, animationName, pawnAnimationState, movementLatency, weaponAnimation;
     [AutoProperty]
-    public SerializedProperty preConditions, buffPreConditions, weatherPreConditions, actionTime, parameterOnAgent, buffOnAgent, extraDescription;
+    public SerializedProperty preConditions, buffPreConditions, weatherPreConditions, actionTime, HPCost, parameterOnAgent, buffOnAgent, extraDescription;
 
     protected override void MyOnInspectorGUI()
     {
@@ -28,6 +28,7 @@ public class SkillEditor : AutoEditor
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.EndHorizontal();
         actionTime.IntField("固定时间消耗");
+        HPCost.IntField("血量消耗");
         parameterOnAgent.ListField("参数修改");
         buffOnAgent.ListField("对自身施加/移除Buff");
         extraDescription.TextArea("额外描述");

@@ -25,8 +25,10 @@ MonoBehaviour:
     parameterIndex: 1
     value: 0
   buffPreConditions: []
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
+  HPCost: 0
   powers:
   - type: 1
     power: 150
