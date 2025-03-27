@@ -18,7 +18,7 @@ public class StraightLineAreaSkill : RangedSkill
         Vector2Int left = EDirectionTool.NearestDirection((angle + 90f).ToDirection());
         Vector2Int right = EDirectionTool.NearestDirection((angle - 90f).ToDirection());
         List<Vector2Int> startPoints = new() { (Vector2Int)target };
-        for (int i = 0; i < width / 2 ; i++)
+        for (int i = 1; i <= width / 2 ; i++)
         {
             startPoints.Add(targetXY + i * left);
             startPoints.Add(targetXY + i * right);
