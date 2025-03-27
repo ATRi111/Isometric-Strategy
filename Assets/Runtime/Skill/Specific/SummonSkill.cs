@@ -38,7 +38,8 @@ public class SummonSkill : RangedSkill
     {
         base.Describe(sb);
         sb.Append("在指定位置召唤一个");
-        sb.Append(prefab.name);
+        if(prefab != null)
+            sb.Append(prefab.name);
         sb.AppendLine();
     }
 }
