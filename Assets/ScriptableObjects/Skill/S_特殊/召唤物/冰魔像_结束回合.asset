@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e511bba6ae9d04ab8754212ab42fbe, type: 3}
-  m_Name: "\u6280\u80FD_\u53EC\u5524\u51B0\u9B54\u50CF"
+  m_Script: {fileID: 11500000, guid: 7f7466f6ec6d7b449938c9d099358224, type: 3}
+  m_Name: "\u51B0\u9B54\u50CF_\u7ED3\u675F\u56DE\u5408"
   m_EditorClassIdentifier: 
-  displayName: "\u53EC\u5524\u51B0\u9B54\u50CF"
+  displayName: "\u7ED3\u675F\u56DE\u5408"
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
@@ -22,17 +22,7 @@ MonoBehaviour:
   weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
-  weatherPreConditions:
-  - weather: 3
-    requireExist: 1
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
-  powers: []
-  buffOnVictim: []
-  hitBackProbability: 0
-  victimType: 0
-  minLayer: -2
-  maxLayer: 2
-  castingDistance: 3
-  aimAtSelf: 0
-  prefab: {fileID: 0}
+  HPCost: 50

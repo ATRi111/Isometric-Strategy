@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8782a79a3e23c9a40b7a1960b0ffd34b, type: 3}
-  m_Name: "\u53EC\u5524\u7269"
+  m_Name: "\u51B0\u9B54\u50CF"
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   propertyModifier:
     modifiers:
-    - value: 200
+    - value: 250
       so: {fileID: 11400000, guid: 789e380388b3a264c912d4f3ea9205f0, type: 2}
       method: 0
-    - value: 5
+    - value: 50
       so: {fileID: 11400000, guid: 0fe406022334db94bba6051c098dede2, type: 2}
       method: 0
-    - value: 0
+    - value: 2
       so: {fileID: 11400000, guid: ecc7dc55b1bb91944bdec7cdf6c16e94, type: 2}
       method: 0
-    - value: 0
+    - value: 1
       so: {fileID: 11400000, guid: d7202108696a81d40bf525c98d8709da, type: 2}
       method: 0
-    - value: 0
+    - value: 2
       so: {fileID: 11400000, guid: 6c4cd8f6435e610438f8fd5f29594ee8, type: 2}
       method: 0
     - value: 100
@@ -63,5 +63,6 @@ MonoBehaviour:
     - value: 50
       so: {fileID: 11400000, guid: 2f40af2282f603840aed3b7ba2012e76, type: 2}
       method: 0
-  skillsAttached: []
+  skillsAttached:
+  - {fileID: 11400000, guid: b4526ecb3d953594d91fe8b509386c82, type: 2}
   extraDescription: 

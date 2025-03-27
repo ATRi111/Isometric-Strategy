@@ -32,7 +32,7 @@ public class RangedSkill : AimSkill
             ret.Add(target);
         }
     }
-
+    
     public override void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret)
     {
         ret.Clear();
