@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be08be306136c0e43a26bbd990d4a7df, type: 3}
-  m_Name: "\u9970\u54C1_\u9F99\u7130"
+  m_Name: "\u6280\u80FD\u4E66_\u9633\u708E\u5149\u67F1"
   m_EditorClassIdentifier: 
-  displayName: "\u9F99\u7130"
-  icon: {fileID: 21300000, guid: a32ff04a99ce66c45af8dfd8392fafcf, type: 3}
+  displayName: "\u9633\u708E\u5149\u67F1"
+  icon: {fileID: 0}
   extraDescription: 
-  actionTime: 50
+  actionTime: 75
   animationName: 
   pawnAnimationState: 0
   movementLatency: 0
@@ -23,16 +23,16 @@ MonoBehaviour:
   preConditions:
   - conditionType: 3
     parameterIndex: 2
-    value: 1
+    value: 2
   buffPreConditions: []
   weatherPreConditions: []
   parameterOnAgent:
   - parameterIndex: 2
-    deltaValue: -1
+    deltaValue: -2
   buffOnAgent: []
   powers:
   - type: 4
-    power: 100
+    power: 150
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 1
@@ -40,8 +40,8 @@ MonoBehaviour:
   buffOnVictim: []
   hitBackProbability: 0
   victimType: 1
-  minLayer: -5
-  maxLayer: 5
-  castingDistance: 6
+  minLayer: -32
+  maxLayer: 32
+  castingDistance: 8
   aimAtSelf: 0
-  effectRange: 1
+  effectRange: 3
