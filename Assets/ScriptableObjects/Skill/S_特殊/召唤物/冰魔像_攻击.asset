@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e511bba6ae9d04ab8754212ab42fbe, type: 3}
-  m_Name: "\u6280\u80FD\u4E66_\u53EC\u5524\u51B0\u9B54\u50CF"
+  m_Script: {fileID: 11500000, guid: 60fc8b1b0161ed040b9a45421afd9f04, type: 3}
+  m_Name: "\u51B0\u9B54\u50CF_\u653B\u51FB"
   m_EditorClassIdentifier: 
-  displayName: "\u53EC\u5524\u51B0\u9B54\u50CF"
+  displayName: "\u653B\u51FB"
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
@@ -22,18 +22,24 @@ MonoBehaviour:
   weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
-  weatherPreConditions:
-  - weather: 3
-    requireExist: 1
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
-  HPCost: 0
-  powers: []
-  buffOnVictim: []
-  hitBackProbability: 0
-  victimType: 0
+  HPCost: 50
+  powers:
+  - type: 3
+    power: 80
+    strMultiplier: 1
+    dexMultiplier: 0
+    intMultiplier: 0
+    mndMultiplier: 0
+  buffOnVictim:
+  - so: {fileID: 11400000, guid: 3465ea59b6ca4b648b5c2d61c4f38b41, type: 2}
+    remove: 0
+    probability: 75
+  hitBackProbability: 50
+  victimType: 1
   minLayer: -2
   maxLayer: 2
-  castingDistance: 3
+  castingDistance: 1
   aimAtSelf: 0
-  prefab: {fileID: 2338041512611947571, guid: b923141056269814090079d1767a02e2, type: 3}
