@@ -13,11 +13,11 @@ public class SkillEditor : AutoEditor
     protected override void MyOnInspectorGUI()
     {
         displayName.TextField("展示技能名");
-        icon.PropertyField("图标");
         if (GUILayout.Button("自动填充"))
         {
             displayName.stringValue = GenerateDisplayName();
         }
+        icon.PropertyField("图标");
         animationName.TextField("技能特效名");
         pawnAnimationState.EnumField<EPawnAnimationState>("人物动作");
         movementLatency.FloatField("人物动作延迟");
