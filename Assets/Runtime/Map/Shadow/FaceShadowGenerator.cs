@@ -21,6 +21,7 @@ public class FaceShadowGenerator : MonoBehaviour
 
     private void Start()
     {
+        GridObjectPerspectiveController controller = GetComponent<GridObjectPerspectiveController>();
         for (int i = 0; i < prefabNames.Length; i++)
         {
             ShadowVertex vertex = new(gridObject.CellPosition, cellNormals[i]);
@@ -29,6 +30,8 @@ public class FaceShadowGenerator : MonoBehaviour
                 IMyObject obj = objectManager.Activate(prefabNames[i], transform.position, Vector3.zero, transform);
                 FaceShadow shadow = obj.Transform.GetComponent<FaceShadow>();
                 shadow.Init(shadowManager, vertex);
+                SpriteRenderer spriteRenderer = shadow.GetComponent<SpriteRenderer>();
+                controller.spriteRenderers.Add(spriteRenderer);
             }
         }
     }

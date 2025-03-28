@@ -1,4 +1,5 @@
 using MyTool;
+using System.Collections.Generic;
 using UIExtend;
 using UnityEngine;
 
@@ -15,8 +16,8 @@ public class AlphaController : MonoBehaviour
         canvasGroup.Alpha *= multiplier;
     }
 
-    public SpriteRenderer[] spriteRenderers;
-    public CanvasGroupPlus[] canvasGroups;
+    public List<SpriteRenderer> spriteRenderers;
+    public List<CanvasGroupPlus> canvasGroups;
 
     protected virtual void Awake()
     {

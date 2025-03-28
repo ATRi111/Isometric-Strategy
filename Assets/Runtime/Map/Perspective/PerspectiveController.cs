@@ -10,11 +10,11 @@ public abstract class PerspectiveController : AlphaController
     {
         if (CoverCheck() && !perspectived)
         {
-            for (int i = 0; i < spriteRenderers.Length; i++)
+            for (int i = 0; i < spriteRenderers.Count; i++)
             {
                 SetAlpha(spriteRenderers[i], alphaMultiplier_perspectiveMode);
             }
-            for (int i = 0;i < canvasGroups.Length; i++)
+            for (int i = 0;i < canvasGroups.Count; i++)
             {
                 SetAlpha(canvasGroups[i], alphaMultiplier_perspectiveMode);
             }
@@ -25,11 +25,11 @@ public abstract class PerspectiveController : AlphaController
     {
         if(perspectived)
         {
-            for (int i = 0; i < spriteRenderers.Length; i++)
+            for (int i = 0; i < spriteRenderers.Count; i++)
             {
                 SetAlpha(spriteRenderers[i], 1 / alphaMultiplier_perspectiveMode);
             }
-            for (int i = 0; i < canvasGroups.Length; i++)
+            for (int i = 0; i < canvasGroups.Count; i++)
             {
                 SetAlpha(canvasGroups[i], 1 / alphaMultiplier_perspectiveMode);
             }
@@ -37,22 +37,22 @@ public abstract class PerspectiveController : AlphaController
         }
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
-        perspectiveManager = IsometricGridManager.Instance.GetComponent<PerspectiveManager>();
-    }
-
     protected virtual void OnEnable()
     {
-        perspectiveManager.EnterPerspectiveMode += EnterPerspectiveMode;
-        perspectiveManager.ExitPerspectiveMode += ExitPerspectiveMode;
+        if (IsometricGridManager.Instance != null && IsometricGridManager.Instance.TryGetComponent(out perspectiveManager))
+        {
+            perspectiveManager.EnterPerspectiveMode += EnterPerspectiveMode;
+            perspectiveManager.ExitPerspectiveMode += ExitPerspectiveMode;
+        }
         perspectived = false;
     }
 
     protected virtual void OnDisable()
     {
-        perspectiveManager.EnterPerspectiveMode -= EnterPerspectiveMode;
-        perspectiveManager.ExitPerspectiveMode -= ExitPerspectiveMode;
+        if(perspectiveManager != null)
+        {
+            perspectiveManager.EnterPerspectiveMode -= EnterPerspectiveMode;
+            perspectiveManager.ExitPerspectiveMode -= ExitPerspectiveMode;
+        }
     }
 }

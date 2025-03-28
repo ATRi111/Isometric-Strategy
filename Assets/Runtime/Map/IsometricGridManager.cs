@@ -209,8 +209,8 @@ public class IsometricGridManager : IsometricGridManagerBase
             GridObject gridObject = gridObjects[i];
             gridObject.gameObject.SetActive(CellToSortingOrder(gridObject.transform.position) <= sortingOrderThreshold);
         }
-        if(!Application.isPlaying)
-            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        AddAllObjects();
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
     #endregion
 
