@@ -16,17 +16,20 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 94ecdf0cb3283694f97748502c534268, type: 3}
   extraDescription: 
   actionTime: 40
-  animationName: Arrow
+  animationName: "\u7BAD\u77E2\u7279\u6548"
   pawnAnimationState: 0
   movementLatency: 0
   weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
+  HPCost: 0
   powers: []
   buffOnVictim:
   - so: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
+    remove: 0
     probability: 50
   hitBackProbability: 0
   victimType: 1

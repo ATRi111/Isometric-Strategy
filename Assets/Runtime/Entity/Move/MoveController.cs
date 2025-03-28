@@ -25,8 +25,8 @@ public class MoveController : MonoBehaviour
     public float defaultSpeed = 1f;
     [SerializeField]
     protected Vector3[] currentRoute;
-    [SerializeField]
-    protected UniformFoldLineMotion ufm;
+
+    public UniformFoldLineMotion ufm;
 
     public Action AfterMove;
     protected Transform target;
