@@ -101,8 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPosition: {x: 0, y: 0, z: 0}
-  groundHeight: 1
-  autoSortingOrder: 1
+  groundHeight: 0
 --- !u!114 &7470293621704773565
 MonoBehaviour:
   m_ObjectHideFlags: 0

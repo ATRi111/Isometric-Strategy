@@ -2,6 +2,7 @@ using EditorExtend.GridEditor;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// 在一定范围内释放的技能，默认作用范围为单点
@@ -23,14 +24,22 @@ public class RangedSkill : AimSkill
             primitive.Add(Vector2Int.zero);
         for (int i = 0; i < primitive.Count; i++)
         {
-            Vector2Int temp = (Vector2Int)position + primitive[i];
-            if (!igm.Contains(temp))    //判断是否在地图内
-                continue;
-            Vector3Int target = igm.AboveGroundPosition(temp);
-            if (!LayerCheck(position, target))  //判断释放位置高度差是否过大
-                continue;
-            ret.Add(target);
+            Vector3Int option = igm.AboveGroundPosition((Vector2Int)position + primitive[i]);
+            if (FilterOption(agent, igm, position, option))
+                ret.Add(option);
         }
+    }
+
+    /// <summary>
+    /// 判断某个位置是否是可选的释放范围
+    /// </summary>
+    public virtual bool FilterOption(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int option)
+    {
+        if (!igm.Contains((Vector2Int)option))    //判断是否在地图内
+            return false;
+        if (!LayerCheck(position, option))  //判断释放位置高度差是否过大
+            return false;
+        return true;
     }
     
     public override void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret)

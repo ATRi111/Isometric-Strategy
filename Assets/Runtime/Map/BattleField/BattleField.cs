@@ -64,6 +64,7 @@ public class BattleField : MonoBehaviour
         eventSystem = ServiceLocator.Get<IEventSystem>();
         gameManager = ServiceLocator.Get<GameManager>();
         weatherSettings = ServiceLocator.Get<IAssetLoader>().Load<WeatherSettings>(nameof(WeatherSettings));
+        weatherSettings.Init();
     }
 
     private void OnEnable()

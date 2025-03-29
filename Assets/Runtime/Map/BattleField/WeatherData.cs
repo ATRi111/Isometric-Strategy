@@ -33,6 +33,11 @@ public class WeatherData
     [SerializeField]
     private SerializedDictionary<EDamageType, float> powerMultiplierDict;
 
+    public void Init()
+    {
+        powerMultiplierDict.Refresh();
+    }
+
     /// <summary>
     /// 此天气下某种伤害类型的倍率
     /// </summary>

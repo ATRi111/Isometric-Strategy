@@ -89,7 +89,6 @@ namespace MyTool
         public SerializedDictionary()
         {
             dict = new();
-            list = new();
         }
 
         public void Refresh()
