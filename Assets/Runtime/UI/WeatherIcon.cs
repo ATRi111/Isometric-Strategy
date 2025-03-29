@@ -3,11 +3,8 @@ using System.Text;
 
 public class WeatherIcon : InfoIcon
 {
-    private BattleField battleField;
-
     private void AfterBattleFieldChange(BattleField battleField)
     {
-        this.battleField = battleField;
         WeatherData data = battleField.WeatherData;
         StringBuilder sb = new();
         sb.AppendLine(data.Name);
@@ -15,17 +12,11 @@ public class WeatherIcon : InfoIcon
         {
             sb.Append("持续时间:");
             sb.Append(battleField.WeatherRemainingTime);
+            sb.AppendLine();
             sb.Append(data.Description);
         }
         info = sb.ToString();
         image.sprite = data.icon;
-    }
-
-    protected override void ExtractKeyWords()
-    {
-        base.ExtractKeyWords();
-        WeatherData data = battleField.WeatherData;
-        KeyWordList.Push(data.Name, data.Description);
     }
 
     protected override void OnEnable()

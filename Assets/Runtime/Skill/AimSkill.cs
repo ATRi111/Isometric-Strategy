@@ -141,11 +141,20 @@ public abstract class AimSkill : Skill
     /// </summary>
     protected virtual void MockBuffOnVictim(PawnEntity agent, PawnEntity victim, EffectUnit ret)
     {
-        for (int j = 0; j < buffOnVictim.Count; j++)
+        for (int i = 0; i < buffOnVictim.Count; i++)
         {
-            BuffEffect buffEffect = victim.BuffManager.MockAdd(buffOnVictim[j].so, buffOnVictim[j].probability);
-            buffEffect.randomValue = Effect.NextInt();
-            ret.effects.Add(buffEffect);
+            BuffEffect buffEffect;
+            if (!buffOnVictim[i].remove)
+                buffEffect = victim.BuffManager.MockAdd(buffOnVictim[i].so, buffOnVictim[i].probability);
+            else
+                buffEffect = victim.BuffManager.MockRemove(buffOnVictim[i].so, buffOnVictim[i].probability);
+
+            if (buffEffect != null)
+            {
+                if (!buffEffect.AlwaysHappen)
+                    buffEffect.randomValue = Effect.NextInt();
+                ret.effects.Add(buffEffect);
+            }
         }
     }
 
