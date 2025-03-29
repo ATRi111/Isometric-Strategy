@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ÁÑ¿Õ×¹»÷", menuName = "¼¼ÄÜ/ÌØÊâ/ÁÑ¿Õ×¹»÷")]
-public class AirCrashSkill : TeleportSkill
+public class AirCrashSkill : RhombusAreaSkill
 {
     public float powerAmplifier;
     public float speedMultiplier = 5f;
