@@ -30,6 +30,7 @@ MonoBehaviour:
   - parameterIndex: 2
     deltaValue: -1
   buffOnAgent: []
+  HPCost: 0
   powers:
   - type: 4
     power: 100
@@ -40,8 +41,8 @@ MonoBehaviour:
   buffOnVictim: []
   hitBackProbability: 0
   victimType: 1
-  minLayer: -5
-  maxLayer: 5
+  minLayer: -4
+  maxLayer: 4
   castingDistance: 6
   aimAtSelf: 0
   effectRange: 1

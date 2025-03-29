@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f18199efeac69f848a1109db7795af75, type: 3}
-  m_Name: "\u6280\u80FD\u4E66_\u51B0\u98CE\uFF08\u5F85\u8C03\u6574\u8303\u56F4\uFF09"
+  m_Name: "\u6280\u80FD\u4E66_\u51B0\u98CE"
   m_EditorClassIdentifier: 
-  displayName: "\u51B0\u98CE\uFF08\u5F85\u8C03\u6574\u8303\u56F4\uFF09"
+  displayName: "\u51B0\u98CE"
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 75
@@ -27,6 +27,7 @@ MonoBehaviour:
     requireExist: 1
   parameterOnAgent: []
   buffOnAgent: []
+  HPCost: 0
   powers:
   - type: 5
     power: 5
@@ -40,7 +41,10 @@ MonoBehaviour:
     dexMultiplier: 0
     intMultiplier: 1
     mndMultiplier: 0
-  buffOnVictim: []
+  buffOnVictim:
+  - so: {fileID: 11400000, guid: 3465ea59b6ca4b648b5c2d61c4f38b41, type: 2}
+    remove: 0
+    probability: 25
   hitBackProbability: 100
   victimType: 2
   minLayer: -3
