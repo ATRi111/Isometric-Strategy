@@ -172,7 +172,7 @@ public class PawnBrain : CharacterComponentBase
             PNorm norm = new(POfNorm);
             for (int i = 0; i < allies.Count; i++)
             {
-                norm.Add(H(allies[i]) * SupportDistanceValue(allies[i]));
+                norm.Add(I(allies[i]) * SupportDistanceValue(allies[i]));
             }
             return -norm.Result * pawn.pClass.supportAbility;
         }
@@ -183,7 +183,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 norm.Add(allies[i].pClass.supportAbility * SupportedDistanceValue(pawn));
             }
-            return -norm.Result * H(pawn);
+            return -norm.Result * I(pawn);
         }
         float Offense()
         {
@@ -192,7 +192,7 @@ public class PawnBrain : CharacterComponentBase
             {
                 norm.Add(OffenseDistanceValue(enemies[i]));
             }
-            return -norm.Result * I(pawn) * pawn.pClass.offenseAbility;
+            return -norm.Result * H(pawn) * pawn.pClass.offenseAbility;
         }
         float Defense()
         {

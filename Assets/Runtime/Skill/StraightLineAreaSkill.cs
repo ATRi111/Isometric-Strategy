@@ -28,7 +28,7 @@ public class StraightLineAreaSkill : RangedSkill
         {
             for (int j = 0; j < startPoints.Count; j++)
             {
-                Vector2Int xy = startPoints[j] + front * j;
+                Vector2Int xy = startPoints[j] + i * front;
                 Vector3Int p = igm.AboveGroundPosition(xy);
                 if (!LayerCheck(position, p))
                     continue;
