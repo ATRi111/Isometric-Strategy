@@ -25,14 +25,17 @@ MonoBehaviour:
     parameterIndex: 2
     value: 2
   buffPreConditions: []
-  weatherPreConditions: []
+  weatherPreConditions:
+  - weather: 1
+    requireExist: 1
   parameterOnAgent:
   - parameterIndex: 2
     deltaValue: -2
   buffOnAgent: []
+  HPCost: 0
   powers:
   - type: 4
-    power: 150
+    power: 100
     strMultiplier: 0
     dexMultiplier: 0
     intMultiplier: 1
@@ -44,4 +47,4 @@ MonoBehaviour:
   maxLayer: 32
   castingDistance: 8
   aimAtSelf: 0
-  effectRange: 3
+  effectRange: 2
