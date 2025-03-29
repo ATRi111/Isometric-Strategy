@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groupId: 1
   obj: {fileID: 647449061}
-  saveDataType: GameManagerSav
+  saveDataType: GameManagerSaveData
   eIdentifier: 1
   customIdentifier: 
 --- !u!1 &1075682698
