@@ -10,7 +10,7 @@ public class SummonSkill : RangedSkill
     public override bool FilterOption(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int option)
     {
         GridObject gridObject = igm.GetObjectXY((Vector2Int)option);
-        if(!gridObject.IsGround)
+        if (gridObject != null && !gridObject.IsGround)
             return false;
         return base.FilterOption(agent, igm, position, option);
     }
