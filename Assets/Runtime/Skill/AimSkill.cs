@@ -122,7 +122,8 @@ public abstract class AimSkill : Skill
                 ret.effects.Add(disableEntityEffect);
             }
         }
-        else if (hp > 0 && victim is PawnEntity pawnVictim && hitBackProbability > 0)
+
+        if (hp > 0 && victim is PawnEntity pawnVictim && hitBackProbability > 0)
         {
             HitBackUtility.MockHitBack(igm, position, target, pawnVictim, hp, hitBackProbability, ret);
         }
@@ -243,7 +244,7 @@ public abstract class AimSkill : Skill
             sb.Append(hitBackProbability);
             sb.Append("%的概率");
         }
-        sb.Append("将目标击退一格");
+        sb.Append("将目标击退");
         sb.AppendLine();
     }
 

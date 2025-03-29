@@ -98,7 +98,8 @@ public class InfoUI : TextBase
     {
         if(Input.GetMouseButtonDown(0))
         {
-            canvasGrounp.Visible = false;
+            canvasGrounp.threshold_blockRaycast = 1f;
+            locked = false;
         }
 
         UIExtendUtility.GetBorder(rectTransform, out float left, out float right, out float bottom, out float top);

@@ -27,7 +27,7 @@ public class AddBuffEffect : BuffEffect
     public override void Describe(StringBuilder sb, bool result)
     {
         base.Describe(sb, result);
-        sb.Append("获得剩余时间为");
+        sb.Append("获得持续时间为");
         sb.Append(buff.endTime - gameManager.Time);
         sb.Append("的");
         sb.Append(buff.displayName);
