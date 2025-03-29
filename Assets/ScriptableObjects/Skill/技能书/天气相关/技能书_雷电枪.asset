@@ -30,6 +30,7 @@ MonoBehaviour:
   - so: {fileID: 11400000, guid: 1a343d4288b6b6b4a9a2c90c421c9cf3, type: 2}
     remove: 1
     probability: 100
+  HPCost: 0
   powers:
   - type: 6
     power: 60
@@ -47,4 +48,4 @@ MonoBehaviour:
   maxLayer: 4
   castingDistance: 5
   aimAtSelf: 1
-  effectRange: 2
+  effectRange: 1

@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: "\u9633\u708E\u5149\u67F1"
   icon: {fileID: 0}
   extraDescription: 
-  actionTime: 75
+  actionTime: 100
   animationName: 
   pawnAnimationState: 0
   movementLatency: 0
