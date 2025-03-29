@@ -2,7 +2,7 @@ using MyTool;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : AnimationObject
+public class ProjectileAnimation : AnimationObject
 {
     protected GridMoveController moveController;
     protected Vector3 prevPosition;
@@ -12,7 +12,7 @@ public class Projectile : AnimationObject
         PawnAction action = (PawnAction)source;
         ProjectileSkill skill = (ProjectileSkill)action.skill;
         List<Vector3> trajectory = new();
-        skill.HitCheck(action.agent, Igm, action.target, trajectory);
+        skill.HitCheck(action.agent, igm, action.target, trajectory);
         moveController.SetRoute_CellPosition(trajectory, skill.speedMultiplier * moveController.defaultSpeed);
         lifeSpan = moveController.MockTime_CellPosition(trajectory, skill.speedMultiplier * moveController.defaultSpeed);
         transform.position = trajectory[0];
@@ -26,7 +26,7 @@ public class Projectile : AnimationObject
         PawnAction action = (PawnAction)source;
         ProjectileSkill skill = (ProjectileSkill)action.skill;
         List<Vector3> trajectory = new();
-        skill.HitCheck(action.agent, Igm, action.target, trajectory);
+        skill.HitCheck(action.agent, igm, action.target, trajectory);
         return moveController.MockTime_CellPosition(trajectory, skill.speedMultiplier * moveController.defaultSpeed);
     }
 

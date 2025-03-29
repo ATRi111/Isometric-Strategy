@@ -43,7 +43,7 @@ public class ActionIcon : InfoIcon, IPointerClickHandler
     {
         info = action.Description;
         this.action = action;
-        Vector3 cell = action.target - action.agent.GridObject.CellPosition;
+        Vector3 cell = action.target - action.position;
         Vector2 world = Igm.CellToWorld(cell);
         if (world == Vector2.zero)
             world = Vector2.down;

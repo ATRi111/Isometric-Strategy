@@ -19,7 +19,7 @@ public class ActionAreaUI : MonoBehaviour
         AimSkill aimSkill = action.skill as AimSkill;
         if(aimSkill != null)
         {
-            aimSkill.MockArea(Igm, action.agent.GridObject.CellPosition, action.target, area);
+            aimSkill.MockArea(Igm, action.position, action.target, area);
             for (int i = 0; i < area.Count; i++)
             {
                 Vector3 world = Igm.CellToWorld(area[i]);

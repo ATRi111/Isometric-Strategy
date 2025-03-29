@@ -11,6 +11,7 @@ public class PawnAction : IAnimationSource , IDescription
 {
     public PawnEntity agent;
     public Skill skill;
+    public Vector3Int position;
     public Vector3Int target;
     public EffectUnit effectUnit;
     public int Time => effectUnit.timeEffect.current - effectUnit.timeEffect.prev;
@@ -35,6 +36,7 @@ public class PawnAction : IAnimationSource , IDescription
         this.skill = skill;
         this.target = target;
         this.agent = agent;
+        position = agent.GridObject.CellPosition;
     }
 
     /// <summary>
@@ -52,9 +54,9 @@ public class PawnAction : IAnimationSource , IDescription
     public void Play(IEventSystem eventSystem, AnimationManager animationManager)
     {
         eventSystem.Invoke(EEvent.BattleLog, ResultDescription);
-        if (target != agent.GridObject.CellPosition)
+        if (target != position)
         {
-            Vector2Int direction = (Vector2Int)(target - agent.GridObject.CellPosition);
+            Vector2Int direction = (Vector2Int)(target - position);
             agent.faceDirection = EDirectionTool.NearestDirection4(direction);
         }
         AnimationProcess animation = skill.MockAnimation(this);

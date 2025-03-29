@@ -10,9 +10,10 @@ using UnityEngine;
 [RequireComponent(typeof(MyObject))]
 public abstract class AnimationObject : MonoBehaviour
 {
-    protected IsometricGridManager Igm => IsometricGridManager.Instance;
+    protected IsometricGridManager igm;
     protected MyObject myObject;
     protected IAudioPlayer audioPlayer;
+    protected IObjectManager objectManager;
 
     public string audio_activate;
     public string audio_recycle;
@@ -46,7 +47,14 @@ public abstract class AnimationObject : MonoBehaviour
 
     protected virtual void Awake()
     {
+        igm = IsometricGridManager.Instance;
         myObject = GetComponent<MyObject>();
         audioPlayer = ServiceLocator.Get<IAudioPlayer>();
+        objectManager = ServiceLocator.Get<IObjectManager>();
+    }
+
+    private void OnDisable()
+    {
+        ObjectPoolUtility.RecycleMyObjects(gameObject);
     }
 }

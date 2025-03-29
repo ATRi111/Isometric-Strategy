@@ -70,6 +70,22 @@ namespace EditorExtend
             }
         }
 
+        /// <summary>
+        /// 查找所有符合filter的T类型的资源
+        /// </summary>
+        public static void FindAssets<T>(string filter, List<T> ret)
+        {
+            ret.Clear();
+            string[] temp = AssetDatabase.FindAssets(filter);
+            for (int i = 0; i < temp.Length; i++)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(temp[i]);
+                UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
+                if (obj is T t)
+                    ret.Add(t);
+            }
+        }
+
 
         public static bool HasAttribute<T>(MemberInfo member, bool inherit = false) where T : Attribute
         {

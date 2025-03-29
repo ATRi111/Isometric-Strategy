@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -42,6 +43,27 @@ namespace EditorExtend
             => property.stringValue = EditorGUI.TextField(rect, label, property.stringValue);
         public static void TextField(this SerializedProperty property, string label)
             => property.stringValue = EditorGUILayout.TextField(label, property.stringValue);
+
+        public static bool TextFieldWithOptionButton(this SerializedProperty property, string label, List<string> options)
+        {
+            property.stringValue = EditorGUILayout.TextField(label, property.stringValue);
+            if (string.IsNullOrWhiteSpace(property.stringValue))
+                return false;
+            for (int i = 0; i < options.Count; i++)
+            {
+                string option = options[i];
+                if (option.Contains(property.stringValue, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (GUILayout.Button(option))
+                    {
+                        property.stringValue = option;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public static void TextArea(this SerializedProperty property, string label, Rect rect)
         {
             EditorGUILayout.LabelField(label);

@@ -1,4 +1,5 @@
 using EditorExtend;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +11,20 @@ public class SkillEditor : AutoEditor
     [AutoProperty]
     public SerializedProperty preConditions, buffPreConditions, weatherPreConditions, actionTime, HPCost, parameterOnAgent, buffOnAgent, extraDescription;
 
+    protected List<string> animationNames;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        animationNames = new();
+        List<GameObject> temp = new();
+        EditorExtendUtility.FindAssets($"特效 t:GameObject", temp);
+        for (int i = 0; i < temp.Count; i++)
+        {
+            animationNames.Add(temp[i].name);
+        }
+    }
+
     protected override void MyOnInspectorGUI()
     {
         displayName.TextField("展示技能名");
@@ -18,7 +33,7 @@ public class SkillEditor : AutoEditor
             displayName.stringValue = GenerateDisplayName();
         }
         icon.PropertyField("图标");
-        animationName.TextField("技能特效名");
+        animationName.TextFieldWithOptionButton("技能特效名", animationNames);
         pawnAnimationState.EnumField<EPawnAnimationState>("人物动作");
         movementLatency.FloatField("人物动作延迟");
         weaponAnimation.BoolField("启用武器动画");

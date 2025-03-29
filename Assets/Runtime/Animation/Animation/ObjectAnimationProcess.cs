@@ -32,6 +32,7 @@ public sealed class ObjectAnimationProcess : AnimationProcess
         return animationObject.GetAnimationLatency(source);
     }
 
+    //myObject被回收，标志着动画过程结束
     public void OneOffComplete()
     {
         Complete();
