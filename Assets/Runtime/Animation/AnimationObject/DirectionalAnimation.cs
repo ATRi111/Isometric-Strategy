@@ -18,7 +18,7 @@ public class DirectionalAnimation : AnimationObject
             Vector2 direction = igm.CellToWorld(cellDirection);
             float angle = direction.ToAngle();
             Vector3 worldPosition = igm.CellToWorld(action.target);
-            objectManager.Activate(prefabName, worldPosition, new Vector3(angle, 0, 0), transform);
+            objectManager.Activate(prefabName, worldPosition, new Vector3(0, 0, angle), transform);
         }
     }
 }
