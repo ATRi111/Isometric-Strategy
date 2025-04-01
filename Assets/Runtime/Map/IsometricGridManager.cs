@@ -93,6 +93,10 @@ public class IsometricGridManager : IsometricGridManagerBase
     /// <summary>
     /// 获取第一个与有向抛物线相交的GridObject(自动忽略与from重合的物体)，并计算轨迹
     /// </summary>
+    /// <param name="from">抛物线起点</param>
+    /// <param name="velocity">抛物线初速度</param>
+    /// <param name="g">重力加速度（沿Z轴负方向为正）</param>
+    /// <param name="trajectory">接收轨迹</param>
     public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g, List<Vector3> trajectory)
     {
         if (g <= 0 || velocity == Vector3.zero)
@@ -113,7 +117,8 @@ public class IsometricGridManager : IsometricGridManagerBase
             if (point.z < 0)
                 break;
             Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            GetObjectsXY(xy, gridObjects);
+            bool top_down = velocity.z - t * g < 0;
+            GetObjectsXY(xy, gridObjects, top_down);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (!gridObjects[j].Overlap(from) && gridObjects[j].Overlap(point))
@@ -126,6 +131,9 @@ public class IsometricGridManager : IsometricGridManagerBase
     /// <summary>
     /// 获取第一个与有向抛物线相交的GridObject(自动忽略与from重合的物体)
     /// </summary>
+    /// <param name="from">抛物线起点</param>
+    /// <param name="velocity">抛物线初速度</param>
+    /// <param name="g">重力加速度（沿Z轴负方向为正）</param>
     public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g)
     {
         if (g <= 0)
@@ -138,7 +146,8 @@ public class IsometricGridManager : IsometricGridManagerBase
             if (point.z < 0)
                 break;
             Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            GetObjectsXY(xy, gridObjects);
+            bool top_down = velocity.z - t * g < 0;
+            GetObjectsXY(xy, gridObjects, top_down);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (gridObjects[j].Overlap(point) && !gridObjects[j].Overlap(from))
@@ -163,7 +172,8 @@ public class IsometricGridManager : IsometricGridManagerBase
             if (point.z < 0)
                 break;
             Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            GetObjectsXY(xy, gridObjects);
+            bool top_down = velocity.z - t * g < 0;
+            GetObjectsXY(xy, gridObjects, top_down);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (gridObjects[j].Overlap(point) && !gridObjects[j].Overlap(from) && ObjectCheck.Invoke(pawn, gridObjects[j]))

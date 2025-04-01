@@ -53,6 +53,14 @@ namespace EditorExtend.GridEditor
         #endregion
 
         #region 线段求交
+        /// <summary>
+        /// 线段与轴对齐包围盒求交
+        /// </summary>
+        /// <param name="min">轴对齐包围盒的六个顶点中，xyz均最小的点</param>
+        /// <param name="extend">轴对齐包围盒的大小</param>
+        /// <param name="from">线段起点</param>
+        /// <param name="to">线段终点</param>
+        /// <returns>如果有交点，返回true，并将from和to修改为两个交点；否则返回false</returns>
         public static bool LineSegmentCastBox(Vector3 min, Vector3 extend, ref Vector3 from, ref Vector3 to)
         {
             float uIn = 0, uOut = 1;
@@ -84,6 +92,15 @@ namespace EditorExtend.GridEditor
             return false;
         }
 
+        /// <summary>
+        /// 线段与轴对齐圆柱体求交
+        /// </summary>
+        /// <param name="bottomCenter">圆柱体下表面中心点</param>
+        /// <param name="height">圆柱高度</param>
+        /// <param name="radius">圆柱半径</param>
+        /// <param name="from">线段起点</param>
+        /// <param name="to">线段终点</param>
+        /// <returns>如果有交点，返回true，并将from和to修改为两个交点；否则返回false</returns>
         public static bool LineSegmentCastCylinder(Vector3 bottomCenter, float height, float radius, ref Vector3 from, ref Vector3 to)
         {
             from -= bottomCenter;
@@ -93,6 +110,14 @@ namespace EditorExtend.GridEditor
             to += bottomCenter;
             return ret;
         }
+        /// <summary>
+        /// 线段与轴对齐圆柱体求交（规定圆柱下表面中心点位于原点）
+        /// </summary>
+        /// <param name="height">圆柱高度</param>
+        /// <param name="radius">圆柱半径</param>
+        /// <param name="from">线段起点</param>
+        /// <param name="to">线段终点</param>
+        /// <returns>如果有交点，返回true，并将from和to修改为两个交点；否则返回false</returns>
         private static bool LineSegmentCastCylinder(float height, float radius, ref Vector3 from, ref Vector3 to)
         {
             float uIn = 0, uOut = 1;
