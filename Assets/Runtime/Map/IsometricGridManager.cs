@@ -117,8 +117,7 @@ public class IsometricGridManager : IsometricGridManagerBase
             if (point.z < 0)
                 break;
             Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            bool top_down = velocity.z - t * g < 0;
-            GetObjectsXY(xy, gridObjects, top_down);
+            GetObjectsXY(xy, gridObjects);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (!gridObjects[j].Overlap(from) && gridObjects[j].Overlap(point))
@@ -146,8 +145,7 @@ public class IsometricGridManager : IsometricGridManagerBase
             if (point.z < 0)
                 break;
             Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            bool top_down = velocity.z - t * g < 0;
-            GetObjectsXY(xy, gridObjects, top_down);
+            GetObjectsXY(xy, gridObjects);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (gridObjects[j].Overlap(point) && !gridObjects[j].Overlap(from))
@@ -172,8 +170,7 @@ public class IsometricGridManager : IsometricGridManagerBase
             if (point.z < 0)
                 break;
             Vector2Int xy = new(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            bool top_down = velocity.z - t * g < 0;
-            GetObjectsXY(xy, gridObjects, top_down);
+            GetObjectsXY(xy, gridObjects);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (gridObjects[j].Overlap(point) && !gridObjects[j].Overlap(from) && ObjectCheck.Invoke(pawn, gridObjects[j]))
