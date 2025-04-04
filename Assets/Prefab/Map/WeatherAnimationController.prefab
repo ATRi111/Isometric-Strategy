@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7800874384950439453}
   - component: {fileID: 8230725976414837295}
-  - component: {fileID: -8823890542210715823}
   m_Layer: 0
   m_Name: WeatherAnimationController
   m_TagString: Untagged
@@ -58,16 +57,3 @@ MonoBehaviour:
   - weather: 3
     gameObjects: []
     particleSystems: []
---- !u!114 &-8823890542210715823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6140483557362244782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a1a8126a6c408b479598d2bb41f943d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 0
