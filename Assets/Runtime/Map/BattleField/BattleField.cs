@@ -1,16 +1,17 @@
 using Services;
 using Services.Asset;
 using Services.Event;
+using Services.ObjectPools;
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(WeatherAnimationController))]
 public class BattleField : MonoBehaviour
 {
     public static int WeatherDuration = 250;
 
     private IEventSystem eventSystem;
     private GameManager gameManager;
+    private IObjectManager objectManager;
 
     [NonSerialized]
     public WeatherSettings weatherSettings;
@@ -64,8 +65,10 @@ public class BattleField : MonoBehaviour
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
         gameManager = ServiceLocator.Get<GameManager>();
+        objectManager = ServiceLocator.Get<IObjectManager>();
         weatherSettings = ServiceLocator.Get<IAssetLoader>().Load<WeatherSettings>(nameof(WeatherSettings));
         weatherSettings.Init();
+        objectManager.Activate(nameof(WeatherAnimationController), transform.position, Vector3.zero, transform);
     }
 
     private void OnEnable()

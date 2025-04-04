@@ -3,6 +3,7 @@ using Services.Event;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class WeatherAnimation
 {
     public EWeather weather;
