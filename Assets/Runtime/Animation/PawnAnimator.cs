@@ -15,7 +15,7 @@ public enum EPawnAnimationState
 public class PawnAnimator : EntityAnimator
 {
     public static string BaseLayer = "BaseLayer.";
-    public static string DownState = "/Down";
+    public static string DownState = ".Down";
 
     protected PawnEntity pawn;
     protected SpriteRenderer spriteRenderer;
@@ -29,7 +29,7 @@ public class PawnAnimator : EntityAnimator
     private Vector3 weaponOffset;
 
     public void Play(string movementName)
-        => animator.Play(BaseLayer + movementName + DownState, 0);
+        => animator.Play(movementName + DownState);
 
     public void Play(string movementName, float latency, bool weaponAnimation)
     {

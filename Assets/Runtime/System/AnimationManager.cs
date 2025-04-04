@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class AnimationManager : Service,IService
 {
-    [AutoService]
-    private GameManager gameManager;
-
     public override Type RegisterType => GetType();
     public bool ImmediateMode { get; set; }
 

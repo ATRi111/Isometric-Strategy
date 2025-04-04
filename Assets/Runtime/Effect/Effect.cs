@@ -80,7 +80,7 @@ public abstract class Effect : IAnimationSource
 
     public virtual void Play(AnimationManager animationManager, float latency)
     {
-        AnimationProcess animation = GenerateAnimation();
+        animation = GenerateAnimation();
         animationManager.Register(animation, latency);
     }
     public virtual void Apply()

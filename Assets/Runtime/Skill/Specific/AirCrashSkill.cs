@@ -9,6 +9,14 @@ public class AirCrashSkill : RhombusAreaSkill
     public float powerAmplifier;
     public float speedMultiplier = 5f;
 
+    public override bool FilterOption(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int option)
+    {
+        GridObject gridObject = igm.GetObjectXY((Vector2Int)option);
+        if (gridObject != null && !gridObject.IsGround)
+            return false;
+        return base.FilterOption(agent, igm, position, option);
+    }
+
     protected override float MockDamageAmplifier(IsometricGridManager igm, PawnEntity agent, Entity victim, Vector3Int position, Vector3Int target)
     {
         return Mathf.Max(0, powerAmplifier * (position.z - target.z));
@@ -24,12 +32,12 @@ public class AirCrashSkill : RhombusAreaSkill
             mid,
             target,
         };
-        MoveEffect move = new(agent, position, target, route, 5);
+        MoveEffect move = new(agent, position, target, route, speedMultiplier);
         foreach (Effect effect in ret.effects)
         {
             effect.Join(move);
         }
-        ret.effects.Add(new MoveEffect(agent, position, target, route, speedMultiplier));
+        ret.effects.Add(move);
     }
 
     protected override void Describe(StringBuilder sb)

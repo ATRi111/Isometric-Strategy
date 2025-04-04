@@ -30,14 +30,15 @@ public abstract class AnimationProcess
 
     protected virtual IEnumerator DelayPlay(float latency)
     {
-        yield return new WaitForSeconds(latency);
         if (joinedAnimation != null)
         {
             while (!joinedAnimation.completed)
             {
                 yield return null;
+                Debug.Log($"{GetType()} waiting for {joinedAnimation.GetType()}");
             }
         }
+        yield return new WaitForSeconds(latency);
         Play();
     }
 
