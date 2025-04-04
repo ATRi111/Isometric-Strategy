@@ -2,6 +2,7 @@ using MyTimer;
 using Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AnimationManager : Service,IService
@@ -9,7 +10,7 @@ public class AnimationManager : Service,IService
     public override Type RegisterType => GetType();
     public bool ImmediateMode { get; set; }
 
-    private readonly HashSet<AnimationProcess> currenAnimations = new();
+    public readonly HashSet<AnimationProcess> currenAnimations = new();
 
     private Action ApplyAll;    //应用动画结束后产生的所有效果，必须确保按顺序应用
     public Action AfterAnimationComplete;
@@ -20,7 +21,6 @@ public class AnimationManager : Service,IService
     /// </summary>
     public void Register(AnimationProcess animation, float latency)
     {
-        Debug.Log($"{animation.GetType()} register");
         ApplyAll += animation.Apply;
         if(!ImmediateMode)
         {
@@ -33,7 +33,6 @@ public class AnimationManager : Service,IService
 
     public void Unregister(AnimationProcess animation)
     {
-        Debug.Log($"{animation.GetType()} unregister");
         if (!ImmediateMode)
             currenAnimations.Remove(animation);
         if (currenAnimations.Count == 0)
@@ -62,4 +61,13 @@ public class AnimationManager : Service,IService
         timer.Initialize(0.01f, false);
         timer.AfterComplete += AfterComplete;
     }
+
+#if UNITY_EDITOR
+    [SerializeReference]
+    public List<AnimationProcess> inspectorAnimations;
+    private void Update()
+    {
+        inspectorAnimations = currenAnimations.ToList();
+    }
+#endif
 }
