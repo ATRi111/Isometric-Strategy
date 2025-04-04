@@ -3,7 +3,7 @@ using System.Text;
 
 public class WeatherIcon : InfoIcon
 {
-    private void AfterBattleFieldChange(BattleField battleField)
+    private void AfterWeatherChange(BattleField battleField)
     {
         WeatherData data = battleField.WeatherData;
         StringBuilder sb = new();
@@ -22,12 +22,12 @@ public class WeatherIcon : InfoIcon
     protected override void OnEnable()
     {
         base.OnEnable();
-        eventSystem.AddListener<BattleField>(EEvent.AfterBattleFieldChange, AfterBattleFieldChange);
+        eventSystem.AddListener<BattleField>(EEvent.AfterWeatherChange, AfterWeatherChange);
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        eventSystem.RemoveListener<BattleField>(EEvent.AfterBattleFieldChange, AfterBattleFieldChange);
+        eventSystem.RemoveListener<BattleField>(EEvent.AfterWeatherChange, AfterWeatherChange);
     }
 }

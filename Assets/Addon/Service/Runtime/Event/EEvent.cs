@@ -27,9 +27,9 @@ namespace Services.Event
         /// </summary>
         BeforeDoAction,
         /// <summary>
-        /// 战场发生变化，参数：BattleField
+        /// 天气发生变化后，参数：BattleField
         /// </summary>
-        AfterBattleFieldChange,
+        AfterWeatherChange,
         /// <summary>
         /// 显示信息，参数：引发事件的对象，屏幕坐标，信息内容
         /// </summary>

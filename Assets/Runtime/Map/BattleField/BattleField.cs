@@ -4,6 +4,7 @@ using Services.Event;
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(WeatherAnimationController))]
 public class BattleField : MonoBehaviour
 {
     public static int WeatherDuration = 250;
@@ -28,7 +29,7 @@ public class BattleField : MonoBehaviour
                 weather = value;
                 if(value != EWeather.None)
                     nextResetTime = gameManager.Time + WeatherDuration;
-                eventSystem.Invoke(EEvent.AfterBattleFieldChange, this);
+                eventSystem.Invoke(EEvent.AfterWeatherChange, this);
             }
         }
     }
@@ -81,6 +82,6 @@ public class BattleField : MonoBehaviour
     {
         if (nextResetTime == 0)
             nextResetTime = WeatherDuration;
-        eventSystem.Invoke(EEvent.AfterBattleFieldChange, this);
+        eventSystem.Invoke(EEvent.AfterWeatherChange, this);
     }
 }
