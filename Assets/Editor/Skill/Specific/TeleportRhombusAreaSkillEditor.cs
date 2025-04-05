@@ -1,8 +1,8 @@
 using EditorExtend;
 using UnityEditor;
 
-[CustomEditor(typeof(AirCrashSkill))]
-public class AirCrashSkillEditor : RhombusAreaSkillEditor
+[CustomEditor(typeof(TeleportRhombusAreaSkill))]
+public class TeleportRhombusAreaSkillEditor : RhombusAreaSkillEditor
 {
     [AutoProperty]
     public SerializedProperty powerAmplifier, speedMultiplier;

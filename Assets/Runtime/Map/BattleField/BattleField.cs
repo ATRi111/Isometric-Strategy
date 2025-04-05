@@ -68,7 +68,6 @@ public class BattleField : MonoBehaviour
         objectManager = ServiceLocator.Get<IObjectManager>();
         weatherSettings = ServiceLocator.Get<IAssetLoader>().Load<WeatherSettings>(nameof(WeatherSettings));
         weatherSettings.Init();
-        objectManager.Activate(nameof(WeatherAnimationController), transform.position, Vector3.zero, transform);
     }
 
     private void OnEnable()
@@ -85,6 +84,7 @@ public class BattleField : MonoBehaviour
     {
         if (nextResetTime == 0)
             nextResetTime = WeatherDuration;
+
         eventSystem.Invoke(EEvent.AfterWeatherChange, this);
     }
 }

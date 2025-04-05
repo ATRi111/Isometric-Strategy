@@ -1,17 +1,22 @@
 using Services;
+using System;
 using System.Collections;
 using UnityEngine;
 
+[Serializable]
 public abstract class AnimationProcess
 {
     protected AnimationManager manager;
-    public AnimationProcess joinedAnimation;
+    public string name;
     public bool completed;
+    [NonSerialized]
+    public AnimationProcess joinedAnimation;
 
     public AnimationProcess()
     {
         manager = ServiceLocator.Get<AnimationManager>();
         completed = false;
+        name = GetType().ToString();
     }
 
     /// <summary>
@@ -35,7 +40,6 @@ public abstract class AnimationProcess
             while (!joinedAnimation.completed)
             {
                 yield return null;
-                Debug.Log($"{GetType()} waiting for {joinedAnimation.GetType()}");
             }
         }
         yield return new WaitForSeconds(latency);
