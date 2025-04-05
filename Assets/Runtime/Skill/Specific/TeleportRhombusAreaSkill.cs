@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "裂空坠击", menuName = "技能/特殊/裂空坠击")]
-public class AirCrashSkill : RhombusAreaSkill
+[CreateAssetMenu(fileName = "带有位移的菱形范围技能", menuName = "技能/特殊/带有位移的菱形范围技能")]
+public class TeleportRhombusAreaSkill : RhombusAreaSkill
 {
     public float powerAmplifier;
     public float speedMultiplier = 5f;

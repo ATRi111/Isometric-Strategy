@@ -33,7 +33,8 @@ public class SummonEffect : Effect
 
     public override float ValueFor(PawnEntity pawn)
     {
-        return 0;
+        //TODO:’ŸªΩŒÔº€÷µ
+        return 10000f;
     }
 
     public override void Describe(StringBuilder sb, bool result)

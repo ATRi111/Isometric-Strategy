@@ -1,7 +1,7 @@
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "相对高度差影响伤害的技能", menuName = "技能/相对高度差影响伤害的技能")]
+[CreateAssetMenu(fileName = "相对高度差影响伤害的技能", menuName = "技能/特殊/相对高度差影响伤害的技能")]
 public class RelativeHeightSkill : RangedSkill
 {
     public bool higher;
