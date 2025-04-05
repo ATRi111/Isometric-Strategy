@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: "\u5929\u5802\u4E4B\u95E8"
   icon: {fileID: 0}
   extraDescription: 
-  actionTime: 80
+  actionTime: 0
   animationName: 
   pawnAnimationState: 0
   movementLatency: 0
@@ -24,10 +24,13 @@ MonoBehaviour:
   buffPreConditions:
   - so: {fileID: 11400000, guid: 2e971a8d24459754cb7ed90ab004cfdd, type: 2}
     requireExist: 0
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent:
   - so: {fileID: 11400000, guid: 2e971a8d24459754cb7ed90ab004cfdd, type: 2}
+    remove: 0
     probability: 100
+  HPCost: 0
   powers: []
   buffOnVictim: []
   hitBackProbability: 0
