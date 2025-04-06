@@ -22,8 +22,10 @@ MonoBehaviour:
   weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
+  HPCost: 0
   powers:
   - type: 0
     power: 10
@@ -33,11 +35,12 @@ MonoBehaviour:
     mndMultiplier: 0
   buffOnVictim:
   - so: {fileID: 11400000, guid: 62065c3f34916424c841fbec7354bb0c, type: 2}
+    remove: 0
     probability: 70
   hitBackProbability: 10
   victimType: 4
-  minLayer: -32
-  maxLayer: 32
+  minLayer: -4
+  maxLayer: 4
   castingDistance: 0
   aimAtSelf: 1
   effectRange: 2
