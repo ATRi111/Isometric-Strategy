@@ -16,7 +16,6 @@ public class ProjectileAnimation : AnimationObject
         moveController.SetRoute_CellPosition(trajectory, skill.speedMultiplier * moveController.defaultSpeed);
         lifeSpan = moveController.MockTime_CellPosition(trajectory, skill.speedMultiplier * moveController.defaultSpeed);
         transform.position = trajectory[0];
-        moveController.ufm.OnTick += Ontick;
         prevPosition = moveController.ufm.Origin;
         base.Initialize(source);
     }
@@ -42,6 +41,7 @@ public class ProjectileAnimation : AnimationObject
     {
         base.Awake();
         moveController = GetComponent<GridMoveController>();
+        moveController.ufm.OnTick += Ontick;
     }
 
 }
