@@ -10,7 +10,7 @@ public class WeatherIcon : InfoIcon
         sb.AppendLine(data.Name);
         if(battleField.Weather != EWeather.None)
         {
-            sb.Append("持续时间:");
+            sb.Append("剩余时间:");
             sb.Append(battleField.WeatherRemainingTime);
             sb.AppendLine();
             sb.Append(data.Description);
