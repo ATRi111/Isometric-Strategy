@@ -20,10 +20,15 @@ MonoBehaviour:
   pawnAnimationState: 0
   movementLatency: 0
   weaponAnimation: 0
-  preConditions: []
+  preConditions:
+  - conditionType: 3
+    parameterIndex: 0
+    value: 1
   buffPreConditions: []
   weatherPreConditions: []
-  parameterOnAgent: []
+  parameterOnAgent:
+  - parameterIndex: 0
+    deltaValue: -1
   buffOnAgent: []
   HPCost: 0
   powers:
