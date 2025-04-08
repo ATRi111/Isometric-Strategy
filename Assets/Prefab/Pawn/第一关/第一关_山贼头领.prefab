@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: entityName
-      value: "\u5C71\u8D3C\u5934\u9886\xB7\u5E03\u9C81\u5854\u53EF\u65AF"
+      value: "\u82B1\u54E8\u7684\u5C71\u8D3C\u5934\u9886"
       objectReference: {fileID: 0}
     - target: {fileID: 3681028695715984453, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: actionTime.defaultValue
@@ -120,18 +120,38 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: personality.defense
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: personality.terrain
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425705250901006814, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: personality.seekSupport
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[0].equipment
       value: 
-      objectReference: {fileID: 11400000, guid: b0eb86003d6849b4290c5546439e452a, type: 2}
+      objectReference: {fileID: 11400000, guid: 4027596200e3f4b45b4133264478549b, type: 2}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[1].equipment
       value: 
-      objectReference: {fileID: 11400000, guid: 7e1febd307903fe45b5ff097d6895ddb, type: 2}
+      objectReference: {fileID: 11400000, guid: fe1898dd34da5a44490ed3e2777f9021, type: 2}
     - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: slots.Array.data[2].equipment
       value: 
-      objectReference: {fileID: 11400000, guid: 79f2949b0f34cb34e966bacb98f2e164, type: 2}
+      objectReference: {fileID: 11400000, guid: c7047f53f342d1c4ea95598db2516db5, type: 2}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[3].equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: fa0ea84dca827ba45bb4988f8d96f116, type: 2}
+    - target: {fileID: 6595715262542743162, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
+      propertyPath: slots.Array.data[4].equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 73b4f361aadcc9a45be8d825772e4e94, type: 2}
     - target: {fileID: 8275336948927669841, guid: 27231c0355e38d849b04feaaaca7d54a, type: 3}
       propertyPath: m_Name
       value: "\u7B2C\u4E00\u5173_\u5C71\u8D3C\u5934\u9886"
