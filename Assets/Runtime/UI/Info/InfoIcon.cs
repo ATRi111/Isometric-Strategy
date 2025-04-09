@@ -28,10 +28,7 @@ public class InfoIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public CanvasGroupPlus canvasGroup;
     protected Image image;
 
-    /// <summary>
-    /// 信息框相对于鼠标的方向
-    /// </summary>
-    public Vector2 infoDirection;
+    public float normalizedDistance;
 
     protected virtual void ExtractKeyWords()
     {
@@ -42,7 +39,7 @@ public class InfoIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         ExtractKeyWords();
         if (!string.IsNullOrWhiteSpace(info))
-            eventSystem.Invoke(EEvent.ShowInfo, infoDirection, info);
+            eventSystem.Invoke(EEvent.ShowInfo, info, normalizedDistance);
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
@@ -56,7 +53,6 @@ public class InfoIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         eventSystem = ServiceLocator.Get<IEventSystem>();
         canvasGroup = GetComponent<CanvasGroupPlus>();
         image = GetComponentInChildren<Image>();
-        infoDirection = Vector2.zero;
     }
 
     protected virtual void OnEnable()

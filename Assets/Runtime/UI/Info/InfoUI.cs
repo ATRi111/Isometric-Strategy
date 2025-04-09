@@ -54,7 +54,7 @@ public class InfoUI : TextBase
 
     private bool locked;
 
-    private void ShowInfo(Vector2 infoDirection, string info)
+    private void ShowInfo(string info, float normalizedDistance)
     {
         focusOnIcon = true;
         DevideFirstLine(info, out string firstLine, out string left);
@@ -64,10 +64,14 @@ public class InfoUI : TextBase
             info = keyWordList.MarkAllKeyWords(info, Mark);
         TextUI.text = info;
 
-        transform.position = Input.mousePosition.ResetZ(transform.position.z);
-        if (infoDirection == Vector2.zero)
-            infoDirection = (Vector2)Input.mousePosition - 0.5f * new Vector2(Screen.width, Screen.height);
-        rectTransform.pivot = DirectionToPivot(infoDirection);
+        Vector3 direction = Input.mousePosition - 0.5f * new Vector3(Screen.width, Screen.height);
+        rectTransform.pivot = DirectionToPivot(direction);
+
+        Vector3 position = normalizedDistance * Screen.width * direction.normalized + Input.mousePosition;
+        position = UIExtendUtility.ClampInScreen(position);
+        transform.position = position.ResetZ(transform.position.z);
+
+
         canvasGrounp.Visible = true;
     }
 
@@ -101,13 +105,13 @@ public class InfoUI : TextBase
 
     private void OnEnable()
     {
-        eventSystem.AddListener<Vector2, string>(EEvent.ShowInfo, ShowInfo);
+        eventSystem.AddListener<string, float>(EEvent.ShowInfo, ShowInfo);
         eventSystem.AddListener<object>(EEvent.HideInfo, HideInfo);
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener<Vector2, string>(EEvent.ShowInfo, ShowInfo);
+        eventSystem.RemoveListener<string, float>(EEvent.ShowInfo, ShowInfo);
         eventSystem.RemoveListener<object>(EEvent.HideInfo, HideInfo);
     }
 
@@ -130,10 +134,17 @@ public class InfoUI : TextBase
         if (canvasGrounp.Visible)
         {
             CheckSecondaryInfo();
-            if (!UIExtendUtility.WithinScreen(rectTransform))
+            if((Vector2)transform.position == (Vector2)Input.mousePosition)
             {
-                Vector2 direction = (Vector2)Input.mousePosition - 0.5f * new Vector2(Screen.width, Screen.height);
-                rectTransform.pivot = DirectionToPivot(-direction);
+                if (!UIExtendUtility.WithinScreen(rectTransform))
+                {
+                    Vector2 direction = (Vector2)Input.mousePosition - 0.5f * new Vector2(Screen.width, Screen.height);
+                    rectTransform.pivot = DirectionToPivot(-direction);
+                }
+            }
+            else
+            {
+                UIExtendUtility.ClampInScreen(rectTransform);
             }
         }
 

@@ -56,7 +56,7 @@ public class EquipmentIconInBag : InfoIcon , IPointerClickHandler
                 playerManager.unusedEquipmentList.Add(unequipped);
             pawnPanel.OnRefresh?.Invoke();
             if (!string.IsNullOrWhiteSpace(info))
-                eventSystem.Invoke(EEvent.ShowInfo, eventData.position, infoDirection, info);
+                eventSystem.Invoke(EEvent.ShowInfo, info, normalizedDistance);
         }
     }
 

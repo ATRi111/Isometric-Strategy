@@ -43,8 +43,6 @@ public class ActionIcon : InfoIcon, IPointerClickHandler
     {
         info = action.Description;
         this.action = action;
-        Vector3 cellDirection = action.target - action.position;
-        infoDirection = Igm.CellToWorld(cellDirection);
     }
 
     protected override void Awake()

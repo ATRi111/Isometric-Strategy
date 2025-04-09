@@ -215,11 +215,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: 
   canvasGroup: {fileID: 0}
-  infoPivot: {x: 0, y: 0}
-  infoOffset: {x: 100, y: 0}
+  normalizedDistance: 0.1
   action:
     agent: {fileID: 0}
     skill: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
     effectUnit:
       timeEffect:

@@ -31,7 +31,7 @@ namespace Services.Event
         /// </summary>
         AfterWeatherChange,
         /// <summary>
-        /// 显示信息，参数：信息框相对于鼠标的方向(Vector2.zero表示自动确定)，信息内容
+        /// 显示信息，参数：信息内容,信息框和鼠标间距离(用屏幕宽度的百分比表示)
         /// </summary>
         ShowInfo,
         /// <summary>
