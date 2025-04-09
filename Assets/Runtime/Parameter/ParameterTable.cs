@@ -53,4 +53,5 @@ public class Parameter
     public int valuePerUnit;
     public bool hidden;
     public string description;
+    public Sprite icon;
 }

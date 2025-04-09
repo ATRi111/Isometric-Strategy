@@ -1,5 +1,6 @@
+using MyTool;
+using System.Text;
 using TMPro;
-using UnityEngine.EventSystems;
 
 public class ParameterIcon : InfoIcon
 {
@@ -9,13 +10,17 @@ public class ParameterIcon : InfoIcon
     public void SetParameter(PawnEntity pawn, string parameterName)
     {
         int value = pawn.parameterDict[parameterName];
-        tmp.text = parameterName + ":" + value;
-        info = PawnEntity.ParameterTable[parameterName].description;
+        tmp.text = value.ToString();
+        StringBuilder sb = new();
+        sb.AppendLine(parameterName.Bold());
+        sb.AppendLine(PawnEntity.ParameterTable[parameterName].description);
+        info = sb.ToString();
+        image.sprite = PawnEntity.ParameterTable[parameterName].icon;
     }
 
     protected override void Awake()
     {
         base.Awake();
-        tmp = GetComponent<TextMeshProUGUI>();
+        tmp = GetComponentInChildren<TextMeshProUGUI>();
     }
 }
