@@ -17,7 +17,7 @@ public class SkillOptionUI : MonoBehaviour
     {
         ObjectPoolUtility.RecycleMyObjects(gameObject);
         PawnEntity pawn = skillUIManager.currentPawn;
-        if (skill.CanUse(pawn, Igm))
+        if (pawn != null && skill.CanUse(pawn, Igm))
         {
             skill.GetOptions(pawn, Igm, pawn.GridObject.CellPosition, options);
             for (int i = 0; i < options.Count; i++)

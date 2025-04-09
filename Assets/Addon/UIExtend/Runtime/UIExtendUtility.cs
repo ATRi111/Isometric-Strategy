@@ -5,6 +5,18 @@ namespace UIExtend
     public static class UIExtendUtility
     {
         /// <summary>
+        /// 判断某个UI是否完全位于屏幕范围内(只能用于ScreenSpace-Overlay的UI)
+        /// </summary>
+        /// <param name="padding">空隙(用屏幕宽度的百分比表示)</param>
+        public static bool WithinScreen(RectTransform rectTransform, float padding = 0.01f)
+        {
+            padding *= Screen.width;
+            GetBorder(rectTransform, out float left, out float right, out float bottom, out float top);
+            return left >= padding  && right <= Screen.width - padding
+                && bottom >= padding && top <= Screen.height - padding;
+        }
+
+        /// <summary>
         /// 将UI限制在屏幕范围内(只能用于ScreenSpace-Overlay的UI)
         /// </summary>
         /// <param name="padding">空隙(用屏幕宽度的百分比表示)</param>

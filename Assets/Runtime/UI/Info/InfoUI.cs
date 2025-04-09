@@ -1,3 +1,4 @@
+using MyTool;
 using Services;
 using Services.Asset;
 using Services.Event;
@@ -28,18 +29,32 @@ public class InfoUI : TextBase
         }
     }
 
+    public static Vector2 DirectionToPivot(Vector2 direction)
+    {
+        direction = direction.normalized;
+        Vector2 pivot = -direction;
+        float absx = Mathf.Abs(direction.x);
+        float absy = Mathf.Abs(direction.y);
+        float k = 1f;
+        if (absx >= absy)
+            k = 1f / absx;
+        else
+            k = 1f / absy;
+        pivot *= k;
+        pivot = 0.5f * (pivot + Vector2.one);
+        return pivot;
+    }
+
     private RectTransform rectTransform;
     private CanvasGroupPlus canvasGrounp;
     private KeyWordList keyWordList;
 
     private bool focusOnIcon;
     private bool containsMouse;
-    [SerializeField]
-    private Vector2 offset;
 
     private bool locked;
 
-    private void ShowInfo(Vector2 screenPoint, Vector2 pivot, string info)
+    private void ShowInfo(Vector2 infoDirection, string info)
     {
         focusOnIcon = true;
         DevideFirstLine(info, out string firstLine, out string left);
@@ -48,9 +63,11 @@ public class InfoUI : TextBase
         else
             info = keyWordList.MarkAllKeyWords(info, Mark);
         TextUI.text = info;
-        rectTransform.pivot = pivot;
-        transform.position = screenPoint + offset;
-        UIExtendUtility.ClampInScreen(rectTransform);
+
+        transform.position = Input.mousePosition.ResetZ(transform.position.z);
+        if (infoDirection == Vector2.zero)
+            infoDirection = (Vector2)Input.mousePosition - 0.5f * new Vector2(Screen.width, Screen.height);
+        rectTransform.pivot = DirectionToPivot(infoDirection);
         canvasGrounp.Visible = true;
     }
 
@@ -84,13 +101,13 @@ public class InfoUI : TextBase
 
     private void OnEnable()
     {
-        eventSystem.AddListener<Vector2, Vector2, string>(EEvent.ShowInfo, ShowInfo);
+        eventSystem.AddListener<Vector2, string>(EEvent.ShowInfo, ShowInfo);
         eventSystem.AddListener<object>(EEvent.HideInfo, HideInfo);
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener<Vector2, Vector2, string>(EEvent.ShowInfo, ShowInfo);
+        eventSystem.RemoveListener<Vector2, string>(EEvent.ShowInfo, ShowInfo);
         eventSystem.RemoveListener<object>(EEvent.HideInfo, HideInfo);
     }
 
@@ -113,7 +130,11 @@ public class InfoUI : TextBase
         if (canvasGrounp.Visible)
         {
             CheckSecondaryInfo();
-            UIExtendUtility.ClampInScreen(rectTransform);
+            if (!UIExtendUtility.WithinScreen(rectTransform))
+            {
+                Vector2 direction = (Vector2)Input.mousePosition - 0.5f * new Vector2(Screen.width, Screen.height);
+                rectTransform.pivot = DirectionToPivot(-direction);
+            }
         }
 
         if(Input.GetKeyUp(KeyCode.T))

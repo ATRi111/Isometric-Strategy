@@ -43,14 +43,8 @@ public class ActionIcon : InfoIcon, IPointerClickHandler
     {
         info = action.Description;
         this.action = action;
-        Vector3 cell = action.target - action.position;
-        Vector2 world = Igm.CellToWorld(cell);
-        if (world == Vector2.zero)
-            world = Vector2.down;
-        else
-            world = world.normalized;
-        infoPivot = 0.5f * (Vector2.one - world);
-        infoOffset = infoOffset.magnitude * world;
+        Vector3 cellDirection = action.target - action.position;
+        infoDirection = Igm.CellToWorld(cellDirection);
     }
 
     protected override void Awake()
