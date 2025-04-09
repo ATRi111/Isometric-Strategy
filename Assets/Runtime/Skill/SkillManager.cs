@@ -77,6 +77,22 @@ public class SkillManager : CharacterComponentBase
             offenseArea.Clear();
     }
 
+    /// <summary>
+    /// 使技能中涉及的参数出现在字典中
+    /// </summary>
+    private void InitParameter()
+    {
+        HashSet<string> parameterNames = new();
+        for (int i = 0;i < learnedSkills.Count;i++)
+        {
+            learnedSkills[i].GetRelatedParameters(parameterNames);
+        }
+        foreach(string  parameterName in parameterNames)
+        {
+            pawn.parameterDict[parameterName] += 0;
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -88,6 +104,7 @@ public class SkillManager : CharacterComponentBase
     {
         if (pawn.faction == EFaction.Enemy)
             eventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
+        InitParameter();
     }
 
     private void OnDisable()

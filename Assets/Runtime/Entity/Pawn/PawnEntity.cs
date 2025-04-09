@@ -72,7 +72,7 @@ public class PawnEntity : Entity
         foreach (KeyValuePair<string,int> pair in parameterDict.dict)
         {
             Parameter parameter = parameterTable[pair.Key];
-            if (!parameter.hidden && pair.Value != 0)
+            if (!parameter.hidden)
                 ret.Add(pair.Key);
         }
         return ret;

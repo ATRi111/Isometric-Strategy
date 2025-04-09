@@ -145,6 +145,21 @@ public abstract class Skill : ScriptableObject , IDescription
             pawnAnimator.Play(pawnAnimationState.ToString(), movementLatency, weaponAnimation);
     }
 
+    /// <summary>
+    /// 获取此技能涉及的参数名
+    /// </summary>
+    public virtual void GetRelatedParameters(HashSet<string> ret)
+    {
+        for (int i = 0; i < parameterOnAgent.Count; i++)
+        {
+            ret.Add(parameterOnAgent[i].ParameterName);
+        }
+        for (int i = 0; i < preConditions.Count; i++)
+        {
+            ret.Add(preConditions[i].ParameterName);
+        }
+    }
+
     #region 描述
 
     public virtual void ExtractKeyWords(KeyWordList keyWordList)

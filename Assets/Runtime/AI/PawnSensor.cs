@@ -21,7 +21,6 @@ public class PawnSensor : CharacterComponentBase
     [NonSerialized]
     public EFaction percievedFaction;
 
-    private List<Vector2Int> adjacent = new();  //相邻四格
     /// <summary>
     /// 自我认知中的友方单位(不含自身)
     /// </summary>
@@ -148,7 +147,6 @@ public class PawnSensor : CharacterComponentBase
     {
         base.Awake();
         AIManager = ServiceLocator.Get<AIManager>();
-        adjacent = IsometricGridUtility.WithinProjectManhattanDistance(1);
         pawn = (PawnEntity)entity;
         percievedFaction = pawn.faction;
     }
