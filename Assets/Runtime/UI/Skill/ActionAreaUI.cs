@@ -26,6 +26,11 @@ public class ActionAreaUI : MonoBehaviour
                 objectManager.Activate("ActionAreaIcon", world, Vector3.zero, transform);
             }
         }
+        else
+        {
+            Vector3 world = Igm.CellToWorld(action.target);
+            objectManager.Activate("ActionAreaIcon", world, Vector3.zero, transform);
+        }
     }
 
     private void StopPreviewAction(PawnAction _)
