@@ -18,7 +18,7 @@ public class SkillEditor : AutoEditor
         base.OnEnable();
         animationNames = new();
         List<GameObject> temp = new();
-        EditorExtendUtility.FindAssets($"特效 t:GameObject", temp);
+        EditorExtendUtility.FindAssets($"技能特效 t:GameObject", temp);
         for (int i = 0; i < temp.Count; i++)
         {
             animationNames.Add(temp[i].name);

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Equipment : PawnModifierSO
 {
     public ESlotType slotType;
-    public GameObject animationPrefab;
+    public string animationName;
     public List<PawnParameterModifier> parameterOnAgent;
 
     protected override string TypeName => "×°±¸";

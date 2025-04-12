@@ -1,3 +1,5 @@
+using Services.ObjectPools;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -15,7 +17,13 @@ public class WeaponAnimator : MonoBehaviour
         animator.Play(BaseLayer + movementName);
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         float t = stateInfo.length;
-        Destroy(gameObject, t);
+        StartCoroutine(DelayRecycle(t));
+    }
+
+    private IEnumerator DelayRecycle(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GetComponent<MyObject>().Recycle();
     }
 
     private void Awake()

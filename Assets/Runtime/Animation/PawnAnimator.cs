@@ -1,4 +1,6 @@
 using Character;
+using Services;
+using Services.ObjectPools;
 using System.Collections;
 using UnityEngine;
 
@@ -14,9 +16,9 @@ public enum EPawnAnimationState
 
 public class PawnAnimator : EntityAnimator
 {
-    public static string BaseLayer = "BaseLayer.";
     public static string DownState = ".Down";
 
+    protected IObjectManager objectManager;
     protected PawnEntity pawn;
     protected SpriteRenderer spriteRenderer;
 
@@ -44,12 +46,11 @@ public class PawnAnimator : EntityAnimator
         if (weaponAnimation)
         {
             Equipment weapon = pawn.EquipmentManager.GetFirst(ESlotType.Weapon).equipment;
-            if (weapon != null && weapon.animationPrefab != null)
+            if (weapon != null && weapon.animationName != null)
             {
-                GameObject obj = Instantiate(weapon.animationPrefab);
-                obj.transform.SetParent(transform);
-                obj.transform.localScale = weaponOffset;
-                WeaponAnimator weaponAnimator = obj.GetComponent<WeaponAnimator>();
+                IMyObject obj = objectManager.Activate(weapon.animationName, transform.position, Vector3.zero, transform);
+                obj.Transform.localPosition = weaponOffset;
+                WeaponAnimator weaponAnimator = obj.Transform.GetComponent<WeaponAnimator>();
                 weaponAnimator.Play(movementName, spriteRenderer.sortingOrder);
             }
         }
@@ -60,6 +61,7 @@ public class PawnAnimator : EntityAnimator
         base.Awake();
         pawn = (PawnEntity)entity;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        objectManager = ServiceLocator.Get<IObjectManager>();
     }
 
     protected virtual void Update()
