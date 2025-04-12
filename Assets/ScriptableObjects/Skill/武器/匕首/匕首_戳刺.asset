@@ -17,10 +17,15 @@ MonoBehaviour:
   extraDescription: 
   actionTime: 50
   animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
+  HPCost: 0
   powers:
   - type: 2
     power: 80

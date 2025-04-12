@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: "\u53EF\u5165\u961F\u4EBA\u7269"
   m_EditorClassIdentifier: 
-  m_GroupName: Player
+  m_GroupName: "\u53EF\u5165\u961F\u4EBA\u7269"
   m_Data:
     m_SerializedData: []
   m_GUID: 39fbfb33e4e210844aabd5e572ed304c

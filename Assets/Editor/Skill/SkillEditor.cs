@@ -16,13 +16,7 @@ public class SkillEditor : AutoEditor
     protected override void OnEnable()
     {
         base.OnEnable();
-        animationNames = new();
-        List<GameObject> temp = new();
-        EditorExtendUtility.FindAssets($"技能特效 t:GameObject", temp);
-        for (int i = 0; i < temp.Count; i++)
-        {
-            animationNames.Add(temp[i].name);
-        }
+        animationNames = EditorExtendUtility.FindAssetsNames($"技能特效 t:GameObject");
     }
 
     protected override void MyOnInspectorGUI()

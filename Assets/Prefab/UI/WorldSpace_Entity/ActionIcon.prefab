@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: 
   canvasGroup: {fileID: 0}
-  normalizedDistance: 0.04
+  normalizedDistance: 0.05
   action:
     agent: {fileID: 0}
     skill: {fileID: 0}

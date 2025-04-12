@@ -1,7 +1,6 @@
 using EditorExtend;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 
 [CustomEditor(typeof(Equipment))]
 public class EquipmentEditor : PawnModifierSOEditor
@@ -13,13 +12,7 @@ public class EquipmentEditor : PawnModifierSOEditor
     protected override void OnEnable()
     {
         base.OnEnable();
-        animationNames = new();
-        List<GameObject> temp = new();
-        EditorExtendUtility.FindAssets($"ÎäÆ÷¶¯»­ t:GameObject", temp);
-        for (int i = 0; i < temp.Count; i++)
-        {
-            animationNames.Add(temp[i].name);
-        }
+        animationNames = EditorExtendUtility.FindAssetsNames($"ÎäÆ÷¶¯»­ t:GameObject");
     }
 
     protected override void MyOnInspectorGUI()

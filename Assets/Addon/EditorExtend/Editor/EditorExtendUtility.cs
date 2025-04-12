@@ -86,6 +86,21 @@ namespace EditorExtend
             }
         }
 
+        /// <summary>
+        /// 查找所有符合filter的UnityEngine.Object,并将其名称存放在List中
+        /// </summary>
+        public static List<string> FindAssetsNames(string filter)
+        {
+            List<UnityEngine.Object> temp = new();
+            FindAssets(filter, temp);
+            List<string> ret = new();
+            for (int i = 0; i < temp.Count; i++)
+            {
+                ret.Add(temp[i].name);
+            }
+            return ret;
+        }
+
 
         public static bool HasAttribute<T>(MemberInfo member, bool inherit = false) where T : Attribute
         {

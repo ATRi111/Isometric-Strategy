@@ -7,7 +7,7 @@ using UnityEngine;
 public class AreaAnimation : AnimationObject
 {
     public string prefabName;
-    public List<Vector3Int> area;
+    private readonly List<Vector3Int> area = new();
 
     public override void Initialize(IAnimationSource source)
     {
