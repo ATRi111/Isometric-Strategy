@@ -36,7 +36,7 @@ public class SkillEditor : AutoEditor
         weatherPreConditions.ListField("天气前置条件");
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.EndHorizontal();
-        actionTime.IntField("固定时间消耗");
+        actionTime.IntField("基本时间消耗");
         HPCost.IntField("血量消耗");
         parameterOnAgent.ListField("参数修改");
         buffOnAgent.ListField("对自身施加/移除Buff");

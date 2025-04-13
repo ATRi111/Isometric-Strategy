@@ -1,7 +1,7 @@
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "偷袭", menuName = "技能/特殊/偷袭")]
+[CreateAssetMenu(fileName = "戳刺", menuName = "技能/特殊/戳刺")]
 public class SneakAttackSkill : RangedSkill
 {
     public static bool SneakCheck(PawnEntity agent, Entity victim)
