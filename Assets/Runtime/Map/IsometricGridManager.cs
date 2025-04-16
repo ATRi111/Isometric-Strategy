@@ -181,6 +181,41 @@ public class IsometricGridManager : IsometricGridManagerBase
     }
     #endregion
 
+    #region ≈ ≈¿
+
+    private readonly HashSet<Ladder> ladders = new();
+
+    public bool ClimbCheck(Vector3Int from, Vector3Int to)
+    {
+        Vector3Int climbDirection, ladderDirection, current;
+        if(to.z > from.z)
+        {
+            climbDirection = Vector3Int.forward;
+            current = to.ResetZ(from.z) + Vector3Int.forward;
+            ladderDirection = (from - to).ResetZ();
+        }
+        else
+        {
+            climbDirection = Vector3Int.back;
+            current = from + Vector3Int.back;
+            ladderDirection = (to - from).ResetZ();
+        }
+        for (; ; current += climbDirection)
+        {
+            if (current.z == to.z)
+                return true;
+            Ladder ladder = new()
+            {
+                cellPosition = current,
+                direction = ladderDirection
+            };
+            if (!ladders.Contains(ladder))
+                return false;
+        }
+    }
+
+    #endregion
+
 #if UNITY_EDITOR
 
     #region Õ∏ ”
@@ -231,5 +266,10 @@ public class IsometricGridManager : IsometricGridManagerBase
     private void Start()
     {
         ServiceLocator.Get<IEventSystem>().Invoke(EEvent.AfterMapInitialize);
+        GridSurface[] gridSurfaces = GetComponentsInChildren<GridSurface>();
+        for (int i = 0; i < gridSurfaces.Length; i++)
+        {
+            gridSurfaces[i].GetLadder(ladders);
+        }
     }
 }

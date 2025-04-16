@@ -24,11 +24,13 @@ public class WalkSkill : MoveSkill
             temp.Add(route[0]);
             for (int i = 1; i < route.Count; i++)
             {
-                if (route[i].z > temp[^1].z)        //上移时轨迹
-                    temp.Add(temp[^1].ResetZ(route[i].z));
-                else if (route[i].z < temp[^1].z)   //下移时轨迹
-                    temp.Add(new Vector3Int(route[i].x, route[i].y, Mathf.RoundToInt(temp[^1].z)));
-                temp.Add(route[i]);
+                Vector3 next = route[i];
+                Vector3 prev = temp[^1];
+                if (next.z > prev.z)        //上移时轨迹
+                    temp.Add(prev.ResetZ(next.z) + 0.02f * (next - prev).ResetZ());
+                else if (next.z < prev.z)   //下移时轨迹
+                    temp.Add(next.ResetZ(prev.z) + 0.02f * (next - prev).ResetZ());
+                temp.Add(next);
             }
         }
         ret.effects.Add(new MoveEffect(agent, position, target, temp));

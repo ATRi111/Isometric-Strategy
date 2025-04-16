@@ -15,8 +15,8 @@ public abstract class AMover : MoverBase
 
     public override bool MoveCheck(Node from, Node to)
     {
-        return base.StayCheck(to)
-            && movable.HeightCheck(from, to);
+        return base.MoveCheck(from,to)
+            && (movable.HeightCheck(from, to) || movable.ClimbCheck(from, to));
     }
 
     public override float CalculateCost(Node from, Node to, float primitiveCost)

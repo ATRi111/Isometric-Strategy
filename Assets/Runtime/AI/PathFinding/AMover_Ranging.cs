@@ -15,7 +15,7 @@ public class AMover_Ranging : AMover
         if ((from.Position - to.Position).sqrMagnitude == 1)
             return base.MoveCheck(from, to);
 
-        return movable.JumpCheck(from.Position, to.Position, MovableGridObject.ObjectCheck_IgnoreAlly);
+        return movable.JumpCheck(from, to, MovableGridObject.ObjectCheck_IgnoreAlly);
     }
 
     public override bool MoveAbilityCheck(Node node)

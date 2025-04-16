@@ -2,7 +2,6 @@ using AStar;
 using Character;
 using EditorExtend.GridEditor;
 using System;
-using UnityEngine;
 
 public class MovableGridObject : GridObject
 {
@@ -50,12 +49,12 @@ public class MovableGridObject : GridObject
         moveAbility.Refresh();
     }
 
-    public virtual bool JumpCheck(Vector2Int fromXY, Vector2Int toXY, Func<PawnEntity,GridObject, bool> ObjectCheck = null)
+    public virtual bool JumpCheck(Node from, Node to, Func<PawnEntity,GridObject, bool> ObjectCheck = null)
     {
         JumpSkill jumpSkill = Pawn.SkillManager.FindSkill<JumpSkill>();
         if (jumpSkill == null)
             return false;
-        return jumpSkill.JumpCheck(Pawn, Pawn.Igm, fromXY, toXY, ObjectCheck);
+        return jumpSkill.JumpCheck(Pawn, Pawn.Igm, from.Position, to.Position, ObjectCheck);
     }
 
     /// <summary>
@@ -76,5 +75,10 @@ public class MovableGridObject : GridObject
     public virtual bool HeightCheck(int fromLayer, int toLayer)
     {
         return toLayer <= fromLayer + climbAbility.IntValue && toLayer >= fromLayer - dropAbility.IntValue;
+    }
+
+    public virtual bool ClimbCheck(Node from, Node to)
+    {
+        return Igm.ClimbCheck(Igm.AboveGroundPosition(from.Position), Igm.AboveGroundPosition(to.Position));
     }
 }
