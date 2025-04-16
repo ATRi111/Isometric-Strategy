@@ -63,6 +63,10 @@ namespace Services.Event
         /// </summary>
         ShowPawnPanel,
         /// <summary>
+        /// 将一个角色添加到交换位置对中，参数:Pawn
+        /// </summary>
+        SwitchPawn,
+        /// <summary>
         /// 将角色设为观察目标，参数：Pawn
         /// </summary>
         SetPawnTaregt,

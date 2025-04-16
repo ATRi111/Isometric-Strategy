@@ -6,10 +6,18 @@ public class PawnIcon : InfoIcon , IPointerClickHandler
     public SkillUIManager skillUIManager;
     private PawnEntity pawn;
 
+    private PlayerManager playerManager;
+    public bool CanSwitch => !pawn.GameManager.inBattle && playerManager.Find(pawn.EntityName) != null;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
             eventSystem.Invoke(EEvent.ShowPawnPanel, pawn);
+        else if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            if(CanSwitch)
+                eventSystem.Invoke(EEvent.SwitchPawn, pawn);
+        }
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
@@ -46,6 +54,7 @@ public class PawnIcon : InfoIcon , IPointerClickHandler
         base.Awake();
         pawn = GetComponentInParent<PawnEntity>();
         skillUIManager = SkillUIManager.FindInstance();
+        playerManager = PlayerManager.FindInstance();
     }
 
     protected override void OnEnable()

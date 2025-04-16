@@ -5,24 +5,13 @@ using System.Collections.Generic;
 public class EquipmentManager : CharacterComponentBase
 {
     public List<EquipmentSlot> slots;
+
+    private PlayerManager playerManager;
     private PawnEntity pawn;
-    public bool CanChangeEquipment => !pawn.GameManager.inBattle && pawn.Brain.humanControl;
+    public bool CanChangeEquipment => !pawn.GameManager.inBattle && playerManager.Find(pawn.EntityName) != null;
 
     public EquipmentSlot this[ESlotType slot]
         => slots.Find(x => x.slotType == slot);
-
-    public EquipmentManager()
-    {
-        slots = new()
-        {
-            new EquipmentSlot(ESlotType.Weapon),
-            new EquipmentSlot(ESlotType.Armor),
-            new EquipmentSlot(ESlotType.Jewelry),
-            new EquipmentSlot(ESlotType.SkillBook),
-            new EquipmentSlot(ESlotType.SkillBook),
-            new EquipmentSlot(ESlotType.SkillBook),
-        };
-    }
 
     public void Register(PawnEntity pawn)
     {
@@ -137,5 +126,24 @@ public class EquipmentManager : CharacterComponentBase
             slots[i].equipment = null;
         }
         pawn.RefreshProperty();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        playerManager = PlayerManager.FindInstance();
+    }
+
+    public EquipmentManager()
+    {
+        slots = new()
+        {
+            new EquipmentSlot(ESlotType.Weapon),
+            new EquipmentSlot(ESlotType.Armor),
+            new EquipmentSlot(ESlotType.Jewelry),
+            new EquipmentSlot(ESlotType.SkillBook),
+            new EquipmentSlot(ESlotType.SkillBook),
+            new EquipmentSlot(ESlotType.SkillBook),
+        };
     }
 }
