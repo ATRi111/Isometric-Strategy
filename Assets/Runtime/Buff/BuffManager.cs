@@ -84,12 +84,12 @@ public class BuffManager : CharacterComponentBase
         return null;
     }
 
-    public List<Buff> FindRemovable(ERemoveFlag removeFlag)
+    public List<Buff> FindRemovable(EBuffType removeFlag)
     {
         List<Buff> ret = new();
         foreach(Buff buff in buffs)
         {
-            if(buff.Enabled && buff.so.removeFlag == removeFlag)
+            if (!buff.so.unremovable && buff.Enabled && buff.so.buffType == removeFlag)
                 ret.Add(buff);
         }
         return ret;

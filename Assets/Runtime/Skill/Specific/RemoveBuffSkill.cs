@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "移除Buff", menuName = "技能/特殊/移除Buff")]
 public class RemoveBuffSkill : RangedSkill
 {
-    public ERemoveFlag removeFlag;
+    public EBuffType buffType;
 
     protected override void MockBuffOnVictim(PawnEntity agent, PawnEntity victim, EffectUnit ret)
     {
-        List<Buff> buffs = victim.BuffManager.FindRemovable(removeFlag);
+        List<Buff> buffs = victim.BuffManager.FindRemovable(buffType);
         if(buffs.Count > 0)
         {
             int r = Effect.randomGroup.NextInt(0, buffs.Count);
@@ -23,12 +23,15 @@ public class RemoveBuffSkill : RangedSkill
     {
         base.Describe(sb);
         sb.Append("移除目标的一个随机");
-        switch(removeFlag)
+        switch(buffType)
         {
-            case ERemoveFlag.Buff:
+            case EBuffType.Uncertain:
+                sb.Append("?");
+                break;
+            case EBuffType.Buff:
                 sb.Append("正面");
                 break;
-            case ERemoveFlag.Debuff:
+            case EBuffType.Debuff:
                 sb.Append("负面");
                 break;
         }

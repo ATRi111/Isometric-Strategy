@@ -13,6 +13,14 @@ public class ModifyParameterEffect : Effect
 
     public override bool Appliable => pawn.parameterDict[parameterName] == value_prev;
 
+    protected override AnimationProcess GenerateAnimation_Local()
+    {
+        return new ObjectAnimationProcess(this,
+            "结果特效_参数改变",
+            victim.transform,
+            victim.transform.position);
+    }
+
     public ModifyParameterEffect(Entity victim, string parameterName, int value_prev, int value, int probability = MaxProbability)
         : base(victim, probability)
     {

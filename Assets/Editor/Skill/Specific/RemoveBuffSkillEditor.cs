@@ -5,11 +5,11 @@ using UnityEditor;
 public class RemoveBuffSkillEditor : RangedSkillEditor
 {
     [AutoProperty]
-    public SerializedProperty removeFlag;
+    public SerializedProperty buffType;
 
     protected override void MyOnInspectorGUI()
     {
         base.MyOnInspectorGUI();
-        removeFlag.EnumField<ERemoveFlag>("可移除Buff类型");
+        buffType.EnumField<EBuffType>("可移除Buff类型");
     }
 }
