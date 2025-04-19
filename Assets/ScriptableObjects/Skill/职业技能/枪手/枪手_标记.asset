@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 5b3166cb38415a442bbd72635341bb17, type: 3}
   extraDescription: 
   actionTime: 0
-  animationName: 
+  animationPrefab: {fileID: 4012902988090948449, guid: 708745c676b273f4aa4071a533eed66c, type: 3}
   pawnAnimationState: 0
   movementLatency: 0
   weaponAnimation: 0
@@ -24,13 +24,17 @@ MonoBehaviour:
   buffPreConditions:
   - so: {fileID: 11400000, guid: 21def3fa248d19e4cae761c296074f06, type: 2}
     requireExist: 0
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent:
   - so: {fileID: 11400000, guid: 21def3fa248d19e4cae761c296074f06, type: 2}
+    remove: 0
     probability: 100
+  HPCost: 0
   powers: []
   buffOnVictim:
   - so: {fileID: 11400000, guid: f4bcec32846e7ee4fbbb88483150a335, type: 2}
+    remove: 0
     probability: 100
   hitBackProbability: 0
   victimType: 1

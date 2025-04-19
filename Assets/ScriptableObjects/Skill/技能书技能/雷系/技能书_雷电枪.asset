@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be08be306136c0e43a26bbd990d4a7df, type: 3}
+  m_Name: "\u6280\u80FD\u4E66_\u96F7\u7535\u67AA"
+  m_EditorClassIdentifier: 
+  displayName: "\u96F7\u7535\u67AA"
+  icon: {fileID: 0}
+  extraDescription: 
+  actionTime: 50
+  animationPrefab: {fileID: 2225733002755435550, guid: 8214b98f83a391c4c87750bf258bd028, type: 3}
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
+  preConditions: []
+  buffPreConditions:
+  - so: {fileID: 11400000, guid: 1a343d4288b6b6b4a9a2c90c421c9cf3, type: 2}
+    requireExist: 1
+  weatherPreConditions: []
+  parameterOnAgent: []
+  buffOnAgent:
+  - so: {fileID: 11400000, guid: 1a343d4288b6b6b4a9a2c90c421c9cf3, type: 2}
+    remove: 1
+    probability: 100
+  HPCost: 0
+  powers:
+  - type: 6
+    power: 60
+    strMultiplier: 0.3
+    dexMultiplier: 0
+    intMultiplier: 0.4
+    mndMultiplier: 0.3
+  buffOnVictim:
+  - so: {fileID: 11400000, guid: 1a343d4288b6b6b4a9a2c90c421c9cf3, type: 2}
+    remove: 0
+    probability: 75
+  hitBackProbability: 0
+  victimType: 1
+  minLayer: -4
+  maxLayer: 4
+  castingDistance: 5
+  aimAtSelf: 1
+  effectRange: 1

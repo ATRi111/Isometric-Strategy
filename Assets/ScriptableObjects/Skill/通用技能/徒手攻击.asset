@@ -16,14 +16,16 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f77d324a9a95feb42877ae0544f102bd, type: 3}
   extraDescription: 
   actionTime: 50
-  animationName: 
+  animationPrefab: {fileID: 6094005345954003880, guid: 5b2abe91224a77548adbfcfd79503169, type: 3}
   pawnAnimationState: 0
   movementLatency: 0
   weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
+  HPCost: 0
   powers:
   - type: 3
     power: 50

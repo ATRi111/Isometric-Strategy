@@ -16,10 +16,16 @@ MonoBehaviour:
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
+  animationPrefab: {fileID: 2225733002755435550, guid: 276eac13c292f194e8bc558c2e22aabe, type: 3}
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
+  HPCost: 0
   powers:
   - type: 0
     power: 100
@@ -29,6 +35,7 @@ MonoBehaviour:
     mndMultiplier: 1
   buffOnVictim:
   - so: {fileID: 11400000, guid: 62065c3f34916424c841fbec7354bb0c, type: 2}
+    remove: 0
     probability: 75
   hitBackProbability: 15
   victimType: 1

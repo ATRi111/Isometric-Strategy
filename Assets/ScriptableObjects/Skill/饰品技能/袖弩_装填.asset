@@ -13,12 +13,21 @@ MonoBehaviour:
   m_Name: "\u8896\u5F29_\u88C5\u586B"
   m_EditorClassIdentifier: 
   displayName: "\u88C5\u586B"
+  icon: {fileID: 0}
+  extraDescription: 
   actionTime: 50
+  animationPrefab: {fileID: 2225733002755435550, guid: d5d613ab4348ee74dac4b97ba247742a, type: 3}
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions:
   - conditionType: 0
     parameterIndex: 0
     value: 0
+  buffPreConditions: []
+  weatherPreConditions: []
   parameterOnAgent:
   - parameterIndex: 0
     deltaValue: 1
   buffOnAgent: []
+  HPCost: 0

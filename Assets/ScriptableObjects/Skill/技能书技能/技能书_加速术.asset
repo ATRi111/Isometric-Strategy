@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: abeeca7adf1aa6e448141788c842c005, type: 3}
   extraDescription: 
   actionTime: 25
-  animationName: 
+  animationPrefab: {fileID: 4012902988090948449, guid: 95055feec1478f84282abe831c04b241, type: 3}
   pawnAnimationState: 0
   movementLatency: 0
   weaponAnimation: 0

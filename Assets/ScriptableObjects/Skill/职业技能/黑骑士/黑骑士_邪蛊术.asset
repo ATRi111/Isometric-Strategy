@@ -13,18 +13,28 @@ MonoBehaviour:
   m_Name: "\u9ED1\u9A91\u58EB_\u90AA\u86CA\u672F"
   m_EditorClassIdentifier: 
   displayName: "\u90AA\u86CA\u672F"
+  icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
+  animationPrefab: {fileID: 4012902988090948449, guid: 708745c676b273f4aa4071a533eed66c, type: 3}
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
+  weatherPreConditions: []
   parameterOnAgent: []
   buffOnAgent: []
+  HPCost: 0
   powers: []
   buffOnVictim:
   - so: {fileID: 11400000, guid: 7cc50d21abaa0c74db15ee575407af6f, type: 2}
+    remove: 0
     probability: 75
+  hitBackProbability: 0
   victimType: 2
   minLayer: -32
   maxLayer: 32
   castingDistance: 4
+  aimAtSelf: 0
   effectRange: 1

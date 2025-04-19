@@ -15,8 +15,14 @@ public class AreaAnimation : AnimationObject
         if (prefab != null)
         {
             PawnAction action = source as PawnAction;
-            AimSkill skill = action.skill as AimSkill;
-            skill.MockArea(igm, action.position, action.target, area);
+            if(action.skill is AimSkill aimSkill)
+                aimSkill.MockArea(igm, action.position, action.target, area);
+            else
+            {
+                area.Clear();
+                area.Add(action.target);
+            }
+
             for (int i = 0; i < area.Count; i++)
             {
                 Vector3 world = igm.CellToWorld(area[i]);

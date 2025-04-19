@@ -42,6 +42,7 @@ public abstract class AnimationObject : MonoBehaviour
         if (audio_recycle != null)
             audioPlayer.CreateAudioByPrefab(audio_recycle.name, transform.position);
         source = null;
+        ObjectPoolUtility.RecycleMyObjects(gameObject);
         myObject.Recycle();
     }
 
@@ -51,10 +52,5 @@ public abstract class AnimationObject : MonoBehaviour
         myObject = GetComponent<MyObject>();
         audioPlayer = ServiceLocator.Get<IAudioPlayer>();
         objectManager = ServiceLocator.Get<IObjectManager>();
-    }
-
-    private void OnDisable()
-    {
-        ObjectPoolUtility.RecycleMyObjects(gameObject);
     }
 }

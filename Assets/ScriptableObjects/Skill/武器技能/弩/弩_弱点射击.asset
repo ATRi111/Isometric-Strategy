@@ -34,8 +34,8 @@ MonoBehaviour:
   powers:
   - type: 2
     power: 130
-    strMultiplier: 0.5
-    dexMultiplier: 0.5
+    strMultiplier: 0.2
+    dexMultiplier: 0.8
     intMultiplier: 0
     mndMultiplier: 0
   buffOnVictim: []
