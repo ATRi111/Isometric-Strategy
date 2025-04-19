@@ -9,7 +9,7 @@ public abstract class Skill : ScriptableObject , IDescription
 
     public string extraDescription;
     public int actionTime;
-    public string animationName;
+    public GameObject animationPrefab;
     public EPawnAnimationState pawnAnimationState;
     public float movementLatency;
     public bool weaponAnimation;
@@ -125,10 +125,10 @@ public abstract class Skill : ScriptableObject , IDescription
     /// </summary>
     public virtual AnimationProcess MockAnimation(PawnAction action)
     {
-        if (!string.IsNullOrWhiteSpace(animationName))
+        if (animationPrefab != null)
         {
             ObjectAnimationProcess animationProcess = new(
-                action, animationName,
+                action, animationPrefab.name,
                 action.agent.transform,
                 action.agent.transform.position);
             return animationProcess;

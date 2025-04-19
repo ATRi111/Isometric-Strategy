@@ -7,17 +7,9 @@ using UnityEngine;
 public class SkillEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty icon, displayName, animationName, pawnAnimationState, movementLatency, weaponAnimation;
+    public SerializedProperty icon, displayName, animationPrefab, pawnAnimationState, movementLatency, weaponAnimation;
     [AutoProperty]
     public SerializedProperty preConditions, buffPreConditions, weatherPreConditions, actionTime, HPCost, parameterOnAgent, buffOnAgent, extraDescription;
-
-    protected List<string> animationNames;
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        animationNames = EditorExtendUtility.FindAssetsNames($"技能特效 t:GameObject");
-    }
 
     protected override void MyOnInspectorGUI()
     {
@@ -27,7 +19,7 @@ public class SkillEditor : AutoEditor
             displayName.stringValue = GenerateDisplayName();
         }
         icon.PropertyField("图标");
-        animationName.TextFieldWithOptionButton("技能特效名", animationNames);
+        animationPrefab.PropertyField("技能特效");
         pawnAnimationState.EnumField<EPawnAnimationState>("人物动作");
         movementLatency.FloatField("人物动作延迟");
         weaponAnimation.BoolField("启用武器动画");

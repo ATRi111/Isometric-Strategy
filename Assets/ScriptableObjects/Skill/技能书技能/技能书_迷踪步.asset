@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fb6a15e83b01946abb4634c77c6faf, type: 3}
+  m_Name: "\u6280\u80FD\u4E66_\u8FF7\u8E2A\u6B65"
+  m_EditorClassIdentifier: 
+  displayName: "\u8FF7\u8E2A\u6B65"
+  icon: {fileID: 21300000, guid: 15fd52ecc22cd0d4aab0b20451510b4f, type: 3}
+  extraDescription: 
+  actionTime: 80
+  animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
+  preConditions:
+  - conditionType: 3
+    parameterIndex: 2
+    value: 1
+  buffPreConditions: []
+  parameterOnAgent:
+  - parameterIndex: 2
+    deltaValue: -1
+  buffOnAgent: []
+  powers: []
+  buffOnVictim: []
+  hitBackProbability: 0
+  victimType: 0
+  minLayer: -32
+  maxLayer: 32
+  castingDistance: 6
+  aimAtSelf: 0

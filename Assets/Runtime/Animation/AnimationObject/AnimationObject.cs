@@ -15,8 +15,8 @@ public abstract class AnimationObject : MonoBehaviour
     protected IAudioPlayer audioPlayer;
     protected IObjectManager objectManager;
 
-    public string audio_activate;
-    public string audio_recycle;
+    public GameObject audio_activate;
+    public GameObject audio_recycle;
     public float lifeSpan;
     public IAnimationSource source;
 
@@ -24,8 +24,8 @@ public abstract class AnimationObject : MonoBehaviour
     {
         this.source = source;
         StartCoroutine(DelayRecycle(lifeSpan));
-        if (!string.IsNullOrWhiteSpace(audio_activate))
-            audioPlayer.CreateAudioByPrefab(audio_activate, transform.position);
+        if (audio_activate != null)
+            audioPlayer.CreateAudioByPrefab(audio_activate.name, transform.position);
     }
 
     /// <summary>
@@ -39,8 +39,8 @@ public abstract class AnimationObject : MonoBehaviour
     protected IEnumerator DelayRecycle(float t)
     {
         yield return new WaitForSeconds(t);
-        if (!string.IsNullOrWhiteSpace(audio_recycle))
-            audioPlayer.CreateAudioByPrefab(audio_recycle, transform.position);
+        if (audio_recycle != null)
+            audioPlayer.CreateAudioByPrefab(audio_recycle.name, transform.position);
         source = null;
         myObject.Recycle();
     }

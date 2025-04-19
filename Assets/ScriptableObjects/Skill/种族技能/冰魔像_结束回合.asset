@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7466f6ec6d7b449938c9d099358224, type: 3}
+  m_Name: "\u51B0\u9B54\u50CF_\u7ED3\u675F\u56DE\u5408"
+  m_EditorClassIdentifier: 
+  displayName: "\u7ED3\u675F\u56DE\u5408"
+  icon: {fileID: 0}
+  extraDescription: 
+  actionTime: 50
+  animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
+  preConditions: []
+  buffPreConditions: []
+  weatherPreConditions: []
+  parameterOnAgent: []
+  buffOnAgent: []
+  HPCost: 50

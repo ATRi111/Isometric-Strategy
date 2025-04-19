@@ -46,9 +46,9 @@ public class PawnAnimator : EntityAnimator
         if (weaponAnimation)
         {
             Equipment weapon = pawn.EquipmentManager.GetFirst(ESlotType.Weapon).equipment;
-            if (weapon != null && weapon.animationName != null)
+            if (weapon != null && weapon.animationPrefab != null)
             {
-                IMyObject obj = objectManager.Activate(weapon.animationName, transform.position, Vector3.zero, transform);
+                IMyObject obj = objectManager.Activate(weapon.animationPrefab.name, transform.position, Vector3.zero, transform);
                 obj.Transform.localPosition = weaponOffset;
                 WeaponAnimator weaponAnimator = obj.Transform.GetComponent<WeaponAnimator>();
                 weaponAnimator.Play(movementName, spriteRenderer.sortingOrder);

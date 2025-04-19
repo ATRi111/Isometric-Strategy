@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7466f6ec6d7b449938c9d099358224, type: 3}
+  m_Name: "\u5927\u5251_\u84C4\u529B"
+  m_EditorClassIdentifier: 
+  displayName: "\u84C4\u529B"
+  icon: {fileID: 21300000, guid: aca9ba3d14f8ab9448a44e4659c9a34b, type: 3}
+  extraDescription: 
+  actionTime: 50
+  animationName: 
+  pawnAnimationState: 0
+  movementLatency: 0
+  weaponAnimation: 0
+  preConditions:
+  - conditionType: 2
+    parameterIndex: 1
+    value: 2
+  buffPreConditions: []
+  parameterOnAgent:
+  - parameterIndex: 1
+    deltaValue: 1
+  buffOnAgent: []

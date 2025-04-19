@@ -6,19 +6,11 @@ using UnityEditor;
 public class AreaAnimationEditor : AnimationObjectEditor
 {
     [AutoProperty]
-    public SerializedProperty prefabName;
-
-    protected List<string> prefabNames;
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        prefabNames = EditorExtendUtility.FindAssetsNames($"技能特效生成物 t:GameObject");
-    }
+    public SerializedProperty prefab;
 
     protected override void MyOnInspectorGUI()
     {
         base.MyOnInspectorGUI();
-        prefabName.TextFieldWithOptionButton("生成物", prefabNames);
+        prefab.PropertyField("生成物");
     }
 }
