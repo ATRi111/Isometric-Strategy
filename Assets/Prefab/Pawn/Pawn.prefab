@@ -828,6 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   up: 0
   right: 0
+  weaponOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &2762008040886419737
 PrefabInstance:
   m_ObjectHideFlags: 0
