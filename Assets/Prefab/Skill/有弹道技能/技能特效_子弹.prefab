@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: audio_recycle
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4175040659484563263, guid: 674d1cf99978be04386ef58b22a3af9a, type: 3}
+      propertyPath: nomalizedLatency
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6528610022039466329, guid: 674d1cf99978be04386ef58b22a3af9a, type: 3}
       propertyPath: m_Sprite
       value: 

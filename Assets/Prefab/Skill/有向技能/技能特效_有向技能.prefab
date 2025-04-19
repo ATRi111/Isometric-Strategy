@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23e07a8042592a498fac417f9040eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio_activate: 
-  audio_recycle: 
-  lifeSpan: 0
-  prefabName: 
+  audio_activate: {fileID: 0}
+  audio_recycle: {fileID: 0}
+  lifeSpan: 1
+  nomalizedLatency: 1

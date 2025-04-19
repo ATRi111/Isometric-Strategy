@@ -17,7 +17,8 @@ public static class HitUtility
             {
                 if(effect.WillHappen && effect.victim is PawnEntity pawnVictim && !generated.Contains(pawnVictim))
                 {
-                    IMyObject obj = ServiceLocator.Get<IObjectManager>().Activate("Hit",
+                    IMyObject obj = ServiceLocator.Get<IObjectManager>().Activate(
+                        "技能特效生成物_抖动",
                         pawnVictim.transform.position,
                         Vector3.zero,
                         pawnVictim.transform);

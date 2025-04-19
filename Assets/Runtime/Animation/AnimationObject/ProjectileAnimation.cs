@@ -26,7 +26,7 @@ public class ProjectileAnimation : AnimationObject
         ProjectileSkill skill = (ProjectileSkill)action.skill;
         List<Vector3> trajectory = new();
         skill.HitCheck(action.agent, igm, action.target, trajectory);
-        return moveController.MockTime_CellPosition(trajectory, skill.speedMultiplier * moveController.defaultSpeed);
+        return nomalizedLatency * moveController.MockTime_CellPosition(trajectory, skill.speedMultiplier * moveController.defaultSpeed);
     }
 
     private void Ontick(Vector3 position)

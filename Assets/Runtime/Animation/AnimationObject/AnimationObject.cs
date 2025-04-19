@@ -17,8 +17,9 @@ public abstract class AnimationObject : MonoBehaviour
 
     public GameObject audio_activate;
     public GameObject audio_recycle;
-    public float lifeSpan;
     public IAnimationSource source;
+    public float lifeSpan;
+    public float nomalizedLatency = 1f;
 
     public virtual void Initialize(IAnimationSource source)
     {
@@ -33,7 +34,7 @@ public abstract class AnimationObject : MonoBehaviour
     /// </summary>
     public virtual float GetAnimationLatency(IAnimationSource source)
     {
-        return lifeSpan;
+        return lifeSpan * nomalizedLatency;
     }
 
     protected IEnumerator DelayRecycle(float t)

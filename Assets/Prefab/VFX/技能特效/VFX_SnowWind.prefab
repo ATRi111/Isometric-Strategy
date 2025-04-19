@@ -14422,7 +14422,7 @@ GameObject:
   - component: {fileID: 7129991069865238469}
   - component: {fileID: 4583874075464777953}
   m_Layer: 0
-  m_Name: "\u6280\u80FD\u7279\u6548_\u51B0\u98CE"
+  m_Name: VFX_SnowWind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

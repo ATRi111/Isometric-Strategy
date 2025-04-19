@@ -48,9 +48,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2299194057422385027, guid: e3794e27396675240b788446af89ab08, type: 3}
+      propertyPath: nomalizedLatency
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8839741030837677358, guid: e3794e27396675240b788446af89ab08, type: 3}
       propertyPath: m_Name
-      value: "\u6280\u80FD\u7279\u6548_\u6709\u5411\u6280\u80FD"
+      value: "\u6280\u80FD\u7279\u6548_\u95EA\u7535\u675F"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

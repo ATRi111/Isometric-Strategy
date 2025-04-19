@@ -145,3 +145,4 @@ MonoBehaviour:
   audio_activate: {fileID: 0}
   audio_recycle: {fileID: 0}
   lifeSpan: 0
+  nomalizedLatency: 1

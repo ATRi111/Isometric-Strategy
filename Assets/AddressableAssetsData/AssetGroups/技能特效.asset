@@ -27,11 +27,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5b2abe91224a77548adbfcfd79503169
-    m_Address: "\u6280\u80FD\u7279\u6548_\u8FD1\u6218\u653B\u51FB"
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ced36e634eb70d64ea80479dd673ce12
     m_Address: "\u6280\u80FD\u7279\u6548_\u706B\u7403"
     m_ReadOnly: 0
