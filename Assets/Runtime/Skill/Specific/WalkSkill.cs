@@ -26,10 +26,18 @@ public class WalkSkill : MoveSkill
             {
                 Vector3 next = route[i];
                 Vector3 prev = temp[^1];
-                if (next.z > prev.z)        //上移时轨迹
-                    temp.Add(prev.ResetZ(next.z) + 0.02f * (next - prev).ResetZ());
-                else if (next.z < prev.z)   //下移时轨迹
-                    temp.Add(next.ResetZ(prev.z) + 0.02f * (next - prev).ResetZ());
+                if(next.z != prev.z)
+                {
+                    Vector3 inserted;
+                    if (next.z > prev.z)
+                        inserted = prev.ResetZ(next.z); //上移时
+                    else
+                        inserted = next.ResetZ(prev.z); //下移时
+
+                    if (Mathf.Abs(next.z - prev.z) > 2)  //确保攀爬较高的坡时，角色的脸朝向坡
+                        inserted += 0.02f * (next - prev).ResetZ();
+                    temp.Add(inserted);
+                }
                 temp.Add(next);
             }
         }
