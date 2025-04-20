@@ -24322,7 +24322,7 @@ GameObject:
   - component: {fileID: 8095358122763293684}
   - component: {fileID: 8103191105128382362}
   m_Layer: 0
-  m_Name: VFX_Universal_Debuff
+  m_Name: VFX_Effect_Universal_Debuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

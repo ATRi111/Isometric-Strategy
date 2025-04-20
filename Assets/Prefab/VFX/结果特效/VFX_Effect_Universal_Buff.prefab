@@ -19433,7 +19433,7 @@ GameObject:
   - component: {fileID: 5024039293316401461}
   - component: {fileID: 2179783173541182972}
   m_Layer: 0
-  m_Name: VFX_Universal_Buff
+  m_Name: VFX_Effect_Universal_Buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
