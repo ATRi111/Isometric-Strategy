@@ -22,6 +22,11 @@ public class TeleportSkill : RangedSkill
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
+        DescribeTeleport(sb);
+    }
+
+    protected virtual void DescribeTeleport(StringBuilder sb)
+    {
         sb.AppendLine("使自身移动到目标位置");
     }
 }
