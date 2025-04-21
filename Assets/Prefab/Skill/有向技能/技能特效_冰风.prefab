@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2299194057422385027, guid: e3794e27396675240b788446af89ab08, type: 3}
       propertyPath: lifeSpan
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2299194057422385027, guid: e3794e27396675240b788446af89ab08, type: 3}
       propertyPath: nomalizedLatency

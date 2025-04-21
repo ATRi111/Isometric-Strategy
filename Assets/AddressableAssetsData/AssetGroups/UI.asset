@@ -27,11 +27,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 28b334d83b2eef247867802df0f28eea
-    m_Address: DamageNumberUI
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9d44b4f3aac77db40852e28c0cd6f42e
     m_Address: ActorIcon
     m_ReadOnly: 0

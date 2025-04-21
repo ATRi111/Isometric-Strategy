@@ -17,11 +17,10 @@ public class HPChangeEffect : Effect
 
     protected override AnimationProcess GenerateAnimation_Local()
     {
-        FollowHPBar hpBar = victim.GetComponentInChildren<FollowHPBar>();
         return new ObjectAnimationProcess(this,
-            "DamageNumberUI",
-            hpBar.transform,
-            hpBar.UseDamageNumberPosition());
+            "结果特效_血量改变",
+            victim.transform,
+            victim.transform.position);
     }
 
     public override void Apply()

@@ -16,9 +16,10 @@ MonoBehaviour:
   propertyModifier:
     modifiers: []
   skillsAttached: []
-  extraDescription: "\u5728\u8BE5debuff\u6301\u7EED\u65F6\u95F4\u5185\uFF0C\u65E0\u6CD5\u518D\u6B21\u91CA\u653E\u5929\u5802\u4E4B\u95E8\u3002"
+  extraDescription: "\u5728\u8BE5debuff\u6301\u7EED\u65F6\u95F4\u5185\uFF0C\u65E0\u6CD5\u518D\u6B21\u91CA\u653E\u5929\u5802\u4E4B\u95E8"
   duration: 150
   superimposeMode: 1
-  removeFlag: 2
+  buffType: 0
+  unremovable: 0
   primitiveValue: -20
   modifier: {fileID: 0}

@@ -10,9 +10,9 @@ public enum ESuperimposeMode
     Refresh,
 }
 
-public enum ERemoveFlag
+public enum EBuffType
 {
-    Unremovable,
+    Uncertain,
     Buff,
     Debuff,
 }
@@ -25,7 +25,8 @@ public class BuffSO : PawnModifierSO
 {
     public int duration;
     public ESuperimposeMode superimposeMode = ESuperimposeMode.Refresh;
-    public ERemoveFlag removeFlag = ERemoveFlag.Unremovable;
+    public EBuffType buffType = EBuffType.Uncertain;
+    public bool unremovable;
 
     public float primitiveValue;
     public ValueModifier modifier;
@@ -50,17 +51,18 @@ public class BuffSO : PawnModifierSO
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
-        switch(removeFlag)
+        switch(buffType)
         {
-            case ERemoveFlag.Unremovable:
-                sb.AppendLine("不可移除");
+            case EBuffType.Uncertain:
                 break;
-            case ERemoveFlag.Buff:
+            case EBuffType.Buff:
                 sb.AppendLine("正面状态");
                 break;
-            case ERemoveFlag.Debuff:
+            case EBuffType.Debuff:
                 sb.AppendLine("负面状态");
                 break;
         }
+        if (unremovable)
+            sb.AppendLine("无法被移除");
     }
 }

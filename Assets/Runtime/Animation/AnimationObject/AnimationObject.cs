@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// 动画脚本可能有多个，应当令生命周期最长的脚本继承此类，以控制回收，其他脚本持有此类
+/// 一个物体上可以有多个此脚本，均播放完毕后回收物体
 /// </summary>
 [RequireComponent(typeof(MyObject))]
 public abstract class AnimationObject : MonoBehaviour
@@ -18,12 +18,13 @@ public abstract class AnimationObject : MonoBehaviour
     public GameObject audio_activate;
     public GameObject audio_recycle;
     public IAnimationSource source;
-    public float lifeSpan;
+    public float lifeSpan = 1f;
     public float nomalizedLatency = 1f;
 
     public virtual void Initialize(IAnimationSource source)
     {
         this.source = source;
+        myObject.RecycleCount++;
         StartCoroutine(DelayRecycle(lifeSpan));
         if (audio_activate != null)
             audioPlayer.CreateAudioByPrefab(audio_activate.name, transform.position);
@@ -39,12 +40,17 @@ public abstract class AnimationObject : MonoBehaviour
 
     protected IEnumerator DelayRecycle(float t)
     {
-        yield return new WaitForSeconds(t);
+        if (t > 0)
+            yield return new WaitForSeconds(t);
+        else
+            yield return new WaitForEndOfFrame();
+
         if (audio_recycle != null)
             audioPlayer.CreateAudioByPrefab(audio_recycle.name, transform.position);
         source = null;
-        ObjectPoolUtility.RecycleMyObjects(gameObject);
-        myObject.Recycle();
+        if (myObject.RecycleCount == 1)
+            ObjectPoolUtility.RecycleMyObjects(gameObject);
+        myObject.RecycleCount--;
     }
 
     protected virtual void Awake()

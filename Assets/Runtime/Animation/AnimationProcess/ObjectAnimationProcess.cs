@@ -28,8 +28,13 @@ public sealed class ObjectAnimationProcess : AnimationProcess
     public override float MockLatency(IAnimationSource source)
     {
         IMyObject obj = objectManager.Peek(prefabName);
-        AnimationObject animationObject = obj.Transform.GetComponent<AnimationObject>();
-        return animationObject.GetAnimationLatency(source);
+        AnimationObject[] animationObjects = obj.Transform.GetComponentsInChildren<AnimationObject>();
+        float max = 0f;
+        for (int i = 0; i < animationObjects.Length; i++)
+        {
+            max = Mathf.Max(max, animationObjects[i].GetAnimationLatency(source));
+        }
+        return max;
     }
 
     //myObject被回收，标志着动画过程结束
@@ -42,8 +47,11 @@ public sealed class ObjectAnimationProcess : AnimationProcess
     public override void Play()
     {
         myObject = objectManager.Activate(prefabName, position, Vector3.zero, parent) as MyObject;
-        AnimationObject animationObject = myObject.GetComponent<AnimationObject>();
-        animationObject.Initialize(source);
+        AnimationObject[] animationObjects = myObject.GetComponentsInChildren<AnimationObject>();
+        for (int i = 0; i < animationObjects.Length; i++)
+        {
+            animationObjects[i].Initialize(source);
+        }
         myObject.OnRecycle += OneOffComplete;
     }
 

@@ -254,6 +254,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6912022452861372920}
     m_Modifications:
+    - target: {fileID: 1062304299417451175, guid: e54b5fc43ca3aff4a8dd7fa47e22d02a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469575653009532647, guid: e54b5fc43ca3aff4a8dd7fa47e22d02a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6140483557362244782, guid: e54b5fc43ca3aff4a8dd7fa47e22d02a, type: 3}
       propertyPath: m_Name
       value: WeatherAnimationController
