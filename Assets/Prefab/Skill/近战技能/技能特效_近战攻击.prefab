@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7524834145774889897}
   - component: {fileID: 5403261235081853371}
   - component: {fileID: 3854562966962238653}
+  - component: {fileID: -612585349786073202}
   m_Layer: 0
   m_Name: "\u6280\u80FD\u7279\u6548_\u8FD1\u6218\u653B\u51FB"
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  recycleCount: 0
 --- !u!114 &3854562966962238653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,6 +60,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f6a708d5db710428a27cb21cab7362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio_activate: "\u91D1\u5C5E\u65A9\u51FB"
-  audio_recycle: 
+  audio_activate: {fileID: 0}
+  audio_recycle: {fileID: 0}
   lifeSpan: 1
+  nomalizedLatency: 0
+--- !u!114 &-612585349786073202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6094005345954003880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea98543458de1444bd8f1277e215ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio_activate: {fileID: 0}
+  audio_recycle: {fileID: 0}
+  lifeSpan: 1
+  nomalizedLatency: 0.5
+  prefab: {fileID: 0}
