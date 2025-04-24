@@ -47,9 +47,6 @@ MonoBehaviour:
   maxHP:
     defaultValue: 500
     currentValue: 0
-  damageMultiplier:
-    defaultValue: 0
-    currentValue: 0
   hp: 0
   resistance:
     list:
@@ -259,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityName: 
+  description: 
 --- !u!1 &3255350977429458662
 GameObject:
   m_ObjectHideFlags: 0
