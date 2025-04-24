@@ -4,6 +4,8 @@ using Services;
 using Services.Event;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -218,7 +220,6 @@ public class IsometricGridManager : IsometricGridManagerBase
 
 #if UNITY_EDITOR
 
-    #region 透视
     public int sortingOrderThreshold;   //sortingOrder小于等于此值的物体可见
 
     public void ModifySortingOrderThreshold(int deltaValue)
@@ -254,7 +255,53 @@ public class IsometricGridManager : IsometricGridManagerBase
         AddAllObjects();
         UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
-    #endregion
+
+    public void MoveDown()
+    {
+        List<GridObject> gridObjects = new();
+        List<Vector2Int> xys = MaxLayerDict.Keys.ToList();
+        for (int i = 0; i < xys.Count; i++)
+        {
+            GetObjectsXY(xys[i], gridObjects, false);
+            int j = 0;
+            if (gridObjects[0].CellPosition.z == 0)
+            {
+                ObjectDict.Remove(gridObjects[0].CellPosition);
+                DestroyImmediate(gridObjects[0].gameObject);
+                j++;
+            }
+            for (; j < gridObjects.Count; j++)
+            {
+                gridObjects[j].CellPosition += Vector3Int.back;
+            }
+        }
+        AddAllObjects();
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+    }
+
+    public void MoveUp()
+    {
+        List<GridObject> gridObjects = new();
+        List<Vector2Int> xys = MaxLayerDict.Keys.ToList();
+        GameObject ground = Resources.Load<GameObject>("Ground(Autogen)");
+        Transform mountPoint;
+        for (int i = 0; i < xys.Count; i++)
+        {
+            GetObjectsXY(xys[i], gridObjects, true);
+            int j = 0;
+            for (; j < gridObjects.Count; j++)
+            {
+                gridObjects[j].CellPosition += Vector3Int.forward;
+            }
+
+            mountPoint = gridObjects[0].transform.parent;
+            GameObject obj = PrefabUtility.InstantiatePrefab(ground, mountPoint) as GameObject;
+            GridObject gridObject = obj.GetComponent<GridObject>();
+            gridObject.CellPosition = (Vector3Int)xys[i];
+        }
+        AddAllObjects();
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+    }
 
 #endif
 

@@ -14,6 +14,7 @@ public class IsometricGridManagerEditor : IsometricGridManagerBaseEditor
     {
         base.OnEnable();
         igm = target as IsometricGridManager;
+        GridManager.AddAllObjects();
     }
 
     protected override void MyOnInspectorGUI()
@@ -34,6 +35,16 @@ public class IsometricGridManagerEditor : IsometricGridManagerBaseEditor
             if (GUILayout.Button("复原"))
             {
                 igm.ResetSortingOrderThreshold();
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("整体上移"))
+            {
+                igm.MoveUp();
+            }
+            if (GUILayout.Button("整体下移"))
+            {
+                igm.MoveDown();
             }
             EditorGUILayout.EndHorizontal();
         }

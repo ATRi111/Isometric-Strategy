@@ -78,14 +78,6 @@ namespace EditorExtend.GridEditor
         protected override GridObject TryBrushAt(Vector3Int position)
         {
             GridObject gridObject = base.TryBrushAt(position);
-            if(gridObject != null)
-            {
-                GridSortingOrderControllerBase[] controllers = gridObject.GetComponentsInChildren<GridSortingOrderControllerBase>();
-                for (int i = 0; i < controllers.Length; i++)
-                {
-                    controllers[i].RefreshSortingOrder();
-                }
-            }
             return gridObject;
         }
 

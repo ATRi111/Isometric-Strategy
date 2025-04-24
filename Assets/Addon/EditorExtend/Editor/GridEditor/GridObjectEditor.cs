@@ -15,7 +15,9 @@ namespace EditorExtend.GridEditor
         protected override void OnEnable()
         {
             base.OnEnable();
-            prev = cellPosition.vector3IntValue;
+            if(GridObject.Manager != null)
+                prev = cellPosition.vector3IntValue = GridObject.Manager.ClosestCell(GridObject.transform.position);
+            serializedObject.ApplyModifiedProperties();
         }
 
         protected override void MyOnInspectorGUI()

@@ -42,7 +42,8 @@ namespace EditorExtend.GridEditor
 
         #region 位置
         [SerializeField]
-        protected Vector3Int cellPosition;
+        //此字段不用作持久化数据，transform.position才是持久化数据
+        internal Vector3Int cellPosition;
         public Vector3Int CellPosition
         {
             get => cellPosition;
@@ -54,6 +55,7 @@ namespace EditorExtend.GridEditor
                     if (Manager != null)
                         Manager.TryAddObject(this);
                     Refresh();
+                    GridSortingOrderControllerBase.RefreshChildren(this);
                 }
                 else if (referenceCount == 1)
                 {
@@ -65,6 +67,7 @@ namespace EditorExtend.GridEditor
                             Manager.RelocateObject(this, prev);
                     }
                     Refresh();
+                    GridSortingOrderControllerBase.RefreshChildren(this);
                 }
                 else
                     throw new Exception($"{gameObject.name}的{referenceCount}值不合理");

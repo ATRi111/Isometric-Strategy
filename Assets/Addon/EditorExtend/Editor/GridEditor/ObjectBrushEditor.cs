@@ -198,13 +198,7 @@ namespace EditorExtend.GridEditor
             GameObject obj = PrefabUtility.InstantiatePrefab(ObjectBrush.prefab, ObjectBrush.MountPoint) as GameObject;
             Undo.RegisterCreatedObjectUndo(obj, "Create " + obj.name);
             GridObject gridObject = obj.GetComponent<GridObject>();
-
-            //立即更新位置数据
-            SerializedObject temp = new(gridObject);
-            SerializedProperty cellPosition = temp.FindProperty(nameof(cellPosition));
-            cellPosition.vector3IntValue = position;
             gridObject.CellPosition = position;
-            temp.ApplyModifiedProperties();
 
             return gridObject;
         }
