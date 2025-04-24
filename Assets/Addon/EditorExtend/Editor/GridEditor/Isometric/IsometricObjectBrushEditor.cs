@@ -111,19 +111,23 @@ namespace EditorExtend.GridEditor
             if (keyCode == KeyCode.LeftControl || keyCode == KeyCode.RightControl)
             {
                 currentEvent.Use();
+                Focus();
                 UpdateCellPosition();
                 lockXY.boolValue = true;
                 lockLayer.boolValue = false;
                 lockedPosition = ObjectBrush.cellPosition;
+                UpdateCellPosition();
             }
             else if (keyCode == KeyCode.LeftShift || keyCode == KeyCode.RightShift)
             {
                 currentEvent.Use();
+                Focus();
                 UpdateCellPosition();
                 lockLayer.boolValue = true;
                 layer.intValue = ObjectBrush.cellPosition.z;
                 lockXY.boolValue = false;
                 lockedPosition = ObjectBrush.cellPosition;
+                UpdateCellPosition();
             }
         }
         protected override void OnKeyUp(KeyCode keyCode)

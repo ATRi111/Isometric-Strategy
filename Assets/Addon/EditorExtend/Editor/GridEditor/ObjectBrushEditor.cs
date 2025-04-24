@@ -37,6 +37,16 @@ namespace EditorExtend.GridEditor
             isEditting = false;
         }
 
+        //确保聚焦到Scene窗口
+        public void Focus()
+        {
+            if (SceneView.currentDrawingSceneView == null && SceneView.lastActiveSceneView != null)
+            {
+                SceneView.lastActiveSceneView.Focus();
+                SceneView.RepaintAll();
+            }
+        }
+
         protected override void MyOnInspectorGUI()
         {
             base.MyOnInspectorGUI();
@@ -65,6 +75,7 @@ namespace EditorExtend.GridEditor
                 if (GUILayout.Button("开始编辑"))
                 {
                     isEditting = true;
+                    Focus();
                 }
             }
         }
