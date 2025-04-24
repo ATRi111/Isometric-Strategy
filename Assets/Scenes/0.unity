@@ -160,9 +160,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 395641609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f1217225e6a7c4a8bbede057bafa8b, type: 3}
+  m_Script: {fileID: 11500000, guid: bef01b30126dfd140af6cc783ff3204a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: c0544b67387b18a4abef3aefbf587d77, type: 2}
 --- !u!1 &484123483
 GameObject:
   m_ObjectHideFlags: 0

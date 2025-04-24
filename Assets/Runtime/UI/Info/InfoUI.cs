@@ -117,7 +117,7 @@ public class InfoUI : TextBase
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
         {
             canvasGrounp.threshold_blockRaycast = 1f;
             locked = false;

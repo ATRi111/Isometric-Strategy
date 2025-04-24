@@ -38,4 +38,11 @@ public class WeatherTimeAxisIcon : InfoIcon
         eventSystem.AddListener<int>(EEvent.OnTick, OnTick);
         eventSystem.AddListener<BattleField>(EEvent.AfterWeatherChange, AfterWeatherChange);
     }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        eventSystem.RemoveListener<int>(EEvent.OnTick, OnTick);
+        eventSystem.RemoveListener<BattleField>(EEvent.AfterWeatherChange, AfterWeatherChange);
+    }
 }

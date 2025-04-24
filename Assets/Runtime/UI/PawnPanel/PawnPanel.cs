@@ -1,7 +1,6 @@
 using Services.Event;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class PawnPanel : PawnReference
 {
@@ -95,17 +94,5 @@ public class PawnPanel : PawnReference
         eventSystem.RemoveListener(EEvent.HidePawnPanel, Hide);
         levelManager.OnReturnToPrepareMenu -= Hide;
         levelManager.OnStartScout -= Hide;
-    }
-
-
-    private void Update()
-    {
-        if(canvasGroup.Visible)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Hide();
-            }
-        }
     }
 }
