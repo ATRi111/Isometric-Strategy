@@ -54,6 +54,7 @@ public class PawnEntity : Entity
     public Race race;
     public CharacterProperty actionTime;
     public CharacterProperty speedUpRate;
+    public CharacterProperty hatredLevel;
     [NonSerialized]
     public Vector2Int faceDirection;
 

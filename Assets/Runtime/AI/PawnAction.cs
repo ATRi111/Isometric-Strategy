@@ -9,6 +9,8 @@ using UnityEngine;
 [System.Serializable]
 public class PawnAction : IAnimationSource , IDescription
 {
+    public static int HatredLevelOffset = 10;
+
     public PawnEntity agent;
     public Skill skill;
     public Vector3Int position;
@@ -68,6 +70,17 @@ public class PawnAction : IAnimationSource , IDescription
             animationManager.Register(animation, 0f);
         }
         effectUnit.Play(animationManager, latency);
+    }
+
+    public int HatredLevel()
+    {
+        int ret = 0;
+        foreach (Effect effect in effectUnit.effects)
+        {
+            if (effect.PawnVictim != null && effect.PawnVictim.FactionCheck(agent) == -1)
+                ret = Mathf.Max(ret, HatredLevelOffset + effect.PawnVictim.hatredLevel.IntValue);
+        }
+        return ret;
     }
 
     public string Description
