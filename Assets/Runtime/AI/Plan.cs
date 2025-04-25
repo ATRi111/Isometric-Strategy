@@ -16,13 +16,14 @@ public class Plan : IComparable<Plan>
 
     public int CompareTo(Plan other)
     {
-        //同为影响敌人的行动，则优先选择包含更高嘲讽等级的敌人行动
-        if (hatredLevel > 0 && other.hatredLevel > 0 && hatredLevel != other.hatredLevel)
-            return other.hatredLevel.CompareTo(hatredLevel);
-
-        //选择价值更高的行动
         if (value > 0 || other.value > 0)
+        {
+            //同为影响敌人的行动，则优先选择包含更高嘲讽等级的敌人行动
+            if (hatredLevel > 0 && other.hatredLevel > 0 && hatredLevel != other.hatredLevel)
+                return other.hatredLevel.CompareTo(hatredLevel);
+            //选择价值更高的行动
             return other.value.CompareTo(value);
+        }
 
         //价值均为非正数时，选择时间更短的行动
         return action.Time.CompareTo(other.action.Time);

@@ -16,8 +16,9 @@ public abstract class Skill : ScriptableObject , IDescription
 
     public List<ParameterPreCondition> preConditions;
     public List<BuffPreCondition> buffPreConditions;
-    public List<WeatherPreCondition> weatherPreConditions;
+    public List<SkillPrecondition> specialPreconditions;
     public List<PawnParameterModifier> parameterOnAgent;
+    
     public List<BuffModifier> buffOnAgent;
     public int HPCost;
 
@@ -38,9 +39,9 @@ public abstract class Skill : ScriptableObject , IDescription
             if (!buffPreConditions[i].Verify(agent))
                 return false;
         }
-        for (int i = 0; i < weatherPreConditions.Count; i++)
+        for (int i = 0; i < specialPreconditions.Count; i++)
         {
-            if (!weatherPreConditions[i].Verify(igm.BattleField))
+            if (!specialPreconditions[i].Verify(igm, agent))
                 return false;
         }
         return true;
@@ -209,10 +210,10 @@ public abstract class Skill : ScriptableObject , IDescription
     protected virtual void Describe(StringBuilder sb)
     {
         DescribeTime(sb);
+        if (preConditions.Count + buffPreConditions.Count + specialPreconditions.Count > 0)
+            DescribePreConditions(sb);
         if (HPCost != 0)
             DescribeHPCost(sb);
-        if (preConditions.Count + buffPreConditions.Count + weatherPreConditions.Count > 0)
-            DescribePreConditions(sb);
         if (buffOnAgent.Count > 0)
             DescribeBuffOnAgent(sb);
         if(parameterOnAgent.Count > 0)
@@ -230,9 +231,10 @@ public abstract class Skill : ScriptableObject , IDescription
         {
             buffPreConditions[i].Describe(sb);
         }
-        for (int i = 0; i < weatherPreConditions.Count; i++)
+        for (int i = 0; i < specialPreconditions.Count; i++)
         {
-            weatherPreConditions[i].Describe(sb);
+            if (specialPreconditions[i] != null)
+                specialPreconditions[i].Describe(sb);
         }
         sb.AppendLine();
     }

@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
-  animationName: 
+  animationPrefab: {fileID: 0}
   pawnAnimationState: 0
   movementLatency: 0
   weaponAnimation: 0
@@ -25,9 +25,8 @@ MonoBehaviour:
     parameterIndex: 2
     value: 1
   buffPreConditions: []
-  weatherPreConditions:
-  - weather: 3
-    requireExist: 1
+  specialPreconditions:
+  - {fileID: 11400000, guid: fe27f6f26b40b084f9e105daa7c5302b, type: 2}
   parameterOnAgent:
   - parameterIndex: 2
     deltaValue: -1

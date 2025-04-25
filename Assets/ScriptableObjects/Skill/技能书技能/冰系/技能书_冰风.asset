@@ -22,9 +22,8 @@ MonoBehaviour:
   weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
-  weatherPreConditions:
-  - weather: 3
-    requireExist: 1
+  specialPreconditions:
+  - {fileID: 11400000, guid: fe27f6f26b40b084f9e105daa7c5302b, type: 2}
   parameterOnAgent: []
   buffOnAgent: []
   HPCost: 0

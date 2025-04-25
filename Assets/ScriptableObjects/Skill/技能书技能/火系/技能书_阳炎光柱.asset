@@ -25,9 +25,8 @@ MonoBehaviour:
     parameterIndex: 2
     value: 2
   buffPreConditions: []
-  weatherPreConditions:
-  - weather: 1
-    requireExist: 1
+  specialPreconditions:
+  - {fileID: 11400000, guid: 4a9c9294fd6446c47a2c27521d197ffb, type: 2}
   parameterOnAgent:
   - parameterIndex: 2
     deltaValue: -2
