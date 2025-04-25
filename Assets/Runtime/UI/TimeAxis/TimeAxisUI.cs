@@ -29,6 +29,10 @@ public class TimeAxisUI : MonoBehaviour
 
     public Vector3 TimeToPosition(int time)
     {
+        Vector3[] corners = new Vector3[4];
+        rectTransform.GetWorldCorners(corners);
+        left = (corners[0] + corners[1]) / 2;
+        right = (corners[2] + corners[3]) / 2;
         float p = leftBlankSpace + (1f - leftBlankSpace - rightBlankSpace) * (time / timeSpan);
         p = Mathf.Clamp01(p);
         return Vector3.Lerp(left, right, p);
@@ -36,10 +40,6 @@ public class TimeAxisUI : MonoBehaviour
 
     private void OnTick(int time)
     {
-        Vector3[] corners = new Vector3[4];
-        rectTransform.GetWorldCorners(corners);
-        left = (corners[0] + corners[1]) / 2;
-        right = (corners[2] + corners[3]) / 2;
         List<PawnEntity> entites = new();
         foreach (PawnEntity pawn in gameManager.pawns)
         {

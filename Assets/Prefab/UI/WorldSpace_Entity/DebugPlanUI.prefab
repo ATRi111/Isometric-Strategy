@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "V:0.001\n\u79FB\u52A8\nT:50\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 53804a6e542e7b74eb1cb14ee6aab633, type: 2}
-  m_sharedMaterial: {fileID: -8196901046368968537, guid: 53804a6e542e7b74eb1cb14ee6aab633, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6fe793d672ad9bb408c0cb2f190c6bf4, type: 2}
+  m_sharedMaterial: {fileID: -3832106697417440229, guid: 6fe793d672ad9bb408c0cb2f190c6bf4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -376,6 +376,7 @@ MonoBehaviour:
     action:
       agent: {fileID: 0}
       skill: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
       effectUnit:
         timeEffect:
@@ -387,6 +388,7 @@ MonoBehaviour:
           current: 0
         effects: []
     value: 0
+    hatredLevel: 0
   references:
     version: 2
     RefIds: []
