@@ -17,6 +17,7 @@ public enum EPawnAnimationState
 public class PawnAnimator : EntityAnimator
 {
     public static string DownState = ".Down";
+    public static string UpState = ".Up";
 
     protected IObjectManager objectManager;
     protected PawnEntity pawn;
@@ -31,7 +32,7 @@ public class PawnAnimator : EntityAnimator
     private Vector3 weaponOffset;
 
     public void Play(string movementName)
-        => animator.Play(movementName + DownState);
+        => animator.Play(movementName + (up ? UpState : DownState));
 
     public void Play(string movementName, float latency, bool weaponAnimation)
     {
