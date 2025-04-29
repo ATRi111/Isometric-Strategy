@@ -63,4 +63,4 @@ MonoBehaviour:
   audio_recycle: {fileID: 0}
   lifeSpan: 1
   nomalizedLatency: 1
-  prefab: {fileID: 0}
+  prefab: {fileID: 4012902988090948449, guid: 708745c676b273f4aa4071a533eed66c, type: 3}
