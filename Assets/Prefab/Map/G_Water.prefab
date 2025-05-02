@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1226048150741817513, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a13489641fab29644b47c708f80dcb59, type: 3}
+      objectReference: {fileID: 21300000, guid: d3ee01a88f3564544b05c06b26e2fc4a, type: 3}
     - target: {fileID: 2350513379803116693, guid: 3c0b8ad8dec9ca54d88456bb6f50aa1d, type: 3}
       propertyPath: difficulty
       value: 3
