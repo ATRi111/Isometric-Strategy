@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5711096427300427572}
   - component: {fileID: 8370746119279935185}
-  - component: {fileID: 5450666154132958786}
-  - component: {fileID: 5151737926011263530}
   - component: {fileID: 5836392874602657600}
+  - component: {fileID: -1555374398903631595}
   m_Layer: 5
-  m_Name: "\u7ED3\u679C\u7279\u6548_\u8840\u91CF\u6539\u53D8"
+  m_Name: "\u7ED3\u679C\u7279\u6548_\u6B7B\u4EA1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,38 +45,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381351839209435283}
   m_CullTransparentMesh: 1
---- !u!114 &5450666154132958786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381351839209435283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a1b74d448203b4198450927b32812d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio_activate: {fileID: 0}
-  audio_recycle: {fileID: 0}
-  lifeSpan: 1
-  nomalizedLatency: 1
---- !u!114 &5151737926011263530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381351839209435283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5f5418be4126b241b205c75d94de33e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio_activate: {fileID: 0}
-  audio_recycle: {fileID: 0}
-  lifeSpan: 1
-  nomalizedLatency: 1
 --- !u!114 &5836392874602657600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +59,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   recycleCount: 0
+--- !u!114 &-1555374398903631595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381351839209435283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df29baeb8d820c4479372933de306c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio_activate: {fileID: 0}
+  audio_recycle: {fileID: 0}
+  lifeSpan: 1
+  nomalizedLatency: 1
 --- !u!1 &779526181208614430
 GameObject:
   m_ObjectHideFlags: 0
