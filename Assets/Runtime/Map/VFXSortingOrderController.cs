@@ -5,7 +5,7 @@ public class VFXSortingOrderController : MonoBehaviour
     private IsometricGridManager igm;
 
     [Range(-10, 30)]
-    public int extraSortingOrder;
+    public int extraSortingOrder = 5;
 
     public ParticleSystemRenderer[] front;
     public ParticleSystemRenderer[] mid;
