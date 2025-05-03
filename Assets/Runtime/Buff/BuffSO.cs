@@ -51,7 +51,7 @@ public class BuffSO : PawnModifierSO
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
-        switch(buffType)
+        switch (buffType)
         {
             case EBuffType.Uncertain:
                 break;

@@ -18,7 +18,7 @@ public class GridMoveController : MoveController
 
     public void SetRoute_CellPosition(List<Vector3> route, float speed)
     {
-        if(route.Count < 2)
+        if (route.Count < 2)
             return;
 
         currentRoute = new Vector3[route.Count];

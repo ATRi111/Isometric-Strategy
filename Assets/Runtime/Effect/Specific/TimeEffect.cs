@@ -8,7 +8,7 @@ public class TimeEffect : Effect
 
     public TimeEffect(Entity target)
        : base(target)
-    {   
+    {
         prev = current = (target as PawnEntity).time;
     }
 
@@ -36,7 +36,7 @@ public class TimeEffect : Effect
     {
         base.Describe(sb, result);
         sb.Append("的等待时间");
-        if(current > prev)
+        if (current > prev)
         {
             sb.Append("增加");
             sb.Append(current - prev);

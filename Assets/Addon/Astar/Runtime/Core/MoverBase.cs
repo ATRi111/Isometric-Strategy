@@ -14,7 +14,7 @@ namespace AStar
         {
             get
             {
-                if(GetMoveAbility != null) 
+                if (GetMoveAbility != null)
                     return GetMoveAbility();
                 return moveAbility;
             }

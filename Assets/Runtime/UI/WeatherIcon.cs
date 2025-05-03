@@ -8,7 +8,7 @@ public class WeatherIcon : InfoIcon
         WeatherData data = battleField.WeatherData;
         StringBuilder sb = new();
         sb.AppendLine(data.Name);
-        if(battleField.Weather != EWeather.None)
+        if (battleField.Weather != EWeather.None)
         {
             sb.Append(" £”‡ ±º‰:");
             sb.Append(battleField.WeatherRemainingTime);

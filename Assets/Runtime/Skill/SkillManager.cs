@@ -55,9 +55,9 @@ public class SkillManager : CharacterComponentBase
     {
         offenseArea.Clear();
         List<Vector3Int> temp = new();
-        foreach(Skill skill in learnedSkills)
+        foreach (Skill skill in learnedSkills)
         {
-            if(skill is RangedSkill rangedSkill)
+            if (skill is RangedSkill rangedSkill)
             {
                 if (rangedSkill.Offensive)
                     rangedSkill.GetOptions(pawn, pawn.Igm, pawn.GridObject.CellPosition, temp);
@@ -83,11 +83,11 @@ public class SkillManager : CharacterComponentBase
     private void InitParameter()
     {
         HashSet<string> parameterNames = new();
-        for (int i = 0;i < learnedSkills.Count;i++)
+        for (int i = 0; i < learnedSkills.Count; i++)
         {
             learnedSkills[i].GetRelatedParameters(parameterNames);
         }
-        foreach(string  parameterName in parameterNames)
+        foreach (string parameterName in parameterNames)
         {
             pawn.parameterDict[parameterName] += 0;
         }
@@ -97,7 +97,7 @@ public class SkillManager : CharacterComponentBase
     {
         base.Awake();
         eventSystem = ServiceLocator.Get<IEventSystem>();
-        pawn = (PawnEntity)entity; 
+        pawn = (PawnEntity)entity;
     }
 
     private void OnEnable()

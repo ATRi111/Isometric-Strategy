@@ -61,7 +61,7 @@ namespace EditorExtend.GridEditor
         protected override void Brush()
         {
             base.Brush();
-            if(ObjectBrush.pillarMode)
+            if (ObjectBrush.pillarMode)
             {
                 GridObject gridObject = ObjectBrush.prefab.GetComponent<GridObject>();
                 if (gridObject.IsGround)
@@ -83,7 +83,7 @@ namespace EditorExtend.GridEditor
 
         protected override void Erase()
         {
-            base.Erase(); 
+            base.Erase();
             if (ObjectBrush.pillarMode && lockLayer.boolValue)
             {
                 GridObject gridObject = ObjectBrush.prefab.GetComponent<GridObject>();

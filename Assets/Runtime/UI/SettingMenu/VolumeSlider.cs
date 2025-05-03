@@ -11,7 +11,7 @@ public class VolumeSlider : SliderBase<float>
 
     protected override void OnValueChanged(float value)
     {
-        audioPlayer.SetVolume(parameter, ValueToData(value));    
+        audioPlayer.SetVolume(parameter, ValueToData(value));
     }
 
     protected override float DataToValue(float data)

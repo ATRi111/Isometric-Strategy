@@ -85,7 +85,7 @@ public class CameraController : MonoBehaviour
         yMin = yMax = transform.position.y;
         foreach (GridObject obj in igm.ObjectDict.Values)
         {
-            if(obj.IsGround)
+            if (obj.IsGround)
             {
                 Vector2 position = obj.transform.position;
                 xMin = Mathf.Min(xMin, position.x);
@@ -102,7 +102,7 @@ public class CameraController : MonoBehaviour
 
     private void OnEnable()
     {
-        eventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction); 
+        eventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
         zoomRatio = 1f;
         moveDirection = Vector2.zero;
     }

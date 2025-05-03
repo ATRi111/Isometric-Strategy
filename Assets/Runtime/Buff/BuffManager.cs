@@ -24,7 +24,7 @@ public class BuffManager : CharacterComponentBase
         ret.Clear();
         foreach (Buff buff in buffs)
         {
-            if(buff.Enabled)
+            if (buff.Enabled)
                 ret.Add(buff);
         }
     }
@@ -59,7 +59,7 @@ public class BuffManager : CharacterComponentBase
     /// <summary>
     /// 模拟移除状态（不存在则返回null）
     /// </summary>
-    public BuffEffect MockRemove(BuffSO so,int probability)
+    public BuffEffect MockRemove(BuffSO so, int probability)
     {
         foreach (Buff buff in buffs)
         {
@@ -76,9 +76,9 @@ public class BuffManager : CharacterComponentBase
 
     public Buff FindEnabled(BuffSO so)
     {
-        foreach(Buff buff in buffs)
+        foreach (Buff buff in buffs)
         {
-            if(buff.so == so && buff.Enabled)
+            if (buff.so == so && buff.Enabled)
                 return buff;
         }
         return null;
@@ -87,7 +87,7 @@ public class BuffManager : CharacterComponentBase
     public List<Buff> FindRemovable(EBuffType removeFlag)
     {
         List<Buff> ret = new();
-        foreach(Buff buff in buffs)
+        foreach (Buff buff in buffs)
         {
             if (!buff.so.unremovable && buff.Enabled && buff.so.buffType == removeFlag)
                 ret.Add(buff);
@@ -97,9 +97,9 @@ public class BuffManager : CharacterComponentBase
 
     public Buff SuprimposeCheck(Buff target)
     {
-        foreach(Buff buff in buffs)
+        foreach (Buff buff in buffs)
         {
-            if(target.SuperimposeCheck(buff))
+            if (target.SuperimposeCheck(buff))
                 return buff;
         }
         return null;
@@ -131,7 +131,7 @@ public class BuffManager : CharacterComponentBase
     {
         foreach (Buff buff in buffs)
         {
-            buff.Enabled = false;   
+            buff.Enabled = false;
         }
         buffs.Clear();
     }

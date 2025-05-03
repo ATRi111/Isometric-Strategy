@@ -59,7 +59,7 @@ public class SelectActionUI : MonoBehaviour
 
     private void Update()
     {
-        if(isSelecting && Input.GetMouseButtonDown(1))
+        if (isSelecting && Input.GetMouseButtonDown(1))
         {
             ObjectPoolUtility.RecycleMyObjects(gameObject);
             skillUIManager.AfterCancelSelectAction?.Invoke();

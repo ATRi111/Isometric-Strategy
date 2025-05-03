@@ -21,7 +21,7 @@ public class CrossThroughSkill : RangedSkill
                 gridObject = igm.GetObjectXY(current);
                 if (gridObject == null)
                     break;
-                if(gridObject.IsGround)
+                if (gridObject.IsGround)
                 {
                     ret.Add(igm.AboveGroundPosition(current));
                     break;

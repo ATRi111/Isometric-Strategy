@@ -27,22 +27,22 @@ namespace EditorExtend.GridEditor
             return projSqrDistance < radius * radius;
         }
 
-        public static bool PointsCastBox(Vector3 min, Vector3 extend, List<Vector3> points,out Vector3 enter,out Vector3 exit)
+        public static bool PointsCastBox(Vector3 min, Vector3 extend, List<Vector3> points, out Vector3 enter, out Vector3 exit)
         {
             enter = exit = Vector3.zero;
             int i = 0;
-            for (;i < points.Count;i++)
+            for (; i < points.Count; i++)
             {
-                if(BoxOverlap(min,extend,points[i]))
+                if (BoxOverlap(min, extend, points[i]))
                 {
                     enter = points[i];
                     i++;
                     break;
                 }
             }
-            for (;i < points.Count;i++)
+            for (; i < points.Count; i++)
             {
-                if(!BoxOverlap(min,extend,points[i]))
+                if (!BoxOverlap(min, extend, points[i]))
                 {
                     exit = points[i];
                     return true;
@@ -121,14 +121,14 @@ namespace EditorExtend.GridEditor
         private static bool LineSegmentCastCylinder(float height, float radius, ref Vector3 from, ref Vector3 to)
         {
             float uIn = 0, uOut = 1;
-            float u1 , u2;
+            float u1, u2;
             Vector3 v = to - from;
             //先投影到xy平面，求线段与圆的交点
-            
-            if(v.x == 0)
+
+            if (v.x == 0)
             {
                 float d = radius * radius - from.x * from.x;
-                if(d < 0)
+                if (d < 0)
                     return false;
                 float y1 = -Mathf.Sqrt(d);
                 float y2 = -y1;
@@ -145,7 +145,7 @@ namespace EditorExtend.GridEditor
                 float b = 2 * m * k;
                 float c = m * m - radius * radius;
                 float d = b * b - 4 * a * c;
-                if(d < 0) 
+                if (d < 0)
                     return false;
                 float x1 = (-b - Mathf.Sqrt(d)) / 2 / a;
                 float x2 = (-b + Mathf.Sqrt(d)) / 2 / a;
@@ -162,7 +162,7 @@ namespace EditorExtend.GridEditor
 
             float z1 = from.z + uIn * v.z;
             float z2 = from.z + uOut * v.z;
-            if( z1 >= 0 && z1 < height && z2 >= 0 && z2 < height)
+            if (z1 >= 0 && z1 < height && z2 >= 0 && z2 < height)
             {
                 to = from + u2 * v;
                 from += u1 * v;
@@ -265,7 +265,7 @@ namespace EditorExtend.GridEditor
         /// <param name="includedAngle">与地面的夹角</param>
         /// <param name="g">重力加速度</param>
         /// <param name="z">高度改变量</param>
-        public static float TimeOfParabola(float speed,float includedAngle, float g, float z)
+        public static float TimeOfParabola(float speed, float includedAngle, float g, float z)
         {
             if (speed < 0 || g < 0)
                 throw new System.ArgumentException();

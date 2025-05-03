@@ -4,6 +4,6 @@ using UnityEngine;
 public class BuffResistance
 {
     public BuffSO so;
-    [Range(0,100)]
+    [Range(0, 100)]
     public int value;
 }

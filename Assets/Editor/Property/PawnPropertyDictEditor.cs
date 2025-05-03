@@ -16,7 +16,7 @@ public class PawnPropertyDictEditor : AutoEditor
 
     protected override void MyOnInspectorGUI()
     {
-        if(GUILayout.Button("自动获取"))
+        if (GUILayout.Button("自动获取"))
         {
             properties.ClearArray();
             string assetPath = AssetDatabase.GetAssetPath(target);              //文件路径

@@ -96,7 +96,7 @@ namespace EditorExtend
         public static void Vector2Field(this SerializedProperty property, string label)
             => property.vector2Value = EditorGUILayout.Vector2Field(label, property.vector2Value);
         public static void Vector3Field(this SerializedProperty property, string label, Rect rect)
-            => property.vector3Value = EditorGUI.Vector3Field(rect  , label, property.vector3Value);
+            => property.vector3Value = EditorGUI.Vector3Field(rect, label, property.vector3Value);
         public static void Vector3Field(this SerializedProperty property, string label)
             => property.vector3Value = EditorGUILayout.Vector3Field(label, property.vector3Value);
         public static void Vector4Field(this SerializedProperty property, string label, Rect rect)

@@ -23,14 +23,14 @@ public class Equipment : PawnModifierSO
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
-        if(parameterOnAgent.Count > 0)
+        if (parameterOnAgent.Count > 0)
             DescribeParameter(sb);
     }
 
     protected virtual void DescribeParameter(StringBuilder sb)
     {
         sb.AppendLine("战斗开始时:");
-        for (int i = 0;i < parameterOnAgent.Count;i++)
+        for (int i = 0; i < parameterOnAgent.Count; i++)
         {
             parameterOnAgent[i].Describe(sb, "自身");
         }

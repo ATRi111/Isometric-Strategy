@@ -28,7 +28,7 @@ public class FollowHPBar : HPUI
         base.Awake();
         SetEntity(GetComponentInParent<Entity>());
         Color color;
-        if(entity is PawnEntity pawn)
+        if (entity is PawnEntity pawn)
         {
             color = pawn.faction switch
             {

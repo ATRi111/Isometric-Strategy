@@ -27,14 +27,14 @@ namespace EditorExtend.GridEditor
         public void Register()
         {
             //是Manager的子物体才可注册
-            if(Manager != null)
+            if (Manager != null)
                 Manager.TryAddObject(this);
         }
 
         public virtual void Unregister()
         {
             //是Manager的子物体才可取消注册
-            if(Manager != null)
+            if (Manager != null)
                 Manager.TryRemoveObject(CellPosition);
         }
 
@@ -62,7 +62,7 @@ namespace EditorExtend.GridEditor
                     if (value != cellPosition)
                     {
                         Vector3Int prev = cellPosition;
-                        cellPosition = value; 
+                        cellPosition = value;
                         if (Manager != null)
                             Manager.RelocateObject(this, prev);
                     }
@@ -176,7 +176,7 @@ namespace EditorExtend.GridEditor
         /// <summary>
         /// 判断物体是否与线段相交，若相交则计算交点
         /// </summary>
-        public virtual bool OverlapLineSegment(ref Vector3 from,ref Vector3 to)
+        public virtual bool OverlapLineSegment(ref Vector3 from, ref Vector3 to)
         {
 #if UNITY_EDITOR
             if (!Application.isPlaying)

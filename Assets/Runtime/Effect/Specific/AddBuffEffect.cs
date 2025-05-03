@@ -6,7 +6,7 @@ public class AddBuffEffect : BuffEffect
 {
     public override bool Appliable => !buffManager.Contains(buff);
 
-    public AddBuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability) 
+    public AddBuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability)
         : base(victim, buff, buffManager, probability)
     {
     }

@@ -6,7 +6,7 @@ public class ModifyWeatherEffect : Effect
     public EWeather prev;
     public EWeather current;
 
-    public ModifyWeatherEffect(BattleField battleField, EWeather prev, EWeather current, int probability = 100):
+    public ModifyWeatherEffect(BattleField battleField, EWeather prev, EWeather current, int probability = 100) :
         base(null, probability)
     {
         this.battleField = battleField;
@@ -24,7 +24,7 @@ public class ModifyWeatherEffect : Effect
 
     public override float ValueFor(PawnEntity pawn)
     {
-        return BattleField.WeatherDuration * pawn.Brain.EvaluateWeatherUnitTime(current) 
+        return BattleField.WeatherDuration * pawn.Brain.EvaluateWeatherUnitTime(current)
             - Igm.BattleField.WeatherRemainingTime * pawn.Brain.EvaluateWeatherUnitTime(prev);
     }
 
@@ -38,7 +38,7 @@ public class ModifyWeatherEffect : Effect
             sb.Append("%");
         }
 
-        if(prev != current)
+        if (prev != current)
         {
             sb.Append("使天气由");
             sb.Append(WeatherData.WeatherName(prev));

@@ -1,5 +1,4 @@
 using EditorExtend;
-using System.Collections.Generic;
 using UnityEditor;
 
 [CustomEditor(typeof(AreaAnimation))]

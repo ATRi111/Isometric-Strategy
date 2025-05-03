@@ -20,12 +20,12 @@ public class DebugPlanUI : MonoBehaviour
     {
         string name = plan.action.skill.name;
         int hash = name.GetHashCode();
-        float r = (hash & 0xFF) / 255f; 
-        float g = ((hash >> 8) & 0xFF) / 255f; 
+        float r = (hash & 0xFF) / 255f;
+        float g = ((hash >> 8) & 0xFF) / 255f;
         float b = ((hash >> 16) & 0xFF) / 255f;
         spriteRenderer.color = new Color(r, g, b, 0.6f);
         this.plan = plan;
-        textbox.text = 
+        textbox.text =
             $"V:{plan.value:F2}\n" +
             $"{plan.action.skill.displayName}\n" +
             $"T:{plan.action.Time}\n";

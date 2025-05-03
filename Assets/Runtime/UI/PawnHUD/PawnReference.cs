@@ -5,14 +5,14 @@ using UIExtend;
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroupPlus))]
-public class PawnReference : MonoBehaviour,  IPawnReference
+public class PawnReference : MonoBehaviour, IPawnReference
 {
     protected PawnEntity currentPawn;
     protected IEventSystem eventSystem;
     protected CanvasGroupPlus canvasGroup;
     public virtual PawnEntity CurrentPawn => currentPawn;
 
-    public Action OnRefresh { get ; set; }
+    public Action OnRefresh { get; set; }
 
     protected virtual void SetPawn(PawnEntity pawnEntity)
     {
@@ -30,11 +30,11 @@ public class PawnReference : MonoBehaviour,  IPawnReference
 
     protected virtual void OnEnable()
     {
-        
+
     }
 
     protected virtual void OnDisable()
     {
-        
+
     }
 }

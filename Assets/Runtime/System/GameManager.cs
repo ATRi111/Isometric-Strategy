@@ -5,7 +5,7 @@ using Services.SceneManagement;
 using System;
 using UnityEngine;
 
-public class GameManager : Service,IService
+public class GameManager : Service, IService
 {
     [AutoService]
     private AnimationManager animationManager;
@@ -67,9 +67,9 @@ public class GameManager : Service,IService
 
     private bool EnemyTargetExists()
     {
-        foreach(PawnEntity pawn in pawns)
+        foreach (PawnEntity pawn in pawns)
         {
-            if (pawn.taskTarget && pawn.faction == EFaction.Enemy && pawn.gameObject.activeInHierarchy) 
+            if (pawn.taskTarget && pawn.faction == EFaction.Enemy && pawn.gameObject.activeInHierarchy)
                 return true;
         }
         return false;
@@ -88,7 +88,7 @@ public class GameManager : Service,IService
             EndBattle(true);
             return;
         }
-        foreach(PawnEntity pawn in pawns)
+        foreach (PawnEntity pawn in pawns)
         {
             if (time >= pawn.time)
             {

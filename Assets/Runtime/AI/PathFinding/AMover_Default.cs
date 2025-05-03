@@ -2,8 +2,8 @@ using AStar;
 
 public class AMover_Default : AMover
 {
-    public AMover_Default(MovableGridObject movable) 
-        :base(movable)
+    public AMover_Default(MovableGridObject movable)
+        : base(movable)
     {
 
     }

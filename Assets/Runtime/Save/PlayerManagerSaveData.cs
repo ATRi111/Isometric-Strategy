@@ -21,7 +21,7 @@ public class PlayerManagerSaveData : SaveData
             manager.playerDataList.Add(playerList[i].ToPlayerData(assetLoader));
         }
         manager.unusedEquipmentList.Clear();
-        for (int i = 0; i < unusedEquipmentList.Count;i++)
+        for (int i = 0; i < unusedEquipmentList.Count; i++)
         {
             Equipment equipment = assetLoader.Load<Equipment>(unusedEquipmentList[i]);
             manager.unusedEquipmentList.Add(equipment);
@@ -31,7 +31,7 @@ public class PlayerManagerSaveData : SaveData
     public override void Save()
     {
         manager.UpdateAllPlayerData();
-        playerList.Clear(); 
+        playerList.Clear();
         for (int i = 0; i < manager.playerDataList.Count; i++)
         {
             playerList.Add(new PlayerSaveData(manager.playerDataList[i]));

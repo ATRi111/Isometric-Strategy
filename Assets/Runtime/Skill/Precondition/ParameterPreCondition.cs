@@ -1,4 +1,3 @@
-using MyTool;
 using System.Text;
 
 public enum EParameterConditionType

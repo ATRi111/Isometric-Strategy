@@ -52,7 +52,7 @@ public static class HitBackUtility
             newHP = Mathf.Clamp(hp - damage, 0, def.maxHP.IntValue);
         }
 
-        int r = Effect.NextInt(); 
+        int r = Effect.NextInt();
         MoveEffect moveEffect = new(victim, victimPosition, hitBackPosition, route, DefaultSpeedMultiplier, probability)
         {
             randomValue = r
@@ -66,7 +66,7 @@ public static class HitBackUtility
             };
             hpChangeEffect.Join(moveEffect);
             ret.effects.Add(hpChangeEffect);
-            if(newHP == 0)
+            if (newHP == 0)
             {
                 DisableEntityEffect disableEntityEffect = new(victim)
                 {

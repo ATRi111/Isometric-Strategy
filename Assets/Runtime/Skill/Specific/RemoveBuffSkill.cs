@@ -10,7 +10,7 @@ public class RemoveBuffSkill : RangedSkill
     protected override void MockBuffOnVictim(PawnEntity agent, PawnEntity victim, EffectUnit ret)
     {
         List<Buff> buffs = victim.BuffManager.FindRemovable(buffType);
-        if(buffs.Count > 0)
+        if (buffs.Count > 0)
         {
             int r = Effect.randomGroup.NextInt(0, buffs.Count);
             RemoveBuffEffect effect = new(victim, buffs[r], victim.BuffManager);
@@ -23,7 +23,7 @@ public class RemoveBuffSkill : RangedSkill
     {
         base.Describe(sb);
         sb.Append("移除目标的一个随机");
-        switch(buffType)
+        switch (buffType)
         {
             case EBuffType.Uncertain:
                 sb.Append("?");

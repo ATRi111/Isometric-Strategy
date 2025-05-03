@@ -44,7 +44,7 @@ public class ModifyParameterEffect : Effect
 
     public override void Describe(StringBuilder sb, bool result)
     {
-        if(value_prev != value)
+        if (value_prev != value)
         {
             base.Describe(sb, result);
             sb.Append("µÄ");

@@ -12,7 +12,7 @@ public class PawnBrain : CharacterComponentBase
     public static float POfNorm = 4f;
 
     private AIManager AIManager;
-    private IEventSystem eventSystem; 
+    private IEventSystem eventSystem;
     public PawnEntity pawn;
     public PawnSensor sensor;
 
@@ -86,7 +86,7 @@ public class PawnBrain : CharacterComponentBase
     private void MakePlan(Skill skill, List<Plan> ret)
     {
         skill.GetOptions(pawn, pawn.Igm, pawn.GridObject.CellPosition, options);
-        for(int i = 0; i < options.Count; i++)
+        for (int i = 0; i < options.Count; i++)
         {
             PawnAction action = MockSkill(skill, options[i]);
             ret.Add(new Plan(action));
@@ -162,7 +162,7 @@ public class PawnBrain : CharacterComponentBase
         float H(PawnEntity pawn)
             => 0.5f + 0.5f * HealthPercent(pawn);
         float I(PawnEntity pawn)
-            => 1- 0.5f * HealthPercent(pawn);
+            => 1 - 0.5f * HealthPercent(pawn);
 
         List<PawnEntity> allies = sensor.allies;
         List<PawnEntity> enemies = sensor.enemies;
@@ -221,11 +221,11 @@ public class PawnBrain : CharacterComponentBase
         List<PawnEntity> allies = sensor.allies;
         List<PawnEntity> enemies = sensor.enemies;
         sum += EvaluateWeatherUnitTimeMyself(weather);
-        for (int i = 0; i < allies.Count ; i++)
+        for (int i = 0; i < allies.Count; i++)
         {
             sum += allies[i].Brain.EvaluateWeatherUnitTimeMyself(weather);
         }
-        for (int i = 0;i < enemies.Count ; i++)
+        for (int i = 0; i < enemies.Count; i++)
         {
             sum -= enemies[i].Brain.EvaluateWeatherUnitTimeMyself(weather);
         }
@@ -241,7 +241,7 @@ public class PawnBrain : CharacterComponentBase
         WeatherData data = pawn.Igm.BattleField.weatherSettings[weather];
         foreach (Skill skill in pawn.SkillManager.learnedSkills)
         {
-            if(skill is AimSkill aimSkill && aimSkill.powers.Count > 0)
+            if (skill is AimSkill aimSkill && aimSkill.powers.Count > 0)
             {
                 EDamageType type = aimSkill.powers[0].type;
                 float v = data.PowerMultiplier(type) - 1f;

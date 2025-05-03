@@ -26,7 +26,7 @@ public class ParabolaPreciseShootSkill : ParabolaSkill
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
-        if(so != null)
+        if (so != null)
         {
             sb.Append("目标处于");
             sb.Append(so.name);

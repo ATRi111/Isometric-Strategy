@@ -15,7 +15,7 @@ public class RhombusAreaEnemyPrecondition : SkillPrecondition
         for (int i = 0; i < enemeis.Count; i++)
         {
             int distance = IsometricGridUtility.ProjectManhattanDistance(
-                (Vector2Int)enemeis[i].GridObject.CellPosition, 
+                (Vector2Int)enemeis[i].GridObject.CellPosition,
                 (Vector2Int)agent.GridObject.CellPosition);
             if (distance <= detectDistance)
                 return requireExist;

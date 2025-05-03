@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Simple_Char_Move : MonoBehaviour
 {
     [SerializeField]
     private float speed = 1;
-    
+
     private SpriteRenderer characterSprite;
 
     // Start is called before the first frame update
@@ -40,7 +38,7 @@ public class Simple_Char_Move : MonoBehaviour
     //if the player moves left, flip the sprite, if he moves right, flip it back, stay if no input is made
     void FlipSpriteToMovement()
     {
-        if(characterSprite != null )
+        if (characterSprite != null)
         {
             if (Input.GetAxisRaw("Horizontal") < 0)
                 characterSprite.flipX = true;

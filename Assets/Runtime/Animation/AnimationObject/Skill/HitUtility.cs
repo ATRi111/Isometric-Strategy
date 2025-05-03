@@ -11,11 +11,11 @@ public static class HitUtility
     public static void GenerateHit(PawnAction action)
     {
         HashSet<PawnEntity> generated = new();
-        for (int i = 0;i < action.effectUnit.effects.Count;i++)
+        for (int i = 0; i < action.effectUnit.effects.Count; i++)
         {
-            if(action.effectUnit.effects[i] is HPChangeEffect effect)
+            if (action.effectUnit.effects[i] is HPChangeEffect effect)
             {
-                if(effect.WillHappen && effect.victim is PawnEntity pawnVictim && !generated.Contains(pawnVictim))
+                if (effect.WillHappen && effect.victim is PawnEntity pawnVictim && !generated.Contains(pawnVictim))
                 {
                     IMyObject obj = ServiceLocator.Get<IObjectManager>().Activate(
                         "技能特效生成物_抖动",

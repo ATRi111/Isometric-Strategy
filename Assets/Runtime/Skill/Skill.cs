@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public abstract class Skill : ScriptableObject , IDescription
+public abstract class Skill : ScriptableObject, IDescription
 {
     public string displayName;
     public Sprite icon;
@@ -18,7 +18,7 @@ public abstract class Skill : ScriptableObject , IDescription
     public List<BuffPreCondition> buffPreConditions;
     public List<SkillPrecondition> specialPreconditions;
     public List<PawnParameterModifier> parameterOnAgent;
-    
+
     public List<BuffModifier> buffOnAgent;
     public int HPCost;
 
@@ -29,7 +29,7 @@ public abstract class Skill : ScriptableObject , IDescription
     /// </summary>
     public virtual bool CanUse(PawnEntity agent, IsometricGridManager igm)
     {
-        for (int i = 0;i < preConditions.Count;i++)
+        for (int i = 0; i < preConditions.Count; i++)
         {
             if (!preConditions[i].Verify(agent))
                 return false;
@@ -92,12 +92,12 @@ public abstract class Skill : ScriptableObject , IDescription
 
             if (buffEffect != null)
             {
-                if(!buffEffect.AlwaysHappen)
+                if (!buffEffect.AlwaysHappen)
                     buffEffect.randomValue = Effect.NextInt();
                 ret.effects.Add(buffEffect);
             }
         }
-        if(HPCost > 0)
+        if (HPCost > 0)
         {
             int hp = agent.DefenceComponent.HP;
             int newHP = Mathf.Max(hp - HPCost, 0);
@@ -165,7 +165,7 @@ public abstract class Skill : ScriptableObject , IDescription
 
     public virtual void ExtractKeyWords(KeyWordList keyWordList)
     {
-        for (int i = 0;i < preConditions.Count;i++)
+        for (int i = 0; i < preConditions.Count; i++)
         {
             Parameter p = PawnEntity.ParameterTable[preConditions[i].ParameterName];
             keyWordList.Push(p.name, p.description);
@@ -216,7 +216,7 @@ public abstract class Skill : ScriptableObject , IDescription
             DescribeHPCost(sb);
         if (buffOnAgent.Count > 0)
             DescribeBuffOnAgent(sb);
-        if(parameterOnAgent.Count > 0)
+        if (parameterOnAgent.Count > 0)
             DescribeParameterOnAgent(sb);
     }
 

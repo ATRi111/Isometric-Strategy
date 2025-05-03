@@ -9,9 +9,9 @@ public class ModifyPowerBuff : BuffSO
 
     public bool CanModifyPower(AimSkill skill)
     {
-        if(skill.powers.Count == 0)
+        if (skill.powers.Count == 0)
             return false;
-        for(int i = 0; i < skill.powers.Count; i++)
+        for (int i = 0; i < skill.powers.Count; i++)
         {
             if (skill.powers[i].power > 0)  //默认情况下，一切威力为正数的技能均可附加伤害
                 return true;

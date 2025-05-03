@@ -70,7 +70,7 @@ namespace Services.ObjectPools
             {
                 transform.SetParent(objectPoolAttached.transform, false);
                 OnRecycle?.Invoke();
-                if(recycleCount != 0)
+                if (recycleCount != 0)
                 {
                     Debug.LogWarning($"{gameObject.name}被回收时，引用计数为{recycleCount}");
                     recycleCount = 0;

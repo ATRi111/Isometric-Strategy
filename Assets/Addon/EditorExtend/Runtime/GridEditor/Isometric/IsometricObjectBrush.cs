@@ -14,7 +14,7 @@ namespace EditorExtend.GridEditor
         {
             worldPosition = worldPosition.ResetZ(0f);
             IsometricGridManagerBase igm = Manager as IsometricGridManagerBase;
-            if(lockXY)
+            if (lockXY)
             {
                 Vector3Int temp = igm.ClosestZ(lockedPosition.ResetZ(cellPosition.z), worldPosition);  //锁定后，X和Y不能变化
                 return temp;

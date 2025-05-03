@@ -10,7 +10,7 @@ public class TrendDrawer : AutoPropertyDrawer
 
     protected override void MyOnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        offerSupport.FloatField("提供协助倾向",NextRectRelative());
+        offerSupport.FloatField("提供协助倾向", NextRectRelative());
         seekSupport.FloatField("寻求协助倾向", NextRectRelative());
         offense.FloatField("进攻倾向", NextRectRelative());
         defense.FloatField("撤退倾向", NextRectRelative());

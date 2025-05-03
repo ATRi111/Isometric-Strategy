@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Simple_Door_Interaction : MonoBehaviour
 {
@@ -29,7 +27,7 @@ public class Simple_Door_Interaction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if( replaceDoorSprite )
+        if (replaceDoorSprite)
         {
             doorSpriteObject.sprite = doorOpenSprite;
         }

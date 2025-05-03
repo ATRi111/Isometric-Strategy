@@ -5,10 +5,10 @@ public class NewEquipmentIcon : InfoIcon
 {
     [NonSerialized]
     public Equipment equipment;
-    
+
     public void SetEquipment(Equipment equipment)
     {
-        this.equipment = equipment; 
+        this.equipment = equipment;
         info = equipment.name.Bold() + "\n" + equipment.Description;
         image.sprite = equipment.icon;
         canvasGroup.Visible = true;

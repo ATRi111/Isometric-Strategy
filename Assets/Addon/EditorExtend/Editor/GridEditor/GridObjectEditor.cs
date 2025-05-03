@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    [CustomEditor(typeof(GridObject),true)]
+    [CustomEditor(typeof(GridObject), true)]
     public class GridObjectEditor : AutoEditor
     {
         public GridObject GridObject => target as GridObject;
@@ -15,7 +15,7 @@ namespace EditorExtend.GridEditor
         protected override void OnEnable()
         {
             base.OnEnable();
-            if(GridObject.Manager != null)
+            if (GridObject.Manager != null)
                 prev = cellPosition.vector3IntValue = GridObject.Manager.ClosestCell(GridObject.transform.position);
             serializedObject.ApplyModifiedProperties();
         }

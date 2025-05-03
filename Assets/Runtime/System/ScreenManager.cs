@@ -2,7 +2,7 @@ using Services;
 using System;
 using UnityEngine;
 
-public class ScreenManager : Service ,IService
+public class ScreenManager : Service, IService
 {
     public override Type RegisterType => GetType();
 

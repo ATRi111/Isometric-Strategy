@@ -39,9 +39,9 @@ public class SkillTrajectory : MonoBehaviour
             {
                 color = action.agent.FactionCheck(victim) switch
                 {
-                    >0 => color_hitAlly,
+                    > 0 => color_hitAlly,
                     0 => color_hitNeural,
-                    <0 => color_hitEnemy,
+                    < 0 => color_hitEnemy,
                 };
             }
             else

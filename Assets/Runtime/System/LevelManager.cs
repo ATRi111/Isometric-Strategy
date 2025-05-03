@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
 
     private void SwitchToPrepareMenu()
     {
-        if(levelCamera != null)
+        if (levelCamera != null)
             levelCamera.gameObject.SetActive(false);
         prepareMenuCamera.gameObject.SetActive(true);
     }
@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
     private void AfterLoadScene(int index)
     {
         GameObject obj = GameObject.Find("LevelCamera");
-        if(obj != null)
+        if (obj != null)
         {
             levelCamera = obj.GetComponent<Camera>();
             levelCamera.clearFlags = CameraClearFlags.SolidColor;

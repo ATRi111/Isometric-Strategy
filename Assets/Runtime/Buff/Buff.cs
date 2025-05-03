@@ -1,4 +1,3 @@
-using MyTool;
 using Services;
 using System;
 using System.Text;
@@ -26,10 +25,10 @@ public class Buff
         get => enabled;
         set
         {
-            if(enabled != value)
+            if (enabled != value)
             {
                 enabled = value;
-                if(value)
+                if (value)
                     so.Register(victim);
                 else
                     so.Unregister(victim);

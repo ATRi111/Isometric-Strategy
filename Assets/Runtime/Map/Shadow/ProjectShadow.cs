@@ -16,7 +16,7 @@ public class ProjectShadow : MonoBehaviour
     private void OnEnable()
     {
         shadowManager = GetComponentInParent<ShadowManager>();
-        if(shadowManager != null)
+        if (shadowManager != null)
         {
             float radiance = shadowManager.GetProjectRadiance();
             myRenderer.color = myRenderer.color.SetAlpha(1f - radiance);

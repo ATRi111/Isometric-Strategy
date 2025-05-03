@@ -3,7 +3,7 @@ using AStar;
 public abstract class AMover : MoverBase
 {
     protected MovableGridObject movable;
-    public AMover(MovableGridObject movable) 
+    public AMover(MovableGridObject movable)
     {
         this.movable = movable;
     }
@@ -15,7 +15,7 @@ public abstract class AMover : MoverBase
 
     public override bool MoveCheck(Node from, Node to)
     {
-        return base.MoveCheck(from,to)
+        return base.MoveCheck(from, to)
             && (movable.HeightCheck(from, to) || movable.ClimbCheck(from, to));
     }
 

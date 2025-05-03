@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     {
         for (int i = 0; i < playerDataList.Count; i++)
         {
-            if(playerDataList[i].prefab.name == entityName)
+            if (playerDataList[i].prefab.name == entityName)
                 return playerDataList[i];
         }
         return null;
@@ -90,7 +90,7 @@ public class PlayerManager : MonoBehaviour
             return;
 
         pawn.EquipmentManager.UnEquipAll();
-        for (int i = 0;i < data.equipmentList.Count;i++)
+        for (int i = 0; i < data.equipmentList.Count; i++)
         {
             pawn.EquipmentManager.Equip(data.equipmentList[i]);
         }

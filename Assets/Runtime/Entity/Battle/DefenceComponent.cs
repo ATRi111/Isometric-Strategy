@@ -45,7 +45,7 @@ public class DefenceComponent : CharacterComponentBase
 
     public void Refresh()
     {
-        maxHP.Refresh(); 
+        maxHP.Refresh();
         foreach (CharacterProperty property in resistance.Values)
         {
             property.Refresh();

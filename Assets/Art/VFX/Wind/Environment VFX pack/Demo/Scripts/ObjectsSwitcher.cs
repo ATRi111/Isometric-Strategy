@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -37,7 +36,8 @@ namespace Sveta
             SwitchTo(index);
         }
 
-        private void SwitchTo(int _index) {
+        private void SwitchTo(int _index)
+        {
             for (int i = 0; i < list.Count; i++)
             {
                 list[i].SetActive(i == _index);

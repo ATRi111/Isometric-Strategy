@@ -32,7 +32,7 @@ public class GridSurface : MonoBehaviour
             };
             ret.Add(ladder);
         }
-        if(rightLadder)
+        if (rightLadder)
         {
             ladder = new()
             {
@@ -51,7 +51,7 @@ public struct Ladder
 
     public override readonly bool Equals(object obj)
     {
-        if(obj is Ladder ladder)
+        if (obj is Ladder ladder)
         {
             return ladder.cellPosition == cellPosition && ladder.direction == direction;
         }

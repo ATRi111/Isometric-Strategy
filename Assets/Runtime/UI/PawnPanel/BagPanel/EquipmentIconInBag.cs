@@ -2,7 +2,7 @@ using MyTool;
 using Services.Event;
 using UnityEngine.EventSystems;
 
-public class EquipmentIconInBag : InfoIcon , IPointerClickHandler
+public class EquipmentIconInBag : InfoIcon, IPointerClickHandler
 {
     private PawnPanel pawnPanel;
     private BagPanel bagPanel;

@@ -36,7 +36,7 @@ public class Hit : MonoBehaviour
 
     public class ShakeTimer : Timer<float, ShakeLerp>
     {
-        
+
     }
 
     private Transform shakeTarget;

@@ -22,7 +22,7 @@ public abstract class AimSkill : Skill
     public EVictimType victimType = EVictimType.Entity;
     public int minLayer = -2, maxLayer = 2;
 
-    public override bool Offensive => powers.Count > 0 && powers[0].power > 0 
+    public override bool Offensive => powers.Count > 0 && powers[0].power > 0
         || buffOnVictim.Count > 0 && buffOnVictim[0].so.buffType != EBuffType.Buff;
 
     public bool LayerCheck(Vector3Int position, Vector3Int target)
@@ -56,7 +56,7 @@ public abstract class AimSkill : Skill
     /// </summary>
     public virtual Entity GetVictimAt(PawnEntity agent, IsometricGridManager igm, Vector3Int target)
     {
-        if(igm.entityDict.ContainsKey(target))
+        if (igm.entityDict.ContainsKey(target))
         {
             Entity entity = igm.entityDict[target];
             if (FilterVictim(agent, entity))
@@ -84,7 +84,7 @@ public abstract class AimSkill : Skill
     /// <summary>
     /// 模拟技能威力
     /// </summary>
-    protected virtual void MockPower(PawnEntity agent,  List<SkillPower> ret)
+    protected virtual void MockPower(PawnEntity agent, List<SkillPower> ret)
     {
         ret.Clear();
         ret.AddRange(powers);
@@ -108,7 +108,7 @@ public abstract class AimSkill : Skill
         }
 
         damage = Mathf.RoundToInt(damage * (1f + MockDamageAmplifier(igm, agent, victim, position, target)));
-        
+
         int hp = Mathf.Clamp(def.HP - damage, 0, def.maxHP.IntValue);
 
         if (def.HP != hp)
@@ -170,7 +170,7 @@ public abstract class AimSkill : Skill
     /// <summary>
     /// 模拟技能对自身造成的其他影响
     /// </summary>
-    protected virtual void MockOtherEffectOnAgent(IsometricGridManager igm, PawnEntity agent, Vector3Int position, Vector3Int target,EffectUnit ret)
+    protected virtual void MockOtherEffectOnAgent(IsometricGridManager igm, PawnEntity agent, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
 
     }
@@ -189,7 +189,7 @@ public abstract class AimSkill : Skill
             MockDamageOnVictim(igm, agent, victims[i], position, target, tempPower, ret);
             if (victims[i] is PawnEntity pawn)
                 MockBuffOnVictim(agent, pawn, ret);
-            MockOtherEffectOnVictim(agent,victims[i], ret);
+            MockOtherEffectOnVictim(agent, victims[i], ret);
         }
         MockOtherEffectOnAgent(igm, agent, position, target, ret);
     }
@@ -209,9 +209,9 @@ public abstract class AimSkill : Skill
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
-        if(powers.Count > 0)
+        if (powers.Count > 0)
             DescribePower(sb);
-        if(buffOnVictim.Count > 0)
+        if (buffOnVictim.Count > 0)
             DescribeBuffOnVictim(sb);
         if (hitBackProbability > 0)
             DescribeHitback(sb);
@@ -220,7 +220,7 @@ public abstract class AimSkill : Skill
 
     protected virtual void DescribePower(StringBuilder sb)
     {
-        if(powers.Count == 1 && powers[0].power < 0)
+        if (powers.Count == 1 && powers[0].power < 0)
         {
             sb.Append("治疗力：");
             powers[0].Describe(sb);
@@ -259,7 +259,7 @@ public abstract class AimSkill : Skill
 
     protected virtual void DescribeVictim(StringBuilder sb)
     {
-        switch(victimType)
+        switch (victimType)
         {
             case EVictimType.Pawn:
                 sb.Append("仅对角色生效");

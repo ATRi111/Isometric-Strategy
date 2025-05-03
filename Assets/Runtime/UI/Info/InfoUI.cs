@@ -82,7 +82,7 @@ public class InfoUI : TextBase
 
     private void LockUnlock()
     {
-        if(locked)
+        if (locked)
         {
             canvasGrounp.threshold_blockRaycast = 1f;
             locked = false;
@@ -117,7 +117,7 @@ public class InfoUI : TextBase
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
         {
             canvasGrounp.threshold_blockRaycast = 1f;
             locked = false;
@@ -134,7 +134,7 @@ public class InfoUI : TextBase
         if (canvasGrounp.Visible)
         {
             CheckSecondaryInfo();
-            if((Vector2)transform.position == (Vector2)Input.mousePosition)
+            if ((Vector2)transform.position == (Vector2)Input.mousePosition)
             {
                 if (!UIExtendUtility.WithinScreen(rectTransform))
                 {
@@ -148,7 +148,7 @@ public class InfoUI : TextBase
             }
         }
 
-        if(Input.GetKeyUp(KeyCode.T))
+        if (Input.GetKeyUp(KeyCode.T))
             LockUnlock();
     }
 

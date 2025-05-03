@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AnimationManager : Service,IService
+public class AnimationManager : Service, IService
 {
     public override Type RegisterType => GetType();
     public bool ImmediateMode { get; set; }
@@ -22,7 +22,7 @@ public class AnimationManager : Service,IService
     public void Register(AnimationProcess animation, float latency)
     {
         ApplyAll += animation.Apply;
-        if(!ImmediateMode)
+        if (!ImmediateMode)
         {
             currenAnimations.Add(animation);
             animation.Play(latency);
@@ -46,7 +46,7 @@ public class AnimationManager : Service,IService
 
     private void AfterComplete(float _)
     {
-        if(currenAnimations.Count == 0)
+        if (currenAnimations.Count == 0)
         {
             ApplyAll?.Invoke();
             ApplyAll = null;

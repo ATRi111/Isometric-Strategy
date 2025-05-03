@@ -12,7 +12,7 @@ public class HPUI : MonoBehaviour
 
     public virtual void SetEntity(Entity entity)
     {
-        if(defenceComponent != null)
+        if (defenceComponent != null)
             defenceComponent.AfterHPChange -= AfterHPChange;
         this.entity = entity;
         defenceComponent = entity.DefenceComponent;
@@ -31,6 +31,6 @@ public class HPUI : MonoBehaviour
 
     protected virtual void Update()
     {
-        
+
     }
 }

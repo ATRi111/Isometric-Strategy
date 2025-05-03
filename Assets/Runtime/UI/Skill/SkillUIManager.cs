@@ -16,7 +16,7 @@ public class SkillUIManager : MonoBehaviour
     private IObjectManager objectManager;
     private IsometricGridManager Igm => IsometricGridManager.Instance;
     private IMyObject actorIcon;
-    
+
     /// <summary>
     /// 启用技能选择面板
     /// </summary>

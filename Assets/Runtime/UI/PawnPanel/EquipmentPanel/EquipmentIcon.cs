@@ -6,7 +6,7 @@ public class EquipmentIcon : InfoIcon
     private IPawnReference pawnReference;
     [NonSerialized]
     public EquipmentSlot slot;
-    
+
     public int index;
 
     protected override void ExtractKeyWords()

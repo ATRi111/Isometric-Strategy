@@ -1,4 +1,3 @@
-using MyTool;
 using System;
 using System.Text;
 
@@ -9,7 +8,7 @@ public class LengthenBuffEffect : BuffEffect
     public int endTime;
     public override bool Appliable => buffManager.Contains(buff) && buff.endTime == endTime_prev;
 
-    public LengthenBuffEffect(Entity victim, Buff buff, int endTime, BuffManager buffManager, int probability = MaxProbability) 
+    public LengthenBuffEffect(Entity victim, Buff buff, int endTime, BuffManager buffManager, int probability = MaxProbability)
         : base(victim, buff, buffManager, probability)
     {
         endTime_prev = buff.endTime;

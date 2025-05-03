@@ -7,7 +7,7 @@ public class RemoveBuffEffect : BuffEffect
 {
     public override bool Appliable => buffManager.Contains(buff);
 
-    public RemoveBuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability) 
+    public RemoveBuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability)
         : base(victim, buff, buffManager, probability)
     {
     }

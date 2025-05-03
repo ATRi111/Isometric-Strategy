@@ -14,7 +14,7 @@ public abstract class Effect : IAnimationSource
     {
         randomGroup = RandomTool.GetGroup(ERandomGrounp.Battle);
     }
-    
+
     public static int NextInt()
         => randomGroup.NextInt(1, MaxProbability + 1);
 
@@ -29,7 +29,7 @@ public abstract class Effect : IAnimationSource
     {
         get
         {
-            if(AlwaysHappen)
+            if (AlwaysHappen)
                 return true;
             if (NeverHappen)
                 return false;

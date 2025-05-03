@@ -4,7 +4,7 @@ using UnityEngine;
 public class SwitchPositionSkill : RangedSkill
 {
     private static Vector3Int BeyondMapOffset = new(114, 514, 0);
-    
+
     protected override void MockOtherEffectOnVictim(PawnEntity agent, Entity victim, EffectUnit ret)
     {
         base.MockOtherEffectOnVictim(agent, victim, ret);

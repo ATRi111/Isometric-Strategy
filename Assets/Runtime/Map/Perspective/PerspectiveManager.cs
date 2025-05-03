@@ -14,8 +14,8 @@ public class PerspectiveManager : MonoBehaviour
     /// </summary>
     public bool CoverCheck(Vector3Int position)
     {
-        Vector3Int p = position + IsometricGridManager.CoverVector; 
-        if(p.z <= 0)
+        Vector3Int p = position + IsometricGridManager.CoverVector;
+        if (p.z <= 0)
             return false;
         GridObject gridObject = Igm.GetObject(p);
         if (gridObject == null)         //遮挡了空位置的地块需要透视

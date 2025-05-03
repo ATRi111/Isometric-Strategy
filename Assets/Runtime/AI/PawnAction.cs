@@ -7,7 +7,7 @@ using UnityEngine;
 /// 一个动作
 /// </summary>
 [System.Serializable]
-public class PawnAction : IAnimationSource , IDescription
+public class PawnAction : IAnimationSource, IDescription
 {
     public static int HatredLevelOffset = 10;
 
@@ -110,7 +110,7 @@ public class PawnAction : IAnimationSource , IDescription
 
     private void Describe(StringBuilder sb, bool result)
     {
-        if(result)
+        if (result)
         {
             sb.Append(agent.EntityName.Bold());
             sb.Append("使用了");
@@ -127,6 +127,6 @@ public class PawnAction : IAnimationSource , IDescription
 
     public void Apply()
     {
-        
+
     }
 }

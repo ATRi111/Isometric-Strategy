@@ -14,6 +14,6 @@ public class PawnClass : PawnModifierSO
 
     protected override void Describe(StringBuilder sb)
     {
-        
+
     }
 }

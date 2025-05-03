@@ -11,7 +11,7 @@ public class RangedSkillEditor : AimSkillEditor
     {
         base.MyOnInspectorGUI();
         castingDistance.IntField("施放距离");
-        if(castingDistance.intValue == 0)
+        if (castingDistance.intValue == 0)
             aimAtSelf.boolValue = true;
         aimAtSelf.BoolField("可在自身位置施放");
     }

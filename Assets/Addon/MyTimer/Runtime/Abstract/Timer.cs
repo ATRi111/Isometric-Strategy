@@ -46,7 +46,7 @@ namespace MyTimer
     /// <typeparam name="TValue">变化过程中的返回值类型</typeparam>
     /// <typeparam name="TLerp">计算返回值的方法</typeparam>
     [System.Serializable]
-    public class Timer<TValue, TLerp> : TimerBase,ITimer where TLerp : ILerp<TValue>, new()
+    public class Timer<TValue, TLerp> : TimerBase, ITimer where TLerp : ILerp<TValue>, new()
     {
         protected GameCycle gameCycle;
 
@@ -127,7 +127,7 @@ namespace MyTimer
         public event UnityAction<TValue> OnTick;
 
         public Timer()
-            :base()
+            : base()
         {
             Lerp = new TLerp();
         }

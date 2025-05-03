@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
-    [CustomEditor(typeof(ObjectBrush),true)]
+    [CustomEditor(typeof(ObjectBrush), true)]
     public class ObjectBrushEditor : InteractiveEditor
     {
         public ObjectBrush ObjectBrush => target as ObjectBrush;
@@ -53,7 +53,7 @@ namespace EditorExtend.GridEditor
             if (Application.isPlaying)
                 return;
 
-            if(isEditting)
+            if (isEditting)
             {
                 if (GUILayout.Button("ֹͣ�༭"))
                 {
@@ -146,7 +146,7 @@ namespace EditorExtend.GridEditor
         protected override void OnMouseDown(int button)
         {
             base.OnMouseDown(button);
-            switch(button)
+            switch (button)
             {
                 case 0:
                     Brush();
@@ -174,7 +174,7 @@ namespace EditorExtend.GridEditor
         {
             Vector3 world = SceneViewUtility.SceneToWorld(mousePosition);
             Vector3Int temp = ObjectBrush.CalculateCellPosition(world, lockedPosition);
-            if(ObjectBrush.cellPosition != temp)
+            if (ObjectBrush.cellPosition != temp)
             {
                 ObjectBrush.cellPosition = temp;
                 Paint();
@@ -189,7 +189,7 @@ namespace EditorExtend.GridEditor
 
             if (!ObjectBrush.Manager.CanPlaceAt(position))
             {
-                if(overrideMode.boolValue)
+                if (overrideMode.boolValue)
                     TryEraseAt(position);
                 else
                     return null;
@@ -214,7 +214,7 @@ namespace EditorExtend.GridEditor
             if (ObjectBrush.Manager.ObjectDict.ContainsKey(position))
             {
                 GridObject gridObject = ObjectBrush.Manager.TryRemoveObject(position);
-                if(gridObject != null)
+                if (gridObject != null)
                 {
                     ExternalTool.Destroy(gridObject.gameObject);
                     return true;

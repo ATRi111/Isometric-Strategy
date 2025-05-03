@@ -6,7 +6,7 @@ public class DebugPlanPerspectiveController : PerspectiveController
 
     protected override bool CoverCheck()
     {
-        if(ui.plan == null)
+        if (ui.plan == null)
             return false;
         return perspectiveManager.CoverCheck(ui.plan.action.target + Vector3Int.back);
     }

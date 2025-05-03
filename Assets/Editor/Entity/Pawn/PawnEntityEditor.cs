@@ -11,7 +11,7 @@ public class PawnEntityEditor : EntityEditor
     public bool foldout;
 
     protected override void MyOnInspectorGUI()
-    {   
+    {
         base.MyOnInspectorGUI();
         icon.PropertyField("Í·Ïñ");
         tachie.PropertyField("Á¢»æ");

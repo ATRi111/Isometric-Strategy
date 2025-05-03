@@ -12,7 +12,7 @@ public class AfterBattleUI : MonoBehaviour
 
     public void Show()
     {
-        canvasGroup.Visible = true; 
+        canvasGroup.Visible = true;
     }
 
     private void AfterBattle(bool win)

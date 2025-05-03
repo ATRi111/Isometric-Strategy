@@ -6,7 +6,7 @@ public class MoveAnimationProcess : EffectAnimationProcess
     public readonly float speedMultiplier;
 
     public MoveAnimationProcess(MoveEffect effect)
-        :base(effect)
+        : base(effect)
     {
         moveController = effect.victim.MoveController;
         speedMultiplier = effect.speedMultiplier;

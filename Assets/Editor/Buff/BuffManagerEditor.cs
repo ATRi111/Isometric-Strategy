@@ -10,7 +10,7 @@ public class BuffManagerEditor : AutoEditor
 
     protected override void MyOnInspectorGUI()
     {
-        if(Application.isPlaying)
+        if (Application.isPlaying)
         {
             buffs.ListField("ËùÓÐ×´Ì¬");
         }

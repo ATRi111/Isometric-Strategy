@@ -13,7 +13,7 @@ public class GridObjectMoveController : GridMoveController
 
     protected override void OnTick(Vector3 v)
     {
-        if(pawnEntity != null)
+        if (pawnEntity != null)
         {
             Vector3 delta = v - Position;
             Vector2 cell = IsometricGridUtility.WorldToCell(delta, Igm.Grid.cellSize);
@@ -35,8 +35,8 @@ public class GridObjectMoveController : GridMoveController
     public override void ForceComplete()
     {
         base.ForceComplete();
-        if(!animationOnly)
-            gridObject.AlignXY(); 
+        if (!animationOnly)
+            gridObject.AlignXY();
     }
 
     protected override void Awake()

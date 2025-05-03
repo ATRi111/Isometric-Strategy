@@ -11,7 +11,7 @@ public class BuffAnimation : AnimationObject
         {
             EBuffType.Buff => 1,
             EBuffType.Debuff => -1,
-            _ =>0
+            _ => 0
         };
         if (effect is RemoveBuffEffect)
             flag = -flag;

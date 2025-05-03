@@ -19,14 +19,14 @@ public class WalkSkill : MoveSkill
         agent.Sensor.FindRoute((Vector2Int)position, (Vector2Int)target, route);
         base.Mock(agent, igm, position, target, ret);
         List<Vector3> temp = new();
-        if(route.Count > 0)
+        if (route.Count > 0)
         {
             temp.Add(route[0]);
             for (int i = 1; i < route.Count; i++)
             {
                 Vector3 next = route[i];
                 Vector3 prev = temp[^1];
-                if(next.z != prev.z)
+                if (next.z != prev.z)
                 {
                     Vector3 inserted;
                     if (next.z > prev.z)
@@ -47,14 +47,14 @@ public class WalkSkill : MoveSkill
     protected override void DescribeTime(StringBuilder sb)
     {
         sb.Append("时间消耗:");
-        if(actionTime > 0)
+        if (actionTime > 0)
         {
             sb.Append(actionTime);
             sb.Append("+");
         }
         sb.Append(actionTimePerUnit);
         sb.Append("×走过的格数");
-        if(ZOCActionTime > 0)
+        if (ZOCActionTime > 0)
         {
             sb.Append("(试图离开控制区时+");
             sb.Append(ZOCActionTime);

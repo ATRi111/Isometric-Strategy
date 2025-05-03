@@ -1,7 +1,7 @@
 using EditorExtend;
 using UnityEditor;
 
-[CustomEditor(typeof(FindPawnPropertySO),true)]
+[CustomEditor(typeof(FindPawnPropertySO), true)]
 public class FindPawnPropertySOEditor : AutoEditor
 {
     [AutoProperty]

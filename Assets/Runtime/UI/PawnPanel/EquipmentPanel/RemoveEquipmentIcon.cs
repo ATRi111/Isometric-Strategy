@@ -1,6 +1,6 @@
 using UnityEngine.EventSystems;
 
-public class RemoveEquipmentIcon : InfoIcon , IPointerClickHandler
+public class RemoveEquipmentIcon : InfoIcon, IPointerClickHandler
 {
     private PawnPanel pawnPanel;
     private BagPanel bagPanel;

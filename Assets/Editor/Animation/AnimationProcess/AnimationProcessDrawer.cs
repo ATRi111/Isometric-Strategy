@@ -11,6 +11,6 @@ public class AnimationProcessDrawer : AutoPropertyDrawer
     protected override void MyOnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         name.TextField("名称", NextRectRelative());
-        completed.BoolField("播放完毕",NextRectRelative());
+        completed.BoolField("播放完毕", NextRectRelative());
     }
 }

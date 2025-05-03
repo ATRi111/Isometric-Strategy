@@ -14,7 +14,7 @@ public class FaceShadowGenerator : MonoBehaviour
 
     private void Awake()
     {
-        gridObject = GetComponent<GridObject>(); 
+        gridObject = GetComponent<GridObject>();
         shadowManager = GetComponentInParent<ShadowManager>();
         objectManager = ServiceLocator.Get<IObjectManager>();
     }

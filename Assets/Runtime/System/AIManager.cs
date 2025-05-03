@@ -2,7 +2,7 @@ using Services;
 using System;
 using UnityEngine;
 
-public class AIManager : Service,IService
+public class AIManager : Service, IService
 {
     public override Type RegisterType => GetType();
 
@@ -32,7 +32,7 @@ public struct Trend
         return offerSupport * a + seekSupport * b + offense * c + defense * d;
     }
 
-    public static Trend operator+(Trend a, Trend b)
+    public static Trend operator +(Trend a, Trend b)
     {
         Trend ret = new()
         {

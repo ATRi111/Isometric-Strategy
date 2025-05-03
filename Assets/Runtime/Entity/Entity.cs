@@ -5,7 +5,7 @@ using Services;
 using Services.Event;
 using UnityEngine;
 
-public class Entity : EntityBase , IDescription
+public class Entity : EntityBase, IDescription
 {
     public IsometricGridManager Igm => IsometricGridManager.Instance;
     public GameManager GameManager { get; protected set; }
@@ -24,7 +24,7 @@ public class Entity : EntityBase , IDescription
     {
         get
         {
-            if(string.IsNullOrEmpty(entityName))
+            if (string.IsNullOrEmpty(entityName))
                 return gameObject.name;
             return entityName;
         }
@@ -83,7 +83,7 @@ public class Entity : EntityBase , IDescription
 
     public void ExtractKeyWords(KeyWordList keyWordList)
     {
-        
+
     }
 
     public virtual string EntityNameWithColor

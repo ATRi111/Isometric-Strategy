@@ -16,7 +16,7 @@ public class KeyWordList : ScriptableObject
     public void Initialize()
     {
         searcher = new();
-        for(int i = 0; i < keywords.Count; i++)
+        for (int i = 0; i < keywords.Count; i++)
         {
             searcher.Add(keywords[i].word, keywords[i].description);
         }
@@ -24,7 +24,7 @@ public class KeyWordList : ScriptableObject
 
     public string GetDescription(string word)
     {
-        if(searcher.ContainsKey(word))
+        if (searcher.ContainsKey(word))
             return searcher[word];
         return string.Empty;
     }
@@ -72,7 +72,7 @@ public class KeyWordList : ScriptableObject
 public class KeyWord
 {
     public string word;
-    [TextArea(3,10)]
+    [TextArea(3, 10)]
     public string description;
 
     public KeyWord(string word, string description)

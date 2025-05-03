@@ -13,14 +13,14 @@ public class PlayerSwitchController : MonoBehaviour
 
     private void SwitchPawn(PawnEntity pawn)
     {
-        if(prev == null)
+        if (prev == null)
         {
             prev = pawn;
             objectManager.Activate("ActorIcon", Igm.CellToWorld(pawn.GridObject.CellPosition), Vector3.zero, transform);
         }
         else
         {
-            if(prev != pawn)
+            if (prev != pawn)
             {
                 Vector3Int prevPosition = prev.GridObject.CellPosition;
                 Vector3Int pawnPosition = pawn.GridObject.CellPosition;

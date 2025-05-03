@@ -5,7 +5,7 @@ using AStar;
 /// </summary>
 public class AMover_Ranging : AMover
 {
-    public AMover_Ranging(MovableGridObject movable) 
+    public AMover_Ranging(MovableGridObject movable)
         : base(movable)
     {
     }

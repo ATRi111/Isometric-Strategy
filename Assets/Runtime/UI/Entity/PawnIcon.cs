@@ -1,7 +1,7 @@
 using Services.Event;
 using UnityEngine.EventSystems;
 
-public class PawnIcon : InfoIcon , IPointerClickHandler
+public class PawnIcon : InfoIcon, IPointerClickHandler
 {
     public SkillUIManager skillUIManager;
     private PawnEntity pawn;
@@ -13,9 +13,9 @@ public class PawnIcon : InfoIcon , IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
             eventSystem.Invoke(EEvent.ShowPawnPanel, pawn);
-        else if(eventData.button == PointerEventData.InputButton.Right)
+        else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if(CanSwitch)
+            if (CanSwitch)
                 eventSystem.Invoke(EEvent.SwitchPawn, pawn);
         }
     }

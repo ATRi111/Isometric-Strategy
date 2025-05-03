@@ -9,7 +9,7 @@ public class ContinueGameButton : ButtonBase
     {
         ServiceLocator.Get<ISaveManager>().GetGroup(1).Load();
         ServiceLocator.Get<ISceneController>().LoadNextScene();
-        ServiceLocator.Get<ISceneController>().LoadScene(ServiceLocator.Get<GameManager>().battleSceneIndex, 
+        ServiceLocator.Get<ISceneController>().LoadScene(ServiceLocator.Get<GameManager>().battleSceneIndex,
             UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 }

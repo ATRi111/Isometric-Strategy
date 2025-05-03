@@ -27,7 +27,7 @@ public struct SkillPower
     public float dexMultiplier;
     public float intMultiplier;
     public float mndMultiplier;
-    
+
     public void Describe(StringBuilder sb)
     {
         void Split()
@@ -44,9 +44,9 @@ public struct SkillPower
         }
 
         sb.Append(Mathf.Abs(power));
-        
+
         sb.Append("(");
-        if(strMultiplier != 0)
+        if (strMultiplier != 0)
         {
             sb.Append(Mathf.RoundToInt(100 * strMultiplier));
             sb.Append("%");

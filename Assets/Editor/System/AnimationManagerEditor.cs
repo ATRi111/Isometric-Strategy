@@ -10,7 +10,7 @@ public class AnimationManagerEditor : AutoEditor
 
     protected override void MyOnInspectorGUI()
     {
-        if(Application.isPlaying)
+        if (Application.isPlaying)
         {
             EditorGUI.BeginDisabledGroup(true);
             inspectorAnimations.ListField("µ±Ç°¶¯»­");

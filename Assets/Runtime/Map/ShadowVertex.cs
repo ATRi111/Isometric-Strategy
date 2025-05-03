@@ -15,7 +15,7 @@ public class ShadowVertex
 
     public override bool Equals(object obj)
     {
-        if(obj is ShadowVertex vertex)
+        if (obj is ShadowVertex vertex)
         {
             return cellPosition == vertex.cellPosition && cellNormal == vertex.cellNormal;
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "与周围单位相关",menuName = "价值评价方式/与周围单位相关")]
+[CreateAssetMenu(fileName = "与周围单位相关", menuName = "价值评价方式/与周围单位相关")]
 public class ValueModifier_EnemyAlly : ValueModifier
 {
     public int radius;

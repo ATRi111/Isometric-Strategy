@@ -58,11 +58,11 @@ public class PawnPanel : PawnReference
         {
             if (!temp[i].hidden)
                 pawnList.Add(temp[i]);
-        } 
+        }
         selectedIndex = 0;
         for (int i = 0; i < pawnList.Count; i++)
         {
-            if(pawnList[i] == pawn)
+            if (pawnList[i] == pawn)
                 selectedIndex = i;
         }
         canvasGroup.Visible = true;

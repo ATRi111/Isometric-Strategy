@@ -11,7 +11,7 @@ public class StraightLineAreaSkill : RangedSkill
     public override bool FilterOption(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int option)
     {
         Vector3Int delta = option - position;
-        if(delta.x * delta.y != 0)  //只能在直线方向上释放
+        if (delta.x * delta.y != 0)  //只能在直线方向上释放
             return false;
         return base.FilterOption(agent, igm, position, option);
     }
@@ -21,16 +21,16 @@ public class StraightLineAreaSkill : RangedSkill
         ret.Clear();
         Vector2Int extend;
         Vector2Int front = (Vector2Int)(target - position);
-        if(front == Vector2Int.left ||  front == Vector2Int.right)
+        if (front == Vector2Int.left || front == Vector2Int.right)
             extend = Vector2Int.up;
-        else if(front == Vector2Int.up || front == Vector2Int.down)
+        else if (front == Vector2Int.up || front == Vector2Int.down)
             extend = Vector2Int.right;
         else
             throw new System.ArgumentException();
 
         Vector2Int targetXY = (Vector2Int)target;
         List<Vector2Int> startPoints = new() { targetXY };
-        for (int i = 1; i <= width / 2 ; i++)
+        for (int i = 1; i <= width / 2; i++)
         {
             startPoints.Add(targetXY + i * extend);
             startPoints.Add(targetXY - i * extend);

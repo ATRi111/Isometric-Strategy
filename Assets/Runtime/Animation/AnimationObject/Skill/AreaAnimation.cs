@@ -15,7 +15,7 @@ public class AreaAnimation : AnimationObject
         if (prefab != null)
         {
             PawnAction action = source as PawnAction;
-            if(action.skill is AimSkill aimSkill)
+            if (action.skill is AimSkill aimSkill)
                 aimSkill.MockArea(igm, action.position, action.target, area);
             else
             {

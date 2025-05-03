@@ -14,7 +14,7 @@ public class ShadowTeleportSkill : TeleportSkill
         for (int i = 0; i < adjoins.Count; i++)
         {
             Vector3Int p = igm.AboveGroundPosition((Vector2Int)option + adjoins[i]);
-            if(igm.entityDict.ContainsKey(p) 
+            if (igm.entityDict.ContainsKey(p)
                 && igm.entityDict[p] is PawnEntity pawn
                 && (Vector2Int)pawn.GridObject.CellPosition - pawn.faceDirection == (Vector2Int)option)
             {

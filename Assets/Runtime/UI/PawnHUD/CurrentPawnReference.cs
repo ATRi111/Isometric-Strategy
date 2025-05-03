@@ -1,6 +1,6 @@
 using Services.Event;
 
-public class CurrentPawnReference :PawnReference,  IPawnReference
+public class CurrentPawnReference : PawnReference, IPawnReference
 {
     protected override void OnEnable()
     {

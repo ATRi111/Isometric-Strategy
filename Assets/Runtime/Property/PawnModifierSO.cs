@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 ///  角色修改器（装备，属性，状态，种族等）
 /// </summary>
-public class PawnModifierSO : ScriptableObject , IDescription
+public class PawnModifierSO : ScriptableObject, IDescription
 {
     public Sprite icon;
     public PawnPropertyModifier propertyModifier;
@@ -82,12 +82,12 @@ public class PawnModifierSO : ScriptableObject , IDescription
         }
     }
 
-    protected virtual string TypeName => string.Empty; 
+    protected virtual string TypeName => string.Empty;
 
     protected virtual void Describe(StringBuilder sb)
     {
         DescribePropertyModifier(sb);
-        if(skillsAttached.Count > 0)
+        if (skillsAttached.Count > 0)
             DescribeSkills(sb);
     }
 

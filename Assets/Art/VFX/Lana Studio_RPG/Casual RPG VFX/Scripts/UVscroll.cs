@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UVscroll : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class UVscroll : MonoBehaviour
     void Update()
     {
         //GetComponent<LineRenderer>().materials[0].
-        
+
 
         float offsetX = Time.time * scrollSpeedX;
         float offsetY = Time.time * scrollSpeedY;

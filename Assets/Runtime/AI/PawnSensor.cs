@@ -1,4 +1,4 @@
-    using AStar;
+using AStar;
 using Character;
 using EditorExtend.GridEditor;
 using Services;
@@ -68,7 +68,7 @@ public class PawnSensor : CharacterComponentBase
         }
     }
 
-    public int FCostOfNearest(Vector2Int from,Vector2Int to)
+    public int FCostOfNearest(Vector2Int from, Vector2Int to)
     {
         static float FCost(Node node, Vector2Int to)
         {
@@ -119,7 +119,7 @@ public class PawnSensor : CharacterComponentBase
     {
         ret.Clear();
         ret.Add(pawn.MovableGridObject.CellPosition);
-        PathFindingProcess process = AIManager.PathFinding.FindRoute(pawn.MovableGridObject.Mover_Default, from,to);
+        PathFindingProcess process = AIManager.PathFinding.FindRoute(pawn.MovableGridObject.Mover_Default, from, to);
         for (int i = 0; i < process.output.Count; i++)
         {
             ret.Add((process.output[i] as ANode).cellPosition);
@@ -153,7 +153,7 @@ public class PawnSensor : CharacterComponentBase
 
     private void OnEnable()
     {
-        pawn.EventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);    
+        pawn.EventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
     }
 
     private void OnDisable()

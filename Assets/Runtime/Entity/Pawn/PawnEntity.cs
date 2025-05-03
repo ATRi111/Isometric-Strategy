@@ -69,8 +69,8 @@ public class PawnEntity : Entity
 
     public List<string> GetVisibleParameters()
     {
-        List<string> ret = new(); 
-        foreach (KeyValuePair<string,int> pair in parameterDict.dict)
+        List<string> ret = new();
+        foreach (KeyValuePair<string, int> pair in parameterDict.dict)
         {
             Parameter parameter = parameterTable[pair.Key];
             if (!parameter.hidden)

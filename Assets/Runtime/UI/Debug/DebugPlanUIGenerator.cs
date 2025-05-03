@@ -17,7 +17,7 @@ public class DebugPlanUIGenerator : MonoBehaviour
     private void Filter()
     {
         visiblePlans.Clear();
-        if(paintIndex == 0 || paintIndex > skills.Count)
+        if (paintIndex == 0 || paintIndex > skills.Count)
         {
             foreach (Plan plan in brain.plans)
             {
@@ -49,7 +49,7 @@ public class DebugPlanUIGenerator : MonoBehaviour
         GameObject obj = new("DebugPlan");
         skills = skillManager.learnedSkills.list;
         Filter();
-        foreach(Plan plan in visiblePlans.Values)
+        foreach (Plan plan in visiblePlans.Values)
         {
             PaintPlan(plan, obj.transform);
         }

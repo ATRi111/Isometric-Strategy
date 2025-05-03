@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EquipmentToSelect : MonoBehaviour , IPointerClickHandler
+public class EquipmentToSelect : MonoBehaviour, IPointerClickHandler
 {
     private PawnPanel pawnPanel;
     private EquipmentIcon icon;

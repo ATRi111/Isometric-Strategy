@@ -23,7 +23,7 @@ public class SpawnPoint : GridObject
     {
         base.Awake();
         eventSystem = ServiceLocator.Get<IEventSystem>();
-        eventSystem.AddListener(EEvent.BeforeBattle,BeforeBattle);
+        eventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
     }
 
     private void OnDestroy()

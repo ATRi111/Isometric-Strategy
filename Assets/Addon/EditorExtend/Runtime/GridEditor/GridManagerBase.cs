@@ -102,7 +102,7 @@ namespace EditorExtend.GridEditor
                 return false;
             }
 
-            if(!ObjectDict.ContainsKey(gridObject.CellPosition))
+            if (!ObjectDict.ContainsKey(gridObject.CellPosition))
             {
                 ObjectDict.Add(gridObject.CellPosition, gridObject);
                 gridObject.referenceCount++;
@@ -136,12 +136,12 @@ namespace EditorExtend.GridEditor
             return gridObject;
         }
 
-        public virtual void RelocateObject(GridObject gridObject,Vector3Int prevPosition)
+        public virtual void RelocateObject(GridObject gridObject, Vector3Int prevPosition)
         {
             if (gridObject.referenceCount != 1)
                 throw new InvalidOperationException();
 
-            TryRemoveObject(prevPosition); 
+            TryRemoveObject(prevPosition);
             TryAddObject(gridObject);
         }
 

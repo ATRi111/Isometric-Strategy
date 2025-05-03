@@ -6,5 +6,5 @@ public interface IAnimationSource
     /// <summary>
     /// 动画播放完毕后应用效果
     /// </summary>
-    void Apply();   
+    void Apply();
 }

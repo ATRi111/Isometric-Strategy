@@ -21,7 +21,7 @@ public abstract class BuffEffect : Effect
 
     public Buff buff;
     protected BuffManager buffManager;
-    protected BuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability) 
+    protected BuffEffect(Entity victim, Buff buff, BuffManager buffManager, int probability = MaxProbability)
         : base(victim, probability)
     {
         this.buff = buff;

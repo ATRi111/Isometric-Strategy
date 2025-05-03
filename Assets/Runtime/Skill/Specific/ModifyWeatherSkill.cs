@@ -13,7 +13,7 @@ public class ModifyWeatherSkill : AimlessSkill
         int r = Effect.NextInt();
         for (int i = 0; i < weatherModifiers.Count; i++)
         {
-            if(r < weatherModifiers[i].probability)
+            if (r < weatherModifiers[i].probability)
             {
                 BattleField battleField = igm.BattleField;
                 ModifyWeatherEffect effect = new(battleField, battleField.Weather, weatherModifiers[i].weather);
@@ -27,7 +27,7 @@ public class ModifyWeatherSkill : AimlessSkill
     protected override void Describe(StringBuilder sb)
     {
         base.Describe(sb);
-        for (int i = 0;i < weatherModifiers.Count;i++)
+        for (int i = 0; i < weatherModifiers.Count; i++)
         {
             weatherModifiers[i].Describe(sb);
         }

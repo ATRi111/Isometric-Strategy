@@ -14,7 +14,7 @@ public abstract class PerspectiveController : AlphaController
             {
                 SetAlpha(spriteRenderers[i], alphaMultiplier_perspectiveMode);
             }
-            for (int i = 0;i < canvasGroups.Count; i++)
+            for (int i = 0; i < canvasGroups.Count; i++)
             {
                 SetAlpha(canvasGroups[i], alphaMultiplier_perspectiveMode);
             }
@@ -23,7 +23,7 @@ public abstract class PerspectiveController : AlphaController
     }
     protected virtual void ExitPerspectiveMode()
     {
-        if(perspectived)
+        if (perspectived)
         {
             for (int i = 0; i < spriteRenderers.Count; i++)
             {
@@ -49,7 +49,7 @@ public abstract class PerspectiveController : AlphaController
 
     protected virtual void OnDisable()
     {
-        if(perspectiveManager != null)
+        if (perspectiveManager != null)
         {
             perspectiveManager.EnterPerspectiveMode -= EnterPerspectiveMode;
             perspectiveManager.ExitPerspectiveMode -= ExitPerspectiveMode;

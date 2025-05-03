@@ -5,14 +5,14 @@ using System;
 
 public class MovableGridObject : GridObject
 {
-    public static bool ObjectCheck_AllObject(PawnEntity pawn,GridObject gridObject)
+    public static bool ObjectCheck_AllObject(PawnEntity pawn, GridObject gridObject)
     {
         return true;
     }
     public static bool ObjectCheck_IgnoreAlly(PawnEntity pawn, GridObject gridObject)
     {
         Entity entity = gridObject.GetComponentInParent<Entity>();
-        if(entity != null && pawn.FactionCheck(entity) > 0)
+        if (entity != null && pawn.FactionCheck(entity) > 0)
             return false;
         return true;
     }
@@ -38,7 +38,7 @@ public class MovableGridObject : GridObject
         };
         Mover_Ranging = new AMover_Ranging(this)
         {
-            GetMoveAbility = () => 5 * moveAbility.IntValue 
+            GetMoveAbility = () => 5 * moveAbility.IntValue
         };
     }
 
@@ -49,7 +49,7 @@ public class MovableGridObject : GridObject
         moveAbility.Refresh();
     }
 
-    public virtual bool JumpCheck(Node from, Node to, Func<PawnEntity,GridObject, bool> ObjectCheck = null)
+    public virtual bool JumpCheck(Node from, Node to, Func<PawnEntity, GridObject, bool> ObjectCheck = null)
     {
         JumpSkill jumpSkill = Pawn.SkillManager.FindSkill<JumpSkill>();
         if (jumpSkill == null)

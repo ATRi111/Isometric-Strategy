@@ -19,7 +19,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 GameObject obj = GameObject.Find(nameof(IsometricGridManager));
                 if (obj != null)
@@ -53,7 +53,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     public override GridObject TryRemoveObject(Vector3Int cellPosition)
     {
         GridObject gridObject = base.TryRemoveObject(cellPosition);
-        if(gridObject is MovableGridObject)
+        if (gridObject is MovableGridObject)
         {
             entityDict.Remove(cellPosition);
         }
@@ -79,7 +79,7 @@ public class IsometricGridManager : IsometricGridManagerBase
         bool top_down = (to - from).z < 0;  //射线从上往下发射时，求交时也必须从上往下
         for (int i = 0; i < overlap.Count; i++)
         {
-            GetObjectsXY(overlap[i], gridObjects, top_down); 
+            GetObjectsXY(overlap[i], gridObjects, top_down);
             for (int j = 0; j < gridObjects.Count; j++)
             {
                 if (!gridObjects[j].Overlap(from) && gridObjects[j].OverlapLineSegment(ref from, ref to))
@@ -110,11 +110,11 @@ public class IsometricGridManager : IsometricGridManagerBase
 
         List<GridObject> gridObjects = new();
         float deltaTime = Mathf.Clamp(1f / velocity.magnitude / GridPhysics.settings.parabolaPrecision, 0.01f, 0.1f);
-        for (float t = 0f; ;t += deltaTime)
+        for (float t = 0f; ; t += deltaTime)
         {
             Vector3 point = from + t * velocity + t * t / 2 * g * Vector3.back;
             trajectory.Add(point);
-            if(trajectory.Count > 1000)
+            if (trajectory.Count > 1000)
                 throw new Exception();
             if (point.z < 0)
                 break;
@@ -190,7 +190,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     public bool ClimbCheck(Vector3Int from, Vector3Int to)
     {
         Vector3Int climbDirection, ladderDirection, current;
-        if(to.z > from.z)
+        if (to.z > from.z)
         {
             climbDirection = Vector3Int.forward;
             current = to.ResetZ(from.z) + Vector3Int.forward;
@@ -247,7 +247,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     {
         List<GridObject> gridObjects = new();
         GeneralTool.GetComponentsInAllChildren(transform, gridObjects);
-        for(int i = 0; i < gridObjects.Count; i++)
+        for (int i = 0; i < gridObjects.Count; i++)
         {
             GridObject gridObject = gridObjects[i];
             gridObject.gameObject.SetActive(CellToSortingOrder(gridObject.transform.position) <= sortingOrderThreshold);

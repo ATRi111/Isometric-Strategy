@@ -17,7 +17,7 @@ public class BuffPanel : MonoBehaviour
             icons[i].SetBuff(buffs[i]);
             icons[i].canvasGroup.Visible = true;
         }
-        for(; i < icons.Length;i++ )
+        for (; i < icons.Length; i++)
         {
             icons[i].canvasGroup.Visible = false;
         }

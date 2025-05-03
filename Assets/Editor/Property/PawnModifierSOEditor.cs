@@ -5,7 +5,7 @@ using UnityEditor;
 public class PawnModifierSOEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty icon,propertyModifier, skillsAttached, extraDescription;
+    public SerializedProperty icon, propertyModifier, skillsAttached, extraDescription;
 
     protected override void MyOnInspectorGUI()
     {

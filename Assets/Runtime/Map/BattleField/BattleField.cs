@@ -25,10 +25,10 @@ public class BattleField : MonoBehaviour
         get => weather;
         set
         {
-            if(weather != value)
+            if (weather != value)
             {
                 weather = value;
-                if(value != EWeather.None)
+                if (value != EWeather.None)
                     nextResetTime = gameManager.Time + WeatherDuration;
                 eventSystem.Invoke(EEvent.AfterWeatherChange, this);
             }
@@ -44,7 +44,7 @@ public class BattleField : MonoBehaviour
     {
         get
         {
-            if(weather == EWeather.None)
+            if (weather == EWeather.None)
                 return 0;
             return nextResetTime - gameManager.Time;
         }

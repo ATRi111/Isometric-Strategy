@@ -8,7 +8,7 @@ public class ManhattanDistanceWithJumpSO : CalculateDistanceSO
 
     public override float CalculateDistance(Vector2Int from, Vector2Int to)
     {
-        if((from - to).sqrMagnitude == 1)
+        if ((from - to).sqrMagnitude == 1)
             return PathFindingUtility.ManhattanDistance(from, to);
         return jumpDistanceMultiplier * PathFindingUtility.ManhattanDistance(from, to);
     }

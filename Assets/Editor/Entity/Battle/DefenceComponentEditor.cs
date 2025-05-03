@@ -6,7 +6,7 @@ using UnityEditor;
 public class DefenceComponentEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty maxHP, hp , resistance;
+    public SerializedProperty maxHP, hp, resistance;
     public SerializedProperty list;
 
     protected override void OnEnable()

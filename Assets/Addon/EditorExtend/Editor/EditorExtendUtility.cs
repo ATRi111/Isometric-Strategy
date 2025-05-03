@@ -55,7 +55,7 @@ namespace EditorExtend
         /// <summary>
         /// 获取所有继承某个类的脚本的类型
         /// </summary>
-        public static void FindAllScriptInherit(Type baseType,List<Type> ret)
+        public static void FindAllScriptInherit(Type baseType, List<Type> ret)
         {
             string[] temp = AssetDatabase.FindAssets($"t:MonoScript");
             for (int i = 0; i < temp.Length; i++)

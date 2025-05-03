@@ -16,7 +16,7 @@ public class WeatherAnimation
         {
             gameObjects[i].SetActive(true);
         }
-        for (int i = 0;i < particleSystems.Length; i++)
+        for (int i = 0; i < particleSystems.Length; i++)
         {
             particleSystems[i].Play();
         }
@@ -44,9 +44,9 @@ public class WeatherAnimationController : MonoBehaviour
 
     private void AfterWeatherChange(BattleField battleField)
     {
-        foreach(WeatherAnimation animation in seacher.Values)
+        foreach (WeatherAnimation animation in seacher.Values)
         {
-            if(animation.weather == battleField.Weather)
+            if (animation.weather == battleField.Weather)
                 animation.Play();
             else
                 animation.Stop();
@@ -59,7 +59,7 @@ public class WeatherAnimationController : MonoBehaviour
         seacher = new();
         for (int i = 0; i < weatherAnimations.Length; i++)
         {
-            seacher.Add(weatherAnimations[i].weather,weatherAnimations[i]);
+            seacher.Add(weatherAnimations[i].weather, weatherAnimations[i]);
         }
     }
 

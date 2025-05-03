@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SkillIconToSelect : MonoBehaviour,IPointerClickHandler
+public class SkillIconToSelect : MonoBehaviour, IPointerClickHandler
 {
     private SkillUIManager skillUIManager;
     private SkillIcon icon;

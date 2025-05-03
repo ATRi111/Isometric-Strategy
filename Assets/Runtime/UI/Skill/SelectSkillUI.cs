@@ -17,7 +17,7 @@ public class SelectSkillUI : MonoBehaviour
     {
         current = pawn;
         int count = 0;
-        foreach(Skill skill in pawn.SkillManager.learnedSkills)
+        foreach (Skill skill in pawn.SkillManager.learnedSkills)
         {
             if (skill.CanUse(pawn, pawn.Igm))
             {

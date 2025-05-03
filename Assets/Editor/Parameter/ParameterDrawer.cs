@@ -11,7 +11,7 @@ public class ParameterDrawer : AutoPropertyDrawer
     protected override void MyOnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         name.TextField("参数名", NextRectRelative());
-        icon.PropertyField("图标",NextRectRelative());
+        icon.PropertyField("图标", NextRectRelative());
         maxValue.IntField("上限", NextRectRelative());
         valuePerUnit.IntField("单位价值", NextRectRelative());
         hidden.BoolField("隐藏参数", NextRectRelative());

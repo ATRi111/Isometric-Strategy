@@ -12,7 +12,7 @@ namespace UIExtend
         {
             padding *= Screen.width;
             GetBorder(rectTransform, out float left, out float right, out float bottom, out float top);
-            return left >= padding  && right <= Screen.width - padding
+            return left >= padding && right <= Screen.width - padding
                 && bottom >= padding && top <= Screen.height - padding;
         }
 

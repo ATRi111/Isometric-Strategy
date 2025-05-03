@@ -14,7 +14,7 @@ public abstract class ProjectileSkill : RangedSkill
         ret.Clear();
         List<Vector3> trajectory = new();
         GridObject gridObject = HitCheck(agent, igm, target, trajectory);
-        if(gridObject != null)
+        if (gridObject != null)
         {
             Entity entity = gridObject.GetComponentInParent<Entity>();
             if (entity != null && FilterVictim(agent, entity))
