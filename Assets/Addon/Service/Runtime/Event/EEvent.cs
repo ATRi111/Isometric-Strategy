@@ -27,6 +27,10 @@ namespace Services.Event
         /// </summary>
         BeforeDoAction,
         /// <summary>
+        /// 角色开始行动时，参数：PawnAction
+        /// </summary>
+        OnDoAction,
+        /// <summary>
         /// 天气发生变化后，参数：BattleField
         /// </summary>
         AfterWeatherChange,

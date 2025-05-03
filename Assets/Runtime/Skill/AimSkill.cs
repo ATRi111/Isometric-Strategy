@@ -32,11 +32,6 @@ public abstract class AimSkill : Skill
     }
 
     /// <summary>
-    /// 模拟技能影响范围
-    /// </summary>
-    public abstract void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret);
-
-    /// <summary>
     /// 判断某个entity是否是技能允许的目标
     /// </summary>
     public virtual bool FilterVictim(PawnEntity agent, Entity victim)

@@ -58,6 +58,11 @@ public class JumpSkill : MoveSkill
         }
     }
 
+    public override void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret)
+    {
+        ret.Add(target);
+    }
+
     public override void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
         base.Mock(agent, igm, position, target, ret);

@@ -12,4 +12,9 @@ public class AimlessSkill : Skill
         base.GetOptions(agent, igm, position, ret);
         ret.Add(position);
     }
+
+    public override void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret)
+    {
+        ret.Add(position);
+    }
 }

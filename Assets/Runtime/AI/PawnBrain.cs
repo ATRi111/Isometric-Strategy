@@ -60,6 +60,7 @@ public class PawnBrain : CharacterComponentBase
     public void ExecuteAction(PawnAction action)
     {
         action.Play(eventSystem, pawn.AnimationManager);
+        eventSystem.Invoke(EEvent.OnDoAction, action);
     }
 
     public PawnAction MockSkill(Skill skill, Vector3Int target)

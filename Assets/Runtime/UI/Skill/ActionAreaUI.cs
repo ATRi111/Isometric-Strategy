@@ -1,6 +1,5 @@
 using Services;
 using Services.ObjectPools;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -11,24 +10,13 @@ public class ActionAreaUI : MonoBehaviour
     private IsometricGridManager Igm => IsometricGridManager.Instance;
     private SkillUIManager skillUIManager;
     private IObjectManager objectManager;
-    private readonly List<Vector3Int> area = new();
 
     private void PreviewAction(PawnAction action)
     {
         ObjectPoolUtility.RecycleMyObjects(gameObject);
-        AimSkill aimSkill = action.skill as AimSkill;
-        if (aimSkill != null)
+        for (int i = 0; i < action.area.Count; i++)
         {
-            aimSkill.MockArea(Igm, action.position, action.target, area);
-            for (int i = 0; i < area.Count; i++)
-            {
-                Vector3 world = Igm.CellToWorld(area[i]);
-                objectManager.Activate("ActionAreaIcon", world, Vector3.zero, transform);
-            }
-        }
-        else
-        {
-            Vector3 world = Igm.CellToWorld(action.target);
+            Vector3 world = Igm.CellToWorld(action.area[i]);
             objectManager.Activate("ActionAreaIcon", world, Vector3.zero, transform);
         }
     }

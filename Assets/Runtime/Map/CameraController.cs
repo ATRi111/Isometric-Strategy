@@ -19,18 +19,20 @@ public class CameraController : MonoBehaviour
 
     private IEventSystem eventSystem;
     private Camera myCamera;
+    private IsometricGridManager Igm => IsometricGridManager.Instance;
 
-    public Transform follow;
-    public bool isFollowing;
-    public float moveSpeed;
+    [SerializeField] 
+    private float moveSpeed;
     public Vector3 offset;
 
     public float zoomSpeed;
-    public float maxSize;
-    public float minSize;
-    public Transform cameraFrame;
+    [SerializeField]
+    private float maxSize;
+    [SerializeField]
+    private float minSize;
 
     private float xMin, yMin, xMax, yMax;
+    private float aspectRatio;
 
     private float zoomRatio;
     private Vector3 moveDirection;
@@ -46,29 +48,46 @@ public class CameraController : MonoBehaviour
     {
         if (!pawn.hidden)
         {
-            follow = pawn.transform;
-            isFollowing = true;
+            transform.position = pawn.transform.position.ResetZ(transform.position.z);
+            zoomRatio = defaultSize / CameraSize;
         }
     }
 
-    public void Move()
+    private void OnDoAction(PawnAction action)
+    {
+        float x0, x1, y0, y1;
+        x0 = y0 = float.MaxValue;
+        x1 = y1 = float.MinValue;
+        void UpdateRect(Vector3 position)
+        {
+            x0 = Mathf.Min(x0, position.x);
+            x1 = Mathf.Max(x1, position.x);
+            y0 = Mathf.Min(y0, position.y);
+            y1 = Mathf.Max(y1, position.y);
+        }
+
+        UpdateRect(action.agent.transform.position);
+        for (int i = 0; i < action.area.Count; i++)
+        {
+            UpdateRect(Igm.CellToWorld(action.area[i]));
+        }
+
+        float size = 0.55f * Mathf.Max(y1 - y0, (x1 - x0) / aspectRatio);
+        zoomRatio = size / CameraSize;
+        transform.position = new((x0 + x1) / 2, (y0 + y1) / 2, transform.position.z);
+    }
+
+    private void Move()
     {
         transform.position += CameraSize / defaultSize * moveSpeed * Time.fixedDeltaTime * moveDirection;
         moveDirection = Vector3.zero;
     }
 
-    public void Zoom()
+    private void Zoom()
     {
         zoomRatio = Mathf.Clamp(zoomRatio, minSize / CameraSize, maxSize / CameraSize);
-        cameraFrame.transform.localScale *= zoomRatio;
         CameraSize *= zoomRatio;
         zoomRatio = 1f;
-    }
-
-    public void Follow()
-    {
-        if (follow != null && isFollowing)
-            transform.position = (follow.position + offset).ResetZ(-10);
     }
 
     private void Awake()
@@ -76,6 +95,7 @@ public class CameraController : MonoBehaviour
         eventSystem = ServiceLocator.Get<IEventSystem>();
         myCamera = GetComponent<Camera>();
         defaultSize = CameraSize;
+        aspectRatio = Screen.width / Screen.height;
     }
 
     private void Start()
@@ -103,6 +123,7 @@ public class CameraController : MonoBehaviour
     private void OnEnable()
     {
         eventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
+        eventSystem.AddListener<PawnAction>(EEvent.OnDoAction, OnDoAction);
         zoomRatio = 1f;
         moveDirection = Vector2.zero;
     }
@@ -110,6 +131,7 @@ public class CameraController : MonoBehaviour
     private void OnDisable()
     {
         eventSystem.RemoveListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
+        eventSystem.RemoveListener<PawnAction>(EEvent.OnDoAction, OnDoAction);
     }
 
     private void Update()
@@ -119,7 +141,6 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.R))
         {
-            isFollowing = true;
             zoomRatio = defaultSize / CameraSize;
         }
         else
@@ -127,8 +148,6 @@ public class CameraController : MonoBehaviour
             float x = Input.GetAxisRaw("Horizontal");
             float y = Input.GetAxisRaw("Vertical");
             moveDirection = new Vector3(x, y, 0).normalized;
-            if (moveDirection != Vector3.zero)
-                isFollowing = false;
         }
     }
 
@@ -136,7 +155,6 @@ public class CameraController : MonoBehaviour
     {
         Move();
         Zoom();
-        Follow();
         ClampInMap();
         AfterFixedUpdate?.Invoke();
     }

@@ -7,7 +7,6 @@ using UnityEngine;
 public class AreaAnimation : AnimationObject
 {
     public GameObject prefab;
-    private readonly List<Vector3Int> area = new();
 
     public override void Initialize(IAnimationSource source)
     {
@@ -15,17 +14,10 @@ public class AreaAnimation : AnimationObject
         if (prefab != null)
         {
             PawnAction action = source as PawnAction;
-            if (action.skill is AimSkill aimSkill)
-                aimSkill.MockArea(igm, action.position, action.target, area);
-            else
-            {
-                area.Clear();
-                area.Add(action.target);
-            }
 
-            for (int i = 0; i < area.Count; i++)
+            for (int i = 0; i < action.area.Count; i++)
             {
-                Vector3 world = igm.CellToWorld(area[i]);
+                Vector3 world = igm.CellToWorld(action.area[i]);
                 objectManager.Activate(prefab.name, world, Vector3.zero, transform);
             }
         }

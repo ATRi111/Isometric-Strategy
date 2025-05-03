@@ -56,6 +56,11 @@ public abstract class Skill : ScriptableObject, IDescription
     }
 
     /// <summary>
+    /// 模拟技能影响范围
+    /// </summary>
+    public abstract void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret);
+
+    /// <summary>
     /// 模拟技能产生的影响
     /// </summary>
     public virtual void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)

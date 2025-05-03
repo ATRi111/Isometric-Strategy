@@ -1,5 +1,6 @@
 using MyTool;
 using Services.Event;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class PawnAction : IAnimationSource, IDescription
     public Vector3Int position;
     public Vector3Int target;
     public EffectUnit effectUnit;
+    public List<Vector3Int> area;
+
     public int Time => effectUnit.timeEffect.current - effectUnit.timeEffect.prev;
     /// <summary>
     /// 遍历effect，获取第一个不同于agent的PawnVictim
@@ -39,6 +42,8 @@ public class PawnAction : IAnimationSource, IDescription
         this.target = target;
         this.agent = agent;
         position = agent.GridObject.CellPosition;
+        area = new();
+        skill.MockArea(agent.Igm, agent.GridObject.CellPosition, target, area);
     }
 
     /// <summary>

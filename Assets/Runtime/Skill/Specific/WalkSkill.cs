@@ -13,6 +13,11 @@ public class WalkSkill : MoveSkill
         ret.Remove(position);
     }
 
+    public override void MockArea(IsometricGridManager igm, Vector3Int position, Vector3Int target, List<Vector3Int> ret)
+    {
+        ret.Add(target);
+    }
+
     private readonly List<Vector3Int> route = new();
     public override void Mock(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
