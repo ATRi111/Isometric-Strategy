@@ -21,35 +21,65 @@ public class CameraController : MonoBehaviour
     private Camera myCamera;
     private IsometricGridManager Igm => IsometricGridManager.Instance;
 
-    [SerializeField] 
-    private float moveSpeed;
-    public Vector3 offset;
-
-    public float zoomSpeed;
     [SerializeField]
     private float maxSize;
     [SerializeField]
     private float minSize;
 
+    [SerializeField]
+    [Range(5f, 50f)]
+    private float moveSpeed;    //1秒内可移动的距离
+    public float AdjustedMoveSpeed
+    {
+        get
+        {
+            float d0 = (transform.position - prevPosition).magnitude;
+            float d1 = (transform.position - targetPosition).magnitude;
+            float t = d0 / Mathf.Max(1, d0 + d1);
+            float k = Mathf.Clamp((targetPosition - prevPosition).magnitude / moveSpeed, 0.2f, 2f); //根据路程调整速度
+            t = Mathf.Sin(t * Mathf.PI);
+            return k * Mathf.Lerp(moveSpeed / 2, moveSpeed * 2, t); //根据到起点/终点的距离平滑移动
+        }
+    }
+    [SerializeField]
+    [Range(5f,50f)]
+    private float zoomSpeed;    //1秒内可放大/缩小的倍数
+    public float AdjustedZoomSpeed
+    {
+        get
+        {
+            float d0 = Mathf.Abs(CameraSize - prevSize);
+            float d1 = Mathf.Abs(CameraSize - targetSize);
+            float t = d0 / Mathf.Max(1, d0 + d1);
+            t = Mathf.Sin(t * Mathf.PI);
+            return Mathf.Lerp(zoomSpeed / 2, zoomSpeed * 2, t); //根据起始尺寸/最终尺寸平滑缩放
+        }
+    }
+
+
     private float xMin, yMin, xMax, yMax;
     private float aspectRatio;
 
-    private float zoomRatio;
-    private Vector3 moveDirection;
+    private float prevSize;
+    private float targetSize;
+    private Vector3 prevPosition;
+    private Vector3 targetPosition;
+
+    private Transform follow;
 
     public void ClampInMap()
     {
-        float x = Mathf.Clamp(transform.position.x, xMin, xMax);
-        float y = Mathf.Clamp(transform.position.y, yMin, yMax);
-        transform.position = new Vector3(x, y, transform.position.z);
+        float x = Mathf.Clamp(targetPosition.x, xMin, xMax);
+        float y = Mathf.Clamp(targetPosition.y, yMin, yMax);
+        targetPosition = new Vector3(x, y, targetPosition.z);
     }
 
     private void BeforeDoAction(PawnEntity pawn)
     {
         if (!pawn.hidden)
         {
-            transform.position = pawn.transform.position.ResetZ(transform.position.z);
-            zoomRatio = defaultSize / CameraSize;
+            targetPosition = pawn.transform.position.ResetZ(transform.position.z);
+            follow = pawn.transform;
         }
     }
 
@@ -71,23 +101,45 @@ public class CameraController : MonoBehaviour
         {
             UpdateRect(Igm.CellToWorld(action.area[i]));
         }
+        x0 -= Extend;
+        y0 -= Extend;
+        x1 += Extend;
+        y1 += Extend;
 
-        float size = 0.55f * Mathf.Max(y1 - y0, (x1 - x0) / aspectRatio);
-        zoomRatio = size / CameraSize;
-        transform.position = new((x0 + x1) / 2, (y0 + y1) / 2, transform.position.z);
+        float size = 0.5f * Mathf.Max(y1 - y0, (x1 - x0) / aspectRatio);
+        targetSize = size;
+        targetPosition = new((x0 + x1) / 2, (y0 + y1) / 2, transform.position.z);
     }
 
     private void Move()
     {
-        transform.position += CameraSize / defaultSize * moveSpeed * Time.fixedDeltaTime * moveDirection;
-        moveDirection = Vector3.zero;
+        Vector3 delta = targetPosition - transform.position;
+        if (delta.magnitude < AdjustedMoveSpeed * Time.fixedDeltaTime)
+        {
+            transform.position = targetPosition;
+            prevPosition = targetPosition;
+        }
+        else
+        {
+            delta = AdjustedMoveSpeed * Time.fixedDeltaTime * delta.normalized;
+            transform.position += delta;
+        }
     }
 
     private void Zoom()
     {
-        zoomRatio = Mathf.Clamp(zoomRatio, minSize / CameraSize, maxSize / CameraSize);
-        CameraSize *= zoomRatio;
-        zoomRatio = 1f;
+        targetSize = Mathf.Clamp(targetSize, minSize, maxSize);
+        float delta = targetSize > CameraSize ? targetSize / CameraSize : CameraSize / targetSize;
+        float zoomRatio = Mathf.Pow(AdjustedZoomSpeed, Time.fixedDeltaTime);
+        if (delta < zoomRatio)
+        {
+            CameraSize = targetSize;
+            prevSize = targetSize;
+        }
+        else
+        {
+            CameraSize = targetSize > CameraSize ? CameraSize * zoomRatio : CameraSize / zoomRatio;
+        }
     }
 
     private void Awake()
@@ -124,8 +176,8 @@ public class CameraController : MonoBehaviour
     {
         eventSystem.AddListener<PawnEntity>(EEvent.BeforeDoAction, BeforeDoAction);
         eventSystem.AddListener<PawnAction>(EEvent.OnDoAction, OnDoAction);
-        zoomRatio = 1f;
-        moveDirection = Vector2.zero;
+        prevPosition = targetPosition = transform.position;
+        prevSize = targetSize = CameraSize;
     }
 
     private void OnDisable()
@@ -136,26 +188,34 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        float delta = Input.GetAxisRaw("Mouse ScrollWheel");
-        zoomRatio *= (1f - zoomSpeed * delta);
-
         if (Input.GetKeyUp(KeyCode.R))
         {
-            zoomRatio = defaultSize / CameraSize;
+            transform.position = follow.transform.position;
+            targetPosition = transform.position;
+            CameraSize = defaultSize;
+            targetSize = defaultSize;
         }
         else
         {
             float x = Input.GetAxisRaw("Horizontal");
             float y = Input.GetAxisRaw("Vertical");
-            moveDirection = new Vector3(x, y, 0).normalized;
+            Vector3 moveDirection = new Vector3(x, y, 0).normalized;
+            targetPosition += 0.5f * moveSpeed * Time.deltaTime * moveDirection;
+
+            float delta = Input.GetAxisRaw("Mouse ScrollWheel");
+            float zoomRatio = Mathf.Pow(zoomSpeed, Time.deltaTime);
+            if (delta > 0)
+                targetSize /= zoomRatio;
+            else if (delta < 0)
+                targetSize *= zoomRatio;
         }
     }
 
     private void FixedUpdate()
     {
+        ClampInMap();
         Move();
         Zoom();
-        ClampInMap();
         AfterFixedUpdate?.Invoke();
     }
 }

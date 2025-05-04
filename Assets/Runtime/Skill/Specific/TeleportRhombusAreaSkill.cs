@@ -8,6 +8,7 @@ public class TeleportRhombusAreaSkill : RhombusAreaSkill
 {
     public float powerAmplifier;
     public float speedMultiplier = 5f;
+    public float jumpHeight = 5f;
 
     public override bool FilterOption(PawnEntity agent, IsometricGridManager igm, Vector3Int position, Vector3Int option)
     {
@@ -25,7 +26,7 @@ public class TeleportRhombusAreaSkill : RhombusAreaSkill
     protected override void MockOtherEffectOnAgent(IsometricGridManager igm, PawnEntity agent, Vector3Int position, Vector3Int target, EffectUnit ret)
     {
         Vector3 mid = 0.5f * (Vector3)(position + target);
-        mid.ResetZ(Mathf.Max(position.z, target.z));
+        mid = mid.ResetZ(Mathf.Max(position.z, target.z) + jumpHeight);
         List<Vector3> route = new()
         {
             position,

@@ -61,6 +61,7 @@ public class PawnAction : IAnimationSource, IDescription
     public void Play(IEventSystem eventSystem, AnimationManager animationManager)
     {
         eventSystem.Invoke(EEvent.BattleLog, ResultDescription);
+        eventSystem.Invoke(EEvent.OnDoAction, this);
         if (target != position)
         {
             Vector2Int direction = (Vector2Int)(target - position);
