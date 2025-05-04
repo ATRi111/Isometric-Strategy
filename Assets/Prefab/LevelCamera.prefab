@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -143,13 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a49e2e23ad97c74ca2613076514e955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  follow: {fileID: 0}
-  isFollowing: 0
-  moveSpeed: 5
-  offset: {x: 0, y: 0, z: 0}
-  zoomSpeed: 0.5
+  moveSpeed: 10
+  zoomSpeed: 20
   maxSize: 8
   minSize: 2
+  targetSize: 0
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!81 &2619865863303858734
 AudioListener:
   m_ObjectHideFlags: 0
