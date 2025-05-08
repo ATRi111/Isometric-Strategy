@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EditorExtend.GridEditor
 {
@@ -16,8 +16,15 @@ namespace EditorExtend.GridEditor
             }
         }
 
+        protected GridManagerBase manager;
+        protected SpriteRenderer spriteRenderer;
         [Range(-10, 30)]
         public int extraSortingOrder;
+
+        protected virtual GridManagerBase GetGridManager()
+        {
+            return GetComponentInParent<GridManagerBase>();
+        }
 
         protected virtual void Start()
         {
@@ -26,8 +33,9 @@ namespace EditorExtend.GridEditor
 
         public void RefreshSortingOrder()
         {
+            manager = GetGridManager();
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.sortingOrder = IsometricGridManager.Instance.CellToSortingOrder(transform.position) + extraSortingOrder;
+            spriteRenderer.sortingOrder = manager.CellToSortingOrder(transform.position) + extraSortingOrder;
         }
     }
 }
