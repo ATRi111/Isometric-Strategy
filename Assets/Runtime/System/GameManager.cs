@@ -53,6 +53,7 @@ public class GameManager : Service, IService
         inBattle = true;
         eventSystem.Invoke(EEvent.BeforeBattle);
         MoveOn();
+        eventSystem.Invoke(EEvent.OnTick, time);
     }
 
     public void EndBattle(bool win)
@@ -78,6 +79,13 @@ public class GameManager : Service, IService
         return false;
     }
 
+    private void Sort()
+    {
+        sortedPawns.Clear();
+        sortedPawns.AddRange(pawns.list);
+        sortedPawns.Sort(comparer);
+    }
+
     public void MoveOn()
     {
         if (allyTargetDied)
@@ -91,9 +99,7 @@ public class GameManager : Service, IService
             EndBattle(true);
             return;
         }
-        sortedPawns.Clear();
-        sortedPawns.AddRange(pawns.list);
-        sortedPawns.Sort(comparer);
+        Sort();
         for (int i = 0; i < sortedPawns.Count; i++)
         {
             PawnEntity pawn = sortedPawns[i];
