@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53bdc1401000074585a73d7d2182ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraSortingOrder: 5
+  extraSortingOrder: 25
   front:
   - {fileID: 5242246499734715955}
   - {fileID: 3923656730994143131}
