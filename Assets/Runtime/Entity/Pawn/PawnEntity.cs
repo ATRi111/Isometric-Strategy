@@ -1,11 +1,11 @@
-using Character;
+ï»¿using Character;
 using MyTool;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¿ÉĞĞ¶¯µÄEntity
+/// å¯è¡ŒåŠ¨çš„Entity
 /// </summary>
 public class PawnEntity : Entity
 {
@@ -57,9 +57,11 @@ public class PawnEntity : Entity
     public CharacterProperty hatredLevel;
     [NonSerialized]
     public Vector2Int faceDirection;
+    [NonSerialized]
+    public int sortingValue;    //å¤šä¸ªè§’è‰²ç­‰å¾…æ—¶é—´ç›¸åŒï¼Œæ ¹æ®æ­¤å€¼è¿›è¡Œæ’åº
 
     /// <summary>
-    /// È«¾Ö¼ÆÊ±Æ÷µÄÖµ´ïµ½´ËÖµÊ±£¬ÂÖµ½´Ë½ÇÉ«ĞĞ¶¯
+    /// å…¨å±€è®¡æ—¶å™¨çš„å€¼è¾¾åˆ°æ­¤å€¼æ—¶ï¼Œè½®åˆ°æ­¤è§’è‰²è¡ŒåŠ¨
     /// </summary>
     public int time;
 
@@ -80,7 +82,7 @@ public class PawnEntity : Entity
     }
 
     /// <summary>
-    /// ÓëÄ¿±êÎªÓÑ·½·µ»Ø1£¬ÓëÄ¿±êÎªµĞ·½·µ»Ø-1£¬Ä¿±êÎªÖĞÁ¢»ò·ÇPawn·µ»Ø0
+    /// ä¸ç›®æ ‡ä¸ºå‹æ–¹è¿”å›1ï¼Œä¸ç›®æ ‡ä¸ºæ•Œæ–¹è¿”å›-1ï¼Œç›®æ ‡ä¸ºä¸­ç«‹æˆ–éPawnè¿”å›0
     /// </summary>
     /// <returns></returns>
     public int FactionCheck(Entity entity)
@@ -120,7 +122,7 @@ public class PawnEntity : Entity
         pClass.Register(this);
         race.Register(this);
         RefreshProperty();
-        time += actionTime.IntValue;   //Èë³¡AT
+        time += actionTime.IntValue;   //å…¥åœºAT
         DefenceComponent.HP = DefenceComponent.maxHP.IntValue;
         faceDirection = Vector2Int.left;
     }
@@ -156,6 +158,8 @@ public class Comparer_PawnEntity_ActionTime : IComparer<PawnEntity>
 {
     public int Compare(PawnEntity x, PawnEntity y)
     {
-        return x.actionTime.IntValue - y.actionTime.IntValue;
+        if (x.actionTime != y.actionTime)
+            return x.actionTime.IntValue - y.actionTime.IntValue;
+        return x.sortingValue - y.sortingValue;
     }
 }

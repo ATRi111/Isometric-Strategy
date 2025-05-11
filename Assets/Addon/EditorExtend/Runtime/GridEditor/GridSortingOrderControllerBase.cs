@@ -16,14 +16,19 @@ namespace EditorExtend.GridEditor
             }
         }
 
-        protected GridManagerBase manager;
         protected SpriteRenderer spriteRenderer;
         [Range(-10, 30)]
         public int extraSortingOrder;
 
-        protected virtual GridManagerBase GetGridManager()
+        protected GridManagerBase manager;
+        protected virtual GridManagerBase Manager
         {
-            return GetComponentInParent<GridManagerBase>();
+            get
+            {
+                if (manager == null)
+                    manager = GetComponentInParent<GridManagerBase>();
+                return manager;
+            }
         }
 
         protected virtual void Start()
@@ -31,11 +36,10 @@ namespace EditorExtend.GridEditor
             RefreshSortingOrder();
         }
 
-        public void RefreshSortingOrder()
+        public virtual void RefreshSortingOrder()
         {
-            manager = GetGridManager();
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.sortingOrder = manager.CellToSortingOrder(transform.position) + extraSortingOrder;
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.sortingOrder = Manager.CellToSortingOrder(transform.position) + extraSortingOrder;
         }
     }
 }

@@ -22,7 +22,7 @@ public class WeatherTimeAxisIcon : InfoIcon
         else
         {
             info = $"当前天气结束\n剩余时间:{battleField.WeatherRemainingTime}";
-            transform.position = timeAxisUI.TimeToPosition(battleField.WeatherRemainingTime);
+            transform.position = timeAxisUI.PercentToPosition(battleField.WeatherRemainingTime);
         }
     }
 

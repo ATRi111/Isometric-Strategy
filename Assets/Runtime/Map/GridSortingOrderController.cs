@@ -2,13 +2,18 @@
 
 public class GridSortingOrderController : GridSortingOrderControllerBase
 {
-    protected override GridManagerBase GetGridManager()
+    protected override GridManagerBase Manager
     {
-        return IsometricGridManager.Instance;
+        get
+        {
+            if (manager == null)
+                manager = IsometricGridManager.Instance;
+            return manager;
+        }
     }
 
     protected virtual void Update()
     {
-        spriteRenderer.sortingOrder = manager.CellToSortingOrder(transform.position) + extraSortingOrder;
+        spriteRenderer.sortingOrder = Manager.CellToSortingOrder(transform.position) + extraSortingOrder;
     }
 }

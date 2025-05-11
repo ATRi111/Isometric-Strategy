@@ -13,7 +13,7 @@ public class VirtualTimeAxisIcon : MonoBehaviour
     private void PreviewAction(PawnAction action)
     {
         int predictTime = action.effectUnit.timeEffect.current;
-        transform.position = timeAxisUI.TimeToPosition(predictTime);
+        transform.position = timeAxisUI.PercentToPosition(predictTime);
     }
 
     private void StopPreviewAction(PawnAction _)

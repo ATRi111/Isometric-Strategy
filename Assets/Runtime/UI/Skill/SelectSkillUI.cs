@@ -1,4 +1,4 @@
-using UIExtend;
+﻿using UIExtend;
 using UnityEngine;
 
 public class SelectSkillUI : MonoBehaviour
@@ -12,6 +12,7 @@ public class SelectSkillUI : MonoBehaviour
     private RectTransform rectTransform;
 
     private PawnEntity current;
+    public Vector3Int offset;
 
     private void SelectSkill(PawnEntity pawn)
     {
@@ -79,6 +80,6 @@ public class SelectSkillUI : MonoBehaviour
     private void Update()
     {
         if (current != null)
-            transform.position = Camera.main.WorldToScreenPoint(current.transform.position);
+            transform.position = Camera.main.WorldToScreenPoint(current.transform.position + offset);
     }
 }

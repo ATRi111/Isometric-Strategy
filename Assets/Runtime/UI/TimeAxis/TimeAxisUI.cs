@@ -1,4 +1,4 @@
-using Services;
+锘縰sing Services;
 using Services.Event;
 using System.Collections.Generic;
 using UIExtend;
@@ -11,13 +11,11 @@ public class TimeAxisUI : MonoBehaviour
 
     private CanvasGroupPlus canvasGroup;
     private RectTransform rectTransform;
-    private Comparer_PawnEntity_ActionTime comparer;
     private TimeAxisIcon[] icons;
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
     private int maxIconCount;
-    public float timeSpan;
 
     public Vector3 left;
     public Vector3 right;
@@ -26,56 +24,38 @@ public class TimeAxisUI : MonoBehaviour
     private float leftBlankSpace;
     [SerializeField]
     private float rightBlankSpace;
+    [SerializeField]
+    private float minPercent;
 
-    public Vector3 TimeToPosition(int time)
+    public Vector3 PercentToPosition(float percent)
     {
         Vector3[] corners = new Vector3[4];
         rectTransform.GetWorldCorners(corners);
         left = (corners[0] + corners[1]) / 2;
         right = (corners[2] + corners[3]) / 2;
-        float p = leftBlankSpace + (1f - leftBlankSpace - rightBlankSpace) * (time / timeSpan);
+        float p = leftBlankSpace + (1f - leftBlankSpace - rightBlankSpace) * percent;
         p = Mathf.Clamp01(p);
         return Vector3.Lerp(left, right, p);
     }
 
     private void OnTick(int time)
     {
-        List<PawnEntity> entites = new();
-        foreach (PawnEntity pawn in gameManager.pawns)
+        List<int> timeList = new();
+        int count = 0;
+        for (; count < gameManager.sortedPawns.Count && count < maxIconCount; count++)
         {
-            entites.Add(pawn);
+            PawnEntity pawn = gameManager.sortedPawns[count];
+            timeList.Add(pawn.time - gameManager.Time);
         }
-        entites.Sort(comparer);
-        int current = entites[0].time;
-        List<PawnEntity> temp = new();
-        int iconIndex = 0;
-        for (int i = 0; i < entites.Count; i++)
+        float adjustedMaxTime = timeList[^1] * (1f + minPercent * count);
+        for (int i = 0; i < count; i++)
         {
-            if (entites[i].time == current)
-            {
-                temp.Add(entites[i]);
-            }
-            else
-            {
-                icons[iconIndex].SetPawns(temp);    //具有相同WT的单位一并显示
-                icons[iconIndex].transform.position = TimeToPosition(temp[0].time - time);
-                icons[iconIndex].canvasGroup.Visible = true;
-                iconIndex++;
-                if (iconIndex == maxIconCount)
-                    break;
-                temp.Clear();
-                current = entites[i].time;
-                temp.Add(entites[i]);
-            }
-        }
-        if (temp.Count > 0 && iconIndex < maxIconCount)
-        {
-            icons[iconIndex].SetPawns(temp);    //具有相同WT的单位一并显示
-            icons[iconIndex].transform.position = TimeToPosition(temp[0].time - time);
-            icons[iconIndex].canvasGroup.Visible = true;
+            icons[i].transform.position = PercentToPosition(timeList[i] / adjustedMaxTime + i * minPercent);
+            icons[i].canvasGroup.Visible = true;
+            icons[i].SetPawn(gameManager.sortedPawns[i]);
         }
 
-        for (int i = entites.Count; i < maxIconCount; i++)
+        for (int i = count; i < maxIconCount; i++)
         {
             icons[i].canvasGroup.Visible = false;
         }
@@ -87,7 +67,6 @@ public class TimeAxisUI : MonoBehaviour
         gameManager = ServiceLocator.Get<GameManager>();
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroupPlus>();
-        comparer = new();
         icons = new TimeAxisIcon[maxIconCount];
         for (int i = 0; i < maxIconCount; i++)
         {

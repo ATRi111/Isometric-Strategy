@@ -124,11 +124,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 7759385142336930768, guid: a6515657071f0654e875c5b858bee80c, type: 3}
   maxIconCount: 20
-  timeSpan: 100
   left: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   leftBlankSpace: 0.02
   rightBlankSpace: 0.1
+  minPercent: 0.02
 --- !u!1 &6069452437886475342
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,8 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: 
   canvasGroup: {fileID: 0}
-  infoPivot: {x: 0, y: 0}
-  infoOffset: {x: 0, y: 0}
+  normalizedDistance: 0
 --- !u!1 &6259899585879047687
 GameObject:
   m_ObjectHideFlags: 0

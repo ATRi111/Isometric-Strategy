@@ -1,8 +1,9 @@
-using MyTool;
+ï»¿using MyTool;
 using Services;
 using Services.Event;
 using Services.SceneManagement;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Service, IService
@@ -21,6 +22,8 @@ public class GameManager : Service, IService
     public override Type RegisterType => GetType();
 
     public SerializedHashSet<PawnEntity> pawns = new();
+    public List<PawnEntity> sortedPawns = new();
+    private readonly Comparer_PawnEntity_ActionTime comparer = new();
 
     [SerializeField]
     private int time;
@@ -88,11 +91,15 @@ public class GameManager : Service, IService
             EndBattle(true);
             return;
         }
-        foreach (PawnEntity pawn in pawns)
+        sortedPawns.Clear();
+        sortedPawns.AddRange(pawns.list);
+        sortedPawns.Sort(comparer);
+        for (int i = 0; i < sortedPawns.Count; i++)
         {
+            PawnEntity pawn = sortedPawns[i];
             if (time >= pawn.time)
             {
-                Debug.Log($"ÂÖµ½{pawn.EntityNameWithColor}ÐÐ¶¯");
+                Debug.Log($"è½®åˆ°{pawn.EntityNameWithColor}è¡ŒåŠ¨");
                 waitingForAnimation = true;
                 pawn.Brain.DoAction();
                 return;
