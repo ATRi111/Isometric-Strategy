@@ -387,6 +387,7 @@ MonoBehaviour:
           prev: 0
           current: 0
         effects: []
+      area: []
     value: 0
     hatredLevel: 0
   references:
@@ -404,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67016f1e37813d44dbeb7ab4fc72bf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraSortingOrder: 9
+  extraSortingOrder: -1
 --- !u!114 &59779457438029396
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  recycleCount: 0
 --- !u!114 &7696641313835893040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,4 +213,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c557a7960ce3144a4d07e3b8e25ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraSortingOrder: 1
+  extraSortingOrder: -1

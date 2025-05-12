@@ -47,7 +47,7 @@ public class TimeAxisUI : MonoBehaviour
             PawnEntity pawn = gameManager.sortedPawns[count];
             timeList.Add(pawn.time - gameManager.Time);
         }
-        float adjustedMaxTime = timeList[^1] * (1f + minPercent * count);
+        float adjustedMaxTime = Mathf.Max(timeList[^1] * (1f + minPercent * count), 10f);
         for (int i = 0; i < count; i++)
         {
             icons[i].transform.position = PercentToPosition(timeList[i] / adjustedMaxTime + i * minPercent);

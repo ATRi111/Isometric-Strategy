@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  recycleCount: 0
 --- !u!114 &5602463448641329045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +231,7 @@ MonoBehaviour:
         prev: 0
         current: 0
       effects: []
+    area: []
   extraSortingOrder: -1
   references:
     version: 2

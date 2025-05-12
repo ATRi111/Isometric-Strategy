@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  recycleCount: 0
 --- !u!114 &6563171600540630015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,5 +198,5 @@ MonoBehaviour:
   minAlpha: 0.6
   maxAlpha: 0.8
   duration: 2
-  extraSortingOrder: 4
+  extraSortingOrder: -1
   loopDistance: 8
