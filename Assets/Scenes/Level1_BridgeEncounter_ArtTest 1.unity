@@ -66538,12 +66538,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1551605946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bfb465f4afb61c4a91e0cccdcb66e38, type: 3}
+  m_Script: {fileID: 11500000, guid: a8b0d08de2f237d47990aea6bf167704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiance_up: 1
-  radiance_left: 0.3
-  radiance_right: 0.7
+  radiance_up: {r: 1, g: 1, b: 1, a: 1}
+  radiance_left: {r: 0.6862745, g: 0.6862745, b: 0.6862745, a: 1}
+  radiance_right: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
   projectShadowIntensity: 0.5
 --- !u!1001 &1553320550
 PrefabInstance:

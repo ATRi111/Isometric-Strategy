@@ -84,9 +84,8 @@
             {
                 y = 2 * abs(y - 0.5);
                 x = min(x ,_ShadowWidth) / _ShadowWidth * 1.57 + 1.57;
-                float ret = sin(x);
-                ret = 0.7 * lerp(ret, ret/2, y);
-                return pow(coverValue * ret, 2.2);
+                float ret = 0.5 * sin(x);
+                return coverValue * ret;
             }
 
             float3 CalcColorLeft(half2 uv)
@@ -98,7 +97,6 @@
                 shadow += CalcShadow(_CoverLeftRight, 1 - x, y);
                 shadow += CalcShadow(_CoverLeftUp, 1 - y, x);
                 shadow += CalcShadow(_CoverLeftDown, y, x);
-                shadow = pow(shadow, 1/ 2.2);
                 return max(1 - shadow, 0) * _ColorLeft;
             }
 
@@ -112,7 +110,6 @@
                 shadow += CalcShadow(_CoverRightRight, 1 - x, y);
                 shadow += CalcShadow(_CoverRightUp, 1 - y, x);
                 shadow += CalcShadow(_CoverRightDown, y, x);
-                shadow = pow(shadow, 1/ 2.2);
                 return max(1 - shadow, 0) * _ColorRight;
             }
             
@@ -125,10 +122,21 @@
                 shadow += CalcShadow(_CoverUpRight, 1 - x, y);
                 shadow += CalcShadow(_CoverUpUp, 1 - y, x);
                 shadow += CalcShadow(_CoverUpDown, y, x);
-                shadow = pow(shadow, 1/ 2.2);
                 return max(1 - shadow, 0) * _ColorUp;
             }
             
+            float4 GammaCorrection(float4 color)
+            {
+                float p = 1/ 2.2;
+                return float4(pow(color.x, p), pow(color.y, p), pow(color.z, p), color.w);
+            }
+
+            float4 InverseGammaCorrection(float4 color)
+            {
+                float p = 2.2;
+                return float4(pow(color.x, p), pow(color.y, p), pow(color.z, p), color.w);
+            }
+
             float4 Fragment_shader(VertexOutput input) : SV_Target 
             {
                 half2 uv = input.uv;
@@ -148,7 +156,9 @@
                 {
                     lightColor = CalcColorUp(uv);
                 }
-                return float4(lightColor,1) * texColor;
+                texColor = InverseGammaCorrection(texColor);
+                float4 ret = float4(lightColor,1) * texColor;
+                return GammaCorrection(ret);
             }
             ENDCG
         }

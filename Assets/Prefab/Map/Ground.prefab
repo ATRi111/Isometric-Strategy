@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: db769bd16fe1b26428ab38f4f1111b98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 1
+  leftLadder: 0
+  rightLadder: 0
 --- !u!114 &818835185999858176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,11 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc24c2d18940d2245954d922a255da7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabNames:
-  - UpShadow
-  - LeftShadow
-  - RightShadow
-  cellNormals:
-  - {x: 0, y: 0, z: 1}
-  - {x: -1, y: 0, z: 0}
-  - {x: 0, y: -1, z: 0}
+  upNormal: {x: 0, y: 0, z: 1}
+  leftNormal: {x: -1, y: 0, z: 0}
+  rightNormal: {x: 0, y: -1, z: 0}

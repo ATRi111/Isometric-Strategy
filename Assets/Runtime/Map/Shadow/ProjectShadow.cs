@@ -1,11 +1,11 @@
-using EditorExtend.GridEditor;
+﻿using EditorExtend.GridEditor;
 using MyTool;
 using UnityEngine;
 
 public class ProjectShadow : MonoBehaviour
 {
     private IsometricGridManager Igm => IsometricGridManager.Instance;
-    private ShadowManager shadowManager;
+    private LightManager lightManager;
     private SpriteRenderer myRenderer;
 
     private void Awake()
@@ -15,11 +15,10 @@ public class ProjectShadow : MonoBehaviour
 
     private void OnEnable()
     {
-        shadowManager = GetComponentInParent<ShadowManager>();
-        if (shadowManager != null)
+        lightManager = GetComponentInParent<LightManager>();
+        if (lightManager != null)
         {
-            float radiance = shadowManager.GetProjectRadiance();
-            myRenderer.color = myRenderer.color.SetAlpha(1f - radiance);
+            myRenderer.color = myRenderer.color.SetAlpha(1f - lightManager.projectShadowIntensity);
         }
     }
 
