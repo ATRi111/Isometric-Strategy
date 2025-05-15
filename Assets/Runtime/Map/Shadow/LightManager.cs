@@ -24,9 +24,9 @@ public class LightManager : MonoBehaviour
         Vector3Int.forward,
         Vector3Int.right + Vector3Int.forward,
         Vector3Int.right,
-        //Vector3Int.right + Vector3Int.back,
-        //Vector3Int.back,
-        //Vector3Int.left + Vector3Int.back,
+        Vector3Int.right + Vector3Int.back,
+        Vector3Int.back,
+        Vector3Int.left + Vector3Int.back,
         Vector3Int.left,
         Vector3Int.left + Vector3Int.forward,
     };
@@ -36,9 +36,9 @@ public class LightManager : MonoBehaviour
         Vector3Int.forward,
         Vector3Int.up + Vector3Int.forward,
         Vector3Int.up,
-        //Vector3Int.up + Vector3Int.back,
-        //Vector3Int.back,
-        //Vector3Int.down + Vector3Int.back,
+        Vector3Int.up + Vector3Int.back,
+        Vector3Int.back,
+        Vector3Int.down + Vector3Int.back,
         Vector3Int.down,
         Vector3Int.down + Vector3Int.forward,
     };
@@ -61,14 +61,11 @@ public class LightManager : MonoBehaviour
         return objectCache.Contains(p) ? 1f : 0f;
     }
 
-    public bool VisibleCheck(ShadowVertex vertex)
+    public bool VisibleCheck(Vector3Int position)
     {
-        if (igm.ObjectDict.TryGetValue(vertex.cellPosition + vertex.cellNormal, out GridObject gridObject))
-        {
-            if (gridObject.IsGround)
-                return false;
-        }
-        return true;
+        return !objectCache.Contains(position + Vector3Int.forward)
+            || !objectCache.Contains(position + Vector3Int.left)
+            || !objectCache.Contains(position + Vector3Int.down);
     }
 
     public Color AmbientOcculasion(ShadowVertex vertex)
@@ -133,6 +130,71 @@ public class LightManager : MonoBehaviour
             h++;
         }
         return h - 1;
+    }
+
+    private const float ShrinkRatio = 100.0f;
+
+    public Texture2D GenerateAO(Vector3Int position, Vector3Int normal)
+    {
+        static Vector2 UpdateMax(Vector2 prev, Vector2 current, float offset)
+        {
+            if (current.y / (current.x + offset) > prev.y / (prev.x + offset))
+                return current;
+            return prev;
+        }
+
+        Vector3Int[] directions;
+        float distanceOffset = 0.707f;
+        float unitHeight = normal.z != 0 ? 0.5f : 1f;
+        if (normal.x != 0)
+        {
+            directions = YZDirections;
+        }
+        else if (normal.y != 0)
+        {
+            directions = XZDirections;
+        }
+        else if (normal.z != 0)
+        {
+            directions = XYDirections;
+        }
+        else
+            throw new System.ArgumentException();
+
+        Texture2D AO = new(3, 3, TextureFormat.RGBAFloat, false)
+        {
+            filterMode = FilterMode.Point,
+            wrapMode = TextureWrapMode.Clamp,
+        };
+        AO.SetPixel(1, 1, new Color(1, 0, 1, 0));
+        for (int i = 0; i < directions.Length; i++)
+        {
+            Vector2 max1 = Vector2.right;
+            Vector2 max2 = Vector2.right;
+            Vector3Int direction = directions[i];
+            float unitDistance = new Vector3(CellSize.x * direction.x, CellSize.y * direction.y, CellSize.z * direction.z).magnitude;
+            Vector3Int currentPosition = position;
+
+            for (int j = 0; j < SampleDistance; j++)
+            {
+                currentPosition += direction;
+                float h = GetHeight(currentPosition, normal) * unitHeight;
+                float d = (j + 0.5f) * unitDistance;
+                if (h > 0)
+                {
+                    Vector2 current = new(d, h);
+                    max1 = UpdateMax(max1, current, -distanceOffset);
+                    max2 = UpdateMax(max2, current, distanceOffset);
+                }
+            }
+            Color color = new(max1.x / ShrinkRatio, max1.y / ShrinkRatio, max2.x / ShrinkRatio, max2.y / ShrinkRatio);
+
+            int x = XYDirections[i].x + 1;
+            int y = XYDirections[i].y + 1;
+            AO.SetPixel(x, y, color);
+        }
+        AO.Apply();
+        return AO;
     }
 
     private void Awake()

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67016f1e37813d44dbeb7ab4fc72bf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraSortingOrder: 9
+  extraSortingOrder: 2
 --- !u!114 &8346654810301078537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  recycleCount: 0
 --- !u!114 &4175040659484563263
 MonoBehaviour:
   m_ObjectHideFlags: 0
