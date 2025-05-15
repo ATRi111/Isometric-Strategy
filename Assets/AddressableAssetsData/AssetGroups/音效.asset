@@ -18,12 +18,17 @@ MonoBehaviour:
   m_GUID: 075de0d074cc6a84db66140e08f44cb2
   m_SerializeEntries:
   - m_GUID: f9f4340cdc48cca4ca6bb76f18514552
-    m_Address: "\u5DE8\u54CD"
+    m_Address: "VFX_\u5DE8\u54CD"
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 18e194a9e288d7748bee5b52bab6524d
-    m_Address: "\u91D1\u5C5E\u65A9\u51FB"
+    m_Address: "VFX_\u91D1\u5C5E\u65A9\u51FB"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bde15b188c350b741a2948e5a14f5b21
+    m_Address: VFX_Battle_1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
