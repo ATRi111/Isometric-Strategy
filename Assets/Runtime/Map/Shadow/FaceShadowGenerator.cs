@@ -9,42 +9,17 @@ public class FaceShadowGenerator : MonoBehaviour
     private Material material;
     private Vector3Int cellPosition;
     public Vector3Int upNormal, leftNormal, rightNormal;
+    private Texture3D texture;
 
-    private void GenerateUp()
+    private Vector3Int IndexToOffset(int index)
     {
-        ShadowVertex vertex = new(gridObject.CellPosition, upNormal);
-        Color color = lightManager.GetRadiance(vertex);
-        material.SetColor("_CoverUp", color);
-        material.SetFloat("_CoverUpLeft", lightManager.Sample(cellPosition + Vector3Int.forward + Vector3Int.left));
-        material.SetFloat("_CoverUpRight", lightManager.Sample(cellPosition + Vector3Int.forward + Vector3Int.right));
-        material.SetFloat("_CoverUpUp", lightManager.Sample(cellPosition + Vector3Int.forward + Vector3Int.up));
-        material.SetFloat("_CoverUpDown", lightManager.Sample(cellPosition + Vector3Int.forward + Vector3Int.down));
+        int z = index / 9;
+        index %= 9;
+        int y = index / 3;
+        index %= 3;
+        int x = index;
+        return new Vector3Int(x, y, z) - Vector3Int.one;
     }
-
-    private void GenerateLeft()
-    {
-        ShadowVertex vertex = new(gridObject.CellPosition, leftNormal);
-        Color color = lightManager.GetRadiance(vertex);
-        material.SetColor("_ColorLeft", color);
-
-        material.SetFloat("_CoverLeftLeft", lightManager.Sample(cellPosition + Vector3Int.left + Vector3Int.up));
-        material.SetFloat("_CoverLeftRight", lightManager.Sample(cellPosition + Vector3Int.left + Vector3Int.down));
-        material.SetFloat("_CoverLeftUp", lightManager.Sample(cellPosition + Vector3Int.left + Vector3Int.forward));
-        material.SetFloat("_CoverLeftDown", lightManager.Sample(cellPosition + Vector3Int.left + Vector3Int.back));
-    }
-
-    private void GenerateRight()
-    {
-        ShadowVertex vertex = new(gridObject.CellPosition, rightNormal);
-        Color color = lightManager.GetRadiance(vertex);
-        material.SetColor("_ColorRight", color);
-
-        material.SetFloat("_CoverRightLeft", lightManager.Sample(cellPosition + Vector3Int.down + Vector3Int.left));
-        material.SetFloat("_CoverRightRight", lightManager.Sample(cellPosition + Vector3Int.down + Vector3Int.right));
-        material.SetFloat("_CoverRightUp", lightManager.Sample(cellPosition + Vector3Int.down + Vector3Int.forward));
-        material.SetFloat("_CoverRightDown", lightManager.Sample(cellPosition + Vector3Int.down + Vector3Int.back));
-    }
-
     private void Awake()
     {
         gridObject = GetComponent<GridObject>();
@@ -55,9 +30,38 @@ public class FaceShadowGenerator : MonoBehaviour
 
     private void Start()
     {
-        GenerateUp();
-        GenerateLeft();
-        GenerateRight();
+        ShadowVertex vertex;
+        Color color;
+        vertex = new(gridObject.CellPosition, upNormal);
+        color = lightManager.GetRadiance(vertex);
+        material.SetColor("_ColorUp", color);
+
+        vertex = new(gridObject.CellPosition, leftNormal);
+        color = lightManager.GetRadiance(vertex);
+        material.SetColor("_ColorLeft", color);
+
+        vertex = new(gridObject.CellPosition, rightNormal);
+        color = lightManager.GetRadiance(vertex);
+        material.SetColor("_ColorRight", color);
+
+        texture = new Texture3D(3, 3, 3, TextureFormat.R8, false)
+        {
+            filterMode = FilterMode.Point
+        };
+        for (int z = 0; z < 3; z++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    Vector3Int p = cellPosition + new Vector3Int(x, y, z) - Vector3Int.one;
+                    float r = lightManager.Sample(p);
+                    texture.SetPixel(x, y, z, new Color(r, 0, 0, 1));
+                }
+            }
+        }
+        texture.Apply();
+        material.SetTexture("_Cover", texture);
     }
 
     private void OnDestroy()

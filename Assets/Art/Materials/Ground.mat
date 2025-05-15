@@ -31,6 +31,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Cover:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -86,10 +90,12 @@ Material:
     - _CoverRightLeft: 0
     - _CoverRightRight: 0
     - _CoverRightUp: 0
+    - _CoverTest: 0
     - _CoverUpDown: 0
     - _CoverUpLeft: 0
     - _CoverUpRight: 0
-    - _CoverUpUp: 0
+    - _CoverUpUp: 1
+    - _Covers: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -98,6 +104,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Glow_Intensity: 1
+    - _MaxShadow: 0.5
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -106,6 +113,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TestCover: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
