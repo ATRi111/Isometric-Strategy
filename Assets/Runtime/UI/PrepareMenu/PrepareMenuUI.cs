@@ -1,20 +1,15 @@
-using Services;
+锘縰sing Services;
 using Services.Event;
 using UIExtend;
 using UnityEngine;
 
-//战斗开始时自动隐藏的UI
+//鎴樻枟寮�濮嬫椂鑷姩闅愯棌鐨刄I
 [RequireComponent(typeof(CanvasGroupPlus))]
 public class PrepareMenuUI : MonoBehaviour
 {
     protected LevelManager levelManager;
     protected CanvasGroupPlus canvasGroup;
     protected IEventSystem eventSystem;
-
-    protected virtual void OnStartScout()
-    {
-
-    }
 
     protected virtual void OnReturnToPrepareMenu()
     {
@@ -35,14 +30,12 @@ public class PrepareMenuUI : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        levelManager.OnStartScout += OnStartScout;
         levelManager.OnReturnToPrepareMenu += OnReturnToPrepareMenu;
         eventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
     }
 
     protected virtual void OnDisable()
     {
-        levelManager.OnStartScout -= OnStartScout;
         levelManager.OnReturnToPrepareMenu -= OnReturnToPrepareMenu;
         eventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
     }

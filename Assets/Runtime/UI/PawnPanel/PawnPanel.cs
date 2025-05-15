@@ -1,4 +1,4 @@
-using Services.Event;
+ï»¿using Services.Event;
 using System;
 using System.Collections.Generic;
 
@@ -8,15 +8,15 @@ public class PawnPanel : PawnReference
     private LevelManager levelManager;
 
     /// <summary>
-    /// ¿ªÊ¼ÏÔÊ¾½ÇÉ«ÊôĞÔ±ä»¯
+    /// å¼€å§‹æ˜¾ç¤ºè§’è‰²å±æ€§å˜åŒ–
     /// </summary>
     public Action PreviewPropertyChange;
     /// <summary>
-    /// Í£Ö¹ÏÔÊ¾½ÇÉ«ÊôĞÔ±ä»¯
+    /// åœæ­¢æ˜¾ç¤ºè§’è‰²å±æ€§å˜åŒ–
     /// </summary>
     public Action StopPreviewPropertyChange;
     /// <summary>
-    /// µã»÷×°±¸À¸Î»À´¿ªÊ¼»òÍ£Ö¹ÇĞ»»×°±¸
+    /// ç‚¹å‡»è£…å¤‡æ ä½æ¥å¼€å§‹æˆ–åœæ­¢åˆ‡æ¢è£…å¤‡
     /// </summary>
     public Action<EquipmentSlot> ChangeEquipment;
 
@@ -24,14 +24,14 @@ public class PawnPanel : PawnReference
 
     public int selectedIndex;
     /// <summary>
-    /// µ±Ç°²é¿´µÄ½ÇÉ«ÁĞ±í
+    /// å½“å‰æŸ¥çœ‹çš„è§’è‰²åˆ—è¡¨
     /// </summary>
     public List<PawnEntity> pawnList;
     public override PawnEntity CurrentPawn => pawnList[selectedIndex];
 
     public float GetPropertyChange(string propertyName)
     {
-        //TODO:×°±¸ÇĞ»»Ô¤ÀÀ
+        //TODO:è£…å¤‡åˆ‡æ¢é¢„è§ˆ
         if (propertyChangeDict.ContainsKey(propertyName))
             return propertyChangeDict[propertyName];
         return 0f;
@@ -85,7 +85,6 @@ public class PawnPanel : PawnReference
         base.OnEnable();
         eventSystem.AddListener<PawnEntity>(EEvent.ShowPawnPanel, Show);
         levelManager.OnReturnToPrepareMenu += Hide;
-        levelManager.OnStartScout += Hide;
     }
 
     protected override void OnDisable()
@@ -93,6 +92,5 @@ public class PawnPanel : PawnReference
         base.OnDisable();
         eventSystem.RemoveListener(EEvent.HidePawnPanel, Hide);
         levelManager.OnReturnToPrepareMenu -= Hide;
-        levelManager.OnStartScout -= Hide;
     }
 }

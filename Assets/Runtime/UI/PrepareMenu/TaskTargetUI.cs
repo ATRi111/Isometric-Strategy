@@ -1,36 +1,31 @@
+﻿using Services;
+using Services.Event;
 using UIExtend;
 using UnityEngine;
 
 public class TaskTargetUI : MonoBehaviour
 {
-    private LevelManager levelManager;
     private CanvasGroupPlus canvasGroup;
+    private IEventSystem eventSystem;
 
-    private void OnStartScout()
-    {
-        canvasGroup.Visible = true;
-    }
-
-    private void OnReturnToPrepareMenu()
+    private void BeforeBattle()
     {
         canvasGroup.Visible = false;
     }
 
     private void Awake()
     {
-        levelManager = LevelManager.FindInstance();
         canvasGroup = GetComponentInChildren<CanvasGroupPlus>();
+        eventSystem = ServiceLocator.Get<IEventSystem>();
     }
 
     private void OnEnable()
     {
-        levelManager.OnStartScout += OnStartScout;
-        levelManager.OnReturnToPrepareMenu += OnReturnToPrepareMenu;
+        eventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
     }
 
     private void OnDisable()
     {
-        levelManager.OnStartScout -= OnStartScout;
-        levelManager.OnReturnToPrepareMenu -= OnReturnToPrepareMenu;
+        eventSystem.RemoveListener(EEvent.BeforeBattle, BeforeBattle);
     }
 }

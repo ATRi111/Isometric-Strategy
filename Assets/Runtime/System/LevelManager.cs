@@ -1,11 +1,10 @@
-using Services;
+ï»¿using Services;
 using Services.Event;
-using Services.SceneManagement;
 using System;
 using UnityEngine;
 
 /// <summary>
-/// ¿ØÖÆ¹Ø¿¨Ñ¡Ôñ¡¢³¡¾°/Ïà»úÇĞ»»
+/// æ§åˆ¶å…³å¡é€‰æ‹©ã€åœºæ™¯/ç›¸æœºåˆ‡æ¢
 /// </summary>
 public class LevelManager : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class LevelManager : MonoBehaviour
         return GameObject.Find("PrepareMenu").GetComponent<LevelManager>();
     }
 
-    private ISceneController sceneController;
     private IEventSystem eventSystem;
     private GameManager gameManager;
 
@@ -22,21 +20,16 @@ public class LevelManager : MonoBehaviour
     public Camera levelCamera;
 
     /// <summary>
-    /// ¿ªÊ¼Õì²ìÕ½³¡
-    /// </summary>
-    public Action OnStartScout;
-    /// <summary>
-    /// £¨Õ½¶·½áÊø»òÕì²ì½áÊøºó£©»Øµ½×¼±¸²Ëµ¥
+    /// ï¼ˆæˆ˜æ–—ç»“æŸæˆ–ä¾¦å¯Ÿç»“æŸåï¼‰å›åˆ°å‡†å¤‡èœå•
     /// </summary>
     public Action OnReturnToPrepareMenu;
     /// <summary>
-    /// ÏÔÊ¾¹Ø¿¨ÃèÊö
+    /// æ˜¾ç¤ºå…³å¡æè¿°
     /// </summary>
     public Action ShowLevelDescription;
 
     public void StartBattle()
     {
-        SwitchToLevel();
         gameManager.StartBattle();
     }
 
@@ -47,18 +40,6 @@ public class LevelManager : MonoBehaviour
         prepareMenuCamera.gameObject.SetActive(true);
     }
 
-    private void SwitchToLevel()
-    {
-        prepareMenuCamera.gameObject.SetActive(false);
-        if (levelCamera != null)
-            levelCamera.gameObject.SetActive(true);
-    }
-
-    private void LoadLevel(int sceneIndex)
-    {
-        sceneController.LoadScene(sceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
-    }
-
     private void AfterLoadScene(int index)
     {
         GameObject obj = GameObject.Find("LevelCamera");
@@ -66,7 +47,8 @@ public class LevelManager : MonoBehaviour
         {
             levelCamera = obj.GetComponent<Camera>();
             levelCamera.clearFlags = CameraClearFlags.SolidColor;
-            levelCamera.gameObject.SetActive(false);
+            prepareMenuCamera.gameObject.SetActive(false);
+            levelCamera.gameObject.SetActive(true);
         }
     }
 
@@ -78,9 +60,7 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
-        sceneController = ServiceLocator.Get<ISceneController>();
         gameManager = ServiceLocator.Get<GameManager>();
-        OnStartScout += SwitchToLevel;
         OnReturnToPrepareMenu += SwitchToPrepareMenu;
     }
 
