@@ -1,11 +1,11 @@
-using MyTool;
+ï»¿using MyTool;
 using Services.Event;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
 /// <summary>
-/// Ò»¸ö¶¯×÷
+/// ä¸€ä¸ªåŠ¨ä½œ
 /// </summary>
 [System.Serializable]
 public class PawnAction : IAnimationSource, IDescription
@@ -21,7 +21,7 @@ public class PawnAction : IAnimationSource, IDescription
 
     public int Time => effectUnit.timeEffect.current - effectUnit.timeEffect.prev;
     /// <summary>
-    /// ±éÀúeffect£¬»ñÈ¡µÚÒ»¸ö²»Í¬ÓÚagentµÄPawnVictim
+    /// éå†effectï¼Œè·å–ç¬¬ä¸€ä¸ªä¸åŒäºagentçš„PawnVictim
     /// </summary>
     public PawnEntity FirstPawnVictim
     {
@@ -47,7 +47,7 @@ public class PawnAction : IAnimationSource, IDescription
     }
 
     /// <summary>
-    /// Ä£Äâ¶¯×÷²úÉúµÄÓ°Ïì
+    /// æ¨¡æ‹ŸåŠ¨ä½œäº§ç”Ÿçš„å½±å“
     /// </summary>
     public void Mock(PawnEntity agent, IsometricGridManager igm)
     {
@@ -56,7 +56,7 @@ public class PawnAction : IAnimationSource, IDescription
     }
 
     /// <summary>
-    /// Ö´ĞĞ²¢²¥·Å¶¯×÷
+    /// æ‰§è¡Œå¹¶æ’­æ”¾åŠ¨ä½œ
     /// </summary>
     public void Play(IEventSystem eventSystem, AnimationManager animationManager)
     {
@@ -118,12 +118,12 @@ public class PawnAction : IAnimationSource, IDescription
     {
         if (result)
         {
-            sb.Append(agent.EntityName.Bold());
-            sb.Append("Ê¹ÓÃÁË");
+            sb.Append(agent.EntityNameWithColor.Bold());
+            sb.Append("ä½¿ç”¨äº†");
         }
         sb.Append(skill.displayName.Bold());
         sb.AppendLine();
-        sb.AppendLine($"Ê±¼ä»¨·Ñ:{Time}");
+        sb.AppendLine($"æ—¶é—´èŠ±è´¹:{Time}");
         for (int i = 0; i < effectUnit.effects.Count; i++)
         {
             if (!result || !effectUnit.effects[i].NeverHappen)
