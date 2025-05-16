@@ -57,11 +57,13 @@
                 return output;
             }
 
-            float CalcCover(float4 pair, float projOffset)
+            float CalcCover(float4 pair, float2 direction, float2 offset)
             {
                 float k = 0;
-                k = max(k, pair.y / (pair.x + projOffset));
-                k = max(k, pair.w / (pair.z + projOffset));
+                float d = length(-pair.x * direction + offset);
+                k = max(k, pair.y / d);
+                d = length(-pair.z * direction + offset);
+                k = max(k, pair.w / d);
                 float cover = atan(k) / 1.57079632679 + _TestCover;
                 return clamp(cover, 0, 1);
             }
@@ -79,18 +81,20 @@
                     {1,0},
                     {0.707,0.707},
                     };
+                float weights[8] = {1,0.5,1,0.5,1,0.5,1,0.5};
                 float cover = 0;
+                float weightSum = 0;
 
                 UNITY_UNROLL
                 for(int i = 0; i < 8; i++)
                 {
                     float2 direction = directions[i];
                     float4 pair = tex2D(AO, 0.4 * direction + float2(0.5, 0.5));
-                    float projOffset = - dot(direction, offset);
                     pair *= 100;
-                    cover += CalcCover(pair, projOffset);
+                    cover += weights[i] * CalcCover(pair, direction, offset);
+                    weightSum += weights[i];
                 }
-                return 1 - 0.125 * cover;
+                return 1 - cover / weightSum;
             }
             
             float3 CalcColorUp(float u, float v)

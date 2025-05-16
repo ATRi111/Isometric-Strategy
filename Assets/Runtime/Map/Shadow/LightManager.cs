@@ -144,7 +144,7 @@ public class LightManager : MonoBehaviour
         }
 
         Vector3Int[] directions;
-        float distanceOffset = 0.707f;
+        float distanceOffset = 0.499f;
         float unitHeight = normal.z != 0 ? 0.5f : 1f;
         if (normal.x != 0)
         {
