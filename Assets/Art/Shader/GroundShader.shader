@@ -10,10 +10,10 @@
         _Gloss("Gloss",Range(8, 256)) = 16
         _ShdowBias("ShadowBias",Float) = 0
 
-        _View("ShadowBias", Vector) = (1,1,-1,0)
+        _View("View", Vector) = (1,1,-1,0)
         _LightColor("LightColor", Color) = (1,1,1,1)
         _LightDirection("LightDirection",Vector) = (0,1,-2,0)
-        _ShadowMap("ShadowBias", 2D) = "black" {}
+        _ShadowMap("ShadowMap", 2D) = "black" {}
     }
     
     SubShader {
