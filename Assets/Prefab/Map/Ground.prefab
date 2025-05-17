@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1665012081464818511}
   - component: {fileID: 2350513379803116693}
   - component: {fileID: 818835185999858176}
-  - component: {fileID: 3052385435444443031}
+  - component: {fileID: 3613118447662046196}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraSortingOrder: 0
---- !u!114 &3052385435444443031
+--- !u!114 &3613118447662046196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,9 +172,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2383143098659270522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc24c2d18940d2245954d922a255da7f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9978ad31d05e4474798bd09b4c228c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upNormal: {x: 0, y: 0, z: 1}
-  leftNormal: {x: -1, y: 0, z: 0}
-  rightNormal: {x: 0, y: -1, z: 0}
+  upNormal: {x: 0, y: 0, z: 0}
+  leftNormal: {x: 0, y: 0, z: 0}
+  rightNormal: {x: 0, y: 0, z: 0}

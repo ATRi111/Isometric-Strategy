@@ -1,7 +1,7 @@
 ﻿using EditorExtend;
 using UnityEditor;
 
-[CustomEditor(typeof(LightManager))]
+//[CustomEditor(typeof(LightManager))]
 public class LightManagerEditor : AutoEditor
 {
     [AutoProperty]

@@ -15,7 +15,7 @@ public class ProjectShadow : MonoBehaviour
 
     private void OnEnable()
     {
-        lightManager = GetComponentInParent<LightManager>();
+        lightManager = LightManager.Instance;
         if (lightManager != null)
         {
             myRenderer.color = myRenderer.color.SetAlpha(1f - lightManager.projectShadowIntensity);

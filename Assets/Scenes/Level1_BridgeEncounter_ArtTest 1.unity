@@ -3613,6 +3613,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8931371486416995672, guid: 1630737683535ad4aa4f70c43c165a1e, type: 3}
   m_PrefabInstance: {fileID: 93376500}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &93542435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5375363368806965752, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_Name
+      value: LightManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312354551894140649, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb80b743b2aee6648bc2e31099649af8, type: 3}
 --- !u!1001 &98222040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66431,7 +66488,6 @@ GameObject:
   - component: {fileID: 1551605951}
   - component: {fileID: 1551605952}
   - component: {fileID: 1551605953}
-  - component: {fileID: 1551605954}
   m_Layer: 0
   m_Name: IsometricGridManager
   m_TagString: Untagged
@@ -66529,22 +66585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextResetTime: 0
   weather: 0
---- !u!114 &1551605954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1551605946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b0d08de2f237d47990aea6bf167704, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radiance_up: {r: 1, g: 1, b: 1, a: 1}
-  radiance_left: {r: 0.6862745, g: 0.6862745, b: 0.6862745, a: 1}
-  radiance_right: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
-  projectShadowIntensity: 0.5
 --- !u!1001 &1553320550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92100,6 +92140,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 3184302725128895330}
   - {fileID: 1715759800}
+  - {fileID: 93542435}
   - {fileID: 1551605948}
   - {fileID: 5061886264760998009}
   - {fileID: 1120846969}

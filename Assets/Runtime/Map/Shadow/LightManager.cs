@@ -1,124 +1,45 @@
-﻿using EditorExtend.GridEditor;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.HableCurve;
 
 public class LightManager : MonoBehaviour
 {
     public static int SampleDistance = 20;
     public static Vector3 CellSize = new(1f, 1f, 0.5f);
 
-    public static Vector3Int[] XYDirections =
+    private static LightManager instance;
+    public static LightManager Instance
     {
-        Vector3Int.up,
-        Vector3Int.left + Vector3Int.up,
-        Vector3Int.left,
-        Vector3Int.left + Vector3Int.down,
-        Vector3Int.down,
-        Vector3Int.right + Vector3Int.down,
-        Vector3Int.right,
-        Vector3Int.right + Vector3Int.up,
-    };
-
-    public static Vector3Int[] XZDirections =
-    {
-        Vector3Int.forward,
-        Vector3Int.right + Vector3Int.forward,
-        Vector3Int.right,
-        Vector3Int.right + Vector3Int.back,
-        Vector3Int.back,
-        Vector3Int.left + Vector3Int.back,
-        Vector3Int.left,
-        Vector3Int.left + Vector3Int.forward,
-    };
-
-    public static Vector3Int[] YZDirections =
-    {
-        Vector3Int.forward,
-        Vector3Int.up + Vector3Int.forward,
-        Vector3Int.up,
-        Vector3Int.up + Vector3Int.back,
-        Vector3Int.back,
-        Vector3Int.down + Vector3Int.back,
-        Vector3Int.down,
-        Vector3Int.down + Vector3Int.forward,
-    };
+        get
+        {
+            if (instance == null)
+            {
+                GameObject obj = GameObject.Find(nameof(LightManager));
+                if (obj != null)
+                    instance = obj.GetComponent<LightManager>();
+            }
+            return instance;
+        }
+    }
 
     private IsometricGridManager igm;
     private readonly HashSet<Vector3Int> objectCache = new();
-
-    public Color radiance_up;
-    public Color radiance_left;
-    public Color radiance_right;
     public float projectShadowIntensity = 0.5f;
 
-    public Color GetRadiance(ShadowVertex vertex)
-    {
-        return AmbientOcculasion(vertex);
-    }
+    public Texture2D shadowMap;
 
-    public float Sample(Vector3Int p)
-    {
-        return objectCache.Contains(p) ? 1f : 0f;
-    }
+    public Color lightColor;
+    public Vector3 lightDirection;
+    public int texelSize;
+
+    private int xMin, xMax, yMin, yMax, zMin, zMax;
+    private Matrix4x4 lightMatrix;
 
     public bool VisibleCheck(Vector3Int position)
     {
         return !objectCache.Contains(position + Vector3Int.forward)
             || !objectCache.Contains(position + Vector3Int.left)
             || !objectCache.Contains(position + Vector3Int.down);
-    }
-
-    public Color AmbientOcculasion(ShadowVertex vertex)
-    {
-        Vector3Int[] directions;
-        float visibility = 0f;
-        if (vertex.cellNormal.x != 0)
-            directions = YZDirections;
-        else if (vertex.cellNormal.y != 0)
-            directions = XZDirections;
-        else if (vertex.cellNormal.z != 0)
-            directions = XYDirections;
-        else
-            return Color.clear;
-
-        for (int i = 0; i < directions.Length; i++)
-        {
-            visibility += AmbientOcculasion(vertex, directions[i]);
-        }
-        visibility /= directions.Length;
-        Color radiance;
-        if (vertex.cellNormal == Vector3Int.forward)
-            radiance = radiance_up;
-        else if (vertex.cellNormal == Vector3Int.left)
-            radiance = radiance_left;
-        else if (vertex.cellNormal == Vector3Int.down)
-            radiance = radiance_right;
-        else
-            throw new System.ArgumentException();
-        float alpha = radiance.a;
-        radiance *= visibility;
-        radiance = new Color(radiance.r, radiance.g, radiance.b, alpha);
-        return radiance;
-    }
-
-    private float AmbientOcculasion(ShadowVertex vertex, Vector3Int direction)
-    {
-        float minVisibility = 1f;
-        Vector3Int basePosition = vertex.cellPosition;
-        float unitDistance = new Vector3(CellSize.x * direction.x, CellSize.y * direction.y, CellSize.z * direction.z).magnitude;
-        float unitHeight = vertex.cellNormal.z != 0 ? 0.5f : 1f;
-        for (int i = 0; i < SampleDistance; i++)
-        {
-            basePosition += direction;
-            float h = GetHeight(basePosition, vertex.cellNormal) * unitHeight;
-            float d = (i + 0.5f) * unitDistance;
-            if (h > 0)
-            {
-                float angle = Mathf.Atan(h / d);
-                minVisibility = Mathf.Min(minVisibility, 1f - angle * 2 / Mathf.PI);
-            }
-        }
-        return minVisibility;
     }
 
     private float GetHeight(Vector3Int basePosition, Vector3Int normal)
@@ -132,79 +53,84 @@ public class LightManager : MonoBehaviour
         return h - 1;
     }
 
-    private const float ShrinkRatio = 100.0f;
-
-    public Texture2D GenerateAO(Vector3Int position, Vector3Int normal)
+    public Vector4 CellToLightSpace(Vector4 cell)
     {
-        static Vector2 UpdateMax(Vector2 prev, Vector2 current, float offset)
-        {
-            if (current.y / (current.x + offset) > prev.y / (prev.x + offset))
-                return current;
-            return prev;
-        }
-
-        Vector3Int[] directions;
-        float distanceOffset = 0.499f;
-        float unitHeight = normal.z != 0 ? 0.5f : 1f;
-        if (normal.x != 0)
-        {
-            directions = YZDirections;
-        }
-        else if (normal.y != 0)
-        {
-            directions = XZDirections;
-        }
-        else if (normal.z != 0)
-        {
-            directions = XYDirections;
-        }
-        else
-            throw new System.ArgumentException();
-
-        Texture2D AO = new(3, 3, TextureFormat.RGBAFloat, false)
-        {
-            filterMode = FilterMode.Point,
-            wrapMode = TextureWrapMode.Clamp,
-        };
-        AO.SetPixel(1, 1, new Color(1, 0, 1, 0));
-        for (int i = 0; i < directions.Length; i++)
-        {
-            Vector2 max1 = Vector2.right;
-            Vector2 max2 = Vector2.right;
-            Vector3Int direction = directions[i];
-            float unitDistance = new Vector3(CellSize.x * direction.x, CellSize.y * direction.y, CellSize.z * direction.z).magnitude;
-            Vector3Int currentPosition = position;
-
-            for (int j = 0; j < SampleDistance; j++)
-            {
-                currentPosition += direction;
-                float h = GetHeight(currentPosition, normal) * unitHeight;
-                float d = (j + 0.5f) * unitDistance;
-                if (h > 0)
-                {
-                    Vector2 current = new(d, h);
-                    max1 = UpdateMax(max1, current, -distanceOffset);
-                    max2 = UpdateMax(max2, current, distanceOffset);
-                }
-            }
-            Color color = new(max1.x / ShrinkRatio, max1.y / ShrinkRatio, max2.x / ShrinkRatio, max2.y / ShrinkRatio);
-
-            int x = XYDirections[i].x + 1;
-            int y = XYDirections[i].y + 1;
-            AO.SetPixel(x, y, color);
-        }
-        AO.Apply();
-        return AO;
+        Vector4 lightSpace = lightMatrix.inverse * cell;
+        return texelSize * lightSpace;
     }
 
-    private void Awake()
+    public Vector4 LightSpaceToCell(Vector4 lightSpace)
     {
-        igm = GetComponent<IsometricGridManager>();
-        FaceShadowGenerator[] shadows = GetComponentsInChildren<FaceShadowGenerator>();
+        lightSpace /= texelSize;
+        Vector4 cell = lightMatrix * lightSpace;
+        return cell;
+    }
+
+    public Vector3 LightSpaceToShadowMapCoord(Vector4 lightSpace)
+    {
+        float x = Mathf.Clamp01((lightSpace.x - xMin) / (xMax - xMin));
+        float y = Mathf.Clamp01((lightSpace.y - yMin) / (yMax - yMin));
+        float z = Mathf.Clamp01((lightSpace.z - zMin) / (zMax - zMin));
+        return new Vector3(x, y, z);
+    }
+
+    public Vector4 ShadowMapCoordToLightSpace(Vector3 coord)
+    {
+        float x = coord.x * (xMax - xMin) + xMin;
+        float y = coord.y * (yMax - yMin) + yMin;
+        float z = coord.z * (zMax - zMin) + zMin;
+        return new Vector4(x, y, z, 1);
+    }
+
+    private void GenerateShadowMap()
+    {
+        xMin = yMin = zMin = int.MaxValue;
+        xMax = yMax = zMax = int.MinValue;
+        GroundShadowCaster[] shadows = igm.GetComponentsInChildren<GroundShadowCaster>();
         for (int i = 0; i < shadows.Length; i++)
         {
             Vector3Int cellPosition = igm.WorldToCell(shadows[i].transform.position);
             objectCache.Add(cellPosition);
+
+            Vector4 cell = new(cellPosition.x + 0.5f, cellPosition.y + 0.5f, cellPosition.z + 0.5f, 1);
+            Vector4 lightSpace = CellToLightSpace(cell);
+            xMin = Mathf.Min(xMin, Mathf.CeilToInt(lightSpace.x));
+            xMax = Mathf.Max(xMax, Mathf.FloorToInt(lightSpace.x));
+            yMin = Mathf.Min(yMin, Mathf.CeilToInt(lightSpace.y));
+            yMax = Mathf.Max(yMax, Mathf.FloorToInt(lightSpace.y));
+            zMin = Mathf.Min(zMin, Mathf.CeilToInt(lightSpace.z));
+            zMax = Mathf.Max(zMax, Mathf.FloorToInt(lightSpace.z));
         }
+        xMin--;
+        yMin--;
+        zMin--;
+        xMax++;
+        yMax++;
+        zMax++;
+        shadowMap = new(xMax - xMin, yMax - yMin, TextureFormat.RHalf, false)
+        {
+            filterMode = FilterMode.Point,
+            wrapMode = TextureWrapMode.Clamp,
+        };
+        shadowMap.Apply();
+    }
+
+    private void Awake()
+    {
+        igm = IsometricGridManager.Instance;
+        Vector3 lightZ = lightDirection.normalized;
+        Vector3 lightX = new Vector3(-lightDirection.z, -lightDirection.z, lightDirection.x + lightDirection.y).normalized;  //任选一个与lightDirection垂直的向量
+        Vector3 lightY = Vector3.Cross(lightX, lightZ).normalized;
+        lightMatrix = new Matrix4x4(lightX, lightY, lightZ, new Vector4(0, 0, 0, 1));
+    }
+
+    private void Start()
+    {
+        GenerateShadowMap();
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(shadowMap);
     }
 }

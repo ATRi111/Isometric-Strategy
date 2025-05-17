@@ -1,4 +1,4 @@
-using EditorExtend.GridEditor;
+ï»¿using EditorExtend.GridEditor;
 using MyTool;
 using Services;
 using Services.Event;
@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-500)]
-[RequireComponent(typeof(PerspectiveManager), typeof(BattleField), typeof(LightManager))]
+[RequireComponent(typeof(PerspectiveManager), typeof(BattleField))]
 public class IsometricGridManager : IsometricGridManagerBase
 {
     public static Vector3Int CoverVector = new(1, 1, -2);
@@ -31,7 +31,7 @@ public class IsometricGridManager : IsometricGridManagerBase
 
     public BattleField BattleField { get; private set; }
 
-    #region ÎïÌå¹ÜÀí
+    #region ç‰©ä½“ç®¡ç†
     public readonly Dictionary<Vector3Int, Entity> entityDict = new();
 
     public override void Clear()
@@ -61,10 +61,10 @@ public class IsometricGridManager : IsometricGridManagerBase
     }
     #endregion
 
-    #region ÎïÀíÏµÍ³
+    #region ç‰©ç†ç³»ç»Ÿ
     private readonly List<Vector2Int> overlap = new();
     /// <summary>
-    /// »ñÈ¡µÚÒ»¸öÓëÓĞÏòÏß¶ÎÏà½»µÄGridObject(×Ô¶¯ºöÂÔÓëfromÖØºÏµÄÎïÌå)£¬²¢¼ÆËãµÚÒ»¸ö½»µãÎ»ÖÃ
+    /// è·å–ç¬¬ä¸€ä¸ªä¸æœ‰å‘çº¿æ®µç›¸äº¤çš„GridObject(è‡ªåŠ¨å¿½ç•¥ä¸fromé‡åˆçš„ç‰©ä½“)ï¼Œå¹¶è®¡ç®—ç¬¬ä¸€ä¸ªäº¤ç‚¹ä½ç½®
     /// </summary>
     public GridObject LineSegmentCast(Vector3 from, Vector3 to, out Vector3 hit)
     {
@@ -76,7 +76,7 @@ public class IsometricGridManager : IsometricGridManagerBase
         if (overlap.Count == 0)
             return null;
 
-        bool top_down = (to - from).z < 0;  //ÉäÏß´ÓÉÏÍùÏÂ·¢ÉäÊ±£¬Çó½»Ê±Ò²±ØĞë´ÓÉÏÍùÏÂ
+        bool top_down = (to - from).z < 0;  //å°„çº¿ä»ä¸Šå¾€ä¸‹å‘å°„æ—¶ï¼Œæ±‚äº¤æ—¶ä¹Ÿå¿…é¡»ä»ä¸Šå¾€ä¸‹
         for (int i = 0; i < overlap.Count; i++)
         {
             GetObjectsXY(overlap[i], gridObjects, top_down);
@@ -93,12 +93,12 @@ public class IsometricGridManager : IsometricGridManagerBase
     }
 
     /// <summary>
-    /// »ñÈ¡µÚÒ»¸öÓëÓĞÏòÅ×ÎïÏßÏà½»µÄGridObject(×Ô¶¯ºöÂÔÓëfromÖØºÏµÄÎïÌå)£¬²¢¼ÆËã¹ì¼£
+    /// è·å–ç¬¬ä¸€ä¸ªä¸æœ‰å‘æŠ›ç‰©çº¿ç›¸äº¤çš„GridObject(è‡ªåŠ¨å¿½ç•¥ä¸fromé‡åˆçš„ç‰©ä½“)ï¼Œå¹¶è®¡ç®—è½¨è¿¹
     /// </summary>
-    /// <param name="from">Å×ÎïÏßÆğµã</param>
-    /// <param name="velocity">Å×ÎïÏß³õËÙ¶È</param>
-    /// <param name="g">ÖØÁ¦¼ÓËÙ¶È£¨ÑØZÖá¸º·½ÏòÎªÕı£©</param>
-    /// <param name="trajectory">½ÓÊÕ¹ì¼£</param>
+    /// <param name="from">æŠ›ç‰©çº¿èµ·ç‚¹</param>
+    /// <param name="velocity">æŠ›ç‰©çº¿åˆé€Ÿåº¦</param>
+    /// <param name="g">é‡åŠ›åŠ é€Ÿåº¦ï¼ˆæ²¿Zè½´è´Ÿæ–¹å‘ä¸ºæ­£ï¼‰</param>
+    /// <param name="trajectory">æ¥æ”¶è½¨è¿¹</param>
     public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g, List<Vector3> trajectory)
     {
         if (g <= 0 || velocity == Vector3.zero)
@@ -130,11 +130,11 @@ public class IsometricGridManager : IsometricGridManagerBase
     }
 
     /// <summary>
-    /// »ñÈ¡µÚÒ»¸öÓëÓĞÏòÅ×ÎïÏßÏà½»µÄGridObject(×Ô¶¯ºöÂÔÓëfromÖØºÏµÄÎïÌå)
+    /// è·å–ç¬¬ä¸€ä¸ªä¸æœ‰å‘æŠ›ç‰©çº¿ç›¸äº¤çš„GridObject(è‡ªåŠ¨å¿½ç•¥ä¸fromé‡åˆçš„ç‰©ä½“)
     /// </summary>
-    /// <param name="from">Å×ÎïÏßÆğµã</param>
-    /// <param name="velocity">Å×ÎïÏß³õËÙ¶È</param>
-    /// <param name="g">ÖØÁ¦¼ÓËÙ¶È£¨ÑØZÖá¸º·½ÏòÎªÕı£©</param>
+    /// <param name="from">æŠ›ç‰©çº¿èµ·ç‚¹</param>
+    /// <param name="velocity">æŠ›ç‰©çº¿åˆé€Ÿåº¦</param>
+    /// <param name="g">é‡åŠ›åŠ é€Ÿåº¦ï¼ˆæ²¿Zè½´è´Ÿæ–¹å‘ä¸ºæ­£ï¼‰</param>
     public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g)
     {
         if (g <= 0)
@@ -158,7 +158,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     }
 
     // <summary>
-    /// »ñÈ¡µÚÒ»¸öÓëÓĞÏòÅ×ÎïÏßÏà½»,ÇÒ·ûºÏËù¸øÌõ¼şµÄGridObject(×Ô¶¯ºöÂÔÓëfromÖØºÏµÄÎïÌå)
+    /// è·å–ç¬¬ä¸€ä¸ªä¸æœ‰å‘æŠ›ç‰©çº¿ç›¸äº¤,ä¸”ç¬¦åˆæ‰€ç»™æ¡ä»¶çš„GridObject(è‡ªåŠ¨å¿½ç•¥ä¸fromé‡åˆçš„ç‰©ä½“)
     /// </summary>
     public GridObject ParabolaCast(Vector3 from, Vector3 velocity, float g, PawnEntity pawn, Func<PawnEntity, GridObject, bool> ObjectCheck)
     {
@@ -183,7 +183,7 @@ public class IsometricGridManager : IsometricGridManagerBase
     }
     #endregion
 
-    #region ÅÊÅÀ
+    #region æ”€çˆ¬
 
     private readonly HashSet<Ladder> ladders = new();
 
@@ -220,7 +220,7 @@ public class IsometricGridManager : IsometricGridManagerBase
 
 #if UNITY_EDITOR
 
-    public int sortingOrderThreshold;   //sortingOrderĞ¡ÓÚµÈÓÚ´ËÖµµÄÎïÌå¿É¼û
+    public int sortingOrderThreshold;   //sortingOrderå°äºç­‰äºæ­¤å€¼çš„ç‰©ä½“å¯è§
 
     public void ModifySortingOrderThreshold(int deltaValue)
     {
