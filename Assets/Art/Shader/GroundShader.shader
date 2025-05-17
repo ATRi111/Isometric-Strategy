@@ -1,19 +1,25 @@
-﻿Shader "Custom/GroundShader" {
+﻿// Upgrade NOTE: replaced '_LightMat0' with 'unity_WorldToLight'
+
+Shader "Custom/GroundShader" {
     Properties {
         _MainTex ("Texture", 2D) = "white" {}
         
-        _ShadowMapCoord("ShadowMapCoord",Vector) = (0,0,0,0)
+        _CellPosition("CellPosition",Vector) = (0,0,0,1)
         
         _Ambient("Ambient",Range(0, 1)) = 0.2
         _Diffuse("Diffuse",Range(0, 1)) = 0.8
         _Specular("Specular",Range(0, 1)) = 0
         _Gloss("Gloss",Range(8, 256)) = 16
-        _ShdowBias("ShadowBias",Float) = 0
+        _ShdowBias("ShadowBias",Range(0, 0.01)) = 0
 
         _View("View", Vector) = (1,1,-1,0)
         _LightColor("LightColor", Color) = (1,1,1,1)
         _LightDirection("LightDirection",Vector) = (0,1,-2,0)
         _ShadowMap("ShadowMap", 2D) = "black" {}
+        _LightMat0("LightMat0",Vector) = (1,0,0,0)
+        _LightMat1("LightMat1",Vector) = (0,1,0,0) 
+        _LightMat2("LightMat2",Vector) = (0,0,1,0) 
+        _LightMat3("LightMat3",Vector) = (0,0,0,1) 
     }
     
     SubShader {
@@ -49,14 +55,18 @@
             float3 _LightDirection;
             sampler2D _ShadowMap;
 
-            float3 _ShadowMapCoord;
-            float3 _CellPosition;
+            float4 _CellPosition;
 
             float _Ambient;
             float _Diffuse;
             float _Specular;
             float _Gloss;
             float _ShdowBias;
+
+            float4 _LightMat0;
+            float4 _LightMat1;
+            float4 _LightMat2;
+            float4 _LightMat3;
             
             VertexOutput Vertex_shader(VertexInput input) 
             {
@@ -70,11 +80,11 @@
             {
                 // dot(mapCoord, light) 的值必然在[-1,1]之间
                 float distance = mapCoord.z;
-                float closestDistance = saturate(tex2D(shadowMap, mapCoord));
+                float closestDistance = saturate(tex2D(shadowMap, mapCoord).r);
 
                 if( distance - bias <= closestDistance)
                 {
-                    return 1;   
+                    return 1;
                 }
                 else
                 {
@@ -92,22 +102,23 @@
                 return color;
             }
 
-            float4 CalcLight(float3 normal)
+            float4 CalcLight(float3 normal, float3 cellOffset)
             {
                 float3 light = -normalize(_LightDirection);
                 float3 view = normalize(_View);
-                //TODO:坐标变换
-                float3 mapCoord = float3(0,0,0);
+                float4x4 lightMat = float4x4(_LightMat0,_LightMat1,_LightMat2,_LightMat3);
+                float4 mapCoord = mul(lightMat, float4(_CellPosition + cellOffset, 1));
                 float visibility = CalcVisibility(_ShadowMap, mapCoord, _ShdowBias);
-                return BlinnPhong(_LightColor, light, normal, view, 
+                return BlinnPhong(_LightColor, light, normal, view,
                     _Ambient, _Diffuse, _Specular, _Gloss, visibility);
             }
             
             float3 CalcColorUp(float u, float v)
             {
                 float x = u + 1.5 * v - 1;
-                float y = -u + 1.5 * v;
-                float4 lightColor = CalcLight(float3(0, 0, 1));
+                float y = - u + 1.5 * v;
+                float3 cellOffset = float3(x, y, 1);
+                float4 lightColor = CalcLight(float3(0, 0, 1), cellOffset);
                 return lightColor;
             }
 
@@ -115,7 +126,8 @@
             {
                 float x = 2 * u;
                 float y = 2 * u + 3 * v - 1;
-                float4 lightColor = CalcLight(float3(-1, 0, 0));
+                float3 cellOffset = float3(0, 1 - x, y);
+                float4 lightColor = CalcLight(float3(-1, 0, 0), cellOffset);
                 return lightColor;
             }
 
@@ -123,7 +135,8 @@
             {
                 float x = 2 * u - 1;
                 float y = -2 * u + 3 * v + 1;
-                float4 lightColor = CalcLight(float3(0, -1, 0));
+                float3 cellOffset = float3(x, 0, y);
+                float4 lightColor = CalcLight(float3(0, -1, 0), cellOffset);
                 return lightColor;
             }
 

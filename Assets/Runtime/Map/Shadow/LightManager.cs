@@ -23,16 +23,18 @@ public class LightManager : MonoBehaviour
 
     private IsometricGridManager igm;
     private readonly HashSet<Vector3Int> objectCache = new();
+
     public float projectShadowIntensity = 0.5f;
-
-    public Texture2D shadowMap;
-
     public Color lightColor;
     public Vector3 lightDirection;
     public int texelSize;
+    public float sampleSpacing;
+
+    public Texture2D shadowMap;
+    public Matrix4x4 lightMatrix;
+    public Matrix4x4 shadowMatrix;
 
     private int xMin, xMax, yMin, yMax, zMin, zMax;
-    private Matrix4x4 lightMatrix;
 
     public bool VisibleCheck(Vector3Int position)
     {
@@ -54,35 +56,42 @@ public class LightManager : MonoBehaviour
 
     public Vector4 CellToLightSpace(Vector4 cell)
     {
-        Vector4 lightSpace = lightMatrix.inverse * cell;
+        Vector4 lightSpace = lightMatrix * cell;
         return texelSize * lightSpace;
     }
 
-    public Vector4 LightSpaceToCell(Vector4 lightSpace)
+    public Vector4 CellToShadowMapCoord(Vector4 cell)
     {
-        lightSpace /= texelSize;
-        Vector4 cell = lightMatrix * lightSpace;
-        return cell;
+        return shadowMatrix * cell;
     }
 
-    public Vector3 LightSpaceToShadowMapCoord(Vector4 lightSpace)
+    public Vector4 ShadowMapCoordToCell(Vector4 coord)
     {
-        float x = Mathf.Clamp01((lightSpace.x - xMin) / (xMax - xMin));
-        float y = Mathf.Clamp01((lightSpace.y - yMin) / (yMax - yMin));
-        float z = Mathf.Clamp01((lightSpace.z - zMin) / (zMax - zMin));
-        return new Vector3(x, y, z);
+        return shadowMatrix.inverse * coord;
     }
 
-    public Vector4 ShadowMapCoordToLightSpace(Vector3 coord)
+    public float RayCast(Vector4 coord)
     {
-        float x = coord.x * (xMax - xMin) + xMin;
-        float y = coord.y * (yMax - yMin) + yMin;
-        float z = coord.z * (zMax - zMin) + zMin;
-        return new Vector4(x, y, z, 1);
+        Vector4 cell = ShadowMapCoordToCell(coord);
+        Vector4 delta = Mathf.Max(sampleSpacing, 0.01f) * lightDirection.normalized;
+        int sampleTimes = Mathf.FloorToInt(1 / CellToShadowMapCoord(delta).z);
+        for (int i = 0; i < sampleTimes; i++, cell += delta)
+        {
+            Vector3Int cellPosition = new(Mathf.FloorToInt(cell.x), Mathf.FloorToInt(cell.y), Mathf.FloorToInt(cell.z));
+            coord = CellToShadowMapCoord(cell);
+            if (objectCache.Contains(cellPosition))
+                return Mathf.Clamp01(coord.z);
+        }
+        return 1f;
     }
 
-    private void GenerateShadowMap()
+    private void UpdateCoordSystem()
     {
+        Vector3 lightZ = lightDirection.normalized;
+        Vector3 lightX = new Vector3(-lightDirection.z, -lightDirection.z, lightDirection.x + lightDirection.y).normalized;  //任选一个与lightDirection垂直的向量
+        Vector3 lightY = Vector3.Cross(lightX, lightZ).normalized;
+        lightMatrix = new Matrix4x4(lightX, lightY, lightZ, new Vector4(0, 0, 0, 1)).inverse;
+
         xMin = yMin = zMin = int.MaxValue;
         xMax = yMax = zMax = int.MinValue;
         GroundShadowCaster[] shadows = igm.GetComponentsInChildren<GroundShadowCaster>();
@@ -106,25 +115,36 @@ public class LightManager : MonoBehaviour
         xMax++;
         yMax++;
         zMax++;
+
+        shadowMatrix = lightMatrix;
+        shadowMatrix = Matrix4x4.Scale(texelSize * Vector3.one) * shadowMatrix;
+        shadowMatrix = Matrix4x4.Translate(new Vector3(-xMin, -yMin, -zMin)) * shadowMatrix;
+        shadowMatrix = Matrix4x4.Scale(new Vector3(1f / (xMax - xMin), 1f / (yMax - yMin), 1f / (zMax - zMin))) * shadowMatrix;
+    }
+
+    private void GenerateShadowMap()
+    {
         shadowMap = new(xMax - xMin, yMax - yMin, TextureFormat.RHalf, false)
         {
             filterMode = FilterMode.Point,
             wrapMode = TextureWrapMode.Clamp,
         };
+        for (int y = 0; y < shadowMap.height; y++)
+        {
+            for (int x = 0; x < shadowMap.width; x++)
+            {
+                Vector4 coord = new((x + 0.5f) / shadowMap.width, (y + 0.5f) / shadowMap.height, 0, 1);
+                float depth = RayCast(coord);
+                shadowMap.SetPixel(x, y, new Color(depth, 0, 0, 1));
+            }
+        }
         shadowMap.Apply();
     }
 
     private void Awake()
     {
         igm = IsometricGridManager.Instance;
-        Vector3 lightZ = lightDirection.normalized;
-        Vector3 lightX = new Vector3(-lightDirection.z, -lightDirection.z, lightDirection.x + lightDirection.y).normalized;  //任选一个与lightDirection垂直的向量
-        Vector3 lightY = Vector3.Cross(lightX, lightZ).normalized;
-        lightMatrix = new Matrix4x4(lightX, lightY, lightZ, new Vector4(0, 0, 0, 1));
-    }
-
-    private void Start()
-    {
+        UpdateCoordSystem();
         GenerateShadowMap();
     }
 

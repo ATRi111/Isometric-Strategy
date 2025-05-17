@@ -33,6 +33,12 @@ public class GroundShadowCaster : MonoBehaviour
         v = lightManager.lightDirection;
         material.SetVector("_LightDirection", v);
         material.SetTexture("_ShadowMap", lightManager.shadowMap);
+
+        Matrix4x4 shadowMatrix = lightManager.shadowMatrix;
+        material.SetVector("_LightMat0", shadowMatrix.GetRow(0));
+        material.SetVector("_LightMat1", shadowMatrix.GetRow(1));
+        material.SetVector("_LightMat2", shadowMatrix.GetRow(2));
+        material.SetVector("_LightMat3", shadowMatrix.GetRow(3));
     }
 
     private void OnDestroy()

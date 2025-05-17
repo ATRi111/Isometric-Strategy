@@ -96,7 +96,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c635d4c6d71d8714cb14c08304258028, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -135,7 +135,7 @@ Material:
     - _Power: 16
     - _SampleSpacing: 0.01
     - _ShadowWidth: 0.2
-    - _ShdowBias: 0
+    - _ShdowBias: 0.002
     - _SmoothnessTextureChannel: 0
     - _Spec: 0
     - _Specular: 0
@@ -145,6 +145,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _CellPosition: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
     - _Color2: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
@@ -170,13 +171,22 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LightColor: {r: 1, g: 1, b: 1, a: 1}
     - _LightDirection: {r: 0, g: 1, b: -2, a: 0}
+    - _LightMat0: {r: 1, g: 0, b: 0, a: 0}
+    - _LightMat1: {r: 0, g: 1, b: 0, a: 0}
+    - _LightMat2: {r: 0, g: 0, b: 1, a: 0}
+    - _LightMat3: {r: 0, g: 0, b: 0, a: 1}
+    - _LightMatrix: {r: 0, g: 0, b: 0, a: 1}
+    - _LightMatrix1: {r: 0, g: 1, b: 0, a: 0}
+    - _LightMatrix2: {r: 0, g: 0, b: 1, a: 0}
+    - _LightMatrix3: {r: 0, g: 0, b: 0, a: 1}
     - _LightShadowMapCoord: {r: 0, g: 0, b: 0, a: 0}
     - _MapCoord: {r: 0, g: 0, b: 0, a: 1}
     - _MapPosition: {r: 0, g: 0, b: 1, a: 1}
     - _Position: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowMapCoord: {r: 0, g: 0, b: 0, a: 0}
-    - _View: {r: 1, g: 1, b: -1, a: 0}
+    - _View: {r: -1, g: -1, b: 1, a: 0}
     - _WorldCoord: {r: 0, g: 0, b: 0, a: 0}
+    - unity_WorldToLight: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
