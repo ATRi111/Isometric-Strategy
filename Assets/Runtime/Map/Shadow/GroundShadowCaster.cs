@@ -23,7 +23,11 @@ public class GroundShadowCaster : MonoBehaviour
     private void Start()
     {
         if (!visible)
+        {
+            spriteRenderer.enabled = false;
+            enabled = false;
             return;
+        }
 
         Vector4 cell = new(cellPosition.x, cellPosition.y, cellPosition.z, 1);
         material.SetVector("_CellPosition", cell);

@@ -23,6 +23,7 @@ public class LightManager : MonoBehaviour
 
     private IsometricGridManager igm;
     private readonly HashSet<Vector3Int> objectCache = new();
+    private readonly HashSet<Vector3Int> surfaceCache = new();
 
     public float projectShadowIntensity = 0.5f;
     public Color lightColor;
@@ -83,11 +84,15 @@ public class LightManager : MonoBehaviour
         for (int i = 0; i < shadows.Length; i++)
         {
             Vector3Int cellPosition = igm.WorldToCell(shadows[i].transform.position);
+            objectCache.Add(cellPosition);
+        }
+        for (int i = 0; i < shadows.Length; i++)
+        {
+            Vector3Int cellPosition = igm.WorldToCell(shadows[i].transform.position);
             shadows[i].visible = VisibleCheck(cellPosition);
             if (shadows[i].visible)
             {
-                objectCache.Add(cellPosition);
-
+                surfaceCache.Add(cellPosition);
                 Vector4 cell = new(cellPosition.x + 0.5f, cellPosition.y + 0.5f, cellPosition.z + 0.5f, 1);
                 Vector4 lightSpace = CellToLightSpace(cell);
                 xMin = Mathf.Min(xMin, Mathf.CeilToInt(lightSpace.x));
@@ -152,7 +157,7 @@ public class LightManager : MonoBehaviour
                 depths[x, y] = 1;
             }
         }
-        foreach (Vector3Int p in objectCache)
+        foreach (Vector3Int p in surfaceCache)
         {
             UpdateShadowOfBlock(p);
         }
