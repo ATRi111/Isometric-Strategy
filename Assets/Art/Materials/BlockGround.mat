@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground
+  m_Name: BlockGround
   m_Shader: {fileID: 4800000, guid: 7aedf4de5f70e3247a979a692c4f8a3a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -84,7 +84,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ad9209cf03e46da448223e90572b447e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -170,7 +170,7 @@ Material:
     - _DirectionalLightShadowMapCoord: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _LightDirection: {r: 0, g: 1, b: -2, a: 0}
+    - _LightDirection: {r: 0.5, g: 1, b: -2, a: 0}
     - _LightMat0: {r: 1, g: 0, b: 0, a: 0}
     - _LightMat1: {r: 0, g: 1, b: 0, a: 0}
     - _LightMat2: {r: 0, g: 0, b: 1, a: 0}

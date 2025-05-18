@@ -20,6 +20,8 @@ Shader "Custom/GroundShader" {
         _LightMat1("LightMat1",Vector) = (0,1,0,0) 
         _LightMat2("LightMat2",Vector) = (0,0,1,0) 
         _LightMat3("LightMat3",Vector) = (0,0,0,1) 
+
+        _NormalMap("NormalMap", 2D) = "blue" {}
     }
     
     SubShader {
@@ -54,6 +56,7 @@ Shader "Custom/GroundShader" {
             float4 _LightColor;
             float3 _LightDirection;
             sampler2D _ShadowMap;
+            sampler2D _NormalMap;
 
             float4 _CellPosition;
 
@@ -78,7 +81,6 @@ Shader "Custom/GroundShader" {
 
             float CalcVisibility(sampler2D shadowMap, float3 mapCoord, float bias)
             {
-                // dot(mapCoord, light) 的值必然在[-1,1]之间
                 float distance = mapCoord.z;
                 float closestDistance = saturate(tex2D(shadowMap, mapCoord).r);
 
@@ -112,31 +114,41 @@ Shader "Custom/GroundShader" {
                 return BlinnPhong(_LightColor, light, normal, view,
                     _Ambient, _Diffuse, _Specular, _Gloss, visibility);
             }
+
+            inline float3 GetNormal(half2 uv)
+            {
+                float3 normal = tex2D(_NormalMap, uv);
+                normal = normalize(2 * normal - float3(1, 1, 1));
+                return normal;
+            }
             
-            float3 CalcColorUp(float u, float v)
+            float3 CalcColorUp(half2 uv)
             {
-                float x = u + 1.5 * v - 1;
-                float y = - u + 1.5 * v;
+                float x = uv.x + 1.5 * uv.y - 1;
+                float y = - uv.x + 1.5 * uv.y;
                 float3 cellOffset = float3(x, y, 1);
-                float4 lightColor = CalcLight(float3(0, 0, 1), cellOffset);
+                float3 normal = GetNormal(uv);
+                float4 lightColor = CalcLight(normal, cellOffset);
                 return lightColor;
             }
 
-            float3 CalcColorLeft(float u, float v)
+            float3 CalcColorLeft(half2 uv)
             {
-                float x = 2 * u;
-                float y = 2 * u + 3 * v - 1;
+                float x = 2 * uv.x;
+                float y = 2 * uv.x + 3 * uv.y - 1;
                 float3 cellOffset = float3(0, 1 - x, y);
-                float4 lightColor = CalcLight(float3(-1, 0, 0), cellOffset);
+                float3 normal = GetNormal(uv);
+                float4 lightColor = CalcLight(normal, cellOffset);
                 return lightColor;
             }
 
-            float3 CalcColorRight(float u, float v)
+            float3 CalcColorRight(half2 uv)
             {
-                float x = 2 * u - 1;
-                float y = -2 * u + 3 * v + 1;
+                float x = 2 * uv.x - 1;
+                float y = -2 * uv.x + 3 * uv.y + 1;
                 float3 cellOffset = float3(x, 0, y);
-                float4 lightColor = CalcLight(float3(0, -1, 0), cellOffset);
+                float3 normal = GetNormal(uv);
+                float4 lightColor = CalcLight(normal, cellOffset);
                 return lightColor;
             }
 
@@ -159,15 +171,15 @@ Shader "Custom/GroundShader" {
                 float3 lightColor;
                 if(uv.x <= 0.5 && uv.y + 0.667 * uv.x <= 0.667)
                 {
-                    lightColor = CalcColorLeft(uv.x, uv.y);
+                    lightColor = CalcColorLeft(uv);
                 }
                 else if(uv.x > 0.5 && uv.y - 0.667 * uv.x <= 0)
                 {
-                    lightColor = CalcColorRight(uv.x, uv.y);
+                    lightColor = CalcColorRight(uv);
                 }
                 else
                 {
-                    lightColor = CalcColorUp(uv.x, uv.y);
+                    lightColor = CalcColorUp(uv);
                 }
                 texColor = GammaCorrection(texColor);
                 float4 ret = float4(lightColor, 1) * texColor;
