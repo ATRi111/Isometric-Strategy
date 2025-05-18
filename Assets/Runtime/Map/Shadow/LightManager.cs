@@ -28,8 +28,8 @@ public class LightManager : MonoBehaviour
     public Color lightColor;
     public Vector3 lightDirection;
     public int texelSize;
-    public float sampleSpacing;
 
+    private float[,] depths;
     public Texture2D shadowMap;
     public Matrix4x4 lightMatrix;
     public Matrix4x4 shadowMatrix;
@@ -70,25 +70,10 @@ public class LightManager : MonoBehaviour
         return shadowMatrix.inverse * coord;
     }
 
-    public float RayCast(Vector4 coord)
-    {
-        Vector4 cell = ShadowMapCoordToCell(coord);
-        Vector4 delta = Mathf.Max(sampleSpacing, 0.01f) * lightDirection.normalized;
-        int sampleTimes = Mathf.FloorToInt(1 / CellToShadowMapCoord(delta).z);
-        for (int i = 0; i < sampleTimes; i++, cell += delta)
-        {
-            Vector3Int cellPosition = new(Mathf.FloorToInt(cell.x), Mathf.FloorToInt(cell.y), Mathf.FloorToInt(cell.z));
-            coord = CellToShadowMapCoord(cell);
-            if (objectCache.Contains(cellPosition))
-                return Mathf.Clamp01(coord.z);
-        }
-        return 1f;
-    }
-
     private void UpdateCoordSystem()
     {
         Vector3 lightZ = lightDirection.normalized;
-        Vector3 lightX = new Vector3(-lightDirection.z, -lightDirection.z, lightDirection.x + lightDirection.y).normalized;  //任选一个与lightDirection垂直的向量
+        Vector3 lightX = new Vector3(-lightDirection.z, 0, lightDirection.x).normalized;  //任选一个与lightDirection垂直的向量
         Vector3 lightY = Vector3.Cross(lightX, lightZ).normalized;
         lightMatrix = new Matrix4x4(lightX, lightY, lightZ, new Vector4(0, 0, 0, 1)).inverse;
 
@@ -98,23 +83,25 @@ public class LightManager : MonoBehaviour
         for (int i = 0; i < shadows.Length; i++)
         {
             Vector3Int cellPosition = igm.WorldToCell(shadows[i].transform.position);
-            objectCache.Add(cellPosition);
+            shadows[i].visible = VisibleCheck(cellPosition);
+            if (shadows[i].visible)
+            {
+                objectCache.Add(cellPosition);
 
-            Vector4 cell = new(cellPosition.x + 0.5f, cellPosition.y + 0.5f, cellPosition.z + 0.5f, 1);
-            Vector4 lightSpace = CellToLightSpace(cell);
-            xMin = Mathf.Min(xMin, Mathf.CeilToInt(lightSpace.x));
-            xMax = Mathf.Max(xMax, Mathf.FloorToInt(lightSpace.x));
-            yMin = Mathf.Min(yMin, Mathf.CeilToInt(lightSpace.y));
-            yMax = Mathf.Max(yMax, Mathf.FloorToInt(lightSpace.y));
-            zMin = Mathf.Min(zMin, Mathf.CeilToInt(lightSpace.z));
-            zMax = Mathf.Max(zMax, Mathf.FloorToInt(lightSpace.z));
+                Vector4 cell = new(cellPosition.x + 0.5f, cellPosition.y + 0.5f, cellPosition.z + 0.5f, 1);
+                Vector4 lightSpace = CellToLightSpace(cell);
+                xMin = Mathf.Min(xMin, Mathf.CeilToInt(lightSpace.x));
+                xMax = Mathf.Max(xMax, Mathf.FloorToInt(lightSpace.x));
+                yMin = Mathf.Min(yMin, Mathf.CeilToInt(lightSpace.y));
+                yMax = Mathf.Max(yMax, Mathf.FloorToInt(lightSpace.y));
+                zMin = Mathf.Min(zMin, Mathf.CeilToInt(lightSpace.z));
+                zMax = Mathf.Max(zMax, Mathf.FloorToInt(lightSpace.z));
+            }
         }
-        xMin--;
-        yMin--;
-        zMin--;
-        xMax++;
-        yMax++;
-        zMax++;
+        xMin -= texelSize;
+        yMin -= texelSize;
+        xMax += texelSize;
+        yMax += texelSize;
 
         shadowMatrix = lightMatrix;
         shadowMatrix = Matrix4x4.Scale(texelSize * Vector3.one) * shadowMatrix;
@@ -122,20 +109,58 @@ public class LightManager : MonoBehaviour
         shadowMatrix = Matrix4x4.Scale(new Vector3(1f / (xMax - xMin), 1f / (yMax - yMin), 1f / (zMax - zMin))) * shadowMatrix;
     }
 
+    private void UpdateShadowOfFace(Vector3 origin, Vector3 xAxis, Vector3 yAxis)
+    {
+        void WriteDepth(Vector4 coord)
+        {
+            int x = Mathf.FloorToInt(Mathf.Clamp01(coord.x) * shadowMap.width);
+            int y = Mathf.FloorToInt(Mathf.Clamp01(coord.y) * shadowMap.height);
+            depths[x, y] = Mathf.Clamp01(Mathf.Min(depths[x, y], coord.z));
+        }
+
+        for (int x = 0; x <= texelSize; x++)
+        {
+            for (int y = 0; y <= texelSize; y++)
+            {
+                Vector3 cell = origin + x / (float)texelSize * xAxis + y / (float)texelSize * yAxis;
+                Vector4 coord = CellToShadowMapCoord(new Vector4(cell.x, cell.y, cell.z, 1));
+                WriteDepth(coord);
+            }
+        }
+    }
+
+    private void UpdateShadowOfBlock(Vector3Int cellPosition)
+    {
+        Vector3 cell = cellPosition;
+        UpdateShadowOfFace(cell + Vector3.forward, Vector3.right, Vector3.up);
+        UpdateShadowOfFace(cell + Vector3.up, Vector3.down, Vector3.forward);
+        UpdateShadowOfFace(cell + Vector3.zero, Vector3.right, Vector3.forward);
+    }
+
     private void GenerateShadowMap()
     {
         shadowMap = new(xMax - xMin, yMax - yMin, TextureFormat.RHalf, false)
         {
-            filterMode = FilterMode.Point,
+            filterMode = FilterMode.Bilinear,
             wrapMode = TextureWrapMode.Clamp,
         };
-        for (int y = 0; y < shadowMap.height; y++)
+        depths = new float[shadowMap.width, shadowMap.height];
+        for (int x = 0; x < shadowMap.width; x++)
         {
-            for (int x = 0; x < shadowMap.width; x++)
+            for (int y = 0; y < shadowMap.height; y++)
             {
-                Vector4 coord = new((x + 0.5f) / shadowMap.width, (y + 0.5f) / shadowMap.height, 0, 1);
-                float depth = RayCast(coord);
-                shadowMap.SetPixel(x, y, new Color(depth, 0, 0, 1));
+                depths[x, y] = 1;
+            }
+        }
+        foreach (Vector3Int p in objectCache)
+        {
+            UpdateShadowOfBlock(p);
+        }
+        for (int x = 0; x < shadowMap.width; x++)
+        {
+            for (int y = 0; y < shadowMap.height; y++)
+            {
+                shadowMap.SetPixel(x, y, new Color(depths[x, y], 0, 0, 1));
             }
         }
         shadowMap.Apply();

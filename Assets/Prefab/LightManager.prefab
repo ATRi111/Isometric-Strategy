@@ -47,8 +47,7 @@ MonoBehaviour:
   projectShadowIntensity: 0.5
   lightColor: {r: 1, g: 1, b: 1, a: 1}
   lightDirection: {x: -0.5, y: 1, z: -2}
-  texelSize: 50
-  sampleSpacing: 0.04
+  texelSize: 100
   shadowMap: {fileID: 0}
   lightMatrix:
     e00: 0

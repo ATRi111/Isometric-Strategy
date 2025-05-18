@@ -9,6 +9,7 @@ public class GroundShadowCaster : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Material material;
     private Vector3Int cellPosition;
+    public bool visible;
 
     private void Awake()
     {
@@ -21,11 +22,9 @@ public class GroundShadowCaster : MonoBehaviour
 
     private void Start()
     {
-        if (!lightManager.VisibleCheck(cellPosition))
-        {
-            spriteRenderer.enabled = false;
+        if (!visible)
             return;
-        }
+
         Vector4 cell = new(cellPosition.x, cellPosition.y, cellPosition.z, 1);
         material.SetVector("_CellPosition", cell);
         Vector4 v = new(lightManager.lightColor.r, lightManager.lightColor.g, lightManager.lightColor.b, 1);

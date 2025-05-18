@@ -111,7 +111,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -143,12 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a49e2e23ad97c74ca2613076514e955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  zoomSpeed: 20
   maxSize: 8
   minSize: 2
-  targetSize: 0
-  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 10
+  zoomSpeed: 20
 --- !u!81 &2619865863303858734
 AudioListener:
   m_ObjectHideFlags: 0
