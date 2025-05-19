@@ -122,7 +122,7 @@ Material:
     - _Diffuse: 0.7
     - _DstBlend: 0
     - _EnableExternalAlpha: 0
-    - _Gloss: 16
+    - _Gloss: 8
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -138,7 +138,7 @@ Material:
     - _ShdowBias: 0.002
     - _SmoothnessTextureChannel: 0
     - _Spec: 0
-    - _Specular: 0
+    - _Specular: 0.3
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TestCover: 0
