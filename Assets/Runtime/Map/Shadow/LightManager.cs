@@ -137,9 +137,12 @@ public class LightManager : MonoBehaviour
     private void UpdateShadowOfBlock(Vector3Int cellPosition)
     {
         Vector3 cell = cellPosition;
-        UpdateShadowOfFace(cell + Vector3.forward, Vector3.right, Vector3.up);
-        UpdateShadowOfFace(cell + Vector3.up, Vector3.down, Vector3.forward);
-        UpdateShadowOfFace(cell + Vector3.zero, Vector3.right, Vector3.forward);
+        if (!objectCache.Contains(cellPosition + Vector3Int.forward))
+            UpdateShadowOfFace(cell + Vector3.forward, Vector3.right, Vector3.up);
+        if (!objectCache.Contains(cellPosition + Vector3Int.left))
+            UpdateShadowOfFace(cell + Vector3.up, Vector3.down, Vector3.forward);
+        if (!objectCache.Contains(cellPosition + Vector3Int.down))
+            UpdateShadowOfFace(cell + Vector3.zero, Vector3.right, Vector3.forward);
     }
 
     private void GenerateShadowMap()
