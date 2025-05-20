@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using EditorExtend.GridEditor;
+using Services;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LightManager : MonoBehaviour
@@ -21,6 +23,7 @@ public class LightManager : MonoBehaviour
         }
     }
 
+    private GameManager gameManager;
     private IsometricGridManager igm;
     private readonly HashSet<Vector3Int> objectCache = new();
     private readonly HashSet<Vector3Int> surfaceCache = new();
@@ -36,6 +39,10 @@ public class LightManager : MonoBehaviour
     public Matrix4x4 shadowMatrix;
 
     private int xMin, xMax, yMin, yMax, zMin, zMax;
+
+    public Texture2D pawnPositionMap;
+    public const int MaxPawnCount = 30;
+    public const float MaxCoord = 100f;
 
     public bool VisibleCheck(Vector3Int position)
     {
@@ -152,6 +159,11 @@ public class LightManager : MonoBehaviour
             filterMode = FilterMode.Bilinear,
             wrapMode = TextureWrapMode.Clamp,
         };
+        pawnPositionMap = new Texture2D(MaxPawnCount, 1, TextureFormat.RGBAHalf, false)
+        {
+            filterMode = FilterMode.Point,
+            wrapMode = TextureWrapMode.Clamp,
+        };
         depths = new float[shadowMap.width, shadowMap.height];
         for (int x = 0; x < shadowMap.width; x++)
         {
@@ -174,11 +186,39 @@ public class LightManager : MonoBehaviour
         shadowMap.Apply();
     }
 
+    private void UpdatePawnPositionMap()
+    {
+        static float ToColor(float f)
+        {
+            return Mathf.Clamp01((f + 100f) / 200f);
+        }
+
+        int count = 0;
+        foreach (PawnEntity pawn in gameManager.pawns)
+        {
+            Vector3 cellPosition = IsometricGridUtility.WorldToCell(pawn.transform.position, igm.Grid.cellSize);
+            Color color = new(ToColor(cellPosition.x), ToColor(cellPosition.y), ToColor(cellPosition.z), 1);
+            pawnPositionMap.SetPixel(count, 0, color);
+            count++;
+        }
+        for (; count < MaxPawnCount; count++)
+        {
+            pawnPositionMap.SetPixel(count, 0, Color.black);
+        }
+        pawnPositionMap.Apply();
+    }
+
     private void Awake()
     {
+        gameManager = ServiceLocator.Get<GameManager>();
         igm = IsometricGridManager.Instance;
         UpdateCoordSystem();
         GenerateShadowMap();
+    }
+
+    private void LateUpdate()
+    {
+        UpdatePawnPositionMap();
     }
 
     private void OnDestroy()
