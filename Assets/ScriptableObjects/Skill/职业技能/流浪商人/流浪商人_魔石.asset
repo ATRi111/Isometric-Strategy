@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 065d4d2cf251bf9418a01d673b593a2a, type: 3}
-  m_Name: "\u6D41\u6D6A\u5546\u4EBA_\u53D1\u5C04\u9B54\u77F3"
+  m_Name: "\u6D41\u6D6A\u5546\u4EBA_\u9B54\u77F3"
   m_EditorClassIdentifier: 
-  displayName: "\u53D1\u5C04\u9B54\u77F3"
+  displayName: "\u6295\u63B7\uFF1A\u9B54\u77F3"
   icon: {fileID: 21300000, guid: f038804cab93a114baf58d4c0148cb12, type: 3}
   extraDescription: 
-  actionTime: 0
+  actionTime: 25
   animationPrefab: {fileID: 4150678371861539030, guid: bbe7ca616da77a744abe26ecd18a63de, type: 3}
   pawnAnimationState: 0
   movementLatency: 0
@@ -25,27 +25,18 @@ MonoBehaviour:
     parameterIndex: 4
     value: 1
   buffPreConditions: []
-  weatherPreConditions: []
+  specialPreconditions: []
   parameterOnAgent:
   - parameterIndex: 4
     deltaValue: -1
   buffOnAgent: []
   HPCost: 0
-  powers:
-  - type: 3
-    power: 10
-    strMultiplier: 0
-    dexMultiplier: 1
-    intMultiplier: 0
-    mndMultiplier: 0
-  buffOnVictim:
-  - so: {fileID: 11400000, guid: 595c429d7817b3e4ca930f0a12402e6e, type: 2}
-    remove: 0
-    probability: 100
-  hitBackProbability: 60
+  powers: []
+  buffOnVictim: []
+  hitBackProbability: 0
   victimType: 2
-  minLayer: -32
-  maxLayer: 32
+  minLayer: -5
+  maxLayer: 5
   castingDistance: 7
   aimAtSelf: 0
   speedMultiplier: 1
