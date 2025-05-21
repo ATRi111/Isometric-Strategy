@@ -1,4 +1,4 @@
-using MyTool;
+ï»¿using MyTool;
 using Services;
 using Services.Event;
 using Services.ObjectPools;
@@ -18,43 +18,43 @@ public class SkillUIManager : MonoBehaviour
     private IMyObject actorIcon;
 
     /// <summary>
-    /// ÆôÓÃ¼¼ÄÜÑ¡ÔñÃæ°å
+    /// å¯ç”¨æŠ€èƒ½é€‰æ‹©é¢æ¿
     /// </summary>
     public Action<PawnEntity> SelectSkill;
     /// <summary>
-    /// Ñ¡ÖĞÒ»¸ö¼¼ÄÜºó
+    /// é€‰ä¸­ä¸€ä¸ªæŠ€èƒ½å
     /// </summary>
     public Action<Skill> AfterSelectSkill;
     /// <summary>
-    /// Ñ¡Ôñ¼¼ÄÜµÄÊÍ·ÅÎ»ÖÃºó
+    /// é€‰æ‹©æŠ€èƒ½çš„é‡Šæ”¾ä½ç½®å
     /// </summary>
     public Action<PawnAction> AfterSelectAction;
     /// <summary>
-    /// È¡ÏûÑ¡Ôñ¼¼ÄÜµÄÊÍ·ÅÎ»ÖÃºó
+    /// å–æ¶ˆé€‰æ‹©æŠ€èƒ½çš„é‡Šæ”¾ä½ç½®å
     /// </summary>
     public Action AfterCancelSelectAction;
     /// <summary>
-    /// ¿ªÊ¼Ô¤ÀÀ¼¼ÄÜ¿ÉÑ¡·¶Î§
+    /// å¼€å§‹é¢„è§ˆæŠ€èƒ½å¯é€‰èŒƒå›´
     /// </summary>
     public Action<Skill> PreviewSkillOption;
     /// <summary>
-    /// Í£Ö¹Ô¤ÀÀ¼¼ÄÜ¿ÉÑ¡·¶Î§
+    /// åœæ­¢é¢„è§ˆæŠ€èƒ½å¯é€‰èŒƒå›´
     /// </summary>
     public Action StopPreviewSkillOption;
     /// <summary>
-    /// ¿ªÊ¼Ô¤ÀÀĞĞ¶¯
+    /// å¼€å§‹é¢„è§ˆè¡ŒåŠ¨
     /// </summary>
     public Action<PawnAction> PreviewAction;
     /// <summary>
-    /// Í£Ö¹Ô¤ÀÀĞĞ¶¯
+    /// åœæ­¢é¢„è§ˆè¡ŒåŠ¨
     /// </summary>
     public Action<PawnAction> StopPreviewAction;
     /// <summary>
-    /// ¿ªÊ¼Ô¤ÀÀÍşĞ²·¶Î§
+    /// å¼€å§‹é¢„è§ˆå¨èƒèŒƒå›´
     /// </summary>
     public Action<PawnEntity> PreviewOffenseArea;
     /// <summary>
-    /// Í£Ö¹Ô¤ÀÀÍşĞ²·¶Î§
+    /// åœæ­¢é¢„è§ˆå¨èƒèŒƒå›´
     /// </summary>
     public Action<PawnEntity> StopPreviewOffenseArea;
 
@@ -66,6 +66,7 @@ public class SkillUIManager : MonoBehaviour
         if (pawn.Brain.humanControl)
             SelectSkill?.Invoke(currentPawn);
 
+        eventSystem.Invoke(EEvent.CheckGuaidance, EGuidance.Skill);
         actorIcon?.Recycle();
         actorIcon = objectManager.Activate("ActorIcon", Igm.CellToWorld(currentPawn.GridObject.CellPosition), Vector3.zero, transform);
         actorIcon.Transform.SetLossyScale(Vector3.one);

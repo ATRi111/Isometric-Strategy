@@ -67,6 +67,7 @@ public class PawnPanel : PawnReference
         }
         canvasGroup.Visible = true;
         OnRefresh?.Invoke();
+        eventSystem.Invoke(EEvent.CheckGuaidance, EGuidance.PawnPanel);
     }
 
     private void Hide()

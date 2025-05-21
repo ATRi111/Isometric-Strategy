@@ -379,6 +379,9 @@ GameObject:
   - component: {fileID: 3151576124819133796}
   - component: {fileID: 4316245599122344428}
   - component: {fileID: 3190087255646189243}
+  - component: {fileID: 1549257152459996625}
+  - component: {fileID: 2755194318037215895}
+  - component: {fileID: 6977241633640886130}
   m_Layer: 5
   m_Name: SelectSkill
   m_TagString: Untagged
@@ -444,6 +447,49 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!225 &1549257152459996625
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3933620501741819747}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2755194318037215895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3933620501741819747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alpha_default: 0
+  fadeTime: 0.2
+  threshold_blockRaycast: 0.5
+  immediate_next: 0
+  immediate: 0
+  visibleOnAwake: 1
+--- !u!114 &6977241633640886130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3933620501741819747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a857369a2cab74fb126690653fb7b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  revert: 0
 --- !u!1 &7245501661543087248
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,8 +502,10 @@ GameObject:
   - component: {fileID: 5741559721451034876}
   - component: {fileID: 832169156916541334}
   - component: {fileID: 5830916202034295293}
+  - component: {fileID: 7107518367958452936}
+  - component: {fileID: 7274430514773169276}
+  - component: {fileID: 2825958401924446923}
   - component: {fileID: 1169205720453313523}
-  - component: {fileID: 7298672192139236997}
   m_Layer: 5
   m_Name: TimeScaleButton
   m_TagString: Untagged
@@ -567,7 +615,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1169205720453313523
+--- !u!114 &7107518367958452936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -576,10 +624,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 7245501661543087248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23875f40948fad41bf8eb494d2dec65, type: 3}
+  m_Script: {fileID: 11500000, guid: 38a857369a2cab74fb126690653fb7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7298672192139236997
+  revert: 0
+--- !u!225 &7274430514773169276
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7245501661543087248}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2825958401924446923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7245501661543087248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df1cb7d6ecbe664b83d40a1c29d7aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alpha_default: 0
+  fadeTime: 0.2
+  threshold_blockRaycast: 0.5
+  immediate_next: 0
+  immediate: 0
+  visibleOnAwake: 0
+--- !u!114 &1169205720453313523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

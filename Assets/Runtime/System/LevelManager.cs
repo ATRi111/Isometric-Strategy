@@ -79,5 +79,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         prepareMenuCamera = Camera.main;
+        eventSystem.Invoke(EEvent.CheckGuaidance, EGuidance.Basic);
     }
 }
