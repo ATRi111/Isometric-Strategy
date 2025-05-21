@@ -16,19 +16,21 @@ MonoBehaviour:
   icon: {fileID: 0}
   extraDescription: "\u81EA\u8EAB\u4E0E\u6280\u80FD\u76EE\u6807\u4EA4\u6362\u4F4D\u7F6E"
   actionTime: 50
-  animationName: 
+  animationPrefab: {fileID: 0}
   pawnAnimationState: 0
   movementLatency: 0
   weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
+  specialPreconditions: []
   parameterOnAgent: []
   buffOnAgent: []
+  HPCost: 0
   powers: []
   buffOnVictim: []
   hitBackProbability: 0
   victimType: 2
-  minLayer: -32
-  maxLayer: 32
+  minLayer: -6
+  maxLayer: 5
   castingDistance: 6
   aimAtSelf: 0
