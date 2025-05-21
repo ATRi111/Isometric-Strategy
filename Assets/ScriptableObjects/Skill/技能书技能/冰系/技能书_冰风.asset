@@ -46,7 +46,7 @@ MonoBehaviour:
     probability: 25
   hitBackProbability: 100
   victimType: 2
-  minLayer: -3
+  minLayer: -4
   maxLayer: 3
   castingDistance: 1
   aimAtSelf: 0

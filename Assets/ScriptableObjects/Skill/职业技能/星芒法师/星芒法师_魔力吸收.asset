@@ -24,7 +24,7 @@ MonoBehaviour:
   buffPreConditions:
   - so: {fileID: 11400000, guid: a782b023dbec7234398294915478e20e, type: 2}
     requireExist: 0
-  weatherPreConditions: []
+  specialPreconditions: []
   parameterOnAgent: []
   buffOnAgent:
   - so: {fileID: 11400000, guid: 6d00b6a61f255254f9ff5a803eec8823, type: 2}
@@ -41,7 +41,7 @@ MonoBehaviour:
     probability: 100
   hitBackProbability: 0
   victimType: 2
-  minLayer: -32
-  maxLayer: 32
+  minLayer: -6
+  maxLayer: 5
   castingDistance: 6
   aimAtSelf: 0
