@@ -9,19 +9,20 @@ public class GuidancePanel : MonoBehaviour
 {
     private IEventSystem eventSystem;
     private readonly Dictionary<EGuidance, GuidancePage> pages = new();
-    private readonly HashSet<EGuidance> chekedGuidance = new();
+    public readonly HashSet<EGuidance> checkedGuidance = new();
     private CanvasGroupPlus canvasGroup;
+    [HideInInspector]
     public EGuidance current;
 
     public void CheckGuidance(EGuidance guidance)
     {
-        if (canvasGroup.Visible == false && pages.ContainsKey(guidance) && !chekedGuidance.Contains(guidance))
+        if (canvasGroup.Visible == false && pages.ContainsKey(guidance) && !checkedGuidance.Contains(guidance))
         {
             canvasGroup.Visible = true;
             HideAllPage();
             pages[guidance].canvasGroup.Visible = true;
             current = guidance;
-            chekedGuidance.Add(guidance);
+            checkedGuidance.Add(guidance);
         }
     }
 

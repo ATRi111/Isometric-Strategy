@@ -6773,6 +6773,7 @@ GameObject:
   - component: {fileID: 1499000264}
   - component: {fileID: 1499000263}
   - component: {fileID: 1499000265}
+  - component: {fileID: 1499000266}
   m_Layer: 5
   m_Name: GuidancePanel
   m_TagString: Untagged
@@ -6887,6 +6888,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current: 0
+--- !u!114 &1499000266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499000259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed96ec5fcc422242a1bc09792d0e5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groupId: 1
+  obj: {fileID: 1499000259}
+  saveDataType: GuidanceSaveData
+  eIdentifier: 1
+  customIdentifier: 
 --- !u!1001 &1578760945
 PrefabInstance:
   m_ObjectHideFlags: 0
