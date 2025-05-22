@@ -25,7 +25,7 @@ MonoBehaviour:
     parameterIndex: 2
     value: 1
   buffPreConditions: []
-  weatherPreConditions: []
+  specialPreconditions: []
   parameterOnAgent:
   - parameterIndex: 2
     deltaValue: -1
@@ -41,8 +41,8 @@ MonoBehaviour:
   buffOnVictim: []
   hitBackProbability: 0
   victimType: 1
-  minLayer: -4
-  maxLayer: 4
+  minLayer: -6
+  maxLayer: 5
   castingDistance: 6
   aimAtSelf: 0
   effectRange: 1

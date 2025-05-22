@@ -22,7 +22,7 @@ MonoBehaviour:
   weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
-  weatherPreConditions: []
+  specialPreconditions: []
   parameterOnAgent: []
   buffOnAgent: []
   HPCost: 0
@@ -42,8 +42,8 @@ MonoBehaviour:
   buffOnVictim: []
   hitBackProbability: 10
   victimType: 1
-  minLayer: -32
-  maxLayer: 32
+  minLayer: -6
+  maxLayer: 5
   castingDistance: 8
   aimAtSelf: 0
   speedMultiplier: 1

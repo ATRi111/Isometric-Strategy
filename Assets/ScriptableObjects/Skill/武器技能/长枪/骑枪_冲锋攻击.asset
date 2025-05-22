@@ -16,13 +16,13 @@ MonoBehaviour:
   icon: {fileID: 0}
   extraDescription: 
   actionTime: 50
-  animationName: Attack
+  animationPrefab: {fileID: 0}
   pawnAnimationState: 0
   movementLatency: 0
   weaponAnimation: 1
   preConditions: []
   buffPreConditions: []
-  weatherPreConditions: []
+  specialPreconditions: []
   parameterOnAgent: []
   buffOnAgent: []
   HPCost: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
   buffOnVictim: []
   hitBackProbability: 60
   victimType: 1
-  minLayer: -2
+  minLayer: -3
   maxLayer: 2
   castingDistance: 1
   aimAtSelf: 0

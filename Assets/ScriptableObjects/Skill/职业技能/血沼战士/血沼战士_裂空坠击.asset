@@ -22,7 +22,7 @@ MonoBehaviour:
   weaponAnimation: 0
   preConditions: []
   buffPreConditions: []
-  weatherPreConditions: []
+  specialPreconditions: []
   parameterOnAgent: []
   buffOnAgent: []
   HPCost: 0
@@ -43,3 +43,4 @@ MonoBehaviour:
   effectRange: 1
   powerAmplifier: 0.1
   speedMultiplier: 5
+  jumpHeight: 5

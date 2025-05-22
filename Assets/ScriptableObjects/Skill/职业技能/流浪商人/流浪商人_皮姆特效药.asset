@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065d4d2cf251bf9418a01d673b593a2a, type: 3}
   m_Name: "\u6D41\u6D6A\u5546\u4EBA_\u76AE\u59C6\u7279\u6548\u836F"
   m_EditorClassIdentifier: 
-  displayName: "\u76AE\u59C6\u7279\u6548\u836F"
+  displayName: "\u6295\u63B7\uFF1A\u76AE\u59C6\u7279\u6548\u836F"
   icon: {fileID: 21300000, guid: 0074030a53d457d4fb2ee6fda98ca242, type: 3}
   extraDescription: 
   actionTime: 25
@@ -25,7 +25,7 @@ MonoBehaviour:
     parameterIndex: 4
     value: 1
   buffPreConditions: []
-  weatherPreConditions: []
+  specialPreconditions: []
   parameterOnAgent:
   - parameterIndex: 4
     deltaValue: -1
