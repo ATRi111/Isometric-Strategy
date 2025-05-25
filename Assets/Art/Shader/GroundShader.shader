@@ -10,7 +10,7 @@ Shader "Custom/GroundShader" {
         _Diffuse("Diffuse",Range(0, 1)) = 0.8
         _Specular("Specular",Range(0, 1)) = 0
         _Gloss("Gloss",Range(8, 256)) = 16
-        _ShdowBias("ShadowBias",Range(0, 0.01)) = 0
+        _ShadowBias("ShadowBias",Range(0, 0.01)) = 0
 
         _View("View", Vector) = (1,1,-1,0)
         _LightColor("LightColor", Color) = (1,1,1,1)
@@ -22,6 +22,8 @@ Shader "Custom/GroundShader" {
         _LightMat3("LightMat3",Vector) = (0,0,0,1) 
 
         _NormalMap("NormalMap", 2D) = "blue" {}
+
+        _PawnPositionMap("PawnPositionMap",2D) = "white"{}
     }
     
     SubShader {
@@ -64,12 +66,14 @@ Shader "Custom/GroundShader" {
             float _Diffuse;
             float _Specular;
             float _Gloss;
-            float _ShdowBias;
+            float _ShadowBias;
 
             float4 _LightMat0;
             float4 _LightMat1;
             float4 _LightMat2;
             float4 _LightMat3;
+
+            sampler2D _PawnPositionMap;    //必然为30×1宽度的纹理，用于记录[-100,100]范围内的坐标
             
             VertexOutput Vertex_shader(VertexInput input) 
             {
@@ -84,14 +88,66 @@ Shader "Custom/GroundShader" {
                 float distance = mapCoord.z;
                 float closestDistance = saturate(tex2D(shadowMap, mapCoord).r);
 
-                if( distance - bias <= closestDistance)
+                return step(distance - bias, closestDistance);
+            }
+
+            //判断射线是否与圆柱(底面中心位于原点)相交，相交则返回1，否则返回0
+            float LineSegmentCastCylinder(float height, float radius, float3 from, float3 direction)
+            {
+                float uIn = 0, uOut = 1;
+                float u1, u2;
+
+                //先投影到xy平面，求线段与圆的交点
+                if (direction.x == 0)
                 {
-                    return 1;
+                    float d = radius * radius - from.x * from.x;
+                    if (d < 0)
+                        return 0;
+                    float y1 = -sqrt(d);
+                    float y2 = -y1;
+                    u1 = (y1 - from.y) / direction.y;
+                    u2 = (y2 - from.y) / direction.y;
                 }
                 else
                 {
-                    return 0;
+                    //y=kx+m
+                    float k = direction.y / direction.x;
+                    float m = from.y - k * from.x;
+                    //ax^2+bx+c=0
+                    float a = k * k + 1;
+                    float b = 2 * m * k;
+                    float c = m * m - radius * radius;
+                    float d = b * b - 4 * a * c;
+                    if (d < 0)
+                        return 0;
+                    float x1 = (-b - sqrt(d)) / 2 / a;
+                    float x2 = (-b + sqrt(d)) / 2 / a;
+                    u1 = (x1 - from.x) / direction.x;
+                    u2 = (x2 - from.x) / direction.x;
                 }
+
+                if (u1 > u2)
+                {
+                    float temp = u1;
+                    u1 = u2;
+                    u2 = temp;
+                }
+                uIn = max(uIn, u1);
+                uOut = min(uOut, u2);
+                if (uIn >= uOut)
+                    return 0;
+
+                float z1 = from.z + uIn * direction.z;
+                float z2 = from.z + uOut * direction.z;
+                if (z1 >= 0 && z1 < height || z2 >= 0 && z2 < height)
+                    return 1;
+
+                return 0;
+            }
+
+            float PawnCover(float3 pawnPosition, float3 cellOffset)
+            {
+                return 1 - LineSegmentCastCylinder(3, 0.32, _CellPosition + cellOffset - pawnPosition, -_LightDirection);
             }
 
             float4 BlinnPhong(float4 lightColor, float3 light, float3 normal, float3 view,
@@ -110,7 +166,16 @@ Shader "Custom/GroundShader" {
                 float3 view = normalize(_View);
                 float4x4 lightMat = float4x4(_LightMat0,_LightMat1,_LightMat2,_LightMat3);
                 float4 mapCoord = mul(lightMat, float4(_CellPosition + cellOffset, 1));
-                float visibility = CalcVisibility(_ShadowMap, mapCoord, _ShdowBias);
+                float visibility = CalcVisibility(_ShadowMap, mapCoord, _ShadowBias);
+                
+                UNITY_UNROLL
+                for(int i = 0; i < 30; i++)
+                {
+                    half2 uv = half2((i + 0.5) / 30, 0.5);
+                    float3 p = tex2D(_PawnPositionMap, uv);
+                    p = 200 * p - float3(100, 100, 100) + float3(0.5, 0.5, 0);
+                    visibility = min(visibility, PawnCover(p, cellOffset));
+                }
                 return BlinnPhong(_LightColor, light, normal, view,
                     _Ambient, _Diffuse, _Specular, _Gloss, visibility);
             }

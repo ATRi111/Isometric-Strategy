@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b0d08de2f237d47990aea6bf167704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectShadowIntensity: 0.5
+  projectShadowIntensity: 0
   lightColor: {r: 1, g: 1, b: 1, a: 1}
   lightDirection: {x: -0.5, y: 1, z: -2}
   texelSize: 100

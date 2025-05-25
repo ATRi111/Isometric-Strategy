@@ -44,6 +44,11 @@ public class GroundShadowCaster : MonoBehaviour
         material.SetVector("_LightMat3", shadowMatrix.GetRow(3));
     }
 
+    private void Update()
+    {
+        material.SetTexture("_PawnPositionMap", lightManager.pawnPositionMap);
+    }
+
     private void OnDestroy()
     {
         ObjectPoolUtility.RecycleMyObjects(gameObject);

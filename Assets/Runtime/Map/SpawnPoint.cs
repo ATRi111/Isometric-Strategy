@@ -1,4 +1,4 @@
-using EditorExtend.GridEditor;
+锘縰sing EditorExtend.GridEditor;
 using Services;
 using Services.Event;
 
@@ -6,7 +6,7 @@ public class SpawnPoint : GridObject
 {
     private IEventSystem eventSystem;
     /// <summary>
-    /// 自身处于激活状态表示此处可用于生成玩家角色
+    /// 鑷韩澶勪簬婵�娲荤姸鎬佽〃绀烘澶勫彲鐢ㄤ簬鐢熸垚鐜╁瑙掕壊
     /// </summary>
     public bool IsEmpty
     {
@@ -24,6 +24,11 @@ public class SpawnPoint : GridObject
         base.Awake();
         eventSystem = ServiceLocator.Get<IEventSystem>();
         eventSystem.AddListener(EEvent.BeforeBattle, BeforeBattle);
+    }
+
+    private void Start()
+    {
+        eventSystem.Invoke(EEvent.CheckGuaidance, EGuidance.Prepare);
     }
 
     private void OnDestroy()

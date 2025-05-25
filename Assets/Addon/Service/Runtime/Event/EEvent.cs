@@ -82,5 +82,9 @@ namespace Services.Event
         /// 输出战斗日志，参数：日志内容
         /// </summary>
         BattleLog,
+        /// <summary>
+        /// 检查指引(首次检查时弹出指引界面)，参数：指引枚举
+        /// </summary>
+        CheckGuaidance,
     }
 }

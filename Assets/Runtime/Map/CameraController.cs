@@ -1,8 +1,9 @@
-using EditorExtend.GridEditor;
+ï»¿using EditorExtend.GridEditor;
 using Services;
 using Services.Event;
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField]
     [Range(5f, 50f)]
-    private float moveSpeed;    //1ÃëÄÚ¿ÉÒÆ¶¯µÄ¾àÀë
+    private float moveSpeed;    //1ç§’å†…å¯ç§»åŠ¨çš„è·ç¦»
     public float AdjustedMoveSpeed
     {
         get
@@ -36,14 +37,14 @@ public class CameraController : MonoBehaviour
             float d0 = (transform.position - prevPosition).magnitude;
             float d1 = (transform.position - targetPosition).magnitude;
             float t = d0 / Mathf.Max(1, d0 + d1);
-            float k = Mathf.Clamp((targetPosition - prevPosition).magnitude / moveSpeed, 0.2f, 2f); //¸ù¾İÂ·³Ìµ÷ÕûËÙ¶È
+            float k = Mathf.Clamp((targetPosition - prevPosition).magnitude / moveSpeed, 0.2f, 2f); //æ ¹æ®è·¯ç¨‹è°ƒæ•´é€Ÿåº¦
             t = Mathf.Sin(t * Mathf.PI);
-            return k * Mathf.Lerp(moveSpeed / 2, moveSpeed * 2, t); //¸ù¾İµ½Æğµã/ÖÕµãµÄ¾àÀëÆ½»¬ÒÆ¶¯
+            return k * Mathf.Lerp(moveSpeed / 2, moveSpeed * 2, t); //æ ¹æ®åˆ°èµ·ç‚¹/ç»ˆç‚¹çš„è·ç¦»å¹³æ»‘ç§»åŠ¨
         }
     }
     [SerializeField]
-    [Range(5f,50f)]
-    private float zoomSpeed;    //1ÃëÄÚ¿É·Å´ó/ËõĞ¡µÄ±¶Êı
+    [Range(5f, 50f)]
+    private float zoomSpeed;    //1ç§’å†…å¯æ”¾å¤§/ç¼©å°çš„å€æ•°
     public float AdjustedZoomSpeed
     {
         get
@@ -52,7 +53,7 @@ public class CameraController : MonoBehaviour
             float d1 = Mathf.Abs(CameraSize - targetSize);
             float t = d0 / Mathf.Max(1, d0 + d1);
             t = Mathf.Sin(t * Mathf.PI);
-            return Mathf.Lerp(zoomSpeed / 2, zoomSpeed * 2, t); //¸ù¾İÆğÊ¼³ß´ç/×îÖÕ³ß´çÆ½»¬Ëõ·Å
+            return Mathf.Lerp(zoomSpeed / 2, zoomSpeed * 2, t); //æ ¹æ®èµ·å§‹å°ºå¯¸/æœ€ç»ˆå°ºå¯¸å¹³æ»‘ç¼©æ”¾
         }
     }
 

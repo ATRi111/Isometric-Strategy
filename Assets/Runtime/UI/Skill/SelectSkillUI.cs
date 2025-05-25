@@ -16,6 +16,7 @@ public class SelectSkillUI : MonoBehaviour
 
     private void SelectSkill(PawnEntity pawn)
     {
+
         current = pawn;
         int count = 0;
         foreach (Skill skill in pawn.SkillManager.learnedSkills)

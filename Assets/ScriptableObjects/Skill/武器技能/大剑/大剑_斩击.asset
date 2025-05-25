@@ -39,7 +39,7 @@ MonoBehaviour:
   buffOnVictim: []
   hitBackProbability: 15
   victimType: 1
-  minLayer: -2
+  minLayer: -3
   maxLayer: 2
   castingDistance: 1
   aimAtSelf: 0
