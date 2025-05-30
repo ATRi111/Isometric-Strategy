@@ -9153,8 +9153,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u52A0\u8F7D\u4E2D\u2026\u2026"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1709a9aba1eefc64e85e72dc115b9659, type: 2}
-  m_sharedMaterial: {fileID: 1067666772194361976, guid: 1709a9aba1eefc64e85e72dc115b9659, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4bdf401d0d1d184e98a536cefd5bb5c, type: 2}
+  m_sharedMaterial: {fileID: 1067666772194361976, guid: f4bdf401d0d1d184e98a536cefd5bb5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
