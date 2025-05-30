@@ -25,7 +25,7 @@ public class AudioPlayer : AudioPlayerBase
         {
             Destroy(currentBgm.gameObject);
         }
-        if (!string.IsNullOrWhiteSpace(name))
+        if (!string.IsNullOrWhiteSpace(identifier))
         {
             AudioSource bgm = CreateAudioByPrefab(identifier, transform.position, transform, EControlOption.NoControl);
             currentBgm = bgm;

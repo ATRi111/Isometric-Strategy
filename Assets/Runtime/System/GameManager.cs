@@ -1,6 +1,7 @@
 ﻿using MyTool;
 using Services;
 using Services.Event;
+using Services.Save;
 using Services.SceneManagement;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,14 @@ public class GameManager : Service, IService
     private IEventSystem eventSystem;
     [AutoService]
     private ISceneController sceneController;
+    [AutoService]
+    private ISaveManager saveManager;
+    private SaveGroupController defaultGroup;
 
     public int battleSceneIndex;
     [NonSerialized]
     public bool inBattle;
+
 
     public override Type RegisterType => GetType();
 
@@ -66,6 +71,7 @@ public class GameManager : Service, IService
     {
         sceneController.UnloadScene(battleSceneIndex);
         battleSceneIndex++;
+        defaultGroup.Save();
         sceneController.LoadScene(battleSceneIndex, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
@@ -129,5 +135,6 @@ public class GameManager : Service, IService
     {
         base.Init();
         animationManager.AfterAnimationComplete += AfterAnimationComplete;
+        defaultGroup = saveManager.GetGroup(1);
     }
 }
