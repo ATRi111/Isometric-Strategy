@@ -12,6 +12,7 @@ public class AudioPlayer : AudioPlayerBase
     private IEventSystem eventSystem;
 
     private AudioSource currentBgm;
+    public AudioPlayList battleBgmList;
 
     public void SetVolume(string parameter, float volume)
     {
@@ -19,27 +20,14 @@ public class AudioPlayer : AudioPlayerBase
         core.SetVolume(audioMixer, parameter, volume);
     }
 
-    private void SetBgm(string identifier)
-    {
-        if (currentBgm != null)
-        {
-            Destroy(currentBgm.gameObject);
-        }
-        if (!string.IsNullOrWhiteSpace(identifier))
-        {
-            AudioSource bgm = CreateAudioByPrefab(identifier, transform.position, transform, EControlOption.NoControl);
-            currentBgm = bgm;
-        }
-    }
-
     private void BeforeBattle()
     {
-        SetBgm("VFX_Battle_1");
+        battleBgmList.Play();
     }
 
     private void AfterBattle(bool win)
     {
-        SetBgm(string.Empty);
+        battleBgmList.Pause();
     }
 
     protected internal override void Init()

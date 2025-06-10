@@ -164,6 +164,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: c0544b67387b18a4abef3aefbf587d77, type: 2}
+  battleBgmList:
+    mountPoint: {fileID: 395641610}
+    playList:
+    - {fileID: 1864426860853178320, guid: bde15b188c350b741a2948e5a14f5b21, type: 3}
+    currentSequenceIndex: 0
+    playMode: 0
 --- !u!1 &484123483
 GameObject:
   m_ObjectHideFlags: 0
