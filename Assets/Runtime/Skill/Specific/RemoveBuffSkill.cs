@@ -12,7 +12,7 @@ public class RemoveBuffSkill : RangedSkill
         List<Buff> buffs = victim.BuffManager.FindRemovable(buffType);
         if (buffs.Count > 0)
         {
-            int r = Effect.randomGroup.NextInt(0, buffs.Count);
+            int r = Effect.randomGroup.RandomInt(0, buffs.Count);
             RemoveBuffEffect effect = new(victim, buffs[r], victim.BuffManager);
             ret.effects.Add(effect);
         }

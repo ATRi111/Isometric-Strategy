@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class DebugPlanUI : MonoBehaviour
@@ -26,8 +26,8 @@ public class DebugPlanUI : MonoBehaviour
         spriteRenderer.color = new Color(r, g, b, 0.6f);
         this.plan = plan;
         textbox.text =
-            $"V:{plan.value:F2}\n" +
             $"{plan.action.skill.displayName}\n" +
+            $"V:{plan.value:F2}({plan.primitiveValue:F2})\n" +
             $"T:{plan.action.Time}\n";
     }
 
