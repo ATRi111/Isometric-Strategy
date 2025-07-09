@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "V:0.001\n\u79FB\u52A8\nT:50\n"
+  m_text: "\u79FB\u52A8\nV:0.01(0.01)\nT:50\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fe793d672ad9bb408c0cb2f190c6bf4, type: 2}
   m_sharedMaterial: {fileID: -3832106697417440229, guid: 6fe793d672ad9bb408c0cb2f190c6bf4, type: 2}
@@ -388,6 +388,7 @@ MonoBehaviour:
           current: 0
         effects: []
       area: []
+    primitiveValue: 0
     value: 0
     hatredLevel: 0
   references:

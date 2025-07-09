@@ -755,6 +755,8 @@ MonoBehaviour:
     offense: 20
     defense: 10
     terrain: 5
+  valueMinMultiplier: 0.8
+  valueMaxMultiplier: 1.2
 --- !u!114 &1776701400
 MonoBehaviour:
   m_ObjectHideFlags: 0

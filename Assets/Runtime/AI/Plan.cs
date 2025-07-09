@@ -1,16 +1,17 @@
 ﻿using MyTool;
+using Services;
 using System;
 
 [Serializable]
 public class Plan : IComparable<Plan>
 {
-    public static float ValueMinMultiplier = 0.8f;
-    public static float ValueMaxMultiplier = 1.2f;
     public static RandomGroup random;
+    public static AIManager AIManager;
 
     static Plan()
     {
         random = RandomTool.GetGroup(ERandomGrounp.Battle);
+        AIManager = ServiceLocator.Get<AIManager>();
     }
 
     public PawnAction action;
@@ -23,7 +24,7 @@ public class Plan : IComparable<Plan>
     {
         this.action = action;
         primitiveValue = action.agent.Brain.Evaluate(action);
-        value = primitiveValue * random.RandomFloat(ValueMinMultiplier, ValueMaxMultiplier);
+        value = primitiveValue * random.RandomFloat(AIManager.valueMinMultiplier, AIManager.valueMaxMultiplier);
         hatredLevel = action.HatredLevel();
     }
 
