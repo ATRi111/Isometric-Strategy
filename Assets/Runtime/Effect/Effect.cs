@@ -16,7 +16,7 @@ public abstract class Effect : IAnimationSource
     }
 
     public static int NextInt()
-        => randomGroup.NextInt(1, MaxProbability + 1);
+        => randomGroup.RandomInt(1, MaxProbability + 1);
 
     public Entity victim;
     public PawnEntity PawnVictim => victim as PawnEntity;

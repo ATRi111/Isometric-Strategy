@@ -1,4 +1,4 @@
-using Services;
+﻿using Services;
 using System;
 using UnityEngine;
 
@@ -10,6 +10,9 @@ public class AIManager : Service, IService
     public PathFindingManager PathFinding => pathFinding;
 
     public Trend trend;
+
+    public float valueMinMultiplier = 0.8f;
+    public float valueMaxMultiplier = 1.2f;
 
     protected override void Awake()
     {

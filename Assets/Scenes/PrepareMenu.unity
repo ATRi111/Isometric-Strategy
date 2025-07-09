@@ -5147,6 +5147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ea42dfd1539ad4596b8f7cdfcab9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animaitonDuration: 5
+  levelNameDict:
+    list: []
 --- !u!1001 &715928085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9125,8 +9128,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 0}
-  m_SizeDelta: {x: 260.83, y: 73.5191}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 851.6826, y: 73.5191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1599557096
 MonoBehaviour:
@@ -9150,8 +9153,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u52A0\u8F7D\u4E2D\u2026\u2026"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6fe793d672ad9bb408c0cb2f190c6bf4, type: 2}
-  m_sharedMaterial: {fileID: -3832106697417440229, guid: 6fe793d672ad9bb408c0cb2f190c6bf4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4bdf401d0d1d184e98a536cefd5bb5c, type: 2}
+  m_sharedMaterial: {fileID: 1067666772194361976, guid: f4bdf401d0d1d184e98a536cefd5bb5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

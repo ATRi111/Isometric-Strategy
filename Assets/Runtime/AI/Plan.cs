@@ -1,16 +1,30 @@
+ï»¿using MyTool;
+using Services;
 using System;
 
 [Serializable]
 public class Plan : IComparable<Plan>
 {
+    public static RandomGroup random;
+    public static AIManager AIManager;
+
+    static Plan()
+    {
+        random = RandomTool.GetGroup(ERandomGrounp.Battle);
+        AIManager = ServiceLocator.Get<AIManager>();
+    }
+
     public PawnAction action;
+    public float primitiveValue;
     public float value;
+    //å¯¹äºå½±å“æ•Œäººçš„è¡ŒåŠ¨ï¼Œå…¶å˜²è®½ç­‰çº§ç­‰äºå½±å“æ•Œäººä¸­çš„æœ€é«˜å˜²è®½ç­‰çº§ï¼›ä¼˜å…ˆé€‰æ‹©å˜²è®½ç­‰çº§æ›´é«˜çš„è¡ŒåŠ¨
     public int hatredLevel;
 
     public Plan(PawnAction action)
     {
         this.action = action;
-        value = action.agent.Brain.Evaluate(action);
+        primitiveValue = action.agent.Brain.Evaluate(action);
+        value = primitiveValue * random.RandomFloat(AIManager.valueMinMultiplier, AIManager.valueMaxMultiplier);
         hatredLevel = action.HatredLevel();
     }
 
@@ -18,14 +32,14 @@ public class Plan : IComparable<Plan>
     {
         if (value > 0 || other.value > 0)
         {
-            //Í¬ÎªÓ°ÏìµĞÈËµÄĞĞ¶¯£¬ÔòÓÅÏÈÑ¡Ôñ°üº¬¸ü¸ß³°·íµÈ¼¶µÄµĞÈËĞĞ¶¯
+            //åŒä¸ºå½±å“æ•Œäººçš„è¡ŒåŠ¨ï¼Œåˆ™ä¼˜å…ˆé€‰æ‹©åŒ…å«æ›´é«˜å˜²è®½ç­‰çº§çš„æ•Œäººè¡ŒåŠ¨
             if (hatredLevel > 0 && other.hatredLevel > 0 && hatredLevel != other.hatredLevel)
                 return other.hatredLevel.CompareTo(hatredLevel);
-            //Ñ¡Ôñ¼ÛÖµ¸ü¸ßµÄĞĞ¶¯
+            //é€‰æ‹©ä»·å€¼æ›´é«˜çš„è¡ŒåŠ¨
             return other.value.CompareTo(value);
         }
 
-        //¼ÛÖµ¾ùÎª·ÇÕıÊıÊ±£¬Ñ¡ÔñÊ±¼ä¸ü¶ÌµÄĞĞ¶¯
+        //ä»·å€¼å‡ä¸ºéæ­£æ•°æ—¶ï¼Œé€‰æ‹©æ—¶é—´æ›´çŸ­çš„è¡ŒåŠ¨
         return action.Time.CompareTo(other.action.Time);
     }
 }
