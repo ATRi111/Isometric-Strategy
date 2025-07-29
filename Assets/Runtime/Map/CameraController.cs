@@ -3,7 +3,6 @@ using Services;
 using Services.Event;
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
@@ -191,7 +190,8 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.R))
         {
-            transform.position = follow.transform.position;
+            if (follow != null)
+                transform.position = follow.transform.position;
             targetPosition = transform.position;
             CameraSize = defaultSize;
             targetSize = defaultSize;

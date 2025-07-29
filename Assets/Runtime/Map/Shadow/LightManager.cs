@@ -25,41 +25,49 @@ public class LightManager : MonoBehaviour
 
     private GameManager gameManager;
     private IsometricGridManager igm;
+    /// <summary>
+    /// 存储所有地块的位置
+    /// </summary>
     private readonly HashSet<Vector3Int> objectCache = new();
+    /// <summary>
+    /// 存储所有位于表层的(可见的)地块的位置
+    /// </summary>
     private readonly HashSet<Vector3Int> surfaceCache = new();
 
-    public float projectShadowIntensity = 0.5f;
     public Color lightColor;
     public Vector3 lightDirection;
     public int texelSize;
 
+    /// <summary>
+    /// ShadowMap各纹素的值
+    /// </summary>
     private float[,] depths;
     public Texture2D shadowMap;
+    /// <summary>
+    /// 将逻辑坐标转换为光照空间坐标的矩阵
+    /// </summary>
     public Matrix4x4 lightMatrix;
+    /// <summary>
+    /// 将逻辑坐标转换为ShadowMap的uv的矩阵
+    /// </summary>
     public Matrix4x4 shadowMatrix;
 
     private int xMin, xMax, yMin, yMax, zMin, zMax;
 
+    /// <summary>
+    /// 将单位逻辑坐标映射成颜色值然后写入纹理
+    /// </summary>
     public Texture2D pawnPositionMap;
+    /// <summary>
+    /// 最大单位数，即pawnPositionMap的宽度
+    /// </summary>
     public const int MaxPawnCount = 30;
-    public const float MaxCoord = 100f;
 
     public bool VisibleCheck(Vector3Int position)
     {
         return !objectCache.Contains(position + Vector3Int.forward)
             || !objectCache.Contains(position + Vector3Int.left)
             || !objectCache.Contains(position + Vector3Int.down);
-    }
-
-    private float GetHeight(Vector3Int basePosition, Vector3Int normal)
-    {
-        int h = 0;
-        while (objectCache.Contains(basePosition))
-        {
-            basePosition += normal;
-            h++;
-        }
-        return h - 1;
     }
 
     public Vector4 CellToLightSpace(Vector4 cell)
@@ -188,9 +196,10 @@ public class LightManager : MonoBehaviour
 
     private void UpdatePawnPositionMap()
     {
+        //将逻辑坐标映射成颜色值，此函数中的常数修改后，shader代码中要同步修改
         static float ToColor(float f)
         {
-            return Mathf.Clamp01((f + 100f) / 200f);
+            return Mathf.Clamp01(f / 200f + 0.5f);
         }
 
         int count = 0;
