@@ -2,6 +2,7 @@
 using Services;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 public class LightManager : MonoBehaviour
 {
@@ -72,8 +73,7 @@ public class LightManager : MonoBehaviour
 
     public Vector4 CellToLightSpace(Vector4 cell)
     {
-        Vector4 lightSpace = lightMatrix * cell;
-        return texelSize * lightSpace;
+        return lightMatrix * cell;
     }
 
     public Vector4 CellToShadowMapCoord(Vector4 cell)
@@ -92,6 +92,7 @@ public class LightManager : MonoBehaviour
         Vector3 lightX = new Vector3(-lightDirection.z, 0, lightDirection.x).normalized;  //任选一个与lightDirection垂直的向量
         Vector3 lightY = Vector3.Cross(lightX, lightZ).normalized;
         lightMatrix = new Matrix4x4(lightX, lightY, lightZ, new Vector4(0, 0, 0, 1)).inverse;
+        lightMatrix = Matrix4x4.Scale(texelSize * Vector3.one) * lightMatrix;
 
         xMin = yMin = zMin = int.MaxValue;
         xMax = yMax = zMax = int.MinValue;
@@ -124,7 +125,6 @@ public class LightManager : MonoBehaviour
         yMax += texelSize;
 
         shadowMatrix = lightMatrix;
-        shadowMatrix = Matrix4x4.Scale(texelSize * Vector3.one) * shadowMatrix;
         shadowMatrix = Matrix4x4.Translate(new Vector3(-xMin, -yMin, -zMin)) * shadowMatrix;
         shadowMatrix = Matrix4x4.Scale(new Vector3(1f / (xMax - xMin), 1f / (yMax - yMin), 1f / (zMax - zMin))) * shadowMatrix;
     }
@@ -138,11 +138,12 @@ public class LightManager : MonoBehaviour
             depths[x, y] = Mathf.Clamp01(Mathf.Min(depths[x, y], coord.z));
         }
 
-        for (int x = 0; x <= texelSize; x++)
+        int n = texelSize;  //在地块的一个面上放置(n+1)*(n+1)个采样点
+        for (int x = 0; x <= n; x++)
         {
-            for (int y = 0; y <= texelSize; y++)
+            for (int y = 0; y <= n; y++)
             {
-                Vector3 cell = origin + x / (float)texelSize * xAxis + y / (float)texelSize * yAxis;
+                Vector3 cell = origin + x / (float)n * xAxis + y / (float)n * yAxis;
                 Vector4 coord = CellToShadowMapCoord(new Vector4(cell.x, cell.y, cell.z, 1));
                 WriteDepth(coord);
             }
@@ -184,13 +185,16 @@ public class LightManager : MonoBehaviour
         {
             UpdateShadowOfBlock(p);
         }
-        for (int x = 0; x < shadowMap.width; x++)
+        Color32[] colors = new Color32[shadowMap.width * shadowMap.height];
+        for (int y = 0; y < shadowMap.height; y++)
         {
-            for (int y = 0; y < shadowMap.height; y++)
+            for (int x = 0; x < shadowMap.width; x++)
             {
-                shadowMap.SetPixel(x, y, new Color(depths[x, y], 0, 0, 1));
+                byte value = (byte)Mathf.RoundToInt(depths[x, y] * 255);
+                colors[x + y * shadowMap.width] = new Color32(value, 0, 0, 1);
             }
         }
+        shadowMap.SetPixels32(colors);
         shadowMap.Apply();
     }
 

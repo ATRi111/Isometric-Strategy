@@ -5147,7 +5147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ea42dfd1539ad4596b8f7cdfcab9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animaitonDuration: 5
+  animationDuration: 2
   levelNameDict:
     list: []
 --- !u!1001 &715928085
