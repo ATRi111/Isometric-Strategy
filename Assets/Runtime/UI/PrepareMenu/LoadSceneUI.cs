@@ -15,7 +15,7 @@ public class LoadSceneUI : MonoBehaviour
     private Material textMaterial;
     private TimerOnly textAnimationTimer;
     [SerializeField]
-    private float animaitonDuration;
+    private float animationDuration;
 
     public SerializedDictionary<string, string> levelNameDict;
 
@@ -26,7 +26,7 @@ public class LoadSceneUI : MonoBehaviour
 
     private void OnTick(float t)
     {
-        float offset = Mathf.Lerp(-1, 1, t / animaitonDuration);
+        float offset = Mathf.Lerp(-1, 1, t / animationDuration);
         textMaterial.SetFloat("_GlowOffset", offset);
     }
 
@@ -56,7 +56,7 @@ public class LoadSceneUI : MonoBehaviour
         textMaterial = tmp.materialForRendering;
         levelNameDict.Refresh();
         textAnimationTimer = new TimerOnly();
-        textAnimationTimer.Initialize(animaitonDuration, false);
+        textAnimationTimer.Initialize(animationDuration, false);
         textAnimationTimer.AfterComplete += AfterComplete;
         textAnimationTimer.OnTick += OnTick;
     }

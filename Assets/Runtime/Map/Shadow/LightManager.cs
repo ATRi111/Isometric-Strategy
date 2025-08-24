@@ -2,6 +2,7 @@
 using Services;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 public class LightManager : MonoBehaviour
 {
@@ -25,24 +26,43 @@ public class LightManager : MonoBehaviour
 
     private GameManager gameManager;
     private IsometricGridManager igm;
+    /// <summary>
+    /// 存储所有地块的位置
+    /// </summary>
     private readonly HashSet<Vector3Int> objectCache = new();
+    /// <summary>
+    /// 存储所有位于表层的(可见的)地块的位置
+    /// </summary>
     private readonly HashSet<Vector3Int> surfaceCache = new();
 
-    public float projectShadowIntensity = 0.5f;
     public Color lightColor;
     public Vector3 lightDirection;
     public int texelSize;
 
+    /// <summary>
+    /// ShadowMap各纹素的值
+    /// </summary>
     private float[,] depths;
     public Texture2D shadowMap;
+    /// <summary>
+    /// 将逻辑坐标转换为光照空间坐标的矩阵
+    /// </summary>
     public Matrix4x4 lightMatrix;
+    /// <summary>
+    /// 将逻辑坐标转换为ShadowMap的uv的矩阵
+    /// </summary>
     public Matrix4x4 shadowMatrix;
 
     private int xMin, xMax, yMin, yMax, zMin, zMax;
 
+    /// <summary>
+    /// 将单位逻辑坐标映射成颜色值然后写入纹理
+    /// </summary>
     public Texture2D pawnPositionMap;
+    /// <summary>
+    /// 最大单位数，即pawnPositionMap的宽度
+    /// </summary>
     public const int MaxPawnCount = 30;
-    public const float MaxCoord = 100f;
 
     public bool VisibleCheck(Vector3Int position)
     {
@@ -51,21 +71,9 @@ public class LightManager : MonoBehaviour
             || !objectCache.Contains(position + Vector3Int.down);
     }
 
-    private float GetHeight(Vector3Int basePosition, Vector3Int normal)
-    {
-        int h = 0;
-        while (objectCache.Contains(basePosition))
-        {
-            basePosition += normal;
-            h++;
-        }
-        return h - 1;
-    }
-
     public Vector4 CellToLightSpace(Vector4 cell)
     {
-        Vector4 lightSpace = lightMatrix * cell;
-        return texelSize * lightSpace;
+        return lightMatrix * cell;
     }
 
     public Vector4 CellToShadowMapCoord(Vector4 cell)
@@ -84,6 +92,7 @@ public class LightManager : MonoBehaviour
         Vector3 lightX = new Vector3(-lightDirection.z, 0, lightDirection.x).normalized;  //任选一个与lightDirection垂直的向量
         Vector3 lightY = Vector3.Cross(lightX, lightZ).normalized;
         lightMatrix = new Matrix4x4(lightX, lightY, lightZ, new Vector4(0, 0, 0, 1)).inverse;
+        lightMatrix = Matrix4x4.Scale(texelSize * Vector3.one) * lightMatrix;
 
         xMin = yMin = zMin = int.MaxValue;
         xMax = yMax = zMax = int.MinValue;
@@ -116,7 +125,6 @@ public class LightManager : MonoBehaviour
         yMax += texelSize;
 
         shadowMatrix = lightMatrix;
-        shadowMatrix = Matrix4x4.Scale(texelSize * Vector3.one) * shadowMatrix;
         shadowMatrix = Matrix4x4.Translate(new Vector3(-xMin, -yMin, -zMin)) * shadowMatrix;
         shadowMatrix = Matrix4x4.Scale(new Vector3(1f / (xMax - xMin), 1f / (yMax - yMin), 1f / (zMax - zMin))) * shadowMatrix;
     }
@@ -130,11 +138,12 @@ public class LightManager : MonoBehaviour
             depths[x, y] = Mathf.Clamp01(Mathf.Min(depths[x, y], coord.z));
         }
 
-        for (int x = 0; x <= texelSize; x++)
+        int n = texelSize;  //在地块的一个面上放置(n+1)*(n+1)个采样点
+        for (int x = 0; x <= n; x++)
         {
-            for (int y = 0; y <= texelSize; y++)
+            for (int y = 0; y <= n; y++)
             {
-                Vector3 cell = origin + x / (float)texelSize * xAxis + y / (float)texelSize * yAxis;
+                Vector3 cell = origin + x / (float)n * xAxis + y / (float)n * yAxis;
                 Vector4 coord = CellToShadowMapCoord(new Vector4(cell.x, cell.y, cell.z, 1));
                 WriteDepth(coord);
             }
@@ -176,21 +185,25 @@ public class LightManager : MonoBehaviour
         {
             UpdateShadowOfBlock(p);
         }
-        for (int x = 0; x < shadowMap.width; x++)
+        Color32[] colors = new Color32[shadowMap.width * shadowMap.height];
+        for (int y = 0; y < shadowMap.height; y++)
         {
-            for (int y = 0; y < shadowMap.height; y++)
+            for (int x = 0; x < shadowMap.width; x++)
             {
-                shadowMap.SetPixel(x, y, new Color(depths[x, y], 0, 0, 1));
+                byte value = (byte)Mathf.RoundToInt(depths[x, y] * 255);
+                colors[x + y * shadowMap.width] = new Color32(value, 0, 0, 1);
             }
         }
+        shadowMap.SetPixels32(colors);
         shadowMap.Apply();
     }
 
     private void UpdatePawnPositionMap()
     {
+        //将逻辑坐标映射成颜色值，此函数中的常数修改后，shader代码中要同步修改
         static float ToColor(float f)
         {
-            return Mathf.Clamp01((f + 100f) / 200f);
+            return Mathf.Clamp01(f / 200f + 0.5f);
         }
 
         int count = 0;

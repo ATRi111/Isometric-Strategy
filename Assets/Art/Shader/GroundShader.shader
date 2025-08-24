@@ -1,6 +1,6 @@
 ﻿// Upgrade NOTE: replaced '_LightMat0' with 'unity_WorldToLight'
 
-Shader "Custom/GroundShader" {
+Shader "Custom/GroundShaderHLSL" {
     Properties {
         _MainTex ("Texture", 2D) = "white" {}
         
@@ -27,7 +27,11 @@ Shader "Custom/GroundShader" {
     }
     
     SubShader {
-        Tags { "RenderType"="Transparent" "Queue"="Transparent+1"}
+        Tags { 
+            "RenderType"="Transparent" 
+            "Queue"="Transparent+1" 
+            "RenderPipeline"="UniversalRenderPipeline"
+        }
         
         Pass {
             Name " SpritePass"
@@ -35,10 +39,10 @@ Shader "Custom/GroundShader" {
             ZWrite Off 
             Blend SrcAlpha OneMinusSrcAlpha
             
-            CGPROGRAM
+            HLSLPROGRAM
             #pragma vertex Vertex_shader
             #pragma fragment Fragment_shader
-            #include "UnityCG.cginc"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             
             struct VertexInput 
             {
@@ -52,41 +56,42 @@ Shader "Custom/GroundShader" {
                 float2 uv : TEXCOORD0;
             };
             
-            sampler2D _MainTex;
+            TEXTURE2D(_MainTex);        SAMPLER(sampler_MainTex);
+            TEXTURE2D(_ShadowMap);      SAMPLER(sampler_ShadowMap);
+            TEXTURE2D(_NormalMap);      SAMPLER(sampler_NormalMap);
+            TEXTURE2D(_PawnPositionMap);SAMPLER(sampler_PawnPositionMap);    //必然为30×1宽度的纹理，用于记录[-100,100]范围内的坐标
             
-            float3 _View;
-            float4 _LightColor;
-            float3 _LightDirection;
-            sampler2D _ShadowMap;
-            sampler2D _NormalMap;
+            CBUFFER_START(Parameters)
+                float3 _View;
+                float4 _LightColor;
+                float3 _LightDirection;
 
-            float4 _CellPosition;
+                float4 _CellPosition;
 
-            float _Ambient;
-            float _Diffuse;
-            float _Specular;
-            float _Gloss;
-            float _ShadowBias;
+                float _Ambient;
+                float _Diffuse;
+                float _Specular;
+                float _Gloss;
+                float _ShadowBias;
 
-            float4 _LightMat0;
-            float4 _LightMat1;
-            float4 _LightMat2;
-            float4 _LightMat3;
-
-            sampler2D _PawnPositionMap;    //必然为30×1宽度的纹理，用于记录[-100,100]范围内的坐标
+                float4 _LightMat0;
+                float4 _LightMat1;
+                float4 _LightMat2;
+                float4 _LightMat3;
+            CBUFFER_END
             
             VertexOutput Vertex_shader(VertexInput input) 
             {
                 VertexOutput output;
-                output.position = UnityObjectToClipPos(input.position);
+                output.position = TransformObjectToHClip(input.position.xyz);
                 output.uv = input.uv;
                 return output;
             }
 
-            float CalcVisibility(sampler2D shadowMap, float3 mapCoord, float bias)
+            float CalcVisibility(Texture2D shadowMap, float3 mapCoord, float bias)
             {
                 float distance = mapCoord.z;
-                float closestDistance = saturate(tex2D(shadowMap, mapCoord).r);
+                float closestDistance = saturate(SAMPLE_TEXTURE2D(shadowMap, sampler_ShadowMap, mapCoord.xy).r);
 
                 return step(distance - bias, closestDistance);
             }
@@ -147,7 +152,7 @@ Shader "Custom/GroundShader" {
 
             float PawnCover(float3 pawnPosition, float3 cellOffset)
             {
-                return 1 - LineSegmentCastCylinder(3, 0.32, _CellPosition + cellOffset - pawnPosition, -_LightDirection);
+                return 1 - LineSegmentCastCylinder(3, 0.32, _CellPosition.xyz + cellOffset - pawnPosition, -_LightDirection);
             }
 
             float4 BlinnPhong(float4 lightColor, float3 light, float3 normal, float3 view,
@@ -165,14 +170,14 @@ Shader "Custom/GroundShader" {
                 float3 light = -normalize(_LightDirection);
                 float3 view = normalize(_View);
                 float4x4 lightMat = float4x4(_LightMat0,_LightMat1,_LightMat2,_LightMat3);
-                float4 mapCoord = mul(lightMat, float4(_CellPosition + cellOffset, 1));
-                float visibility = CalcVisibility(_ShadowMap, mapCoord, _ShadowBias);
+                float4 mapCoord = mul(lightMat, float4(_CellPosition.xyz + cellOffset, 1));
+                float visibility = CalcVisibility(_ShadowMap, mapCoord.xyz, _ShadowBias);
                 
                 UNITY_UNROLL
                 for(int i = 0; i < 30; i++)
                 {
                     half2 uv = half2((i + 0.5) / 30, 0.5);
-                    float3 p = tex2D(_PawnPositionMap, uv);
+                    float3 p = SAMPLE_TEXTURE2D(_PawnPositionMap, sampler_PawnPositionMap, uv).rgb;
                     p = 200 * p - float3(100, 100, 100) + float3(0.5, 0.5, 0);
                     visibility = min(visibility, PawnCover(p, cellOffset));
                 }
@@ -182,7 +187,7 @@ Shader "Custom/GroundShader" {
 
             inline float3 GetNormal(half2 uv)
             {
-                float3 normal = tex2D(_NormalMap, uv);
+                float3 normal = SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, uv).rgb;
                 normal = normalize(2 * normal - float3(1, 1, 1));
                 return normal;
             }
@@ -194,7 +199,7 @@ Shader "Custom/GroundShader" {
                 float3 cellOffset = float3(x, y, 1);
                 float3 normal = GetNormal(uv);
                 float4 lightColor = CalcLight(normal, cellOffset);
-                return lightColor;
+                return lightColor.xyz;
             }
 
             float3 CalcColorLeft(half2 uv)
@@ -204,7 +209,7 @@ Shader "Custom/GroundShader" {
                 float3 cellOffset = float3(0, 1 - x, y);
                 float3 normal = GetNormal(uv);
                 float4 lightColor = CalcLight(normal, cellOffset);
-                return lightColor;
+                return lightColor.xyz;
             }
 
             float3 CalcColorRight(half2 uv)
@@ -214,7 +219,7 @@ Shader "Custom/GroundShader" {
                 float3 cellOffset = float3(x, 0, y);
                 float3 normal = GetNormal(uv);
                 float4 lightColor = CalcLight(normal, cellOffset);
-                return lightColor;
+                return lightColor.xyz;
             }
 
             float4 GammaCorrection(float4 color)
@@ -232,7 +237,7 @@ Shader "Custom/GroundShader" {
             float4 Fragment_shader(VertexOutput input) : SV_Target 
             {
                 half2 uv = input.uv;
-                float4 texColor = tex2D(_MainTex, uv);
+                float4 texColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv);
                 float3 lightColor;
                 if(uv.x <= 0.5 && uv.y + 0.667 * uv.x <= 0.667)
                 {
@@ -251,7 +256,7 @@ Shader "Custom/GroundShader" {
                 ret = InverseGammaCorrection(ret);
                 return ret;
             }
-            ENDCG
+            ENDHLSL
         }
     }
 }

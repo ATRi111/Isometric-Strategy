@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BlockGround
-  m_Shader: {fileID: 4800000, guid: 7aedf4de5f70e3247a979a692c4f8a3a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 2fbed5b162b144541987b0e4851fd888, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
