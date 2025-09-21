@@ -138,7 +138,7 @@ Material:
     - _Parallax: 0.02
     - _Power: 16
     - _SampleSpacing: 0.01
-    - _ShadowBias: 0.002
+    - _ShadowBias: 0.003
     - _ShadowWidth: 0.2
     - _ShdowBias: 0.002
     - _SmoothnessTextureChannel: 0
