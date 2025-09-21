@@ -10,9 +10,12 @@ public class GuidanceSaveData : SaveData
 
     public override void Load()
     {
-        for (int i = 0; i < checkedGuidance.Count; i++)
+        if (checkedGuidance != null)
         {
-            panel.checkedGuidance.Add((EGuidance)checkedGuidance[i]);
+            for (int i = 0; i < checkedGuidance.Count; i++)
+            {
+                panel.checkedGuidance.Add((EGuidance)checkedGuidance[i]);
+            }
         }
     }
 
