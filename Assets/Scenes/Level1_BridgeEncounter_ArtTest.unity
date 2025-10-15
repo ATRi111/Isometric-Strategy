@@ -48906,6 +48906,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelDescription
       objectReference: {fileID: 0}
+    - target: {fileID: 1942665166170197759, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1942665166170197759, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3346948671099700030, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462740354315192729, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -48988,7 +49000,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7294485087881671588, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
       propertyPath: m_text
-      value: "\r\n\u9EC4\u660F\u65F6\u5206\uFF0C\u683C\u4F26\u4E00\u884C\u4EBA\u8D70\u5728\u88AB\u79F0\u4F5C\u3010\u5DE1\u793C\u8005\u5927\u9053\u3011\u7684\u77F3\u780C\u9053\u8DEF\u4E0A\u3002\u9053\u8DEF\u65C1\u7684\u5EFA\u7B51\u5E9F\u5F03\u5DF2\u4E45\uFF0C\u5904\u5904\u5F25\u6F2B\u7740\u6B7B\u4EA1\u7684\u6C14\u606F\u3002\u4E4C\u9E26\u76D8\u65CB\u5728\u8DEF\u8FB9\u7684\u5E9F\u589F\u4E0E\u5893\u7891\u4E0A\uFF0C\u5F85\u683C\u4F26\u7B49\u4EBA\u7ECF\u8FC7\uFF0C\u4FBF\u6247\u52A8\u4E0D\u5409\u7684\u9ED1\u8272\u7FC5\u8180\uFF0C\u98DE\u5411\u971E\u853C\u7684\u5F7C\u65B9\u3002\r\n\r\n\u8352\u91CE\u6F2B\u65E0\u8FB9\u9645\u7684\u6CBF\u4F38\u7740\uFF0C\u8DDD\u79BB\u62B5\u8FBE\u5723\u5730\u8FD8\u9065\u9065\u65E0\u671F\u3002\u5C31\u7B97\u662F\u518D\u4F18\u79C0\u7684\u6218\u58EB\uFF0C\u5728\u7ECF\u8FC7\u957F\u9014\u7684\u3001\u6CA1\u6709\u533A\u522B\u7684\u98CE\u666F\u7EBF\u65F6\uFF0C\u90FD\u4F1A\u677E\u61C8\u6CE8\u610F\u529B\u3002\u6B63\u5F53\u683C\u4F26\u5F00\u59CB\u653E\u677E\u8B66\u60D5\u65F6\uFF0C\u4E00\u652F\u6697\u7BAD\u5212\u7834\u7A7A\u6C14\u3001\u7740\u9646\u5728\u683C\u4F26\u7684\u811A\u65C1\u3002\u4ED6\u4EEC\u906D\u5230\u4E86\u88AD\u51FB\uFF01"
+      value: "\r\u5173\u5361\u80CC\u666F\n\n\u9EC4\u660F\u65F6\u5206\uFF0C\u683C\u4F26\u4E00\u884C\u4EBA\u8D70\u5728\u88AB\u79F0\u4F5C\u3010\u5DE1\u793C\u8005\u5927\u9053\u3011\u7684\u77F3\u780C\u9053\u8DEF\u4E0A\u3002\u9053\u8DEF\u65C1\u7684\u5EFA\u7B51\u5E9F\u5F03\u5DF2\u4E45\uFF0C\u5904\u5904\u5F25\u6F2B\u7740\u6B7B\u4EA1\u7684\u6C14\u606F\u3002\u4E4C\u9E26\u76D8\u65CB\u5728\u8DEF\u8FB9\u7684\u5E9F\u589F\u4E0E\u5893\u7891\u4E0A\uFF0C\u5F85\u683C\u4F26\u7B49\u4EBA\u7ECF\u8FC7\uFF0C\u4FBF\u6247\u52A8\u4E0D\u5409\u7684\u9ED1\u8272\u7FC5\u8180\uFF0C\u98DE\u5411\u971E\u853C\u7684\u5F7C\u65B9\u3002\r\n\r\n\u8352\u91CE\u6F2B\u65E0\u8FB9\u9645\u7684\u6CBF\u4F38\u7740\uFF0C\u8DDD\u79BB\u62B5\u8FBE\u5723\u5730\u8FD8\u9065\u9065\u65E0\u671F\u3002\u5C31\u7B97\u662F\u518D\u4F18\u79C0\u7684\u6218\u58EB\uFF0C\u5728\u7ECF\u8FC7\u957F\u9014\u7684\u3001\u6CA1\u6709\u533A\u522B\u7684\u98CE\u666F\u7EBF\u65F6\uFF0C\u90FD\u4F1A\u677E\u61C8\u6CE8\u610F\u529B\u3002\u6B63\u5F53\u683C\u4F26\u5F00\u59CB\u653E\u677E\u8B66\u60D5\u65F6\uFF0C\u4E00\u652F\u6697\u7BAD\u5212\u7834\u7A7A\u6C14\u3001\u7740\u9646\u5728\u683C\u4F26\u7684\u811A\u65C1\u3002\u4ED6\u4EEC\u906D\u5230\u4E86\u88AD\u51FB\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294485087881671588, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.42352942
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294485087881671588, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.7411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294485087881671588, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.8509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294485087881671588, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4285316569
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299342485222901484, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299342485222901484, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 749390fd99359074fabd95d664210ee6, type: 3}
+    - target: {fileID: 8299342485222901484, guid: 157685a1795739e418a4b789d5f17dbf, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
