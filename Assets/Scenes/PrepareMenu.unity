@@ -3535,6 +3535,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7427934526167949090, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -22.046997
+      objectReference: {fileID: 0}
     - target: {fileID: 7543824183718791960, guid: 79bd8a6bcedb2df4bbe61cb554b200d3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5835,10 +5839,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7007602274283971330, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 452348551, guid: 08d96406e1a0f7044a28130a57342c06, type: 3}
     - target: {fileID: 7257932095638162038, guid: a89837f15197ed545955844e3f9ba9a2, type: 3}
       propertyPath: m_Name
       value: PlayerIconToSelect
