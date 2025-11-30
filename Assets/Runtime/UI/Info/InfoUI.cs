@@ -11,7 +11,7 @@ public class InfoUI : TextBase
 {
     public static string Mark(string text)
     {
-        return $"<link=\"{text}\"><u><color=\"blue\">{text}</color></u></link>";
+        return $"<link=\"{text}\"><u><color=\"yellow\">{text}</color></u></link>";
     }
 
     public static void DevideFirstLine(string text, out string firstLine, out string left)
