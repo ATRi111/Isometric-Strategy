@@ -5,7 +5,7 @@ using UnityEditor;
 public class LightManagerEditor : AutoEditor
 {
     [AutoProperty]
-    public SerializedProperty lightColor, lightDirection, texelSize, shadowMap, pawnPositionMap;
+    public SerializedProperty groundMaterial, lightColor, lightDirection, texelSize, shadowMap, pawnPositionMap;
     private bool foldout_lightMatrix, foldout_shadowMatrix;
     private LightManager shadowManager;
 
@@ -17,6 +17,7 @@ public class LightManagerEditor : AutoEditor
 
     protected override void MyOnInspectorGUI()
     {
+        groundMaterial.PropertyField("地面材质");
         lightColor.ColorField("光照颜色");
         lightDirection.Vector3Field("光照方向");
         texelSize.IntField("阴影贴图尺寸");

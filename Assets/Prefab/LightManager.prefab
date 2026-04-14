@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b0d08de2f237d47990aea6bf167704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectShadowIntensity: 0
+  groundMaterial: {fileID: 2100000, guid: db769bd16fe1b26428ab38f4f1111b98, type: 2}
   lightColor: {r: 1, g: 1, b: 1, a: 1}
   lightDirection: {x: -0.5, y: 1, z: -2}
   texelSize: 100
@@ -83,3 +83,4 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 0
+  pawnPositionMap: {fileID: 0}

@@ -96,11 +96,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PawnPositionMap:
-        m_Texture: {fileID: 2800000, guid: c635d4c6d71d8714cb14c08304258028, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowMap:
-        m_Texture: {fileID: 2800000, guid: c635d4c6d71d8714cb14c08304258028, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -176,9 +176,9 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LightColor: {r: 1, g: 1, b: 1, a: 1}
     - _LightDirection: {r: -0.5, g: 1, b: -2, a: 0}
-    - _LightMat0: {r: 1, g: 0, b: 0, a: 0}
-    - _LightMat1: {r: 0, g: 1, b: 0, a: 0}
-    - _LightMat2: {r: 0, g: 0, b: 1, a: 0}
+    - _LightMat0: {r: 0.032998044, g: 0, b: -0.008249511, a: 0.5908163}
+    - _LightMat1: {r: 0.003776355, g: 0.032099016, b: 0.01510542, a: 0.26293257}
+    - _LightMat2: {r: -0.007409776, g: 0.014819552, b: -0.029639104, a: 0.7741936}
     - _LightMat3: {r: 0, g: 0, b: 0, a: 1}
     - _LightMatrix: {r: 0, g: 0, b: 0, a: 1}
     - _LightMatrix1: {r: 0, g: 1, b: 0, a: 0}
@@ -191,7 +191,7 @@ Material:
     - _Position: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowMapCoord: {r: 0, g: 0, b: 0, a: 0}
-    - _View: {r: -1, g: -1, b: 1, a: 0}
+    - _View: {r: -1, g: -1, b: -1.01, a: 0}
     - _WorldCoord: {r: 0, g: 0, b: 0, a: 0}
     - unity_WorldToLight: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

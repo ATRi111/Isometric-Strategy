@@ -2,7 +2,6 @@
 using Services;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 public class LightManager : MonoBehaviour
 {
@@ -34,6 +33,8 @@ public class LightManager : MonoBehaviour
     /// 存储所有位于表层的(可见的)地块的位置
     /// </summary>
     private readonly HashSet<Vector3Int> surfaceCache = new();
+
+    public Material groundMaterial;
 
     public Color lightColor;
     public Vector3 lightDirection;
@@ -127,6 +128,16 @@ public class LightManager : MonoBehaviour
         shadowMatrix = lightMatrix;
         shadowMatrix = Matrix4x4.Translate(new Vector3(-xMin, -yMin, -zMin)) * shadowMatrix;
         shadowMatrix = Matrix4x4.Scale(new Vector3(1f / (xMax - xMin), 1f / (yMax - yMin), 1f / (zMax - zMin))) * shadowMatrix;
+
+
+        Vector4 v = new(lightColor.r, lightColor.g, lightColor.b, 1);
+        groundMaterial.SetVector("_LightColor", v);
+        groundMaterial.SetVector("_LightDirection", lightDirection);
+
+        groundMaterial.SetVector("_LightMat0", shadowMatrix.GetRow(0));
+        groundMaterial.SetVector("_LightMat1", shadowMatrix.GetRow(1));
+        groundMaterial.SetVector("_LightMat2", shadowMatrix.GetRow(2));
+        groundMaterial.SetVector("_LightMat3", shadowMatrix.GetRow(3));
     }
 
     private void UpdateShadowOfFace(Vector3 origin, Vector3 xAxis, Vector3 yAxis)
@@ -196,6 +207,7 @@ public class LightManager : MonoBehaviour
         }
         shadowMap.SetPixels32(colors);
         shadowMap.Apply();
+        groundMaterial.SetTexture("_ShadowMap", shadowMap);
     }
 
     private void UpdatePawnPositionMap()
@@ -219,6 +231,7 @@ public class LightManager : MonoBehaviour
             pawnPositionMap.SetPixel(count, 0, Color.black);
         }
         pawnPositionMap.Apply();
+        groundMaterial.SetTexture("_PawnPositionMap", pawnPositionMap);
     }
 
     private void Awake()

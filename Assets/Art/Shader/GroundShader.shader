@@ -1,8 +1,8 @@
-﻿// Upgrade NOTE: replaced '_LightMat0' with 'unity_WorldToLight'
-
-Shader "Custom/GroundShaderHLSL" {
+﻿Shader "Custom/GroundShaderHLSL" {
     Properties {
+        [PerRendererData]
         _MainTex ("Texture", 2D) = "white" {}
+        _NormalMap("NormalMap", 2D) = "blue" {}
         
         _CellPosition("CellPosition",Vector) = (0,0,0,1)
         
@@ -20,8 +20,6 @@ Shader "Custom/GroundShaderHLSL" {
         _LightMat1("LightMat1",Vector) = (0,1,0,0) 
         _LightMat2("LightMat2",Vector) = (0,0,1,0) 
         _LightMat3("LightMat3",Vector) = (0,0,0,1) 
-
-        _NormalMap("NormalMap", 2D) = "blue" {}
 
         _PawnPositionMap("PawnPositionMap",2D) = "white"{}
     }
@@ -66,19 +64,26 @@ Shader "Custom/GroundShaderHLSL" {
                 float4 _LightColor;
                 float3 _LightDirection;
 
-                float4 _CellPosition;
-
                 float _Ambient;
                 float _Diffuse;
                 float _Specular;
                 float _Gloss;
                 float _ShadowBias;
 
+                float4 _CellPosition;
                 float4 _LightMat0;
                 float4 _LightMat1;
                 float4 _LightMat2;
                 float4 _LightMat3;
             CBUFFER_END
+
+            float3 WorldToCell(float3 worldPosition)
+            {
+                float x = worldPosition.x + worldPosition.y / 0.5 - worldPosition.z / 2.0;
+                float y = worldPosition.y / 0.5 - worldPosition.x - worldPosition.z / 2.0;
+                float z = worldPosition.z;
+                return float3(x, y, z);
+            }
             
             VertexOutput Vertex_shader(VertexInput input) 
             {
@@ -150,9 +155,9 @@ Shader "Custom/GroundShaderHLSL" {
                 return 0;
             }
 
-            float PawnCover(float3 pawnPosition, float3 cellOffset)
+            float PawnCover(float3 cellPosition, float3 pawnPosition, float3 cellOffset)
             {
-                return 1 - LineSegmentCastCylinder(3, 0.32, _CellPosition.xyz + cellOffset - pawnPosition, -_LightDirection);
+                return 1 - LineSegmentCastCylinder(3, 0.32, cellPosition.xyz + cellOffset - pawnPosition, -_LightDirection);
             }
 
             float4 BlinnPhong(float4 lightColor, float3 light, float3 normal, float3 view,
@@ -165,12 +170,12 @@ Shader "Custom/GroundShaderHLSL" {
                 return color;
             }
 
-            float4 CalcLight(float3 normal, float3 cellOffset)
+            float4 CalcLight(float3 cellPosition, float3 normal, float3 cellOffset)
             {
                 float3 light = -normalize(_LightDirection);
                 float3 view = normalize(_View);
                 float4x4 lightMat = float4x4(_LightMat0,_LightMat1,_LightMat2,_LightMat3);
-                float4 mapCoord = mul(lightMat, float4(_CellPosition.xyz + cellOffset, 1));
+                float4 mapCoord = mul(lightMat, float4(cellPosition.xyz + cellOffset, 1));
                 float visibility = CalcVisibility(_ShadowMap, mapCoord.xyz, _ShadowBias);
                 
                 UNITY_UNROLL
@@ -179,8 +184,9 @@ Shader "Custom/GroundShaderHLSL" {
                     half2 uv = half2((i + 0.5) / 30, 0.5);
                     float3 p = SAMPLE_TEXTURE2D(_PawnPositionMap, sampler_PawnPositionMap, uv).rgb;
                     p = 200 * p - float3(100, 100, 100) + float3(0.5, 0.5, 0);
-                    visibility = min(visibility, PawnCover(p, cellOffset));
+                    visibility = min(visibility, PawnCover(cellPosition, p, cellOffset));
                 }
+                
                 return BlinnPhong(_LightColor, light, normal, view,
                     _Ambient, _Diffuse, _Specular, _Gloss, visibility);
             }
@@ -192,33 +198,33 @@ Shader "Custom/GroundShaderHLSL" {
                 return normal;
             }
             
-            float3 CalcColorUp(half2 uv)
+            float3 CalcColorUp(float3 cellPosition, half2 uv)
             {
                 float x = uv.x + 1.5 * uv.y - 1;
                 float y = - uv.x + 1.5 * uv.y;
                 float3 cellOffset = float3(x, y, 1);
                 float3 normal = GetNormal(uv);
-                float4 lightColor = CalcLight(normal, cellOffset);
+                float4 lightColor = CalcLight(cellPosition, normal, cellOffset);
                 return lightColor.xyz;
             }
 
-            float3 CalcColorLeft(half2 uv)
+            float3 CalcColorLeft(float3 cellPosition, half2 uv)
             {
                 float x = 2 * uv.x;
                 float y = 2 * uv.x + 3 * uv.y - 1;
                 float3 cellOffset = float3(0, 1 - x, y);
                 float3 normal = GetNormal(uv);
-                float4 lightColor = CalcLight(normal, cellOffset);
+                float4 lightColor = CalcLight(cellPosition, normal, cellOffset);
                 return lightColor.xyz;
             }
 
-            float3 CalcColorRight(half2 uv)
+            float3 CalcColorRight(float3 cellPosition, half2 uv)
             {
                 float x = 2 * uv.x - 1;
                 float y = -2 * uv.x + 3 * uv.y + 1;
                 float3 cellOffset = float3(x, 0, y);
                 float3 normal = GetNormal(uv);
-                float4 lightColor = CalcLight(normal, cellOffset);
+                float4 lightColor = CalcLight(cellPosition, normal, cellOffset);
                 return lightColor.xyz;
             }
 
@@ -236,20 +242,21 @@ Shader "Custom/GroundShaderHLSL" {
 
             float4 Fragment_shader(VertexOutput input) : SV_Target 
             {
+                float3 cellPosition = _CellPosition.xyz;
                 half2 uv = input.uv;
                 float4 texColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv);
                 float3 lightColor;
                 if(uv.x <= 0.5 && uv.y + 0.667 * uv.x <= 0.667)
                 {
-                    lightColor = CalcColorLeft(uv);
+                    lightColor = CalcColorLeft(cellPosition, uv);
                 }
                 else if(uv.x > 0.5 && uv.y - 0.667 * uv.x <= 0)
                 {
-                    lightColor = CalcColorRight(uv);
+                    lightColor = CalcColorRight(cellPosition, uv);
                 }
                 else
                 {
-                    lightColor = CalcColorUp(uv);
+                    lightColor = CalcColorUp(cellPosition, uv);
                 }
                 texColor = GammaCorrection(texColor);
                 float4 ret = float4(lightColor, 1) * texColor;

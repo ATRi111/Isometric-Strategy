@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7788d6492338b044793dd62394d3d3b4, type: 3}
   m_Name: "\u5927\u5251"
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   propertyModifier:
     modifiers:
     - value: 3
@@ -24,3 +25,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2658aafa463737b42a43393ad2ba32ee, type: 2}
   extraDescription: 
   slotType: 0
+  animationPrefab: {fileID: 0}
+  parameterOnAgent: []
