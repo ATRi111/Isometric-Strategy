@@ -1,4 +1,4 @@
-﻿Shader "Custom/GroundShaderHLSL" {
+﻿Shader "Custom/GroundShader" {
     Properties {
         [PerRendererData]
         _MainTex ("Texture", 2D) = "white" {}
@@ -15,13 +15,7 @@
         _View("View", Vector) = (1,1,-1,0)
         _LightColor("LightColor", Color) = (1,1,1,1)
         _LightDirection("LightDirection",Vector) = (0,1,-2,0)
-        _ShadowMap("ShadowMap", 2D) = "black" {}
-        _LightMat0("LightMat0",Vector) = (1,0,0,0)
-        _LightMat1("LightMat1",Vector) = (0,1,0,0) 
-        _LightMat2("LightMat2",Vector) = (0,0,1,0) 
-        _LightMat3("LightMat3",Vector) = (0,0,0,1) 
-
-        _PawnPositionMap("PawnPositionMap",2D) = "white"{}
+        _ShadowMap("ShadowMap", 2D) = "white" {}
     }
     
     SubShader {
@@ -32,7 +26,7 @@
         }
         
         Pass {
-            Name " SpritePass"
+            Name " GroundShader"
             Cull Off
             ZWrite Off 
             Blend SrcAlpha OneMinusSrcAlpha
@@ -40,6 +34,7 @@
             HLSLPROGRAM
             #pragma vertex Vertex_shader
             #pragma fragment Fragment_shader
+            #pragma multi_compile_instancing
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             
             struct VertexInput 
@@ -57,33 +52,22 @@
             TEXTURE2D(_MainTex);        SAMPLER(sampler_MainTex);
             TEXTURE2D(_ShadowMap);      SAMPLER(sampler_ShadowMap);
             TEXTURE2D(_NormalMap);      SAMPLER(sampler_NormalMap);
-            TEXTURE2D(_PawnPositionMap);SAMPLER(sampler_PawnPositionMap);    //必然为30×1宽度的纹理，用于记录[-100,100]范围内的坐标
             
-            CBUFFER_START(Parameters)
+            CBUFFER_START(Const)
                 float3 _View;
-                float4 _LightColor;
-                float3 _LightDirection;
-
                 float _Ambient;
                 float _Diffuse;
                 float _Specular;
                 float _Gloss;
                 float _ShadowBias;
-
                 float4 _CellPosition;
-                float4 _LightMat0;
-                float4 _LightMat1;
-                float4 _LightMat2;
-                float4 _LightMat3;
             CBUFFER_END
 
-            float3 WorldToCell(float3 worldPosition)
-            {
-                float x = worldPosition.x + worldPosition.y / 0.5 - worldPosition.z / 2.0;
-                float y = worldPosition.y / 0.5 - worldPosition.x - worldPosition.z / 2.0;
-                float z = worldPosition.z;
-                return float3(x, y, z);
-            }
+            CBUFFER_START(Light)
+                float3 _LightDirection;
+                float4 _LightColor;
+                float4x4 _CellToShadowUV;
+            CBUFFER_END
             
             VertexOutput Vertex_shader(VertexInput input) 
             {
@@ -101,65 +85,6 @@
                 return step(distance - bias, closestDistance);
             }
 
-            //判断射线是否与圆柱(底面中心位于原点)相交，相交则返回1，否则返回0
-            float LineSegmentCastCylinder(float height, float radius, float3 from, float3 direction)
-            {
-                float uIn = 0, uOut = 1;
-                float u1, u2;
-
-                //先投影到xy平面，求线段与圆的交点
-                if (direction.x == 0)
-                {
-                    float d = radius * radius - from.x * from.x;
-                    if (d < 0)
-                        return 0;
-                    float y1 = -sqrt(d);
-                    float y2 = -y1;
-                    u1 = (y1 - from.y) / direction.y;
-                    u2 = (y2 - from.y) / direction.y;
-                }
-                else
-                {
-                    //y=kx+m
-                    float k = direction.y / direction.x;
-                    float m = from.y - k * from.x;
-                    //ax^2+bx+c=0
-                    float a = k * k + 1;
-                    float b = 2 * m * k;
-                    float c = m * m - radius * radius;
-                    float d = b * b - 4 * a * c;
-                    if (d < 0)
-                        return 0;
-                    float x1 = (-b - sqrt(d)) / 2 / a;
-                    float x2 = (-b + sqrt(d)) / 2 / a;
-                    u1 = (x1 - from.x) / direction.x;
-                    u2 = (x2 - from.x) / direction.x;
-                }
-
-                if (u1 > u2)
-                {
-                    float temp = u1;
-                    u1 = u2;
-                    u2 = temp;
-                }
-                uIn = max(uIn, u1);
-                uOut = min(uOut, u2);
-                if (uIn >= uOut)
-                    return 0;
-
-                float z1 = from.z + uIn * direction.z;
-                float z2 = from.z + uOut * direction.z;
-                if (z1 >= 0 && z1 < height || z2 >= 0 && z2 < height)
-                    return 1;
-
-                return 0;
-            }
-
-            float PawnCover(float3 cellPosition, float3 pawnPosition, float3 cellOffset)
-            {
-                return 1 - LineSegmentCastCylinder(3, 0.32, cellPosition.xyz + cellOffset - pawnPosition, -_LightDirection);
-            }
-
             float4 BlinnPhong(float4 lightColor, float3 light, float3 normal, float3 view,
                 float ambient, float diffuse, float specular, float gloss, float visibility)
             {
@@ -174,18 +99,9 @@
             {
                 float3 light = -normalize(_LightDirection);
                 float3 view = normalize(_View);
-                float4x4 lightMat = float4x4(_LightMat0,_LightMat1,_LightMat2,_LightMat3);
-                float4 mapCoord = mul(lightMat, float4(cellPosition.xyz + cellOffset, 1));
+
+                float4 mapCoord = mul(_CellToShadowUV, float4(cellPosition.xyz + cellOffset, 1));
                 float visibility = CalcVisibility(_ShadowMap, mapCoord.xyz, _ShadowBias);
-                
-                UNITY_UNROLL
-                for(int i = 0; i < 30; i++)
-                {
-                    half2 uv = half2((i + 0.5) / 30, 0.5);
-                    float3 p = SAMPLE_TEXTURE2D(_PawnPositionMap, sampler_PawnPositionMap, uv).rgb;
-                    p = 200 * p - float3(100, 100, 100) + float3(0.5, 0.5, 0);
-                    visibility = min(visibility, PawnCover(cellPosition, p, cellOffset));
-                }
                 
                 return BlinnPhong(_LightColor, light, normal, view,
                     _Ambient, _Diffuse, _Specular, _Gloss, visibility);

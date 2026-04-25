@@ -1,14 +1,17 @@
 ﻿using Services.ObjectPools;
 using UnityEngine;
 
-public class GroundShadowCaster : MonoBehaviour
+public class GroundShaderController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     public bool visible;
+    public Vector3 shadowMapCoord;
+    private MaterialPropertyBlock groundMbp;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        groundMbp = new MaterialPropertyBlock();
     }
 
     private void Start()
@@ -22,7 +25,11 @@ public class GroundShadowCaster : MonoBehaviour
 
         Vector3Int cellPosition = IsometricGridManager.Instance.WorldToCell(transform.position);
         Vector4 cell = new(cellPosition.x, cellPosition.y, cellPosition.z, 1);
-        spriteRenderer.material.SetVector("_CellPosition", cell);
+
+        spriteRenderer.GetPropertyBlock(groundMbp);
+        groundMbp.SetVector("_CellPosition", new Vector4(cell.x, cell.y, cell.z, 1f));
+        spriteRenderer.SetPropertyBlock(groundMbp);
+        //spriteRenderer.material.SetVector("_CellPosition", cell);
     }
 
     private void OnDestroy()

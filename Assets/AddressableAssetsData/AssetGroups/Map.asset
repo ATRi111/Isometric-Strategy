@@ -17,18 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 663da5eb770bfd849bea25daa1970103
   m_SerializeEntries:
-  - m_GUID: 1e0bf5105fe954c43a583b589016ddd2
-    m_Address: RightShadow
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1e9308fc0d1306c4692fe11b0985296c
-    m_Address: UpShadow
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9d3e25b5cebca81459ed5bde68661366
-    m_Address: LeftShadow
+  - m_GUID: db769bd16fe1b26428ab38f4f1111b98
+    m_Address: Material_Ground
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

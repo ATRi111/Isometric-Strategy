@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6312354551894140649}
   - component: {fileID: 5397241446029103098}
+  - component: {fileID: 1906473813589016399}
   m_Layer: 0
   m_Name: LightManager
   m_TagString: Untagged
@@ -44,11 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b0d08de2f237d47990aea6bf167704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundMaterial: {fileID: 2100000, guid: db769bd16fe1b26428ab38f4f1111b98, type: 2}
   lightColor: {r: 1, g: 1, b: 1, a: 1}
   lightDirection: {x: -0.5, y: 1, z: -2}
-  texelSize: 100
-  shadowMap: {fileID: 0}
   lightMatrix:
     e00: 0
     e01: 0
@@ -66,6 +64,18 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 0
+--- !u!114 &1906473813589016399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375363368806965752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa68a0e565a5bf41b2fa4350750806a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   shadowMatrix:
     e00: 0
     e01: 0
@@ -83,4 +93,3 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 0
-  pawnPositionMap: {fileID: 0}
